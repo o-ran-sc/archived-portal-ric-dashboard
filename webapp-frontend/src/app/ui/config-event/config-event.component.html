@@ -1,0 +1,89 @@
+<!--
+  ========================LICENSE_START=================================
+  ORAN-OSC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property and Nokia
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+  (click)="frame.show()" mdbWavesEffect><mat-icon style="vertical-align: -21%; size: 1em">settings</mat-icon></button>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true" (opened)="onOpened($event)">
+  <div class="modal-dialog modal-notify modal-info modal-side modal-top-left" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Settings</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="text-center">
+	        <div class="md-form">
+			  <input type="text" id="jsonurl" class="form-control" mdbInput [formControl]="contactFormModalJsonUrl">
+			  <label for="jsonurl">JSON-SERVER url</label>
+			</div>
+	        <div class="md-form">
+			  <input type="text" id="host" class="form-control" mdbInput [formControl]="contactFormModalHost">
+			  <label for="host">Host url</label>
+			</div>
+            <div class="md-form">
+                <input type="text" id="metricsPath" class="form-control" mdbInput
+                    [formControl]="contactFormModalMetrics">
+                <label data-error="wrong" data-success="right" for="metricsPath">Metrics Path</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="delayPath" class="form-control" mdbInput
+                    [formControl]="contactFormModalDelay">
+                <label data-error="wrong" data-success="delayPath" for="url">Delay Path</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="loadPath" class="form-control" mdbInput
+                    [formControl]="contactFormModalLoad">
+                <label data-error="wrong" data-success="right" for="loadPath">Load Path</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="delayMax" class="form-control" mdbInput
+                    [formControl]="contactFormModalDelayMax">
+                <label data-error="wrong" data-success="delayMax" for="url">Delay Max</label>
+            </div>
+            <div class="md-form">
+                <input type="text" id="loadMax" class="form-control" mdbInput
+                    [formControl]="contactFormModalLoadMax">
+                <label data-error="wrong" data-success="right" for="loadMax">Load Max</label>
+            </div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect (click)="save(); frame.hide()">
+            <mat-icon style="vertical-align: -21%;">launch</mat-icon> Save
+        </a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()"
+          data-dismiss="modal">
+          <mat-icon style="vertical-align: -21%; size: 1em">close</mat-icon> Cancel</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
