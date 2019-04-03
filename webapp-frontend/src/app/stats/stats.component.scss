@@ -1,0 +1,28 @@
+.stats__section {
+    position: relative;
+    top: -10px;
+}
+
+.stats__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 40px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
+
+.bar-chart-card {
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    margin-left: 1%
+}
+
+.mat-slider {
+  width: 300px;
+}
+
+.mat-grid-tile {
+  background: transparent;
+}
