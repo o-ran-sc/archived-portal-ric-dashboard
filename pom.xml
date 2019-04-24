@@ -46,6 +46,7 @@ limitations under the License.
 		<module>webapp-frontend</module>
 		<module>webapp-backend</module>
 		<module>xapp-mgr-client</module>
+		<module>e2-mgr-client</module>
 	</modules>
 	<build>
 		<plugins>
