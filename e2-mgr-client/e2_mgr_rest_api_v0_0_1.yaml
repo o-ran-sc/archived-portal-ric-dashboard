@@ -1,0 +1,58 @@
+---
+swagger: "2.0"
+info:
+  description: "Draft API for RIC e2-manager"
+  version: "0.0.0"
+  title: "RIC e2-manager"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "ric-dashboard.oran-osc.org"
+basePath: "/e2/v1"
+schemes: 
+  - "http"
+  - "https"
+paths:
+  /e2/v1/health:
+    get:
+      summary: "Health check of E2 Manager"
+      operationId: "getHealth"
+      responses:
+        200:
+          description: "Status is ok"
+        500:
+          description: "Status is error"
+  /e2/v1/setup:
+    post:
+      summary: "Set up connection to a RAN element"
+      operationId: "setupRan"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "ranSetupRequest"
+        description: "Setup request with host and port"
+        required: true
+        schema:
+            $ref: "#/definitions/ranSetupRequest"
+      responses:
+        200:
+          description: "Setup successful"
+        400:
+          description: "Invalid input"
+definitions:
+  ranSetupRequest:
+    type: "object"
+    properties:
+      ranIp:
+        type: "string"
+        description: "IPv4/IPv6 address"
+      ranPort:
+        type: "integer"
+        format: "int32"
+        example: 80
+      ranName:
+        type: "string"
+        description: "eNodeB/gNodeB name"
