@@ -22,9 +22,9 @@ package org.oranosc.ric.portal.dash.controller;
 import java.lang.invoke.MethodHandles;
 
 import org.oranosc.ric.portal.dash.DashboardConstants;
-import org.oranosc.ric.portal.dashboard.xmc.model.AllXapps;
-import org.oranosc.ric.portal.dashboard.xmc.model.Xapp;
-import org.oranosc.ric.portal.dashboard.xmc.model.Xapp.StatusEnum;
+import org.oranosc.ric.portal.dashboard.xappmgr.client.model.AllXapps;
+import org.oranosc.ric.portal.dashboard.xappmgr.client.model.Xapp;
+import org.oranosc.ric.portal.dashboard.xappmgr.client.model.Xapp.StatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
