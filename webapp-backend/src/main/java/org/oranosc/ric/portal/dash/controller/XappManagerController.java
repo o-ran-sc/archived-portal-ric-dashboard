@@ -22,8 +22,8 @@ package org.oranosc.ric.portal.dash.controller;
 import java.lang.invoke.MethodHandles;
 
 import org.oranosc.ric.portal.dash.DashboardConstants;
-import org.oranosc.ric.portal.dashboard.xmc.api.DefaultApi;
-import org.oranosc.ric.portal.dashboard.xmc.model.AllXapps;
+import org.oranosc.ric.xappmgr.client.api.DefaultApi;
+import org.oranosc.ric.xappmgr.client.model.AllXapps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
