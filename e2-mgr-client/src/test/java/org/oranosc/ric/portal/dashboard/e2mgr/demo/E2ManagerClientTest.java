@@ -17,35 +17,30 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oranosc.ric.portal.dashboard.xmc.demo;
+package org.oranosc.ric.portal.dashboard.e2mgr.demo;
 
-import org.oranosc.ric.portal.dashboard.api.DefaultApi;
-import org.oranosc.ric.portal.dashboard.model.AllXapps;
-import org.oranosc.ric.portal.dashboard.invoker.ApiClient;
-import org.oranosc.ric.portal.dashboard.model.Xapp;
+import org.junit.Test;
+import org.oranosc.ric.portal.dashboard.e2mgr.client.api.DefaultApi;
+import org.oranosc.ric.portal.dashboard.e2mgr.client.invoker.ApiClient;
 import org.springframework.web.client.RestClientException;
 
-public class XappManagerClientDemo {
+/**
+ * Demonstrates use of the generated E2 manager client.
+ * 
+ * The test fails because no server is available.
+ */
+public class E2ManagerClientTest {
 
-	public static void main(String[] args) {
+	@Test
+	public void demo() {
 		ApiClient apiClient = new ApiClient();
 		apiClient.setBasePath("http://localhost:30099/");
-		DefaultApi apiInstance = new DefaultApi(apiClient);
+		DefaultApi e2Mgr = new DefaultApi(apiClient);
 		try {
-			apiInstance.getHealth();
-			System.out.println("Healthcheck answered " + apiClient.getStatusCode().toString());
+			e2Mgr.getHealth();
+			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
 		} catch (RestClientException e) {
-			System.err.println("Failed on DefaultApi#getHealth: " + e.toString());
-		}
-		try {
-			AllXapps allXapps = apiInstance.getAllXapps();
-			System.out.println("getAllXapps answered " + apiClient.getStatusCode().toString());
-			System.out.println("xApp count: " + allXapps.size());
-			for (Xapp x : allXapps)
-				System.out.println("xApp: " + x.toString());
-		} catch (RestClientException e) {
-			System.err.println("Failed on DefaultApi#getAllXapps: " + e.toString());
+			System.err.println("getHealth failed: " +  e.toString());
 		}
 	}
-
 }

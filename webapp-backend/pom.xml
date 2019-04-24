@@ -37,6 +37,11 @@ limitations under the License.
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>e2-mgr-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>xapp-mgr-client</artifactId>
 			<version>0.0.10-SNAPSHOT</version>
 		</dependency>
@@ -73,6 +78,12 @@ limitations under the License.
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<!-- spring sets the <version>5.4.2</version> -->
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
