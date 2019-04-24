@@ -1,0 +1,94 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Draft API for RIC e2-manager",
+      "version": "0.0.0",
+      "title": "RIC e2-manager"
+    },
+    "host": "hostname",
+    "basePath": "/e2/v1",
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "paths": {
+      "/e2/v1/health": {
+        "get": {
+          "summary": "Health check of E2 Manager",
+          "operationId": "getHealth",
+          "responses": {
+            "200": {
+              "description": "Status of xApp Manager is ok"
+            }
+          }
+        }
+      },
+      "/e2/v1/setup": {
+        "post": {
+          "summary": "Connect to a RAN element",
+          "operationId": "setupRan",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "ranSetupRequest",
+              "in": "body",
+              "description": "Setup request with host and port",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ranSetupRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Setup successful",
+              "schema": {
+                "$ref": "#/definitions/ranSetupResponse"
+              }
+            },
+            "400": {
+              "description": "Invalid input"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "ranSetupRequest": {
+        "type": "object",
+        "required": [
+          "ranIp",
+          "ranPort",
+          "ranName"
+        ],
+        "properties": {
+          "ranIp": {
+            "type": "string",
+            "example": "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+          },
+          "ranPort": {
+            "type": "integer",
+            "example": 80
+          },
+          "ranname": {
+            "type": "string",
+            "example": "eNodeB"
+          }
+        }
+      },
+      "ranSetupResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "TBD"
+          }
+        }
+      }
+    }
+  }

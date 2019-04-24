@@ -19,8 +19,8 @@
  */
 package org.oranosc.ric.portal.dash;
 
-import org.oranosc.ric.portal.dashboard.xmc.api.DefaultApi;
-import org.oranosc.ric.portal.dashboard.xmc.invoker.ApiClient;
+import org.oranosc.ric.portal.dashboard.e2mgr.client.api.DefaultApi;
+import org.oranosc.ric.portal.dashboard.e2mgr.client.invoker.ApiClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,21 +30,21 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @ComponentScan("org.oranosc.ric.portal")
-public class XappManagerConfiguration {
+public class E2ManagerConfiguration {
 
-	@Value("${xapp.manager.base.url}")
-	private String xappManagerBaseUrl;
+	@Value("${e2.manager.base.url}")
+	private String e2ManagerBaseUrl;
 
 	/**
 	 * Required by autowired constructor {@link DefaultApi#DefaultApi(ApiClient)}
 	 * 
-	 * @return Instance of ApiClient configured from properties
+	 * @return Instance of E2 Manager client configured from properties
 	 */
 	@Bean
 	@Primary // ignore the one in the Jar file
-	public ApiClient xappApiClient() {
+	public ApiClient e2ApiClient() {
 		ApiClient apiClient = new ApiClient(restTemplate());
-		apiClient.setBasePath(xappManagerBaseUrl);
+		apiClient.setBasePath(e2ManagerBaseUrl);
 		return apiClient;
 	}
 
@@ -53,6 +53,7 @@ public class XappManagerConfiguration {
 	 * 
 	 * @return Instance of RestTemplate
 	 */
+	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
