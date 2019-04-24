@@ -25,8 +25,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+// Limit the annotation scan to the dashboard classes;
+// exclude the generated client classes!
+@ComponentScan("org.oranosc.ric.portal.dashboard")
 public class DashboardApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

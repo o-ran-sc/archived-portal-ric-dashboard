@@ -22,9 +22,9 @@ package org.oranosc.ric.portal.dash.controller;
 import java.lang.invoke.MethodHandles;
 
 import org.oranosc.ric.portal.dash.DashboardConstants;
-import org.oranosc.ric.portal.dashboard.xmc.model.AllXapps;
-import org.oranosc.ric.portal.dashboard.xmc.model.Xapp;
-import org.oranosc.ric.portal.dashboard.xmc.model.Xapp.StatusEnum;
+import org.oranosc.ric.xappmgr.client.model.AllXapps;
+import org.oranosc.ric.xappmgr.client.model.Xapp;
+import org.oranosc.ric.xappmgr.client.model.Xapp.StatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/catalog", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CatalogController {
+public class XappCatalogController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
