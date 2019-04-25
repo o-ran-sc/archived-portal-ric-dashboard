@@ -3,6 +3,16 @@
 This projects generates a REST client library from the Swagger specification
 file stored here and packages it in a jar.
 
+## Eclipse and STS Users
+
+The Swagger Codegen maven plugin is not supported in Eclipse/STS. You can
+limp along by taking these steps:
+
+1. Generate the code using maven:
+    mvn install
+2. Add this folder to the project build path:
+    target/generated-sources/swagger/src/main/java
+
 ## License
 
 Copyright (C) 2019 AT&T Intellectual Property & Nokia. All rights reserved.

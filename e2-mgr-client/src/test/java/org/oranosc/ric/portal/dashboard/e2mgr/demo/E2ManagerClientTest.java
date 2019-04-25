@@ -40,7 +40,7 @@ public class E2ManagerClientTest {
 			e2Mgr.getHealth();
 			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
 		} catch (RestClientException e) {
-			System.err.println("getHealth failed: " +  e.toString());
+			System.err.println("getHealth failed: " + e.toString());
 		}
 	}
 }

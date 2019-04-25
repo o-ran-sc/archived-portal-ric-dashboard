@@ -1,17 +1,8 @@
-# XApp Manager Client Generator
+# RIC Dashboard Web Application Backend
 
-This projects generates a REST client library from the Swagger specification
-file stored here and packages it in a jar.
+## Development server
 
-## Eclipse and STS Users
-
-The Swagger Codegen maven plugin is not supported in Eclipse/STS. You can
-limp along by taking these steps:
-
-1. Generate the code using maven:
-    mvn install
-2. Add this folder to the project build path:
-    target/generated-sources/swagger/src/main/java
+Run `mvn -Dspring.profiles.active=mock spring-boot:run` for a dev server. Navigate to `http://localhost:8080/swagger-ui.html`. 
 
 ## License
 

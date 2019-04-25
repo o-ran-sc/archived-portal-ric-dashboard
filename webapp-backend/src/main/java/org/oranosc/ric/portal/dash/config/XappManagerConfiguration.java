@@ -17,31 +17,41 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oranosc.ric.portal.dash;
+package org.oranosc.ric.portal.dash.config;
 
-import org.oranosc.ric.e2mgr.client.api.DefaultApi;
-import org.oranosc.ric.e2mgr.client.invoker.ApiClient;
+import org.oranosc.ric.xappmgr.client.api.DefaultApi;
+import org.oranosc.ric.xappmgr.client.invoker.ApiClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Creates an xApp manager client as a bean to be managed by the Spring
+ * container.
+ */
 @Configuration
-public class E2ManagerConfiguration {
+public class XappManagerConfiguration {
 
-	@Value("${e2.manager.base.url}")
-	private String e2ManagerBaseUrl;
+	// Populated by the autowired constructor
+	private final String xappMgrBasepath;
+
+	@Autowired
+	public XappManagerConfiguration(@Value("${xappmgr.basepath}") final String xappMgrBasepath) {
+		Assert.notNull(xappMgrBasepath, "base path must not be null");
+		this.xappMgrBasepath = xappMgrBasepath;
+	}
 
 	/**
-	 * Required by autowired constructor {@link DefaultApi#DefaultApi(ApiClient)}
-	 * 
-	 * @return Instance of E2 Manager client configured from properties
+	 * @return A DefaultApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public ApiClient e2ManagerClient() {
+	public DefaultApi xappClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(e2ManagerBaseUrl);
-		return apiClient;
+		apiClient.setBasePath(xappMgrBasepath);
+		return new DefaultApi(apiClient);
 	}
 
 }
