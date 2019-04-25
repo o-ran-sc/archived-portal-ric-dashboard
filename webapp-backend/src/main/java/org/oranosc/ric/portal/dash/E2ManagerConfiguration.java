@@ -29,19 +29,17 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class E2ManagerConfiguration {
 
-	@Value("${e2.manager.base.url}")
+	@Value("${e2mgr.basepath}")
 	private String e2ManagerBaseUrl;
 
 	/**
-	 * Required by autowired constructor {@link DefaultApi#DefaultApi(ApiClient)}
-	 * 
-	 * @return Instance of E2 Manager client configured from properties
+	 * @return A DefaultApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public ApiClient e2ManagerClient() {
+	public DefaultApi e2ManagerClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
 		apiClient.setBasePath(e2ManagerBaseUrl);
-		return apiClient;
+		return new DefaultApi(apiClient);
 	}
 
 }
