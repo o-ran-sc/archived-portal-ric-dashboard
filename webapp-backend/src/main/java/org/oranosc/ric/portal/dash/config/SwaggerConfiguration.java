@@ -18,8 +18,9 @@
  * ========================LICENSE_END===================================
  */
 
-package org.oranosc.ric.portal.dash;
+package org.oranosc.ric.portal.dash.config;
 
+import org.oranosc.ric.portal.dash.DashboardApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -55,7 +56,7 @@ public class SwaggerConfiguration {
 		final String version = DashboardApplication.class.getPackage().getImplementationVersion();
 		return new ApiInfoBuilder() //
 				.title("RIC Dashboard backend") //
-				.description("Provides demonstration services.")//
+				.description("Proxies access to RIC services.")//
 				.termsOfServiceUrl("Terms of service") //
 				.contact(new Contact("RIC Dashboard Dev Team", //
 						"http://no-docs-yet.org/", //
