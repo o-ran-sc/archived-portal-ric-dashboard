@@ -28,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.oranosc.ric.e2mgr.client.api.DefaultApi;
 import org.oranosc.ric.e2mgr.client.model.RanSetupRequest;
 import org.oranosc.ric.portal.dash.DashboardConstants;
-import org.oranosc.ric.portal.dash.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class E2ManagerController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Autowired
-	private DefaultApi e2ManagerClient;
+	private DefaultApi e2MgrClient;
 
 	// Tracks the requests previously submitted.
 	// TODO remove when the E2 manager is extended.
@@ -73,11 +72,12 @@ public class E2ManagerController {
 			throw new IllegalArgumentException("Empty not permitted");
 	}
 
-	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.", response = String.class)
+	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public SuccessTransport getHealth() {
+	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealth");
-		return new SuccessTransport();
+		e2MgrClient.getHealth();
+		response.setStatus(e2MgrClient.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = RanSetupRequest.class, responseContainer = "List")
@@ -101,7 +101,7 @@ public class E2ManagerController {
 		}
 		try {
 			requests.add(rsr);
-			e2ManagerClient.setupRan(rsr);
+			e2MgrClient.setupRan(rsr);
 		} catch (Exception ex) {
 			logger.error("Failed", ex);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
