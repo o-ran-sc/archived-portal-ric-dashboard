@@ -19,29 +19,17 @@
  */
 package org.oranosc.ric.portal.dash;
 
-import org.oranosc.ric.xappmgr.client.api.DefaultApi;
-import org.oranosc.ric.xappmgr.client.invoker.ApiClient;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@Configuration
-public class XappManagerConfiguration {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class DashboardApplicationTest {
 
-	@Value("${xapp.manager.base.url}")
-	private String xappManagerBaseUrl;
-
-	/**
-	 * Required by autowired constructor {@link DefaultApi#DefaultApi(ApiClient)}
-	 * 
-	 * @return Instance of ApiClient configured from properties
-	 */
-	@Bean
-	public ApiClient xappApiClient() {
-		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(xappManagerBaseUrl);
-		return apiClient;
+	@Test
+	public void contextLoads() {
 	}
 
 }

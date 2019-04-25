@@ -32,6 +32,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Mocks up the xApp manager endpoint.
+ */
 @RestController
 @RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/catalog", produces = MediaType.APPLICATION_JSON_VALUE)
 public class XappCatalogController {

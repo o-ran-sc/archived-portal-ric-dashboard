@@ -71,13 +71,13 @@ public class A1MediationController {
 	private static final String A1_MEDIATION_METRICS = "metrics";
 	private static final String A1_MEDIATION_METRICS_PATH = A1_MEDIATION_METRICS + "path";
 
-	@Value("${a1.mediation.url}")
+	@Value("${a1med.basepath}")
 	private String a1MediationUrl;
-	@Value("${a1.mediation.delay.path}")
+	@Value("${a1med.delaypath}")
 	private String a1MediationDelayPath;
-	@Value("${a1.mediation.load.path}")
+	@Value("${a1med.loadpath}")
 	private String a1MediationLoadPath;
-	@Value("${a1.mediation.metrics.path}")
+	@Value("${a1med.metricspath}")
 	private String a1MediationMetricsPath;
 
 	// For demo purposes
