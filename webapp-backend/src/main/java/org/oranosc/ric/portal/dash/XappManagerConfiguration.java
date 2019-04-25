@@ -29,8 +29,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class XappManagerConfiguration {
 
-	@Value("${xapp.manager.base.url}")
-	private String xappManagerBaseUrl;
+	@Value("${xappmgr.basepath}")
+	private String xappMgrBasePath;
 
 	/**
 	 * Required by autowired constructor {@link DefaultApi#DefaultApi(ApiClient)}
@@ -40,7 +40,7 @@ public class XappManagerConfiguration {
 	@Bean
 	public ApiClient xappApiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(xappManagerBaseUrl);
+		apiClient.setBasePath(xappMgrBasePath);
 		return apiClient;
 	}
 
