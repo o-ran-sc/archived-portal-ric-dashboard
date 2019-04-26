@@ -37,8 +37,10 @@ import { UiService} from './services/ui/ui.service';
 import { AdminService} from './services/admin/admin.service';
 import { CatalogService} from './services/catalog/catalog.service';
 import { ControlService} from './services/control/control.service';
+import { SignalService} from './services/signal/signal.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
+import { SignalComponent } from './signal/signal.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent} from './ui/catalog-card/catalog-card.component';
@@ -59,6 +61,7 @@ import { MatDialogModule } from '@angular/material';
     ControlCardComponent,
     StatCardComponent,
     ControlComponent,
+    SignalComponent,
     StatsComponent,
     AdminComponent,
     ModalEventComponent,
@@ -107,6 +110,7 @@ import { MatDialogModule } from '@angular/material';
       AdminService,
       CatalogService,
       ControlService,
+      SignalService
     ],
   bootstrap: [AppComponent]
 })
