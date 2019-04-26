@@ -25,6 +25,7 @@ Version 1.0.1, 6 May 2019
 * Add draft A1 Mediator API definition
 * Use E2 Manager API definition dated 2 May 2019, with tag modifications
 * Adjust group IDs and packages for name O-RAN-SC; drop ORAN-OSC
+* Allow the user to initiate an E2 (X2) connection between RIC and gNB/eNB in the dashboard
 
 Version 1.0.0, 30 Apr 2019
 --------------------------

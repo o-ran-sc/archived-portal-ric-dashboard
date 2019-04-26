@@ -1,6 +1,6 @@
 <!--
   ========================LICENSE_START=================================
-  O-RAN-SC
+  ORAN-OSC
   %%
   Copyright (C) 2019 AT&T Intellectual Property and Nokia
   %%
@@ -18,8 +18,9 @@
   ========================LICENSE_END===================================
   -->
 <div class="control__section">
-    <h3 class="control__header">xApp Control1</h3>
-    <ng2-smart-table [settings]="settings" [source]="source" (custom)="view($event)">
+    <h3 class="control__header">RAN Connection</h3>
+    <button mat-raised-button (click)="openRanConnectDialog()">Connect</button>  
+    <ng2-smart-table [settings]="settings" [source]="source">
     </ng2-smart-table>
     <app-modal-event hidden></app-modal-event>
 </div>
