@@ -23,6 +23,7 @@ RIC Dashboard Release Notes
 Version 1.0.2, 9 May 2019
 -------------------------
 * Add E2 response message with timestamp and status code
+* Allow the user to initiate an E2 (X2) connection between RIC and gNB/eNB
 
 Version 1.0.1, 6 May 2019
 -------------------------
