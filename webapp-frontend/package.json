@@ -32,8 +32,8 @@
     "ng2-charts": "^1.6.0",
     "ng2-completer": "^2.0.8",
     "ng2-smart-table": "1.3.5",
-    "rxjs": "~6.3.3",
-    "rxjs-compat": "^6.4.0",
+    "rxjs": "6.3.3",
+    "rxjs-compat": "6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
@@ -57,5 +57,10 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
+  },
+  "comments": {
+    "dependencies": {
+      "rxjs": "Its version needs to be same with rxjs-compat, otherwise apparently build is failing"
+    }
   }
 }
