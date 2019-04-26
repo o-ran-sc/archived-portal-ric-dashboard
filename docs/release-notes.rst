@@ -20,6 +20,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.0.2, 7 May 2019
+-------------------------
+* Allow the user to initiate an E2 (X2) connection between RIC and gNB/eNB in the dashboard
+
 Version 1.0.1, 6 May 2019
 -------------------------
 * Add draft A1 Mediator API definition

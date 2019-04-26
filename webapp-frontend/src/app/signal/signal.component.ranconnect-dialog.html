@@ -1,0 +1,54 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property and Nokia
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+
+
+
+
+
+<div mat-dialog-title>
+    Set up RAN Connection
+</div>
+
+
+<div mat-dialog-content>
+    
+    <mat-form-field>
+      <input matInput placeholder="eNB/GNB Name" [(ngModel)]="data.ranName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="IP" [(ngModel)]="data.ranIp">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Port" [(ngModel)]="data.ranPort">
+    </mat-form-field>
+            
+</div>
+ 
+ <div mat-dialog-actions class="modal-footer justify-content-center">
+    <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect mat-button (click)="connectRAN()">
+        <mat-icon style="vertical-align: -21%;">launch</mat-icon> Connect
+    </a>
+    <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect
+       data-dismiss="modal" mat-button (click)="onNoClick()">
+        <mat-icon style="vertical-align: -21%; size: 1em">close</mat-icon> Cancel
+    </a>
+</div>
