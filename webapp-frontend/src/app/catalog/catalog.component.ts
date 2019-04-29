@@ -17,9 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { CatalogService } from '../services/catalog/catalog.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface DialogData {
+    name: string;
+}
+
 
 @Component({
   selector: 'app-catalog',
@@ -59,16 +65,44 @@ export class CatalogComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: CatalogService) {
+    constructor(private service: CatalogService, public dialog: MatDialog) {
     this.service.getAll().subscribe((val:any[]) => this.source.load(val));
   }
 
-  onDeployxApp(event): void {
-    if (window.confirm('Are you sure you want to deploy?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+
+    onDeployxApp(event): void {
+        const dialogRef = this.dialog.open(AppCatalogDeployDialog, {
+            width: '400px',
+            data: { name: event.data.name }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
     }
-  }
+
+}
+
+@Component({
+    selector: 'app-catalog-deploy-dialog',
+    templateUrl: 'catalog.component.deploy-dialog.html',
+    styleUrls: ['./catalog.component.css']
+})
+
+export class AppCatalogDeployDialog{
+
+    constructor(
+        public dialogRef: MatDialogRef<AppCatalogDeployDialog>,
+        private service: CatalogService,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
+    deployXapp(): void {
+        this.service.deployXapp(this.data.name).subscribe((val: any[]) => console.log(val));;
+        this.dialogRef.close();
+    }
 
 }
