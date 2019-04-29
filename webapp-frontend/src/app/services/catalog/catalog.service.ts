@@ -30,5 +30,14 @@ export class CatalogService {
   getAll() {
     return this.http.get('api/xappmgr/xapps');
   }
+
+    deployXapp(name) {
+        console.log(name);
+        return this.http.post('api/xappmgr/xapps',
+            {
+                "xAppName": "string",
+                "xappName": name
+            });
+    }
     
 }
