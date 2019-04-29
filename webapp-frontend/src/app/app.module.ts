@@ -32,7 +32,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { CatalogComponent } from './catalog/catalog.component';
+import { CatalogComponent, AppCatalogDeployDialog, } from './catalog/catalog.component';
 import { UiService} from './services/ui/ui.service';
 import { AdminService} from './services/admin/admin.service';
 import { CatalogService} from './services/catalog/catalog.service';
@@ -47,6 +47,7 @@ import { StatCardComponent} from './ui/stat-card/stat-card.component';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -63,8 +64,9 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
+    AppCatalogDeployDialog,
   ],
-  imports: [
+    imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
@@ -84,7 +86,8 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
     Ng2SmartTableModule,
     MDBBootstrapModule.forRoot(),
   ],
-  exports: [
+    exports: [
+    MatDialogModule, 
     MatButtonToggleModule,
     MatExpansionModule,
     MatSliderModule,
@@ -95,7 +98,10 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
     MatSidenavModule,
     MatSlideToggleModule,
     MatTabsModule,
-  ],
+    ],
+    entryComponents: [
+    AppCatalogDeployDialog,
+    ],
   providers: [
       UiService,
       AdminService,

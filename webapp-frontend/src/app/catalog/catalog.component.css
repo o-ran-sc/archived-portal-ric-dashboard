@@ -31,8 +31,8 @@
     transform: translate(149 56);
 }
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
+:host /deep/ ng2-smart-table tbody > tr > td {
+    text-align: left;
 }
 
 :host /deep/ ng2-smart-table thead th{
