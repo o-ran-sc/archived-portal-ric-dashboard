@@ -24,12 +24,15 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.lang.invoke.MethodHandles;
+
 import org.oranosc.ric.e2mgr.client.api.DefaultApi;
 import org.oranosc.ric.e2mgr.client.invoker.ApiClient;
 import org.oranosc.ric.e2mgr.client.model.RanSetupRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
@@ -41,8 +44,13 @@ import org.springframework.http.HttpStatus;
 @Configuration
 public class E2ManagerMockConfiguration {
 
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	public E2ManagerMockConfiguration() {
+		logger.info("Configuring mock E2 Manager");
+	}
+
 	@Bean
-	@Primary
 	public DefaultApi e2ManagerMockClient() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
