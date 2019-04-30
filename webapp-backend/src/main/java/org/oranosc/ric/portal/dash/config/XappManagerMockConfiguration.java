@@ -24,6 +24,8 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.lang.invoke.MethodHandles;
+
 import org.oranosc.ric.xappmgr.client.api.DefaultApi;
 import org.oranosc.ric.xappmgr.client.invoker.ApiClient;
 import org.oranosc.ric.xappmgr.client.model.AllXapps;
@@ -32,9 +34,10 @@ import org.oranosc.ric.xappmgr.client.model.SubscriptionResponse;
 import org.oranosc.ric.xappmgr.client.model.XAppInfo;
 import org.oranosc.ric.xappmgr.client.model.Xapp;
 import org.oranosc.ric.xappmgr.client.model.Xapp.StatusEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
@@ -46,9 +49,12 @@ import org.springframework.http.HttpStatus;
 @Configuration
 public class XappManagerMockConfiguration {
 
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 	private final AllXapps allXapps;
 
 	public XappManagerMockConfiguration() {
+		logger.info("Configuring mock xApp Manager");
 		allXapps = new AllXapps();
 		allXapps.add(new Xapp().name("Pendulum Control").version("v1").status(StatusEnum.DEPLOYED));
 		allXapps.add(new Xapp().name("Dual Connectivity").version("v2").status(StatusEnum.DELETED));
@@ -57,7 +63,6 @@ public class XappManagerMockConfiguration {
 	}
 
 	@Bean
-	@Primary
 	public DefaultApi xappManagerMockClient() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);

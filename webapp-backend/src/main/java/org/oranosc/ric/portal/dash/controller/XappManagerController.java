@@ -61,6 +61,8 @@ public class XappManagerController {
 	@Autowired
 	public XappManagerController(final DefaultApi xappMgrClient) {
 		Assert.notNull(xappMgrClient, "client must not be null");
+		if (logger.isDebugEnabled())
+			logger.debug("ctor: configured with client type {}", xappMgrClient.getClass().getName());
 		this.xappMgrClient = xappMgrClient;
 	}
 
@@ -75,7 +77,8 @@ public class XappManagerController {
 	@ApiOperation(value = "Calls the xApp Manager to get the list of xApps.", response = AllXapps.class)
 	@RequestMapping(value = "/xapps", method = RequestMethod.GET)
 	public AllXapps getAllXapps() {
-		logger.debug("getAllXapps via " + xappMgrClient.getApiClient().getBasePath());
+		if (logger.isDebugEnabled())
+			logger.debug("getAllXapps via {}", xappMgrClient.getApiClient().getBasePath());
 		return xappMgrClient.getAllXapps();
 	}
 
