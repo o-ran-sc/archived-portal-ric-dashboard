@@ -63,6 +63,6 @@
 	</root>
 
 	<!-- Code under test should be chatty --> >
-	<logger name="org.oranosc.ric.portal" level="DEBUG" />
+	<logger name="org.oranosc.ric.portal.dash" level="INFO" />
 
 </configuration>

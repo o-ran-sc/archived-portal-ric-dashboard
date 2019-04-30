@@ -65,6 +65,8 @@ public class E2ManagerController {
 	@Autowired
 	public E2ManagerController(final DefaultApi e2MgrClient) {
 		Assert.notNull(e2MgrClient, "client must not be null");
+		if (logger.isDebugEnabled())
+			logger.debug("ctor: configured with client type {}", e2MgrClient.getClass().getName());
 		this.e2MgrClient = e2MgrClient;
 	}
 
