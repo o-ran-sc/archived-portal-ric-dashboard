@@ -30,6 +30,10 @@ import org.springframework.web.client.RestClientException;
  * Demonstrates use of the generated xApp manager client.
  * 
  * The test fails because no server is available.
+ * 
+ * The ugly name "DefaultApi" is generated because the spec lacks appropriate
+ * tags on the operation, also see
+ * https://stackoverflow.com/questions/38293236/swagger-swagger-codegen-maven-plugin-generate-default-api-interface
  */
 public class XappManagerClientTest {
 
