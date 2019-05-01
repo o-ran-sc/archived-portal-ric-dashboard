@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60889545_f9726b72",
+        "filename": "webapp-frontend/src/app/services/signal/signal.service.spec.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-01T15:13:30Z",
+      "side": 1,
+      "message": "Why is CatalogService invoked in this describe function?  I don\u0027t understand much about Angular but this looks odd.",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "4aa1c7876047ff163a90dd6d05cf6ae6e9a5ac1f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31af9884_78048384",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-01T15:13:30Z",
+      "side": 1,
+      "message": "Why is the column name \"xAppName\"?  That\u0027s not what comes back in the response.",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "4aa1c7876047ff163a90dd6d05cf6ae6e9a5ac1f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5753628a_a6372e7d",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-01T15:13:30Z",
+      "side": 1,
+      "message": "xAppType?  How about ranIp ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 20
+      },
+      "revId": "4aa1c7876047ff163a90dd6d05cf6ae6e9a5ac1f",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
