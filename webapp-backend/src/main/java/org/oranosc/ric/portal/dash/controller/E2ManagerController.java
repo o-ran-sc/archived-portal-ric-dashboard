@@ -25,8 +25,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.oranosc.ric.e2mgr.client.api.DefaultApi;
-import org.oranosc.ric.e2mgr.client.model.RanSetupRequest;
+import org.oranosc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oranosc.ric.e2mgr.client.api.X2SetupRequestApi;
+import org.oranosc.ric.e2mgr.client.model.SetupRequest;
 import org.oranosc.ric.portal.dash.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,18 +57,18 @@ public class E2ManagerController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final DefaultApi e2MgrClient;
+	private final HealthCheckApi healthCheckApi;
+	private final X2SetupRequestApi x2SetupRequestApi;
 
 	// Tracks the requests previously submitted.
 	// TODO remove when the E2 manager is extended.
-	private Set<RanSetupRequest> requests = new HashSet<>();
+	private Set<SetupRequest> requests = new HashSet<>();
 
 	@Autowired
-	public E2ManagerController(final DefaultApi e2MgrClient) {
-		Assert.notNull(e2MgrClient, "client must not be null");
-		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with client type {}", e2MgrClient.getClass().getName());
-		this.e2MgrClient = e2MgrClient;
+	public E2ManagerController(final HealthCheckApi healthCheckApi, final X2SetupRequestApi x2SetupRequestApi) {
+		Assert.notNull(healthCheckApi, "API must not be null");
+		this.healthCheckApi = healthCheckApi;
+		this.x2SetupRequestApi = x2SetupRequestApi;
 	}
 
 	private void assertNotNull(Object o) {
@@ -85,32 +86,32 @@ public class E2ManagerController {
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealth");
-		e2MgrClient.getHealth();
-		response.setStatus(e2MgrClient.getApiClient().getStatusCode().value());
+		healthCheckApi.healthCheck();
+		response.setStatus(healthCheckApi.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = RanSetupRequest.class, responseContainer = "List")
+	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = SetupRequest.class, responseContainer = "List")
 	@RequestMapping(value = "/setup", method = RequestMethod.GET)
-	public Iterable<RanSetupRequest> getRequests() {
+	public Iterable<SetupRequest> getRequests() {
 		logger.debug("getRequests");
 		return requests;
 	}
 
 	@ApiOperation(value = "Sets up a RAN connection via the E2 manager.")
 	@RequestMapping(value = "/setup", method = RequestMethod.POST)
-	public void setup(@RequestBody RanSetupRequest rsr, HttpServletResponse response) {
-		logger.debug("setup {}", rsr);
+	public void setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+		logger.debug("setup {}", setupRequest);
 		try {
-			assertNotEmpty(rsr.getRanIp());
-			assertNotEmpty(rsr.getRanName());
-			assertNotNull(rsr.getRanPort());
+			assertNotEmpty(setupRequest.getRanIp());
+			assertNotEmpty(setupRequest.getRanName());
+			assertNotNull(setupRequest.getRanPort());
 		} catch (Exception ex) {
 			logger.error("Bad request", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 		try {
-			requests.add(rsr);
-			e2MgrClient.setupRan(rsr);
+			requests.add(setupRequest);
+			x2SetupRequestApi.setup(setupRequest);
 		} catch (Exception ex) {
 			logger.error("Failed", ex);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
