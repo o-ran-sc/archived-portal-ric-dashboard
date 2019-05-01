@@ -30,7 +30,7 @@ limitations under the License.
 	<groupId>org.oranosc.ric.e2mgr.client</groupId>
 	<artifactId>e2-mgr-client</artifactId>
 	<name>RIC E2 Manager client</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>01052019-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,40 +91,31 @@ limitations under the License.
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>io.swagger</groupId>
-				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>2.4.5</version>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>3.3.4</version>
 				<executions>
 					<execution>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/e2_mgr_rest_api_v0_0_1.yaml</inputSpec>
-							<language>java</language>
-							<configOptions>
-								<groupId>${project.groupId}</groupId>
-								<artifactId>${project.artifactId}</artifactId>
-								<artifactVersion>${project.version}</artifactVersion>
-								<artifactUrl>www.oran-osc.org</artifactUrl>
-								<artifactDescription>E2 manager client library</artifactDescription>
-								<library>resttemplate</library>
-								<java8>true</java8>
-								<dateLibrary>java8</dateLibrary>
-								<licenseName>Apache 2.0</licenseName>
-								<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-								<scmConnection></scmConnection>
-								<scmDeveloperConnection></scmDeveloperConnection>
-								<scmUrl>http://gerrit.oran-osc.org</scmUrl>
-								<developerName>RIC Team</developerName>
-								<developerEmail></developerEmail>
-								<developerOrganization>AT&amp;T and Nokia</developerOrganization>
-								<developerOrganizationUrl></developerOrganizationUrl>
-							</configOptions>
+							<inputSpec>${project.basedir}/src/main/resources/e2_manager_01052019.yaml</inputSpec>
+							<generatorName>java</generatorName>
 							<packageName>${client.base.package.name}</packageName>
 							<modelPackage>${client.base.package.name}.model</modelPackage>
 							<apiPackage>${client.base.package.name}.api</apiPackage>
 							<invokerPackage>${client.base.package.name}.invoker</invokerPackage>
+							<configOptions>
+								<sourceFolder>src/gen/java/main</sourceFolder>
+								<groupId>${project.groupId}</groupId>
+								<artifactId>${project.artifactId}</artifactId>
+								<artifactVersion>${project.version}</artifactVersion>
+								<library>resttemplate</library>
+								<java8>true</java8>
+								<dateLibrary>java8</dateLibrary>
+								<licenseName>Apache 2.0</licenseName>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
@@ -190,8 +181,8 @@ limitations under the License.
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>io.swagger</groupId>
-										<artifactId>swagger-codegen-maven-plugin</artifactId>
+										<groupId>org.openapitools</groupId>
+										<artifactId>openapi-generator-maven-plugin</artifactId>
 										<versionRange>[1.0,)</versionRange>
 										<goals>
 											<goal>generate</goal>

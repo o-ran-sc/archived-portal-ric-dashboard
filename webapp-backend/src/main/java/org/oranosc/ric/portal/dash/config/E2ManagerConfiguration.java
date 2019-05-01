@@ -21,7 +21,9 @@ package org.oranosc.ric.portal.dash.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oranosc.ric.e2mgr.client.api.DefaultApi;
+import org.oranosc.ric.e2mgr.client.api.EndcSetupRequestApi;
+import org.oranosc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oranosc.ric.e2mgr.client.api.X2SetupRequestApi;
 import org.oranosc.ric.e2mgr.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,14 +54,25 @@ public class E2ManagerConfiguration {
 		this.e2mgrBasepath = e2mgrBasepath;
 	}
 
-	/**
-	 * @return A DefaultApi with an ApiClient configured from properties
-	 */
-	@Bean
-	public DefaultApi e2ManagerClient() {
+	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
 		apiClient.setBasePath(e2mgrBasepath);
-		return new DefaultApi(apiClient);
+		return apiClient;
+	}
+
+	@Bean
+	public EndcSetupRequestApi endcSetupRequestApi() {
+		return new EndcSetupRequestApi(apiClient());
+	}
+	
+	@Bean
+	public HealthCheckApi healthCheckApi() {
+		return new HealthCheckApi(apiClient());
+	}
+
+	@Bean
+	public X2SetupRequestApi x2SetupRequestApi() {
+		return new X2SetupRequestApi(apiClient());
 	}
 
 }

@@ -11,7 +11,7 @@ limp along by taking these steps:
 1. Generate the code using maven:
     mvn install
 2. Add this folder to the project build path:
-    target/generated-sources/swagger/src/main/java
+    target/generated-sources/openapi/src/gen/java/main
 
 ## License
 
