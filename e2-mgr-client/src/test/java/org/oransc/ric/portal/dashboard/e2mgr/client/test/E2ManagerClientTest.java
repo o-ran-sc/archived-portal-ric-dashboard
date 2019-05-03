@@ -20,7 +20,7 @@
 package org.oransc.ric.portal.dashboard.e2mgr.client.test;
 
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.springframework.web.client.RestClientException;
 
@@ -35,9 +35,9 @@ public class E2ManagerClientTest {
 	public void demo() {
 		ApiClient apiClient = new ApiClient();
 		apiClient.setBasePath("http://localhost:30099/");
-		HealthCheckApi e2Health = new HealthCheckApi(apiClient);
+		E2ManagerApi e2Api = new E2ManagerApi(apiClient);
 		try {
-			e2Health.healthCheck();
+			e2Api.healthCheck();
 			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
 		} catch (RestClientException e) {
 			System.err.println("getHealth failed: " + e.toString());

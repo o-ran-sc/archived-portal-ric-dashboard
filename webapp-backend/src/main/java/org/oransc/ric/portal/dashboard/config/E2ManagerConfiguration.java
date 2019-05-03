@@ -21,9 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.e2mgr.client.api.EndcSetupRequestApi;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.X2SetupRequestApi;
+import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,18 +59,8 @@ public class E2ManagerConfiguration {
 	}
 
 	@Bean
-	public EndcSetupRequestApi endcSetupRequestApi() {
-		return new EndcSetupRequestApi(apiClient());
-	}
-
-	@Bean
-	public HealthCheckApi healthCheckApi() {
-		return new HealthCheckApi(apiClient());
-	}
-
-	@Bean
-	public X2SetupRequestApi x2SetupRequestApi() {
-		return new X2SetupRequestApi(apiClient());
+	public E2ManagerApi e2ManagerApi() {
+		return new E2ManagerApi(apiClient());
 	}
 
 }
