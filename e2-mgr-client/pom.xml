@@ -101,7 +101,7 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/e2_manager_02052019.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/e2_manager_02052019_2.yaml</inputSpec>
 							<language>java</language>
 							<packageName>${client.base.package.name}</packageName>
 							<modelPackage>${client.base.package.name}.model</modelPackage>
