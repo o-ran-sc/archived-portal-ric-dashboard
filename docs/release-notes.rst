@@ -20,9 +20,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.1, 2 May 2019
+Version 1.0.1, 3 May 2019
 -------------------------
-* Use E2 Manager API definition dated 2 May 2019
+* Use E2 Manager API definition dated 2 May 2019, with tag modifications
 
 Version 1.0.0, 30 Apr 2019
 --------------------------

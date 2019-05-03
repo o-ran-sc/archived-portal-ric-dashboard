@@ -26,9 +26,7 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.e2mgr.client.api.EndcSetupRequestApi;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.X2SetupRequestApi;
+import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
@@ -39,8 +37,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
 /**
- * Creates an implementation of the E2 manager client that answers requests with
- * mock data.
+ * Creates a mock implementation of the E2 manager client API.
  */
 @Profile("mock")
 @Configuration
@@ -59,32 +56,23 @@ public class E2ManagerMockConfiguration {
 	}
 
 	@Bean
-	public EndcSetupRequestApi endcSetupRequestApi() {
+	public E2ManagerApi e2ManagerApi() {
 		ApiClient apiClient = apiClient();
-		EndcSetupRequestApi mockApi = mock(EndcSetupRequestApi.class);
+		E2ManagerApi mockApi = mock(E2ManagerApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-		return mockApi;
-	}
 
-	@Bean
-	public HealthCheckApi healthCheckApi() {
-		ApiClient apiClient = apiClient();
-		HealthCheckApi mockApi = mock(HealthCheckApi.class);
-		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).healthCheck();
-		return mockApi;
-	}
 
-	@Bean
-	public X2SetupRequestApi x2SetupRequestApi() {
-		ApiClient apiClient = apiClient();
-		X2SetupRequestApi mockApi = mock(X2SetupRequestApi.class);
-		when(mockApi.getApiClient()).thenReturn(apiClient);
+		doAnswer(i -> {
+			return null;
+		}).when(mockApi).endcSetup(any(SetupRequest.class));
+
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).setup(any(SetupRequest.class));
+
 		return mockApi;
 	}
 
