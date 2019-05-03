@@ -31,10 +31,16 @@ limitations under the License.
 	<name>RIC Dashboard Webapp backend</name>
 	<properties>
 		<java.version>1.8</java.version>
+		<!-- this is not a library, don't publish javadoc -->
+		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<springfox.version>2.9.2</springfox.version>
-		<docker.push.registry>${env.NEXUS3_PUSH_REGISTRY}</docker.push.registry>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.o-ran-sc.ric.a1med.client</groupId>
+			<artifactId>a1-med-client</artifactId>
+			<version>0.3.0-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.o-ran-sc.ric.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
@@ -147,9 +153,9 @@ limitations under the License.
 				<version>0.28.0</version>
 				<configuration>
 					<verbose>true</verbose>
-					<!-- Not supplied to all jobs; e.g., Javadoc -->
-					<docker.pull.registry>nexus3.oran-osc.org:10001</docker.pull.registry>
-					<pushRegistry>${docker.push.registry}</pushRegistry>
+					<!-- environment variables supplied by Jenkins -->
+					<pullRegistry>${env.CONTAINER_PULL_REGISTRY}</pullRegistry>
+					<pushRegistry>${env.CONTAINER_PUSH_REGISTRY}</pushRegistry>
 					<images>
 						<image>
 							<!-- Specify a tag to avoid default tag "latest" -->
