@@ -21,8 +21,8 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
-import org.oransc.ric.e2mgr.client.invoker.ApiClient;
+import org.oransc.ric.a1med.client.api.A1MediatorApi;
+import org.oransc.ric.a1med.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,33 +34,33 @@ import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Creates an E2 manager client as a bean to be managed by the Spring container.
+ * Creates an A1 mediator client as a bean to be managed by the Spring container.
  */
 @Configuration
 @Profile("!mock")
-public class E2ManagerConfiguration {
+public class A1MediatorConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String e2mgrBasepath;
+	private final String a1medBasepath;
 
 	@Autowired
-	public E2ManagerConfiguration(@Value("${e2mgr.basepath}") final String e2mgrBasepath) {
-		Assert.notNull(e2mgrBasepath, "base path must not be null");
-		logger.info("Configuring E2 Manager at base path {}", e2mgrBasepath);
-		this.e2mgrBasepath = e2mgrBasepath;
+	public A1MediatorConfiguration(@Value("${a1med.basepath}") final String a1medBasepath) {
+		Assert.notNull(a1medBasepath, "base path must not be null");
+		logger.info("Configuring A1 Mediator at base path {}", a1medBasepath);
+		this.a1medBasepath = a1medBasepath;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(e2mgrBasepath);
+		apiClient.setBasePath(a1medBasepath);
 		return apiClient;
 	}
 
 	@Bean
-	public E2ManagerApi e2ManagerApi() {
-		return new E2ManagerApi(apiClient());
+	public A1MediatorApi a1MediatorApi() {
+		return new A1MediatorApi(apiClient());
 	}
 
 }
