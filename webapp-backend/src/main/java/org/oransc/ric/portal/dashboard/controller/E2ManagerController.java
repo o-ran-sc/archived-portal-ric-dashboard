@@ -25,8 +25,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.X2SetupRequestApi;
+import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
@@ -57,18 +56,16 @@ public class E2ManagerController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final HealthCheckApi healthCheckApi;
-	private final X2SetupRequestApi x2SetupRequestApi;
+	private final E2ManagerApi e2ManagerApi;
 
 	// Tracks the requests previously submitted.
 	// TODO remove when the E2 manager is extended.
 	private Set<SetupRequest> requests = new HashSet<>();
 
 	@Autowired
-	public E2ManagerController(final HealthCheckApi healthCheckApi, final X2SetupRequestApi x2SetupRequestApi) {
-		Assert.notNull(healthCheckApi, "API must not be null");
-		this.healthCheckApi = healthCheckApi;
-		this.x2SetupRequestApi = x2SetupRequestApi;
+	public E2ManagerController(final E2ManagerApi e2ManagerApi) {
+		Assert.notNull(e2ManagerApi, "API must not be null");
+		this.e2ManagerApi = e2ManagerApi;
 	}
 
 	private void assertNotNull(Object o) {
@@ -86,8 +83,8 @@ public class E2ManagerController {
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealth");
-		healthCheckApi.healthCheck();
-		response.setStatus(healthCheckApi.getApiClient().getStatusCode().value());
+		e2ManagerApi.healthCheck();
+		response.setStatus(e2ManagerApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = SetupRequest.class, responseContainer = "List")
@@ -111,7 +108,7 @@ public class E2ManagerController {
 		}
 		try {
 			requests.add(setupRequest);
-			x2SetupRequestApi.setup(setupRequest);
+			e2ManagerApi.setup(setupRequest);
 		} catch (Exception ex) {
 			logger.error("Failed", ex);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

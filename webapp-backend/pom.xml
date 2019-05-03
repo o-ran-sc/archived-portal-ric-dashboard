@@ -32,7 +32,7 @@ limitations under the License.
 	<properties>
 		<java.version>1.8</java.version>
 		<springfox.version>2.9.2</springfox.version>
-		<docker.push.registry>${env.NEXUS3_PUSH_REGISTRY}</docker.push.registry>
+		<docker.push.registry>${env.CONTAINER_PUSH_REGISTRY}</docker.push.registry>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -148,7 +148,7 @@ limitations under the License.
 				<configuration>
 					<verbose>true</verbose>
 					<!-- Not supplied to all jobs; e.g., Javadoc -->
-					<docker.pull.registry>nexus3.oran-osc.org:10001</docker.pull.registry>
+					<docker.pull.registry>nexus3.o-ran-sc.org:10001</docker.pull.registry>
 					<pushRegistry>${docker.push.registry}</pushRegistry>
 					<images>
 						<image>
