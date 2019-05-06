@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<![CDATA[
 ========================LICENSE_START=================================
-ORAN-OSC
+O-RAN-SC
 %%
 Copyright (C) 2019 AT&T Intellectual Property and Nokia
 %%
@@ -107,7 +107,7 @@ limitations under the License.
 								<groupId>${project.groupId}</groupId>
 								<artifactId>${project.artifactId}</artifactId>
 								<artifactVersion>${project.version}</artifactVersion>
-								<artifactUrl>www.oran-osc.org</artifactUrl>
+								<artifactUrl>www.O-RAN-SC.org</artifactUrl>
 								<artifactDescription>xApp manager client library</artifactDescription>
 								<library>resttemplate</library>
 								<java8>true</java8>

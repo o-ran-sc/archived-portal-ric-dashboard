@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<![CDATA[
 ========================LICENSE_START=================================
-ORAN-OSC
+O-RAN-SC
 %%
 Copyright (C) 2019 AT&T Intellectual Property and Nokia
 %%
@@ -36,7 +36,7 @@ limitations under the License.
 	<!-- Properties for the license-maven-plugin in child POMs -->
 	<properties>
 		<lmp.organization.name>AT&amp;T Intellectual Property and Nokia</lmp.organization.name>
-		<lmp.project.name>ORAN-OSC</lmp.project.name>
+		<lmp.project.name>O-RAN-SC</lmp.project.name>
 		<lmp.inception.year>2019</lmp.inception.year>
 		<lmp.license.name>apache_v2</lmp.license.name>
 		<lmp.process.start.tag>========================LICENSE_START=================================</lmp.process.start.tag>

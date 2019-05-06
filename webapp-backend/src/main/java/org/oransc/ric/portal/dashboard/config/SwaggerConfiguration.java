@@ -1,6 +1,6 @@
 /*-
  * ========================LICENSE_START=================================
- * ORAN-OSC
+ * O-RAN-SC
  * %%
  * Copyright (C) 2019 AT&T Intellectual Property and Nokia
  * %%
@@ -60,7 +60,7 @@ public class SwaggerConfiguration {
 				.termsOfServiceUrl("Terms of service") //
 				.contact(new Contact("RIC Dashboard Dev Team", //
 						"http://no-docs-yet.org/", //
-						"noreply@oran-osc.org")) //
+						"noreply@O-RAN-SC.org")) //
 				.license("Apache 2.0 License").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0") //
 				.version(version == null ? "version not available" : version) //
 				.build();

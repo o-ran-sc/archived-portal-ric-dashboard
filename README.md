@@ -1,4 +1,4 @@
-# ORAN-OSC RIC Dashboard Web Application
+# O-RAN-SC RIC Dashboard Web Application
 
 This webapp is built with Angular 7 and Spring-Boot 2.
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<![CDATA[
 ========================LICENSE_START=================================
-ORAN-OSC
+O-RAN-SC
 %%
 Copyright (C) 2019 AT&T Intellectual Property and Nokia
 %%
@@ -31,8 +31,6 @@ limitations under the License.
 	<name>RIC Dashboard Webapp backend</name>
 	<properties>
 		<java.version>1.8</java.version>
-		<!-- this is not a library, don't publish javadoc -->
-		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<springfox.version>2.9.2</springfox.version>
 	</properties>
 	<dependencies>

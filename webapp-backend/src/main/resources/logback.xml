@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ========================LICENSE_START=================================
-  ORAN-OSC
+  O-RAN-SC
   %%
   Copyright (C) 2019 AT&T Intellectual Property and Nokia
   %%
@@ -63,6 +63,6 @@
 	</root>
 
 	<!-- Code under test should be chatty --> >
-	<logger name="org.oranosc.ric.portal.dash" level="INFO" />
+	<logger name="org.oransc.ric.portal.dashboard" level="DEBUG" />
 
 </configuration>
