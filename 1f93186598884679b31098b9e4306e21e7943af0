@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ad8f17d_f490129e",
+        "filename": "webapp-frontend/package-lock.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 8363,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Why downgrade? previously 6.4.0, now 6.3.3?",
+      "range": {
+        "startLine": 8359,
+        "startChar": 4,
+        "endLine": 8363,
+        "endChar": 6
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca08798d_43511d71",
+        "filename": "webapp-frontend/package.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "why downgrade from 6.4.0 to 6.3.3?",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "104a6965_979f2196",
+        "filename": "webapp-frontend/src/app/app-routing.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "please avoid trailing whitespace like this",
+      "range": {
+        "startLine": 45,
+        "startChar": 37,
+        "endLine": 45,
+        "endChar": 38
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64f5654f_f848ee3f",
+        "filename": "webapp-frontend/src/app/services/signal/signal.service.spec.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Please change all added files from ORAN-OSC to O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b0394c0_92da625e",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Remove, don\u0027t comment out",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 12
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ccadb5ad_85d304eb",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 86
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc9ead02_a84f58f8",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 55
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62697866_76c27131",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 58
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85c4f275_e3f168f3",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 25
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c08073ea_355cab37",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 149,
+        "endChar": 62
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98f88858_f311810a",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 153,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 13
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c53ea5c3_0655ba43",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Pls remove",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 49
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96963ba8_1424475a",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-06T15:45:13Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 73
+      },
+      "revId": "1f93186598884679b31098b9e4306e21e7943af0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
