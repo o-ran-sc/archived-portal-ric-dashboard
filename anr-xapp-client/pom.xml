@@ -28,14 +28,15 @@ limitations under the License.
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.xappmgr.client</groupId>
-	<artifactId>xapp-mgr-client</artifactId>
-	<name>RIC xApp Manager client</name>
-	<version>0.1.1-SNAPSHOT</version>
+	<groupId>org.o-ran-sc.ric.anrxapp.client</groupId>
+	<artifactId>anr-xapp-client</artifactId>
+	<name>RIC ANR xApp client</name>
+	<version>0.0.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<client.base.package.name>org.oransc.ric.xappmgr.client</client.base.package.name>
+		<!-- same as groupId BUT without hyphens -->
+		<client.base.package.name>org.oransc.ric.anrxapp.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>
@@ -101,14 +102,14 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/xapp_manager_rest_api_v0_1_1.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/anr_swagger_0.0.3.yaml</inputSpec>
 							<language>java</language>
 							<configOptions>
 								<groupId>${project.groupId}</groupId>
 								<artifactId>${project.artifactId}</artifactId>
 								<artifactVersion>${project.version}</artifactVersion>
 								<artifactUrl>www.O-RAN-SC.org</artifactUrl>
-								<artifactDescription>xApp manager client library</artifactDescription>
+								<artifactDescription>ANR xApp client library</artifactDescription>
 								<library>resttemplate</library>
 								<java8>true</java8>
 								<dateLibrary>java8</dateLibrary>
