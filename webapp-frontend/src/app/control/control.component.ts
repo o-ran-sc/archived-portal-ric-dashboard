@@ -37,7 +37,8 @@ export class ControlComponent {
       edit: false,
       delete: false,
       custom: [
-      { name: 'view', title: 'view', },
+          { name: 'view', title: '<i>view</i>', },
+          { name: 'undeploy', title: '<i>undeploy</i>', },
     ],
       position: 'right'
 
@@ -77,17 +78,33 @@ export class ControlComponent {
     this.source.load(data);
   }
 
+    onxAppControlAction(event) {
+        switch (event.action) {
+            case 'view':
+                this.view(event);
+                break;
+            case 'undeploy':
+                this.undeploy(event);
+        }
+    }
+
   view(event): void {
+      console.log(event);
       const url = '/xapp';
       this.router.navigate([url, event]).then( (e) => {
             if (e) {
-                console.log(event.data);
                 console.log('Navigation is successful!');
             } else {
                 console.log('Navigation has failed!');
             }
         });
   }
+
+    undeploy(event): void {
+        this.service.undeployxApp(event.data.podId);
+        const data = this.service.getData();
+        this.source.load(data);
+    }
 
 
 }

@@ -88,4 +88,10 @@ data = [{
   getData() {
     return this.data; // @TODO implement the service to fetch the backend data
   }
+
+    undeployxApp(podId) {
+        //remove mock data
+        this.data = this.data.filter(xapp => xapp.podId !== podId);
+
+    }
 }
