@@ -133,20 +133,6 @@ limitations under the License.
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<!-- Generate javadoc jar; see profile for Java 8 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<!-- <version>2.10.3</version> -->
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- Generate source jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
