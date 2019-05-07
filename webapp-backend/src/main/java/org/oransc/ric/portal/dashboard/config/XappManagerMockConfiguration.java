@@ -34,6 +34,7 @@ import org.oransc.ric.xappmgr.client.model.SubscriptionResponse;
 import org.oransc.ric.xappmgr.client.model.XAppInfo;
 import org.oransc.ric.xappmgr.client.model.Xapp;
 import org.oransc.ric.xappmgr.client.model.Xapp.StatusEnum;
+import org.oransc.ric.xappmgr.client.model.XappInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -55,11 +56,19 @@ public class XappManagerMockConfiguration {
 
 	public XappManagerMockConfiguration() {
 		logger.info("Configuring mock xApp Manager");
+		Xapp ac = new Xapp().name("Admission Control").version("v3").status(StatusEnum.FAILED);
+		ac.addInstancesItem(new XappInstance().name("cdef-3456").ip("3.4.5.6").port(200).status(XappInstance.StatusEnum.RUNNING));
+		Xapp an = new Xapp().name("ANR Control").version("v0").status(StatusEnum.SUPERSEDED);
+		an.addInstancesItem(new XappInstance().name("fedc-8765").ip("8.7.6.5").port(400).status(XappInstance.StatusEnum.RUNNING));
+		Xapp dc = new Xapp().name("Dual Connectivity").version("v2").status(StatusEnum.DELETED);
+		dc.addInstancesItem(new XappInstance().name("def0-6789").ip("6.7.8.9").port(300).status(XappInstance.StatusEnum.COMPLETED));
+		Xapp pc = new Xapp().name("Pendulum Control").version("v1").status(StatusEnum.DEPLOYED);
+		pc.addInstancesItem(new XappInstance().name("abcd-1234").ip("1.2.3.4").port(100).status(XappInstance.StatusEnum.RUNNING));
 		allXapps = new AllXapps();
-		allXapps.add(new Xapp().name("Pendulum Control").version("v1").status(StatusEnum.DEPLOYED));
-		allXapps.add(new Xapp().name("Dual Connectivity").version("v2").status(StatusEnum.DELETED));
-		allXapps.add(new Xapp().name("Admission Control").version("v3").status(StatusEnum.FAILED));
-		allXapps.add(new Xapp().name("ANR Control").version("v0").status(StatusEnum.SUPERSEDED));
+		allXapps.add(ac);
+		allXapps.add(an);
+		allXapps.add(dc);
+		allXapps.add(pc);
 	}
 
 	@Bean
