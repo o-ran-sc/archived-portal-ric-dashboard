@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "333403b8_ea1713c8",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T17:53:39Z",
+      "side": 1,
+      "message": "this is a very generic name, would you please choose a descriptive one?",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 18
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d14c7f6_e72f8b28",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T17:53:39Z",
+      "side": 1,
+      "message": "Pls remove console.log invocations",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4534b3fa_1433285b",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T17:53:39Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 40
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8fb0a1c_2b7b723c",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T17:53:39Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 105,
+        "startChar": 16,
+        "endLine": 105,
+        "endChar": 19
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfc58c7b_faf51a7a",
+        "filename": "webapp-frontend/src/app/services/control/control.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T17:53:39Z",
+      "side": 1,
+      "message": "what mock data is here?",
+      "range": {
+        "startLine": 93,
+        "startChar": 17,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
