@@ -114,6 +114,30 @@
       "revId": "26c664718db9c4fb585322098e48519663514ec6",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9039bc3c_4e80dff1",
+        "filename": "webapp-frontend/src/app/services/control/control.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-05-07T18:07:30Z",
+      "side": 1,
+      "message": "In the same file, the data is defiled in line 25. This is the mock data to feed control component",
+      "parentUuid": "cfc58c7b_faf51a7a",
+      "range": {
+        "startLine": 93,
+        "startChar": 17,
+        "endLine": 93,
+        "endChar": 21
+      },
+      "revId": "26c664718db9c4fb585322098e48519663514ec6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     }
   ]
 }
