@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e54dae47_29cd2a8f",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Anand you created version 1.0.2.  Please add a new section here.  Do not add to the 1.0.1 section.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 91
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e617d298_a23b3d64",
+        "filename": "webapp-frontend/src/app/app.module.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please be careful with trailing whitespace",
+      "range": {
+        "startLine": 99,
+        "startChar": 20,
+        "endLine": 99,
+        "endChar": 21
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7705904f_e42505af",
+        "filename": "webapp-frontend/src/app/control/control.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Correct spelling has only one \"l\" at the end",
+      "range": {
+        "startLine": 21,
+        "startChar": 43,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f020b3f_4a98bbe8",
+        "filename": "webapp-frontend/src/app/navigation/sidenav-list/sidenav-list.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please remove the trailing white space",
+      "range": {
+        "startLine": 37,
+        "startChar": 80,
+        "endLine": 37,
+        "endChar": 83
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4dcd0c8_d49a6074",
+        "filename": "webapp-frontend/src/app/services/signal/signal.service.spec.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8361acaf_1d6b2e3d",
+        "filename": "webapp-frontend/src/app/services/signal/signal.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0feb164_a80bfae4",
+        "filename": "webapp-frontend/src/app/services/signal/signal.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Pls remove console.log",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 46
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9cb6627_b4d1a506",
+        "filename": "webapp-frontend/src/app/signal/signal.component.css",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c99500a7_47332236",
+        "filename": "webapp-frontend/src/app/signal/signal.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a054e963_47a532ea",
+        "filename": "webapp-frontend/src/app/signal/signal.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Nicolas will the Big Red (disconnect) Button look similar?",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 79
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66bc4338_b85df496",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ranconnect-dialog.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 10
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42d837e2_68c3dade",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ranconnect-dialog.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Can you reuse a shared dialog box?",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 21
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6db2a82_648638b4",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ranconnect-dialog.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please demo this before merge",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 24
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08d7fb46_ec66384a",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ranconnect-dialog.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Maybe OK so when you use a shared dialog box it\u0027s an easy change?",
+      "range": {
+        "startLine": 48,
+        "startChar": 66,
+        "endLine": 48,
+        "endChar": 73
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9bfb2780_198fd964",
+        "filename": "webapp-frontend/src/app/signal/signal.component.spec.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9f6a3349_c8a2251c",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please use O-RAN-SC",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 11
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68516ade_4289465e",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Please watch the trailing white space",
+      "range": {
+        "startLine": 25,
+        "startChar": 53,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04b2b50f_42bce171",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Why does this have leading dot-slash, and the others do not?",
+      "range": {
+        "startLine": 98,
+        "startChar": 17,
+        "endLine": 98,
+        "endChar": 19
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b72abea_7dbe4cff",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Pls remove",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 31
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0100f3ce_bcb74e08",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-07T16:51:55Z",
+      "side": 1,
+      "message": "Why log to console??",
+      "range": {
+        "startLine": 120,
+        "startChar": 69,
+        "endLine": 120,
+        "endChar": 84
+      },
+      "revId": "d0e335377ecb6c99755bbdbc99ab52cf78a19bc1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
