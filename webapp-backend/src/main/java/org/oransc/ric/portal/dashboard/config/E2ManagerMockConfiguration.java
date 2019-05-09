@@ -37,7 +37,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
 /**
- * Creates a mock implementation of the E2 manager client API.
+ * Creates a mock implementation of the E2 manager client API. This version
+ * answers only status codes, no data, so the mock implementations are trivial.
  */
 @Profile("mock")
 @Configuration

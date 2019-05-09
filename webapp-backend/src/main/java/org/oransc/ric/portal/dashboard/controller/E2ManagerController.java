@@ -28,6 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.model.E2SetupRequestType;
+import org.oransc.ric.portal.dashboard.model.E2SetupResponse;
+import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +49,7 @@ import io.swagger.annotations.ApiOperation;
  * 
  * As of this writing the E2 interface only supports setup connection and check
  * health actions; it does not support query or close operations on existing
- * connections. So this class mocks up some of that needed functionality.
+ * connections. So this class mocks up some of that functionality.
  */
 @Configuration
 @RestController
@@ -58,9 +61,9 @@ public class E2ManagerController {
 	// Populated by the autowired constructor
 	private final E2ManagerApi e2ManagerApi;
 
-	// Tracks the requests previously submitted.
+	// Stores the requests and results.
 	// TODO remove when the E2 manager is extended.
-	private Set<SetupRequest> requests = new HashSet<>();
+	private Set<E2SetupResponse> responses = new HashSet<>();
 
 	@Autowired
 	public E2ManagerController(final E2ManagerApi e2ManagerApi) {
@@ -87,32 +90,53 @@ public class E2ManagerController {
 		response.setStatus(e2ManagerApi.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = SetupRequest.class, responseContainer = "List")
+	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = E2SetupResponse.class, responseContainer = "List")
 	@RequestMapping(value = "/setup", method = RequestMethod.GET)
-	public Iterable<SetupRequest> getRequests() {
+	public Iterable<E2SetupResponse> getRequests() {
 		logger.debug("getRequests");
-		return requests;
+		return responses;
 	}
 
-	@ApiOperation(value = "Sets up a RAN connection via the E2 manager.")
-	@RequestMapping(value = "/setup", method = RequestMethod.POST)
-	public void setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
-		logger.debug("setup {}", setupRequest);
+	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.", response = E2SetupResponse.class)
+	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
+	public E2SetupResponse endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+		logger.debug("endcSetup {}", setupRequest);
+		int responseCode = -1;
 		try {
 			assertNotEmpty(setupRequest.getRanIp());
 			assertNotEmpty(setupRequest.getRanName());
 			assertNotNull(setupRequest.getRanPort());
+			e2ManagerApi.endcSetup(setupRequest);
+			responseCode = e2ManagerApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
-			logger.error("Bad request", ex);
+			logger.warn("endcSetup failed", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			responseCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
+		E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.ENDC, setupRequest, responseCode);
+		responses.add(r);
+		return r;
+	}
+
+	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.", response = E2SetupResponse.class)
+	@RequestMapping(value = "/x2Setup", method = RequestMethod.POST)
+	public IDashboardResponse x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+		logger.debug("x2Setup {}", setupRequest);
+		int responseCode = -1;
 		try {
-			requests.add(setupRequest);
+			assertNotEmpty(setupRequest.getRanIp());
+			assertNotEmpty(setupRequest.getRanName());
+			assertNotNull(setupRequest.getRanPort());
 			e2ManagerApi.setup(setupRequest);
+			responseCode = e2ManagerApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
-			logger.error("Failed", ex);
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			logger.warn("x2Setup failed", ex);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			responseCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
+		E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.X2, setupRequest, responseCode);
+		responses.add(r);
+		return r;
 	}
 
 }

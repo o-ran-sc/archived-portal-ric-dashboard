@@ -34,7 +34,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Creates an A1 mediator client as a bean to be managed by the Spring container.
+ * Creates an A1 mediator client as a bean to be managed by the Spring
+ * container.
  */
 @Configuration
 @Profile("!mock")
