@@ -1,0 +1,102 @@
+# ========================LICENSE_START=================================
+# O-RAN-SC
+# %%
+# Copyright (C) 2019 AT&T Intellectual Property and Nokia
+# %%
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ========================LICENSE_END===================================
+openapi: 3.0.0
+info:
+  version: 0.4.0
+  title: RIC A1
+paths:
+  '/ric/policies/{policyname}':
+    parameters:
+      - name: policyname
+        in: path
+        description: the name of the policy to retrieve or replace
+        required: true
+        schema:
+          type: string
+    put:
+      description: >
+          Replace the current operation of policyname with the new parameters (replaces the current policy with the new one specified here).
+
+
+          Until there are standard policy definitions that are defined OUTSIDE of the scope of xapps, this API will be *very underspecified*.
+          This is a known gap, do not despair.
+          The PUT body is specified, *currently* in the xapp manifest that implements this policy; the caller should refer to the message_receives_payload_schema field to make this request.
+          The return content is also specified as above (in the xapp manifest) in the message_sends_payload_schema field.
+
+
+          Eventually, we need concrete policy defintions that are decoupled from xapp, and then this API description will become more fully specified.
+      tags:
+        - A1 Mediator
+      operationId: a1.controller.put_handler
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+
+
+      responses:
+        '200':
+          description: >
+            The downstream component responsible for implementing this policy replied with a good response. Check the manifest for response details.
+        '400':
+          description: >
+            Bad PUT body for this policyname
+        '404':
+          description: >
+            there is no policy with this name
+        '502':
+          description: >
+            The xapp that implements this policy replied, but the reply was a "failure", OR there was no status indicating success or failure.
+            This returns an object containing the reason, and the return payload.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    enum: [
+                        "NO STATUS",
+                        "BAD STATUS",
+                        "NOT JSON"
+                    ]
+                  return_payload:
+                    type: object
+
+        '504':
+          description: >
+            the downstream component responsible for handling this policy did not respond (in time)
+
+    get:
+      description: Get the current state/value of policyname
+      tags:
+        - A1 Mediator
+      operationId: a1.controller.get_handler
+      responses:
+        '200':
+          description: >
+            policy state successfully retrieved.
+            TODO, what describes the format returned here?
+            content:
+              application/json:
+                schema:
+                  type: object
+        '404':
+          description: there is no policy with this name
+
