@@ -18,74 +18,34 @@
  * ========================LICENSE_END===================================
  */
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ControlService {
 
-data = [{
-    id: 1,
-    xAppName: 'Pendulum Control',
-    xAppType: 'Type1',
-    podId: 'dc-ric-app-b8c6668d8-56bjb',
-    k8Status: 'running',
-    age: '25 mins',
-  }, {
-    id: 2,
-    xAppName: 'Dual Connectivity',
-    xAppType: 'Type2',
-    podId: 'ac-ric-app-5ddbc59ffd-qc6rp',
-    k8Status: 'failed',
-    age: '5 mins',
+    constructor(private http: HttpClient) {
+    }
 
-  }, {
-    id: 3,
-    xAppName: 'ANR',
-    xAppType: 'Type1',
-    podId: 'dc-ric-app-694c45b75f-nqdtt',
-    k8Status: 'pending',
-    age: '55 mins',
-  }, {
-    id: 4,
-    xAppName: 'Admission Control',
-    xAppType: 'Type2',
-    podId: 'ac-ric-app-4ddfc59ffd-qc7tp',
-    k8Status: 'unkown',
-    age: '5 mins',
+    getxAppInstances(xAppInstances) {  
+    return this.http.get('api/xappmgr/xapps').subscribe(
+        (val: any[]) => {
+            xAppInstances(this.fetchInstance(val));
+            } 
+        );
+        
+    }
 
-  }, {
-    id: 5,
-    xAppName: 'Admission Control',
-    xAppType: 'Type2',
-    podId: 'ac-ric-app-3ffgc59ffd-qc5rp',
-    k8Status: 'crashLoopBackoff',
-    age: '5 mins',
+    fetchInstance(allxappdata) {
+        var xAppInstances = []
+        for (const  xappindex in allxappdata) {
+            var instancelist = allxappdata[xappindex].instances;
+            for (const instanceindex in instancelist) {
+                var instance = instancelist[instanceindex];
+                instance.xapp = allxappdata[xappindex].name;
+                xAppInstances.push(instance);
+            }          
+        }
+        return xAppInstances;
+    }
 
-  }, {
-    id: 6,
-    xAppName: 'ANR',
-    xAppType: 'Type1',
-    podId: 'dc-ric-app-345f44r75f-nertt',
-    k8Status: 'completed',
-    age: '55 mins',
-  }, {
-    id: 7,
-    xAppName: 'Admission Control',
-    xAppType: 'Type2',
-    podId: 'ac-ric-app-5ddbc67ffd-qc6rp',
-    k8Status: 'completed',
-    age: '5 mins',
-
-  }, {
-    id: 8,
-    xAppName: 'ANR',
-    xAppType: 'Type1',
-    podId: 'dc-ric-app-694c23b75f-nqdtt',
-    k8Status: 'completed',
-    age: '55 mins',
-
-  }];
-
-  getData() {
-    return this.data; // @TODO implement the service to fetch the backend data
-  }
 }

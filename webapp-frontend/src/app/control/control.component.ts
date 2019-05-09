@@ -22,6 +22,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { ControlService } from '../services/control/control.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -43,50 +44,46 @@ export class ControlComponent {
 
     },
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      xAppName: {
-        title: 'xApp Name',
+      xapp: {
+        title:'xApp Name',
         type: 'string',
       },
-      xAppType: {
-        title: 'xApp Type',
+      name: {
+        title:'Instance Name',
         type: 'string',
       },
-      podId: {
-        title: 'Pod ID',
-        type: 'number',
-      },
-      k8Status: {
-        title: 'k8 Status',
+        status: {
+        title: 'Status',
         type: 'string',
       },
-      age: {
-        title: 'Age',
+      ip: {
+        title: 'IP',
         type: 'string',
+      },
+      port: {
+        title: 'Port',
+        type: 'integer',
+      },
+      txMessages: {
+        title: 'txMessages',
+        type: 'array',
+        },
+      rxMessages: {
+          title: 'rxMessages',
+          type: 'array',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: ControlService, private router: Router) {
-    const data = this.service.getData();
-    this.source.load(data);
+    constructor(private service: ControlService, private router: Router) {
+        this.service.getxAppInstances((instances) => { this.source.load(instances); } );
   }
 
   view(event): void {
       const url = '/xapp';
-      this.router.navigate([url, event]).then( (e) => {
-            if (e) {
-                console.log(event.data);
-                console.log('Navigation is successful!');
-            } else {
-                console.log('Navigation has failed!');
-            }
-        });
+      this.router.navigate([url, event]);
   }
 
 
