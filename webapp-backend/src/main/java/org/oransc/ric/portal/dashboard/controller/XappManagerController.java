@@ -25,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
-import org.oransc.ric.xappmgr.client.api.DefaultApi;
+import org.oransc.ric.xappmgr.client.api.HealthApi;
+import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.model.AllXapps;
 import org.oransc.ric.xappmgr.client.model.XAppInfo;
 import org.oransc.ric.xappmgr.client.model.Xapp;
@@ -56,37 +57,41 @@ public class XappManagerController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final DefaultApi xappMgrClient;
+	private final HealthApi healthApi;
+	private final XappApi xappApi;
 
 	@Autowired
-	public XappManagerController(final DefaultApi xappMgrClient) {
-		Assert.notNull(xappMgrClient, "client must not be null");
+	public XappManagerController(final HealthApi healthApi, final XappApi xappApi) {
+		Assert.notNull(healthApi, "health API must not be null");
+		Assert.notNull(xappApi, "xapp API must not be null");
 		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with client type {}", xappMgrClient.getClass().getName());
-		this.xappMgrClient = xappMgrClient;
+			logger.debug("ctor: configured with client types {} and {}", healthApi.getClass().getName(),
+					xappApi.getClass().getName());
+		this.healthApi = healthApi;
+		this.xappApi = xappApi;
 	}
 
 	@ApiOperation(value = "Calls the xApp Manager health check.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
-		logger.debug("getHealth");
-		xappMgrClient.getHealth();
-		response.setStatus(xappMgrClient.getApiClient().getStatusCode().value());
+		logger.debug("getHealt");
+		healthApi.getHealth();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Calls the xApp Manager to get the list of xApps.", response = AllXapps.class)
 	@RequestMapping(value = "/xapps", method = RequestMethod.GET)
 	public AllXapps getAllXapps() {
 		if (logger.isDebugEnabled())
-			logger.debug("getAllXapps via {}", xappMgrClient.getApiClient().getBasePath());
-		return xappMgrClient.getAllXapps();
+			logger.debug("getAllXapps via {}", xappApi.getApiClient().getBasePath());
+		return xappApi.getAllXapps();
 	}
 
 	@ApiOperation(value = "Calls the xApp Manager to get the named xApp.", response = Xapp.class)
 	@RequestMapping(value = "/xapps/{xAppName}", method = RequestMethod.GET)
 	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
-		return xappMgrClient.getXappByName(xAppName);
+		return xappApi.getXappByName(xAppName);
 	}
 
 	@ApiOperation(value = "Calls the xApp Manager to deploy the specified Xapp.", response = Xapp.class)
@@ -94,7 +99,7 @@ public class XappManagerController {
 	public Object deployXapp(@RequestBody XAppInfo xAppInfo, HttpServletResponse response) {
 		logger.debug("deployXapp {}", xAppInfo);
 		try {
-			return xappMgrClient.deployXapp(xAppInfo);
+			return xappApi.deployXapp(xAppInfo);
 		} catch (Exception ex) {
 			logger.error("deployXapp failed", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -107,7 +112,7 @@ public class XappManagerController {
 	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
 		try {
-			xappMgrClient.undeployXapp(xAppName);
+			xappApi.undeployXapp(xAppName);
 		} catch (Exception ex) {
 			logger.error("deployXapp failed", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

@@ -26,7 +26,8 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.xappmgr.client.api.DefaultApi;
+import org.oransc.ric.xappmgr.client.api.HealthApi;
+import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.invoker.ApiClient;
 import org.oransc.ric.xappmgr.client.model.AllXapps;
 import org.oransc.ric.xappmgr.client.model.SubscriptionRequest;
@@ -72,11 +73,23 @@ public class XappManagerMockConfiguration {
 	}
 
 	@Bean
-	public DefaultApi xappManagerMockClient() {
+	public HealthApi xappHealthMockApi() {
+		ApiClient mockClient = mock(ApiClient.class);
+		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
+		HealthApi mockApi = mock(HealthApi.class);
+		when(mockApi.getApiClient()).thenReturn(mockClient);
+		doAnswer(i -> {
+			return null;
+		}).when(mockApi).getHealth();
+		return mockApi;
+	}
+
+	@Bean
+	public XappApi xappMgrMockApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 
-		DefaultApi mockApi = mock(DefaultApi.class);
+		XappApi mockApi = mock(XappApi.class);
 		when(mockApi.getApiClient()).thenReturn(mockClient);
 
 		SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
@@ -91,9 +104,6 @@ public class XappManagerMockConfiguration {
 
 		when(mockApi.getAllXapps()).thenReturn(allXapps);
 
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).getHealth();
 
 		Xapp xappByName = new Xapp().name("name").status(StatusEnum.UNKNOWN).version("v1");
 		when(mockApi.getXappByName(any(String.class))).thenReturn(xappByName);

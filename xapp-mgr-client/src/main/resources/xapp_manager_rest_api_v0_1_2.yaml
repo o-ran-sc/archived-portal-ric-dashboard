@@ -18,7 +18,7 @@
 swagger: '2.0'
 info:
   description: This is a draft API for RIC appmgr
-  version: 0.1.1
+  version: 0.1.2
   title: RIC appmgr
   license:
     name: Apache 2.0
@@ -32,6 +32,8 @@ paths:
   /health:
     get:
       summary: Health check of xApp Manager
+      tags:
+        - health
       operationId: getHealth
       responses:
         '200':
@@ -39,6 +41,8 @@ paths:
   /xapps:
     post:
       summary: Deploy a xapp
+      tags:
+        - xapp
       operationId: deployXapp
       consumes:
         - application/json
@@ -68,6 +72,8 @@ paths:
           description: Internal error
     get:
       summary: Returns the status of all xapps
+      tags:
+        - xapp
       operationId: getAllXapps
       produces:
         - application/json
@@ -81,6 +87,8 @@ paths:
   '/xapps/{xAppName}':
     get:
       summary: Returns the status of a given xapp
+      tags:
+        - xapp
       operationId: getXappByName
       produces:
         - application/json
@@ -103,6 +111,8 @@ paths:
           description: Internal error
     delete:
       summary: Undeploy an existing xapp
+      tags:
+        - xapp
       operationId: undeployXapp
       parameters:
         - name: xAppName
@@ -120,6 +130,8 @@ paths:
   '/xapps/{xAppName}/instances/{xAppInstanceName}':
     get:
       summary: Returns the status of a given xapp
+      tags:
+        - xapp
       operationId: getXappInstanceByName
       produces:
         - application/json
@@ -148,6 +160,8 @@ paths:
   /config:
     post:
       summary: Create xApp config
+      tags:
+        - xapp
       operationId: createXappConfig
       consumes:
         - application/json
@@ -166,10 +180,14 @@ paths:
             $ref: '#/definitions/xAppConfig'
         '400':
           description: Invalid input
+        '422':
+          description: Validation of configuration failed
         '500':
           description: Internal error
     put:
       summary: Modify xApp config
+      tags:
+        - xapp
       operationId: ModifyXappConfig
       consumes:
         - application/json
@@ -188,10 +206,14 @@ paths:
             $ref: '#/definitions/xAppConfig'
         '400':
           description: Invalid input
+        '422':
+          description: Validation of configuration failed
         '500':
           description: Internal error
     get:
       summary: Returns the configuration of all xapps
+      tags:
+        - xapp
       operationId: getAllXappConfig
       produces:
         - application/json
@@ -204,6 +226,8 @@ paths:
           description: Internal error
     delete:
       summary: Delete xApp configuration
+      tags:
+        - xapp
       operationId: deleteXappConfig
       parameters:
         - name: xAppConfigInfo
@@ -221,6 +245,9 @@ paths:
   /subscriptions:
     post:
       summary: Subscribe event
+      tags:
+        - xapp
+        - subscriptions
       operationId: addSubscription
       consumes:
         - application/json
@@ -242,6 +269,9 @@ paths:
           description: Invalid input
     get:
       summary: Returns all subscriptions
+      tags:
+        - xapp
+        - subscriptions
       operationId: getSubscriptions
       produces:
         - application/json
@@ -253,6 +283,9 @@ paths:
   '/subscriptions/{subscriptionId}':
     get:
       summary: Returns the information of subscription
+      tags:
+        - xapp
+        - subscriptions
       operationId: getSubscriptionById
       produces:
         - application/json
@@ -273,6 +306,9 @@ paths:
           description: Subscription not found
     put:
       summary: Modify event subscription
+      tags:
+        - xapp
+        - subscriptions
       operationId: modifySubscription
       consumes:
         - application/json
@@ -299,6 +335,9 @@ paths:
           description: Invalid input
     delete:
       summary: Unsubscribe event
+      tags:
+        - xapp
+        - subscriptions
       description: ''
       operationId: deleteSubscription
       parameters:

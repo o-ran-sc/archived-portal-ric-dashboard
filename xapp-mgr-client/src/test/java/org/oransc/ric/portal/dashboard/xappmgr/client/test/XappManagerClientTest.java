@@ -20,7 +20,8 @@
 package org.oransc.ric.portal.dashboard.xappmgr.client.test;
 
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.xappmgr.client.api.DefaultApi;
+import org.oransc.ric.xappmgr.client.api.HealthApi;
+import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.invoker.ApiClient;
 import org.oransc.ric.xappmgr.client.model.AllXapps;
 import org.oransc.ric.xappmgr.client.model.Xapp;
@@ -30,10 +31,6 @@ import org.springframework.web.client.RestClientException;
  * Demonstrates use of the generated xApp manager client.
  * 
  * The test fails because no server is available.
- * 
- * The ugly name "DefaultApi" is generated because the spec lacks appropriate
- * tags on the operation, also see
- * https://stackoverflow.com/questions/38293236/swagger-swagger-codegen-maven-plugin-generate-default-api-interface
  */
 public class XappManagerClientTest {
 
@@ -41,15 +38,16 @@ public class XappManagerClientTest {
 	public void demo() {
 		ApiClient apiClient = new ApiClient();
 		apiClient.setBasePath("http://localhost:30099/");
-		DefaultApi apiInstance = new DefaultApi(apiClient);
 		try {
-			apiInstance.getHealth();
+			HealthApi healthApi = new HealthApi(apiClient);
+			healthApi.getHealth();
 			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
 		} catch (RestClientException e) {
 			System.err.println("getHealth failed: " + e.toString());
 		}
 		try {
-			AllXapps allXapps = apiInstance.getAllXapps();
+			XappApi xappApi = new XappApi(apiClient);
+			AllXapps allXapps = xappApi.getAllXapps();
 			System.out.println("getAllXapps answered: " + apiClient.getStatusCode().toString());
 			System.out.println("xApp count: " + allXapps.size());
 			for (Xapp x : allXapps)

@@ -21,7 +21,8 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.xappmgr.client.api.DefaultApi;
+import org.oransc.ric.xappmgr.client.api.HealthApi;
+import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,13 +55,21 @@ public class XappManagerConfiguration {
 	}
 
 	/**
-	 * @return A DefaultApi with an ApiClient configured from properties
+	 * @return A HealthApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public DefaultApi xappClient() {
+	public HealthApi xappHealthApi() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
 		apiClient.setBasePath(xappMgrBasepath);
-		return new DefaultApi(apiClient);
+		return new HealthApi(apiClient);
 	}
-
+	/**
+	 * @return An XappApi with an ApiClient configured from properties
+	 */
+	@Bean
+	public XappApi xappMgrApi() {
+		ApiClient apiClient = new ApiClient(new RestTemplate());
+		apiClient.setBasePath(xappMgrBasepath);
+		return new XappApi(apiClient);
+	}
 }
