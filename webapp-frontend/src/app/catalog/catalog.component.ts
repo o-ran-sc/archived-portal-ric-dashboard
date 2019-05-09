@@ -101,7 +101,7 @@ export class AppCatalogDeployDialog{
     }
 
     deployXapp(): void {
-        this.service.deployXapp(this.data.name).subscribe((val: any[]) => console.log(val));;
+        this.service.deployXapp(this.data.name).subscribe((val: any[]) => { });
         this.dialogRef.close();
     }
 

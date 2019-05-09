@@ -35,8 +35,7 @@ export class CatalogService {
         console.log(name);
         return this.http.post('api/xappmgr/xapps',
             {
-                "xAppName": "string",
-                "xappName": name
+                "xAppName": name
             });
     }
     
