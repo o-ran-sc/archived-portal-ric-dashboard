@@ -32,11 +32,9 @@ export class CatalogService {
   }
 
     deployXapp(name) {
-        console.log(name);
         return this.http.post('api/xappmgr/xapps',
             {
-                "xAppName": "string",
-                "xappName": name
+                "xAppName": name
             });
     }
     
