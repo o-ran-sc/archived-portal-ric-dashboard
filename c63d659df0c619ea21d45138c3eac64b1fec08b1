@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d91a3d0_df2202d4",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-05-09T13:42:17Z",
+      "side": 1,
+      "message": "Hi Chris,\n\nAnanda bumped the version in his commit also, will that cause merge conflict?\nhttps://gerrit.oran-osc.org/r/#/c/92/",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 34
+      },
+      "revId": "c63d659df0c619ea21d45138c3eac64b1fec08b1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
