@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,35 +18,28 @@
  * ========================LICENSE_END===================================
  */
 
-.control__section {
-    position: relative;
-    top: -150px;
-}
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
+describe('ConfirmDialogComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ConfirmDialogComponent ]
+    })
+    .compileComponents();
+  }));
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    font-size: 1.1em;
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-:host /deep/ i.material-icons.red-close {
-    color: red !important;
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -18,35 +18,24 @@
  * ========================LICENSE_END===================================
  */
 
-.control__section {
-    position: relative;
-    top: -150px;
-}
+import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { ConfirmDialogComponent } from './../../ui/confirm-dialog/confirm-dialog.component'
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+@Injectable({
+  providedIn: 'root'
+})
+export class ConfirmDialogService {
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
+  constructor(private dialog: MatDialog) { }
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
-
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    font-size: 1.1em;
-}
-
-:host /deep/ i.material-icons.red-close {
-    color: red !important;
+  openConfirmDialog(msg) {
+    return this.dialog.open(ConfirmDialogComponent, {
+      width: '480px',
+      position: { top: "100px" },
+      data: {
+        message: msg
+      }
+    });
+  }
 }
