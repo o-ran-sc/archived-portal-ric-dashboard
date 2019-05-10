@@ -35,6 +35,10 @@ export class ControlService {
         
     }
 
+    undeployxApp(xapp) {
+        return this.http.delete(('api/xappmgr/xapps/' + xapp),{ observe: 'response' })
+    }
+
     fetchInstance(allxappdata) {
         var xAppInstances = []
         for (const  xappindex in allxappdata) {

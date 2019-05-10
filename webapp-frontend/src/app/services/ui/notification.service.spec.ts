@@ -17,36 +17,16 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-@import url("https://fonts.googleapis.com/icon?family=Material+Icon");
-.control__section {
-    position: relative;
-    top: -150px;
-}
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+import { TestBed } from '@angular/core/testing';
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
+import { NotificationService } from './notification.service';
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
+describe('NotificationService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    font-size: 1.1em;
-}
-
-:host /deep/ i.material-icons.red-close {
-    color: red !important;
-}
+  it('should be created', () => {
+    const service: NotificationService = TestBed.get(NotificationService);
+    expect(service).toBeTruthy();
+  });
+});

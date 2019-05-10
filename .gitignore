@@ -37,3 +37,6 @@
 /nbdist/
 /.nb-gradle/
 /build/
+
+### visual studio ###
+.vs
