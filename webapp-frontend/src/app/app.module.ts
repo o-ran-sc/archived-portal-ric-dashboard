@@ -32,7 +32,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { CatalogComponent, AppCatalogDeployDialog, } from './catalog/catalog.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { UiService} from './services/ui/ui.service';
 import { AdminService} from './services/admin/admin.service';
 import { CatalogService} from './services/catalog/catalog.service';
@@ -49,6 +49,7 @@ import { StatCardComponent} from './ui/stat-card/stat-card.component';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
+import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -67,8 +68,8 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
-    AppCatalogDeployDialog,
-    AppRANConnectDialog
+    AppRANConnectDialog,
+    ConfirmDialogComponent
   ],
     imports: [
     BrowserModule,
@@ -112,8 +113,8 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
     MatInputModule
     ],
     entryComponents: [
-    AppCatalogDeployDialog,
-    AppRANConnectDialog
+    AppRANConnectDialog,
+    ConfirmDialogComponent,
     ],
   providers: [
       UiService,

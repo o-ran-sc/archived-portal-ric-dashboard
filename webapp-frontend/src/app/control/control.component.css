@@ -17,6 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icon");
 .control__section {
     position: relative;
     top: -150px;
@@ -37,4 +38,15 @@
 
 :host /deep/ ng2-smart-table thead th{
   text-align: left;
+}
+
+:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+:host /deep/ i.material-icons.red-close {
+    color: red !important;
 }
