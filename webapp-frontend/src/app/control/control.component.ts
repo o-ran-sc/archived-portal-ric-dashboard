@@ -30,7 +30,7 @@ import { Router } from '@angular/router';
 })
 export class ControlComponent {
 
-    settings = {
+  settings = {
     hideSubHeader: true,
     actions: {
       columnTitle: 'Actions',
@@ -38,21 +38,22 @@ export class ControlComponent {
       edit: false,
       delete: false,
       custom: [
-      { name: 'view', title: 'view', },
-    ],
+        { name: 'view', title: '<i>view</i>', },
+        { name: 'undeploy', title: '<i>undeploy</i>', },
+      ],
       position: 'right'
 
     },
     columns: {
       xapp: {
-        title:'xApp Name',
+        title: 'xApp Name',
         type: 'string',
       },
       name: {
-        title:'Instance Name',
+        title: 'Instance Name',
         type: 'string',
       },
-        status: {
+      status: {
         title: 'Status',
         type: 'string',
       },
@@ -67,23 +68,49 @@ export class ControlComponent {
       txMessages: {
         title: 'txMessages',
         type: 'array',
-        },
+      },
       rxMessages: {
-          title: 'rxMessages',
-          type: 'array',
+        title: 'rxMessages',
+        type: 'array',
       },
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-    constructor(private service: ControlService, private router: Router) {
-        this.service.getxAppInstances((instances) => { this.source.load(instances); } );
+  constructor(private service: ControlService, private router: Router) {
+    this.service.getxAppInstances((instances) => { this.source.load(instances); });
+  }
+
+  onxAppControlAction(event) {
+    switch (event.action) {
+      case 'view':
+        this.view(event);
+        break;
+      case 'undeploy':
+        this.undeploy(event);
+    }
   }
 
   view(event): void {
-      const url = '/xapp';
-      this.router.navigate([url, event]);
+    const url = '/xapp';
+    this.router.navigate([url, event]);
+  }
+
+  undeploy(event): void {
+    this.service.undeployxApp(event.data.xapp).subscribe(
+      response => {
+        this.service.getxAppInstances((instances) => { this.source.load(instances); });
+        switch (response.status) {
+          // call notification popup, when it's ready
+          case 204:
+
+          case 400:
+
+          case 500:
+        }
+      }
+    );
   }
 
 

@@ -27,6 +27,7 @@ Version 1.0.2, 10 May 2019
 * Fetch xAPP instance status information from xAPP Manager and display in dashboard
 * Allow the user to initiate an E2 (X2) connection between RIC and gNB/eNB
 * Add ANR xApp backend with mock implementation
+* Add undeploy xApp function
 
 Version 1.0.1, 6 May 2019
 -------------------------
