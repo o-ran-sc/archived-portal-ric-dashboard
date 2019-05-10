@@ -21,9 +21,9 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.xappmgr.client.api.HealthApi;
-import org.oransc.ric.xappmgr.client.api.XappApi;
-import org.oransc.ric.xappmgr.client.invoker.ApiClient;
+import org.oransc.ric.anrxapp.client.api.HealthApi;
+import org.oransc.ric.anrxapp.client.api.NcrtApi;
+import org.oransc.ric.anrxapp.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,28 +35,27 @@ import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Creates an xApp manager client as a bean to be managed by the Spring
- * container.
+ * Creates an ANR XApp client as a bean to be managed by the Spring container.
  */
 @Configuration
 @Profile("!mock")
-public class XappManagerConfiguration {
+public class AnrXappConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String xappMgrBasepath;
+	private final String anrXappBasepath;
 
 	@Autowired
-	public XappManagerConfiguration(@Value("${xappmgr.basepath}") final String xappMgrBasepath) {
-		Assert.notNull(xappMgrBasepath, "base path must not be null");
-		logger.info("Configuring xApp Manager at base path {}", xappMgrBasepath);
-		this.xappMgrBasepath = xappMgrBasepath;
+	public AnrXappConfiguration(@Value("${anrxapp.basepath}") final String anrXappBasepath) {
+		Assert.notNull(anrXappBasepath, "base path must not be null");
+		logger.info("Configuring ANR client at base path {}", anrXappBasepath);
+		this.anrXappBasepath = anrXappBasepath;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(xappMgrBasepath);
+		apiClient.setBasePath(anrXappBasepath);
 		return apiClient;
 	}
 
@@ -64,15 +63,13 @@ public class XappManagerConfiguration {
 	 * @return A HealthApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public HealthApi xappHealthApi() {
+	public HealthApi anrHealthApi() {
 		return new HealthApi(apiClient());
 	}
 
-	/**
-	 * @return An XappApi with an ApiClient configured from properties
-	 */
 	@Bean
-	public XappApi xappMgrApi() {
-		return new XappApi(apiClient());
+	public NcrtApi anrNcrtApi() {
+		return new NcrtApi(apiClient());
 	}
+
 }

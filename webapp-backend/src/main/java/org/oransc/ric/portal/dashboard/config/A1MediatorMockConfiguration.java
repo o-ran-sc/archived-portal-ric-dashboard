@@ -36,7 +36,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
 /**
- * Creates a mock implementation of the E2 manager client API.
+ * Creates a mock implementation of the A1 mediator client API.
  */
 @Profile("mock")
 @Configuration
