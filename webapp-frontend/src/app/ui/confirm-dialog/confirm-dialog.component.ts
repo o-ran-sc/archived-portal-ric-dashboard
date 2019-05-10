@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,36 +17,23 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-@import url("https://fonts.googleapis.com/icon?family=Material+Icon");
-.control__section {
-    position: relative;
-    top: -150px;
-}
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
+@Component({
+  selector: 'app-confirm-dialog',
+  templateUrl: './confirm-dialog.component.html',
+})
+export class ConfirmDialogComponent implements OnInit {
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
+  constructor(@Inject(MAT_DIALOG_DATA) public data,
+    public dialogRef: MatDialogRef<ConfirmDialogComponent>) { }
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    font-size: 1.1em;
-}
+  ngOnInit() {
+  }
 
-:host /deep/ i.material-icons.red-close {
-    color: red !important;
+  closeDialog() {
+    this.dialogRef.close(false);
+  }
 }
