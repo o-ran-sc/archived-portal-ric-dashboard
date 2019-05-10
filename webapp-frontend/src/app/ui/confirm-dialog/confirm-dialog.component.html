@@ -18,18 +18,11 @@
   ========================LICENSE_END===================================
   -->
 
-
-
-<div mat-dialog-content class="modal-header">
-    <p>Do you want to deploy {{data.name}}?</p>
-</div>
-
-<div mat-dialog-actions class="modal-footer justify-content-center">
-    <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect mat-button (click)="deployXapp()">
-        <mat-icon style="vertical-align: -21%;">launch</mat-icon> Deploy
-    </a>
-    <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect
-       data-dismiss="modal" mat-button (click)="onNoClick()">
-        <mat-icon style="vertical-align: -21%; size: 1em">close</mat-icon> Cancel
-    </a>
+<div>
+  <div class="content-container">
+    <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+    <span class="content-span full-width">{{data.message}}</span>
+  </div>
+  <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
+  <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
 </div>

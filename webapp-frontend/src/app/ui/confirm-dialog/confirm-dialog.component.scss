@@ -17,36 +17,46 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-@import url("https://fonts.googleapis.com/icon?family=Material+Icon");
-.control__section {
-    position: relative;
-    top: -150px;
+
+:host .mat-dialog-container {
+  border-radius: .25em .25em .4em .4em;
+  padding: 0px;
 }
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
+:host .content-container {
+  margin: 5px 5px 0px 5px;
+  color: #8f9cb5;
+  display: flex;
 }
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
+:host #close-icon {
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
 }
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
+:host #close-icon:hover {
+  cursor: pointer;
 }
 
-:host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-    display: inline-block;
-    width: 50px;
-    text-align: center;
-    font-size: 1.1em;
+:host #no-button {
+  height: 40px;
+  width: 20%;
+  background-color: #fc7169;
+  color: white;
+  border-radius: 10px;
+  margin-left: 25%;
+  margin-right: 5%;
+  margin-bottom: 5%;
 }
 
-:host /deep/ i.material-icons.red-close {
-    color: red !important;
+:host #yes-button {
+  height: 40px;
+  width: 20%;
+  background-color: #b6bece;
+  color: white;
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 25%;
+  margin-bottom: 5%;
 }
