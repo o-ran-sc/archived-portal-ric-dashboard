@@ -20,12 +20,8 @@
 import { Component, Inject } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { CatalogService } from '../services/catalog/catalog.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-export interface DialogData {
-    name: string;
-}
-
+import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
+import { NotificationService } from './../services/ui/notification.service'
 
 @Component({
   selector: 'app-catalog',
@@ -42,8 +38,8 @@ export class CatalogComponent {
       edit: false,
       delete: false,
       custom: [
-      { name: 'deployxApp', title: 'Deploy'},
-    ],
+        { name: 'deployxApp', title: 'Deploy' },
+      ],
       position: 'right'
 
     },
@@ -65,44 +61,31 @@ export class CatalogComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-    constructor(private service: CatalogService, public dialog: MatDialog) {
-    this.service.getAll().subscribe((val:any[]) => this.source.load(val));
+  constructor(
+    private service: CatalogService,
+    private confirmDialogService: ConfirmDialogService,
+    private notification: NotificationService) {
+    this.service.getAll().subscribe((val: any[]) => this.source.load(val));
   }
 
+  onDeployxApp(event): void {
+    this.confirmDialogService.openConfirmDialog('Are you sure to deploy this xApp ?')
+      .afterClosed().subscribe(res => {
+        if (res) {
+          this.service.deployXapp(event.data.name).subscribe(
+            response => {
+              switch (response.status) {
+                // call notification popup, when it's ready
+                case 200:
+                  this.notification.success('xApp deploy successfully ');
+                  break;
+                default:
+                  this.notification.warn('xApp deploy failed');
+              }
+            }
+          );
+        }
+      });
 
-    onDeployxApp(event): void {
-        const dialogRef = this.dialog.open(AppCatalogDeployDialog, {
-            width: '400px',
-            data: { name: event.data.name }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-        });
-    }
-
-}
-
-@Component({
-    selector: 'app-catalog-deploy-dialog',
-    templateUrl: 'catalog.component.deploy-dialog.html',
-    styleUrls: ['./catalog.component.css']
-})
-
-export class AppCatalogDeployDialog{
-
-    constructor(
-        public dialogRef: MatDialogRef<AppCatalogDeployDialog>,
-        private service: CatalogService,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-
-    deployXapp(): void {
-        this.service.deployXapp(this.data.name).subscribe((val: any[]) => { });
-        this.dialogRef.close();
-    }
-
+  }
 }
