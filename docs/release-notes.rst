@@ -28,6 +28,9 @@ Version 1.0.2, 13 May 2019
 * Allow the user to initiate an E2 (X2) connection between RIC and gNB/eNB
 * User input validations on connections between RIC and eNB/gNB in the dashboard
 * Add ANR xApp backend with mock implementation
+* Add undeploy xApp function
+* Add shared confirm dialog
+* Add shared notification
 
 Version 1.0.1, 6 May 2019
 -------------------------
