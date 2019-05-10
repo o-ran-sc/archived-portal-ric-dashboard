@@ -19,7 +19,7 @@
   -->
 <div class="control__section">
     <h3 class="control__header">xApp Control</h3>
-    <ng2-smart-table [settings]="settings" [source]="source" (custom)="view($event)">
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onxAppControlAction($event)">
     </ng2-smart-table>
     <app-modal-event hidden></app-modal-event>
 </div>
