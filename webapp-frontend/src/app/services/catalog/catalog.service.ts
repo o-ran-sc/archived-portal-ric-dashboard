@@ -23,7 +23,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CatalogService {
-  
+
   constructor(private http: HttpClient) {
   }
 
@@ -31,11 +31,12 @@ export class CatalogService {
     return this.http.get('api/xappmgr/xapps');
   }
 
-    deployXapp(name) {
-        return this.http.post('api/xappmgr/xapps',
-            {
-                "xAppName": name
-            });
-    }
-    
+  deployXapp(name) {
+    return this.http.post('api/xappmgr/xapps',
+      {
+        "xAppName": name
+      }
+      , { observe: 'response' });
+  }
+
 }
