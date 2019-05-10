@@ -19,17 +19,13 @@
   -->
 
 
-
-<div mat-dialog-content class="modal-header">
-    <p>Do you want to deploy {{data.name}}?</p>
-</div>
-
-<div mat-dialog-actions class="modal-footer justify-content-center">
-    <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect mat-button (click)="deployXapp()">
-        <mat-icon style="vertical-align: -21%;">launch</mat-icon> Deploy
-    </a>
-    <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect
-       data-dismiss="modal" mat-button (click)="onNoClick()">
-        <mat-icon style="vertical-align: -21%; size: 1em">close</mat-icon> Cancel
-    </a>
-</div>
+  <div mat-dialog-title>
+    {{data.title}}
+  </div>
+  <div mat-dialog-content>
+    {{data.message}}
+  </div>
+  <div mat-dialog-actions class="modal-footer justify-content-center">
+    <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-button class="mat-raised-button mat-primary" [mat-dialog-close]="true">OK</button>
+  </div>
