@@ -104,7 +104,6 @@ public class XappManagerMockConfiguration {
 
 		when(mockApi.getAllXapps()).thenReturn(allXapps);
 
-
 		Xapp xappByName = new Xapp().name("name").status(StatusEnum.UNKNOWN).version("v1");
 		when(mockApi.getXappByName(any(String.class))).thenReturn(xappByName);
 
