@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93492f00_4add8342",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-11T10:35:12Z",
+      "side": 1,
+      "message": "It seems a little unusual to put the same action on both icons; then you need extra code to figure it out in the click handler.  Have you considered assigning a different action for view \u0026 undeploy?",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 44,
+        "endChar": 8
+      },
+      "revId": "5e46deccc96966cc98bdef94b92f3cb58fe1af8d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
