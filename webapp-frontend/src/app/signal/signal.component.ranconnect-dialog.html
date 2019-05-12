@@ -22,19 +22,35 @@
     Setup RAN Connection
 </div>
 
-<div mat-dialog-content>
-  <mat-form-field class="input-display-block">
-    <input matInput placeholder="eNB/gNB Name" [(ngModel)]="data.ranName">
-  </mat-form-field>
-  <mat-form-field class="input-display-block">
-    <input matInput placeholder="IP" [(ngModel)]="data.ranIp">
-  </mat-form-field>
-  <mat-form-field class="input-display-block">
-    <input matInput placeholder="Port" [(ngModel)]="data.ranPort">
-  </mat-form-field>
-</div>
- 
- <div mat-dialog-actions class="modal-footer justify-content-center">
-  <button class="mat-raised-button" (click)="close()">Cancel</button> 
-  <button class="mat-raised-button mat-primary" (click)="connectRAN()">Connect</button>
-</div>
+<form [formGroup]="ranDialogForm" novalidate autocomplete="off">
+  <div mat-dialog-content>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="eNB/gNB Name" [(ngModel)]="data.ranName" formControlName="ranName">
+      <mat-hint align="end">Not more then 50 characters long.</mat-hint>
+      <mat-error *ngIf="validateControl('ranName') && hasError('ranName', 'required')">Name is required</mat-error>
+      <mat-error *ngIf="hasError('ranName', 'length')">Valid name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="IP" [(ngModel)]="data.ranIp" formControlName="ranIp">
+      <mat-error *ngIf="validateControl('ranIp') && hasError('ranIp', 'required')">IP is required</mat-error>
+      <mat-error *ngIf="hasError('ranIp', 'pattern')">Valid IP is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="Port" [(ngModel)]="data.ranPort" formControlName="ranPort">
+      <mat-error *ngIf="validateControl('ranPort') && hasError('ranPort', 'required')">Port is required</mat-error>
+      <mat-error *ngIf="hasError('ranPort', 'pattern')">Valid port number is required</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="modal-footer justify-content-center">
+    <button class="mat-raised-button" (click)="close()">Cancel</button>
+    <button class="mat-raised-button mat-primary"
+      [disabled]="(validateControl('ranName') && hasError('ranName', 'required'))
+      || (validateControl('ranIp') && hasError('ranIp', 'required'))
+      || (validateControl('ranPort') && hasError('ranPort', 'required'))
+      || hasError('ranName', 'maxlength')
+      || hasError('ranIp', 'pattern')
+      || hasError('ranPort', 'pattern')
+      || (!data.ranName || !data.ranIp || !data.ranPort)"
+       (click)="connectRAN()">Connect</button>
+  </div>
+</form>
