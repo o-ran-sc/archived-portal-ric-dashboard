@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d21ec7a_56247a47",
+        "filename": "webapp-frontend/src/app/services/ui/confirm-dialog.service.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T20:35:52Z",
+      "side": 1,
+      "message": "title: \u0027Confirm\u0027",
+      "range": {
+        "startLine": 37,
+        "startChar": 16,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "604073aac54bab7b3f363faa2b7627a571210b39",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afbc109f_987a97ab",
+        "filename": "webapp-frontend/src/app/ui/confirm-dialog/confirm-dialog.component.html",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T20:35:52Z",
+      "side": 1,
+      "message": "Can this please be {{data.title}} so the dialog has more uses than just confirmation?",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 16
+      },
+      "revId": "604073aac54bab7b3f363faa2b7627a571210b39",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cca42f3f_3ca5c505",
+        "filename": "webapp-frontend/src/app/ui/confirm-dialog/confirm-dialog.component.scss",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T20:35:52Z",
+      "side": 1,
+      "message": "Why is an empty file required? Can it be deleted?",
+      "revId": "604073aac54bab7b3f363faa2b7627a571210b39",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
