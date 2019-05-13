@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7a5c0bd_51b950a0",
+        "filename": "webapp-frontend/src/app/services/ui/confirm-dialog.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T15:32:25Z",
+      "side": 1,
+      "message": "Please add license hed",
+      "revId": "f517ae8b6d09af347f5d8c0de3694f6baba85153",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5b0352a_a1d46c88",
+        "filename": "webapp-frontend/src/app/ui/confirm-dialog/confirm-dialog.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T15:32:25Z",
+      "side": 1,
+      "message": "Please make this dialog a little prettier by putting a little border (space).  Now the two buttons are flat against the left \u0026 right sides, and the bottom.  I think the shared reusable dialogs should look more like the Angular materialized dialog that has white space between, above and below the buttons.",
+      "revId": "f517ae8b6d09af347f5d8c0de3694f6baba85153",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a52699e_fe922817",
+        "filename": "webapp-frontend/src/styles.scss",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-13T15:32:25Z",
+      "side": 1,
+      "message": "Why do you decorate at the \"snack-bar-container\" level?  What if someone reuses snack bar somewhere else?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "f517ae8b6d09af347f5d8c0de3694f6baba85153",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
