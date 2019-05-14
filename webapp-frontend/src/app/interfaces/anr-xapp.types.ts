@@ -18,38 +18,29 @@
  * ========================LICENSE_END===================================
  */
 
-package org.oransc.ric.portal.dashboard.model;
+// Models of data used by the ANR xApp
 
-/**
- * Trivial model to transport a URL, to be serialized as JSON.
- */
-public class UrlTransport implements IDashboardResponse {
+export interface ANRNeighborCellRelation {
+  cellIdentifierNrcgi: string;
+  neighborCellNrpci: string;
+  neighborCellNrcgi: string;
+  flagNoHo: boolean;
+  flagNoXn: boolean;
+  flagNoRemove: boolean;
+}
 
-	private String url;
+export interface ANRNeighborCellRelationDel {
+  idType: string;
+  neighborCellNrpci: string;
+  neighborCellNrcgi: string;
+}
 
-	/**
-	 * Builds an empty object.
-	 */
-	public UrlTransport() {
-		// no-arg constructor
-	}
-
-	/**
-	 * Builds an object with the specified value.
-	 * 
-	 * @param s
-	 *              value to transport.
-	 */
-	public UrlTransport(String s) {
-		this.url = s;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String s) {
-		this.url = s;
-	}
-
+export interface ANRNeighborCellRelationMod {
+  neighbourCellIdentifierType: string;
+  action: string;
+  neighborCellNrpci: string;
+  neighborCellNrcgi: string;
+  flagNoHo: boolean;
+  flagNoXn: boolean;
+  flagNoRemove: boolean;
 }

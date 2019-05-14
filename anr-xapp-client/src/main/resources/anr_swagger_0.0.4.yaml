@@ -18,7 +18,7 @@
 swagger : '2.0'
 info :
   description : REST API specification for RIC ANR closed xAPP
-  version     : 0.0.3
+  version     : 0.0.4
   title       : RIC ANR
   license:
     name : Nokia Closed App
@@ -31,7 +31,7 @@ paths :
   /health/alive :
     get :
       summary     : Health check of ANR - Liveness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthAlive
       responses   :
@@ -40,7 +40,7 @@ paths :
   /health/ready :
     get :
       summary     : Health check of ANR - Readiness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthReady
       responses   :
@@ -53,7 +53,7 @@ paths :
       - $ref : '#/parameters/limit'
     get :
       summary     : Returns neighbor cell relation table for all gnodeBs or based on query string
-      tags        : 
+      tags        :
         - ncrt
       operationId : getNcrtInfo
       produces  :
@@ -68,35 +68,36 @@ paths :
   /ncrt/cell/{cellIdentifier} :
     parameters :
       - $ref : '#/parameters/cellIdentifier'
-      - $ref : '#/parameters/startIndex'
-      - $ref : '#/parameters/limit'
-      - $ref : '#/parameters/neighborCellIdentifierNrpci'
-      - $ref : '#/parameters/neighborCellIdentifierNrcgi'
+      - $ref : '#/parameters/neighborCellNrpci'
+      - $ref : '#/parameters/neighborCellNrcgi'
     get :
       summary     : Returns neighbor cell relation table for a Source Cell (NR CGI) and optionally a neighbor cell based on query string
-      tags        : 
+      tags        :
         - ncrt
       operationId : getCellNcrtInfo
       produces  :
         - application/json
+      parameters :
+        - $ref : '#/parameters/startIndex'
+        - $ref : '#/parameters/limit'
       responses :
         '200' :
           description : successful operation
           schema      :
             $ref : '#/definitions/neighborCellRelationTable'
         '400' :
-          description : Non-existant identifier {cellIdentifier | neighborCellIdentifierNrpci | neighborCellIdentifierNrcgi} in request
+          description : Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request
     put :
       summary     : Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        : 
+      tags        :
         - ncrt
-      operationId : modifyNCRT
+      operationId : modifyNcrt
       consumes   :
         - application/json
       produces   :
         - application/json
       parameters :
-        - name        : NCRTModificationParameters
+        - name        : NcrtModificationParameters
           in          : body
           description : Parameters to modify neighbor cell relation
           required    : true
@@ -107,29 +108,29 @@ paths :
           description : Successfully modified neighbor cell relation
         '400' :
           description : Modification failed.
-                        { Identifier neighborCellIdentifierNrpci / neighborCellIdentifierNrcgi not provided |
-                          Non-existant identifier {cellIdentifier | neighborCellIdentifierNrpci | neighborCellIdentifierNrcgi} in request |
+                        { Identifier neighborCellNrpci / neighborCellNrcgi not provided |
+                          Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request |
                           Invalid data in body
                         }
     delete :
       summary     : Delete neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        : 
+      tags        :
         - ncrt
       operationId : deleteNcrt
       parameters :
-        - name        : NCRTDeletionParameters
+        - name        : NcrtDeletionParameters
           in          : body
           description : Parameters to delete neighbor cell relation
           required    : true
           schema      :
-            $ref : '#/definitions/neighborCellRelationDelTable'      
+            $ref : '#/definitions/neighborCellRelationDelTable'
       responses :
         '204' :
           description : Successfully deleted neighbor cell relation
         '400' :
           description : Deletion failed.
-                        { Identifier neighborCellIdentifierNrpci / neighborCellIdentifierNrcgi not provided |
-                          Non-existant identifier {cellIdentifier | neighborCellIdentifierNrpci | neighborCellIdentifierNrcgi} in request
+                        { Identifier neighborCellNrpci / neighborCellNrcgi not provided |
+                          Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request
                         }
 parameters :
   ggnbId :
@@ -153,21 +154,21 @@ parameters :
     description : Source Cell Identifier (NR CGI)
     in          : path
     required    : true
-  neighborCellIdentifierNrpci :
+  neighborCellNrpci :
     type        : string
-    name        : neighborCellIdentifierNrpci
+    name        : neighborCellNrpci
     description : Neighbor Cell Identifier (NR PCI)
     in          : query
-  neighborCellIdentifierNrcgi :
+  neighborCellNrcgi :
     type        : string
-    name        : neighborCellIdentifierNrcgi
+    name        : neighborCellNrcgi
     description : Neigbhor Cell Identifier (NR CGI)
     in          : query
 definitions :
   neighborCellRelationTable :
     type : object
-    properties : 
-      ncrtRelations : 
+    properties :
+      ncrtRelations :
         type   : array
         items  :
           $ref : '#/definitions/neighborCellRelation'
@@ -181,14 +182,14 @@ definitions :
       $ref : '#/definitions/neighborCellRelationMod'
   neighborCellRelationDelTable :
     type   : array
-    items  : 
+    items  :
       $ref : '#/definitions/neighborCellRelationDel'
   neighborCellRelation :
     type  : object
-    required : 
+    required :
       - cellIdentifierNrcgi
-      - neighborCellIdentifierNrpci
-      - neighborCellIdentifierNrcgi
+      - neighborCellNrpci
+      - neighborCellNrcgi
       - flagNoHo
       - flagNoXn
       - flagNoRemove
@@ -197,11 +198,11 @@ definitions :
         type        : string
         description : Source / Serving Cell Identifier (NR CGI)
         example     : E12345
-      neighborCellIdentifierNrpci :
+      neighborCellNrpci :
         type        : string
         description : Neighbor Cell Identifier (NR PCI)
         example     : E12345
-      neighborCellIdentifierNrcgi :
+      neighborCellNrcgi :
         type        : string
         description : Neighbor Cell Identifier (NR CGI)
         example     : E12345
@@ -236,11 +237,11 @@ definitions :
           - nrpciToNrcgiMapping
           - flagUpdates
           - nrcgiMappingAndFlagUpdates
-      neighborCellIdentifierNrpci :
+      neighborCellNrpci :
         type        : string
         description : Neighbor Cell Identifier (NR PCI)
         example     : E12345
-      neighborCellIdentifierNrcgi :
+      neighborCellNrcgi :
         type        : string
         description : Neighbor Cell Identifier (NR CGI)
         example     : E12345
@@ -267,11 +268,11 @@ definitions :
         enum :
           - nrpci
           - nrcgi
-      neighborCellIdentifierNrpci :
+      neighborCellNrpci :
         type        : string
         description : Neighbor Cell Identifier (NR PCI)
         example     : E12345
-      neighborCellIdentifierNrcgi :
+      neighborCellNrcgi :
         type        : string
         description : Neighbor Cell Identifier (NR PCI)
         example     : E12345

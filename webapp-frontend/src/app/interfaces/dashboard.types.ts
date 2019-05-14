@@ -17,26 +17,10 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-@Injectable()
-export class SignalService {
-  
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+// Models of data used by the Dashboard
 
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
-
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
-  }
-
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
-  }
-
+export interface DashboardSuccessTransport {
+  status: number;
+  data: string;
 }

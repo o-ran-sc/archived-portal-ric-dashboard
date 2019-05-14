@@ -20,23 +20,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { XMXappInfo } from '../../interfaces/xapp-mgr.types';
 
 @Injectable()
 export class CatalogService {
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
+    // injects to variable httpClient
   }
 
   getAll() {
-    return this.http.get('api/xappmgr/xapps');
+    return this.httpClient.get('api/xappmgr/xapps');
   }
 
   deployXapp(name) {
-    return this.http.post('api/xappmgr/xapps',
-      {
-        "xAppName": name
-      }
-      , { observe: 'response' });
+    let xappInfo: XMXappInfo = {
+      xAppName: name
+    };
+    const options = {
+        observe: 'response'
+    };
+    return this.httpClient.post('api/xappmgr/xapps', xappInfo, { observe: 'response' });
   }
 
 }

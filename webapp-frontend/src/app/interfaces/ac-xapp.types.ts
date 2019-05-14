@@ -17,26 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-@Injectable()
-export class SignalService {
-  
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+// Models of data used by the AC xApp
 
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
+export interface ACAdmissionIntervalControl {
+  dc_admission_start_time: string;
+  dc_admission_end_time: string;
+}
 
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
-  }
-
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
-  }
-
+export interface ACAdmissionIntervalControlAck {
+  status: string;
+  message: string;
 }

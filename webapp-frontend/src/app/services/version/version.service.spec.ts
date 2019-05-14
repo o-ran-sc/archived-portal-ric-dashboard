@@ -17,26 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
-@Injectable()
-export class SignalService {
-  
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+import { VersionService } from './version.service';
 
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
+describe('VersionService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
-  }
-
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
-  }
-
-}
+  it('should be created', () => {
+    const service: VersionService = TestBed.get(VersionService);
+    expect(service).toBeTruthy();
+  });
+});
