@@ -20,6 +20,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.0.3, 15 May 2019
+--------------------------
+* Add AC xapp controller
+
 Version 1.0.2, 13 May 2019
 --------------------------
 * Update A1 mediator client to version 0.4.0

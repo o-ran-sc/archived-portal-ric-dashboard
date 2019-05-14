@@ -50,7 +50,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/ncrt", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ncrt", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AnrXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
