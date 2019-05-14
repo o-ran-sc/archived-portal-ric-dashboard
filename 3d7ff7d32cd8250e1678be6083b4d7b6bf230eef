@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4d66773_70c34ecd",
+        "filename": "webapp-frontend/src/app/control/control.component.css",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-14T13:59:53Z",
+      "side": 1,
+      "message": "Does this pull fonts at runtime?  That\u0027s not acceptable.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 5
+      },
+      "revId": "3d7ff7d32cd8250e1678be6083b4d7b6bf230eef",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
