@@ -17,26 +17,33 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-@Injectable()
-export class SignalService {
-  
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+// Models of data used by the xApp Manager
 
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
+export interface XMSubscription {
+  eventType: string;
+  id: string;
+  maxRetries: number;
+  retryTimer: number;
+  targetUrl: string;
+}
 
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
-  }
+export interface XMXappInfo {
+  xAppName: string;
+}
 
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
-  }
+export interface XMXappInstance {
+  ip: string;
+  name: string;
+  port: number;
+  status: string;
+  rxMessages: Array<string>;
+  txMessages: Array<string>;
+}
 
+export interface XMXapp {
+  name: string;
+  status: string;
+  version: string;
+  instances: Array<XMXappInstance>;
 }

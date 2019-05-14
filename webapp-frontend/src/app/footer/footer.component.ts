@@ -17,26 +17,29 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs/Rx'
+import { VersionService } from '../services/version/version.service'
+import { DashboardSuccessTransport } from '../interfaces/dashboard.types'
 
-@Injectable()
-export class SignalService {
-  
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
+})
 
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
+/**
+ * Fetches the version on load for display in the footer
+ */
+export class FooterComponent implements OnInit {
 
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
-  }
+  public dashboardVersion : string
+ 
+  // Inject the service
+  constructor(public versionService: VersionService) { }
 
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
+  ngOnInit() {
+    this.versionService.getDashboardVersion().subscribe((res : DashboardSuccessTransport) => this.dashboardVersion = res.data)
   }
 
 }

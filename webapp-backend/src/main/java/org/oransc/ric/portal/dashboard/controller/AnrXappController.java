@@ -28,7 +28,9 @@ import org.oransc.ric.anrxapp.client.api.NcrtApi;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationDelTable;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationModTable;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationTable;
+import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/ncrt", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/anr", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AnrXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -72,6 +74,13 @@ public class AnrXappController {
 		Assert.notNull(ncrtApi, "API must not be null");
 		this.healthApi = healthApi;
 		this.ncrtApi = ncrtApi;
+	}
+
+	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
+	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	public SuccessTransport getVersion() {
+		logger.debug("getVersion enter");
+		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
@@ -109,7 +118,7 @@ public class AnrXappController {
 			@RequestParam(name = NRCGI, required = false) String nrcgi) {
 		logger.debug("queryNcrtAllCells: cellIdentifier {}, startIndex {} limit {} nrpci {} nrcgi {}", cellIdentifier,
 				startIndex, limit, nrpci, nrcgi);
-		return ncrtApi.getCellNcrtInfo(cellIdentifier, startIndex, limit, nrpci, nrcgi);
+		return ncrtApi.getCellNcrtInfo(cellIdentifier,  nrpci, nrcgi, startIndex, limit);
 	}
 
 	@ApiOperation(value = "Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI")
@@ -118,7 +127,7 @@ public class AnrXappController {
 			@RequestBody NeighborCellRelationModTable ncrtModTable, //
 			HttpServletResponse response) {
 		logger.debug("modifyNcrt: cellIdentifier {} modTable {}", cellIdentifier, ncrtModTable);
-		ncrtApi.modifyNCRT(cellIdentifier, ncrtModTable, null, null, null, null);
+		ncrtApi.modifyNcrt(cellIdentifier, ncrtModTable, null, null);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
@@ -128,7 +137,7 @@ public class AnrXappController {
 			@RequestBody NeighborCellRelationDelTable ncrtDelTable, //
 			HttpServletResponse response) {
 		logger.debug("modifyNcrt: cellIdentifier {} delTable {}", cellIdentifier, ncrtDelTable);
-		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable, null, null, null, null);
+		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable, null, null);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 }

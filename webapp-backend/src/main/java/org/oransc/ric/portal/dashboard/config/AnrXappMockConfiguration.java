@@ -80,28 +80,26 @@ public class AnrXappMockConfiguration {
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 
-		NeighborCellRelation a = new NeighborCellRelation().cellIdentifierNrcgi("A12345")
-				.neighborCellIdentifierNrpci("A123456").neighborCellIdentifierNrcgi("A12347").flagNoHo(true)
-				.flagNoXn(true).flagNoRemove(true);
-		NeighborCellRelation e = new NeighborCellRelation().cellIdentifierNrcgi("E12345")
-				.neighborCellIdentifierNrpci("E123456").neighborCellIdentifierNrcgi("E12347").flagNoHo(true)
-				.flagNoXn(true).flagNoRemove(true);
+		NeighborCellRelation a = new NeighborCellRelation().cellIdentifierNrcgi("A12345").neighborCellNrpci("A123456")
+				.neighborCellNrcgi("A12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true);
+		NeighborCellRelation e = new NeighborCellRelation().cellIdentifierNrcgi("E12345").neighborCellNrpci("E123456")
+				.neighborCellNrcgi("E12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true);
 		NeighborCellRelationTable ncrt = new NeighborCellRelationTable().addNcrtRelationsItem(a)
 				.addNcrtRelationsItem(e);
 
 		when(mockApi.getNcrtInfo(any(String.class), any(String.class), any(Integer.class))).thenReturn(ncrt);
-		when(mockApi.getCellNcrtInfo(any(String.class), any(String.class), any(Integer.class), any(String.class),
-				any(String.class))).thenReturn(ncrt);
+		when(mockApi.getCellNcrtInfo(any(String.class), any(String.class), any(String.class), any(String.class),
+				any(Integer.class))).thenReturn(ncrt);
 
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).deleteNcrt(any(String.class), any(NeighborCellRelationDelTable.class), any(String.class),
-				any(Integer.class), any(String.class), any(String.class));
+				any(String.class));
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).modifyNCRT(any(String.class), any(NeighborCellRelationModTable.class), any(String.class),
-				any(Integer.class), any(String.class), any(String.class));
+		}).when(mockApi).modifyNcrt(any(String.class), any(NeighborCellRelationModTable.class), any(String.class),
+				any(String.class));
 
 		return mockApi;
 	}

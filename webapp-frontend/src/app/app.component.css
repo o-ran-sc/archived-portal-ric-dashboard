@@ -329,15 +329,22 @@ main {
 */
 .main__footer {
   background: transparent;
-  position: absolute;
+  /* position: absolute;
   bottom: 1rem;
-  left: 1.5rem;
+  left: 1.5rem; */
+  margin: 10px;
   z-index: 100;
 }
 
-.copyright__text {
-  letter-spacing: 0.1rem;
-  color: gray;
+.main__footer-dark {
+  background-color: #2B244D;
+  color: white;
+}
+
+.main-footer__bg-dark {
+  opacity: 1;
+  background: linear-gradient(to bottom, #B290FF, #2E1D65);
+  transition: opacity 300ms linear;
 }
 
 @media only screen and (max-width: 300px) {
