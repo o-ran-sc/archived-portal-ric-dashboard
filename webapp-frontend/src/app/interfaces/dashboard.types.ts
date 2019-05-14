@@ -17,16 +17,10 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
 
-public abstract class DashboardConstants {
+// Models of data returned by the Dashboard
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
-	}
-
-	public static final String ENDPOINT_PREFIX = "/api/";
-	public static final String HEALTHCHECK_PATH = "health";
-	public static final String VERSION_PATH = "version";
-
+export interface SuccessTransport {
+  status: number
+  data: string
 }

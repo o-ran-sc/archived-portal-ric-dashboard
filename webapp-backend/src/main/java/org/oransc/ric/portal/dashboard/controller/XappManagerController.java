@@ -23,8 +23,10 @@ import java.lang.invoke.MethodHandles;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
+import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.oransc.ric.xappmgr.client.api.HealthApi;
 import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.model.AllXapps;
@@ -69,6 +71,13 @@ public class XappManagerController {
 					xappApi.getClass().getName());
 		this.healthApi = healthApi;
 		this.xappApi = xappApi;
+	}
+
+	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
+	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	public SuccessTransport getVersion() {
+		logger.debug("getVersion enter");
+		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Calls the xApp Manager health check.")
