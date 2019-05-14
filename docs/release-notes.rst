@@ -20,6 +20,13 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.0.3, 15 May 2019
+--------------------------
+* Add AC xapp controller
+* Add RAN type radio selector to connection setup
+* Add get-version methods to all controllers
+* Update ANR xApp client to spec version 0.0.4
+
 Version 1.0.2, 13 May 2019
 --------------------------
 * Update A1 mediator client to version 0.4.0

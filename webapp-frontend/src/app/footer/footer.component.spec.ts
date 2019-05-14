@@ -17,16 +17,28 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-public abstract class DashboardConstants {
+import { FooterComponent } from './footer.component';
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
-	}
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
-	public static final String ENDPOINT_PREFIX = "/api/";
-	public static final String HEALTHCHECK_PATH = "health";
-	public static final String VERSION_PATH = "version";
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ FooterComponent ]
+    })
+    .compileComponents();
+  }));
 
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(FooterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

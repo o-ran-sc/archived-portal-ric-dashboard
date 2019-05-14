@@ -29,7 +29,7 @@
       </div>
       <div class="account-details">
         <span class="name__text">Demo</span>
-        <span class="email__text">demo@onap.org</span>
+        <span class="email__text">demo@o-ran-sc.org</span>
       </div>
     </section>
     <section #sidenav class="menu-body">
@@ -60,9 +60,6 @@
       </svg>
       <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50"/>
       <svg class="logo__icon" viewBox="150.3 22.2 313.7 42.8">
-        <!--<path fill="#00ff9b" d="M150.3 65V22.2L193 65z" data-name="Path 1"/>
-        <path fill="#003eff" d="M193.1 65h-42.8L193 22.2z" data-name="Path 2"/>-->
-        
         <text [ngClass]="{'logo__text-dark': darkModeActive}" class="logo__text" fill="#432c85"
               font-size="30" font-weight="600"
               letter-spacing=".1em" transform="translate(149 56)">
@@ -74,7 +71,6 @@
 
     <h3 class="date__text"></h3>
 
-
     <div class="mode-toggle__container">
       <span class="mode-toggle__text">Light</span>
 
@@ -84,7 +80,6 @@
         <span [ngClass]="{'mode-toggle__circle-checked': darkModeActive}" class="mode-toggle__circle"></span>
       </label>
 
-
       <span class="mode-toggle__text">Dark</span>
     </div>
 
@@ -92,15 +87,12 @@
 
   <!-- Main Content -->
 
-  <!--<router-outlet></router-outlet>-->
   <main class="main__container">
     <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
     <router-outlet></router-outlet>
   </main>
 
   <!-- Footer -->
+  <app-footer></app-footer>
 
-<!--   <footer class="main__footer">
-    <small class="copyright__text">© 2019 AT&T and Nokia. All rights reserved.</small>
-  </footer> -->
 </div>

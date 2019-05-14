@@ -17,16 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+import { TestBed } from '@angular/core/testing';
 
-public abstract class DashboardConstants {
+import { VersionService } from './version.service';
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
-	}
+describe('VersionService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-	public static final String ENDPOINT_PREFIX = "/api/";
-	public static final String HEALTHCHECK_PATH = "health";
-	public static final String VERSION_PATH = "version";
-
-}
+  it('should be created', () => {
+    const service: VersionService = TestBed.get(VersionService);
+    expect(service).toBeTruthy();
+  });
+});

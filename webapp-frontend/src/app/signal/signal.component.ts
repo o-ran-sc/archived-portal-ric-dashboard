@@ -21,13 +21,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { SignalService } from '../services/signal/signal.service';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material';
-import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio'; 
+import { FormGroup, FormControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 
-export interface DialogData {
+export interface SetupRequest {
     ranName: string;
     ranIp: number;
     ranPort: number;
@@ -51,7 +52,7 @@ export class SignalComponent {
         },
         columns: {
             requestType: {
-                title: 'Request Type',
+                title: 'RAN Type',
                 type: 'string',
             },
             ranName: {
@@ -79,27 +80,19 @@ export class SignalComponent {
 
     source: LocalDataSource = new LocalDataSource();
 
-    ranName: string;
-
-    ranIp: number;
-
-    ranPort: number;
-
     constructor(private service: SignalService, public dialog: MatDialog, private http: HttpClient) {
         this.service.getAll().subscribe((val: any[]) => this.source.load(val));
     }
 
     openRanConnectDialog() {
-
-        const dialogRef = this.dialog.open(AppRANConnectDialog,  {
+        const dialogRef = this.dialog.open(AppRANConnectDialog, {
             width: '450px',
-            data: {ranName: this.ranName, ranIp: this.ranIp, ranPort: this.ranPort}
-    })
+            data: { }
+        })
 
         dialogRef.afterClosed().subscribe(result => {
             this.service.getAll().subscribe((val: any[]) => this.source.load(val));
         });
-
     }
 }
 
@@ -111,47 +104,57 @@ export class SignalComponent {
 
 export class AppRANConnectDialog implements OnInit {
 
-    constructor(public dialogRef: MatDialogRef<AppRANConnectDialog>,
-          private service: SignalService,
-          @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-    }
-
     public ranDialogForm: FormGroup;
 
-        public ranName: string;
-
-        public ranIp: number;
-
-        public ranPort: number;
+    constructor(public dialogRef: MatDialogRef<AppRANConnectDialog>,
+          private service: SignalService,
+          @Inject(MAT_DIALOG_DATA) public data: SetupRequest) { }
 
     ngOnInit() {
+        const namePattern = /^([A-Z]){4}([0-9]){6}$/;
         const ipPattern = /((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$))/;
         const portPattern = /^([0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])$/;
         this.ranDialogForm = new FormGroup({
-                ranName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-                ranIp: new FormControl('', [Validators.required, Validators.pattern(ipPattern)]),
-                ranPort: new FormControl('', [Validators.required, Validators.pattern(portPattern)])
-            });
+            ranType: new FormControl('endc'),
+            ranName: new FormControl('', [Validators.required, Validators.pattern(namePattern)]),
+            ranIp: new FormControl('', [Validators.required, Validators.pattern(ipPattern)]),
+            ranPort: new FormControl('', [Validators.required, Validators.pattern(portPattern)])
+        });
     }
 
-    close() {
+    onCancel() {
         this.dialogRef.close();
     }
 
-    connectRAN(): void {
-        this.service.x2Setup(this.data).subscribe((val: any[]) => {});
-        this.dialogRef.close();
+    public setupConnection = (ranFormValue) => {
+        if (this.ranDialogForm.valid) {
+            this.executeSetupConnection(ranFormValue);
+        }
     }
 
-    public hasError(controlName: string, errorName: string) {
-        if (this.ranDialogForm.controls[controlName].hasError(errorName))
-            return true;
-        return false;
-    }
+    private executeSetupConnection = (ranFormValue) => {
+        let setupRequest: SetupRequest = {
+            ranName: ranFormValue.ranName,
+            ranIp:   ranFormValue.ranIp,
+            ranPort: ranFormValue.ranPort
+        }
+        if (ranFormValue.ranType === 'endc')
+	        this.service.endcSetup(setupRequest).subscribe((val: any[]) => {});
+	    else
+	        this.service.x2Setup(setupRequest).subscribe((val: any[]) => {});
+        this.dialogRef.close();
+  }
+
+  public hasError(controlName: string, errorName: string) {
+    if (this.ranDialogForm.controls[controlName].hasError(errorName))
+      return true;
+    return false;
+  }
 
   public validateControl(controlName: string) {
-        if (this.ranDialogForm.controls[controlName].invalid && this.ranDialogForm.controls[controlName].touched)
-            return true;
-        return false;
-    }
-}
+    if (this.ranDialogForm.controls[controlName].invalid && this.ranDialogForm.controls[controlName].touched)
+      return true;
+    return false;
+  }
+  
+} // AppRANConnectDialog

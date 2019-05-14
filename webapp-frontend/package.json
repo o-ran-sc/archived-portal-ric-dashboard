@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
+    "@material/radio": "^2.1.1",
     "@types/chart.js": "^2.7.46",
     "angular-bootstrap-md": "^7.4.2",
     "bootstrap": "^4.3.1",

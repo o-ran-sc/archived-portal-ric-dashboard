@@ -20,14 +20,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
 import { MatIconModule, MatCardModule, MatListModule, MatSidenavModule,
-    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule,
-  MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule, 
+    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule, 
+    MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { MatRadioModule } from '@angular/material/radio'; 
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +52,7 @@ import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -70,6 +73,7 @@ import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.compo
     ConfigEventComponent,
     AppRANConnectDialog,
     ConfirmDialogComponent,
+    FooterComponent,
   ],
     imports: [
     BrowserModule,
@@ -81,6 +85,7 @@ import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.compo
     ReactiveFormsModule,
     MatButtonToggleModule,
     MatExpansionModule,
+    MatRadioModule,
     MatSliderModule,
     MatCardModule,
     MatIconModule,
