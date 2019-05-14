@@ -27,10 +27,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
+import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.E2SetupRequestType;
 import org.oransc.ric.portal.dashboard.model.E2SetupResponse;
 import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
+import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +82,13 @@ public class E2ManagerController {
 		assertNotNull(s);
 		if (s.isEmpty())
 			throw new IllegalArgumentException("Empty not permitted");
+	}
+
+	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
+	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	public SuccessTransport getVersion() {
+		logger.debug("getVersion enter");
+		return new SuccessTransport(200, DashboardApplication.getVersion(E2ManagerApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
