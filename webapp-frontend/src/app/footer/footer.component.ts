@@ -17,16 +17,26 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+import { Component, OnInit } from '@angular/core'
+import { Observable } from 'rxjs/Rx'
+import { VersionService } from '../services/version/version.service'
+import { SuccessTransport } from '../interfaces/dashboard.types'
 
-public abstract class DashboardConstants {
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
+})
+export class FooterComponent implements OnInit {
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
-	}
+  public dashboardVersion : string
+ 
+  // Inject the service
+  constructor(public versionService: VersionService) { }
 
-	public static final String ENDPOINT_PREFIX = "/api/";
-	public static final String HEALTHCHECK_PATH = "health";
-	public static final String VERSION_PATH = "version";
+  ngOnInit() {
+    var dashboardVersionObs = this.versionService.getDashboardVersion()
+    dashboardVersionObs.subscribe((res : SuccessTransport) => this.dashboardVersion = res.data)
+  }
 
 }

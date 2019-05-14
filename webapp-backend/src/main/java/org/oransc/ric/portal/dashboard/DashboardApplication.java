@@ -38,19 +38,21 @@ public class DashboardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
 		// Force this onto the console by using level WARN
-		logger.warn("main: version '{}' successful start", getVersion());
+		logger.warn("main: version '{}' successful start", getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}
 
 	/**
-	 * Gets version details.
+	 * Gets version details for the specified class.
+	 * 
+	 * @param clazz
+	 *                  Class to get the version
 	 * 
 	 * @return the value of the MANIFEST.MF property Implementation-Version as
 	 *         written by maven when packaged in a jar; 'unknown' otherwise.
 	 */
-	private static String getVersion() {
-		Class<?> clazz = MethodHandles.lookup().lookupClass();
+	public static String getImplementationVersion(Class<?> clazz) {
 		String classPath = clazz.getResource(clazz.getSimpleName() + ".class").toString();
-		return classPath.startsWith("jar") ? clazz.getPackage().getImplementationVersion() : "unknown";
+		return classPath.startsWith("jar") ? clazz.getPackage().getImplementationVersion() : "unknown-not-jar";
 	}
 
 }
