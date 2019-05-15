@@ -42,7 +42,8 @@ import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
-import { SignalComponent, RANConnectDialogComponent } from './signal/signal.component';
+import { SignalComponent } from './signal/signal.component';
+import { AppRANConnectDialogComponent } from './signal/signal.component.ranconnect-dialog';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -54,7 +55,8 @@ import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
-
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { ErrorDialogService } from './services/ui/error-dialog.service';
 
 @NgModule({
   declarations: [
@@ -72,10 +74,11 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
-    RANConnectDialogComponent,
+    AnrXappComponent,
+    AppRANConnectDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
-    AnrXappComponent,
+    ErrorDialogComponent
   ],
     imports: [
     BrowserModule,
@@ -118,18 +121,22 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
     MatTabsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    AppRANConnectDialogComponent,
+    ErrorDialogComponent
     ],
     entryComponents: [
+    AppRANConnectDialogComponent,
     ConfirmDialogComponent,
-    RANConnectDialogComponent
+    ErrorDialogComponent
     ],
   providers: [
       UiService,
       AdminService,
       XappMgrService,
       DashboardService,
-      E2ManagerService
+      E2ManagerService,
+      ErrorDialogService
     ],
   bootstrap: [AppComponent]
 })

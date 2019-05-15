@@ -17,28 +17,25 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-import { SignalComponent } from './signal.component';
+export interface ErrorData {
+  errorMessage: string;
+}
 
-describe('SignalComponent', () => {
-  let component: SignalComponent;
-  let fixture: ComponentFixture<SignalComponent>;
+@Component({
+  selector: 'app-error-dialog',
+  templateUrl: './error-dialog.component.html',
+  styleUrls: ['./error-dialog.component.scss']
+})
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SignalComponent ]
-    })
-    .compileComponents();
-  }));
+export class ErrorDialogComponent {
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SignalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  constructor(private dialogRef: MatDialogRef<ErrorDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ErrorData) { }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  public closeDialog = () => {
+    this.dialogRef.close();
+  }
+}
