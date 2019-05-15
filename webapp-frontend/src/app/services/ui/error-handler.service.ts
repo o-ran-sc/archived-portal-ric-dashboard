@@ -17,26 +17,19 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { ErrorDialogComponent } from '../../ui/error-dialog/error-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+ 
 @Injectable()
-export class SignalService {
+export class ErrorHandlerService {
 
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
+  public errorMessage: string = '';
+  constructor(private dialog: MatDialog) { }
+  public handleError(error: HttpErrorResponse, dialogConfig: any){
+
+    dialogConfig.data = { 'errorMessage': error.message };
+    this.dialog.open(ErrorDialogComponent, dialogConfig);
   }
-
-  getAll() {
-    return this.httpClient.get('api/e2mgr/setup');
-  }
-
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup1', req);
-  }
-
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
-  }
-
 }

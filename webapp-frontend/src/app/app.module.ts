@@ -42,7 +42,8 @@ import { ControlService } from './services/control/control.service';
 import { SignalService } from './services/signal/signal.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
-import { SignalComponent, AppRANConnectDialog } from './signal/signal.component';
+import { SignalComponent } from './signal/signal.component';
+import { AppRANConnectDialogComponent } from './signal/signal.component.ranconnect-dialog';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -53,7 +54,8 @@ import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { ErrorHandlerService } from './services/ui/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -71,9 +73,10 @@ import { FooterComponent } from './footer/footer.component';
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
-    AppRANConnectDialog,
+    AppRANConnectDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
+    ErrorDialogComponent
   ],
     imports: [
     BrowserModule,
@@ -116,18 +119,22 @@ import { FooterComponent } from './footer/footer.component';
     MatTabsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    AppRANConnectDialogComponent,
+    ErrorDialogComponent
     ],
     entryComponents: [
-    AppRANConnectDialog,
+    AppRANConnectDialogComponent,
     ConfirmDialogComponent,
+    ErrorDialogComponent
     ],
   providers: [
       UiService,
       AdminService,
       CatalogService,
       ControlService,
-      SignalService
+      SignalService,
+      ErrorHandlerService
     ],
   bootstrap: [AppComponent]
 })
