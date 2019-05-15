@@ -53,7 +53,8 @@ import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { ErrorHandlerService } from './services/ui/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRANConnectDialog,
     ConfirmDialogComponent,
     FooterComponent,
+    ErrorDialogComponent
   ],
     imports: [
     BrowserModule,
@@ -116,18 +118,21 @@ import { FooterComponent } from './footer/footer.component';
     MatTabsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    ErrorDialogComponent
     ],
     entryComponents: [
     AppRANConnectDialog,
     ConfirmDialogComponent,
+    ErrorDialogComponent
     ],
   providers: [
       UiService,
       AdminService,
       CatalogService,
       ControlService,
-      SignalService
+      SignalService,
+      ErrorHandlerService
     ],
   bootstrap: [AppComponent]
 })
