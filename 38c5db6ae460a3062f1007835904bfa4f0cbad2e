@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f07cf7e_4fbdf2fb",
+        "filename": "webapp-frontend/src/app/app.component.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2019-05-15T18:30:42Z",
+      "side": 1,
+      "message": "The footer is not moving down if the page\u0027s content or table data or some other sections grows dynamically. Ideally the footer should adapt to the webpage dynamically and must be in the bottom always, rather than in the middle of the page content (you can go to xappstats screen to see the concern I am referring here). \n\nThis is the same issue as adjusting the center pane when the left menu is opened or collapsed.\n\nSo is the reason I kept this footer commented for now. \n\nPlease see, if we can create a Jira subtask to handle this.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 11
+      },
+      "revId": "38c5db6ae460a3062f1007835904bfa4f0cbad2e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
