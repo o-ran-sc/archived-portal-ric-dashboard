@@ -4,27 +4,26 @@ This webapp is built with Angular 7 and Spring-Boot 2.
 
 ## Getting started
 
-To install prerequisites on Mac OSX, first install nvm then continue with node:
+### Check prerequisites
 
-	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+1. Java development kit (JDK), version 1.8 or later
+2. Maven dependency-management tool, version 3.4 or later
+  
+### Build and launch the web app
 
-Then:
-
-	nvm install stable
-	nvm install node
-
-To run the web app:
-
-    cd ric-dashboard/ang7-sb2
-    mvn clean install
-
-    cd ric-dashboard/ang7-sb2/backend/
+    mvn -Ddocker.skip=true clean install
+    cd webapp-backend
     mvn spring-boot:run
 
-To debug the frontend and backend for Angular developers:
+Then open a browser on http://localhost:8080
 
-    cd ric-dashboard/ang7-sb2/frontend/src/main/web/src/app
+In addition to the above, you can run the Angular server 
+for debugging the frontend and backend separately:
+
+    cd webapp-frontend
     ./ng serve --proxy-config proxy.conf.json
+
+Then open a browser on http://localhost:4200
 
 ## License
 
