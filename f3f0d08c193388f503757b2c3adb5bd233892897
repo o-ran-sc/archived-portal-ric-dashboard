@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "4e3af1b1_cd5e8ba8",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:33:06Z",
+      "side": 1,
+      "message": "Please split out this component \u0026 class into a new file. Like Java should have one component per file.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 1
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28b9e7df_d0519eee",
         "filename": "webapp-frontend/src/app/signal/signal.component.ts",
         "patchSetId": 1
