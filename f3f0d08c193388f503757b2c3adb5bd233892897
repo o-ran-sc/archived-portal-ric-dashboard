@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0edfe8de_28ce3bd2",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "WHat is this ../ui/..? That is just weird, please clean up",
+      "range": {
+        "startLine": 32,
+        "startChar": 37,
+        "endLine": 32,
+        "endChar": 46
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14840efa_28be878a",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "Looks like you have changed ALL the whitespace/indentation that I committed. The style guide says, 2 spaces no tabs.  Please undo those unnecessary changes.",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 12
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28b9e7df_d0519eee",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "why assign this in OnInit? It\u0027s a constant value, just assign to the field.",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 129,
+        "endChar": 9
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae36231d_75f89fbd",
+        "filename": "webapp-frontend/src/app/signal/signal.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "why does this assignment have to be done like this? why not pass it in the handleError call? Wouldn\u0027t that be cleaner?",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 1
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb087b78_b94b56d2",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "Manoop and I discussed with Nicolas re the confirm dialog, and decided to remove the title entirely.  Please be consistent.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 4
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f7aff95_2a6d5ecb",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "A reusable dialog should not have any fixed text such as this.",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3052a49e_faa4af46",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "Might want it to say \"Dismiss\" or \"Close\" instead of \"OK\"",
+      "range": {
+        "startLine": 26,
+        "startChar": 67,
+        "endLine": 26,
+        "endChar": 69
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7495259_db3e3a34",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "Why is this empty file needed?",
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efeae64b_44c81e98",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "Should be private",
+      "range": {
+        "startLine": 30,
+        "startChar": 14,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a4a42d4_c0f085df",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-16T21:06:45Z",
+      "side": 1,
+      "message": "If you don\u0027t need this, why add it? Why add the implements OnInit decl?  Please simplify.",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "f3f0d08c193388f503757b2c3adb5bd233892897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
