@@ -101,7 +101,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Query NCRT of all cells, all or one gNB(s)", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = "/cell", method = RequestMethod.GET)
-	public NeighborCellRelationTable queryNcrtAllCells( //
+	public NeighborCellRelationTable getNcrtInfo( //
 			@RequestParam(name = GGNBID, required = false) String ggnbId, //
 			@RequestParam(name = START_INDEX, required = false) String startIndex, //
 			@RequestParam(name = LIMIT, required = false) Integer limit) {
@@ -111,7 +111,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Query NCRT of a single serving cell", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = "/cell/" + CELL_ID + "/{" + CELL_ID + "}", method = RequestMethod.GET)
-	public NeighborCellRelationTable queryNcrtServingCell(@PathVariable(CELL_ID) String cellIdentifier, //
+	public NeighborCellRelationTable getCellNcrtInfo(@PathVariable(CELL_ID) String cellIdentifier, //
 			@RequestParam(name = START_INDEX, required = false) String startIndex, //
 			@RequestParam(name = LIMIT, required = false) Integer limit,
 			@RequestParam(name = NRPCI, required = false) String nrpci,
@@ -131,13 +131,17 @@ public class AnrXappController {
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
+	/*
+	 * TODO: DELETE should not have a body - the path should identify the resource to be deleted.
+	 */
 	@ApiOperation(value = "Delete neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI")
 	@RequestMapping(value = "/cell/" + CELL_ID + "/{" + CELL_ID + "}", method = RequestMethod.DELETE)
-	public void modifyNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
+	public void deleteNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
 			@RequestBody NeighborCellRelationDelTable ncrtDelTable, //
 			HttpServletResponse response) {
 		logger.debug("modifyNcrt: cellIdentifier {} delTable {}", cellIdentifier, ncrtDelTable);
 		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable, null, null);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
+
 }
