@@ -17,10 +17,38 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-// Models of data used by the Dashboard
+@Injectable({
+  providedIn: 'root'
+})
 
-export interface DashboardSuccessTransport {
-  status: number;
-  data: string;
+/**
+ * Services to query the dashboard's healthcheck controller.
+ */
+export class DashboardService {
+
+  private basePath = 'api/dashboard/';
+
+  constructor(private httpClient: HttpClient) {
+    // injects to variable httpClient
+  }
+
+ /**
+   * Checks app health
+   * @returns Observable that should yield a DashboardSuccessTransport
+   */
+  getHealth() {
+    return this.httpClient.get(this.basePath + 'health');
+  }
+
+  /**
+   * Gets Dashboard version details
+   * @returns Observable that should yield a DashboardSuccessTransport object
+   */
+  getVersion() {
+    return this.httpClient.get(this.basePath + 'version');
+  }
+
 }

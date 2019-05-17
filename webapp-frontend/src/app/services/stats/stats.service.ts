@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,9 +19,9 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -49,11 +49,10 @@ export class StatsService {
               'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
             })
           };
-    
-    constructor(private httpClient: HttpClient) { 
-        //this.loadConfig();
-        //this.getLoad();
-        
+
+    constructor(private httpClient: HttpClient) {
+        // this.loadConfig();
+        // this.getLoad();
     }
 
     getMetrics() {
@@ -67,7 +66,7 @@ export class StatsService {
     }
 
     getLoad(): Observable<number> {
-        //this.loadMetrics = this.getRandomValue();
+        // this.loadMetrics = this.getRandomValue();
         this.httpClient.get(this.hostURL + this.loadPath).subscribe((res) => {
             console.log(res);
             console.log('stats.service.getLoad(): ' + res['load']);
@@ -76,9 +75,9 @@ export class StatsService {
         });
         return this.load;
     }
-    
+
     putLoad(value: number) {
-        //this.loadMetrics = this.getRandomValue();
+        // this.loadMetrics = this.getRandomValue();
         const jsonValue = '{ "load": ' + value + ' }';
         console.log(jsonValue);
         this.httpClient.put(this.hostURL + this.loadPath, jsonValue , this.httpOptions).subscribe((res) => {
@@ -87,14 +86,14 @@ export class StatsService {
     }
 
     putDelay(value: number) {
-        //this.loadMetrics = this.getRandomValue();
+        // this.loadMetrics = this.getRandomValue();
         const jsonValue = '{ "delay": ' + value + ' }';
         console.log(jsonValue);
         this.httpClient.put(this.hostURL + this.delayPath, jsonValue , this.httpOptions).subscribe((res) => {
             console.log(res);
         });
     }
-    
+
     getCpuMetrics() {
         this.cpuMetrics = this.getRandomValue();
         return this.cpuMetrics;
@@ -103,23 +102,23 @@ export class StatsService {
     getRandomValue() {
         return Math.round((Math.random() * (20 - 0)) + 0);
     }
-    
+
     saveConfig(key: string, value: string) {
-        if(key == 'jsonURL')
+        if (key === 'jsonURL') {
             this.baseJSONServerUrl = value;
+        }
+        console.log('save this.baseJSONServerUrl ' + this.baseJSONServerUrl);
+        const jsonValue = '{"id": "' + key + '", "value": "' + value + '"}';
+        console.log(jsonValue);
+        this.httpClient.put(this.baseJSONServerUrl + '/config/' + key , jsonValue, this.httpOptions).subscribe((res) => {
+            console.log(res);
+        });
 
-            console.log('save this.baseJSONServerUrl '+this.baseJSONServerUrl);
-            const jsonValue = '{"id": "' + key + '", "value": "' + value + '"}';
-            console.log(jsonValue);
-            this.httpClient.put(this.baseJSONServerUrl + '/config/' + key , jsonValue, this.httpOptions).subscribe((res) => {
-                console.log(res);
-            });
 
-        
     }
-    
+
     loadConfig() {
-        console.log('load this.baseJSONServerUrl '+this.baseJSONServerUrl);
+        console.log('load this.baseJSONServerUrl ' + this.baseJSONServerUrl);
         const httpOptions = {
                 headers: new HttpHeaders({
                   'Content-Type':  'application/json'
