@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,10 +17,9 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs/Rx'
-import { VersionService } from '../services/version/version.service'
-import { DashboardSuccessTransport } from '../interfaces/dashboard.types'
+import { Component, OnInit } from '@angular/core';
+import { VersionService } from '../services/version/version.service';
+import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
 
 @Component({
   selector: 'app-footer',
@@ -33,13 +32,13 @@ import { DashboardSuccessTransport } from '../interfaces/dashboard.types'
  */
 export class FooterComponent implements OnInit {
 
-  public dashboardVersion : string
- 
+  dashboardVersion: string;
+
   // Inject the service
-  constructor(public versionService: VersionService) { }
+  constructor(private versionService: VersionService) { }
 
   ngOnInit() {
-    this.versionService.getDashboardVersion().subscribe((res : DashboardSuccessTransport) => this.dashboardVersion = res.data)
+    this.versionService.getDashboardVersion().subscribe((res: DashboardSuccessTransport) => this.dashboardVersion = res.data);
   }
 
 }

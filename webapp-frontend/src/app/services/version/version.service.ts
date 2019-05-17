@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,57 +17,57 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VersionService {
 
-  constructor(private httpClient : HttpClient) {
+  constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
   /**
-   * Gets an Observable with version details
-   * @returns {Observable<SuccessTransport>} with Dashboard version
+   * Gets Dashboard version details
+   * @returns Observable that should yield a SuccessTransport object
    */
   getDashboardVersion() {
-    return this.httpClient.get('api/dashboard/version')
+    return this.httpClient.get('api/dashboard/version');
   }
 
   /**
-   * Gets an Observable with version details
-   * @returns {Observable<SuccessTransport>} with A1 Mediator version
+   * Gets A1 Mediator client version details
+   * @returns Observable that should yield a SuccessTransport object
    */
   getA1MediatorVersion() {
     // Remember that AC traffic goes via A1
-    return this.httpClient.get('api/xapp/ac/version')
+    return this.httpClient.get('api/xapp/ac/version');
   }
 
   /**
-   * Gets an Observable with version details
-   * @returns {Observable<SuccessTransport>} with ANR xApp version
+   * Gets ANR xApp client version details
+   * @returns Observable that should yield a SuccessTransport object
    */
   getAnrXappVersion() {
-    return this.httpClient.get('api/xapp/anr/version')
+    return this.httpClient.get('api/xapp/anr/version');
   }
 
   /**
-   * Gets an Observable with version details
-   * @returns {Observable<SuccessTransport>} with E2 Manager version
+   * Gets E2 manager client version details
+   * @returns Observable that should yield a SuccessTransport object
    */
   getE2ManagerVersion() {
-    return this.httpClient.get('api/e2mgr/version')
+    return this.httpClient.get('api/e2mgr/version');
   }
 
   /**
-   * Gets an Observable with version details
-   * @returns {Observable<SuccessTransport>} with XApp Manager version
+   * Gets xApp Manager client version details
+   * @returns Observable that should yield a SuccessTransport object
    */
-  getXappManagerVersion(){
-    return this.httpClient.get('api/xappmgr/version')
+  getXappManagerVersion() {
+    return this.httpClient.get('api/xappmgr/version');
   }
 
 }

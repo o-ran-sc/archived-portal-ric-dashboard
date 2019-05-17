@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,24 +19,37 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { E2SetupRequest } from '../../interfaces/e2-mgr.types';
 
 @Injectable()
 export class SignalService {
-  
+
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
+  /**
+   * Gets setup request history
+   * @returns Observable that should yield an array of objects
+   */
   getAll() {
     return this.httpClient.get('api/e2mgr/setup');
   }
 
-  x2Setup(req) {
-    return this.httpClient.post('api/e2mgr/x2Setup', req);
+  /**
+   * Sends a request to setup an ENDC/gNodeB connection
+   * @returns Observable
+   */
+  endcSetup(req: E2SetupRequest) {
+    return this.httpClient.post('api/e2mgr/endcSetup', req);
   }
 
-  endcSetup(req) {
-    return this.httpClient.post('api/e2mgr/endcSetup', req);
+  /**
+   * Sends a request to setup an X2/eNodeB connection
+   * @returns Observable
+   */
+  x2Setup(req: E2SetupRequest) {
+    return this.httpClient.post('api/e2mgr/x2Setup', req);
   }
 
 }
