@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,28 +26,27 @@ export class ControlService {
     constructor(private http: HttpClient) {
     }
 
-    getxAppInstances(xAppInstances) {  
+    getxAppInstances(xAppInstances) {
     return this.http.get('api/xappmgr/xapps').subscribe(
         (val: any[]) => {
             xAppInstances(this.fetchInstance(val));
-            } 
+            }
         );
-        
     }
 
     undeployxApp(xapp) {
-        return this.http.delete(('api/xappmgr/xapps/' + xapp),{ observe: 'response' })
+        return this.http.delete(('api/xappmgr/xapps/' + xapp), { observe: 'response' });
     }
 
     fetchInstance(allxappdata) {
-        var xAppInstances = []
-        for (const  xappindex in allxappdata) {
-            var instancelist = allxappdata[xappindex].instances;
+        const xAppInstances = [];
+        for (const xappindex in allxappdata) {
+            const instancelist = allxappdata[xappindex].instances;
             for (const instanceindex in instancelist) {
-                var instance = instancelist[instanceindex];
+                const instance = instancelist[instanceindex];
                 instance.xapp = allxappdata[xappindex].name;
                 xAppInstances.push(instance);
-            }          
+            }
         }
         return xAppInstances;
     }

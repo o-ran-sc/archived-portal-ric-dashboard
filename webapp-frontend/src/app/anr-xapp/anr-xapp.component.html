@@ -17,8 +17,10 @@
   limitations under the License.
   ========================LICENSE_END===================================
 -->
-<div class="admin__section">
-    <h3 class="admin__header">Users</h3>
-    <ng2-smart-table [settings]="usersettings" [source]="usersource" (deleteConfirm)="onDeleteUserConfirm($event)">
-    </ng2-smart-table>
+<div class="anr__section">
+  <h3 class="anr__header">ANR xApp</h3>
+  <ng2-smart-table [settings]="settings" [source]="source" (custom)="onAnrControlAction($event)">
+  </ng2-smart-table>
+  <app-modal-event hidden></app-modal-event>
 </div>
+

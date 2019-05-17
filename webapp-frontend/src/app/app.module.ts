@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,13 +20,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
 import { MatIconModule, MatCardModule, MatListModule, MatSidenavModule,
-    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule, 
-    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule, 
+    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule,
+    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule,
     MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { MatRadioModule } from '@angular/material/radio'; 
+import { MatRadioModule } from '@angular/material/radio';
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,10 +39,11 @@ import { UiService } from './services/ui/ui.service';
 import { AdminService } from './services/admin/admin.service';
 import { CatalogService } from './services/catalog/catalog.service';
 import { ControlService } from './services/control/control.service';
-import { SignalService } from './services/signal/signal.service';
+import { DashboardService } from './services/dashboard/dashboard.service';
+import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
-import { SignalComponent, AppRANConnectDialog } from './signal/signal.component';
+import { SignalComponent, RANConnectDialogComponent } from './signal/signal.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -53,6 +54,7 @@ import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 
 
 @NgModule({
@@ -71,9 +73,10 @@ import { FooterComponent } from './footer/footer.component';
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
-    AppRANConnectDialog,
+    RANConnectDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
+    AnrXappComponent,
   ],
     imports: [
     BrowserModule,
@@ -119,17 +122,18 @@ import { FooterComponent } from './footer/footer.component';
     MatInputModule
     ],
     entryComponents: [
-    AppRANConnectDialog,
     ConfirmDialogComponent,
+    RANConnectDialogComponent
     ],
   providers: [
       UiService,
       AdminService,
       CatalogService,
       ControlService,
-      SignalService
+      DashboardService,
+      E2ManagerService
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule { };
+export class AppModule { }
 
