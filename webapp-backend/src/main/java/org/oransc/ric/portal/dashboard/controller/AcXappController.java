@@ -71,6 +71,9 @@ public class AcXappController {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
 
+	/*
+	 * GET policy is not supported at present by A1 Mediator.  Keeping this hidden until that changes.
+	 *
 	@ApiOperation(value = "Gets the named policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = "policy/{" + POLICY_NAME + "}", method = RequestMethod.GET)
 	public Object getPolicy(@PathVariable(POLICY_NAME) String policyName) {
@@ -78,6 +81,7 @@ public class AcXappController {
 		a1MediatorApi.a1ControllerGetHandler(policyName);
 		return null;
 	}
+	 */
 
 	@ApiOperation(value = "Sets the named policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = "policy/{" + POLICY_NAME + "}", method = RequestMethod.PUT)
