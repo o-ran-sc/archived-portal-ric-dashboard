@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,15 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+
 import { TestBed } from '@angular/core/testing';
+import { XappMgrService } from './xapp-mgr.service';
 
-import { CatalogService } from './catalog.service';
-
-describe('CatalogService', () => {
+describe('XappMgrService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CatalogService = TestBed.get(CatalogService);
+    const service: XappMgrService = TestBed.get(XappMgrService);
     expect(service).toBeTruthy();
   });
 });
