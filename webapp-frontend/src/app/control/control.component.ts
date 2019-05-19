@@ -19,10 +19,11 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { ControlService } from '../services/control/control.service';
+import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
 import { NotificationService } from './../services/ui/notification.service'
+import { XMXapp } from '../interfaces/xapp-mgr.types';
 
 
 @Component({
@@ -31,7 +32,7 @@ import { NotificationService } from './../services/ui/notification.service'
   styleUrls: ['./control.component.css'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class ControlComponent {
+export class ControlComponent implements OnInit  {
 
   settings = {
     hideSubHeader: true,
@@ -82,11 +83,13 @@ export class ControlComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(
-    private service: ControlService,
+    private xappMgrSvc: XappMgrService,
     private router: Router,
     private confirmDialogService: ConfirmDialogService,
-    private notification: NotificationService) {
-    this.service.getxAppInstances((instances) => { this.source.load(instances); });
+    private notification: NotificationService) { }
+
+  ngOnInit() {
+    this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.source.load(this.getInstance(xapps)));
   }
 
   onxAppControlAction(event) {
@@ -109,9 +112,9 @@ export class ControlComponent {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy this xApp ?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.service.undeployxApp(event.data.xapp).subscribe(
+          this.xappMgrSvc.undeployXapp(event.data.xapp).subscribe(
             response => {
-              this.service.getxAppInstances((instances) => { this.source.load(instances); });
+              this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.source.load(this.getInstance(xapps)));
               switch (response.status) {
                 case 200:
                   this.notification.success('xApp undeployed successfully!');
@@ -123,6 +126,20 @@ export class ControlComponent {
           );
         }
       });
+  }
+
+  getInstance(allxappdata: XMXapp[]) {
+    const xAppInstances = [];
+    for (const xappindex in allxappdata) {
+      const instancelist = allxappdata[xappindex].instances;
+      for (const instanceindex in instancelist) {
+        var instance: any 
+        instance = instancelist[instanceindex];
+        instance.xapp = allxappdata[xappindex].name;
+        xAppInstances.push(instance);
+      }
+    }
+    return xAppInstances;
   }
 
 
