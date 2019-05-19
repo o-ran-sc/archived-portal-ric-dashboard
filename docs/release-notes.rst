@@ -30,6 +30,7 @@ Version 1.0.3, 20 May 2019
 * Add simple page footer with copyright and version
 * Add AC and ANR xApp services
 * Rename signal service to E2 Manager service
+* Use XappMgrService to replace ControlService and CatalogService
 
 Version 1.0.2, 13 May 2019
 --------------------------

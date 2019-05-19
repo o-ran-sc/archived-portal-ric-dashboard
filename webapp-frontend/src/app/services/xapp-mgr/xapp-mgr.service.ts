@@ -19,36 +19,30 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { XMXappInfo, XMXapp} from '../../interfaces/xapp-mgr.types';
+
 
 @Injectable()
-export class ControlService {
+export class XappMgrService {
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private httpClient: HttpClient) {
+    // injects to variable httpClient
+  }
 
-    getxAppInstances(xAppInstances) {
-    return this.http.get('api/xappmgr/xapps').subscribe(
-        (val: any[]) => {
-            xAppInstances(this.fetchInstance(val));
-            }
-        );
-    }
+  private basePath = 'api/xappmgr/xapps';
 
-    undeployxApp(xapp) {
-        return this.http.delete(('api/xappmgr/xapps/' + xapp), { observe: 'response' });
-    }
+  getAll(){
+    return this.httpClient.get<XMXapp[]>(this.basePath);
+  }
 
-    fetchInstance(allxappdata) {
-        const xAppInstances = [];
-        for (const xappindex in allxappdata) {
-            const instancelist = allxappdata[xappindex].instances;
-            for (const instanceindex in instancelist) {
-                const instance = instancelist[instanceindex];
-                instance.xapp = allxappdata[xappindex].name;
-                xAppInstances.push(instance);
-            }
-        }
-        return xAppInstances;
-    }
+  deployXapp(name: string) {
+    const xappInfo: XMXappInfo = { xAppName: name };
+    return this.httpClient.post(this.basePath, xappInfo, { observe: 'response' });
+  }
+
+  undeployXapp(name: string) {
+    return this.httpClient.delete((this.basePath + '/' + name), { observe: 'response' });
+  }
 
 }

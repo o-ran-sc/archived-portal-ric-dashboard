@@ -37,8 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { UiService } from './services/ui/ui.service';
 import { AdminService } from './services/admin/admin.service';
-import { CatalogService } from './services/catalog/catalog.service';
-import { ControlService } from './services/control/control.service';
+import { XappMgrService } from './services/xapp-mgr/xapp-mgr.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
@@ -128,8 +127,7 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
   providers: [
       UiService,
       AdminService,
-      CatalogService,
-      ControlService,
+      XappMgrService,
       DashboardService,
       E2ManagerService
     ],
