@@ -19,9 +19,10 @@
  */
 import { Component, Inject } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { CatalogService } from '../services/catalog/catalog.service';
+import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
 import { NotificationService } from './../services/ui/notification.service'
+import { XMXapp } from '../interfaces/xapp-mgr.types';
 
 @Component({
   selector: 'app-catalog',
@@ -62,17 +63,17 @@ export class CatalogComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(
-    private service: CatalogService,
+    private xappMgr: XappMgrService,
     private confirmDialogService: ConfirmDialogService,
     private notification: NotificationService) {
-    this.service.getAll().subscribe((val: any[]) => this.source.load(val));
+    this.xappMgr.getAll().subscribe((xapps: XMXapp[]) => this.source.load(xapps));
   }
 
   onDeployxApp(event): void {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to deploy this xApp?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.service.deployXapp(event.data.name).subscribe(
+          this.xappMgr.deployXapp(event.data.name).subscribe(
             response => {
               switch (response.status) {
                 case 200:

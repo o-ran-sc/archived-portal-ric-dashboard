@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,27 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { XMXappInfo } from '../../interfaces/xapp-mgr.types';
 
-@Injectable()
-export class CatalogService {
+import { TestBed } from '@angular/core/testing';
+import { XappMgrService } from './xapp-mgr.service';
 
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
-  }
+describe('XappMgrService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  getAll() {
-    return this.httpClient.get('api/xappmgr/xapps');
-  }
-
-  deployXapp(name) {
-    let xappInfo: XMXappInfo = {
-      xAppName: name
-    };
-    return this.httpClient.post('api/xappmgr/xapps', xappInfo, { observe: 'response' });
-  }
-
-}
+  it('should be created', () => {
+    const service: XappMgrService = TestBed.get(XappMgrService);
+    expect(service).toBeTruthy();
+  });
+});

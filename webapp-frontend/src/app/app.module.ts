@@ -37,8 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { UiService } from './services/ui/ui.service';
 import { AdminService } from './services/admin/admin.service';
-import { CatalogService } from './services/catalog/catalog.service';
-import { ControlService } from './services/control/control.service';
+import { XappMgrService } from './services/xapp-mgr/xapp-mgr.service';
 import { SignalService } from './services/signal/signal.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
@@ -125,8 +124,7 @@ import { FooterComponent } from './footer/footer.component';
   providers: [
       UiService,
       AdminService,
-      CatalogService,
-      ControlService,
+      XappMgrService,
       SignalService
     ],
   bootstrap: [AppComponent]
