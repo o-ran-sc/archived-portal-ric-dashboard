@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2ba48f12_3be89abb",
+        "filename": "webapp-frontend/src/app/services/xapp-mgr/xapp-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T21:21:25Z",
+      "side": 1,
+      "message": "Please remove trailing slash - should not be there on the GET",
+      "range": {
+        "startLine": 33,
+        "startChar": 39,
+        "endLine": 33,
+        "endChar": 40
+      },
+      "revId": "cc11f90a494593279286487f85800cbec0c26083",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1956442e_f6c7c3d0",
+        "filename": "webapp-frontend/src/app/services/xapp-mgr/xapp-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T21:21:25Z",
+      "side": 1,
+      "message": "Please declare the type - I guess it must be string, right?",
+      "range": {
+        "startLine": 44,
+        "startChar": 15,
+        "endLine": 44,
+        "endChar": 19
+      },
+      "revId": "cc11f90a494593279286487f85800cbec0c26083",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
