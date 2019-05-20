@@ -34,7 +34,6 @@ export class XappMgrService {
 
   getAll(): Observable<XMXapp[]>{
     return this.httpClient.get<XMXapp[]>(this.basePath)
-
   }
 
   deployXapp(name: string) {
