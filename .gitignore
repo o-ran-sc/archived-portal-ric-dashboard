@@ -40,3 +40,6 @@
 
 ### visual studio ###
 .vs
+
+# OSx cruft
+**/.DS_Store

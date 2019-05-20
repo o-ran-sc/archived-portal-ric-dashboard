@@ -88,18 +88,16 @@ public class AnrXappMockConfiguration {
 				.addNcrtRelationsItem(e);
 
 		when(mockApi.getNcrtInfo(any(String.class), any(String.class), any(Integer.class))).thenReturn(ncrt);
-		when(mockApi.getCellNcrtInfo(any(String.class), any(String.class), any(String.class), any(String.class),
-				any(Integer.class))).thenReturn(ncrt);
+		when(mockApi.getCellNcrtInfo(any(String.class), any(String.class), any(Integer.class), any(String.class),
+				any(String.class))).thenReturn(ncrt);
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).deleteNcrt(any(String.class), any(NeighborCellRelationDelTable.class), any(String.class),
-				any(String.class));
+		}).when(mockApi).deleteNcrt(any(String.class), any(NeighborCellRelationDelTable.class));
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).modifyNcrt(any(String.class), any(NeighborCellRelationModTable.class), any(String.class),
-				any(String.class));
+		}).when(mockApi).modifyNcrt(any(String.class), any(NeighborCellRelationModTable.class));
 
 		return mockApi;
 	}
