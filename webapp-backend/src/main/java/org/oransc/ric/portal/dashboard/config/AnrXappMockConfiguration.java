@@ -81,11 +81,10 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public HealthApi anrHealthMockApi() {
-		ApiClient mockClient = mock(ApiClient.class);
-		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
+	public HealthApi anrHealthApi() {
+		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
-		when(mockApi.getApiClient()).thenReturn(mockClient);
+		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).getHealthAlive();

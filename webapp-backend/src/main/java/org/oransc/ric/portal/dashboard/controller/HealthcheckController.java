@@ -24,8 +24,6 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,20 +38,16 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/dashboard", produces = MediaType.APPLICATION_JSON_VALUE)
 public class HealthcheckController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
 	@ApiOperation(value = "Checks the health of the application by (TBD).", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.HEALTHCHECK_PATH, method = RequestMethod.GET)
-	public SuccessTransport getHealth() {
-		logger.debug("getHealth enter");
+	public SuccessTransport getDashblardHealth() {
 		long count = 0;
 		return new SuccessTransport(200, "(TBD) reports count is " + count);
 	}
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
-	public SuccessTransport getVersion() {
-		logger.debug("getVersion enter");
+	public SuccessTransport getDashboardVersion() {
 		return new SuccessTransport(200,
 				DashboardApplication.getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}

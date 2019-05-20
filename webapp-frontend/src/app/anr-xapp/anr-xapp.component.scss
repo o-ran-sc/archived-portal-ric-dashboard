@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,7 @@
  */
  .anr__section {
     position: relative;
-    top: -150px;
+    top: -50px;
 }
 
 .anr__header {
@@ -31,10 +31,40 @@
     transform: translate(149 56);
 }
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
+.spinner-container {
+    height: 360px;
+    width: 390px;
+    position: fixed;
 }
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
+.spinner-container mat-spinner {
+    margin: 130px auto 0 auto;
 }
+
+.ncr-table {
+    width: 99%; /* 100 looks wrong */
+    min-height: 150px;
+    margin-top: 10px;
+    background-color:transparent;
+}
+
+.ncr-table__bg-dark {
+    color: white;
+}
+
+.input-pad-left {
+    padding-left: 10px;
+}
+
+.input-pad-right {
+    padding-right: 10px;
+}
+
+/* How to center "Action" in the flexbox? 
+.mat-header-cell {    
+    justify-content: center;    
+}
+.action-cell {
+    text-align: center;
+}
+*/
