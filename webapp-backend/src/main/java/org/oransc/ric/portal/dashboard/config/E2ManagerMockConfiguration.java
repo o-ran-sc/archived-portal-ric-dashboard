@@ -66,7 +66,7 @@ public class E2ManagerMockConfiguration {
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).healthGet();
-		
+
 		return mockApi;
 	}
 

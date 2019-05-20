@@ -17,28 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnrXappComponent } from './anr-xapp.component';
-
-describe('AnrXappComponent', () => {
-  let component: AnrXappComponent;
-  let fixture: ComponentFixture<AnrXappComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AnrXappComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AnrXappComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+ /* used to place form fields on separate lines/rows in dialog */
+.input-display-block {
+    display: block;
+  }

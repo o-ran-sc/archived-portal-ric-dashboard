@@ -32,7 +32,7 @@ export class XappMgrService {
 
   private basePath = 'api/xappmgr/xapps';
 
-  getAll(){
+  getAll() {
     return this.httpClient.get<XMXapp[]>(this.basePath);
   }
 

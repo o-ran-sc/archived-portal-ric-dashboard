@@ -75,8 +75,7 @@ public class XappManagerController {
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
-	public SuccessTransport getVersion() {
-		logger.debug("getVersion enter");
+	public SuccessTransport getXappManagerClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 

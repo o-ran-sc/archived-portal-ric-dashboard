@@ -20,6 +20,11 @@
 
 // Models of data used by the ANR xApp
 
+export interface ANRNeighborCellRelationTable {
+  ncrtRelations: Array<ANRNeighborCellRelation>;
+  startIndex: string;
+}
+
 export interface ANRNeighborCellRelation {
   cellIdentifierNrcgi: string;
   neighborCellNrpci: string;

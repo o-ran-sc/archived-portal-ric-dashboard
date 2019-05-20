@@ -19,10 +19,12 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
-import { MatIconModule, MatCardModule, MatListModule, MatSidenavModule,
-    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule,
-    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule,
-    MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
+    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
+    MatSidenavModule,  MatSliderModule, MatSlideToggleModule, MatSortModule,
+    MatTableModule, MatTabsModule, MatSnackBarModule} from '@angular/material';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -44,6 +46,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { ControlComponent } from './control/control.component';
 import { SignalComponent } from './signal/signal.component';
 import { AppRANConnectDialogComponent } from './signal/signal.component.ranconnect-dialog';
+import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -76,34 +79,41 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     ConfigEventComponent,
     AnrXappComponent,
     AppRANConnectDialogComponent,
+    ANREditNCRDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
     ErrorDialogComponent
   ],
     imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
-    AppRoutingModule,
     FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatRadioModule,
     MatSliderModule,
-    MatCardModule,
-    MatIconModule,
-    MatGridListModule,
-    MatListModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
-    MatFormFieldModule,
-    MatButtonModule,
     MatInputModule,
     Ng2SmartTableModule,
-    MatSnackBarModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
     exports: [
@@ -127,6 +137,7 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     ],
     entryComponents: [
     AppRANConnectDialogComponent,
+    ANREditNCRDialogComponent,
     ConfirmDialogComponent,
     ErrorDialogComponent
     ],

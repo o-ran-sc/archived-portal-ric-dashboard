@@ -21,16 +21,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
-import { ANRNeighborCellRelation, ANRNeighborCellRelationMod } from '../../interfaces/anr-xapp.types';
+import { ANRNeighborCellRelationTable, ANRNeighborCellRelation, ANRNeighborCellRelationMod } from '../../interfaces/anr-xapp.types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnrXappService {
+export class ANRXappService {
 
+  // Trailing slashes are important
   private basePath = 'api/xapp/anr/';
-  private cellPath = 'cell/cellIdentifier/';
+  private cellPath = 'cell/';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
@@ -64,21 +66,20 @@ export class AnrXappService {
    * Query NCRT of all cells, all or one gNB(s)
    * @param ggnbId Optional parameter for the gNB ID
    * @param startIndex Optional parameter for the start index
-   * @param limit Optional parameter for the limit (page size)
-   * @returns Observable of ANRNeighborCellRelation
+   * @param limit Optional parameter for the limit (page size), defaults to 100.
+   * @returns Observable of ANRNeighborCellRelationTable
    */
-  getNcrtInfo(ggnbId?: string, startIndex?: string, limit?: number): Observable<ANRNeighborCellRelation[]> {
-    const queryParams = new HttpParams();
-    if (ggnbId) {
-      queryParams.set('ggnbid', ggnbId);
-    }
-    if (startIndex) {
-      queryParams.set('startIndex', startIndex);
-    }
-    if (limit) {
-      queryParams.set('limit', limit.toString());
-    }
-    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + 'cell', { params: queryParams } );
+  getNcrtInfo(ggnbId: string = '', startIndex: string = '', limit: number = 100): Observable<ANRNeighborCellRelation[]> {
+    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + 'cell', {
+      params: new HttpParams()
+        .set('ggnbId', ggnbId)
+        .set('startIndex', startIndex)
+        .set('limit', limit.toString())
+    }).pipe(
+      // Extract the array of relations here
+      // TODO: what about the start index?
+      map(res => res['ncrtRelations'])
+    );
   }
 
   /**
@@ -87,21 +88,20 @@ export class AnrXappService {
    * @param ggnbid Optional parameter for the gNB ID
    * @param startIndex Optional parameter for the start index
    * @param limit Optional parameter for the limit (page size)
-   * @returns Observable of ANRNeighborCellRelation
+   * @returns Observable of ANRNeighborCellRelationTable
    */
   getCellNcrtInfo(cellId: string, ggnbId?: string, startIndex?: string, limit?: number): Observable<ANRNeighborCellRelation[]> {
-    const queryParams = new HttpParams();
-    if (ggnbId) {
-      queryParams.set('ggnbid', ggnbId);
+    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + this.cellPath + cellId, {
+      params: new HttpParams()
+        .set('ggnbId', ggnbId)
+        .set('startIndex', startIndex)
+        .set('limit', limit.toString())
+      }).pipe(
+        // Extract the array of relations here
+        // TODO: what about the start index?
+        map(res => res['ncrtRelations'])
+      );
     }
-    if (startIndex) {
-      queryParams.set('startIndex', startIndex);
-    }
-    if (limit) {
-      queryParams.set('limit', limit.toString());
-    }
-    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + this.cellPath + cellId, { params: queryParams } );
-  }
 
   /**
    * Modify neighbor cell relations based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
@@ -110,9 +110,30 @@ export class AnrXappService {
    * @returns Observable that should yield a response code (no data)
    */
   modifyNcrt(cellId: string, table: ANRNeighborCellRelationMod []): Observable<any> {
-    return this.httpClient.put(this.basePath + this.cellPath + cellId, table);
+    return this.httpClient.put(this.basePath + this.cellPath + cellId, table, { observe: 'response' });
   }
 
-  /** TODO: deleteNcrt */
+/**
+   * Delete neighbor cell relation identified by Source Cell NR CGI, and Target Cell
+   * NR PCI or NR CGI
+   *
+   * TODO: method not yet well defined by ANR team
+   *
+   * @param cellIdNrcgi serving cell new radio cell global identifier, required
+   * @param neighborCellNrpci neighbor cell new radio physical cell identifier (optional, one must be present)
+   * @param neighborCellNrcgi neighbor cell new radio cell global identifier (optional, one must be present)
+   * @returns Observable that should yield a response code (no data)
+   */
+  deleteNcr(cellIdNrcgi: string, neighborCellNrpci: string, neighborCellNrcgi: string): Observable<any> {
+    let url = this.basePath + this.cellPath + cellIdNrcgi + '/idType/';
+    if (neighborCellNrpci) {
+      url = url + 'nrpci/id/' + neighborCellNrpci;
+    } else if (neighborCellNrcgi) {
+      url = url + 'nrcgi/id/' + neighborCellNrcgi;
+    } else {
+      throw new Error('must supply NRPCI or NRCGI');
+    }
+    return this.httpClient.delete(url, { observe: 'response' });
+  }
 
 }
