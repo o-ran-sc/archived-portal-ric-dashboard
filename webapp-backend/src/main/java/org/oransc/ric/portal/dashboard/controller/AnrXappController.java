@@ -118,7 +118,7 @@ public class AnrXappController {
 			@RequestParam(name = NRCGI, required = false) String nrcgi) {
 		logger.debug("queryNcrtAllCells: cellIdentifier {}, startIndex {} limit {} nrpci {} nrcgi {}", cellIdentifier,
 				startIndex, limit, nrpci, nrcgi);
-		return ncrtApi.getCellNcrtInfo(cellIdentifier,  nrpci, nrcgi, startIndex, limit);
+		return ncrtApi.getCellNcrtInfo(cellIdentifier, startIndex, limit, nrpci, nrcgi);
 	}
 
 	@ApiOperation(value = "Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI")
@@ -127,7 +127,7 @@ public class AnrXappController {
 			@RequestBody NeighborCellRelationModTable ncrtModTable, //
 			HttpServletResponse response) {
 		logger.debug("modifyNcrt: cellIdentifier {} modTable {}", cellIdentifier, ncrtModTable);
-		ncrtApi.modifyNcrt(cellIdentifier, ncrtModTable, null, null);
+		ncrtApi.modifyNcrt(cellIdentifier, ncrtModTable);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
@@ -137,7 +137,7 @@ public class AnrXappController {
 			@RequestBody NeighborCellRelationDelTable ncrtDelTable, //
 			HttpServletResponse response) {
 		logger.debug("modifyNcrt: cellIdentifier {} delTable {}", cellIdentifier, ncrtDelTable);
-		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable, null, null);
+		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 }

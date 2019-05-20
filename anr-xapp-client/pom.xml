@@ -31,7 +31,7 @@ limitations under the License.
 	<groupId>org.o-ran-sc.ric.anrxapp.client</groupId>
 	<artifactId>anr-xapp-client</artifactId>
 	<name>RIC ANR xApp client</name>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,7 +104,7 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/anr_swagger_0.0.4.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/anr_swagger_0.0.5.yaml</inputSpec>
 							<language>java</language>
 							<configOptions>
 								<groupId>${project.groupId}</groupId>

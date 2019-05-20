@@ -18,7 +18,7 @@
 swagger : '2.0'
 info :
   description : REST API specification for RIC ANR closed xAPP
-  version     : 0.0.4
+  version     : 0.0.5
   title       : RIC ANR
   license:
     name : Nokia Closed App
@@ -31,7 +31,7 @@ paths :
   /health/alive :
     get :
       summary     : Health check of ANR - Liveness probe
-      tags        :
+      tags        : 
         - health
       operationId : getHealthAlive
       responses   :
@@ -40,7 +40,7 @@ paths :
   /health/ready :
     get :
       summary     : Health check of ANR - Readiness probe
-      tags        :
+      tags        : 
         - health
       operationId : getHealthReady
       responses   :
@@ -53,7 +53,7 @@ paths :
       - $ref : '#/parameters/limit'
     get :
       summary     : Returns neighbor cell relation table for all gnodeBs or based on query string
-      tags        :
+      tags        : 
         - ncrt
       operationId : getNcrtInfo
       produces  :
@@ -68,11 +68,9 @@ paths :
   /ncrt/cell/{cellIdentifier} :
     parameters :
       - $ref : '#/parameters/cellIdentifier'
-      - $ref : '#/parameters/neighborCellNrpci'
-      - $ref : '#/parameters/neighborCellNrcgi'
     get :
       summary     : Returns neighbor cell relation table for a Source Cell (NR CGI) and optionally a neighbor cell based on query string
-      tags        :
+      tags        : 
         - ncrt
       operationId : getCellNcrtInfo
       produces  :
@@ -80,6 +78,8 @@ paths :
       parameters :
         - $ref : '#/parameters/startIndex'
         - $ref : '#/parameters/limit'
+        - $ref : '#/parameters/neighborCellNrpci'
+        - $ref : '#/parameters/neighborCellNrcgi'
       responses :
         '200' :
           description : successful operation
@@ -89,7 +89,7 @@ paths :
           description : Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request
     put :
       summary     : Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        :
+      tags        : 
         - ncrt
       operationId : modifyNcrt
       consumes   :
@@ -114,7 +114,7 @@ paths :
                         }
     delete :
       summary     : Delete neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        :
+      tags        : 
         - ncrt
       operationId : deleteNcrt
       parameters :
@@ -123,7 +123,7 @@ paths :
           description : Parameters to delete neighbor cell relation
           required    : true
           schema      :
-            $ref : '#/definitions/neighborCellRelationDelTable'
+            $ref : '#/definitions/neighborCellRelationDelTable'      
       responses :
         '204' :
           description : Successfully deleted neighbor cell relation
@@ -167,8 +167,8 @@ parameters :
 definitions :
   neighborCellRelationTable :
     type : object
-    properties :
-      ncrtRelations :
+    properties : 
+      ncrtRelations : 
         type   : array
         items  :
           $ref : '#/definitions/neighborCellRelation'
@@ -182,11 +182,11 @@ definitions :
       $ref : '#/definitions/neighborCellRelationMod'
   neighborCellRelationDelTable :
     type   : array
-    items  :
+    items  : 
       $ref : '#/definitions/neighborCellRelationDel'
   neighborCellRelation :
     type  : object
-    required :
+    required : 
       - cellIdentifierNrcgi
       - neighborCellNrpci
       - neighborCellNrcgi
@@ -221,10 +221,10 @@ definitions :
   neighborCellRelationMod :
     type      : object
     required  :
-      - neighbourCellIdentifierType
+      - neighborCellIdentifierType
       - action
     properties :
-      neighbourCellIdentifierType :
+      neighborCellIdentifierType :
         type        : string
         description : Neighbor Cell Identifier Type
         enum :
