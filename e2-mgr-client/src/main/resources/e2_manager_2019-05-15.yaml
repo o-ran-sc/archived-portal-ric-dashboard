@@ -18,22 +18,20 @@
 openapi: 3.0.0
 info:
   title: E2 Manager Service
-  description: This is a description of E2 manager service APIs
+  description: E2 Manager Service APIs
   version: 1.0.0
 servers:
-  - url: http://{apiRoot}/nodeb/v1
+  - url: 'http://{apiRoot}/v1'
     variables:
       apiRoot:
-        default: localhost:3800
-        description: >-
-           E2 manager
+        default: 'localhost:3800'
 paths:
-  /setup:
+  /nodeb/x2-setup:
     post:
-      summary: X2 Setup Request
+      summary: X2 Setup
       tags:
-        - E2 Manager
-      operationId: setup
+        - nodeb
+      operationId: x2Setup
       requestBody:
         content:
           application/json:
@@ -42,37 +40,24 @@ paths:
         required: true
       responses:
         '200':
-          description: Request was handled successfuly
+          description: Success
         '400':
           description: Invalid input
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Resource not found
-          content:
-            application/json:
+            application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '500':
-          description: Internal server error
+          description: Internal error
           content:
-            application/json:
+            application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /endcSetup:
+  /nodeb/endc-setup:
     post:
       tags:
-        - E2 Manager
-      summary: ENDC Setup Request
+        - nodeb
+      summary: ENDC Setup
       operationId: endcSetup
       requestBody:
         content:
@@ -82,38 +67,24 @@ paths:
         required: true
       responses:
         '200':
-          description: Request was handled successfuly
+          description: Success
         '400':
           description: Invalid input
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: Resource not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
         '500':
-          description: Internal server error
+          description: Internal Error
           content:
-            application/json:
+            application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
   /health:
     get:
       tags:
-        - E2 Manager
+        - Health Check
       summary: E2 Manager Service Health Check
-      operationId: healthCheck
       responses:
         '200':
           description: OK
@@ -141,7 +112,7 @@ components:
       properties:
         errorCode:
           type: string
-          description: 401 - corrupted json, 402 - validation error, 501 - internal problem
+          description: '401 - corrupted json, 402 - validation error, 501 - internal problem'
         errorMessage:
           type: string
           description: Human readable text
