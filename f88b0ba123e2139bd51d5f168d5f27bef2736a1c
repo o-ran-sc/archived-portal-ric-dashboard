@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e5593ea_48b85554",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "you might consider using suffix \"Svc\" just for clarity.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 19
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebdb5219_b7674319",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "I don\u0027t think the data should be fetched in the constructor. When written this way the data is fetched when the app first loads, even if the user does not visit this screen.  I think the data should be fetched in the onInit() method.  Would you please look into this?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 11
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ba05285_887d7947",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "Again please consider suffix \"Svc\"",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ab95cff_c497e207",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "Again please consider moving the pull out of the constructor.  I don\u0027t think the data should be fetched at app load.  I think the data should be fetched at SCREEN load.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1307d160_86a7292f",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "What is the datatype here?  Please add a type.",
+      "range": {
+        "startLine": 129,
+        "startChar": 14,
+        "endLine": 129,
+        "endChar": 25
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f87fcd7_3e4f47eb",
+        "filename": "webapp-frontend/src/app/services/xapp-mgr/xapp-mgr.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-20T19:23:03Z",
+      "side": 1,
+      "message": "Please put this base path in a variable and reuse it - you might check examples in other services.",
+      "range": {
+        "startLine": 34,
+        "startChar": 42,
+        "endLine": 34,
+        "endChar": 59
+      },
+      "revId": "f88b0ba123e2139bd51d5f168d5f27bef2736a1c",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
