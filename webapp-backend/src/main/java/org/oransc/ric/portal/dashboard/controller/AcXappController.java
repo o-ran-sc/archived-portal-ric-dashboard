@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,8 +43,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * Provides methods to manage policies of the Admission Control xApp. All
- * messages go via the A1 Mediatior.
+ * Provides methods to manage policies of the Admission Control xApp, which
+ * initially defines just one. All requests go via the A1 Mediatior.
  */
 @RestController
 @RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,7 +52,7 @@ public class AcXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private static final String POLICY_NAME = "policyname";
+	private static final String POLICY_CONTROL_ADMISSION_TIME = "control_admission_time";
 
 	// Populated by the autowired constructor
 	private final A1MediatorApi a1MediatorApi;
@@ -71,21 +70,29 @@ public class AcXappController {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
 
-	@ApiOperation(value = "Gets the named policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "policy/{" + POLICY_NAME + "}", method = RequestMethod.GET)
-	public Object getPolicy(@PathVariable(POLICY_NAME) String policyName) {
-		logger.debug("getPolicy: policy {}", policyName);
-		a1MediatorApi.a1ControllerGetHandler(policyName);
-		return null;
-	}
+	/*
+	 * GET policy is not supported at present by A1 Mediator. Keeping this hidden
+	 * until that changes.
+	 *
+	 * @ApiOperation(value =
+	 * "Gets the named policy for AC xApp via the A1 Mediator")
+	 * 
+	 * @RequestMapping(value = "policy/{" + POLICY_NAME + "}", method =
+	 * RequestMethod.GET) public Object getPolicy(@PathVariable(POLICY_NAME) String
+	 * policyName) { logger.debug("getPolicy: policy {}", policyName);
+	 * a1MediatorApi.a1ControllerGetHandler(policyName); return null; }
+	 */
 
-	@ApiOperation(value = "Sets the named policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "policy/{" + POLICY_NAME + "}", method = RequestMethod.PUT)
-	public void putPolicy(@PathVariable(POLICY_NAME) String policyName, //
-			@ApiParam(value = "JSON formatted policy") @RequestBody JsonNode policy, //
+	/*
+	 * This controller is deliberately kept ignorant of the
+	 * ACAdmissionIntervalControl data structure.
+	 */
+	@ApiOperation(value = "Sets the control admission time for AC xApp via the A1 Mediator")
+	@RequestMapping(value = "catime", method = RequestMethod.PUT)
+	public void setControlAdmissionTime(@ApiParam(value = "Control admission time") @RequestBody JsonNode caTime, //
 			HttpServletResponse response) {
-		logger.debug("putPolicy: policy {}", policyName);
-		a1MediatorApi.a1ControllerPutHandler(policyName, policy);
+		logger.debug("setControlAdmissionTime {}", caTime);
+		a1MediatorApi.a1ControllerPutHandler(POLICY_CONTROL_ADMISSION_TIME, caTime);
 		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}
 

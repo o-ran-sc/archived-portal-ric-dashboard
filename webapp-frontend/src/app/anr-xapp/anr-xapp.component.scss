@@ -17,15 +17,24 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { TestBed } from '@angular/core/testing';
+ .anr__section {
+    position: relative;
+    top: -150px;
+}
 
-import { VersionService } from './version.service';
+.anr__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
 
-describe('VersionService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+:host /deep/ ng2-smart-table tbody > tr > td{
+  text-align: left;
+}
 
-  it('should be created', () => {
-    const service: VersionService = TestBed.get(VersionService);
-    expect(service).toBeTruthy();
-  });
-});
+:host /deep/ ng2-smart-table thead th{
+  text-align: left;
+}

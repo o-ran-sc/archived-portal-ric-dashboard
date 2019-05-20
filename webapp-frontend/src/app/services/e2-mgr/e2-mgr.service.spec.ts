@@ -17,10 +17,17 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { TestBed } from '@angular/core/testing';
 
-// Models of data used by the Dashboard
+import { E2ManagerService } from './e2-mgr.service';
 
-export interface DashboardSuccessTransport {
-  status: number;
-  data: string;
-}
+describe('CatalogService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should be created', () => {
+    const service: E2ManagerService
+   = TestBed.get(E2ManagerService
+    );
+    expect(service).toBeTruthy();
+  });
+});

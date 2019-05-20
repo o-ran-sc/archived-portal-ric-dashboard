@@ -18,9 +18,15 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by the Dashboard
+ import { TestBed } from '@angular/core/testing';
 
-export interface DashboardSuccessTransport {
-  status: number;
-  data: string;
-}
+import { AnrXappService } from './anr-xapp.service';
+
+describe('AnrXappService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
+  it('should be created', () => {
+    const service: AnrXappService = TestBed.get(AnrXappService);
+    expect(service).toBeTruthy();
+  });
+});
