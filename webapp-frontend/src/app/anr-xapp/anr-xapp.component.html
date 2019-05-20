@@ -7,9 +7,9 @@
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-  
+
        http://www.apache.org/licenses/LICENSE-2.0
-  
+ 
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,9 +18,70 @@
   ========================LICENSE_END===================================
 -->
 <div class="anr__section">
-  <h3 class="anr__header">ANR xApp</h3>
-  <ng2-smart-table [settings]="settings" [source]="source" (custom)="onAnrControlAction($event)">
-  </ng2-smart-table>
-  <app-modal-event hidden></app-modal-event>
-</div>
+  <h3 class="anr__header">ANR xApp Neighbor Cell Relation Table</h3>
 
+  <mat-form-field>
+    <input matInput placeholder="Serving Cell NRCGI" #servingCellNrcgi>
+  </mat-form-field>
+  <mat-form-field class="input-pad-left">
+      <input matInput placeholder="Neighbor cell NRPCI" #neighborCellNrpci>
+  </mat-form-field>
+  <mat-form-field class="input-pad-left">
+      <input matInput placeholder="Neighbor cell NRCGI" #neighborCellNrcgi>
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table mat-table class="ncr-table mat-elevation-z8" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="cellIdentifierNrcgi">
+        <mat-header-cell *matHeaderCellDef>Serving Cell NRCGI</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.servingCellNrcgi}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="neighborCellNrpci">
+        <mat-header-cell *matHeaderCellDef>Neighbor Cell NRPCI</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrpci}}</mat-cell>
+    </ng-container>
+ 
+    <ng-container matColumnDef="neighborCellNrcgi">
+        <mat-header-cell *matHeaderCellDef>Neighbor Cell NRCGI</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrcgi}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flagNoHo">
+        <mat-header-cell *matHeaderCellDef>Flag No Handover</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.flagNoHo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flagNoXn">
+        <mat-header-cell *matHeaderCellDef>Flag No Xn</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.flagNoXn}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="flagNoRemove">
+        <mat-header-cell *matHeaderCellDef>Flag No Remove</mat-header-cell>
+        <mat-cell *matCellDef="let ncr">{{ncr.flagNoRemove}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell class="action-cell" *matCellDef="let ncr">
+        <button mat-icon-button (click)="modifyNcr(ncr)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteNcr(ncr)">
+          <mat-icon>delete</mat-icon>
+	      </button>
+	    </mat-cell>
+	  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </table>
+
+</div>

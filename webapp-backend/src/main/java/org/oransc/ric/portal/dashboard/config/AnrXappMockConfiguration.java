@@ -53,7 +53,7 @@ public class AnrXappMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2;
-	
+
 	public AnrXappMockConfiguration() {
 		logger.info("Configuring mock ANR xApp client");
 		ncrtNodeB1 = new NeighborCellRelationTable();
@@ -82,11 +82,10 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public HealthApi anrHealthMockApi() {
-		ApiClient mockClient = mock(ApiClient.class);
-		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
+	public HealthApi anrHealthApi() {
+		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
-		when(mockApi.getApiClient()).thenReturn(mockClient);
+		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).getHealthAlive();
@@ -95,13 +94,13 @@ public class AnrXappMockConfiguration {
 		}).when(mockApi).getHealthReady();
 		return mockApi;
 	}
-	
+
 	@Bean
 	public GnodebsApi anrGnodebsMockApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		GnodebsApi mockApi = mock(GnodebsApi.class);
-		
+
 		return mockApi;
 	}
 
