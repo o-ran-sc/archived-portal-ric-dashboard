@@ -25,7 +25,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
+import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -61,16 +62,19 @@ public class E2ManagerController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final E2ManagerApi e2ManagerApi;
+	private final HealthCheckApi e2HealthCheckApi;
+	private final NodebApi e2NodebApi;
 
 	// Stores the requests and results.
 	// TODO remove when the E2 manager is extended.
 	private Set<E2SetupResponse> responses = new HashSet<>();
 
 	@Autowired
-	public E2ManagerController(final E2ManagerApi e2ManagerApi) {
-		Assert.notNull(e2ManagerApi, "API must not be null");
-		this.e2ManagerApi = e2ManagerApi;
+	public E2ManagerController(final HealthCheckApi e2HealthCheckApi, final NodebApi e2NodebApi) {
+		Assert.notNull(e2HealthCheckApi, "API must not be null");
+		Assert.notNull(e2NodebApi, "API must not be null");
+		this.e2HealthCheckApi = e2HealthCheckApi;
+		this.e2NodebApi = e2NodebApi;
 	}
 
 	private void assertNotNull(Object o) {
@@ -88,15 +92,15 @@ public class E2ManagerController {
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion enter");
-		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(E2ManagerApi.class));
+		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealth");
-		e2ManagerApi.healthCheck();
-		response.setStatus(e2ManagerApi.getApiClient().getStatusCode().value());
+		e2HealthCheckApi.healthGet();
+		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = E2SetupResponse.class, responseContainer = "List")
@@ -115,8 +119,8 @@ public class E2ManagerController {
 			assertNotEmpty(setupRequest.getRanIp());
 			assertNotEmpty(setupRequest.getRanName());
 			assertNotNull(setupRequest.getRanPort());
-			e2ManagerApi.endcSetup(setupRequest);
-			responseCode = e2ManagerApi.getApiClient().getStatusCode().value();
+			e2NodebApi.endcSetup(setupRequest);
+			responseCode = e2NodebApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
 			logger.warn("endcSetup failed", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -136,8 +140,8 @@ public class E2ManagerController {
 			assertNotEmpty(setupRequest.getRanIp());
 			assertNotEmpty(setupRequest.getRanName());
 			assertNotNull(setupRequest.getRanPort());
-			e2ManagerApi.setup(setupRequest);
-			responseCode = e2ManagerApi.getApiClient().getStatusCode().value();
+			e2NodebApi.x2Setup(setupRequest);
+			responseCode = e2NodebApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
 			logger.warn("x2Setup failed", ex);
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
