@@ -79,23 +79,20 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
-	public SuccessTransport getVersion() {
-		logger.debug("getVersion enter");
+	public SuccessTransport getAnrXappClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
-	public void getHealthAlive(HttpServletResponse response) {
-		logger.debug("getHealthAlive");
+	public void getAnrXappHealthAlive(HttpServletResponse response) {
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
-	public void getHealthReady(HttpServletResponse response) {
-		logger.debug("getHealthReady");
+	public void getAnrXappHealthReady(HttpServletResponse response) {
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -112,7 +109,7 @@ public class AnrXappController {
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
-		logger.debug("getNcrtInfo: ggnbid {}, servingCellNrpci {} neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
+		logger.debug("getNcrtInfo: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
 		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}

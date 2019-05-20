@@ -21,27 +21,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 import { ANRNeighborCellRelation, ANRNeighborCellRelationMod } from '../../interfaces/anr-xapp.types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnrXappService {
+export class ANRXappService {
 
-  private basePath = 'api/xapp/anr/';
-  private cellPath = 'cell/cellIdentifier/';
+  // Trailing slashes are confusing so omit them here
+  private basePath = 'api/xapp/anr';
+  private ncrtPath = 'ncrt';
+  private servingPath = 'servingcells';
+  private neighborPath = 'neighborcells';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
+  }
+
+  private buildPath(...args: any[]) {
+    let result = this.basePath;
+    args.forEach(part => {
+      result = result + '/' + part;
+    });
+    return result;
   }
 
   /**
    * Gets ANR xApp client version details
    * @returns Observable that should yield a DashboardSuccessTransport
    */
-  getVersion(): Observable<DashboardSuccessTransport> {
-    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'version');
+  getVersion(): Observable<string> {
+    const url = this.buildPath('version');
+    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+      // Extract the string here
+      map(res => res['data'])
+    );
   }
 
   /**
@@ -49,7 +65,8 @@ export class AnrXappService {
    * @returns Observable that should yield a response code (no data)
    */
   getHealthAlive(): Observable<any> {
-    return this.httpClient.get(this.basePath + 'health/alive');
+    const url = this.buildPath('health/alive');
+    return this.httpClient.get(url);
   }
 
   /**
@@ -57,62 +74,63 @@ export class AnrXappService {
    * @returns Observable that should yield a response code (no data)
    */
   getHealthReady(): Observable<any> {
-    return this.httpClient.get(this.basePath + 'health/ready');
+    const url = this.buildPath('health/ready');
+    return this.httpClient.get(url);
+  }
+
+    /**
+   * Gets ANR xApp client version details
+   * @returns Observable that should yield a DashboardSuccessTransport
+   */
+  getgNodeBs(): Observable<string[]> {
+    const url = this.buildPath('gnodebs');
+    return this.httpClient.get<string[]>(url).pipe(
+      // Extract the array of IDs here
+      map(res => res['gNodeBIds'])
+    );
   }
 
   /**
-   * Query NCRT of all cells, all or one gNB(s)
+   * Gets the neighbor cell relation table for all gNodeBs or based on query parameters
    * @param ggnbId Optional parameter for the gNB ID
-   * @param startIndex Optional parameter for the start index
-   * @param limit Optional parameter for the limit (page size)
-   * @returns Observable of ANRNeighborCellRelation
+   * @param servingCellNrcgi Serving cell NRCGI
+   * @param neighborCellNrpci Neighbor cell NRPCI
+   * @returns Neighbor cell relation table, which wraps an array
    */
-  getNcrtInfo(ggnbId?: string, startIndex?: string, limit?: number): Observable<ANRNeighborCellRelation[]> {
-    const queryParams = new HttpParams();
-    if (ggnbId) {
-      queryParams.set('ggnbid', ggnbId);
-    }
-    if (startIndex) {
-      queryParams.set('startIndex', startIndex);
-    }
-    if (limit) {
-      queryParams.set('limit', limit.toString());
-    }
-    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + 'cell', { params: queryParams } );
+  getNcrtInfo(ggnodeb: string = '', servingCellNrcgi: string = '', neighborCellNrpci: string = ''): Observable<ANRNeighborCellRelation[]> {
+    const url = this.buildPath(this.ncrtPath);
+    return this.httpClient.get<ANRNeighborCellRelation[]>(url, {
+      params: new HttpParams()
+        .set('ggnodeb', ggnodeb)
+        .set('servingCellNrcgi', servingCellNrcgi)
+        .set('neighborCellNrpci', neighborCellNrpci)
+    }).pipe(
+      // Extract the array of relations here
+      map(res => res['ncrtRelations'])
+    );
   }
 
   /**
-   * Query NCRT of a single serving cell, all or one gNB(s)
-   * @param cellId cell ID
-   * @param ggnbid Optional parameter for the gNB ID
-   * @param startIndex Optional parameter for the start index
-   * @param limit Optional parameter for the limit (page size)
-   * @returns Observable of ANRNeighborCellRelation
+   * Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI
+   * @param servingCellNrcgi Serving cell NRCGI
+   * @param neighborCellNrpci Neighbor cell NRPCI
+   * @param mod Values to store in the specified relation
+   * @returns Response code only, no data
    */
-  getCellNcrtInfo(cellId: string, ggnbId?: string, startIndex?: string, limit?: number): Observable<ANRNeighborCellRelation[]> {
-    const queryParams = new HttpParams();
-    if (ggnbId) {
-      queryParams.set('ggnbid', ggnbId);
-    }
-    if (startIndex) {
-      queryParams.set('startIndex', startIndex);
-    }
-    if (limit) {
-      queryParams.set('limit', limit.toString());
-    }
-    return this.httpClient.get<ANRNeighborCellRelation[]>(this.basePath + this.cellPath + cellId, { params: queryParams } );
+  modifyNcr(servingCellNrcgi: string, neighborCellNrpci: string, mod: ANRNeighborCellRelationMod): Observable<any> {
+    const url = this.buildPath(this.ncrtPath, this.servingPath, servingCellNrcgi, this.neighborPath, neighborCellNrpci);
+    return this.httpClient.put(url, mod, { observe: 'response' });
   }
 
   /**
-   * Modify neighbor cell relations based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-   * @param cellId cell ID
-   * @param table Array of ANRNeighborCellRelationMod
-   * @returns Observable that should yield a response code (no data)
+   * Deletes neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI
+   * @param servingCellNrcgi Serving cell NRCGI
+   * @param neighborCellNrpci Neighbor cell NRPCI
+   * @returns Response code only, no data
    */
-  modifyNcrt(cellId: string, table: ANRNeighborCellRelationMod []): Observable<any> {
-    return this.httpClient.put(this.basePath + this.cellPath + cellId, table);
+  deleteNcr(servingCellNrcgi: string, neighborCellNrpci: string): Observable<any> {
+    const url = this.buildPath(this.ncrtPath, this.servingPath, servingCellNrcgi, this.neighborPath, neighborCellNrpci);
+    return this.httpClient.delete(url, { observe: 'response' });
   }
-
-  /** TODO: deleteNcrt */
 
 }

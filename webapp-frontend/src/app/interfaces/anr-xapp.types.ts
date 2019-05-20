@@ -20,8 +20,16 @@
 
 // Models of data used by the ANR xApp
 
+export interface ANRGgNodeBTable {
+  gNodeBIds: Array<string>;
+}
+
+export interface ANRNeighborCellRelationTable {
+  ncrtRelations: Array<ANRNeighborCellRelation>;
+}
+
 export interface ANRNeighborCellRelation {
-  cellIdentifierNrcgi: string;
+  servingCellNrcgi: string;
   neighborCellNrpci: string;
   neighborCellNrcgi: string;
   flagNoHo: boolean;
@@ -29,15 +37,8 @@ export interface ANRNeighborCellRelation {
   flagNoRemove: boolean;
 }
 
-export interface ANRNeighborCellRelationDel {
-  idType: string;
-  neighborCellNrpci: string;
-  neighborCellNrcgi: string;
-}
-
 export interface ANRNeighborCellRelationMod {
-  neighbourCellIdentifierType: string;
-  action: string;
+  servingCellNrcgi: string;
   neighborCellNrpci: string;
   neighborCellNrcgi: string;
   flagNoHo: boolean;

@@ -90,15 +90,13 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
-	public SuccessTransport getVersion() {
-		logger.debug("getVersion enter");
+	public SuccessTransport getE2ManagerClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public void getHealth(HttpServletResponse response) {
-		logger.debug("getHealth");
+	public void getE2ManagerHealth(HttpServletResponse response) {
 		e2HealthCheckApi.healthGet();
 		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
 	}

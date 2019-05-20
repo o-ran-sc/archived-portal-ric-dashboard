@@ -32,6 +32,7 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
 import org.oransc.ric.anrxapp.client.invoker.ApiClient;
+import org.oransc.ric.anrxapp.client.model.GgNodeBTable;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelation;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationMod;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationTable;
@@ -52,9 +53,12 @@ public class AnrXappMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2;
+	private final GgNodeBTable gNodebTable;
 
 	public AnrXappMockConfiguration() {
 		logger.info("Configuring mock ANR xApp client");
+		gNodebTable = new GgNodeBTable();
+		gNodebTable.addGNodeBIdsItem("A").addGNodeBIdsItem("B");
 		ncrtNodeB1 = new NeighborCellRelationTable();
 		ncrtNodeB2 = new NeighborCellRelationTable();
 		ncrt = new NeighborCellRelationTable();
@@ -81,11 +85,10 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public HealthApi anrHealthMockApi() {
-		ApiClient mockClient = mock(ApiClient.class);
-		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
+	public HealthApi anrHealthApi() {
+		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
-		when(mockApi.getApiClient()).thenReturn(mockClient);
+		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).getHealthAlive();
@@ -100,6 +103,7 @@ public class AnrXappMockConfiguration {
 		ApiClient apiClient = apiClient();
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
+		when(mockApi.getgNodeB()).thenReturn(gNodebTable);
 		// Swagger sends nulls; front end sends empty strings
 		when(mockApi.getNcrt((String) isNull(), (String) isNull(), (String) isNull())).thenReturn(ncrt);
 		when(mockApi.getNcrt(eq(""), any(String.class), any(String.class))).thenReturn(ncrt);

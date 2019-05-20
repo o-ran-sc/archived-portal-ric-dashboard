@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,12 +20,13 @@
 import { Component, OnInit } from '@angular/core';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { Router } from '@angular/router';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
-import { NotificationService } from './../services/ui/notification.service'
-import { XMXapp } from '../interfaces/xapp-mgr.types';
+import { ErrorDialogService } from './../services/ui/error-dialog.service';
+import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
+import { NotificationService } from './../services/ui/notification.service';
+import { XappControlRow } from '../interfaces/xapp-mgr.types';
 import { ControlAnimations } from './control.animations';
 import { ControlDataSource } from './control.datasource';
-
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-control',
@@ -42,6 +43,7 @@ export class ControlComponent implements OnInit {
     private xappMgrSvc: XappMgrService,
     private router: Router,
     private confirmDialogService: ConfirmDialogService,
+    private errorDialogService: ErrorDialogService,
     private notification: NotificationService) { }
 
   ngOnInit() {
@@ -49,16 +51,20 @@ export class ControlComponent implements OnInit {
     this.dataSource.loadTable();
   }
 
-  view(): void {
-    const url = '/xapp';
-    this.router.navigate([url]);
+  controlApp(app: XappControlRow): void {
+    const anrXappPattern = /[Aa][Nn][Rr]/;
+    if (anrXappPattern.test(app.xapp)) {
+      this.router.navigate(['/anr']);
+    } else {
+      this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
+    }
   }
 
-  undeploy(name: string): void {
-    this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy this xApp ?')
+  undeployApp(app: XappControlRow): void {
+    this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy xApp ' + app.xapp + '?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.xappMgrSvc.undeployXapp(name).subscribe(
+          this.xappMgrSvc.undeployXapp(app.xapp).subscribe(
             response => {
               this.dataSource.loadTable();
               switch (response.status) {
@@ -73,7 +79,5 @@ export class ControlComponent implements OnInit {
         }
       });
   }
-
-
 
 }

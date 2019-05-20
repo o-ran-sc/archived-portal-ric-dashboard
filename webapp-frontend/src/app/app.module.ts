@@ -19,18 +19,21 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
-import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
-    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
-    MatInputModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
-    MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-    MatSortModule,MatTableModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule,
+    MatDialogModule, MatExpansionModule, MatFormFieldModule, MatGridListModule,
+    MatIconModule, MatInputModule, MatListModule, MatPaginatorModule,
+    MatProgressSpinnerModule, MatSelectModule, MatSidenavModule, MatSliderModule,
+    MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
+    MatTabsModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MatRadioModule } from '@angular/material/radio';
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// RETIRE THIS
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,13 +48,13 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { ControlComponent } from './control/control.component';
 import { RANConnectionDialogComponent } from './ran-connection/ran-connection-dialog.component';
 import { RANConnectionComponent } from './ran-connection/ran-connection.component';
+import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
-import { XappComponent } from './xapp/xapp.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { FooterComponent } from './footer/footer.component';
@@ -73,41 +76,44 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     StatsComponent,
     AdminComponent,
     ModalEventComponent,
-    XappComponent,
     ConfigEventComponent,
     AnrXappComponent,
     RANConnectionDialogComponent,
+    ANREditNCRDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
     ErrorDialogComponent
   ],
     imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
-    AppRoutingModule,
     FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
-    MatExpansionModule,
-    MatRadioModule,
-    MatSliderModule,
     MatCardModule,
-    MatIconModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
     MatGridListModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
     Ng2SmartTableModule,
-    MatSnackBarModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
     exports: [
@@ -131,6 +137,7 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     ],
     entryComponents: [
     RANConnectionDialogComponent,
+    ANREditNCRDialogComponent,
     ConfirmDialogComponent,
     ErrorDialogComponent
     ],

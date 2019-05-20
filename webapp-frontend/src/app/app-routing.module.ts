@@ -26,7 +26,7 @@ import { ControlComponent } from './control/control.component';
 import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
-import { XappComponent } from './xapp/xapp.component';
+import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -36,7 +36,7 @@ const routes: Routes = [
     {path: 'ran-connection', component: RANConnectionComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'admin', component: AdminComponent},
-    {path: 'xapp', component: XappComponent},
+    {path: 'anr', component: AnrXappComponent},
 ];
 
 @NgModule({
