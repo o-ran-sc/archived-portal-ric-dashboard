@@ -26,7 +26,8 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.e2mgr.client.api.E2ManagerApi;
+import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
@@ -57,14 +58,23 @@ public class E2ManagerMockConfiguration {
 	}
 
 	@Bean
-	public E2ManagerApi e2ManagerApi() {
+	public HealthCheckApi e2HealthCheckApi() {
 		ApiClient apiClient = apiClient();
-		E2ManagerApi mockApi = mock(E2ManagerApi.class);
+		HealthCheckApi mockApi = mock(HealthCheckApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).healthCheck();
+		}).when(mockApi).healthGet();
+		
+		return mockApi;
+	}
+
+	@Bean
+	public NodebApi e2NodebApi() {
+		ApiClient apiClient = apiClient();
+		NodebApi mockApi = mock(NodebApi.class);
+		when(mockApi.getApiClient()).thenReturn(apiClient);
 
 		doAnswer(i -> {
 			return null;
@@ -72,7 +82,7 @@ public class E2ManagerMockConfiguration {
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).setup(any(SetupRequest.class));
+		}).when(mockApi).x2Setup(any(SetupRequest.class));
 
 		return mockApi;
 	}

@@ -25,6 +25,7 @@ Version 1.0.3, 20 May 2019
 * Add AC xapp controller
 * Add RAN type radio selector to connection setup
 * Update ANR xApp client to spec version 0.0.5
+* Update E2 manager client to spec version 20190515
 * Add get-version methods to all controllers
 * Add simple page footer with copyright and version
 
