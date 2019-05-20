@@ -62,6 +62,7 @@ public class AnrXappController {
 	private static final String START_INDEX = "startIndex";
 	private static final String LIMIT = "limit";
 	private static final String NRPCI = "neighborCellIdentifierNrpci";
+	// New Radio Cell Global Identifier
 	private static final String NRCGI = "neighborCellIdentifierNrcgi";
 
 	// Populated by the autowired constructor
@@ -78,34 +79,31 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
-	public SuccessTransport getVersion() {
-		logger.debug("getVersion enter");
+	public SuccessTransport getAnrXappClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
-	public void getHealthAlive(HttpServletResponse response) {
-		logger.debug("getHealthAlive");
+	public void getAnrXappHealthAlive(HttpServletResponse response) {
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
-	public void getHealthReady(HttpServletResponse response) {
-		logger.debug("getHealthReady");
+	public void getAnrXappHealthReady(HttpServletResponse response) {
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Query NCRT of all cells, all or one gNB(s)", response = NeighborCellRelationTable.class)
+	@ApiOperation(value = "Query NCRT of all cells; all or one gNB(s)", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = "/cell", method = RequestMethod.GET)
 	public NeighborCellRelationTable getNcrtInfo( //
 			@RequestParam(name = GGNBID, required = false) String ggnbId, //
 			@RequestParam(name = START_INDEX, required = false) String startIndex, //
 			@RequestParam(name = LIMIT, required = false) Integer limit) {
-		logger.debug("queryNcrtAllCells: ggnbid {}, startIndex {} limit {}", ggnbId, startIndex, limit);
+		logger.debug("getNcrtInfo: ggnbid {}, startIndex {}, limit {}", ggnbId, startIndex, limit);
 		return ncrtApi.getNcrtInfo(ggnbId, startIndex, limit);
 	}
 
@@ -116,7 +114,7 @@ public class AnrXappController {
 			@RequestParam(name = LIMIT, required = false) Integer limit,
 			@RequestParam(name = NRPCI, required = false) String nrpci,
 			@RequestParam(name = NRCGI, required = false) String nrcgi) {
-		logger.debug("queryNcrtAllCells: cellIdentifier {}, startIndex {} limit {} nrpci {} nrcgi {}", cellIdentifier,
+		logger.debug("getCellNcrtInfo: cellIdentifier {}, startIndex {}, limit {}, nrpci {}, nrcgi {}", cellIdentifier,
 				startIndex, limit, nrpci, nrcgi);
 		return ncrtApi.getCellNcrtInfo(cellIdentifier, startIndex, limit, nrpci, nrcgi);
 	}
@@ -126,7 +124,7 @@ public class AnrXappController {
 	public void modifyNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
 			@RequestBody NeighborCellRelationModTable ncrtModTable, //
 			HttpServletResponse response) {
-		logger.debug("modifyNcrt: cellIdentifier {} modTable {}", cellIdentifier, ncrtModTable);
+		logger.debug("modifyNcrt: cellIdentifier {}, modTable {}", cellIdentifier, ncrtModTable);
 		ncrtApi.modifyNcrt(cellIdentifier, ncrtModTable);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -139,7 +137,7 @@ public class AnrXappController {
 	public void deleteNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
 			@RequestBody NeighborCellRelationDelTable ncrtDelTable, //
 			HttpServletResponse response) {
-		logger.debug("modifyNcrt: cellIdentifier {} delTable {}", cellIdentifier, ncrtDelTable);
+		logger.debug("modifyNcrt: cellIdentifier {}, delTable {}", cellIdentifier, ncrtDelTable);
 		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}

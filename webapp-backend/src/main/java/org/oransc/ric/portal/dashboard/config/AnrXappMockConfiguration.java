@@ -20,6 +20,9 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.startsWith;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -49,8 +52,27 @@ public class AnrXappMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2;
+
 	public AnrXappMockConfiguration() {
 		logger.info("Configuring mock ANR xApp client");
+		ncrtNodeB1 = new NeighborCellRelationTable();
+		ncrtNodeB2 = new NeighborCellRelationTable();
+		ncrt = new NeighborCellRelationTable();
+		String[] cells1 = { "A", "B", "C", "D", "E" };
+		for (String s : cells1)
+			ncrtNodeB1.addNcrtRelationsItem(
+					new NeighborCellRelation().cellIdentifierNrcgi(s + "12345").neighborCellNrpci(s + "12346")
+							.neighborCellNrcgi(s + "12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true));
+		String[] cells2 = { "F", "G", "H", "I", "J" };
+		for (String s : cells2)
+			ncrtNodeB2.addNcrtRelationsItem(
+					new NeighborCellRelation().cellIdentifierNrcgi(s + "12345").neighborCellNrpci(s + "12346")
+							.neighborCellNrcgi(s + "12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true));
+		for (NeighborCellRelation ncr : ncrtNodeB1.getNcrtRelations())
+			ncrt.addNcrtRelationsItem(ncr);
+		for (NeighborCellRelation ncr : ncrtNodeB2.getNcrtRelations())
+			ncrt.addNcrtRelationsItem(ncr);
 	}
 
 	private ApiClient apiClient() {
@@ -60,11 +82,10 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public HealthApi anrHealthMockApi() {
-		ApiClient mockClient = mock(ApiClient.class);
-		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
+	public HealthApi anrHealthApi() {
+		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
-		when(mockApi.getApiClient()).thenReturn(mockClient);
+		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).getHealthAlive();
@@ -75,30 +96,25 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public NcrtApi ncrtPapi() {
+	public NcrtApi anrNcrtApi() {
 		ApiClient apiClient = apiClient();
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-
-		NeighborCellRelation a = new NeighborCellRelation().cellIdentifierNrcgi("A12345").neighborCellNrpci("A123456")
-				.neighborCellNrcgi("A12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true);
-		NeighborCellRelation e = new NeighborCellRelation().cellIdentifierNrcgi("E12345").neighborCellNrpci("E123456")
-				.neighborCellNrcgi("E12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true);
-		NeighborCellRelationTable ncrt = new NeighborCellRelationTable().addNcrtRelationsItem(a)
-				.addNcrtRelationsItem(e);
-
-		when(mockApi.getNcrtInfo(any(String.class), any(String.class), any(Integer.class))).thenReturn(ncrt);
+		// Swagger sends nulls; front end sends empty strings
+		when(mockApi.getNcrtInfo((String) isNull(), (String) isNull(), (Integer) isNull())).thenReturn(ncrt);
+		when(mockApi.getNcrtInfo(eq(""), any(String.class), any(Integer.class))).thenReturn(ncrt);
+		when(mockApi.getNcrtInfo(startsWith("A"), any(String.class), any(Integer.class))).thenReturn(ncrtNodeB1);
+		when(mockApi.getNcrtInfo(startsWith("B"), any(String.class), any(Integer.class))).thenReturn(ncrtNodeB2);
 		when(mockApi.getCellNcrtInfo(any(String.class), any(String.class), any(Integer.class), any(String.class),
 				any(String.class))).thenReturn(ncrt);
-
+		when(mockApi.getCellNcrtInfo(any(String.class), (String) isNull(), (Integer) isNull(), (String) isNull(),
+				(String) isNull())).thenReturn(ncrt);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).deleteNcrt(any(String.class), any(NeighborCellRelationDelTable.class));
-
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).modifyNcrt(any(String.class), any(NeighborCellRelationModTable.class));
-
 		return mockApi;
 	}
 

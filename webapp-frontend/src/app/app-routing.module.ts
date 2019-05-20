@@ -27,6 +27,7 @@ import { SignalComponent } from './signal/signal.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { XappComponent } from './xapp/xapp.component';
+import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
     {path: 'stats', component: StatsComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'xapp', component: XappComponent},
+    {path: 'anr', component: AnrXappComponent},
 ];
 
 @NgModule({

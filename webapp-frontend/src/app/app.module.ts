@@ -19,10 +19,11 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
-import { MatIconModule, MatCardModule, MatListModule, MatSidenavModule,
-    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule,
-    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule,
-    MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
+    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
+    MatSidenavModule,  MatSliderModule, MatSlideToggleModule, MatSortModule,
+    MatTableModule, MatTabsModule, MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -78,29 +79,34 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
     AnrXappComponent,
   ],
     imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
-    AppRoutingModule,
     FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
+    MatButtonModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatRadioModule,
     MatSliderModule,
-    MatCardModule,
-    MatIconModule,
-    MatGridListModule,
-    MatListModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
-    MatFormFieldModule,
-    MatButtonModule,
     MatInputModule,
     Ng2SmartTableModule,
-    MatSnackBarModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
     exports: [

@@ -20,7 +20,11 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.3, 21 May 2019
+Version 1.0.4, 22 May 2019
+--------------------------
+* Add ANR xApp neighbor cell relation table
+
+Version 1.0.3, 20 May 2019
 --------------------------
 * Add AC xApp controller to backend
 * Add AC xApp interface to frontend

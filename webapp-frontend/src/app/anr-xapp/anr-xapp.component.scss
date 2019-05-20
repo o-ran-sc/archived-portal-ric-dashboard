@@ -19,7 +19,7 @@
  */
  .anr__section {
     position: relative;
-    top: -150px;
+    top: -50px;
 }
 
 .anr__header {
@@ -31,10 +31,24 @@
     transform: translate(149 56);
 }
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
+.spinner-container {
+    height: 360px;
+    width: 390px;
+    position: fixed;
 }
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
+.spinner-container mat-spinner {
+    margin: 130px auto 0 auto;
 }
+
+.ncr-table {
+    width: 99%; /* 100 looks wrong */
+    min-height: 150px;
+    margin-top: 10px;
+    background-color:transparent;
+}
+
+.ncr-table__bg-dark {
+    color: white;
+}
+  
