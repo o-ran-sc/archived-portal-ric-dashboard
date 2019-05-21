@@ -80,7 +80,10 @@ public class XappManagerMockConfiguration {
 		when(mockApi.getApiClient()).thenReturn(mockClient);
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).getHealth();
+		}).when(mockApi).getHealthAlive();
+		doAnswer(i -> {
+			return null;
+		}).when(mockApi).getHealthReady();
 		return mockApi;
 	}
 
@@ -98,7 +101,7 @@ public class XappManagerMockConfiguration {
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).deleteSubscription(any(Integer.class));
+		}).when(mockApi).deleteSubscription(any(String.class));
 
 		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(new Xapp());
 
