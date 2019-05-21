@@ -52,7 +52,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.xappmgr.client</groupId>
 			<artifactId>xapp-mgr-client</artifactId>
-			<version>0.1.2-SNAPSHOT</version>
+			<version>0.1.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

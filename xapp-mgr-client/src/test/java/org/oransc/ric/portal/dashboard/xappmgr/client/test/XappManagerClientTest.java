@@ -40,10 +40,10 @@ public class XappManagerClientTest {
 		apiClient.setBasePath("http://localhost:30099/");
 		try {
 			HealthApi healthApi = new HealthApi(apiClient);
-			healthApi.getHealth();
-			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
+			healthApi.getHealthAlive();
+			System.out.println("getHealthAlive answered: " + apiClient.getStatusCode().toString());
 		} catch (RestClientException e) {
-			System.err.println("getHealth failed: " + e.toString());
+			System.err.println("getHealthAlive failed: " + e.toString());
 		}
 		try {
 			XappApi xappApi = new XappApi(apiClient);

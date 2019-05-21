@@ -80,11 +80,19 @@ public class XappManagerController {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
-	@ApiOperation(value = "Calls the xApp Manager health check.")
-	@RequestMapping(value = "/health", method = RequestMethod.GET)
+	@ApiOperation(value = "Calls the xApp Manager liveness health check.")
+	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
-		logger.debug("getHealt");
-		healthApi.getHealth();
+		logger.debug("getHealth");
+		healthApi.getHealthAlive();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+	}
+
+	@ApiOperation(value = "Calls the xApp Manager readiness health check.")
+	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
+	public void getHealthReady(HttpServletResponse response) {
+		logger.debug("getHealthReady");
+		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
