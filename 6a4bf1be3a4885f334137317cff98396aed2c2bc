@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b0d13ff_09281a13",
+        "filename": "webapp-frontend/src/app/services/ui/error-dialog.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-21T18:07:28Z",
+      "side": 1,
+      "message": "suggest method name \u0027displayError\u0027 and declare parameter as type string",
+      "range": {
+        "startLine": 30,
+        "startChar": 21,
+        "endLine": 30,
+        "endChar": 45
+      },
+      "revId": "6a4bf1be3a4885f334137317cff98396aed2c2bc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d59b08_12e8561d",
+        "filename": "webapp-frontend/src/app/ui/error-dialog/error-dialog.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-21T18:07:28Z",
+      "side": 1,
+      "message": "Please do not bind this general-purpose dialog to a single xApp data type (interface).",
+      "range": {
+        "startLine": 30,
+        "startChar": 107,
+        "endLine": 30,
+        "endChar": 122
+      },
+      "revId": "6a4bf1be3a4885f334137317cff98396aed2c2bc",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
