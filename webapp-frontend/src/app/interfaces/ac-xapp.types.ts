@@ -21,8 +21,10 @@
 // Models of data used by the AC xApp
 
 export interface ACAdmissionIntervalControl {
-  dc_admission_start_time: string;
-  dc_admission_end_time: string;
+  enforce: boolean;
+  window_length: number;
+  blocking_rate: number;
+  trigger_threshold: number;
 }
 
 export interface ACAdmissionIntervalControlAck {
