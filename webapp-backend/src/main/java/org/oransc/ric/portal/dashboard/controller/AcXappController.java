@@ -52,7 +52,8 @@ public class AcXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private static final String POLICY_CONTROL_ADMISSION_TIME = "control_admission_time";
+	// A "control" is an element in the XApp descriptor
+	private static final String AC_CONTROL_NAME = "admission_control_policy";
 
 	// Populated by the autowired constructor
 	private final A1MediatorApi a1MediatorApi;
@@ -71,28 +72,26 @@ public class AcXappController {
 	}
 
 	/*
-	 * GET policy is not supported at present by A1 Mediator. Keeping this hidden
-	 * until that changes.
-	 *
-	 * @ApiOperation(value =
-	 * "Gets the named policy for AC xApp via the A1 Mediator")
-	 * 
-	 * @RequestMapping(value = "policy/{" + POLICY_NAME + "}", method =
-	 * RequestMethod.GET) public Object getPolicy(@PathVariable(POLICY_NAME) String
-	 * policyName) { logger.debug("getPolicy: policy {}", policyName);
-	 * a1MediatorApi.a1ControllerGetHandler(policyName); return null; }
+	 * GET policy is not supported at present by A1 Mediator! Always returns 501.
 	 */
+	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
+	@RequestMapping(value = "admctrl", method = RequestMethod.GET)
+	public Object getAdmissionControlPolicy() {
+		logger.debug("getAdmissionControlPolicy");
+		a1MediatorApi.a1ControllerGetHandler(AC_CONTROL_NAME);
+		return null;
+	}
 
 	/*
 	 * This controller is deliberately kept ignorant of the
-	 * ACAdmissionIntervalControl data structure.
+	 * ACAdmissionIntervalControl Typescript interface.
 	 */
-	@ApiOperation(value = "Sets the control admission time for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "catime", method = RequestMethod.PUT)
-	public void setControlAdmissionTime(@ApiParam(value = "Control admission time") @RequestBody JsonNode caTime, //
+	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
+	@RequestMapping(value = "admctrl", method = RequestMethod.PUT)
+	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
-		logger.debug("setControlAdmissionTime {}", caTime);
-		a1MediatorApi.a1ControllerPutHandler(POLICY_CONTROL_ADMISSION_TIME, caTime);
+		logger.debug("setAdmissionControlPolicy {}", acPolicy);
+		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
 		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}
 
