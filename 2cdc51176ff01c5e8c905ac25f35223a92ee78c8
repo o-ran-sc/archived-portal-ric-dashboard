@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78e4df8d_3af2b277",
+        "filename": "webapp-frontend/src/app/navigation/sidenav-list/sidenav-list.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2019-05-22T16:00:26Z",
+      "side": 1,
+      "message": "Please invoke ANR xApp from control screen. \n\nOn click of ANR xApp from the control table, the user must be taken to this ANR xApp screen.\n\nWhen we have AC xApp screens, similar design should be done for it too.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "2cdc51176ff01c5e8c905ac25f35223a92ee78c8",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
