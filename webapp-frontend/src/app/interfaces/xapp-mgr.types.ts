@@ -47,3 +47,8 @@ export interface XMXapp {
   version: string;
   instances: Array<XMXappInstance>;
 }
+
+export interface XappControlRow {
+  xapp: string;
+  instance: XMXappInstance;
+}
