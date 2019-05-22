@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,38 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.catalog__section {
-    position: relative;
-    top: -150px;
-}
 
-.catalog__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
-.spinner-container {
-  height: 360px;
-  width: 390px;
-  position: fixed;
-}
+export const controlAnimations = {
+  messageTrigger: trigger('messageExpand', [
+    state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+    state('expanded', style({ height: '*' })),
+  ])
 
-.spinner-container mat-spinner {
-  margin: 130px auto 0 auto;
 }
-
-.catalog-table {
-  width: 99%;
-  min-height: 150px;
-  margin-top: 10px;
-  background-color: transparent;
-}
-
-.catalog-button-row button{
-  margin-right: 5px;
-}
-

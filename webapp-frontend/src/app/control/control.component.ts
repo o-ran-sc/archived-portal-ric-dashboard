@@ -17,70 +17,25 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { Component, OnInit } from '@angular/core';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
 import { NotificationService } from './../services/ui/notification.service'
 import { XMXapp } from '../interfaces/xapp-mgr.types';
+import { controlAnimations } from './control.animations';
 
 
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css'],
-  encapsulation: ViewEncapsulation.Emulated,
+  animations: [controlAnimations.messageTrigger],
 })
-export class ControlComponent implements OnInit  {
+export class ControlComponent implements OnInit {
 
-  settings = {
-    hideSubHeader: true,
-    actions: {
-      columnTitle: 'Actions',
-      add: false,
-      edit: false,
-      delete: false,
-      custom: [
-        { name: 'view', title: '<i class="material-icons">visibility</i>', },
-        { name: 'undeploy', title: '<i class="material-icons red-close">close</i>', },
-      ],
-      position: 'right'
-
-    },
-    columns: {
-      xapp: {
-        title: 'xApp Name',
-        type: 'string',
-      },
-      name: {
-        title: 'Instance Name',
-        type: 'string',
-      },
-      status: {
-        title: 'Status',
-        type: 'string',
-      },
-      ip: {
-        title: 'IP',
-        type: 'string',
-      },
-      port: {
-        title: 'Port',
-        type: 'integer',
-      },
-      txMessages: {
-        title: 'txMessages',
-        type: 'array',
-      },
-      rxMessages: {
-        title: 'rxMessages',
-        type: 'array',
-      },
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
+  displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
+  dataSource: any;
 
   constructor(
     private xappMgrSvc: XappMgrService,
@@ -89,32 +44,21 @@ export class ControlComponent implements OnInit  {
     private notification: NotificationService) { }
 
   ngOnInit() {
-    this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.source.load(this.getInstance(xapps)));
+    this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.dataSource = this.getInstance(xapps));
   }
 
-  onxAppControlAction(event) {
-    switch (event.action) {
-      case 'view':
-        this.view(event);
-        break;
-      case 'undeploy':
-        this.undeploy(event);
-        break;
-    }
-  }
-
-  view(event): void {
+  view(): void {
     const url = '/xapp';
-    this.router.navigate([url, event]);
+    this.router.navigate([url]);
   }
 
-  undeploy(event): void {
+  undeploy(name: string): void {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy this xApp ?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.xappMgrSvc.undeployXapp(event.data.xapp).subscribe(
+          this.xappMgrSvc.undeployXapp(name).subscribe(
             response => {
-              this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.source.load(this.getInstance(xapps)));
+              this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.dataSource = this.getInstance(xapps));
               switch (response.status) {
                 case 200:
                   this.notification.success('xApp undeployed successfully!');
@@ -141,6 +85,5 @@ export class ControlComponent implements OnInit  {
     }
     return xAppInstances;
   }
-
 
 }
