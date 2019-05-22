@@ -18,7 +18,6 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
 import { NotificationService } from './../services/ui/notification.service'
@@ -31,36 +30,8 @@ import { XMXapp } from '../interfaces/xapp-mgr.types';
 })
 export class CatalogComponent implements OnInit{
 
-  settings = {
-    hideSubHeader: true,
-    actions: {
-      columnTitle: 'Actions',
-      add: false,
-      edit: false,
-      delete: false,
-      custom: [
-        { name: 'deployxApp', title: 'Deploy' },
-      ],
-      position: 'right'
-
-    },
-    columns: {
-      name: {
-        title: 'xApp Name',
-        type: 'string',
-      },
-      version: {
-        title: 'xApp Version',
-        type: 'string',
-      },
-      status: {
-        title: 'Status',
-        type: 'string',
-      },
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
+  displayedColumns: string[] = ['name', 'version', 'status', 'action'];
+  dataSource: XMXapp[];
 
   constructor(
     private xappMgrSvc: XappMgrService,
@@ -68,14 +39,14 @@ export class CatalogComponent implements OnInit{
     private notification: NotificationService) { }
 
   ngOnInit() {
-    this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.source.load(xapps));
+    this.xappMgrSvc.getAll().subscribe((xapps: XMXapp[]) => this.dataSource = xapps);
   }
 
-  onDeployxApp(event): void {
+  onDeployxApp(name: string): void {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to deploy this xApp?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.xappMgrSvc.deployXapp(event.data.name).subscribe(
+          this.xappMgrSvc.deployXapp(name).subscribe(
             response => {
               switch (response.status) {
                 case 200:

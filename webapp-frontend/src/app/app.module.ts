@@ -19,10 +19,11 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 // tslint:disable-next-line:max-line-length
-import { MatIconModule, MatCardModule, MatListModule, MatSidenavModule,
-    MatButtonToggleModule, MatSliderModule, MatGridListModule, MatSlideToggleModule,
-    MatExpansionModule, MatTabsModule, MatDialogModule, MatFormFieldModule,
-    MatButtonModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
+    MatExpansionModule, MatFormFieldModule, MatGridListModule, MatIconModule,
+    MatInputModule, MatListModule, MatPaginatorModule, MatProgressSpinnerModule,
+    MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSortModule,
+    MatTableModule, MatTabsModule, MatSnackBarModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -99,6 +100,8 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     MatSidenavModule,
     MatSlideToggleModule,
     MatTabsModule,
+    MatSortModule,
+    MatTableModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
