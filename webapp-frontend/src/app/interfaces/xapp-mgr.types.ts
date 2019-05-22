@@ -47,3 +47,8 @@ export interface XMXapp {
   version: string;
   instances: Array<XMXappInstance>;
 }
+
+export interface XMXappInstanceTable {
+  xapp: string;
+  instance: XMXappInstance;
+}
