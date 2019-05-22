@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "e0106e50_8cf3d603",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2019-05-22T18:49:30Z",
+      "side": 1,
+      "message": "The table first column header now shows just \u0027Cell Identifier\u0027. Shouldn\u0027t it say \"Cell Identifier  Nrcgi\"? Please refer to the wiki screen mockup.",
+      "revId": "2cdc51176ff01c5e8c905ac25f35223a92ee78c8",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5f338f0_2d75ef16",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2019-05-22T18:49:30Z",
+      "side": 1,
+      "message": "The action field in the table with update/delete is missing. Please refer to the wiki screen mockup.",
+      "revId": "2cdc51176ff01c5e8c905ac25f35223a92ee78c8",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78e4df8d_3af2b277",
         "filename": "webapp-frontend/src/app/navigation/sidenav-list/sidenav-list.component.html",
         "patchSetId": 1
