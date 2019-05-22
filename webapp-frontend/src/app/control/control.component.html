@@ -17,9 +17,61 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div class="control__section">
-    <h3 class="control__header">xApp Control</h3>
-    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onxAppControlAction($event)">
-    </ng2-smart-table>
-    <app-modal-event hidden></app-modal-event>
-</div>
+    <div class="control__section">
+        <h3 class="control__header">xApp Control</h3>
+        <table mat-table [dataSource]="dataSource" class="ncr-table mat-elevation-z8">
+
+            <ng-container matColumnDef="xapp">
+                <mat-header-cell *matHeaderCellDef> xApp Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.xapp}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Instance Name</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ip">
+                <mat-header-cell *matHeaderCellDef> IP </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.ip}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="port">
+                <mat-header-cell *matHeaderCellDef> Port </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.port}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="txMessages">
+                <mat-header-cell *matHeaderCellDef> txMessages </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.txMessages}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="rxMessages">
+                <mat-header-cell *matHeaderCellDef> rxMessages </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.rxMessages}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button  mat-icon-button
+                            (click)="view(event)">
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                    <button mat-icon-button
+                            color="warn"
+                            (click)="undeploy(element.xapp)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+    </div>
