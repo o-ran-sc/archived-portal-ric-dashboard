@@ -16,6 +16,24 @@
       "revId": "16a1f156aa462acc25d9461a87081637a49efe5d",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "991ce1a1_fcdde647",
+        "filename": "webapp-frontend/src/app/control/control.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2019-05-23T17:14:41Z",
+      "side": 1,
+      "message": "If this is being fixed in other open review from Chris L, then please ignore this comment here.",
+      "parentUuid": "fc40dfe6_ce688359",
+      "revId": "16a1f156aa462acc25d9461a87081637a49efe5d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     }
   ]
 }
