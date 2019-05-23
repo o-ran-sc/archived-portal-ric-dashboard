@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5f3ea464_5066d9c5",
+        "filename": "webapp-frontend/src/app/control/control.animations.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T17:22:40Z",
+      "side": 1,
+      "message": "this is kind of an odd file name \"animations\" is this the best choice? What does the style guide say for a file that only has a const in it?",
+      "revId": "16a1f156aa462acc25d9461a87081637a49efe5d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fc40dfe6_ce688359",
         "filename": "webapp-frontend/src/app/control/control.component.html",
         "patchSetId": 3
