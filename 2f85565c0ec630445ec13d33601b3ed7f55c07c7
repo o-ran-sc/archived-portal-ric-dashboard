@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c201aa33_e386c09d",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T19:32:53Z",
+      "side": 1,
+      "message": "The spinner is missing here - please add it above the table - just copy from the ANR table example\n\n  \u003cdiv class\u003d\"spinner-container\" *ngIf\u003d\"dataSource.loading$ | async\"\u003e\n    \u003cmat-spinner\u003e\u003c/mat-spinner\u003e\n  \u003c/div\u003e",
+      "revId": "2f85565c0ec630445ec13d33601b3ed7f55c07c7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5227bba_43529f54",
+        "filename": "webapp-frontend/src/app/control/control.component.html",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T19:32:53Z",
+      "side": 1,
+      "message": "Please add the spinner (loading indicator) here\n\n  \u003cdiv class\u003d\"spinner-container\" *ngIf\u003d\"dataSource.loading$ | async\"\u003e\n    \u003cmat-spinner\u003e\u003c/mat-spinner\u003e\n  \u003c/div\u003e",
+      "revId": "2f85565c0ec630445ec13d33601b3ed7f55c07c7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a1ffc82_5e0908bc",
+        "filename": "webapp-frontend/src/app/control/control.datasource.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T19:32:53Z",
+      "side": 1,
+      "message": "please declare this as array of a known type, instead of array of any",
+      "range": {
+        "startLine": 61,
+        "startChar": 10,
+        "endLine": 61,
+        "endChar": 23
+      },
+      "revId": "2f85565c0ec630445ec13d33601b3ed7f55c07c7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8800267_02df7770",
+        "filename": "webapp-frontend/src/app/interfaces/xapp-mgr.types.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T19:32:53Z",
+      "side": 1,
+      "message": "This is not exactly a table - what\u0027s really going on here?",
+      "range": {
+        "startLine": 51,
+        "startChar": 17,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "2f85565c0ec630445ec13d33601b3ed7f55c07c7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e4fb973_8a2f32b7",
+        "filename": "webapp-frontend/src/app/services/xapp-mgr/xapp-mgr.service.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-23T19:32:53Z",
+      "side": 1,
+      "message": "Why import map if you\u0027re not going to use it?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "2f85565c0ec630445ec13d33601b3ed7f55c07c7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
