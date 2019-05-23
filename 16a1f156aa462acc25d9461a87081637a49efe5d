@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc40dfe6_ce688359",
+        "filename": "webapp-frontend/src/app/control/control.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2019-05-23T17:13:20Z",
+      "side": 1,
+      "message": "view should open specific xapp, so either we must pass xapp name as param or we can access element.name directly in view() function and to route to the right UI.",
+      "revId": "16a1f156aa462acc25d9461a87081637a49efe5d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    }
+  ]
+}
