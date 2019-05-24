@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a00726e1_4d9ecc0d",
+        "filename": "webapp-frontend/src/app/app.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-24T18:39:22Z",
+      "side": 1,
+      "message": "why add it again? How many times does MatTableModule need to appear here?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 1
+      },
+      "revId": "2e4c65ff94d5015360bc783bc6b2343dddcae469",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf8301a9_b38e5381",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.dialog.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-24T18:39:22Z",
+      "side": 1,
+      "message": "this dialog should have its own scss, not reuse the parent component",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "2e4c65ff94d5015360bc783bc6b2343dddcae469",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63c1537f_8a151253",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-24T18:39:22Z",
+      "side": 1,
+      "message": "please remove extra ws",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "revId": "2e4c65ff94d5015360bc783bc6b2343dddcae469",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
