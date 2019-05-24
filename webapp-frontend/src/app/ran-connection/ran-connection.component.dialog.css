@@ -17,29 +17,9 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.control__section {
-    position: relative;
-    top: -50px;
-}
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
-
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
-
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
-
-/* used to place form fields on separate lines/rows in dialog */
+ /* used to place form fields on separate lines/rows in dialog */
 .input-display-block {
   display: block;
 }
+
