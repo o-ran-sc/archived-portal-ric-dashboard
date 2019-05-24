@@ -23,7 +23,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
-import { SignalComponent } from './signal/signal.component';
+import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { XappComponent } from './xapp/xapp.component';
@@ -33,7 +33,7 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
-    {path: 'signal', component: SignalComponent},
+    {path: 'ran-connection', component: RANConnectionComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'xapp', component: XappComponent},
