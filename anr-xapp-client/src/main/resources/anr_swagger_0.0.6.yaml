@@ -18,7 +18,7 @@
 swagger : '2.0'
 info :
   description : REST API specification for RIC ANR closed xAPP
-  version     : 0.0.5
+  version     : 0.0.6
   title       : RIC ANR
   license:
     name : Nokia Closed App
@@ -31,7 +31,7 @@ paths :
   /health/alive :
     get :
       summary     : Health check of ANR - Liveness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthAlive
       responses   :
@@ -40,56 +40,53 @@ paths :
   /health/ready :
     get :
       summary     : Health check of ANR - Readiness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthReady
       responses   :
         '200':
-          description : Status of ANR xApp is ok
-  /ncrt/cell :
-    parameters :
-      - $ref : '#/parameters/ggnbId'
-      - $ref : '#/parameters/startIndex'
-      - $ref : '#/parameters/limit'
+          description : ANR xApp is ready to serve
+  /gnodebs :
     get :
-      summary     : Returns neighbor cell relation table for all gnodeBs or based on query string
-      tags        : 
+      summary     : Returns list of gNodeB IDs based on NCRT in ANR
+      tags        :
+        - gnodebs
+      operationId : getgNodeB
+      produces  :
+        - application/json
+      responses :
+        '200' :
+          description : successful operation
+          schema      :
+            $ref : '#/definitions/ggNodeBTable'
+        '500' :
+          description : Unable to retrieve gNodeBs
+  /ncrt :
+    get :
+      summary     : Returns neighbor cell relation table for all gNodeBs or based on query string
+      tags        :
         - ncrt
       operationId : getNcrtInfo
-      produces  :
-        - application/json
-      responses :
-        '200' :
-          description : successful operation
-          schema      :
-            $ref : '#/definitions/neighborCellRelationTable'
-        '400' :
-          description : Non-existant identifier {ggnbId | neighborCellIdentifier | start Index} in request
-  /ncrt/cell/{cellIdentifier} :
-    parameters :
-      - $ref : '#/parameters/cellIdentifier'
-    get :
-      summary     : Returns neighbor cell relation table for a Source Cell (NR CGI) and optionally a neighbor cell based on query string
-      tags        : 
-        - ncrt
-      operationId : getCellNcrtInfo
-      produces  :
-        - application/json
       parameters :
-        - $ref : '#/parameters/startIndex'
-        - $ref : '#/parameters/limit'
+        - $ref : '#/parameters/ggnodeb'
+        - $ref : '#/parameters/servingCellNrcgi'
         - $ref : '#/parameters/neighborCellNrpci'
-        - $ref : '#/parameters/neighborCellNrcgi'
+      produces  :
+        - application/json
       responses :
         '200' :
           description : successful operation
           schema      :
             $ref : '#/definitions/neighborCellRelationTable'
-        '400' :
-          description : Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request
+        '500' :
+          description : Unable to retrieve NCRT
+  /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
+    parameters :
+      - $ref : '#/parameters/servCellNrcgi'
+      - $ref : '#/parameters/neighCellNrpci'
     put :
-      summary     : Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        : 
+      summary     : Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI
+      tags        :
         - ncrt
       operationId : modifyNcrt
       consumes   :
@@ -102,101 +99,90 @@ paths :
           description : Parameters to modify neighbor cell relation
           required    : true
           schema :
-            $ref : '#/definitions/neighborCellRelationModTable'
+            $ref : '#/definitions/neighborCellRelationMod'
       responses :
         '200' :
           description : Successfully modified neighbor cell relation
         '400' :
           description : Modification failed.
-                        { Identifier neighborCellNrpci / neighborCellNrcgi not provided |
-                          Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request |
+                        { Non-existent identifier {servCellNrcgi | neighCellNrpci} in request |
                           Invalid data in body
                         }
+        '500' :
+          description : Modification failed
     delete :
-      summary     : Delete neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI
-      tags        : 
+      summary     : Delete neighbor cell relation based on Source Cell NRCGI and Neighbor Cell NRPCI
+      tags        :
         - ncrt
       operationId : deleteNcrt
-      parameters :
-        - name        : NcrtDeletionParameters
-          in          : body
-          description : Parameters to delete neighbor cell relation
-          required    : true
-          schema      :
-            $ref : '#/definitions/neighborCellRelationDelTable'      
       responses :
         '204' :
           description : Successfully deleted neighbor cell relation
         '400' :
           description : Deletion failed.
-                        { Identifier neighborCellNrpci / neighborCellNrcgi not provided |
-                          Non-existant identifier {cellIdentifier | neighborCellNrpci | neighborCellNrcgi} in request
-                        }
+                        { Non-existent identifier {servCellNrcgi | neighCellNrpci} in request }
+        '500' :
+          description : Deletion failed
 parameters :
-  ggnbId :
+  ggnodeb :
     type        : string
-    name        : ggnbId
+    name        : ggnodeb
     description : Global gNodeB Identifier
     in          : query
-  startIndex :
+  servingCellNrcgi :
     type        : string
-    name        : startIndex
-    description : Pagination Index
+    name        : servingCellNrcgi
+    description : Serving Cell Identifier (NR CGI)
     in          : query
-  limit :
-    type        : integer
-    name        : limit
-    description : Limit of results that client can handle
-    in          : query
-  cellIdentifier :
-    type        : string
-    name        : cellIdentifier
-    description : Source Cell Identifier (NR CGI)
-    in          : path
-    required    : true
   neighborCellNrpci :
     type        : string
     name        : neighborCellNrpci
     description : Neighbor Cell Identifier (NR PCI)
     in          : query
-  neighborCellNrcgi :
+  servCellNrcgi :
     type        : string
-    name        : neighborCellNrcgi
-    description : Neigbhor Cell Identifier (NR CGI)
-    in          : query
+    name        : servCellNrcgi
+    description : Serving Cell Identifier (NR CGI)
+    in          : path
+    required   : true
+  neighCellNrpci :
+    type        : string
+    name        : neighCellNrpci
+    description : Neighbor Cell Identifier (NR PCI)
+    in          : path
+    required    : true
 definitions :
+  ggNodeBTable :
+    type : object
+    properties :
+      gNodeBIds :
+        type   : array
+        items  :
+          $ref : '#/definitions/ggnodebId'
   neighborCellRelationTable :
     type : object
-    properties : 
-      ncrtRelations : 
+    properties :
+      ncrtRelations :
         type   : array
         items  :
           $ref : '#/definitions/neighborCellRelation'
-      startIndex :
-        type        : string
-        description : Index to use in REST API to process multipage results
-        example     : 1245A:6740B
-  neighborCellRelationModTable :
-    type   : array
-    items  :
-      $ref : '#/definitions/neighborCellRelationMod'
-  neighborCellRelationDelTable :
-    type   : array
-    items  : 
-      $ref : '#/definitions/neighborCellRelationDel'
+  ggnodebId :
+    type        : string
+    description : Global gNodeB Identifier
+    example     : ABCDE, EFGHI
   neighborCellRelation :
     type  : object
-    required : 
-      - cellIdentifierNrcgi
+    required :
+      - servingCellNrcgi
       - neighborCellNrpci
       - neighborCellNrcgi
       - flagNoHo
       - flagNoXn
       - flagNoRemove
     properties :
-      cellIdentifierNrcgi :
+      servingCellNrcgi :
         type        : string
-        description : Source / Serving Cell Identifier (NR CGI)
+        description : Serving Cell Identifier (NR CGI)
         example     : E12345
       neighborCellNrpci :
         type        : string
@@ -224,23 +210,6 @@ definitions :
       - neighborCellIdentifierType
       - action
     properties :
-      neighborCellIdentifierType :
-        type        : string
-        description : Neighbor Cell Identifier Type
-        enum :
-          - nrpci
-          - nrcgi
-      action :
-        type        : string
-        description : Modification action to be performed
-        enum :
-          - nrpciToNrcgiMapping
-          - flagUpdates
-          - nrcgiMappingAndFlagUpdates
-      neighborCellNrpci :
-        type        : string
-        description : Neighbor Cell Identifier (NR PCI)
-        example     : E12345
       neighborCellNrcgi :
         type        : string
         description : Neighbor Cell Identifier (NR CGI)
@@ -257,22 +226,3 @@ definitions :
         type        : boolean
         description : Flag for DELETION NOT ALLOWED
         example     : True
-  neighborCellRelationDel :
-    type      : object
-    required  :
-      - idType
-    properties :
-      idType :
-        type        : string
-        description : Modification action to be performed
-        enum :
-          - nrpci
-          - nrcgi
-      neighborCellNrpci :
-        type        : string
-        description : Neighbor Cell Identifier (NR PCI)
-        example     : E12345
-      neighborCellNrcgi :
-        type        : string
-        description : Neighbor Cell Identifier (NR PCI)
-        example     : E12345
