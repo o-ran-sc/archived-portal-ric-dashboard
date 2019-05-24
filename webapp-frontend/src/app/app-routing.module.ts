@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { SignalComponent } from './signal/signal.component';
+import { RanConnectionComponent } from './ran-connection/ran-connection.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { XappComponent } from './xapp/xapp.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
     {path: 'signal', component: SignalComponent},
+    {path: 'ran-connection', component: RanConnectionComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'xapp', component: XappComponent},
