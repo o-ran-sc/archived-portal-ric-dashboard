@@ -17,29 +17,28 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.control__section {
-    position: relative;
-    top: -50px;
-}
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-.control__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
+import { RanConnectionComponent } from './ran-connection.component';
 
-:host /deep/ ng2-smart-table tbody > tr > td{
-  text-align: left;
-}
+describe('RanConnectionComponent', () => {
+  let component: RanConnectionComponent;
+  let fixture: ComponentFixture<RanConnectionComponent>;
 
-:host /deep/ ng2-smart-table thead th{
-  text-align: left;
-}
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ RanConnectionComponent ]
+    })
+    .compileComponents();
+  }));
 
-/* used to place form fields on separate lines/rows in dialog */
-.input-display-block {
-  display: block;
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RanConnectionComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

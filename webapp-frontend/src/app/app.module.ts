@@ -43,8 +43,8 @@ import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
-import { SignalComponent } from './signal/signal.component';
-import { AppRANConnectDialogComponent } from './signal/signal.component.ranconnect-dialog';
+import { RANConnectionDialogComponent } from './ran-connection/ran-connection-dialog.component';
+import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { StatsComponent } from './stats/stats.component';
 import { AdminComponent } from './admin/admin.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -69,14 +69,14 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     ControlCardComponent,
     StatCardComponent,
     ControlComponent,
-    SignalComponent,
+    RANConnectionComponent,
     StatsComponent,
     AdminComponent,
     ModalEventComponent,
     XappComponent,
     ConfigEventComponent,
     AnrXappComponent,
-    AppRANConnectDialogComponent,
+    RANConnectionDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
     ErrorDialogComponent
@@ -99,9 +99,9 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     MatListModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTableModule,
     MatTabsModule,
     MatSortModule,
-    MatTableModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
@@ -126,11 +126,11 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    AppRANConnectDialogComponent,
+    RANConnectionDialogComponent,
     ErrorDialogComponent
     ],
     entryComponents: [
-    AppRANConnectDialogComponent,
+    RANConnectionDialogComponent,
     ConfirmDialogComponent,
     ErrorDialogComponent
     ],

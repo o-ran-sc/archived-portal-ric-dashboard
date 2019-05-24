@@ -27,16 +27,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-signal-ranconnect-dialog',
-    templateUrl: './signal.component.ranconnect-dialog.html',
-    styleUrls: ['./signal.component.css']
+    templateUrl: './ran-connection-dialog.component.html',
+    styleUrls: ['./ran-connection-dialog.component.css']
 })
 
-export class AppRANConnectDialogComponent implements OnInit {
+export class RANConnectionDialogComponent implements OnInit {
 
-    private ranDialogForm: FormGroup;
+    public ranDialogForm: FormGroup;
 
     constructor(
-        public dialogRef: MatDialogRef<AppRANConnectDialogComponent>,
+        private dialogRef: MatDialogRef<RANConnectionDialogComponent>,
         private service: E2ManagerService, private errorService: ErrorDialogService,
         @Inject(MAT_DIALOG_DATA) public data: E2SetupRequest) {
     }
