@@ -32,8 +32,9 @@ export class XappMgrService {
 
   private basePath = 'api/xappmgr/xapps';
 
-  getAll(){
-    return this.httpClient.get<XMXapp[]>(this.basePath);
+  getAll(): Observable<XMXapp[]>{
+    return this.httpClient.get<XMXapp[]>(this.basePath)
+
   }
 
   deployXapp(name: string) {
