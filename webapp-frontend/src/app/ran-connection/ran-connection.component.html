@@ -1,0 +1,61 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property and Nokia
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+-->
+<div class="ranconnect__section">
+  <h3 class="ranconnect__header">RAN Connection</h3>
+  <button mat-raised-button (click)="openRanConnectDialog()">Connect</button>
+  <table mat-table [dataSource]="dataSource" class="ranconnect-table mat-elevation-z8">
+    
+    <ng-container matColumnDef="requestType">
+        <mat-header-cell *matHeaderCellDef>RAN Type</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.requestType}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="ranName">
+        <mat-header-cell *matHeaderCellDef>eNodeB/gNodeB Name</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.ranName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ranIp">
+        <mat-header-cell *matHeaderCellDef>IP</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.ranIp}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="ranPort">
+        <mat-header-cell *matHeaderCellDef>Port</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.ranPort}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="responseCode">
+        <mat-header-cell *matHeaderCellDef>Response</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.responseCode}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="timeStamp">
+        <mat-header-cell *matHeaderCellDef>Time Stamp</mat-header-cell>
+        <mat-cell *matCellDef="let rconnect">{{rconnect.timeStamp}}</mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns">
+    </mat-row>
+  </table>
+  <app-modal-event hidden></app-modal-event>
+</div>
+

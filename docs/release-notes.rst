@@ -34,6 +34,7 @@ Version 1.0.3, 28 May 2019
 * Rename signal service to E2 Manager service
 * Use XappMgrService to replace ControlService and CatalogService
 * Apply mat-table to control and catalog
+* RAN Connection screen upgrade to mat-table
 
 Version 1.0.2, 13 May 2019
 --------------------------
