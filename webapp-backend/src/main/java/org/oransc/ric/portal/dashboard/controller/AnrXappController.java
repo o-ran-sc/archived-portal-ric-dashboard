@@ -136,7 +136,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
-			+ "}", method = RequestMethod.PUT)
+			+ "}", method = RequestMethod.DELETE)
 	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {
