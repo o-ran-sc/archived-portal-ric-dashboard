@@ -23,10 +23,11 @@ import java.lang.invoke.MethodHandles;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.oransc.ric.anrxapp.client.api.GnodebsApi;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
-import org.oransc.ric.anrxapp.client.model.NeighborCellRelationDelTable;
-import org.oransc.ric.anrxapp.client.model.NeighborCellRelationModTable;
+import org.oransc.ric.anrxapp.client.model.GgNodeBTable;
+import org.oransc.ric.anrxapp.client.model.NeighborCellRelationMod;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationTable;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -57,22 +58,26 @@ public class AnrXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private static final String CELL_ID = "cellIdentifier";
-	private static final String GGNBID = "ggnbId";
-	private static final String START_INDEX = "startIndex";
-	private static final String LIMIT = "limit";
-	private static final String NRPCI = "neighborCellIdentifierNrpci";
-	private static final String NRCGI = "neighborCellIdentifierNrcgi";
+	// Query parameters
+	private static final String QP_NODEB = "ggnodeb";
+	private static final String QP_SERVING = "servingCellNrcgi";
+	private static final String QP_NEIGHBOR = "neighborCellNrpci";
+	// Path parameters
+	private static final String PP_SERVING = "servingcells";
+	private static final String PP_NEIGHBOR = "neighborcells";
 
 	// Populated by the autowired constructor
 	private final HealthApi healthApi;
+	private final GnodebsApi gnodebsApi;
 	private final NcrtApi ncrtApi;
 
 	@Autowired
-	public AnrXappController(final HealthApi healthApi, final NcrtApi ncrtApi) {
+	public AnrXappController(final HealthApi healthApi, final GnodebsApi gnodebsApi, final NcrtApi ncrtApi) {
 		Assert.notNull(healthApi, "API must not be null");
+		Assert.notNull(gnodebsApi, "API must not be null");
 		Assert.notNull(ncrtApi, "API must not be null");
 		this.healthApi = healthApi;
+		this.gnodebsApi = gnodebsApi;
 		this.ncrtApi = ncrtApi;
 	}
 
@@ -99,48 +104,44 @@ public class AnrXappController {
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Query NCRT of all cells, all or one gNB(s)", response = NeighborCellRelationTable.class)
-	@RequestMapping(value = "/cell", method = RequestMethod.GET)
+	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
+	@RequestMapping(value = "/gnodebs", method = RequestMethod.GET)
+	public GgNodeBTable getGnodebs() {
+		return gnodebsApi.getgNodeB();
+	}
+
+	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
+	@RequestMapping(value = "/ncrt", method = RequestMethod.GET)
 	public NeighborCellRelationTable getNcrtInfo( //
-			@RequestParam(name = GGNBID, required = false) String ggnbId, //
-			@RequestParam(name = START_INDEX, required = false) String startIndex, //
-			@RequestParam(name = LIMIT, required = false) Integer limit) {
-		logger.debug("queryNcrtAllCells: ggnbid {}, startIndex {} limit {}", ggnbId, startIndex, limit);
-		return ncrtApi.getNcrtInfo(ggnbId, startIndex, limit);
+			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
+			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
+			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
+		logger.debug("getNcrtInfo: ggnbid {}, servingCellNrpci {} neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
+				neighborCellNrpci);
+		return ncrtApi.getNcrtInfo(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}
 
-	@ApiOperation(value = "Query NCRT of a single serving cell", response = NeighborCellRelationTable.class)
-	@RequestMapping(value = "/cell/" + CELL_ID + "/{" + CELL_ID + "}", method = RequestMethod.GET)
-	public NeighborCellRelationTable getCellNcrtInfo(@PathVariable(CELL_ID) String cellIdentifier, //
-			@RequestParam(name = START_INDEX, required = false) String startIndex, //
-			@RequestParam(name = LIMIT, required = false) Integer limit,
-			@RequestParam(name = NRPCI, required = false) String nrpci,
-			@RequestParam(name = NRCGI, required = false) String nrcgi) {
-		logger.debug("queryNcrtAllCells: cellIdentifier {}, startIndex {} limit {} nrpci {} nrcgi {}", cellIdentifier,
-				startIndex, limit, nrpci, nrcgi);
-		return ncrtApi.getCellNcrtInfo(cellIdentifier, startIndex, limit, nrpci, nrcgi);
-	}
-
-	@ApiOperation(value = "Modify neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI")
-	@RequestMapping(value = "/cell/" + CELL_ID + "/{" + CELL_ID + "}", method = RequestMethod.PUT)
-	public void modifyNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
-			@RequestBody NeighborCellRelationModTable ncrtModTable, //
-			HttpServletResponse response) {
-		logger.debug("modifyNcrt: cellIdentifier {} modTable {}", cellIdentifier, ncrtModTable);
-		ncrtApi.modifyNcrt(cellIdentifier, ncrtModTable);
+	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
+	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
+	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
+			+ "}", method = RequestMethod.PUT)
+	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
+			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
+		logger.debug("modifyNcrt: servingCellNrcgi {}, neighborCellNrpci {}, ncrMod {}", servingCellNrcgi,
+				neighborCellNrpci, ncrMod);
+		ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
-	/*
-	 * TODO: DELETE should not have a body - the path should identify the resource to be deleted.
-	 */
-	@ApiOperation(value = "Delete neighbor cell relation based on Source Cell NR CGI and Target Cell NR PCI / NR CGI")
-	@RequestMapping(value = "/cell/" + CELL_ID + "/{" + CELL_ID + "}", method = RequestMethod.DELETE)
-	public void deleteNcrt(@PathVariable(CELL_ID) String cellIdentifier, //
-			@RequestBody NeighborCellRelationDelTable ncrtDelTable, //
+	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
+	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
+			+ "}", method = RequestMethod.PUT)
+	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {
-		logger.debug("modifyNcrt: cellIdentifier {} delTable {}", cellIdentifier, ncrtDelTable);
-		ncrtApi.deleteNcrt(cellIdentifier, ncrtDelTable);
+		logger.debug("deleteNcrt: servingCellNrcgi {}, neighborCellNrpci {}", servingCellNrcgi, neighborCellNrpci);
+		ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
