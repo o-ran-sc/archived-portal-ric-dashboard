@@ -21,7 +21,6 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.anrxapp.client.api.GnodebsApi;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
 import org.oransc.ric.anrxapp.client.invoker.ApiClient;
@@ -63,11 +62,6 @@ public class AnrXappConfiguration {
 	@Bean
 	public HealthApi anrHealthApi() {
 		return new HealthApi(apiClient());
-	}
-
-	@Bean
-	public GnodebsApi anrGnodebsApi() {
-		return new GnodebsApi(apiClient());
 	}
 
 	@Bean

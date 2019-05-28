@@ -23,7 +23,6 @@ import java.lang.invoke.MethodHandles;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.oransc.ric.anrxapp.client.api.GnodebsApi;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
 import org.oransc.ric.anrxapp.client.model.GgNodeBTable;
@@ -68,16 +67,13 @@ public class AnrXappController {
 
 	// Populated by the autowired constructor
 	private final HealthApi healthApi;
-	private final GnodebsApi gnodebsApi;
 	private final NcrtApi ncrtApi;
 
 	@Autowired
-	public AnrXappController(final HealthApi healthApi, final GnodebsApi gnodebsApi, final NcrtApi ncrtApi) {
+	public AnrXappController(final HealthApi healthApi, final NcrtApi ncrtApi) {
 		Assert.notNull(healthApi, "API must not be null");
-		Assert.notNull(gnodebsApi, "API must not be null");
 		Assert.notNull(ncrtApi, "API must not be null");
 		this.healthApi = healthApi;
-		this.gnodebsApi = gnodebsApi;
 		this.ncrtApi = ncrtApi;
 	}
 
@@ -107,7 +103,7 @@ public class AnrXappController {
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
 	@RequestMapping(value = "/gnodebs", method = RequestMethod.GET)
 	public GgNodeBTable getGnodebs() {
-		return gnodebsApi.getgNodeB();
+		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
@@ -118,7 +114,7 @@ public class AnrXappController {
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
 		logger.debug("getNcrtInfo: ggnbid {}, servingCellNrpci {} neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
-		return ncrtApi.getNcrtInfo(ggnbId, servingCellNrcgi, neighborCellNrpci);
+		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}
 
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
