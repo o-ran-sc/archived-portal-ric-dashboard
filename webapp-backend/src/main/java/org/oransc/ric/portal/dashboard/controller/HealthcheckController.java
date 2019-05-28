@@ -54,7 +54,8 @@ public class HealthcheckController {
 	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion enter");
-		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(MethodHandles.lookup().lookupClass()));
+		return new SuccessTransport(200,
+				DashboardApplication.getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}
 
 }

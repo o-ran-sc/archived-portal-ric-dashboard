@@ -42,7 +42,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.anrxapp.client</groupId>
 			<artifactId>anr-xapp-client</artifactId>
-			<version>0.0.6-SNAPSHOT</version>
+			<version>0.0.7-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.o-ran-sc.ric.e2mgr.client</groupId>

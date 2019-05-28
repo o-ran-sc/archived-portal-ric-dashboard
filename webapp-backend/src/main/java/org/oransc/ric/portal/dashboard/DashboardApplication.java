@@ -38,7 +38,8 @@ public class DashboardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
 		// Force this onto the console by using level WARN
-		logger.warn("main: version '{}' successful start", getImplementationVersion(MethodHandles.lookup().lookupClass()));
+		logger.warn("main: version '{}' successful start",
+				getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}
 
 	/**

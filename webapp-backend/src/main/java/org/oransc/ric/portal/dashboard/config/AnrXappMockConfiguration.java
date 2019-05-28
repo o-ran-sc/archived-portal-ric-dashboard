@@ -29,7 +29,6 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.anrxapp.client.api.GnodebsApi;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
 import org.oransc.ric.anrxapp.client.invoker.ApiClient;
@@ -53,7 +52,7 @@ public class AnrXappMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2;
-	
+
 	public AnrXappMockConfiguration() {
 		logger.info("Configuring mock ANR xApp client");
 		ncrtNodeB1 = new NeighborCellRelationTable();
@@ -95,15 +94,6 @@ public class AnrXappMockConfiguration {
 		}).when(mockApi).getHealthReady();
 		return mockApi;
 	}
-	
-	@Bean
-	public GnodebsApi anrGnodebsMockApi() {
-		ApiClient mockClient = mock(ApiClient.class);
-		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
-		GnodebsApi mockApi = mock(GnodebsApi.class);
-		
-		return mockApi;
-	}
 
 	@Bean
 	public NcrtApi ncrtMockApi() {
@@ -111,10 +101,10 @@ public class AnrXappMockConfiguration {
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 		// Swagger sends nulls; front end sends empty strings
-		when(mockApi.getNcrtInfo((String) isNull(), (String) isNull(), (String) isNull())).thenReturn(ncrt);
-		when(mockApi.getNcrtInfo(eq(""), any(String.class), any(String.class))).thenReturn(ncrt);
-		when(mockApi.getNcrtInfo(startsWith("A"), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
-		when(mockApi.getNcrtInfo(startsWith("B"), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
+		when(mockApi.getNcrt((String) isNull(), (String) isNull(), (String) isNull())).thenReturn(ncrt);
+		when(mockApi.getNcrt(eq(""), any(String.class), any(String.class))).thenReturn(ncrt);
+		when(mockApi.getNcrt(startsWith("A"), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
+		when(mockApi.getNcrt(startsWith("B"), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).deleteNcrt(any(String.class), any(String.class));
