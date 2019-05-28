@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94c0655f_2ee41a59",
+        "filename": "webapp-frontend/src/app/app.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "Why the App prefix?  Can this be removed?  We don\u0027t seem to be using it anywhere else.",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 12
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e7b98ff_aeebc7bb",
+        "filename": "webapp-frontend/src/app/app.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "Please harmonize the names. RanConnect or RANConnection or RanConnection or etc.  The screen and the dialog go together, make that clear with the names.",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71778d13_c5b5f266",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.dialog.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "Thanks for adding these to a new file.  Please remove them from the old file to avoid confusion.",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a2cca7_d8771d21",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.dialog.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "why change this to public?  I think it should be private",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 10
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828ced0a_83a4be49",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "Singular or plural?",
+      "range": {
+        "startLine": 21,
+        "startChar": 47,
+        "endLine": 21,
+        "endChar": 48
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8aba356f_62f60641",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "I think these can be removed, right?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 1
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a15dc04_4a87ce9f",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "singular or plural?  Please keep the class names similar.  Either RAN or Ran, singular or plural, etc. are your choice, but don\u0027t use something different on every one.",
+      "range": {
+        "startLine": 30,
+        "startChar": 26,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46389ea9_bc0d993c",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T13:02:06Z",
+      "side": 1,
+      "message": "please drop this extraneous white space",
+      "revId": "2a23a6110699db6023a264930bc31aaf1f2984dd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
