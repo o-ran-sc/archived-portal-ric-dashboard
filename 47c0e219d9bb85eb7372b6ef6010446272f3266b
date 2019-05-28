@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0cd7ae4_a890c2ac",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.dialog.css",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T15:58:05Z",
+      "side": 1,
+      "message": "this file name actually should be ran-connection-dialog.component.css",
+      "revId": "47c0e219d9bb85eb7372b6ef6010446272f3266b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76c119be_db6d24b7",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.dialog.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-05-28T15:58:05Z",
+      "side": 1,
+      "message": "this file name actually should be ran-connection-dialog.component.ts",
+      "revId": "47c0e219d9bb85eb7372b6ef6010446272f3266b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
