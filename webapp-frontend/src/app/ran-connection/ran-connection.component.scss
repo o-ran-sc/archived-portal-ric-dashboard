@@ -32,10 +32,12 @@
 }
 
 .ranconnect-table {
-    width: 99%; /* 100 looks wrong */
-    min-height: 150px;
+    width: 100%;
+    min-height: 100px;
     margin-top: 10px;
     background-color:transparent;
 }
 
-
+.disconnect-all-button {
+    float: right;
+}

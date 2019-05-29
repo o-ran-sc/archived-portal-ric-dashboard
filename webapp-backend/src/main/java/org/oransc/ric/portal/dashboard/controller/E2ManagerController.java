@@ -108,6 +108,14 @@ public class E2ManagerController {
 		return responses;
 	}
 
+	// TODO replace with actual delete all RAN connections functionality
+	@ApiOperation(value = "Disconnect all RAN Connections.")
+	@RequestMapping(value = "/disconnectAllRAN", method = RequestMethod.DELETE)
+	public void disconnectAllRANConnections() {
+		logger.debug("disconnectAllRANConnections");
+		responses.clear();
+	}
+
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.", response = E2SetupResponse.class)
 	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
 	public E2SetupResponse endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {

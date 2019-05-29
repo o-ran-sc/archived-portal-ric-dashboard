@@ -20,6 +20,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class E2ManagerService {
@@ -60,6 +61,10 @@ export class E2ManagerService {
    */
   x2Setup(req: E2SetupRequest) {
     return this.httpClient.post(this.basePath + 'x2Setup', req);
+  }
+
+  disconnectAllRAN() {
+    return this.httpClient.delete((this.basePath + 'disconnectAllRAN'), { observe: 'response' });
   }
 
 }

@@ -26,7 +26,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 
-
 export class RANConnectionDataSource extends DataSource<E2SetupRequest> {
 
   private ranConnectSubject = new BehaviorSubject<E2SetupRequest[]>([]);
@@ -46,7 +45,7 @@ export class RANConnectionDataSource extends DataSource<E2SetupRequest> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((ranConnect: E2SetupRequest[]) => this.ranConnectSubject.next(ranConnect) )
+      .subscribe((ranConnect: E2SetupRequest[]) => this.ranConnectSubject.next(ranConnect));
   }
 
   connect(collectionViewer: CollectionViewer): Observable<E2SetupRequest[]> {
