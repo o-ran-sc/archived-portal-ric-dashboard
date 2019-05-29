@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,21 +19,21 @@
  */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RanConnectionComponent } from './ran-connection.component';
+import { RANConnectionComponent } from './ran-connection.component';
 
-describe('RanConnectionComponent', () => {
-  let component: RanConnectionComponent;
-  let fixture: ComponentFixture<RanConnectionComponent>;
+describe('RANConnectionComponent', () => {
+  let component: RANConnectionComponent;
+  let fixture: ComponentFixture<RANConnectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RanConnectionComponent ]
+      declarations: [ RANConnectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RanConnectionComponent);
+    fixture = TestBed.createComponent(RANConnectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

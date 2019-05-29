@@ -62,4 +62,8 @@ export class E2ManagerService {
     return this.httpClient.post(this.basePath + 'x2Setup', req);
   }
 
+  disconnectAllRAN() {
+    return this.httpClient.delete((this.basePath + 'disconnectAllRAN'), { observe: 'response' });
+  }
+
 }
