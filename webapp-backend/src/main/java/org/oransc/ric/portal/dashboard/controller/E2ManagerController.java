@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.controller;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
 import java.util.Set;
@@ -108,6 +109,24 @@ public class E2ManagerController {
 		return responses;
 	}
 
+	//TODO replace with actual delete all RAN connections functionality when available
+	@ApiOperation(value = "Disconnect all RAN Connections.")
+	@RequestMapping(value = "/disconnectAllRAN", method = RequestMethod.DELETE)
+	public void disconnectAllRANConnections(HttpServletResponse response) {
+		logger.debug("Disconnect all RAN Connections");
+		try {
+		    /*Generating a service not supported error which needs to be replaced by actual delete 
+			all RAN connections functionality call when available. Get all current RAN connections
+			and then perform iterative delete on each of them.*/
+			response.sendError(501);
+		} catch (Exception ex) {
+			logger.warn("disconnectAllRANConnections failed: {}", ex.toString());
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		}
+		
+	}
+	
+	
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.", response = E2SetupResponse.class)
 	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
 	public E2SetupResponse endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {

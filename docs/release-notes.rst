@@ -24,6 +24,7 @@ Version 1.0.4, 29 May 2019
 --------------------------
 * Add ANR xApp neighbor cell relation table
 * Drop the pendulum xApp control screen
+* Big red button addition
 
 Version 1.0.3, 28 May 2019
 --------------------------

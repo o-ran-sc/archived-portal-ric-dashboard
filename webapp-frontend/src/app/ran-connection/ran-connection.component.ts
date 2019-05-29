@@ -21,8 +21,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { RANConnectionDialogComponent } from './ran-connection-dialog.component';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { RANConnectionDataSource } from './ran-connection.datasource';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -34,7 +37,7 @@ export class RANConnectionComponent implements OnInit {
   displayedColumns: string[] = [ 'requestType', 'ranName', 'ranIp', 'ranPort', 'responseCode', 'timeStamp' ];
   dataSource: RANConnectionDataSource;
 
-  constructor(private e2MgrSvc: E2ManagerService, public dialog: MatDialog) { }
+  constructor(private e2MgrSvc: E2ManagerService, private errorSvc: ErrorDialogService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.dataSource = new RANConnectionDataSource(this.e2MgrSvc);
@@ -50,6 +53,17 @@ export class RANConnectionComponent implements OnInit {
       this.dataSource = new RANConnectionDataSource(this.e2MgrSvc);
       this.dataSource.loadTable();
     });
+  }
+
+  disconnectAllRANConnections() {
+     let httpErrRes: HttpErrorResponse;
+     const aboutError = 'Disconnect all RAN Connections Failed: ';
+     this.e2MgrSvc.disconnectAllRAN().subscribe(() => {},
+                (error => {
+                    httpErrRes = error;
+                    this.errorSvc.displayError(aboutError + httpErrRes.message);
+                })
+            );
   }
 
 }
