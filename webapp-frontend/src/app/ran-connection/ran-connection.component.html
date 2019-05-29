@@ -20,6 +20,7 @@
 <div class="ranconnect__section">
   <h3 class="ranconnect__header">RAN Connection</h3>
   <button mat-raised-button (click)="openRanConnectDialog()">Connect</button>
+  <button mat-raised-button color="warn" (click)="disconnectAllRANConnections()">Disconnect All</button>
   <table mat-table [dataSource]="dataSource" class="ranconnect-table mat-elevation-z8">
     
     <ng-container matColumnDef="requestType">
