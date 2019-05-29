@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.controller;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
 import java.util.Set;
@@ -108,6 +109,20 @@ public class E2ManagerController {
 		return responses;
 	}
 
+	//TODO replace with actual functionality when available
+	@ApiOperation(value = "Disconnect all RAN Connections.")
+	@RequestMapping(value = "/disconnectAllRAN", method = RequestMethod.GET)
+	public void disconnectAllRAN(HttpServletResponse response) {
+		logger.debug("Disconnect all RAN Connections");
+		try {
+			response.sendError(501);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.", response = E2SetupResponse.class)
 	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
 	public E2SetupResponse endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
