@@ -105,11 +105,11 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = "/ncrt", method = RequestMethod.GET)
-	public NeighborCellRelationTable getNcrtInfo( //
+	public NeighborCellRelationTable getNcrt( //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
-		logger.debug("getNcrtInfo: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
+		logger.debug("getNcrt: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
 		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}

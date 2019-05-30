@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,15 +17,33 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { TestBed } from '@angular/core/testing';
 
-import { ACXappService } from './ac-xapp.service';
+ .ac__section {
+    position: relative;
+    top: -50px;
+}
 
-describe('ACXappService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+.ac__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
 
-  it('should be created', () => {
-    const service: ACXappService = TestBed.get(ACXappService);
-    expect(service).toBeTruthy();
-  });
-});
+ /* used to place form fields on separate lines/rows */
+.input-display-block {
+  display: block;
+  width: 400px;
+}
+
+.version__text {
+  color: gray;
+  font-size: 10px;
+}
+
+.update-button {
+  margin-top: 10px;
+  float: right;
+}

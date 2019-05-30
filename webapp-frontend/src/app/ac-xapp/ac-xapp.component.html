@@ -1,0 +1,56 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property and Nokia
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div class="ac__section">
+  <h3 class="ac__header">AC xApp Policy</h3>
+
+  <form [formGroup]="acForm" novalidate autocomplete="off" (ngSubmit)="updateAc(acForm.value)">
+    <div name="enforce">
+      <mat-checkbox formControlName="enforce">Enforce</mat-checkbox>
+    </div>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="Window length" formControlName="windowLength">
+      <mat-hint align="end">Sliding window length in minutes for measurement, range 1..60.</mat-hint>
+      <mat-error *ngIf="validateControl('windowLength') && hasError('windowLength', 'required')">Number is required
+      </mat-error>
+      <mat-error *ngIf="hasError('windowLength', 'pattern')">Valid number is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="Blocking rate" formControlName="blockingRate">
+      <mat-hint align="end">Connections to block if above trigger threshold, range 1..100.</mat-hint>
+      <mat-error *ngIf="validateControl('blockingRate') && hasError('blockingRate', 'required')">Number is required
+      </mat-error>
+      <mat-error *ngIf="hasError('blockingRate', 'pattern')">Valid number is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="input-display-block">
+      <input matInput type="text" placeholder="Trigger threshold" formControlName="triggerThreshold">
+      <mat-hint align="end">Number of events in window to trigger blocking, minimum 1.</mat-hint>
+      <mat-error *ngIf="validateControl('triggerThreshold') && hasError('triggerThreshold', 'required')">Number is
+        required</mat-error>
+      <mat-error *ngIf="hasError('triggerThreshold', 'pattern')">Valid number is required</mat-error>
+    </mat-form-field>
+    <div class="input-display-block">
+      <button class="mat-raised-button mat-primary update-button" [disabled]="!acForm.valid">Update</button>
+    </div>
+    <div class="input-display-block">
+      <span class="version__text">AC API version {{acVersion}}</span>
+    </div>
+</form>
+
+</div>
