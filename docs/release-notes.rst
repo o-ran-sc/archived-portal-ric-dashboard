@@ -24,6 +24,7 @@ Version 1.0.4, 30 May 2019
 --------------------------
 * Add ANR xApp neighbor cell relation table
 * Drop the pendulum xApp control screen
+* Add column sorting on xApp catalog and xApp control 
 * Add disconnect-all button to RAN connection screen
 
 Version 1.0.3, 28 May 2019
