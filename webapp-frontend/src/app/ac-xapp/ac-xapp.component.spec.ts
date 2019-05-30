@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,15 +17,29 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { TestBed } from '@angular/core/testing';
 
-import { ACXappService } from './ac-xapp.service';
+ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('ACXappService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+import { AcXappComponent } from './ac-xapp.component';
 
-  it('should be created', () => {
-    const service: ACXappService = TestBed.get(ACXappService);
-    expect(service).toBeTruthy();
+describe('AcXappComponent', () => {
+  let component: AcXappComponent;
+  let fixture: ComponentFixture<AcXappComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ AcXappComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AcXappComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

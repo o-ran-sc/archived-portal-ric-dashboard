@@ -61,28 +61,30 @@ import { FooterComponent } from './footer/footer.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
+import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    CatalogComponent,
-    SidenavListComponent,
-    CatalogCardComponent,
-    ControlCardComponent,
-    StatCardComponent,
-    ControlComponent,
-    RANConnectionComponent,
-    StatsComponent,
+    AcXappComponent,
     AdminComponent,
-    ModalEventComponent,
-    ConfigEventComponent,
-    AnrXappComponent,
-    RANConnectionDialogComponent,
     ANREditNCRDialogComponent,
+    AnrXappComponent,
+    AppComponent,
+    CatalogComponent,
+    CatalogCardComponent,
+    ConfigEventComponent,
     ConfirmDialogComponent,
+    ControlCardComponent,
+    ControlComponent,
+    ErrorDialogComponent,
     FooterComponent,
-    ErrorDialogComponent
+    LoginComponent,
+    ModalEventComponent,
+    RANConnectionComponent,
+    RANConnectionDialogComponent,
+    SidenavListComponent,
+    StatCardComponent,
+    StatsComponent
   ],
     imports: [
     AppRoutingModule,

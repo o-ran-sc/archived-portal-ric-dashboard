@@ -26,7 +26,6 @@ import { NotificationService } from './../services/ui/notification.service';
 import { XappControlRow } from '../interfaces/xapp-mgr.types';
 import { ControlAnimations } from './control.animations';
 import { ControlDataSource } from './control.datasource';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-control',
@@ -52,8 +51,11 @@ export class ControlComponent implements OnInit {
   }
 
   controlApp(app: XappControlRow): void {
+    const acXappPattern =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
     const anrXappPattern = /[Aa][Nn][Rr]/;
-    if (anrXappPattern.test(app.xapp)) {
+    if (acXappPattern.test(app.xapp)) {
+      this.router.navigate(['/ac']);
+    } else if (anrXappPattern.test(app.xapp)) {
       this.router.navigate(['/anr']);
     } else {
       this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
