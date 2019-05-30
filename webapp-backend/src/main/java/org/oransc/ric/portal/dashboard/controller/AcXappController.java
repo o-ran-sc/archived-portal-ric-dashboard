@@ -44,7 +44,7 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * Provides methods to manage policies of the Admission Control xApp, which
- * initially defines just one. All requests go via the A1 Mediatior.
+ * initially defines just one. All requests go via the A1 Mediator.
  */
 @RestController
 @RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -75,18 +75,18 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = "admctrl", method = RequestMethod.GET)
-	public Object getAdmissionControlPolicy() {
+	public Object getAdmissionControlPolicy(HttpServletResponse response) {
 		logger.debug("getAdmissionControlPolicy");
-		a1MediatorApi.a1ControllerGetHandler(AC_CONTROL_NAME);
+		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
 		return null;
 	}
 
 	/*
-	 * This controller is deliberately kept ignorant of the
-	 * ACAdmissionIntervalControl Typescript interface.
+	 * This controller is deliberately kept ignorant of the data expected by AC. The
+	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "admctrl", method = RequestMethod.PUT)
+	@RequestMapping(value = "catime", method = RequestMethod.PUT)
 	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);

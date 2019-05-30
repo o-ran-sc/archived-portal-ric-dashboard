@@ -50,7 +50,7 @@ export class ANRXappService {
 
   /**
    * Gets ANR xApp client version details
-   * @returns Observable that should yield a DashboardSuccessTransport
+   * @returns Observable that should yield a String
    */
   getVersion(): Observable<string> {
     const url = this.buildPath('version');
@@ -66,7 +66,7 @@ export class ANRXappService {
    */
   getHealthAlive(): Observable<any> {
     const url = this.buildPath('health/alive');
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, { observe: 'response' });
   }
 
   /**
@@ -75,12 +75,12 @@ export class ANRXappService {
    */
   getHealthReady(): Observable<any> {
     const url = this.buildPath('health/ready');
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, { observe: 'response' });
   }
 
     /**
    * Gets ANR xApp client version details
-   * @returns Observable that should yield a DashboardSuccessTransport
+   * @returns Observable that should yield a string
    */
   getgNodeBs(): Observable<string[]> {
     const url = this.buildPath('gnodebs');

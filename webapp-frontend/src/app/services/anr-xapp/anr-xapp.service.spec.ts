@@ -20,13 +20,13 @@
 
  import { TestBed } from '@angular/core/testing';
 
-import { AnrXappService } from './anr-xapp.service';
+import { ANRXappService } from './anr-xapp.service';
 
-describe('AnrXappService', () => {
+describe('ANRXappService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AnrXappService = TestBed.get(AnrXappService);
+    const service: ANRXappService = TestBed.get(ANRXappService);
     expect(service).toBeTruthy();
   });
 });

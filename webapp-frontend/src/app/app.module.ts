@@ -61,6 +61,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
+import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
     ANREditNCRDialogComponent,
     ConfirmDialogComponent,
     FooterComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    AcXappComponent
   ],
     imports: [
     AppRoutingModule,

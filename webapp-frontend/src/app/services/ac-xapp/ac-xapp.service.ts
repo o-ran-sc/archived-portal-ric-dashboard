@@ -21,36 +21,52 @@
  import { Injectable } from '@angular/core';
  import { HttpClient } from '@angular/common/http';
  import { Observable } from 'rxjs';
+ import { map } from 'rxjs/operators';
 import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../../interfaces/ac-xapp.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
+/**
+ * Services for calling the Dashboard's AC endpoints.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AcXappService {
 
-  private basePath = 'api/xapp/ac/';
+  private basePath = 'api/xapp/ac';
+
+  private buildPath(...args: any[]) {
+    let result = this.basePath;
+    args.forEach(part => {
+      result = result + '/' + part;
+    });
+    return result;
+  }
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
   /**
-   * Gets A1 Mediator client version details
-   * @returns Observable that should yield a SuccessTransport object
+   * Gets version details
+   * @returns Observable that should yield a String
    */
-  getVersion() {
-    // Remember that AC traffic goes via A1!
-    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'version');
+  getVersion(): Observable<string> {
+    const url = this.buildPath('version');
+    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+      // Extract the string here
+      map(res => res['data'])
+    );
   }
 
   /**
-   * Puts control admission time parameters to AC via A1
+   * Puts admission control parameters.
    * @param policy an instance of ACAdmissionIntervalControl
-   * @returns Observable that should yield an ACAdmissionIntervalControlAck
+   * @returns Observable that should yield a response code, no data
    */
-  putCaTime(policy: ACAdmissionIntervalControl): Observable<ACAdmissionIntervalControlAck> {
-    return this.httpClient.put<ACAdmissionIntervalControlAck>(this.basePath + 'catime', policy);
+  putPolicy(policy: ACAdmissionIntervalControl): Observable<any> {
+    const url = this.buildPath('catime');
+    return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
   }
 
 }
