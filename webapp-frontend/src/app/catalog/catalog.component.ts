@@ -17,12 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service'
 import { NotificationService } from './../services/ui/notification.service'
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { CatalogDataSource } from './catalog.datasource';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-catalog',
@@ -33,6 +34,7 @@ export class CatalogComponent implements OnInit{
 
   displayedColumns: string[] = ['name', 'version', 'status', 'action'];
   dataSource: CatalogDataSource;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private xappMgrSvc: XappMgrService,
@@ -41,7 +43,7 @@ export class CatalogComponent implements OnInit{
     private notification: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new CatalogDataSource(this.xappMgrSvc);
+    this.dataSource = new CatalogDataSource(this.xappMgrSvc, this.sort );
     this.dataSource.loadTable();
   }
 
