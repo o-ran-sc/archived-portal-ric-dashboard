@@ -17,16 +17,16 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
-import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { ErrorDialogService } from './../services/ui/error-dialog.service';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
-import { NotificationService } from './../services/ui/notification.service';
 import { XappControlRow } from '../interfaces/xapp-mgr.types';
+import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
+import { ErrorDialogService } from './../services/ui/error-dialog.service';
+import { NotificationService } from './../services/ui/notification.service';
 import { ControlAnimations } from './control.animations';
 import { ControlDataSource } from './control.datasource';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-control',
@@ -38,6 +38,7 @@ export class ControlComponent implements OnInit {
 
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: ControlDataSource;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private xappMgrSvc: XappMgrService,
@@ -47,7 +48,7 @@ export class ControlComponent implements OnInit {
     private notification: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new ControlDataSource(this.xappMgrSvc);
+    this.dataSource = new ControlDataSource(this.xappMgrSvc, this.sort);
     this.dataSource.loadTable();
   }
 

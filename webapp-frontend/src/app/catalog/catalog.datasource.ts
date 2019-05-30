@@ -19,12 +19,14 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs/Observable';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { MatSort } from '@angular/material';
+import { merge } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { XMXapp } from '../interfaces/xapp-mgr.types';
+import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 
 export class CatalogDataSource extends DataSource<XMXapp> {
 
@@ -34,7 +36,7 @@ export class CatalogDataSource extends DataSource<XMXapp> {
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private xappMgrSvc: XappMgrService) {
+  constructor(private xappMgrSvc: XappMgrService, private sort: MatSort ) {
     super();
   };
 
@@ -49,11 +51,38 @@ export class CatalogDataSource extends DataSource<XMXapp> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XMXapp[]> {
-    return this.xAppsSubject.asObservable();
+    const dataMutations = [
+      this.xAppsSubject.asObservable(),
+      this.sort.sortChange
+    ];
+    return merge(...dataMutations).pipe(map(() => {
+      return this.getSortedData([...this.xAppsSubject.getValue()]);
+    }));
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
     this.xAppsSubject.complete();
     this.loadingSubject.complete();
   }
+
+  private getSortedData(data: XMXapp[]) {
+    if (!this.sort.active || this.sort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      const isAsc = this.sort.direction === 'asc';
+      switch (this.sort.active) {
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'version': return compare(a.version, b.version, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
+        default: return 0;
+      }
+    });
+  }
 }
+
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+

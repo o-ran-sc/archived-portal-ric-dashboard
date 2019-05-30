@@ -22,30 +22,30 @@
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>
-  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="control-table mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="control-table mat-elevation-z8">
 
     <ng-container matColumnDef="xapp">
-      <mat-header-cell *matHeaderCellDef> xApp Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> xApp Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.xapp}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Instance Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Instance Name</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.instance.name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.instance.status}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="ip">
-      <mat-header-cell *matHeaderCellDef> IP </mat-header-cell>
+    <ng-container matColumnDef="ip" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> IP </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.instance.ip}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="port">
-      <mat-header-cell *matHeaderCellDef> Port </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Port </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.instance.port}} </mat-cell>
     </ng-container>
 

@@ -19,12 +19,14 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs/Observable';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { MatSort } from '@angular/material';
+import { merge } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { catchError, finalize, map } from 'rxjs/operators';
+import { XappControlRow, XMXapp } from '../interfaces/xapp-mgr.types';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
-import { XMXapp, XappControlRow } from '../interfaces/xapp-mgr.types';
 
 export class ControlDataSource extends DataSource<XappControlRow> {
 
@@ -34,7 +36,7 @@ export class ControlDataSource extends DataSource<XappControlRow> {
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private xappMgrSvc: XappMgrService) {
+  constructor(private xappMgrSvc: XappMgrService, private sort: MatSort) {
     super();
   };
 
@@ -49,7 +51,13 @@ export class ControlDataSource extends DataSource<XappControlRow> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XappControlRow[]> {
-    return this.xAppInstancesSubject.asObservable();
+    const dataMutations = [
+      this.xAppInstancesSubject.asObservable(),
+      this.sort.sortChange
+    ];
+    return merge(...dataMutations).pipe(map(() => {
+      return this.getSortedData([...this.xAppInstancesSubject.getValue()]);
+    }));
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
@@ -71,4 +79,26 @@ export class ControlDataSource extends DataSource<XappControlRow> {
     }
     return xAppInstances;
   }
+
+  private getSortedData(data: XappControlRow[]) {
+    if (!this.sort.active || this.sort.direction === '') {
+      return data;
+    }
+
+    return data.sort((a, b) => {
+      const isAsc = this.sort.direction === 'asc';
+      switch (this.sort.active) {
+        case 'xapp': return compare(a.xapp, b.xapp, isAsc);
+        case 'name': return compare(a.instance.name, b.instance.name, isAsc);
+        case 'status': return compare(a.instance.status, b.instance.status, isAsc);
+        case 'ip': return compare(a.instance.ip, b.instance.ip, isAsc);
+        case 'port': return compare(a.instance.port, b.instance.port, isAsc);
+        default: return 0;
+      }
+    });
+  }
+}
+
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
