@@ -17,10 +17,6 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.catalog__section {
-    position: relative;
-    top: -150px;
-}
 
 .catalog__header {
     text-align: center;
