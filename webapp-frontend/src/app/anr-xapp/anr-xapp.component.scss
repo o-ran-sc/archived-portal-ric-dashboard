@@ -18,8 +18,7 @@
  * ========================LICENSE_END===================================
  */
  .anr__section {
-    position: relative;
-    top: -50px;
+     min-height: calc(100vh - 140px);
 }
 
 .anr__header {

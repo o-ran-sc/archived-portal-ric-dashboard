@@ -17,9 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.admin__section {
-    position: relative;
-    top: -50px;
+ .admin__section {
+     min-height: calc(100vh - 140px);
 }
 
 .admin__header {

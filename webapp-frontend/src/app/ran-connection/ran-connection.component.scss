@@ -17,9 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.ranconnect__section {
-    position: relative;
-    top: -50px;
+ .ranconnect__section {
+     min-height: calc(100vh - 140px);
 }
 
 .ranconnect__header {

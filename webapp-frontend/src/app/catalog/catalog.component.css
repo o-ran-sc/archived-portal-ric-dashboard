@@ -17,9 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.catalog__section {
-    position: relative;
-    top: -150px;
+ .catalog__section {
+     min-height: calc(100vh - 140px);    
 }
 
 .catalog__header {
