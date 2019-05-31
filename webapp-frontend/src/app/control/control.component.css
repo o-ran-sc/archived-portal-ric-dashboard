@@ -17,10 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-
-.control__section {
-    position: relative;
-    top: -150px;
+ .control__section {
+     /*min-height: calc(100vh - 140px);*/
 }
 
 .control__header {
