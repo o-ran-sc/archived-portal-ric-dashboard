@@ -17,10 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-
-.control__section {
-    position: relative;
-    top: -150px;
+ .control__section {
 }
 
 .control__header {
