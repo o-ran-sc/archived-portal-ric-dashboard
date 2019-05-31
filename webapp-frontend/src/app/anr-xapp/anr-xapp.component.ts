@@ -19,16 +19,17 @@
  */
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { ANRNeighborCellRelation } from '../interfaces/anr-xapp.types';
-import { ANRXappDataSource } from './anr-xapp.datasource';
 import { ANRXappService } from '../services/anr-xapp/anr-xapp.service';
-import { ANREditNCRDialogComponent } from './anr-edit-ncr-dialog.component';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
+import { ANREditNCRDialogComponent } from './anr-edit-ncr-dialog.component';
+import { ANRXappDataSource } from './anr-xapp.datasource';
 
 @Component({
   selector: 'app-anr',
@@ -43,6 +44,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
   @ViewChild('ggNodeB') ggNodeB: ElementRef;
   @ViewChild('servingCellNrcgi') servingCellNrcgi: ElementRef;
   @ViewChild('neighborCellNrpci') neighborCellNrpci: ElementRef;
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns = ['cellIdentifierNrcgi', 'neighborCellNrpci', 'neighborCellNrcgi',
     'flagNoHo', 'flagNoXn', 'flagNoRemove', 'action'];
@@ -55,7 +57,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
     private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new ANRXappDataSource(this.anrXappService);
+    this.dataSource = new ANRXappDataSource(this.anrXappService, this.sort);
     this.dataSource.loadTable();
     // Empty string occurs first in the array of gNodeBIds
     this.anrXappService.getgNodeBs().subscribe((res: string[]) => this.gNodeBIds = res);

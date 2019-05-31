@@ -39,35 +39,35 @@
     <mat-spinner></mat-spinner>
   </div>
 
-  <table mat-table class="ncr-table mat-elevation-z8" [dataSource]="dataSource">
+  <table mat-table class="ncr-table mat-elevation-z8" [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="cellIdentifierNrcgi">
-        <mat-header-cell *matHeaderCellDef>Serving Cell NRCGI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Serving Cell NRCGI</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.servingCellNrcgi}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="neighborCellNrpci">
-        <mat-header-cell *matHeaderCellDef>Neighbor Cell NRPCI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Neighbor Cell NRPCI</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrpci}}</mat-cell>
     </ng-container>
  
     <ng-container matColumnDef="neighborCellNrcgi">
-        <mat-header-cell *matHeaderCellDef>Neighbor Cell NRCGI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Neighbor Cell NRCGI</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrcgi}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoHo">
-        <mat-header-cell *matHeaderCellDef>Flag No Handover</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Handover</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoHo}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoXn">
-        <mat-header-cell *matHeaderCellDef>Flag No Xn</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Xn</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoXn}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoRemove">
-        <mat-header-cell *matHeaderCellDef>Flag No Remove</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Remove</mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoRemove}}</mat-cell>
     </ng-container>
 
