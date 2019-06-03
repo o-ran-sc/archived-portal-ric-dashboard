@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9d19861_6d43013a",
+        "filename": "webapp-frontend/src/app/admin/admin.component.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-03T11:49:27Z",
+      "side": 0,
+      "message": "I think the entire section should still have a CSS class.  I think removing it entirely is the wrong thing to do.  For now that section  might be empty, which I don\u0027t think is harmful.",
+      "revId": "c40f0d5d74bfa57a8ee28ba818b7fcd67633177d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4f2dd41_6b47b9e0",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-03T11:49:27Z",
+      "side": 0,
+      "message": "See comments elsewhere about total removal of the outer class",
+      "revId": "c40f0d5d74bfa57a8ee28ba818b7fcd67633177d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}

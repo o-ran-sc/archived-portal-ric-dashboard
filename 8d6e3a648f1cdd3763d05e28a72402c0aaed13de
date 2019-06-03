@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68b69ef2_15708860",
+        "filename": "webapp-frontend/src/app/admin/admin.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-03T11:49:27Z",
+      "side": 1,
+      "message": "I disagree with total removal of all class/style here.  What if we want to apply something?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 5
+      },
+      "revId": "8d6e3a648f1cdd3763d05e28a72402c0aaed13de",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09f85931_dab1a4b7",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-03T11:49:27Z",
+      "side": 1,
+      "message": "Please restore class",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 5
+      },
+      "revId": "8d6e3a648f1cdd3763d05e28a72402c0aaed13de",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31db0ca1_db995d77",
+        "filename": "webapp-frontend/src/app/stats/stats.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-03T11:49:27Z",
+      "side": 1,
+      "message": "thank you for adding the header",
+      "revId": "8d6e3a648f1cdd3763d05e28a72402c0aaed13de",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
