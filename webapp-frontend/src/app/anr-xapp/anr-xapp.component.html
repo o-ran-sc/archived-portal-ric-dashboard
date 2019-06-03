@@ -23,7 +23,7 @@
   <mat-form-field>
     <mat-label>GgNodeB</mat-label>
     <!-- use a native selection widget -->
-    <select matNativeControl #ggNodeB (selectionChange)="loadNcrtPage()">
+    <select matNativeControl #ggNodeB (change)="loadNcrtPage()">
       <option value="" selected>Select..</option>
       <option *ngFor="let g of gNodeBIds" [value]="g">{{g}}</option>
     </select>
@@ -32,7 +32,7 @@
     <input matInput placeholder="Serving Cell NRCGI" #servingCellNrcgi>
   </mat-form-field>
   <mat-form-field class="input-pad-left">
-      <input matInput placeholder="Neighbor cell NRPCI" #neighborCellNrpci>
+      <input matInput placeholder="Neighbor Cell NRPCI" #neighborCellNrpci>
   </mat-form-field>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
