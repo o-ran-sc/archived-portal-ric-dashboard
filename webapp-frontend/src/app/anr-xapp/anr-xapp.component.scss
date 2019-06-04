@@ -41,8 +41,16 @@
     margin: 130px auto 0 auto;
 }
 
+.input-pad-left {
+    padding-left: 10px;
+}
+
+.input-width {
+    min-width: 250px;
+}
+
 .ncr-table {
-    width: 99%; /* 100 looks wrong */
+    width: 99%; /* 100% triggers horiz scroll bar */
     min-height: 150px;
     margin-top: 10px;
     background-color:transparent;
@@ -52,12 +60,18 @@
     color: white;
 }
 
-.input-pad-left {
-    padding-left: 10px;
+/* column classes are magically defined by Angular on the column */
+.mat-column-flagNoHo {
+    max-width: 75px;
 }
-
-.input-pad-right {
-    padding-right: 10px;
+.mat-column-flagNoXn {
+    max-width: 75px;
+}
+.mat-column-flagNoRemove {
+    max-width: 75px;
+}
+.mat-column-action {
+    max-width: 85px;
 }
 
 .version__text {

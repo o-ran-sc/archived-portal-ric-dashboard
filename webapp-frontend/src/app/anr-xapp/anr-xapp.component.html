@@ -20,18 +20,18 @@
 <div class="anr__section">
   <h3 class="anr__header">ANR xApp Neighbor Cell Relation Table</h3>
 
-  <mat-form-field>
+  <mat-form-field class="input-width">
     <mat-label>GgNodeB</mat-label>
     <!-- use a native selection widget -->
-    <select matNativeControl #ggNodeB (selectionChange)="loadNcrtPage()">
+    <select matNativeControl #ggNodeB (change)="loadNcrtPage()">
       <option value="" selected>Select..</option>
       <option *ngFor="let g of gNodeBIds" [value]="g">{{g}}</option>
     </select>
   </mat-form-field>
-  <mat-form-field class="input-pad-left">
+  <mat-form-field class="input-width input-pad-left">
     <input matInput placeholder="Serving Cell NRCGI" #servingCellNrcgi>
   </mat-form-field>
-  <mat-form-field class="input-pad-left">
+  <mat-form-field class="input-width input-pad-left">
       <input matInput placeholder="Neighbor cell NRPCI" #neighborCellNrpci>
   </mat-form-field>
 

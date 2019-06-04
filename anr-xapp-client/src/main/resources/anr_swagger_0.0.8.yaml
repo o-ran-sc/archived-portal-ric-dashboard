@@ -18,7 +18,7 @@
 swagger : '2.0'
 info :
   description : REST API specification for RIC ANR closed xAPP
-  version     : 0.0.6
+  version     : 0.0.8
   title       : RIC ANR
   license:
     name : Nokia Closed App
@@ -31,7 +31,7 @@ paths :
   /health/alive :
     get :
       summary     : Health check of ANR - Liveness probe
-      tags        :
+      tags        : 
         - health
       operationId : getHealthAlive
       responses   :
@@ -40,17 +40,17 @@ paths :
   /health/ready :
     get :
       summary     : Health check of ANR - Readiness probe
-      tags        :
+      tags        : 
         - health
       operationId : getHealthReady
       responses   :
         '200':
           description : ANR xApp is ready to serve
-  /gnodebs :
+  /ncrt/gnodebs :
     get :
       summary     : Returns list of gNodeB IDs based on NCRT in ANR
-      tags        :
-        - gnodebs
+      tags        : 
+        - ncrt
       operationId : getgNodeB
       produces  :
         - application/json
@@ -61,12 +61,12 @@ paths :
             $ref : '#/definitions/ggNodeBTable'
         '500' :
           description : Unable to retrieve gNodeBs
-  /ncrt :
+  /ncrt/servingcells :
     get :
       summary     : Returns neighbor cell relation table for all gNodeBs or based on query string
-      tags        :
+      tags        : 
         - ncrt
-      operationId : getNcrtInfo
+      operationId : getNcrt
       parameters :
         - $ref : '#/parameters/ggnodeb'
         - $ref : '#/parameters/servingCellNrcgi'
@@ -86,7 +86,7 @@ paths :
       - $ref : '#/parameters/neighCellNrpci'
     put :
       summary     : Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI
-      tags        :
+      tags        : 
         - ncrt
       operationId : modifyNcrt
       consumes   :
@@ -105,14 +105,22 @@ paths :
           description : Successfully modified neighbor cell relation
         '400' :
           description : Modification failed.
-                        { Non-existent identifier {servCellNrcgi | neighCellNrpci} in request |
-                          Invalid data in body
+                        { 
+                          Non-existent servCellNrcgi in request. |
+                          Non-existent neighCellNrpci in request.
+                        }
+        '405' :
+          description : Modification failed.
+                        {
+                          No data to udpate. | 
+                          Invalid data in BODY. |
+                          Parameter missing in BODY.
                         }
         '500' :
-          description : Modification failed
+          description : Modification failed.
     delete :
       summary     : Delete neighbor cell relation based on Source Cell NRCGI and Neighbor Cell NRPCI
-      tags        :
+      tags        : 
         - ncrt
       operationId : deleteNcrt
       responses :
@@ -120,9 +128,12 @@ paths :
           description : Successfully deleted neighbor cell relation
         '400' :
           description : Deletion failed.
-                        { Non-existent identifier {servCellNrcgi | neighCellNrpci} in request }
+                        { 
+                          Non-existent servCellNrcgi in request. |
+                          Non-existent neighCellNrpci in request.
+                        }
         '500' :
-          description : Deletion failed
+          description : Deletion failed.
 parameters :
   ggnodeb :
     type        : string
@@ -144,7 +155,7 @@ parameters :
     name        : servCellNrcgi
     description : Serving Cell Identifier (NR CGI)
     in          : path
-    required   : true
+    required   : true    
   neighCellNrpci :
     type        : string
     name        : neighCellNrpci
@@ -154,15 +165,15 @@ parameters :
 definitions :
   ggNodeBTable :
     type : object
-    properties :
-      gNodeBIds :
+    properties : 
+      gNodeBIds : 
         type   : array
         items  :
           $ref : '#/definitions/ggnodebId'
   neighborCellRelationTable :
     type : object
-    properties :
-      ncrtRelations :
+    properties : 
+      ncrtRelations : 
         type   : array
         items  :
           $ref : '#/definitions/neighborCellRelation'
@@ -172,7 +183,7 @@ definitions :
     example     : ABCDE, EFGHI
   neighborCellRelation :
     type  : object
-    required :
+    required : 
       - servingCellNrcgi
       - neighborCellNrpci
       - neighborCellNrcgi
