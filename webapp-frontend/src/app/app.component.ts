@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UiService} from './services/ui/ui.service';
 
 @Component({
@@ -28,9 +28,10 @@ import {UiService} from './services/ui/ui.service';
 export class AppComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
+  @ViewChild('mainName') mainContainer; 
+  @ViewChild('footerName') footerContainer;
 
   constructor(public ui: UiService) {
-
   }
 
   ngOnInit() {
@@ -40,7 +41,16 @@ export class AppComponent implements OnInit {
   }
 
   toggleMenu() {
+    const htmlElementMain = this.mainContainer.nativeElement as HTMLElement;
+    const htmlElementFooter = this.footerContainer.nativeElement as HTMLElement;
     this.showMenu = !this.showMenu;
+    if (this.showMenu) {
+      htmlElementMain.style.marginLeft = "420px";
+      htmlElementFooter.style.marginLeft = "420px";
+    } else {
+        htmlElementMain.style.marginLeft = "0px";
+        htmlElementFooter.style.marginLeft = "10px";
+    }
   }
 
   modeToggleSwitch() {

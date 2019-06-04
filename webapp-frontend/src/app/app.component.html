@@ -84,15 +84,14 @@
   </header>
 
   <!-- Main Content -->
-  <main class="main__container">
+  <main class="main__container" #mainName>
     <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
     <router-outlet></router-outlet>
   </main>
 
   <!-- Footer -->
-  <footer class="main__footer">
+  <footer class="main__footer" #footerName>
   	<div class="main-footer__bg" [ngClass]="{'main-footer__bg-dark': darkModeActive}"></div>
     <app-footer></app-footer>
-  </footer>
-
+  </footer> 
 </div>
