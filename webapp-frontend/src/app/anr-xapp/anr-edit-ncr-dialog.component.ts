@@ -23,7 +23,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ANRXappService } from '../services/anr-xapp/anr-xapp.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ANRNeighborCellRelation, ANRNeighborCellRelationMod } from '../interfaces/anr-xapp.types';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
     selector: 'app-ncr-edit-dialog',
@@ -37,10 +36,9 @@ export class ANREditNCRDialogComponent implements OnInit {
 
     constructor(
         private dialogRef: MatDialogRef<ANREditNCRDialogComponent>,
-        private dataService: ANRXappService, private errorService: ErrorDialogService,
-        @Inject(MAT_DIALOG_DATA) private data: ANRNeighborCellRelation) {
-        console.log('constructed with data ' + data);
-    }
+        private dataService: ANRXappService,
+        private errorService: ErrorDialogService,
+        @Inject(MAT_DIALOG_DATA) private data: ANRNeighborCellRelation) { }
 
     ngOnInit() {
         const namePattern = /^([A-Z])+([0-9])+$/;
@@ -59,31 +57,31 @@ export class ANREditNCRDialogComponent implements OnInit {
     }
 
     modifyNcr = (ncrFormValue: ANRNeighborCellRelation) => {
-      if (this.ncrDialogForm.valid) {
-        const ncrm = {} as ANRNeighborCellRelationMod;
-        // there must be a btter way
-        ncrm.neighborCellNrcgi = ncrFormValue.neighborCellNrcgi;
-        ncrm.neighborCellNrpci = ncrFormValue.neighborCellNrpci;
-        ncrm.flagNoHo = ncrFormValue.flagNoHo;
-        ncrm.flagNoXn = ncrFormValue.flagNoXn;
-        ncrm.flagNoRemove = ncrFormValue.flagNoRemove;
-        this.dataService.modifyNcr(ncrFormValue.servingCellNrcgi, ncrFormValue.neighborCellNrpci, ncrm).subscribe((val: any[]) => {},
-            (error => {
-                this.errorService.displayError('NCR update failed: ' + error.message);
-            })
-        );
-        this.dialogRef.close();
-      }
+        if (this.ncrDialogForm.valid) {
+            const ncrm = {} as ANRNeighborCellRelationMod;
+            // there must be a better way
+            ncrm.neighborCellNrcgi = ncrFormValue.neighborCellNrcgi;
+            ncrm.neighborCellNrpci = ncrFormValue.neighborCellNrpci;
+            ncrm.flagNoHo = ncrFormValue.flagNoHo;
+            ncrm.flagNoXn = ncrFormValue.flagNoXn;
+            ncrm.flagNoRemove = ncrFormValue.flagNoRemove;
+            this.dataService.modifyNcr(ncrFormValue.servingCellNrcgi, ncrFormValue.neighborCellNrpci, ncrm).subscribe((val: any[]) => { },
+                (error => {
+                    this.errorService.displayError('NCR update failed: ' + error.message);
+                })
+            );
+            this.dialogRef.close();
+        }
     }
 
-    public hasError(controlName: string, errorName: string) {
+    hasError(controlName: string, errorName: string) {
         if (this.ncrDialogForm.controls[controlName].hasError(errorName)) {
-          return true;
+            return true;
         }
         return false;
     }
 
-    public validateControl(controlName: string) {
+    validateControl(controlName: string) {
         if (this.ncrDialogForm.controls[controlName].invalid && this.ncrDialogForm.controls[controlName].touched) {
             return true;
         }

@@ -22,6 +22,7 @@ RIC Dashboard Release Notes
 
 Version 1.0.4, 30 May 2019
 --------------------------
+* Add AC xApp neighbor control screen
 * Add ANR xApp neighbor cell relation table
 * Drop the pendulum xApp control screen
 * Add column sorting on xApp catalog, xApp control, ANR 

@@ -24,11 +24,8 @@ import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
-import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { RANConnectionDataSource } from './ran-connection.datasource';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-ran-connection',
@@ -39,8 +36,10 @@ export class RANConnectionComponent implements OnInit {
   displayedColumns: string[] = ['requestType', 'ranName', 'ranIp', 'ranPort', 'responseCode', 'timeStamp'];
   dataSource: RANConnectionDataSource;
 
-  constructor(private e2MgrSvc: E2ManagerService, private errorSvc: ErrorDialogService,
-    private confirmDialogService: ConfirmDialogService, private notification: NotificationService,
+  constructor(private e2MgrSvc: E2ManagerService,
+    private errorSvc: ErrorDialogService,
+    private confirmDialogService: ConfirmDialogService,
+    private notification: NotificationService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
