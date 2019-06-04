@@ -22,7 +22,6 @@ package org.oransc.ric.portal.dashboard.config;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -52,29 +51,42 @@ public class AnrXappMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2;
+	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2, ncrtNodeB3;
 	private final GgNodeBTable gNodebTable;
 
+	private static final String gnodeb1 = "GNB:001EF5:0045FE50";
+	private static final String gnodeb2 = "GNB:001EF6:0045FE51";
+	private static final String gnodeb3 = "GNB:001EF7:0045FE52";
+
 	public AnrXappMockConfiguration() {
+
 		logger.info("Configuring mock ANR xApp client");
 		gNodebTable = new GgNodeBTable();
-		gNodebTable.addGNodeBIdsItem("A").addGNodeBIdsItem("B");
+		gNodebTable.addGNodeBIdsItem(gnodeb1).addGNodeBIdsItem(gnodeb2).addGNodeBIdsItem(gnodeb3);
 		ncrtNodeB1 = new NeighborCellRelationTable();
 		ncrtNodeB2 = new NeighborCellRelationTable();
+		ncrtNodeB3 = new NeighborCellRelationTable();
 		ncrt = new NeighborCellRelationTable();
-		String[] cells1 = { "A", "B", "C", "D" };
-		for (String s : cells1)
+		String[] neighbors1 = { "1104", "1105", "1106" };
+		for (String n : neighbors1)
 			ncrtNodeB1.addNcrtRelationsItem(
-					new NeighborCellRelation().servingCellNrcgi(s + "12345").neighborCellNrpci(s + "12346")
-							.neighborCellNrcgi(s + "12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true));
-		String[] cells2 = { "E", "F", "G", "H" };
-		for (String s : cells2)
+					new NeighborCellRelation().servingCellNrcgi(gnodeb1 + ":1100").neighborCellNrpci(n)
+							.neighborCellNrcgi(gnodeb1 + ":" + n).flagNoHo(true).flagNoXn(true).flagNoRemove(true));
+		String[] neighbors2 = { "1471", "1472", "1473" };
+		for (String n : neighbors2)
 			ncrtNodeB2.addNcrtRelationsItem(
-					new NeighborCellRelation().servingCellNrcgi(s + "12345").neighborCellNrpci(s + "12346")
-							.neighborCellNrcgi(s + "12347").flagNoHo(true).flagNoXn(true).flagNoRemove(true));
+					new NeighborCellRelation().servingCellNrcgi(gnodeb2 + ":1400").neighborCellNrpci(n)
+							.neighborCellNrcgi(gnodeb2 + ":" + n).flagNoHo(false).flagNoXn(false).flagNoRemove(false));
+		String[] neighbors3 = { "3601", "3601", "3602" };
+		for (String n : neighbors3)
+			ncrtNodeB3.addNcrtRelationsItem(
+					new NeighborCellRelation().servingCellNrcgi(gnodeb3 + ":3600").neighborCellNrpci(n)
+							.neighborCellNrcgi(gnodeb3 + ":" + n).flagNoHo(true).flagNoXn(true).flagNoRemove(true));
 		for (NeighborCellRelation ncr : ncrtNodeB1.getNcrtRelations())
 			ncrt.addNcrtRelationsItem(ncr);
 		for (NeighborCellRelation ncr : ncrtNodeB2.getNcrtRelations())
+			ncrt.addNcrtRelationsItem(ncr);
+		for (NeighborCellRelation ncr : ncrtNodeB3.getNcrtRelations())
 			ncrt.addNcrtRelationsItem(ncr);
 	}
 
@@ -107,8 +119,9 @@ public class AnrXappMockConfiguration {
 		// Swagger sends nulls; front end sends empty strings
 		when(mockApi.getNcrt((String) isNull(), (String) isNull(), (String) isNull())).thenReturn(ncrt);
 		when(mockApi.getNcrt(eq(""), any(String.class), any(String.class))).thenReturn(ncrt);
-		when(mockApi.getNcrt(startsWith("A"), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
-		when(mockApi.getNcrt(startsWith("B"), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
+		when(mockApi.getNcrt(eq(gnodeb1), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
+		when(mockApi.getNcrt(eq(gnodeb2), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
+		when(mockApi.getNcrt(eq(gnodeb3), any(String.class), any(String.class))).thenReturn(ncrtNodeB3);
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).deleteNcrt(any(String.class), any(String.class));

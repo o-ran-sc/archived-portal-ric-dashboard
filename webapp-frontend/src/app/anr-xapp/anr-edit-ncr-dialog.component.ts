@@ -41,11 +41,10 @@ export class ANREditNCRDialogComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) private data: ANRNeighborCellRelation) { }
 
     ngOnInit() {
-        const namePattern = /^([A-Z])+([0-9])+$/;
         this.ncrDialogForm = new FormGroup({
             servingCellNrcgi: new FormControl(this.data.servingCellNrcgi), // readonly
             neighborCellNrpci: new FormControl(this.data.neighborCellNrpci), // readonly
-            neighborCellNrcgi: new FormControl(this.data.neighborCellNrcgi, [Validators.required, Validators.pattern(namePattern)]),
+            neighborCellNrcgi: new FormControl(this.data.neighborCellNrcgi, [Validators.required]),
             flagNoHo: new FormControl(this.data.flagNoHo),
             flagNoXn: new FormControl(this.data.flagNoXn),
             flagNoRemove: new FormControl(this.data.flagNoRemove)
