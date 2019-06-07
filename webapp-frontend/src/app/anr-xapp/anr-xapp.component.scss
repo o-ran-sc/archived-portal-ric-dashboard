@@ -17,7 +17,11 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
- .anr__section {
+ @import '~@angular/material/theming';
+ 
+$custom-typography: mat-typography-config();
+
+.anr__section {
     position: relative;
     top: -50px;
 }
@@ -58,6 +62,12 @@
 
 .ncr-table__bg-dark {
     color: white;
+}
+
+/*Refer to https://material.angular.io/guide/typography for angular material typography details*/
+.table-header {
+  font-size: mat-font-size($custom-typography, body-1);
+  font-family: mat-font-family($custom-typography);
 }
 
 /* column classes are magically defined by Angular */

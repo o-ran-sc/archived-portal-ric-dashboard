@@ -62,6 +62,7 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
+import { ACXappService } from './services/ac-xapp/ac-xapp.service';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
       XappMgrService,
       DashboardService,
       E2ManagerService,
+      ACXappService,
       ErrorDialogService
     ],
   bootstrap: [AppComponent]
