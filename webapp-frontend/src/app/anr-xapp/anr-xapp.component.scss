@@ -17,6 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+ @import '~@angular/material/theming';
+ 
+$config: mat-typography-config();
+
+.table-header {
+  font-size: mat-font-size($config, body-1);
+  font-family: mat-font-family($config);
+}
+ 
  .anr__section {
     position: relative;
     top: -50px;

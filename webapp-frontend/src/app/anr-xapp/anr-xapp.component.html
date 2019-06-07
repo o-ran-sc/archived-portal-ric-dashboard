@@ -17,6 +17,7 @@
   limitations under the License.
   ========================LICENSE_END===================================
 -->
+
 <div class="anr__section">
   <h3 class="anr__header">ANR xApp Neighbor Cell Relation Table</h3>
 
@@ -42,37 +43,37 @@
   <table mat-table class="ncr-table mat-elevation-z8" [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="cellIdentifierNrcgi">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Serving Cell NRCGI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Serving Cell NRCGI</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.servingCellNrcgi}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="neighborCellNrpci">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Neighbor Cell NRPCI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Neighbor Cell NRPCI</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrpci}}</mat-cell>
     </ng-container>
  
     <ng-container matColumnDef="neighborCellNrcgi">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Neighbor Cell NRCGI</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Neighbor Cell NRCGI</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.neighborCellNrcgi}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoHo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Handover</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Flag No Handover</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoHo}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoXn">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Xn</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Flag No Xn</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoXn}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="flagNoRemove">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Flag No Remove</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header><span class="table-header">Flag No Remove</span></mat-header-cell>
         <mat-cell *matCellDef="let ncr">{{ncr.flagNoRemove}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef><span class="mat-typography">Action</span></mat-header-cell>
       <mat-cell class="action-cell" *matCellDef="let ncr">
         <button mat-icon-button (click)="modifyNcr(ncr)">
           <mat-icon>edit</mat-icon>
