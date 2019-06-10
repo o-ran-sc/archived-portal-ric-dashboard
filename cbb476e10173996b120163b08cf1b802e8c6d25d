@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "969eb07a_39d632ac",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:12:31Z",
+      "side": 1,
+      "message": "Why is this not table-header class?",
+      "range": {
+        "startLine": 76,
+        "startChar": 53,
+        "endLine": 76,
+        "endChar": 69
+      },
+      "revId": "cbb476e10173996b120163b08cf1b802e8c6d25d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eae2e5a_9738be4b",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:12:31Z",
+      "side": 1,
+      "message": "maybe name this as $custom-typography ?",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 7
+      },
+      "revId": "cbb476e10173996b120163b08cf1b802e8c6d25d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e2bba7d_7de8a7d7",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:12:31Z",
+      "side": 1,
+      "message": "maybe this could appear in the scss file below the other things?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 2
+      },
+      "revId": "cbb476e10173996b120163b08cf1b802e8c6d25d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db7ce77b_b480414e",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:12:31Z",
+      "side": 1,
+      "message": "This is one size SMALLER than the body font?",
+      "range": {
+        "startLine": 25,
+        "startChar": 36,
+        "endLine": 25,
+        "endChar": 42
+      },
+      "revId": "cbb476e10173996b120163b08cf1b802e8c6d25d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
