@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1950b880_57e198b0",
+        "filename": "webapp-frontend/src/app/app.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:17:01Z",
+      "side": 1,
+      "message": "Should the div main__container have #mainName also?",
+      "revId": "295418829b00313fffe5f2e956c2e557ee5e2078",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12723353_42df8632",
+        "filename": "webapp-frontend/src/app/app.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:17:01Z",
+      "side": 1,
+      "message": "Please clean up all trailing whitespace - VS Code will warn you about it",
+      "range": {
+        "startLine": 96,
+        "startChar": 11,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "295418829b00313fffe5f2e956c2e557ee5e2078",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f519c7c4_de46cc4c",
+        "filename": "webapp-frontend/src/app/app.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-10T18:17:01Z",
+      "side": 1,
+      "message": "what about headerContainer ?",
+      "revId": "295418829b00313fffe5f2e956c2e557ee5e2078",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
