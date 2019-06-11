@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {UiService} from './services/ui/ui.service';
 
 @Component({
@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
   darkModeActive: boolean;
 
   constructor(public ui: UiService) {
-
   }
 
   ngOnInit() {
