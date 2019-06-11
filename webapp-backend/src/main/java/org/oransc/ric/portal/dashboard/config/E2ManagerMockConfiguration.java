@@ -29,6 +29,7 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
+import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,8 +48,11 @@ public class E2ManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	private final GetNodebResponse nodebResponse;
+	
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
+		nodebResponse = new GetNodebResponse().ip("1.2.3.4").port(123).ranName("myRan");
 	}
 
 	private ApiClient apiClient() {
@@ -75,6 +79,10 @@ public class E2ManagerMockConfiguration {
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
+
+		doAnswer(i -> {
+			return nodebResponse;
+		}).when(mockApi).getNb(any(String.class));
 
 		doAnswer(i -> {
 			return null;

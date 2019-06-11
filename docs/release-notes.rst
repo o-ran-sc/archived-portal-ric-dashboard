@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.4, 4 June 2019
+Version 1.0.4, 11 June 2019
 --------------------------
 * Add AC xApp neighbor control screen
 * Add ANR xApp neighbor cell relation table
@@ -28,6 +28,7 @@ Version 1.0.4, 4 June 2019
 * Add column sorting on xApp catalog, xApp control, ANR 
 * Add disconnect-all button to RAN connection screen
 * Update ANR xApp client to spec version 0.0.8
+* Update E2 manager client to spec version 20190611
 
 Version 1.0.3, 28 May 2019
 --------------------------
