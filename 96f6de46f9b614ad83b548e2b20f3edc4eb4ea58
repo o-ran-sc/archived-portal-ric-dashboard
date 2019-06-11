@@ -34,6 +34,24 @@
       "revId": "96f6de46f9b614ad83b548e2b20f3edc4eb4ea58",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "522edac6_fd9411c0",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-06-11T20:25:31Z",
+      "side": 1,
+      "message": "Oh, it _will_ pass validation (for which I\u0027m starting to push out the validation job) as it is, it\u0027s just not the specific intent behind the value.\n\nIt\u0027s really supposed to be a form of record keeping so that people can go look at the original decisions (if they need to) to find out how a project got approved.\n\nI mostly wanted to bring it up as it really should be fixed (all of the INFO files you pushed, not just this one, I just looked here first).",
+      "parentUuid": "f1bbd556_2e7d4094",
+      "revId": "96f6de46f9b614ad83b548e2b20f3edc4eb4ea58",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     }
   ]
 }
