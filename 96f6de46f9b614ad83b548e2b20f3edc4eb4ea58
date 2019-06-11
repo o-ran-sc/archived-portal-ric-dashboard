@@ -16,6 +16,24 @@
       "revId": "96f6de46f9b614ad83b548e2b20f3edc4eb4ea58",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1bbd556_2e7d4094",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-11T20:20:33Z",
+      "side": 1,
+      "message": "Interesting.  I just copied from Acumos/CDS where the link is generic. If you have the specific link I\u0027ll be glad to revise.",
+      "parentUuid": "28f694b3_406d19d2",
+      "revId": "96f6de46f9b614ad83b548e2b20f3edc4eb4ea58",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
