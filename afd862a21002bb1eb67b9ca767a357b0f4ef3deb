@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4f0af71_b832a4ff",
+        "filename": "webapp-frontend/src/app/anr-xapp/anr-xapp.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-11T18:47:58Z",
+      "side": 1,
+      "message": "I believe there is no need to add a span element here, just add the class to the \u003cmat-header-cell element.  Also see\nhttps://stackoverflow.com/questions/46154838/angular-material-2-table-header-center-alignment",
+      "range": {
+        "startLine": 46,
+        "startChar": 59,
+        "endLine": 46,
+        "endChar": 72
+      },
+      "revId": "afd862a21002bb1eb67b9ca767a357b0f4ef3deb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
