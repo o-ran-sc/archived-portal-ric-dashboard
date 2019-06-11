@@ -31,6 +31,7 @@ Version 1.0.4, 13 June 2019
 * Update E2 manager client to spec version 20190611
 * Adjust CSS and HTML for main container positioning
 * Revise config property keys to use URL (not basepath)
+* Left menu overlap main content fix
 
 Version 1.0.3, 28 May 2019
 --------------------------

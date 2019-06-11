@@ -25,7 +25,7 @@
 <form [formGroup]="ranDialogForm" novalidate autocomplete="off" (ngSubmit)="setupConnection(ranDialogForm.value)">
   <div mat-dialog-content>
     <div name="rantype">
-      <label id="request-type-radio-group-label">Select the RAN type:</label>
+      <label id="request-type-radio-group-label">RAN type:</label>
       <mat-radio-group aria-label="RAN type" formControlName="ranType">
         <mat-radio-button value="endc">EN-DC</mat-radio-button>
         <mat-radio-button value="x2">X2</mat-radio-button>

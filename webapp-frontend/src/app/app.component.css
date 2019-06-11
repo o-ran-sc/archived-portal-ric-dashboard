@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,11 +34,11 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     height: 100%;
 }
- 
+
 mat-sidenav {
     width: 250px;
 }
- 
+
 main {
     padding: 10px;
 }
@@ -119,6 +119,18 @@ main {
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 255, 0.2);
 }
 
+mat-drawer {
+  width: 340px;
+}
+
+mat-drawer-content {
+  overflow: overlay;
+}
+
+.menumargin-top {
+    margin-top: 10px;
+}
+
 .greeting__text {
   grid-area: greeting;
   font-size: 1.25rem;
@@ -172,7 +184,7 @@ main {
 }
 
 .home_bg_image{
-    height:40em; 
+    height:40em;
     background-size:cover;
     width:auto;
     background-image:url('../assets/intelligence.png');
@@ -277,7 +289,7 @@ main {
   cursor: pointer;
 }
 
-.logo__icon {  
+.logo__icon {
   height: 2rem;
   margin-left: 1rem;
 }
