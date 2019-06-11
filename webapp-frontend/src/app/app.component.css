@@ -119,6 +119,10 @@ main {
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 255, 0.2);
 }
 
+.menumargin-top{
+    margin-top: 10px;
+}
+
 .greeting__text {
   grid-area: greeting;
   font-size: 1.25rem;
