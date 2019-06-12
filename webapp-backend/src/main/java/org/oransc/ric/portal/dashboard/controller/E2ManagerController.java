@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
+import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -40,6 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,8 +53,8 @@ import io.swagger.annotations.ApiOperation;
  * Provides methods to contact the E2 Manager.
  * 
  * As of this writing the E2 interface only supports setup connection and check
- * health actions; it does not support query or close operations on existing
- * connections. So this class mocks up some of that functionality.
+ * health actions, and query by RAN name. But it does not support get-all, oo
+ * this class mocks up some of that functionality.
  */
 @Configuration
 @RestController
@@ -60,6 +62,9 @@ import io.swagger.annotations.ApiOperation;
 public class E2ManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	// Path parameters
+	private static final String PP_RANNAME = "ranName";
 
 	// Populated by the autowired constructor
 	private final HealthCheckApi e2HealthCheckApi;
@@ -106,6 +111,13 @@ public class E2ManagerController {
 	public Iterable<E2SetupResponse> getRequests() {
 		logger.debug("getRequests");
 		return responses;
+	}
+
+	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
+	@RequestMapping(value = "/nodeb/{" + PP_RANNAME + "}", method = RequestMethod.GET)
+	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
+		logger.debug("getNb {}", ranName);
+		return e2NodebApi.getNb(ranName);
 	}
 
 	// TODO replace with actual delete all RAN connections functionality
