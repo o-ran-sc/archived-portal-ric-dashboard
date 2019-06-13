@@ -20,6 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
@@ -31,7 +33,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -44,18 +45,18 @@ public class E2ManagerConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String e2mgrBasepath;
+	private final String e2mgrUrl;
 
 	@Autowired
-	public E2ManagerConfiguration(@Value("${e2mgr.basepath}") final String e2mgrBasepath) {
-		Assert.notNull(e2mgrBasepath, "base path must not be null");
-		logger.info("Configuring E2 Manager at base path {}", e2mgrBasepath);
-		this.e2mgrBasepath = e2mgrBasepath;
+	public E2ManagerConfiguration(@Value("${e2mgr.url}") final String url) throws MalformedURLException {
+		logger.info("Configuring E2 Manager at base path {}", url);
+		new URL(url);
+		this.e2mgrUrl = url;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(e2mgrBasepath);
+		apiClient.setBasePath(e2mgrUrl);
 		return apiClient;
 	}
 

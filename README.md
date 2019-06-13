@@ -2,13 +2,35 @@
 
 This webapp is built with Angular 7 and Spring-Boot 2.
 
-## Getting started
+## Deployment configuration
+
+The application expects a JSON-formatted configuration in an
+environment variable SPRING_APPLICATION_JSON with the following:
+
+    {
+      "a1med": {
+        "url": "http://1.2.3.4:56"
+      },
+      "anrxapp": {
+        "url" : "http://1.2.3.4:56"
+      },
+      "e2mgr": {
+        "url": "http://1.2.3.4:56"
+      },
+      "xappmgr": {
+        "url": "http://1.2.3.4:56"
+      }
+    }
+
+## Development guide
+
+This section gives a quickstart guide for developers.
 
 ### Check prerequisites
 
 1. Java development kit (JDK), version 1.8 or later
 2. Maven dependency-management tool, version 3.4 or later
-  
+
 ### Build and launch the web app
 
     mvn -Ddocker.skip=true clean install
@@ -17,7 +39,7 @@ This webapp is built with Angular 7 and Spring-Boot 2.
 
 Then open a browser on http://localhost:8080
 
-In addition to the above, you can run the Angular server 
+In addition to the above, you can run the Angular server
 for debugging the frontend and backend separately:
 
     cd webapp-frontend

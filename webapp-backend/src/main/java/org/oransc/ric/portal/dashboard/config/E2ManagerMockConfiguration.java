@@ -49,7 +49,7 @@ public class E2ManagerMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final GetNodebResponse nodebResponse;
-	
+
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
 		nodebResponse = new GetNodebResponse().ip("1.2.3.4").port(123).ranName("myRan");

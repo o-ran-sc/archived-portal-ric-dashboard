@@ -20,6 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
@@ -31,7 +33,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -44,18 +45,18 @@ public class AnrXappConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String anrXappBasepath;
+	private final String anrXappUrl;
 
 	@Autowired
-	public AnrXappConfiguration(@Value("${anrxapp.basepath}") final String anrXappBasepath) {
-		Assert.notNull(anrXappBasepath, "base path must not be null");
-		logger.info("Configuring ANR client at base path {}", anrXappBasepath);
-		this.anrXappBasepath = anrXappBasepath;
+	public AnrXappConfiguration(@Value("${anrxapp.url}") final String url) throws MalformedURLException {
+		logger.info("Configuring ANR client at URL {}", url);
+		new URL(url);
+		this.anrXappUrl = url;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(anrXappBasepath);
+		apiClient.setBasePath(anrXappUrl);
 		return apiClient;
 	}
 

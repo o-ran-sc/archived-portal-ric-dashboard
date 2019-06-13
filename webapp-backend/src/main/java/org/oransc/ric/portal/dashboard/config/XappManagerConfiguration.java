@@ -20,6 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.oransc.ric.xappmgr.client.api.HealthApi;
 import org.oransc.ric.xappmgr.client.api.XappApi;
@@ -31,7 +33,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -45,18 +46,18 @@ public class XappManagerConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String xappMgrBasepath;
+	private final String xappMgrUrl;
 
 	@Autowired
-	public XappManagerConfiguration(@Value("${xappmgr.basepath}") final String xappMgrBasepath) {
-		Assert.notNull(xappMgrBasepath, "base path must not be null");
-		logger.info("Configuring xApp Manager at base path {}", xappMgrBasepath);
-		this.xappMgrBasepath = xappMgrBasepath;
+	public XappManagerConfiguration(@Value("${xappmgr.url}") final String url) throws MalformedURLException {
+		logger.info("Configuring xApp Manager at base path {}", url);
+		new URL(url);
+		this.xappMgrUrl = url;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(xappMgrBasepath);
+		apiClient.setBasePath(xappMgrUrl);
 		return apiClient;
 	}
 
