@@ -2,13 +2,30 @@
 
 This webapp is built with Angular 7 and Spring-Boot 2.
 
-## Getting started
+## Deployment configuration
+
+The application expects an application.properties file to be provided,
+probably mounted as a file from a Kubernetes configuration map, with
+the following content:
+
+    # A1 Mediator
+    a1med.url = http://A1-URL
+    # ANR xApp
+    anrxapp.url = http://ANR-URL
+    # E2 Manager
+    e2mgr.url = http://E2-URL
+    # Xapp Manager
+    xappmgr.url = http://MGR-URL
+
+## Development guide
+
+This section gives a quickstart guide for developers.
 
 ### Check prerequisites
 
 1. Java development kit (JDK), version 1.8 or later
 2. Maven dependency-management tool, version 3.4 or later
-  
+
 ### Build and launch the web app
 
     mvn -Ddocker.skip=true clean install
@@ -17,7 +34,7 @@ This webapp is built with Angular 7 and Spring-Boot 2.
 
 Then open a browser on http://localhost:8080
 
-In addition to the above, you can run the Angular server 
+In addition to the above, you can run the Angular server
 for debugging the frontend and backend separately:
 
     cd webapp-frontend
