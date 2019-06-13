@@ -20,6 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
@@ -30,7 +32,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -44,18 +45,18 @@ public class A1MediatorConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String a1medBasepath;
+	private final String a1medUrl;
 
 	@Autowired
-	public A1MediatorConfiguration(@Value("${a1med.basepath}") final String a1medBasepath) {
-		Assert.notNull(a1medBasepath, "base path must not be null");
-		logger.info("Configuring A1 Mediator at base path {}", a1medBasepath);
-		this.a1medBasepath = a1medBasepath;
+	public A1MediatorConfiguration(@Value("${a1med.url}") final String url) throws MalformedURLException {
+		logger.info("Configuring A1 Mediator at URL {}", url);
+		new URL(url);
+		this.a1medUrl = url;
 	}
 
 	private ApiClient apiClient() {
 		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(a1medBasepath);
+		apiClient.setBasePath(a1medUrl);
 		return apiClient;
 	}
 

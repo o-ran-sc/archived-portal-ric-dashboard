@@ -2,7 +2,29 @@
 
 This webapp is built with Angular 7 and Spring-Boot 2.
 
-## Getting started
+## Deployment configuration
+
+The application expects a JSON-formatted configuration in an 
+environment variable SPRING_APPLICATION_JSON with the following:
+
+    {
+      "a1med": {
+        "url": "http://1.2.3.4:56"
+      },
+      "anrxapp": {
+        "url" : "http://1.2.3.4:56"
+      },
+      "e2mgr": {
+        "url": "http://1.2.3.4:56"
+      },
+      "xappmgr": {
+        "url": "http://1.2.3.4:56"
+      }
+    }
+
+## Development guide
+
+This section gives a quickstart guide for developers.
 
 ### Check prerequisites
 
