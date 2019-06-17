@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.4, 13 June 2019
+Version 1.0.4, 17 June 2019
 ---------------------------
 * Add AC xApp neighbor control screen
 * Add ANR xApp neighbor cell relation table
@@ -31,6 +31,7 @@ Version 1.0.4, 13 June 2019
 * Update E2 manager client to spec version 20190611
 * Adjust CSS and HTML for main container positioning
 * Revise config property keys to use URL (not basepath)
+* Rework screen titles to be top left and modest font size
 
 Version 1.0.3, 28 May 2019
 --------------------------
