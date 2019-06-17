@@ -18,7 +18,9 @@
   ========================LICENSE_END===================================
   -->
 <div class="catalog__section">
-  <h3 class="catalog__header">xApp Catalog</h3>
+  <mat-card-header>
+    <mat-card-title>xApp Catalog</mat-card-title>
+  </mat-card-header>
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
     <mat-spinner></mat-spinner>
   </div>

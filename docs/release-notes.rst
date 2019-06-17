@@ -33,6 +33,7 @@ Version 1.0.4, 17 June 2019
 * Revise config property keys to use URL (not basepath)
 * Left menu overlap main content fix
 * Extend back-end controllers to return error details
+* Rework screen titles to be top left and modest font size
 
 Version 1.0.3, 28 May 2019
 --------------------------
