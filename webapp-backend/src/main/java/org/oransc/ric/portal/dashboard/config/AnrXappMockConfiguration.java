@@ -97,6 +97,7 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
+	// Use the same name as regular configuration
 	public HealthApi anrHealthApi() {
 		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
@@ -111,7 +112,8 @@ public class AnrXappMockConfiguration {
 	}
 
 	@Bean
-	public NcrtApi ncrtMockApi() {
+	// Use the same name as regular configuration
+	public NcrtApi anrNcrtApi() {
 		ApiClient apiClient = apiClient();
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);

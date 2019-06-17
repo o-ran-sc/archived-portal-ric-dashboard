@@ -49,7 +49,7 @@ public class AnrXappConfiguration {
 
 	@Autowired
 	public AnrXappConfiguration(@Value("${anrxapp.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring ANR client at URL {}", url);
+		logger.info("Configuring ANR client at base URL {}", url);
 		new URL(url);
 		this.anrXappUrl = url;
 	}
@@ -61,11 +61,13 @@ public class AnrXappConfiguration {
 	}
 
 	@Bean
+	// The bean (method) name must be globally unique
 	public HealthApi anrHealthApi() {
 		return new HealthApi(apiClient());
 	}
 
 	@Bean
+	// The bean (method) name must be globally unique
 	public NcrtApi anrNcrtApi() {
 		return new NcrtApi(apiClient());
 	}
