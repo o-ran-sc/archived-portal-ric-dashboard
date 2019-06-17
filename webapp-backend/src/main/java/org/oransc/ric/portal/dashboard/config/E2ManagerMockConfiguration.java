@@ -62,7 +62,8 @@ public class E2ManagerMockConfiguration {
 	}
 
 	@Bean
-	public HealthCheckApi e2HealthCheckApi() {
+	// Use the same name as regular configuration
+	public HealthCheckApi e2MgrHealthCheckApi() {
 		ApiClient apiClient = apiClient();
 		HealthCheckApi mockApi = mock(HealthCheckApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
@@ -75,7 +76,8 @@ public class E2ManagerMockConfiguration {
 	}
 
 	@Bean
-	public NodebApi e2NodebApi() {
+	// Use the same name as regular configuration
+	public NodebApi e2MgrNodebApi() {
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);

@@ -21,6 +21,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { NotificationService } from './../services/ui/notification.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -37,7 +38,9 @@ export class RANConnectionDialogComponent implements OnInit {
 
     constructor(
         private dialogRef: MatDialogRef<RANConnectionDialogComponent>,
-        private service: E2ManagerService, private errorService: ErrorDialogService,
+        private service: E2ManagerService,
+        private errorService: ErrorDialogService,
+        private notifService: NotificationService,
         @Inject(MAT_DIALOG_DATA) public data: E2SetupRequest) {
     }
 
@@ -60,7 +63,6 @@ export class RANConnectionDialogComponent implements OnInit {
     }
 
     public setupConnection = (ranFormValue) => {
-
         if (this.ranDialogForm.valid) {
             this.executeSetupConnection(ranFormValue);
         }
@@ -75,21 +77,28 @@ export class RANConnectionDialogComponent implements OnInit {
             ranPort: ranFormValue.ranPort
         };
         if (ranFormValue.ranType === 'endc') {
-            this.service.endcSetup(setupRequest).subscribe((val: any[]) => {},
+            this.service.endcSetup(setupRequest).subscribe(
+                (response: any) => {
+                    this.notifService.success('Endc connect succeeded!');
+                    this.dialogRef.close();
+                },
                 (error => {
                     httpErrRes = error;
                     this.errorService.displayError(aboutError + httpErrRes.message);
                 })
             );
         } else {
-            this.service.x2Setup(setupRequest).subscribe((val: any[]) => {},
+            this.service.x2Setup(setupRequest).subscribe(
+                (response: any) => {
+                    this.notifService.success('X2 connect succeeded!');
+                    this.dialogRef.close();
+                },
                 (error => {
                     httpErrRes = error;
                     this.errorService.displayError(aboutError + httpErrRes.message);
                 })
             );
         }
-        this.dialogRef.close();
     }
 
     public hasError(controlName: string, errorName: string) {

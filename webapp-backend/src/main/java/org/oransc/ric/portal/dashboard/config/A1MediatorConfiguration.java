@@ -49,7 +49,7 @@ public class A1MediatorConfiguration {
 
 	@Autowired
 	public A1MediatorConfiguration(@Value("${a1med.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring A1 Mediator at URL {}", url);
+		logger.info("Configuring A1 Mediator at base URL {}", url);
 		new URL(url);
 		this.a1medUrl = url;
 	}
@@ -61,6 +61,7 @@ public class A1MediatorConfiguration {
 	}
 
 	@Bean
+	// The bean (method) name must be globally unique
 	public A1MediatorApi a1MediatorApi() {
 		return new A1MediatorApi(apiClient());
 	}
