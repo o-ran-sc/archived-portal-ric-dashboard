@@ -33,28 +33,30 @@ import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.E2SetupRequestType;
 import org.oransc.ric.portal.dashboard.model.E2SetupResponse;
-import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Provides methods to contact the E2 Manager.
+ * Proxies calls from the front end to the E2 Manager API. All methods answer
+ * 502 on failure: <blockquote>HTTP server received an invalid response from a
+ * server it consulted when acting as a proxy or gateway.</blockquote>
  * 
- * As of this writing the E2 interface only supports setup connection and check
- * health actions, and query by RAN name. But it does not support get-all, oo
- * this class mocks up some of that functionality.
+ * As of this writing the E2 interface does not support get-all, so this class
+ * mocks up some of that functionality.
  */
 @Configuration
 @RestController
@@ -101,11 +103,19 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public void getE2ManagerHealth(HttpServletResponse response) {
-		e2HealthCheckApi.healthGet();
-		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
+	public Object healthGet(HttpServletResponse response) {
+		logger.debug("healthGet");
+		try {
+			e2HealthCheckApi.healthGet();
+			response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
+			return null;
+		} catch (HttpStatusCodeException ex) {
+			logger.warn("healthGet failed: {}", ex.toString());
+			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
+		}
 	}
 
+	// TODO replace with actual functionality
 	@ApiOperation(value = "Gets the unique requests submitted to the E2 manager.", response = E2SetupResponse.class, responseContainer = "List")
 	@RequestMapping(value = "/setup", method = RequestMethod.GET)
 	public Iterable<E2SetupResponse> getRequests() {
@@ -115,12 +125,17 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
 	@RequestMapping(value = "/nodeb/{" + PP_RANNAME + "}", method = RequestMethod.GET)
-	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
+	public Object getNb(@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
-		return e2NodebApi.getNb(ranName);
+		try {
+			return e2NodebApi.getNb(ranName);
+		} catch (HttpStatusCodeException ex) {
+			logger.warn("getNb failed: {}", ex.toString());
+			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
+		}
 	}
 
-	// TODO replace with actual delete all RAN connections functionality
+	// TODO replace with actual functionality
 	@ApiOperation(value = "Disconnect all RAN Connections.")
 	@RequestMapping(value = "/disconnectAllRAN", method = RequestMethod.DELETE)
 	public void disconnectAllRANConnections() {
@@ -130,44 +145,48 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.", response = E2SetupResponse.class)
 	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
-	public E2SetupResponse endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public Object endcSetup(@RequestBody SetupRequest setupRequest) {
 		logger.debug("endcSetup {}", setupRequest);
-		int responseCode = -1;
 		try {
 			assertNotEmpty(setupRequest.getRanIp());
 			assertNotEmpty(setupRequest.getRanName());
 			assertNotNull(setupRequest.getRanPort());
-			e2NodebApi.endcSetup(setupRequest);
-			responseCode = e2NodebApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
-			logger.warn("endcSetup failed", ex);
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			responseCode = HttpServletResponse.SC_BAD_REQUEST;
+			return new E2SetupResponse(E2SetupRequestType.ENDC, setupRequest, HttpServletResponse.SC_BAD_REQUEST);
 		}
-		E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.ENDC, setupRequest, responseCode);
-		responses.add(r);
-		return r;
+		try {
+			e2NodebApi.endcSetup(setupRequest);
+			E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.ENDC, setupRequest,
+					e2NodebApi.getApiClient().getStatusCode().value());
+			responses.add(r);
+			return r;
+		} catch (HttpStatusCodeException ex) {
+			logger.warn("endcSetup failed: {}", ex.toString());
+			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
+		}
 	}
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.", response = E2SetupResponse.class)
 	@RequestMapping(value = "/x2Setup", method = RequestMethod.POST)
-	public IDashboardResponse x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public Object x2Setup(@RequestBody SetupRequest setupRequest) {
 		logger.debug("x2Setup {}", setupRequest);
-		int responseCode = -1;
 		try {
 			assertNotEmpty(setupRequest.getRanIp());
 			assertNotEmpty(setupRequest.getRanName());
 			assertNotNull(setupRequest.getRanPort());
-			e2NodebApi.x2Setup(setupRequest);
-			responseCode = e2NodebApi.getApiClient().getStatusCode().value();
 		} catch (Exception ex) {
-			logger.warn("x2Setup failed", ex);
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			responseCode = HttpServletResponse.SC_BAD_REQUEST;
+			return new E2SetupResponse(E2SetupRequestType.ENDC, setupRequest, HttpServletResponse.SC_BAD_REQUEST);
 		}
-		E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.X2, setupRequest, responseCode);
-		responses.add(r);
-		return r;
+		try {
+			e2NodebApi.x2Setup(setupRequest);
+			E2SetupResponse r = new E2SetupResponse(E2SetupRequestType.X2, setupRequest,
+					e2NodebApi.getApiClient().getStatusCode().value());
+			responses.add(r);
+			return r;
+		} catch (HttpStatusCodeException ex) {
+			logger.warn("x2Setup failed: {}", ex.toString());
+			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
+		}
 	}
 
 }

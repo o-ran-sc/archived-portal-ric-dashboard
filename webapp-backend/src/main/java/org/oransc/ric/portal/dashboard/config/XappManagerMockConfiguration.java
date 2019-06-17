@@ -73,7 +73,8 @@ public class XappManagerMockConfiguration {
 	}
 
 	@Bean
-	public HealthApi xappHealthMockApi() {
+	// Use the same name as regular configuration
+	public HealthApi xappMgrHealthApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		HealthApi mockApi = mock(HealthApi.class);
@@ -88,7 +89,8 @@ public class XappManagerMockConfiguration {
 	}
 
 	@Bean
-	public XappApi xappMgrMockApi() {
+	// Use the same name as regular configuration
+	public XappApi xappMgrXappApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 

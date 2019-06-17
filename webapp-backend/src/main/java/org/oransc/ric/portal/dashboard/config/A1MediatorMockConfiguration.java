@@ -55,6 +55,7 @@ public class A1MediatorMockConfiguration {
 	}
 
 	@Bean
+	// Use the same name as regular configuration
 	public A1MediatorApi a1MediatorApi() {
 		ApiClient apiClient = apiClient();
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
