@@ -49,7 +49,7 @@ public class E2ManagerConfiguration {
 
 	@Autowired
 	public E2ManagerConfiguration(@Value("${e2mgr.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring E2 Manager at base path {}", url);
+		logger.info("Configuring E2 Manager at base URL {}", url);
 		new URL(url);
 		this.e2mgrUrl = url;
 	}
@@ -61,12 +61,14 @@ public class E2ManagerConfiguration {
 	}
 
 	@Bean
-	public HealthCheckApi e2HealthCheckApi() {
+	// The bean (method) name must be globally unique
+	public HealthCheckApi e2MgrHealthCheckApi() {
 		return new HealthCheckApi(apiClient());
 	}
 
 	@Bean
-	public NodebApi e2NodebApi() {
+	// The bean (method) name must be globally unique
+	public NodebApi e2MgrNodebApi() {
 		return new NodebApi(apiClient());
 	}
 

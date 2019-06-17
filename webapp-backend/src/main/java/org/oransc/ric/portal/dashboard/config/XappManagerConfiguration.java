@@ -50,7 +50,7 @@ public class XappManagerConfiguration {
 
 	@Autowired
 	public XappManagerConfiguration(@Value("${xappmgr.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring xApp Manager at base path {}", url);
+		logger.info("Configuring xApp Manager at base URL {}", url);
 		new URL(url);
 		this.xappMgrUrl = url;
 	}
@@ -65,7 +65,8 @@ public class XappManagerConfiguration {
 	 * @return A HealthApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public HealthApi xappHealthApi() {
+	// The bean (method) name must be globally unique
+	public HealthApi xappMgrHealthApi() {
 		return new HealthApi(apiClient());
 	}
 
@@ -73,7 +74,8 @@ public class XappManagerConfiguration {
 	 * @return An XappApi with an ApiClient configured from properties
 	 */
 	@Bean
-	public XappApi xappMgrApi() {
+	// The bean (method) name must be globally unique
+	public XappApi xappMgrXappApi() {
 		return new XappApi(apiClient());
 	}
 }
