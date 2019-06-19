@@ -29,9 +29,12 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.xappmgr.client.api.HealthApi;
 import org.oransc.ric.xappmgr.client.api.XappApi;
 import org.oransc.ric.xappmgr.client.invoker.ApiClient;
+import org.oransc.ric.xappmgr.client.model.AllXappConfig;
 import org.oransc.ric.xappmgr.client.model.AllXapps;
+import org.oransc.ric.xappmgr.client.model.ConfigMetadata;
 import org.oransc.ric.xappmgr.client.model.SubscriptionRequest;
 import org.oransc.ric.xappmgr.client.model.SubscriptionResponse;
+import org.oransc.ric.xappmgr.client.model.XAppConfig;
 import org.oransc.ric.xappmgr.client.model.XAppInfo;
 import org.oransc.ric.xappmgr.client.model.Xapp;
 import org.oransc.ric.xappmgr.client.model.Xapp.StatusEnum;
@@ -54,22 +57,24 @@ public class XappManagerMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final AllXapps allXapps;
+	private final AllXappConfig allXappConfigs;
 
 	public XappManagerMockConfiguration() {
 		logger.info("Configuring mock xApp Manager");
-		Xapp ac = new Xapp().name("Admission Control").version("v3").status(StatusEnum.FAILED);
-		ac.addInstancesItem(
-				new XappInstance().name("cdef-3456").ip("3.4.5.6").port(200).status(XappInstance.StatusEnum.RUNNING));
-		Xapp an = new Xapp().name("ANR Control").version("v0").status(StatusEnum.SUPERSEDED);
-		an.addInstancesItem(
-				new XappInstance().name("fedc-8765").ip("8.7.6.5").port(400).status(XappInstance.StatusEnum.RUNNING));
-		Xapp dc = new Xapp().name("Dual Connectivity").version("v2").status(StatusEnum.DELETED);
-		dc.addInstancesItem(
-				new XappInstance().name("def0-6789").ip("6.7.8.9").port(300).status(XappInstance.StatusEnum.COMPLETED));
+		final String[] appNames = { "AdmissionControl", "Automatic Neighbor Relation", "Dual Connectivity" };
+		final String configJson = " { \"config\" : \"example\" }";
+		final String descriptorJson = " { \"descriptor\" : \"example\" }";
+		allXappConfigs = new AllXappConfig();
 		allXapps = new AllXapps();
-		allXapps.add(ac);
-		allXapps.add(an);
-		allXapps.add(dc);
+		for (String n : appNames) {
+			ConfigMetadata metadata = new ConfigMetadata().configName("config-" + n).name(n).namespace("namespace");
+			XAppConfig config = new XAppConfig().config(configJson).descriptor(descriptorJson).metadata(metadata);
+			allXappConfigs.add(config);
+			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
+			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("1.2.3.4").port(200)
+					.status(XappInstance.StatusEnum.RUNNING));
+			allXapps.add(xapp);
+		}
 	}
 
 	@Bean
@@ -97,13 +102,15 @@ public class XappManagerMockConfiguration {
 		XappApi mockApi = mock(XappApi.class);
 		when(mockApi.getApiClient()).thenReturn(mockClient);
 
-		SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
-				.id("subid").version(1);
-		when(mockApi.addSubscription(any(SubscriptionRequest.class))).thenReturn(subRes);
+		when(mockApi.getAllXappConfig()).thenReturn(allXappConfigs);
+
+		when(mockApi.createXappConfig(any(XAppConfig.class))).thenReturn(new XAppConfig());
+
+		when(mockApi.modifyXappConfig(any(XAppConfig.class))).thenReturn(new XAppConfig());
 
 		doAnswer(i -> {
 			return null;
-		}).when(mockApi).deleteSubscription(any(String.class));
+		}).when(mockApi).deleteXappConfig(any(ConfigMetadata.class));
 
 		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(new Xapp());
 
@@ -115,6 +122,14 @@ public class XappManagerMockConfiguration {
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).undeployXapp(any(String.class));
+
+		SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
+				.id("subid").version(1);
+		when(mockApi.addSubscription(any(SubscriptionRequest.class))).thenReturn(subRes);
+
+		doAnswer(i -> {
+			return null;
+		}).when(mockApi).deleteSubscription(any(String.class));
 
 		return mockApi;
 	}
