@@ -34,6 +34,7 @@ Version 1.0.4, 19 June 2019
 * Left menu overlap main content fix
 * Extend back-end controllers to return error details
 * Add feature resilient to malformed instance data
+* Extend Xapp Controller with config endpoints
 
 Version 1.0.3, 28 May 2019
 --------------------------
