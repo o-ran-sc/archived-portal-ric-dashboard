@@ -25,7 +25,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
-import { XappControlRow, XMXapp } from '../interfaces/xapp-mgr.types';
+import { XappControlRow, XMXapp, XMXappInstance } from '../interfaces/xapp-mgr.types';
 import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
 
 export class ControlDataSource extends DataSource<XappControlRow> {
@@ -35,6 +35,15 @@ export class ControlDataSource extends DataSource<XappControlRow> {
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
+
+  emptyInstances: XMXappInstance =
+    { ip: null,
+      name: null,
+      port: null,
+      status: null,
+      rxMessages: [],
+      txMessages: [],
+    };
 
   constructor(private xappMgrSvc: XappMgrService, private sort: MatSort) {
     super();
@@ -47,7 +56,7 @@ export class ControlDataSource extends DataSource<XappControlRow> {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(xApps => this.xAppInstancesSubject.next(this.getInstance(xApps)) )
+      .subscribe(xApps => this.xAppInstancesSubject.next(this.getInstance(xApps)))
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XappControlRow[]> {
@@ -66,15 +75,24 @@ export class ControlDataSource extends DataSource<XappControlRow> {
   }
 
   getInstance(allxappdata: XMXapp[]) {
-    const xAppInstances: XappControlRow[]= [];
+    const xAppInstances: XappControlRow[] = [];
     for (const xappindex in allxappdata) {
       const instancelist = allxappdata[xappindex].instances;
-      for (const instanceindex in instancelist) {
+      if (!instancelist) {
         var instance: XappControlRow = {
           xapp: allxappdata[xappindex].name,
-          instance: instancelist[instanceindex]
+          instance: this.emptyInstances
         }
         xAppInstances.push(instance);
+      }
+      else {
+        for (const instanceindex in instancelist) {
+          var instance: XappControlRow = {
+            xapp: allxappdata[xappindex].name,
+            instance: instancelist[instanceindex]
+          }
+          xAppInstances.push(instance);
+        }
       }
     }
     return xAppInstances;
