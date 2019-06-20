@@ -83,6 +83,10 @@ public class E2ManagerMockConfiguration {
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 
 		doAnswer(i -> {
+			return null;
+		}).when(mockApi).nodebDelete();
+
+		doAnswer(i -> {
 			return nodebResponse;
 		}).when(mockApi).getNb(any(String.class));
 

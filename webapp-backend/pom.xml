@@ -47,7 +47,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
-			<version>20190611-SNAPSHOT</version>
+			<version>20190620-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.o-ran-sc.ric.xappmgr.client</groupId>

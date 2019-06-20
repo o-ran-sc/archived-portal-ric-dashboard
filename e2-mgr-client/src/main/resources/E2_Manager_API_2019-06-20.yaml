@@ -1,8 +1,8 @@
 # ========================LICENSE_START=================================
 # O-RAN-SC
-# %%
+#
 # Copyright (C) 2019 AT&T Intellectual Property and Nokia
-# %%
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -117,7 +117,21 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ErrorResponse'  
+  '/nodeb':
+    delete:
+      tags:
+        - nodeb
+      summary: Close all connections to the RANs and delete the data from the nodeb-rnib DB
+      responses:
+        '204':
+          description: Successful operation
+        '500':
+          description: Internal Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'  
   /health:
     get:
       tags:

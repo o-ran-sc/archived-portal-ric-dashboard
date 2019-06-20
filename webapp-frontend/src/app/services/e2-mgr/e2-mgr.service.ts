@@ -62,8 +62,12 @@ export class E2ManagerService {
     return this.httpClient.post(this.basePath + 'x2Setup', req);
   }
 
-  disconnectAllRAN() {
-    return this.httpClient.delete((this.basePath + 'disconnectAllRAN'), { observe: 'response' });
+  /**
+   * Sends a request to drop all RAN connections
+   * @returns Observable
+   */
+  nodebDelete() {
+    return this.httpClient.delete((this.basePath + 'nodeb'), { observe: 'response' });
   }
 
 }
