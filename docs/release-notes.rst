@@ -20,21 +20,23 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.4, 19 June 2019
+Version 1.0.4, 20 June 2019
 ---------------------------
 * Add AC xApp neighbor control screen
 * Add ANR xApp neighbor cell relation table
 * Drop the pendulum xApp control screen
 * Add column sorting on xApp catalog, xApp control, ANR
 * Add disconnect-all button to RAN connection screen
+* Extend E2 service with disconnect-all method
 * Update ANR xApp client to spec version 0.0.8
-* Update E2 manager client to spec version 20190611
+* Update E2 manager client to spec version 20190620
 * Adjust CSS and HTML for main container positioning
 * Revise config property keys to use URL (not basepath)
 * Left menu overlap main content fix
 * Extend back-end controllers to return error details
 * Add feature resilient to malformed instance data
 * Extend Xapp Controller with config endpoints
+* Add build number to dashboard version string
 
 Version 1.0.3, 28 May 2019
 --------------------------

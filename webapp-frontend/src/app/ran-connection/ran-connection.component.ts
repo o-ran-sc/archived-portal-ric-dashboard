@@ -63,7 +63,7 @@ export class RANConnectionComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.e2MgrSvc.disconnectAllRAN().subscribe(
+          this.e2MgrSvc.nodebDelete().subscribe(
             response => {
               if (response.status === 200) {
                 this.notification.success('Disconnect all RAN Connections Succeeded!');

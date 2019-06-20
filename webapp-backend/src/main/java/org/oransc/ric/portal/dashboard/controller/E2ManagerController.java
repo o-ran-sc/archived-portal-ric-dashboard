@@ -135,11 +135,12 @@ public class E2ManagerController {
 		}
 	}
 
-	// TODO replace with actual functionality
-	@ApiOperation(value = "Disconnect all RAN Connections.")
-	@RequestMapping(value = "/disconnectAllRAN", method = RequestMethod.DELETE)
-	public void disconnectAllRANConnections() {
-		logger.debug("disconnectAllRANConnections");
+	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
+	@RequestMapping(value = "/nodeb", method = RequestMethod.DELETE)
+	public void nodebDelete() {
+		logger.debug("nodebDelete");
+		e2NodebApi.nodebDelete();
+		// TODO: remove this mock functionality
 		responses.clear();
 	}
 
