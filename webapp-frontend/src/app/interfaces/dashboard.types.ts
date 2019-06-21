@@ -18,9 +18,16 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by the Dashboard
+// Models of data used by Dashboard admin services
 
 export interface DashboardSuccessTransport {
   status: number;
   data: string;
+}
+
+export interface DashboardUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  status: string;
 }
