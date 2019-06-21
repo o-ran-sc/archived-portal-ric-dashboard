@@ -23,17 +23,20 @@ import java.lang.invoke.MethodHandles;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.oransc.ric.plt.appmgr.client.api.HealthApi;
+import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.plt.appmgr.client.model.AllDeployableXapps;
+import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
+import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
+import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
+import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
+import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
+import org.oransc.ric.plt.appmgr.client.model.Xapp;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.model.AppTransport;
+import org.oransc.ric.portal.dashboard.model.DashboardDeployableXapps;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
-import org.oransc.ric.xappmgr.client.api.HealthApi;
-import org.oransc.ric.xappmgr.client.api.XappApi;
-import org.oransc.ric.xappmgr.client.model.AllXappConfig;
-import org.oransc.ric.xappmgr.client.model.AllXapps;
-import org.oransc.ric.xappmgr.client.model.ConfigMetadata;
-import org.oransc.ric.xappmgr.client.model.XAppConfig;
-import org.oransc.ric.xappmgr.client.model.XAppInfo;
-import org.oransc.ric.xappmgr.client.model.Xapp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,14 +54,14 @@ import org.springframework.web.client.HttpStatusCodeException;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Proxies calls from the front end to the xApp Manager API. All methods answer
+ * Proxies calls from the front end to the App Manager API. All methods answer
  * 502 on failure: <blockquote>HTTP server received an invalid response from a
  * server it consulted when acting as a proxy or gateway.</blockquote>
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xappmgr", produces = MediaType.APPLICATION_JSON_VALUE)
-public class XappManagerController {
+@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/appmgr", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AppManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -67,7 +70,7 @@ public class XappManagerController {
 	private final XappApi xappApi;
 
 	@Autowired
-	public XappManagerController(final HealthApi healthApi, final XappApi xappApi) {
+	public AppManagerController(final HealthApi healthApi, final XappApi xappApi) {
 		Assert.notNull(healthApi, "health API must not be null");
 		Assert.notNull(xappApi, "xapp API must not be null");
 		this.healthApi = healthApi;
@@ -161,14 +164,31 @@ public class XappManagerController {
 		}
 	}
 
-	@ApiOperation(value = "Returns the status of all xapps.", response = AllXapps.class)
+	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
+	@RequestMapping(value = "/xapps/list", method = RequestMethod.GET)
+	public Object getAvailableXapps() {
+		logger.debug("getAvailableXapps");
+		try {
+			AllDeployableXapps appNames = xappApi.listAllXapps();
+			// Answer a collection of structure instead of string
+			DashboardDeployableXapps apps = new DashboardDeployableXapps();
+			for (String n : appNames)
+				apps.add(new AppTransport(n));
+			return apps;
+		} catch (HttpStatusCodeException ex) {
+			logger.error("getAvailableXapps failed: {}", ex.toString());
+			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
+		}
+	}
+
+	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@RequestMapping(value = "/xapps", method = RequestMethod.GET)
-	public Object getAllXapps() {
-		logger.debug("getAllXapps");
+	public Object getDeployedXapps() {
+		logger.debug("getDeployedXapps");
 		try {
 			return xappApi.getAllXapps();
 		} catch (HttpStatusCodeException ex) {
-			logger.error("getAllXapps failed: {}", ex.toString());
+			logger.error("getDeployedXapps failed: {}", ex.toString());
 			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
 		}
 	}

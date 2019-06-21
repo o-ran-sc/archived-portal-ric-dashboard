@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by the xApp Manager
+// Models of data used by the App Manager
 
 export interface XMSubscription {
   eventType: string;
@@ -41,7 +41,12 @@ export interface XMXappInstance {
   txMessages: Array<string>;
 }
 
-export interface XMXapp {
+export interface XMDeployableApp {
+  name: string;
+  version: string;
+}
+
+export interface XMDeployedApp {
   name: string;
   status: string;
   version: string;

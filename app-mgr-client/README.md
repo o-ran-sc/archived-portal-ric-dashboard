@@ -1,7 +1,7 @@
-# XApp Manager Client Generator
+# App Manager Client Generator
 
 This projects generates a REST client library from the Swagger specification
-file stored here and packages it in a jar.
+file stored in src/main/resources and packages it in a jar.
 
 ## Eclipse and STS Users
 

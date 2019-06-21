@@ -25,32 +25,32 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
-import { XMXapp } from '../interfaces/xapp-mgr.types';
-import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { XMDeployableApp } from '../interfaces/app-mgr.types';
 
-export class CatalogDataSource extends DataSource<XMXapp> {
+export class CatalogDataSource extends DataSource<XMDeployableApp> {
 
-  private xAppsSubject = new BehaviorSubject<XMXapp[]>([]);
+  private xAppsSubject = new BehaviorSubject<XMDeployableApp[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private xappMgrSvc: XappMgrService, private sort: MatSort ) {
+  constructor(private appMgrSvc: AppMgrService, private sort: MatSort) {
     super();
-  };
+  }
 
   loadTable() {
     this.loadingSubject.next(true);
-    this.xappMgrSvc.getAll()
+    this.appMgrSvc.getDeployable()
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(xApps => this.xAppsSubject.next(xApps) )
+      .subscribe(xApps => this.xAppsSubject.next(xApps));
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<XMXapp[]> {
+  connect(collectionViewer: CollectionViewer): Observable<XMDeployableApp[]> {
     const dataMutations = [
       this.xAppsSubject.asObservable(),
       this.sort.sortChange
@@ -65,24 +65,23 @@ export class CatalogDataSource extends DataSource<XMXapp> {
     this.loadingSubject.complete();
   }
 
-  private getSortedData(data: XMXapp[]) {
+  private getSortedData(data: XMDeployableApp[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
-
-    return data.sort((a, b) => {
+    return data.sort((a: XMDeployableApp, b: XMDeployableApp) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'version': return compare(a.version, b.version, isAsc);
-        case 'status': return compare(a.status, b.status, isAsc);
+        case 'name': return this.compare(a.name, b.name, isAsc);
+        case 'version': return this.compare(a.version, b.version, isAsc);
         default: return 0;
       }
     });
   }
-}
 
-function compare(a, b, isAsc) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  private compare(a: string, b: string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
 }
 

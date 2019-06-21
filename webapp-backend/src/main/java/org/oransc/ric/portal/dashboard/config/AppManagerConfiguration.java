@@ -23,9 +23,9 @@ import java.lang.invoke.MethodHandles;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.oransc.ric.xappmgr.client.api.HealthApi;
-import org.oransc.ric.xappmgr.client.api.XappApi;
-import org.oransc.ric.xappmgr.client.invoker.ApiClient;
+import org.oransc.ric.plt.appmgr.client.api.HealthApi;
+import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 @Profile("!mock")
-public class XappManagerConfiguration {
+public class AppManagerConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -49,7 +49,7 @@ public class XappManagerConfiguration {
 	private final String xappMgrUrl;
 
 	@Autowired
-	public XappManagerConfiguration(@Value("${xappmgr.url}") final String url) throws MalformedURLException {
+	public AppManagerConfiguration(@Value("${xappmgr.url}") final String url) throws MalformedURLException {
 		logger.info("Configuring xApp Manager at base URL {}", url);
 		new URL(url);
 		this.xappMgrUrl = url;

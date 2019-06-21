@@ -20,20 +20,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { XMXappInfo, XMXapp} from '../../interfaces/xapp-mgr.types';
-
+import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
 
 @Injectable()
-export class XappMgrService {
+export class AppMgrService {
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
-  private basePath = 'api/xappmgr/xapps';
+  private basePath = 'api/appmgr/xapps';
 
-  getAll(): Observable<XMXapp[]>{
-    return this.httpClient.get<XMXapp[]>(this.basePath)
+  getDeployable(): Observable<XMDeployableApp[]> {
+    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/list');
+  }
+
+  getDeployed(): Observable<XMDeployedApp[]> {
+    return this.httpClient.get<XMDeployedApp[]>(this.basePath);
   }
 
   deployXapp(name: string) {
