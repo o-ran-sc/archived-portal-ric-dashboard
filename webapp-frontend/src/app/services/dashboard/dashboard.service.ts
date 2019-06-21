@@ -19,17 +19,19 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { DashboardSuccessTransport, DashboardUser } from '../../interfaces/dashboard.types';
 
 @Injectable({
   providedIn: 'root'
 })
 
 /**
- * Services to query the dashboard's healthcheck controller.
+ * Services to query the dashboard's admin endpoints.
  */
 export class DashboardService {
 
-  private basePath = 'api/dashboard/';
+  private basePath = 'api/admin/';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
@@ -39,16 +41,24 @@ export class DashboardService {
    * Checks app health
    * @returns Observable that should yield a DashboardSuccessTransport
    */
-  getHealth() {
-    return this.httpClient.get(this.basePath + 'health');
+  getHealth(): Observable<DashboardSuccessTransport> {
+    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'health');
   }
 
   /**
    * Gets Dashboard version details
    * @returns Observable that should yield a DashboardSuccessTransport object
    */
-  getVersion() {
-    return this.httpClient.get(this.basePath + 'version');
+  getVersion(): Observable<DashboardSuccessTransport> {
+    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'version');
+  }
+
+  /**
+   * Gets Dashboard users
+   * @returns Observable that should yield a DashboardUser array
+   */
+  getUsers(): Observable<DashboardUser[]> {
+    return this.httpClient.get<DashboardUser[]>(this.basePath + 'user');
   }
 
 }

@@ -28,5 +28,6 @@ public abstract class DashboardConstants {
 	public static final String ENDPOINT_PREFIX = "/api/";
 	public static final String HEALTHCHECK_PATH = "health";
 	public static final String VERSION_PATH = "version";
+	public static final String USER_PATH = "user";
 
 }

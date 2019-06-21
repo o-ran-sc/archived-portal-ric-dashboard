@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.4, 20 June 2019
+Version 1.0.4, 21 June 2019
 ---------------------------
 * Add AC xApp neighbor control screen
 * Add ANR xApp neighbor cell relation table
@@ -37,6 +37,7 @@ Version 1.0.4, 20 June 2019
 * Add feature resilient to malformed instance data
 * Extend Xapp Controller with config endpoints
 * Add build number to dashboard version string
+* Move mock admin screen user data to backend
 
 Version 1.0.3, 28 May 2019
 --------------------------

@@ -19,15 +19,15 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { AdminService } from '../services/admin/admin.service';
+import { DashboardService } from '../services/dashboard/dashboard.service';
+import { DashboardUser } from '../interfaces/dashboard.types';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
-
+export class AdminComponent implements OnInit {
 
   usersettings = {
     columns: {
@@ -52,9 +52,11 @@ export class AdminComponent {
 
   usersource: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: AdminService) {
-    const data = this.service.getData();
-    this.usersource.load(data);
+  constructor(private service: DashboardService) {
+  }
+
+  ngOnInit() {
+    this.service.getUsers().subscribe((res: DashboardUser[]) => this.usersource.load(res));
   }
 
   onDeleteUserConfirm(event): void {
