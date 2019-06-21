@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49c435e0_caa6b2de",
+        "filename": "webapp-frontend/src/app/admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "please clean up this dangling comma",
+      "range": {
+        "startLine": 39,
+        "startChar": 44,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e46d90a_00cc116d",
+        "filename": "webapp-frontend/src/app/admin/admin.component.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "please name this user.component.css",
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cce016bb_9982c6a3",
+        "filename": "webapp-frontend/src/app/admin/admin.component.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "could we use \"user\" instead of \"admin\" for now please?",
+      "range": {
+        "startLine": 20,
+        "startChar": 1,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3451f9ca_9ded2cf3",
+        "filename": "webapp-frontend/src/app/admin/admin.component.css",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "could we please call it the user table?",
+      "range": {
+        "startLine": 42,
+        "startChar": 1,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cae8d59_f76a5c0a",
+        "filename": "webapp-frontend/src/app/admin/admin.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "please name this file user.component.html",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 2
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acf35e4a_2dcf876a",
+        "filename": "webapp-frontend/src/app/admin/admin.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "Please name this UserComponent and the file similarly",
+      "range": {
+        "startLine": 38,
+        "startChar": 13,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19601fe0_62ef79b8",
+        "filename": "webapp-frontend/src/app/admin/admin.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "Possibly UserDataSource",
+      "range": {
+        "startLine": 52,
+        "startChar": 26,
+        "endLine": 52,
+        "endChar": 41
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d40a1dde_ad44eb53",
+        "filename": "webapp-frontend/src/app/admin/admin.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "Trailing comma?",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "601e4ec3_9963c662",
+        "filename": "webapp-frontend/src/app/admin/admin.datasource.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "UserDataSource, please",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "259b7ed6_1ff7bfa7",
+        "filename": "webapp-frontend/src/app/admin/admin.datasource.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "dashboardSvc maybe ?",
+      "range": {
+        "startLine": 39,
+        "startChar": 22,
+        "endLine": 39,
+        "endChar": 30
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a77692_45ad394f",
+        "filename": "webapp-frontend/src/app/admin/admin.datasource.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T20:18:53Z",
+      "side": 1,
+      "message": "Please add type arguments.  a and b are strings; isAsc is boolean.  You can copy from the Catalog code :)",
+      "range": {
+        "startLine": 86,
+        "startChar": 17,
+        "endLine": 86,
+        "endChar": 21
+      },
+      "revId": "369d4322d5568344273bc89dff6a6e5caa8b5d1d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
