@@ -49,7 +49,7 @@ import { RANConnectionDialogComponent } from './ran-connection/ran-connection-di
 import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { StatsComponent } from './stats/stats.component';
-import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './admin/user.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { StatCardComponent } from './ui/stat-card/stat-card.component';
@@ -61,11 +61,14 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
+import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+
 
 @NgModule({
   declarations: [
     AcXappComponent,
-    AdminComponent,
+    UserComponent,
     ANREditNCRDialogComponent,
     AnrXappComponent,
     AppComponent,
@@ -83,7 +86,9 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
     RANConnectionDialogComponent,
     SidenavListComponent,
     StatCardComponent,
-    StatsComponent
+    StatsComponent,
+    AddDashboardUserDialogComponent,
+    EditDashboardUserDialogComponent
   ],
     imports: [
     AppRoutingModule,
@@ -140,7 +145,9 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
     RANConnectionDialogComponent,
     ANREditNCRDialogComponent,
     ConfirmDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    AddDashboardUserDialogComponent,
+    EditDashboardUserDialogComponent
     ],
   providers: [
       UiService,
