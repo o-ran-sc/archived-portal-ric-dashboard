@@ -28,7 +28,7 @@ limitations under the License.
 		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.anrxapp.client</groupId>
+	<groupId>org.o-ran-sc.ric.xapp.anr.client</groupId>
 	<artifactId>anr-xapp-client</artifactId>
 	<name>RIC ANR xApp client</name>
 	<version>0.0.8-SNAPSHOT</version>

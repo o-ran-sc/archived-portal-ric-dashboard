@@ -25,18 +25,13 @@
   <table mat-table [dataSource]="dataSource" matSort class="catalog-table mat-elevation-z8">
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> xApp Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> App Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="version">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> xApp version </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Version </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.version}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">

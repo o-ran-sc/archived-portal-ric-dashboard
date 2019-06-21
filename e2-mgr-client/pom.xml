@@ -28,7 +28,7 @@ limitations under the License.
 		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.e2mgr.client</groupId>
+	<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>
 	<artifactId>e2-mgr-client</artifactId>
 	<name>RIC E2 Manager client</name>
 	<version>20190620-SNAPSHOT</version>

@@ -20,8 +20,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { XappControlRow } from '../interfaces/xapp-mgr.types';
-import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { XappControlRow } from '../interfaces/app-mgr.types';
+import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from './../services/ui/error-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
@@ -41,14 +41,14 @@ export class ControlComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private xappMgrSvc: XappMgrService,
+    private appMgrSvc: AppMgrService,
     private router: Router,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private notification: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new ControlDataSource(this.xappMgrSvc, this.sort);
+    this.dataSource = new ControlDataSource(this.appMgrSvc, this.sort);
     this.dataSource.loadTable();
   }
 
@@ -68,7 +68,7 @@ export class ControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy xApp ' + app.xapp + '?')
       .afterClosed().subscribe(res => {
         if (res) {
-          this.xappMgrSvc.undeployXapp(app.xapp).subscribe(
+          this.appMgrSvc.undeployXapp(app.xapp).subscribe(
             response => {
               this.dataSource.loadTable();
               switch (response.status) {
