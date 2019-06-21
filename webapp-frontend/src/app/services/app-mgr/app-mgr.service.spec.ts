@@ -19,13 +19,13 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { XappMgrService } from './xapp-mgr.service';
+import { AppMgrService } from './app-mgr.service';
 
-describe('XappMgrService', () => {
+describe('AppMgrService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: XappMgrService = TestBed.get(XappMgrService);
+    const service: AppMgrService = TestBed.get(AppMgrService);
     expect(service).toBeTruthy();
   });
 });

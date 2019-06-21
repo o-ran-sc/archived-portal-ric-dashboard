@@ -28,17 +28,17 @@ limitations under the License.
 		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.xappmgr.client</groupId>
-	<artifactId>xapp-mgr-client</artifactId>
-	<name>RIC xApp Manager client</name>
-	<version>0.1.4-SNAPSHOT</version>
+	<groupId>org.o-ran-sc.ric.plt.appmgr.client</groupId>
+	<artifactId>app-mgr-client</artifactId>
+	<name>RIC App Manager client</name>
+	<version>0.1.5-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Jenkins invokes maven with -Dbuild.number=.. -->
 		<build.number>0</build.number>
 		<!-- same as groupId BUT without hyphens -->
-		<client.base.package.name>org.oransc.ric.xappmgr.client</client.base.package.name>
+		<client.base.package.name>org.oransc.ric.plt.appmgr.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>
@@ -104,7 +104,7 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/xapp_manager_rest_api_v0_1_4.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/xapp_manager_rest_api_v0_1_5.yaml</inputSpec>
 							<language>java</language>
 							<configOptions>
 								<groupId>${project.groupId}</groupId>

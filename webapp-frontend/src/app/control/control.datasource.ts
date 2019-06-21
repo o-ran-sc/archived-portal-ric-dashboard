@@ -25,8 +25,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
-import { XappControlRow, XMXapp, XMXappInstance } from '../interfaces/xapp-mgr.types';
-import { XappMgrService } from '../services/xapp-mgr/xapp-mgr.service';
+import { XappControlRow, XMDeployedApp, XMXappInstance } from '../interfaces/app-mgr.types';
+import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 
 export class ControlDataSource extends DataSource<XappControlRow> {
 
@@ -45,18 +45,18 @@ export class ControlDataSource extends DataSource<XappControlRow> {
       txMessages: [],
     };
 
-  constructor(private xappMgrSvc: XappMgrService, private sort: MatSort) {
+  constructor(private appMgrSvc: AppMgrService, private sort: MatSort) {
     super();
-  };
+  }
 
   loadTable() {
     this.loadingSubject.next(true);
-    this.xappMgrSvc.getAll()
+    this.appMgrSvc.getDeployed()
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(xApps => this.xAppInstancesSubject.next(this.getInstance(xApps)))
+      .subscribe(xApps => this.xAppInstancesSubject.next(this.getInstance(xApps)));
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XappControlRow[]> {
@@ -74,12 +74,12 @@ export class ControlDataSource extends DataSource<XappControlRow> {
     this.loadingSubject.complete();
   }
 
-  getInstance(allxappdata: XMXapp[]) {
+  getInstance(allxappdata: XMDeployedApp[]) {
     const xAppInstances: XappControlRow[] = [];
     for (const xappindex in allxappdata) {
       const instancelist = allxappdata[xappindex].instances;
       if (!instancelist) {
-        var instance: XappControlRow = {
+        const instance: XappControlRow = {
           xapp: allxappdata[xappindex].name,
           instance: this.emptyInstances
         }
