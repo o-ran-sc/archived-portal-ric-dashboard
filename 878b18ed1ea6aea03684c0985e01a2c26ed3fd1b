@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c21f00b_dc2336c1",
+        "filename": "webapp-frontend/src/app/admin/admin.component.css",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T15:29:00Z",
+      "side": 1,
+      "message": "Is this still used, or can the header styles be dropped?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "878b18ed1ea6aea03684c0985e01a2c26ed3fd1b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc194c09_37d8dcbb",
+        "filename": "webapp-frontend/src/app/admin/admin.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-21T15:29:00Z",
+      "side": 1,
+      "message": "This adds a mat card header, but does not encapsulate the whole screen in a mat card via \u003cmat-card\u003e and \u003cmat-card-content\u003e tags.",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 22
+      },
+      "revId": "878b18ed1ea6aea03684c0985e01a2c26ed3fd1b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
