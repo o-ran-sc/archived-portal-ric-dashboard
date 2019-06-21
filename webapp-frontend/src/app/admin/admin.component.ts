@@ -17,54 +17,65 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../services/dashboard/dashboard.service';
-import { DashboardUser } from '../interfaces/dashboard.types';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { DashboardUser } from './../interfaces/dashboard.types';
+import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
+import { NotificationService } from './../services/ui/notification.service';
+import { AdminDataSource } from './admin.datasource';
+import { AddDashboardUserDialogComponent } from './add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+
 export class AdminComponent implements OnInit {
 
-  usersettings = {
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      firstName: {
-        title: 'First Name',
-        type: 'string',
-      },
-      lastName: {
-        title: 'Last Name',
-        type: 'string',
-      },
-      status: {
-        title: 'Status',
-        type: 'string',
-      },
-    },
-  };
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'status','action'];
+  dataSource: AdminDataSource;
+  @ViewChild(MatSort) sort: MatSort;
 
-  usersource: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: DashboardService) {
-  }
+  constructor(
+    private dashboardSvc: DashboardService,
+    private confirmDialogService: ConfirmDialogService,
+    private errorService: ErrorDialogService,
+    private notification: NotificationService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.service.getUsers().subscribe((res: DashboardUser[]) => this.usersource.load(res));
+    this.dataSource = new AdminDataSource(this.dashboardSvc, this.sort);
+    this.dataSource.loadTable();
   }
 
-  onDeleteUserConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+  editUser(user: DashboardUser) {
+    const dialogRef = this.dialog.open(EditDashboardUserDialogComponent, {
+      width: '450px',
+      data: user
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataSource.loadTable();
+    });
+  }
+    
+
+  deleteUser() {
+    const aboutError = 'Not implemented yet';
+    this.errorService.displayError(aboutError);
   }
 
+  addUser() {
+    const dialogRef = this.dialog.open(AddDashboardUserDialogComponent, {
+      width: '450px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataSource.loadTable();
+    });
+  }
 }
+

@@ -61,6 +61,9 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
+import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -83,7 +86,9 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
     RANConnectionDialogComponent,
     SidenavListComponent,
     StatCardComponent,
-    StatsComponent
+    StatsComponent,
+    AddDashboardUserDialogComponent,
+    EditDashboardUserDialogComponent
   ],
     imports: [
     AppRoutingModule,
@@ -140,7 +145,9 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
     RANConnectionDialogComponent,
     ANREditNCRDialogComponent,
     ConfirmDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    AddDashboardUserDialogComponent,
+    EditDashboardUserDialogComponent
     ],
   providers: [
       UiService,

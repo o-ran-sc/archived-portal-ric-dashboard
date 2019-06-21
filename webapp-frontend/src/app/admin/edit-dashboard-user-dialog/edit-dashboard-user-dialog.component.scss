@@ -17,35 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.admin__section {
-}
 
-.admin__header {
-    text-align: center;
-    color: #432c85;
-    font-size: 50px;
-    font-weight: 200;
-    letter-spacing: .1em;
-    transform: translate(149 56);
-}
-
-.spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
-}
-
-.spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
-}
-
-.admin-table {
-    width: 99%;
-    min-height: 150px;
-    margin-top: 10px;
-    background-color: transparent;
-}
-
-.admin-button-row button {
-    margin-right: 5px;
+.input-display-block {
+    display: block;
 }
