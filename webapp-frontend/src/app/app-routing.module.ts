@@ -25,7 +25,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { StatsComponent } from './stats/stats.component';
-import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './admin/user.component';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 
@@ -36,7 +36,7 @@ const routes: Routes = [
     {path: 'control', component: ControlComponent},
     {path: 'ran-connection', component: RANConnectionComponent},
     {path: 'stats', component: StatsComponent},
-    {path: 'admin', component: AdminComponent},
+    {path: 'admin', component: UserComponent},
     {path: 'ac', component: AcXappComponent},
     {path: 'anr', component: AnrXappComponent},
 ];
