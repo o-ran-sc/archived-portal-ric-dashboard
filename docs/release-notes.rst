@@ -38,6 +38,7 @@ Version 1.0.4, 21 June 2019
 * Extend Xapp Controller with config endpoints
 * Add build number to dashboard version string
 * Move mock admin screen user data to backend
+* Update App manager client to spec version 0.1.5
 
 Version 1.0.3, 28 May 2019
 --------------------------

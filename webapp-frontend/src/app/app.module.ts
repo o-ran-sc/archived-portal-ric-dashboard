@@ -40,7 +40,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { UiService } from './services/ui/ui.service';
-import { XappMgrService } from './services/xapp-mgr/xapp-mgr.service';
+import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
@@ -144,7 +144,7 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
     ],
   providers: [
       UiService,
-      XappMgrService,
+      AppMgrService,
       DashboardService,
       E2ManagerService,
       ErrorDialogService

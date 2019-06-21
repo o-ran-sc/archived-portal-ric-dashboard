@@ -17,14 +17,14 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.xappmgr.client.test;
+package org.oransc.ric.portal.dashboard.appmgr.client.test;
 
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.xappmgr.client.api.HealthApi;
-import org.oransc.ric.xappmgr.client.api.XappApi;
-import org.oransc.ric.xappmgr.client.invoker.ApiClient;
-import org.oransc.ric.xappmgr.client.model.AllXapps;
-import org.oransc.ric.xappmgr.client.model.Xapp;
+import org.oransc.ric.plt.appmgr.client.api.HealthApi;
+import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
+import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
+import org.oransc.ric.plt.appmgr.client.model.Xapp;
 import org.springframework.web.client.RestClientException;
 
 /**
@@ -32,7 +32,7 @@ import org.springframework.web.client.RestClientException;
  * 
  * The test fails because no server is available.
  */
-public class XappManagerClientTest {
+public class AppManagerClientTest {
 
 	@Test
 	public void demo() {
@@ -47,7 +47,7 @@ public class XappManagerClientTest {
 		}
 		try {
 			XappApi xappApi = new XappApi(apiClient);
-			AllXapps allXapps = xappApi.getAllXapps();
+			AllDeployedXapps allXapps = xappApi.getAllXapps();
 			System.out.println("getAllXapps answered: " + apiClient.getStatusCode().toString());
 			System.out.println("xApp count: " + allXapps.size());
 			for (Xapp x : allXapps)

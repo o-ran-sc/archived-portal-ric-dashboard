@@ -26,19 +26,20 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.xappmgr.client.api.HealthApi;
-import org.oransc.ric.xappmgr.client.api.XappApi;
-import org.oransc.ric.xappmgr.client.invoker.ApiClient;
-import org.oransc.ric.xappmgr.client.model.AllXappConfig;
-import org.oransc.ric.xappmgr.client.model.AllXapps;
-import org.oransc.ric.xappmgr.client.model.ConfigMetadata;
-import org.oransc.ric.xappmgr.client.model.SubscriptionRequest;
-import org.oransc.ric.xappmgr.client.model.SubscriptionResponse;
-import org.oransc.ric.xappmgr.client.model.XAppConfig;
-import org.oransc.ric.xappmgr.client.model.XAppInfo;
-import org.oransc.ric.xappmgr.client.model.Xapp;
-import org.oransc.ric.xappmgr.client.model.Xapp.StatusEnum;
-import org.oransc.ric.xappmgr.client.model.XappInstance;
+import org.oransc.ric.plt.appmgr.client.api.HealthApi;
+import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
+import org.oransc.ric.plt.appmgr.client.model.AllDeployableXapps;
+import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
+import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
+import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
+import org.oransc.ric.plt.appmgr.client.model.SubscriptionRequest;
+import org.oransc.ric.plt.appmgr.client.model.SubscriptionResponse;
+import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
+import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
+import org.oransc.ric.plt.appmgr.client.model.Xapp;
+import org.oransc.ric.plt.appmgr.client.model.Xapp.StatusEnum;
+import org.oransc.ric.plt.appmgr.client.model.XappInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -52,28 +53,31 @@ import org.springframework.http.HttpStatus;
  */
 @Profile("mock")
 @Configuration
-public class XappManagerMockConfiguration {
+public class AppManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final AllXapps allXapps;
+	private final AllDeployableXapps availXapps;
+	private final AllDeployedXapps deployedXapps;
 	private final AllXappConfig allXappConfigs;
 
-	public XappManagerMockConfiguration() {
+	public AppManagerMockConfiguration() {
 		logger.info("Configuring mock xApp Manager");
 		final String[] appNames = { "AdmissionControl", "Automatic Neighbor Relation", "Dual Connectivity" };
 		final String configJson = " { \"config\" : \"example\" }";
 		final String descriptorJson = " { \"descriptor\" : \"example\" }";
 		allXappConfigs = new AllXappConfig();
-		allXapps = new AllXapps();
+		availXapps = new AllDeployableXapps();
+		deployedXapps = new AllDeployedXapps();
 		for (String n : appNames) {
 			ConfigMetadata metadata = new ConfigMetadata().configName("config-" + n).name(n).namespace("namespace");
 			XAppConfig config = new XAppConfig().config(configJson).descriptor(descriptorJson).metadata(metadata);
 			allXappConfigs.add(config);
+			availXapps.add(n);
 			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
 			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("1.2.3.4").port(200)
 					.status(XappInstance.StatusEnum.RUNNING));
-			allXapps.add(xapp);
+			deployedXapps.add(xapp);
 		}
 	}
 
@@ -114,7 +118,9 @@ public class XappManagerMockConfiguration {
 
 		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(new Xapp());
 
-		when(mockApi.getAllXapps()).thenReturn(allXapps);
+		when(mockApi.listAllXapps()).thenReturn(availXapps);
+
+		when(mockApi.getAllXapps()).thenReturn(deployedXapps);
 
 		Xapp xappByName = new Xapp().name("name").status(StatusEnum.UNKNOWN).version("v1");
 		when(mockApi.getXappByName(any(String.class))).thenReturn(xappByName);
