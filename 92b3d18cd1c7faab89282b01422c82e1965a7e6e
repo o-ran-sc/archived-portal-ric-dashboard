@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfb4825f_3ec848e3",
+        "filename": "webapp-frontend/src/app/control/control.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "Please name this app_control or app-control",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842d39f7_3cd704e7",
+        "filename": "webapp-frontend/src/app/control/control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "Please name this AppControlComponent",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812248a1_25849af8",
+        "filename": "webapp-frontend/src/app/navigation/sidenav-list/sidenav-list.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "please revert",
+      "range": {
+        "startLine": 29,
+        "startChar": 32,
+        "endLine": 29,
+        "endChar": 39
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e015405_1607f333",
+        "filename": "webapp-frontend/src/app/overall-control/overall-control.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "Please name this one just \"control\" and not control-control-control-spam-eggs-sausage-and-spam",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2769e4e0_c9242f57",
+        "filename": "webapp-frontend/src/app/overall-control/overall-control.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "Is this file totally empty? If so why is it here?",
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b22c011d_7a184c09",
+        "filename": "webapp-frontend/src/app/overall-control/overall-control.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "Please go with ControlComponent",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58f43235_c1980b35",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:21:38Z",
+      "side": 1,
+      "message": "naming",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 28
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
