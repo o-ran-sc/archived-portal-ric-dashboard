@@ -17,17 +17,35 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
+ .app-control__section {
+}
 
-@Component({
-  selector: 'app-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css']
-})
-export class ControlComponent implements OnInit {
+.app-control__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
 
-  constructor() { }
+.spinner-container {
+    height: 360px;
+    width: 390px;
+    position: fixed;
+}
 
-  ngOnInit() {
-  }
+.spinner-container mat-spinner {
+    margin: 130px auto 0 auto;
+}
+
+.app-control-table {
+  width: 100%;
+  min-height: 150px;
+  margin-top: 10px;
+  background-color: transparent;
+}
+
+tr.message-row {
+  height: 0;
 }

@@ -22,19 +22,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { RANConnectionDialogComponent } from './ran-connection-dialog.component';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
-import { NotificationService } from './../services/ui/notification.service';
-import { RANConnectionDataSource } from './ran-connection.datasource';
+import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { NotificationService } from '../services/ui/notification.service';
+import { RANControlDataSource } from './ran-control.datasource';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-ran-connection',
-  templateUrl: './ran-connection.component.html',
-  styleUrls: ['./ran-connection.component.scss']
+  selector: 'control-ran-control',
+  templateUrl: './ran-control.component.html',
+  styleUrls: ['./ran-control.component.scss']
 })
-export class RANConnectionComponent implements OnInit {
+export class RanControlComponent implements OnInit {
   displayedColumns: string[] = ['requestType', 'ranName', 'ranIp', 'ranPort', 'responseCode', 'timeStamp'];
-  dataSource: RANConnectionDataSource;
+  dataSource: RANControlDataSource;
 
   constructor(private e2MgrSvc: E2ManagerService,
     private errorSvc: ErrorDialogService,
@@ -43,7 +43,7 @@ export class RANConnectionComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.dataSource = new RANConnectionDataSource(this.e2MgrSvc);
+    this.dataSource = new RANControlDataSource(this.e2MgrSvc);
     this.dataSource.loadTable();
   }
 
