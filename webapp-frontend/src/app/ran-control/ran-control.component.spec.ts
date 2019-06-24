@@ -19,21 +19,21 @@
  */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlComponent } from './control.component';
+import { RanControlComponent } from './ran-control.component';
 
-describe('ControlComponent', () => {
-  let component: ControlComponent;
-  let fixture: ComponentFixture<ControlComponent>;
+describe('RanControlComponent', () => {
+  let component: RanControlComponent;
+  let fixture: ComponentFixture<RanControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ControlComponent ]
+      declarations: [ RanControlComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ControlComponent);
+    fixture = TestBed.createComponent(RanControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

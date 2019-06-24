@@ -17,12 +17,25 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+ .ran-control__section {
+}
 
-import { animate, state, style, transition, trigger } from '@angular/animations';
+.ran-control__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
 
-export const ControlAnimations = {
-  messageTrigger: trigger('messageExpand', [
-    state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
-    state('expanded', style({ height: '*' })),
-  ])
+.ran-control-table {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 10px;
+    background-color:transparent;
+}
+
+.disconnect-all-button {
+    float: right;
 }

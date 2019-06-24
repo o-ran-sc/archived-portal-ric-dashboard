@@ -21,7 +21,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
-import { NotificationService } from './../services/ui/notification.service';
+import { NotificationService } from '../services/ui/notification.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { HttpErrorResponse } from '@angular/common/http';

@@ -17,71 +17,16 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
-import { XappControlRow } from '../interfaces/app-mgr.types';
-import { AppMgrService } from '../services/app-mgr/app-mgr.service';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
-import { ErrorDialogService } from './../services/ui/error-dialog.service';
-import { NotificationService } from './../services/ui/notification.service';
-import { ControlAnimations } from './control.animations';
-import { ControlDataSource } from './control.datasource';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css'],
-  animations: [ControlAnimations.messageTrigger],
+  templateUrl: './control.component.html'
 })
 export class ControlComponent implements OnInit {
 
-  displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
-  dataSource: ControlDataSource;
-  @ViewChild(MatSort) sort: MatSort;
-
-  constructor(
-    private appMgrSvc: AppMgrService,
-    private router: Router,
-    private confirmDialogService: ConfirmDialogService,
-    private errorDialogService: ErrorDialogService,
-    private notification: NotificationService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.dataSource = new ControlDataSource(this.appMgrSvc, this.sort);
-    this.dataSource.loadTable();
   }
-
-  controlApp(app: XappControlRow): void {
-    const acXappPattern =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
-    const anrXappPattern = /[Aa][Nn][Rr]/;
-    if (acXappPattern.test(app.xapp)) {
-      this.router.navigate(['/ac']);
-    } else if (anrXappPattern.test(app.xapp)) {
-      this.router.navigate(['/anr']);
-    } else {
-      this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
-    }
-  }
-
-  undeployApp(app: XappControlRow): void {
-    this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy xApp ' + app.xapp + '?')
-      .afterClosed().subscribe(res => {
-        if (res) {
-          this.appMgrSvc.undeployXapp(app.xapp).subscribe(
-            response => {
-              this.dataSource.loadTable();
-              switch (response.status) {
-                case 200:
-                  this.notification.success('xApp undeployed successfully!');
-                  break;
-                default:
-                  this.notification.warn('xApp undeploy failed.');
-              }
-            }
-          );
-        }
-      });
-  }
-
 }

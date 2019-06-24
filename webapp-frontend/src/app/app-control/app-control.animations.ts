@@ -17,28 +17,12 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RANConnectionComponent } from './ran-connection.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
-describe('RANConnectionComponent', () => {
-  let component: RANConnectionComponent;
-  let fixture: ComponentFixture<RANConnectionComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RANConnectionComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RANConnectionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+export const AppControlAnimations = {
+  messageTrigger: trigger('messageExpand', [
+    state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+    state('expanded', style({ height: '*' })),
+  ])
+}
