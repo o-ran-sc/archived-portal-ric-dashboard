@@ -44,9 +44,10 @@ import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { AppControlComponent } from './app-control/app-control.component';
 import { ControlComponent } from './control/control.component';
-import { RANConnectionDialogComponent } from './ran-connection/ran-connection-dialog.component';
-import { RANConnectionComponent } from './ran-connection/ran-connection.component';
+import { RANConnectionDialogComponent } from './ran-control/ran-connection-dialog.component';
+import { RanControlComponent } from './ran-control/ran-control.component';
 import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { StatsComponent } from './stats/stats.component';
 import { UserComponent } from './admin/user.component';
@@ -65,6 +66,7 @@ import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dial
 import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 
 
+
 @NgModule({
   declarations: [
     AcXappComponent,
@@ -77,18 +79,19 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     ConfigEventComponent,
     ConfirmDialogComponent,
     ControlCardComponent,
-    ControlComponent,
+    AppControlComponent,
     ErrorDialogComponent,
     FooterComponent,
     LoginComponent,
     ModalEventComponent,
-    RANConnectionComponent,
+    RanControlComponent,
     RANConnectionDialogComponent,
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
     AddDashboardUserDialogComponent,
-    EditDashboardUserDialogComponent
+    EditDashboardUserDialogComponent,
+    ControlComponent
   ],
     imports: [
     AppRoutingModule,

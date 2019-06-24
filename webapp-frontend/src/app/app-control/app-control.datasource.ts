@@ -28,7 +28,7 @@ import { catchError, finalize, map } from 'rxjs/operators';
 import { XappControlRow, XMDeployedApp, XMXappInstance } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 
-export class ControlDataSource extends DataSource<XappControlRow> {
+export class AppControlDataSource extends DataSource<XappControlRow> {
 
   private xAppInstancesSubject = new BehaviorSubject<XappControlRow[]>([]);
 

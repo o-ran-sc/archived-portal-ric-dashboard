@@ -17,18 +17,28 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.scss']
-})
-export class ControlComponent implements OnInit {
+import { RanControlComponent } from './ran-control.component';
 
-  constructor() { }
+describe('RanControlComponent', () => {
+  let component: RanControlComponent;
+  let fixture: ComponentFixture<RanControlComponent>;
 
-  ngOnInit() {
-  }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ RanControlComponent ]
+    })
+    .compileComponents();
+  }));
 
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RanControlComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
