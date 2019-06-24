@@ -45,6 +45,7 @@ import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { ControlComponent } from './control/control.component';
+import { OverallControlComponent } from './overall-control/overall-control.component';
 import { RANConnectionDialogComponent } from './ran-connection/ran-connection-dialog.component';
 import { RANConnectionComponent } from './ran-connection/ran-connection.component';
 import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
@@ -63,6 +64,7 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+
 
 
 @NgModule({
@@ -88,7 +90,8 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     StatCardComponent,
     StatsComponent,
     AddDashboardUserDialogComponent,
-    EditDashboardUserDialogComponent
+    EditDashboardUserDialogComponent,
+    OverallControlComponent
   ],
     imports: [
     AppRoutingModule,

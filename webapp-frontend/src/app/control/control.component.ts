@@ -29,7 +29,7 @@ import { ControlAnimations } from './control.animations';
 import { ControlDataSource } from './control.datasource';
 
 @Component({
-  selector: 'app-control',
+  selector: 'overall-control-control',
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css'],
   animations: [ControlAnimations.messageTrigger],

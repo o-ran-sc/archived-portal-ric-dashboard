@@ -28,7 +28,7 @@ import { RANConnectionDataSource } from './ran-connection.datasource';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-ran-connection',
+  selector: 'overall-control-ran-connection',
   templateUrl: './ran-connection.component.html',
   styleUrls: ['./ran-connection.component.scss']
 })

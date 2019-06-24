@@ -28,12 +28,13 @@ import { StatsComponent } from './stats/stats.component';
 import { UserComponent } from './admin/user.component';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
+import { OverallControlComponent } from './overall-control/overall-control.component';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
     {path: 'login', component: LoginComponent},
     {path: 'catalog', component: CatalogComponent},
-    {path: 'control', component: ControlComponent},
+    {path: 'overall-control', component: OverallControlComponent},
     {path: 'ran-connection', component: RANConnectionComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'admin', component: UserComponent},
