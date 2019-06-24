@@ -154,6 +154,29 @@
       "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f51b2b4_30e9ef31",
+        "filename": "webapp-frontend/src/app/ran-connection/ran-connection.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-06-24T19:28:47Z",
+      "side": 1,
+      "message": "Possibly name this one RANControlComponent ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "92b3d18cd1c7faab89282b01422c82e1965a7e6e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
