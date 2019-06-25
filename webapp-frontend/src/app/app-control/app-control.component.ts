@@ -53,11 +53,14 @@ export class AppControlComponent implements OnInit {
   }
 
   controlApp(app: XappControlRow): void {
-    const acXappPattern =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
-    const anrXappPattern = /[Aa][Nn][Rr]/;
-    if (acXappPattern.test(app.xapp)) {
+    // TODO: identify apps without hardcoding to names
+    const acAppPattern =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
+    const anrAppPattern0 = /ANR/;
+    const anrAppPattern1 = /[Aa][Uu][Tt][Oo][Mm][Aa][Tt][Ii][Cc]/;
+    const anrAppPattern2 = /[Nn][Ee][Ii][Gg][Hh][Bb][Oo][Rr]/;
+    if (acAppPattern.test(app.xapp)) {
       this.router.navigate(['/ac']);
-    } else if (anrXappPattern.test(app.xapp)) {
+    } else if (anrAppPattern0.test(app.xapp) || (anrAppPattern1.test(app.xapp) && anrAppPattern2.test(app.xapp))) {
       this.router.navigate(['/anr']);
     } else {
       this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
