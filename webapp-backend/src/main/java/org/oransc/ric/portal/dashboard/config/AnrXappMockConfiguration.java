@@ -54,9 +54,9 @@ public class AnrXappMockConfiguration {
 	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2, ncrtNodeB3;
 	private final GgNodeBTable gNodebTable;
 
-	private static final String gnodeb1 = "GNB:001EF5:0045FE50";
-	private static final String gnodeb2 = "GNB:001EF6:0045FE51";
-	private static final String gnodeb3 = "GNB:001EF7:0045FE52";
+	private static final String gnodeb1 = "001EF5:0045FE50";
+	private static final String gnodeb2 = "001EF6:0045FE51";
+	private static final String gnodeb3 = "001EF7:0045FE52";
 
 	public AnrXappMockConfiguration() {
 

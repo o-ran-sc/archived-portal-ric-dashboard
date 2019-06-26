@@ -23,3 +23,7 @@
   display: block;
 }
 
+/* leave a bit of space */
+.ran-type-radio-button {
+  margin-left: 5px;
+}
