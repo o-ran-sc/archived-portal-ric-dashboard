@@ -23,12 +23,12 @@ import { Observable } from 'rxjs/Observable';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { E2SetupRequest } from '../interfaces/e2-mgr.types';
+import { E2RanDetails, E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 
-export class RANControlDataSource extends DataSource<E2SetupRequest> {
+export class RANControlDataSource extends DataSource<E2RanDetails> {
 
-  private ranControlSubject = new BehaviorSubject<E2SetupRequest[]>([]);
+  private ranControlSubject = new BehaviorSubject<E2RanDetails[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -40,15 +40,15 @@ export class RANControlDataSource extends DataSource<E2SetupRequest> {
 
   loadTable() {
     this.loadingSubject.next(true);
-    this.e2MgrSvcservice.getAll()
+    this.e2MgrSvcservice.getRan()
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((ranControl: E2SetupRequest[]) => this.ranControlSubject.next(ranControl));
+      .subscribe((ranControl: E2RanDetails[]) => this.ranControlSubject.next(ranControl));
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<E2SetupRequest[]> {
+  connect(collectionViewer: CollectionViewer): Observable<E2RanDetails[]> {
     return this.ranControlSubject.asObservable();
   }
 

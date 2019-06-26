@@ -117,12 +117,14 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'  
-  '/nodeb':
+                $ref: '#/components/schemas/ErrorResponse'
+  /nodeb:
     delete:
       tags:
         - nodeb
-      summary: Close all connections to the RANs and delete the data from the nodeb-rnib DB
+      summary: >-
+        Close all connections to the RANs and delete the data from the
+        nodeb-rnib DB
       responses:
         '204':
           description: Successful operation
@@ -131,7 +133,28 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'  
+                $ref: '#/components/schemas/ErrorResponse'
+  /nodeb/ids:
+    get:
+      tags:
+        - nodeb
+      summary: Get RANs identities list
+      operationId: getNodebIdList
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NodebIdentity'
+        '500':
+          description: Internal Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /health:
     get:
       tags:
@@ -156,6 +179,18 @@ components:
           format: uint16
         ranName:
           type: string
+    NodebIdentity:
+      properties:
+        globalNbId:
+          properties:
+            nbId:
+              type: string
+            plmnId:
+              type: string
+          type: object
+        inventoryName:
+          type: string
+      type: object
     GetNodebResponse:
       properties:
         connectionStatus:
