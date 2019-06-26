@@ -38,7 +38,7 @@ export class AppControlComponent implements OnInit {
 
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: AppControlDataSource;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private appMgrSvc: AppMgrService,

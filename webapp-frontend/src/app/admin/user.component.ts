@@ -37,9 +37,9 @@ import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/e
 
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'status','action'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'status', 'action'];
   dataSource: UserDataSource;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private dashboardSvc: DashboardService,
@@ -62,7 +62,6 @@ export class UserComponent implements OnInit {
       this.dataSource.loadTable();
     });
   }
-    
 
   deleteUser() {
     const aboutError = 'Not implemented yet';
