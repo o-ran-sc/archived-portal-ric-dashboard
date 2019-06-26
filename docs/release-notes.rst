@@ -29,7 +29,7 @@ Version 1.0.4, 27 June 2019
 * Add disconnect-all button to RAN connection screen
 * Extend E2 service with disconnect-all method
 * Update ANR xApp client to spec version 0.0.8
-* Update E2 manager client to spec version 20190620
+* Update E2 manager client to spec version 20190626
 * Adjust CSS and HTML for main container positioning
 * Revise config property keys to use URL (not basepath)
 * Left menu overlap main content fix
@@ -39,6 +39,7 @@ Version 1.0.4, 27 June 2019
 * Add build number to dashboard version string
 * Move mock admin screen user data to backend
 * Update App manager client to spec version 0.1.5
+* Move RAN connection feature to control screen
 * Rework admin table
 * Remove the RAN connection invocation link from left menu and move it to control screen
 * Repair deploy-app feature and use icon instead of text button

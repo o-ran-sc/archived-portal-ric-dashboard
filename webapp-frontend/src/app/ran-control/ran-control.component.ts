@@ -33,8 +33,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./ran-control.component.scss']
 })
 export class RanControlComponent implements OnInit {
-  displayedColumns: string[] = ['requestType', 'ranName', 'ranIp', 'ranPort', 'responseCode', 'timeStamp'];
+  displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
+  e2ClientVersion: string;
 
   constructor(private e2MgrSvc: E2ManagerService,
     private errorSvc: ErrorDialogService,
@@ -45,6 +46,7 @@ export class RanControlComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new RANControlDataSource(this.e2MgrSvc);
     this.dataSource.loadTable();
+    this.e2MgrSvc.getVersion().subscribe((res: string) => this.e2ClientVersion = res);
   }
 
   setupRANConnection() {
