@@ -33,7 +33,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./ran-control.component.scss']
 })
 export class RanControlComponent implements OnInit {
-  displayedColumns: string[] = ['requestType', 'ranName', 'ranIp', 'ranPort', 'responseCode', 'timeStamp'];
+  displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
 
   constructor(private e2MgrSvc: E2ManagerService,

@@ -31,34 +31,34 @@
 
   <table mat-table class="ran-control-table mat-elevation-z8" [dataSource]="dataSource">
 
-    <ng-container matColumnDef="requestType">
-      <mat-header-cell *matHeaderCellDef>RAN Type</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.requestType}}</mat-cell>
+    <ng-container matColumnDef="nbId">
+      <mat-header-cell *matHeaderCellDef>Nodeb ID</mat-header-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebIdentity.globalNbId.nbId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nodeType">
+      <mat-header-cell *matHeaderCellDef>Node Type</mat-header-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.nodeType}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranName">
-      <mat-header-cell *matHeaderCellDef>eNodeB/gNodeB Name</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.ranName}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef>RAN Name</mat-header-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebIdentity.inventoryName}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranIp">
       <mat-header-cell *matHeaderCellDef>IP</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.ranIp}}</mat-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.ip}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranPort">
       <mat-header-cell *matHeaderCellDef>Port</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.ranPort}}</mat-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.port}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="responseCode">
-      <mat-header-cell *matHeaderCellDef>Response</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.responseCode}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="timeStamp">
-      <mat-header-cell *matHeaderCellDef>Time Stamp</mat-header-cell>
-      <mat-cell *matCellDef="let rconnect">{{rconnect.timeStamp}}</mat-cell>
+    <ng-container matColumnDef="connectionStatus">
+      <mat-header-cell *matHeaderCellDef>Connection Status</mat-header-cell>
+      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.connectionStatus}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
