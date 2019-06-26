@@ -19,14 +19,13 @@
  */
 import { Component, Input, OnInit , Output, EventEmitter  } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ViewCell } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-modal-event',
   templateUrl: './modal-event.component.html',
   styleUrls: ['./modal-event.component.scss']
 })
-export class ModalEventComponent implements ViewCell, OnInit {
+export class ModalEventComponent implements OnInit {
 
     public renderValue;
 

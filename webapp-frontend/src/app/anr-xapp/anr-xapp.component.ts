@@ -41,10 +41,10 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
   dataSource: ANRXappDataSource;
   anrClientVersion: string;
   gNodeBIds: string[];
-  @ViewChild('ggNodeB') ggNodeB: ElementRef;
-  @ViewChild('servingCellNrcgi') servingCellNrcgi: ElementRef;
-  @ViewChild('neighborCellNrpci') neighborCellNrpci: ElementRef;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('ggNodeB', {static: true}) ggNodeB: ElementRef;
+  @ViewChild('servingCellNrcgi', {static: true}) servingCellNrcgi: ElementRef;
+  @ViewChild('neighborCellNrpci', {static: true}) neighborCellNrpci: ElementRef;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   displayedColumns = ['cellIdentifierNrcgi', 'neighborCellNrpci', 'neighborCellNrcgi',
     'flagNoHo', 'flagNoXn', 'flagNoRemove', 'action'];
