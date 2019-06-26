@@ -35,7 +35,7 @@ export class CatalogComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private appMgrSvc: AppMgrService,

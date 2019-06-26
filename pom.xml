@@ -26,14 +26,14 @@ limitations under the License.
 		<!-- this group Id must match LF gerrit repository -->
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.4.RELEASE</version>
+		<version>2.1.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 	<artifactId>ric-dash-parent</artifactId>
 	<name>RIC Dashboard project</name>
 	<packaging>pom</packaging>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<!-- Properties for the license-maven-plugin in child POMs -->
 	<properties>
 		<lmp.organization.name>AT&amp;T Intellectual Property and Nokia</lmp.organization.name>
