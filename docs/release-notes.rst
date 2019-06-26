@@ -20,6 +20,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.0.5, 30 June 2019
+---------------------------
+* Upgrade to Angular version 8
+
 Version 1.0.4, 21 June 2019
 ---------------------------
 * Add AC xApp neighbor control screen

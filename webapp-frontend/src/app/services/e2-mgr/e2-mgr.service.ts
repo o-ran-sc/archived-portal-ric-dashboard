@@ -21,7 +21,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { E2SetupRequest } from '../../interfaces/e2-mgr.types';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class E2ManagerService {
 
   private basePath = 'api/e2mgr/';

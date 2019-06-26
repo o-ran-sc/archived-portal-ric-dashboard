@@ -31,9 +31,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-// RETIRE THIS
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -99,6 +97,7 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     BrowserAnimationsModule,
     ChartsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -121,7 +120,6 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    Ng2SmartTableModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
