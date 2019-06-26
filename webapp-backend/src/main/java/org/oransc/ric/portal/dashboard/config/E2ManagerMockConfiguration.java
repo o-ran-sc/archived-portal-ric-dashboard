@@ -25,11 +25,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
+import org.oransc.ric.e2mgr.client.model.NodebIdentity;
+import org.oransc.ric.e2mgr.client.model.NodebIdentityGlobalNbId;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +43,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
 /**
- * Creates a mock implementation of the E2 manager client API. This version
- * answers only status codes, no data, so the mock implementations are trivial.
+ * Creates a mock implementation of the E2 Manager client API.
  */
 @Profile("mock")
 @Configuration
@@ -48,11 +51,17 @@ public class E2ManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	private final List<NodebIdentity> nodebIdList;
 	private final GetNodebResponse nodebResponse;
 
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
-		nodebResponse = new GetNodebResponse().ip("1.2.3.4").port(123).ranName("myRan");
+		NodebIdentityGlobalNbId globalNbId = new NodebIdentityGlobalNbId().nbId("mockNbId").plmnId("mockPlmId");
+		NodebIdentity nbid = new NodebIdentity().inventoryName("mockInvName").globalNbId(globalNbId);
+		nodebIdList = new ArrayList<>();
+		nodebIdList.add(nbid);
+		nodebResponse = new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
+				.ip("1.2.3.4").nodeType("mockNodeType").port(123).ranName("mockRanName");
 	}
 
 	private ApiClient apiClient() {
@@ -89,6 +98,10 @@ public class E2ManagerMockConfiguration {
 		doAnswer(i -> {
 			return nodebResponse;
 		}).when(mockApi).getNb(any(String.class));
+
+		doAnswer(i -> {
+			return nodebIdList;
+		}).when(mockApi).getNodebIdList();
 
 		doAnswer(i -> {
 			return null;
