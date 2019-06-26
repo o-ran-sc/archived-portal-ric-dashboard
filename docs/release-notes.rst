@@ -20,10 +20,11 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.5, 30 June 2019
+Version 1.0.5, 28 June 2019
 ---------------------------
 * Upgrade to Angular version 8
 * Upgrade to Spring-Boot 2.1.6.RELEASE
+* Update E2 manager client to spec version 20190626
 
 Version 1.0.4, 27 June 2019
 ---------------------------
@@ -44,9 +45,10 @@ Version 1.0.4, 27 June 2019
 * Add build number to dashboard version string
 * Move mock admin screen user data to backend
 * Update App manager client to spec version 0.1.5
+* Move RAN connection feature to control screen
 * Rework admin table
 * Update the notification service 
-* Remove the RAN connection invocation link from left menu and move it to control screen
+* Move RAN connection feature to control screen
 * Repair deploy-app feature and use icon instead of text button
 
 Version 1.0.3, 28 May 2019

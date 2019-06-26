@@ -18,8 +18,11 @@
  * ========================LICENSE_END===================================
  */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
 @Injectable({
   providedIn: 'root'
@@ -34,42 +37,46 @@ export class E2ManagerService {
   }
 
   /**
-   * Gets E2 manager client version details
-   * @returns Observable that should yield a DashboardSuccessTransport object
+   * Gets E2 client version details
+   * @returns Observable that should yield a String
    */
-  getE2ManagerVersion() {
-    return this.httpClient.get(this.basePath + 'version');
+  getVersion(): Observable<string> {
+    const url = this.basePath + 'version';
+    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+      // Extract the string here
+      map(res => res['data'])
+    );
   }
 
   /**
-   * Gets setup request history
+   * Gets RAN details
    * @returns Observable that should yield an array of objects
    */
-  getAll() {
-    return this.httpClient.get(this.basePath + 'setup');
+  getRan(): Observable<Array<E2RanDetails>> {
+    return this.httpClient.get<Array<E2RanDetails>>(this.basePath + 'ran');
   }
 
   /**
    * Sends a request to setup an ENDC/gNodeB connection
-   * @returns Observable
+   * @returns Observable. On success there is no data, only a code.
    */
-  endcSetup(req: E2SetupRequest) {
-    return this.httpClient.post(this.basePath + 'endcSetup', req);
+  endcSetup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
+    return this.httpClient.post(this.basePath + 'endcSetup', req, { observe: 'response' });
   }
 
   /**
    * Sends a request to setup an X2/eNodeB connection
-   * @returns Observable
+   * @returns Observable. On success there is no data, only a code.
    */
-  x2Setup(req: E2SetupRequest) {
-    return this.httpClient.post(this.basePath + 'x2Setup', req);
+  x2Setup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
+    return this.httpClient.post(this.basePath + 'x2Setup', req, { observe: 'response' });
   }
 
   /**
    * Sends a request to drop all RAN connections
-   * @returns Observable
+   * @returns Observable. Response code indicates result.
    */
-  nodebDelete() {
+  nodebDelete(): Observable<HttpResponse<Object>> {
     return this.httpClient.delete((this.basePath + 'nodeb'), { observe: 'response' });
   }
 
