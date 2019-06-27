@@ -40,6 +40,7 @@ Version 1.0.4, 21 June 2019
 * Move mock admin screen user data to backend
 * Update App manager client to spec version 0.1.5
 * Rework admin table
+* Update the notification service 
 * Remove the RAN connection invocation link from left menu and move it to control screen
 
 Version 1.0.3, 28 May 2019
