@@ -28,8 +28,16 @@ export interface XMSubscription {
   targetUrl: string;
 }
 
+/**
+ * Name is the only required field
+ */
 export interface XMXappInfo {
-  xAppName: string;
+  name: string;
+  configName?: string;
+  namespace?: string;
+  serviceName?: string;
+  imageRepo?: string;
+  hostname?: string;
 }
 
 export interface XMXappInstance {

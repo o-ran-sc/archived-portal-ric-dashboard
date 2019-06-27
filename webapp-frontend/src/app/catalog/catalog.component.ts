@@ -18,6 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material/sort';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
@@ -47,28 +48,26 @@ export class CatalogComponent implements OnInit {
     this.dataSource.loadTable();
   }
 
-  onConfigurexApp(name: string): void {
+  onConfigureApp(name: string): void {
     const aboutError = 'Configure not implemented (yet)';
     this.errorService.displayError(aboutError);
   }
 
-  onDeployxApp(name: string): void {
+  onDeployApp(name: string): void {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + name + '?')
-      .afterClosed().subscribe(res => {
+      .afterClosed().subscribe( (res: any) => {
         if (res) {
           this.appMgrSvc.deployXapp(name).subscribe(
-            response => {
-              switch (response.status) {
-                case 200:
-                  this.notification.success('Deploy succeeded!');
-                  break;
-                default:
-                  this.notification.warn('Deploy failed.');
-              }
+            (response: HttpResponse<object>) => {
+              this.notification.success('Deploy succeeded!');
+            },
+            (error: HttpErrorResponse) => {
+              this.notification.warn('Deploy failed: ' + error.message);
             }
           );
         }
-      });
-
+      }
+    );
   }
+
 }

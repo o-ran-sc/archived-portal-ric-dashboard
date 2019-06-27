@@ -40,7 +40,7 @@ export class AppMgrService {
   }
 
   deployXapp(name: string) {
-    const xappInfo: XMXappInfo = { xAppName: name };
+    const xappInfo: XMXappInfo = { name: name };
     return this.httpClient.post(this.basePath, xappInfo, { observe: 'response' });
   }
 

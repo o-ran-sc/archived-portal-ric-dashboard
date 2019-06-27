@@ -26,14 +26,13 @@ import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule
     MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
     MatTabsModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-// RETIRE THIS
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,8 +63,6 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
-
-
 
 @NgModule({
   declarations: [
@@ -99,6 +96,7 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     BrowserAnimationsModule,
     ChartsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -121,7 +119,7 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    Ng2SmartTableModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
   ],
