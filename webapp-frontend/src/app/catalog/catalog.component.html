@@ -38,13 +38,11 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="catalog-button-row">
-          <button mat-icon-button
-                  (click)="onConfigurexApp(element.name)">
-            <mat-icon>settings</mat-icon>
+          <button mat-icon-button (click)="onConfigurexApp(element.name)">
+            <mat-icon matTooltip="Adjust settings">settings</mat-icon>
           </button>
-          <button mat-button class="mat-raised-button mat-primary"
-                  (click)="onDeployxApp(element.name)">
-            Deploy
+          <button mat-icon-button (click)="onDeployxApp(element.name)">
+            <mat-icon matTooltip="Deploy app">cloud_upload</mat-icon>
           </button>
         </div>
       </mat-cell>
