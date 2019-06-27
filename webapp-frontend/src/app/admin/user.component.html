@@ -49,13 +49,11 @@
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
           <div class="user-button-row">
-            <button mat-icon-button
-                    (click)="editUser(element)">
-              <mat-icon>edit</mat-icon>
+            <button mat-icon-button (click)="editUser(element)">
+              <mat-icon matTooltip="Edit properties">edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn"
-                    (click)="deleteUser(element)">
-              <mat-icon>delete</mat-icon>
+            <button mat-icon-button color="warn" (click)="deleteUser(element)">
+              <mat-icon matTooltip="Delete user">delete</mat-icon>
             </button>
           </div>
         </mat-cell>

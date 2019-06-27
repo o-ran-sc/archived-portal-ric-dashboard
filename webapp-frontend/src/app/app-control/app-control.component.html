@@ -54,11 +54,11 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <!-- click on button should not expand/collapse the row -->
       <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-        <button mat-icon-button (click)="controlApp(element)">
-          <mat-icon>settings</mat-icon>
+      <button mat-icon-button (click)="controlApp(element)">
+          <mat-icon matTooltip="Adjust settings">settings</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="undeployApp(element)">
-          <mat-icon>delete</mat-icon>
+        <button mat-icon-button (click)="undeployApp(element)">
+          <mat-icon matTooltip="Undeploy app">cloud_download</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
