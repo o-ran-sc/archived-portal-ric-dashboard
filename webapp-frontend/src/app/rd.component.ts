@@ -23,7 +23,7 @@ import { UiService } from './services/ui/ui.service';
 @Component({
   selector: 'rd-root',
   templateUrl: './rd.component.html',
-  styleUrls: ['./rd.component.css']
+  styleUrls: ['./rd.component.scss']
 })
 export class RdComponent implements OnInit {
   showMenu = false;

@@ -20,9 +20,7 @@
 
 <div class="app-control__section">
   <h3 class="app-control__header">xApp Control</h3>
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
+
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="app-control-table mat-elevation-z8">
 
     <ng-container matColumnDef="xapp">
@@ -82,10 +80,21 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="noRecordsFound">
+      <mat-footer-cell *matFooterCellDef>No records found.</mat-footer-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let element; columns: displayedColumns;"
       [class.example-expanded-row]="expandedElement === element"
       (click)="expandedElement = expandedElement === element ? null : element"></mat-row>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="message-row"></tr>
+    <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}"></mat-footer-row>
+
   </table>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
 </div>

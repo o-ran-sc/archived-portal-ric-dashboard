@@ -29,7 +29,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
     selector: 'rd-ran-control-connect-dialog',
     templateUrl: './ran-connection-dialog.component.html',
-    styleUrls: ['./ran-connection-dialog.component.css']
+    styleUrls: ['./ran-connection-dialog.component.scss']
 })
 
 export class RanControlConnectDialogComponent implements OnInit {

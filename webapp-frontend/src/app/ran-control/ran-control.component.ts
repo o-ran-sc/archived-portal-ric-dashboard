@@ -37,13 +37,13 @@ export class RanControlComponent implements OnInit {
   dataSource: RANControlDataSource;
 
   constructor(private e2MgrSvc: E2ManagerService,
-    private errorSvc: ErrorDialogService,
+    private errorDialogService: ErrorDialogService,
     private confirmDialogService: ConfirmDialogService,
-    private notification: NotificationService,
+    private notificationService: NotificationService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.dataSource = new RANControlDataSource(this.e2MgrSvc);
+    this.dataSource = new RANControlDataSource(this.e2MgrSvc, this.notificationService);
     this.dataSource.loadTable();
   }
 
@@ -66,13 +66,13 @@ export class RanControlComponent implements OnInit {
           this.e2MgrSvc.nodebDelete().subscribe(
             response => {
               if (response.status === 200) {
-                this.notification.success('Disconnect all RAN Connections Succeeded!');
+                this.notificationService.success('Disconnect all RAN Connections Succeeded!');
                 this.dataSource.loadTable();
               }
             },
             (error => {
               httpErrRes = error;
-              this.errorSvc.displayError(aboutError + httpErrRes.message);
+              this.errorDialogService.displayError(aboutError + httpErrRes.message);
             })
           );
         }

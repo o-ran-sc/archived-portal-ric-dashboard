@@ -44,10 +44,10 @@ export interface E2NodebIdentity {
 export interface E2GetNodebResponse {
   connectionStatus: string; // actually one-of, but model as string
   enb: object; // don't model this until needed
-  failureType: string; // actually one-of, butmodel as string
+  failureType: string; // actually one-of, but model as string
   gnb: object; // don't model this until needed
   ip: string;
-  nodeType: object; // actually one-of, but model as string
+  nodeType: string; // actually one-of, but model as string
   port: number; // actually integer
   ranName: string;
   setupFailure: object; // don't model this until needed
