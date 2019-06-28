@@ -24,6 +24,7 @@ Version 1.0.5, 30 June 2019
 ---------------------------
 * Upgrade to Angular version 8
 * Upgrade to Spring-Boot 2.1.6.RELEASE
+* Fixed AC xApp policy page title is not aligned
 
 Version 1.0.4, 27 June 2019
 ---------------------------
@@ -45,7 +46,7 @@ Version 1.0.4, 27 June 2019
 * Move mock admin screen user data to backend
 * Update App manager client to spec version 0.1.5
 * Rework admin table
-* Update the notification service 
+* Update the notification service
 * Remove the RAN connection invocation link from left menu and move it to control screen
 * Repair deploy-app feature and use icon instead of text button
 
