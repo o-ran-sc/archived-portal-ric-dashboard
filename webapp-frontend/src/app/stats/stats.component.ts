@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,11 +20,7 @@
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { StatsService } from '../services/stats/stats.service';
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { HttpErrorResponse } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -68,7 +64,7 @@ export class StatsComponent implements OnInit {
                     // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                     suggestedMin: 0,
                     // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-//                    suggestedMax: 1000
+                    //                    suggestedMax: 1000
                 },
                 scaleLabel: {
                     display: true,
@@ -118,7 +114,7 @@ export class StatsComponent implements OnInit {
                     // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                     suggestedMin: 0,
                     // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-//                    suggestedMax: 1000
+                    //                    suggestedMax: 1000
                 },
                 scaleLabel: {
                     display: true,
@@ -168,7 +164,7 @@ export class StatsComponent implements OnInit {
                     // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
                     suggestedMin: 0,
                     // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-//                    suggestedMax: 1000
+                    //                    suggestedMax: 1000
                 },
                 scaleLabel: {
                     display: true,
@@ -191,11 +187,13 @@ export class StatsComponent implements OnInit {
     ];
 
     public x = 11;
-
     public y = 11;
-
     public z = 11;
     public loop = true;
+
+    public sliderLoadMax = Number(this.service.loadMax) || 0;
+
+    public sliderDelayMax = Number(this.service.delayMax) || 0;
 
     latencyClickData() {
         // this.latencyChartData = [{data: [Math.random() * 100, Math.random() * 100, Math.random() * 100,
@@ -238,8 +236,8 @@ export class StatsComponent implements OnInit {
                 this.loadChartLabels.shift();
                 child.datasets[0].data.shift();
 
-                //const loadData = this.service.getLoad();
-                //child.datasets[0].data.push(this.service.load);
+                // const loadData = this.service.getLoad();
+                // child.datasets[0].data.push(this.service.load);
                 child.datasets[0].data.push(metricsv['load']);
                 this.loadChartLabels.push('' + this.x++);
             }
@@ -247,8 +245,8 @@ export class StatsComponent implements OnInit {
                 this.latencyChartLabels.shift();
                 child.datasets[0].data.shift();
 
-                //const loadData = this.service.getLoad();
-                //child.datasets[0].data.push(this.service.load);
+                // const loadData = this.service.getLoad();
+                // child.datasets[0].data.push(this.service.load);
                 child.datasets[0].data.push(metricsv['latency']);
                 this.latencyChartLabels.push('' + this.x++);
             }
@@ -256,8 +254,8 @@ export class StatsComponent implements OnInit {
                 this.latencyChartLabels.shift();
                 child.datasets[0].data.shift();
 
-                //const loadData = this.service.getLoad();
-                //child.datasets[0].data.push(this.service.load);
+                // const loadData = this.service.getLoad();
+                // child.datasets[0].data.push(this.service.load);
                 child.datasets[0].data.push(metricsv['ricload']);
                 this.latencyChartLabels.push('' + this.x++);
             }
@@ -290,13 +288,9 @@ export class StatsComponent implements OnInit {
         });
 
         this.cpuChartLabels = [...this.cpuChartLabels, label];
-        console.log(this.cpuChartLabels);
-        console.log(this.cpuChartData);
+        // console.log(this.cpuChartLabels);
+        // console.log(this.cpuChartData);
     }
-    
-    public sliderLoadMax = Number(this.service.loadMax) || 0;
-    
-    public sliderDelayMax = Number(this.service.delayMax) || 0;
 
     formatLabel(value: number | null) {
         if (!value) {
@@ -312,23 +306,21 @@ export class StatsComponent implements OnInit {
 
     constructor(private service: StatsService, private httpClient: HttpClient) {
         this.sliderLoadMax = Number(this.service.loadMax) || 0;
-        
         this.sliderDelayMax = Number(this.service.delayMax) || 0;
-        console.log('this.sliderLoadMax: ' + this.sliderLoadMax);
-        console.log('this.sliderDelayMax: ' + this.sliderDelayMax);
+        // console.log('this.sliderLoadMax: ' + this.sliderLoadMax);
+        // console.log('this.sliderDelayMax: ' + this.sliderDelayMax);
     }
     ngOnInit() {
         this.fetchLoad().subscribe(loadv => {
-          console.log('loadv: ' + loadv);
-          this.checked = loadv;
-      });
+            // console.log('loadv: ' + loadv);
+            this.checked = loadv;
+        });
         this.fetchDelay().subscribe(delayv => {
-            console.log('delayv: ' + delayv);
+            // console.log('delayv: ' + delayv);
             this.delay = delayv;
         });
         this.fetchMetrics().subscribe(metricsv => {
-            console.log('metricsv.load: ' + metricsv['load']);
-            
+            // console.log('metricsv.load: ' + metricsv['load']);
         });
     }
 
@@ -337,12 +329,12 @@ export class StatsComponent implements OnInit {
             if (this.timeLeft > 0) {
                 this.timeLeft--;
                 this.fetchMetrics().subscribe(metricsv => {
-                    console.log('metricsv.load: ' + metricsv['latency']);
-                    console.log('metricsv.load: ' + metricsv['load']);
-                    console.log('metricsv.load: ' + metricsv['ricload']);
+                    // console.log('metricsv.load: ' + metricsv['latency']);
+                    // console.log('metricsv.load: ' + metricsv['load']);
+                    // console.log('metricsv.load: ' + metricsv['ricload']);
                     this.loopLoadData(metricsv);
                 });
-                
+
             } else {
                 this.timeLeft = 60;
             }
@@ -352,45 +344,45 @@ export class StatsComponent implements OnInit {
     pauseLoadTimer() {
         clearInterval(this.interval);
     }
-    
+
     fetchMetrics() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.metricsPath, this.service.httpOptions).pipe(map(res => {
-            console.log(res);
-            console.log(res['load']);
+            // console.log(res);
+            // console.log(res['load']);
             return res;
         }));
     }
 
     fetchDelay() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.delayPath, this.service.httpOptions).pipe(map(res => {
-            console.log(res);
-            console.log(res['delay']);
+            // console.log(res);
+            // console.log(res['delay']);
             const delayv = res['delay'];
-            console.log(delayv);
+            // console.log(delayv);
             this.delay = delayv;
             return this.delay;
         }));
     }
-    
+
     saveDelay() {
-        console.log(this.delay);
+        // console.log(this.delay);
         this.service.putDelay(this.delay);
     }
-    
+
     fetchLoad() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.loadPath, this.service.httpOptions).pipe(map(res => {
-            console.log(res);
-            console.log(res['load']);
+            // console.log(res);
+            // console.log(res['load']);
             const loadv = res['load'];
-            console.log(loadv);
+            // console.log(loadv);
             this.load = loadv;
             return this.load;
         }));
-        
+
     }
-    
+
     saveLoad() {
-        console.log(this.load);
+        // console.log(this.load);
         this.service.putLoad(this.load);
     }
 

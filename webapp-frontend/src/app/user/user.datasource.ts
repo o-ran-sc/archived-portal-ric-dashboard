@@ -19,49 +19,62 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material';
-import { merge } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { merge } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { DashboardUser } from '../interfaces/dashboard.types';
 import { DashboardService } from '../services/dashboard/dashboard.service';
+import { NotificationService } from '../services/ui/notification.service';
 
 export class UserDataSource extends DataSource<DashboardUser> {
 
-  private usersSubject = new BehaviorSubject<DashboardUser[]>([]);
+  private userSubject = new BehaviorSubject<DashboardUser[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private dashboardSvc: DashboardService, private sort: MatSort) {
+  public rowCount = 1; // hide footer during intial load
+
+  constructor(private dashboardSvc: DashboardService,
+    private sort: MatSort,
+    private notificationService: NotificationService) {
     super();
-  };
+  }
 
   loadTable() {
     this.loadingSubject.next(true);
     this.dashboardSvc.getUsers()
       .pipe(
-        catchError(() => of([])),
+        catchError( (err: HttpErrorResponse) => {
+          console.log('UserDataSource failed: ' + err.message);
+          this.notificationService.error('Failed to get users.');
+          return of([]);
+        }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(Users => this.usersSubject.next(Users))
+      .subscribe( (users: DashboardUser[]) => {
+        this.rowCount = users.length;
+        this.userSubject.next(users);
+      });
   }
 
   connect(collectionViewer: CollectionViewer): Observable<DashboardUser[]> {
     const dataMutations = [
-      this.usersSubject.asObservable(),
+      this.userSubject.asObservable(),
       this.sort.sortChange
     ];
     return merge(...dataMutations).pipe(map(() => {
-      return this.getSortedData([...this.usersSubject.getValue()]);
+      return this.getSortedData([...this.userSubject.getValue()]);
     }));
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.usersSubject.complete();
+    this.userSubject.complete();
     this.loadingSubject.complete();
   }
 
@@ -73,16 +86,17 @@ export class UserDataSource extends DataSource<DashboardUser> {
     return data.sort((a: DashboardUser, b: DashboardUser) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'id': return compare(a.id, b.id, isAsc);
-        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
-        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
-        case 'status': return compare(a.status, b.status, isAsc);
+        case 'id': return this.compare(a.id, b.id, isAsc);
+        case 'firstName': return this.compare(a.firstName, b.firstName, isAsc);
+        case 'lastName': return this.compare(a.lastName, b.lastName, isAsc);
+        case 'status': return this.compare(a.status, b.status, isAsc);
         default: return 0;
       }
     });
   }
-}
 
-function compare(a, b, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  private compare(a: any, b: any, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
 }

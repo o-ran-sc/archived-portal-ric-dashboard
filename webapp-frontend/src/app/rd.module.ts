@@ -33,9 +33,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
-import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { AnrEditNcrDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { AppControlComponent } from './app-control/app-control.component';
@@ -48,7 +49,7 @@ import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { ControlComponent } from './control/control.component';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
-import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { FooterComponent } from './footer/footer.component';
@@ -62,8 +63,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { StatsComponent } from './stats/stats.component';
 import { UiService } from './services/ui/ui.service';
-import { UserComponent } from './admin/user.component';
-import { ToastrModule } from 'ngx-toastr';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [

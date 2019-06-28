@@ -30,13 +30,12 @@
 }
 
 .spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
+  height: 100px;
+  width: 100px;
 }
 
 .spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .app-control-table {
@@ -48,4 +47,8 @@
 
 tr.message-row {
   height: 0;
+}
+
+.display-none {
+  display: none;
 }

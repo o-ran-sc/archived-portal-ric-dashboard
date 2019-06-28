@@ -23,7 +23,6 @@ import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../services/dashboard/dashboard.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { DashboardUser } from './../interfaces/dashboard.types';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { UserDataSource } from './user.datasource';
 import { AddDashboardUserDialogComponent } from './add-dashboard-user-dialog/add-dashboard-user-dialog.component';
@@ -32,7 +31,7 @@ import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/e
 @Component({
   selector: 'rd-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 
 export class UserComponent implements OnInit {
@@ -43,13 +42,12 @@ export class UserComponent implements OnInit {
 
   constructor(
     private dashboardSvc: DashboardService,
-    private confirmDialogService: ConfirmDialogService,
     private errorService: ErrorDialogService,
-    private notification: NotificationService,
+    private notificationService: NotificationService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.dataSource = new UserDataSource(this.dashboardSvc, this.sort);
+    this.dataSource = new UserDataSource(this.dashboardSvc, this.sort, this.notificationService);
     this.dataSource.loadTable();
   }
 
@@ -64,7 +62,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser() {
-    const aboutError = 'Not implemented yet';
+    const aboutError = 'Not implemented (yet).';
     this.errorService.displayError(aboutError);
   }
 

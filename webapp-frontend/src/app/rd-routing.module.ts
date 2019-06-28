@@ -20,23 +20,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { StatsComponent } from './stats/stats.component';
-import { UserComponent } from './admin/user.component';
+
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
+import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
+import { LoginComponent } from './login/login.component';
+import { StatsComponent } from './stats/stats.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     {path: '', component: LoginComponent},
     {path: 'login', component: LoginComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
-    {path: 'stats', component: StatsComponent},
-    {path: 'admin', component: UserComponent},
     {path: 'ac', component: AcXappComponent},
     {path: 'anr', component: AnrXappComponent},
+    {path: 'stats', component: StatsComponent},
+    {path: 'user', component: UserComponent},
 ];
 
 @NgModule({

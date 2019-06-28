@@ -19,24 +19,30 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material';
-import { merge } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { merge } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
+import { NotificationService } from '../services/ui/notification.service';
 
 export class CatalogDataSource extends DataSource<XMDeployableApp> {
 
-  private xAppsSubject = new BehaviorSubject<XMDeployableApp[]>([]);
+  private catalogSubject = new BehaviorSubject<XMDeployableApp[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private appMgrSvc: AppMgrService, private sort: MatSort) {
+  public rowCount = 1; // hide footer during intial load
+
+  constructor(private appMgrSvc: AppMgrService,
+    private sort: MatSort,
+    private notificationService: NotificationService) {
     super();
   }
 
@@ -44,24 +50,31 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
     this.loadingSubject.next(true);
     this.appMgrSvc.getDeployable()
       .pipe(
-        catchError(() => of([])),
+        catchError( (err: HttpErrorResponse) => {
+          console.log('CatalogDataSource failed: ' + err.message);
+          this.notificationService.error('Failed to get applications.');
+          return of([]);
+        }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(xApps => this.xAppsSubject.next(xApps));
+      .subscribe( (xApps: XMDeployableApp[]) => {
+        this.rowCount = xApps.length;
+        this.catalogSubject.next(xApps);
+      });
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XMDeployableApp[]> {
     const dataMutations = [
-      this.xAppsSubject.asObservable(),
+      this.catalogSubject.asObservable(),
       this.sort.sortChange
     ];
     return merge(...dataMutations).pipe(map(() => {
-      return this.getSortedData([...this.xAppsSubject.getValue()]);
+      return this.getSortedData([...this.catalogSubject.getValue()]);
     }));
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.xAppsSubject.complete();
+    this.catalogSubject.complete();
     this.loadingSubject.complete();
   }
 
@@ -79,9 +92,8 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
     });
   }
 
-  private compare(a: string, b: string, isAsc: boolean) {
+  private compare(a: any, b: any, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
 }
-

@@ -19,12 +19,14 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { E2RanDetails, E2SetupRequest } from '../interfaces/e2-mgr.types';
+import { of } from 'rxjs/observable/of';
+import { catchError, finalize } from 'rxjs/operators';
+import { E2RanDetails } from '../interfaces/e2-mgr.types';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { NotificationService } from '../services/ui/notification.service';
 
 export class RANControlDataSource extends DataSource<E2RanDetails> {
 
@@ -34,7 +36,10 @@ export class RANControlDataSource extends DataSource<E2RanDetails> {
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private e2MgrSvcservice: E2ManagerService) {
+  public rowCount = 1; // hide footer during intial load
+
+  constructor(private e2MgrSvcservice: E2ManagerService,
+    private notificationService: NotificationService) {
     super();
   }
 
@@ -42,10 +47,17 @@ export class RANControlDataSource extends DataSource<E2RanDetails> {
     this.loadingSubject.next(true);
     this.e2MgrSvcservice.getRan()
       .pipe(
-        catchError(() => of([])),
-        finalize(() => this.loadingSubject.next(false))
+        catchError( (err: HttpErrorResponse) => {
+          console.log('RANControlDataSource failed: ' + err.message);
+          this.notificationService.error('Failed to get RAN details.');
+          return of([]);
+        }),
+        finalize( () =>  this.loadingSubject.next(false) )
       )
-      .subscribe((ranControl: E2RanDetails[]) => this.ranControlSubject.next(ranControl));
+      .subscribe( (ranControl: E2RanDetails[] ) => {
+        this.rowCount = ranControl.length;
+        this.ranControlSubject.next(ranControl);
+      });
   }
 
   connect(collectionViewer: CollectionViewer): Observable<E2RanDetails[]> {
