@@ -43,7 +43,7 @@ export class RanControlComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.dataSource = new RANControlDataSource(this.e2MgrSvc);
+    this.dataSource = new RANControlDataSource(this.e2MgrSvc, this.errorSvc);
     this.dataSource.loadTable();
   }
 

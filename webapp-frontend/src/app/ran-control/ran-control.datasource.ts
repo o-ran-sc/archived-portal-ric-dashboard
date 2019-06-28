@@ -25,6 +25,8 @@ import { of } from 'rxjs/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { E2RanDetails, E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export class RANControlDataSource extends DataSource<E2RanDetails> {
 
@@ -34,7 +36,8 @@ export class RANControlDataSource extends DataSource<E2RanDetails> {
 
   public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private e2MgrSvcservice: E2ManagerService) {
+  constructor(private e2MgrSvcservice: E2ManagerService,
+    private errorService: ErrorDialogService) {
     super();
   }
 
@@ -42,8 +45,12 @@ export class RANControlDataSource extends DataSource<E2RanDetails> {
     this.loadingSubject.next(true);
     this.e2MgrSvcservice.getRan()
       .pipe(
-        catchError(() => of([])),
-        finalize(() => this.loadingSubject.next(false))
+        catchError( (err: any) => {
+          console.log('Failed to get RAN details: ' + err);
+          this.errorService.displayError('Failed to get RAN details.');
+          return of([]);
+        }),
+        finalize( () =>  this.loadingSubject.next(false) )
       )
       .subscribe((ranControl: E2RanDetails[]) => this.ranControlSubject.next(ranControl));
   }

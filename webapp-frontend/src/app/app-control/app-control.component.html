@@ -20,9 +20,7 @@
 
 <div class="app-control__section">
   <h3 class="app-control__header">xApp Control</h3>
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
-  </div>
+
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="app-control-table mat-elevation-z8">
 
     <ng-container matColumnDef="xapp">
@@ -88,4 +86,9 @@
       (click)="expandedElement = expandedElement === element ? null : element"></mat-row>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="message-row"></tr>
   </table>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
+  </div>
+
 </div>
