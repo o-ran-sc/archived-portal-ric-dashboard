@@ -39,7 +39,6 @@ import { ANRXappDataSource } from './anr-xapp.datasource';
 export class AnrXappComponent implements AfterViewInit, OnInit {
 
   dataSource: ANRXappDataSource;
-  anrClientVersion: string;
   gNodeBIds: string[];
   @ViewChild('ggNodeB', {static: true}) ggNodeB: ElementRef;
   @ViewChild('servingCellNrcgi', {static: true}) servingCellNrcgi: ElementRef;
@@ -57,11 +56,10 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
     private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new ANRXappDataSource(this.anrXappService, this.sort);
+    this.dataSource = new ANRXappDataSource(this.anrXappService, this.sort, this.notificationService);
     this.dataSource.loadTable();
     // Empty string occurs first in the array of gNodeBIds
     this.anrXappService.getgNodeBs().subscribe((res: string[]) => this.gNodeBIds = res);
-    this.anrXappService.getVersion().subscribe((res: string) => this.anrClientVersion = res);
   }
 
   ngAfterViewInit() {

@@ -30,9 +30,8 @@
 }
 
 .spinner-container {
-  height: 360px;
-  width: 390px;
-  position: fixed;
+  height: 100px;
+  width: 100px;
 }
 
 .spinner-container mat-spinner {
@@ -40,7 +39,7 @@
 }
 
 .catalog-table {
-  width: 99%;
+  width: 100%;
   min-height: 150px;
   margin-top: 10px;
   background-color: transparent;
@@ -48,4 +47,8 @@
 
 .catalog-button-row button{
   margin-right: 5px;
+}
+
+.display-none {
+  display: none;
 }
