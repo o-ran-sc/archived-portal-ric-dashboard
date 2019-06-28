@@ -24,7 +24,7 @@ import {UiService} from '../../services/ui/ui.service';
 @Component({
   selector: 'rd-stat-card',
   templateUrl: './stat-card.component.html',
-  styleUrls: ['./stat-card.component.css']
+  styleUrls: ['./stat-card.component.scss']
 })
 export class StatCardComponent implements OnInit, OnDestroy {
   darkMode: boolean;

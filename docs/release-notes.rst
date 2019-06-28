@@ -24,10 +24,11 @@ Version 1.0.5, 3 July 2019
 --------------------------
 * Upgrade to Angular version 8
 * Upgrade to Spring-Boot 2.1.6.RELEASE
-* Fixed AC xApp policy page title is not aligned
+* Align AC xApp policy page title
 * Update E2 manager client to spec version 20190703
 * Add configuration-driven mock of E2 getNodebIdList
 * Revise front-end components to use prefix 'rd'
+* Improve error handling in BE and FE code
 
 Version 1.0.4, 27 June 2019
 ---------------------------
@@ -50,7 +51,7 @@ Version 1.0.4, 27 June 2019
 * Update App manager client to spec version 0.1.5
 * Move RAN connection feature to control screen
 * Rework admin table
-* Update the notification service 
+* Update the notification service
 * Move RAN connection feature to control screen
 * Repair deploy-app feature and use icon instead of text button
 

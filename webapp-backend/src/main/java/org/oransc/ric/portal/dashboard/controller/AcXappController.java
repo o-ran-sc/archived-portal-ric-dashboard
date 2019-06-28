@@ -31,13 +31,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpStatusCodeException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -93,18 +91,11 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = "catime", method = RequestMethod.PUT)
-	public Object setAdmissionControlPolicy(
-			@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
+	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);
-		try {
-			a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
-			response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("setAdmissionControlPolicy failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
+		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}
 
 }

@@ -29,6 +29,10 @@
     transform: translate(149 56);
 }
 
+.disconnect-all-button {
+    float: right;
+}
+
 .ran-control-table {
     width: 100%;
     min-height: 100px;
@@ -36,12 +40,21 @@
     background-color:transparent;
 }
 
-.disconnect-all-button {
-    float: right;
+.spinner-container {
+    height: 100px;
+    width: 100px;
+}
+
+.spinner-container mat-spinner {
+    margin: 0 auto 0 auto;
 }
 
 .version__text {
     color: gray;
     letter-spacing: 0.1rem;
     font-size: 10px;
+}
+
+.display-none {
+    display: none;
 }

@@ -19,10 +19,13 @@
  */
 package org.oransc.ric.portal.dashboard.controller;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
@@ -35,10 +38,12 @@ import org.springframework.web.context.request.WebRequest;
 import springfox.documentation.annotations.ApiIgnore;
 
 /**
- * Returns JSON on error within the Spring-managed context. Does not fire for
- * anything else; e.g., resource not found outside the context. If trace is
- * requested via request parameter ("?trace=true") and available, adds stack
- * trace information to the standard JSON error response.
+ * Provides an endpoint that returns JSON, which is invoked following any error
+ * within the Spring-managed context. This is NOT called for errors outside the
+ * context; e.g., resource not found.
+ * 
+ * If trace is requested via request parameter ("?trace=true") and available,
+ * adds stack trace information to the standard JSON error response.
  * 
  * Excluded from Swagger API documentation.
  * 
@@ -48,6 +53,8 @@ import springfox.documentation.annotations.ApiIgnore;
 @ApiIgnore
 @RestController
 public class SimpleErrorController implements ErrorController {
+
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private static final String ERROR_PATH = "/error";
 	private static final String TRACE = "trace";
@@ -80,6 +87,7 @@ public class SimpleErrorController implements ErrorController {
 	@RequestMapping(ERROR_PATH)
 	public Map<String, Object> error(HttpServletRequest aRequest) {
 		Map<String, Object> body = getErrorAttributes(aRequest, getTraceParameter(aRequest));
+		logger.warn("Failed in request for {}", body.get("path"));
 		body.put("decorated-by", SimpleErrorController.class.getName());
 		body.computeIfPresent(TRACE, (key, value) -> body.put(TRACE, ((String) value).split("\n\t")));
 		return body;

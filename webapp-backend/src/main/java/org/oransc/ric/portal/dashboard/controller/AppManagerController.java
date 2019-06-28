@@ -42,14 +42,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpStatusCodeException;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -88,147 +86,90 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Health check of xApp Manager - Liveness probe.")
 	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
-	public Object getHealth(HttpServletResponse response) {
+	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
-		try {
-			healthApi.getHealthAlive();
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getHealthAlive failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		healthApi.getHealthAlive();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Readiness check of xApp Manager - Readiness probe.")
 	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
-	public Object getHealthReady(HttpServletResponse response) {
+	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
-		try {
-			healthApi.getHealthReady();
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getHealthReady failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		healthApi.getHealthReady();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
 	@RequestMapping(value = "/config", method = RequestMethod.GET)
-	public Object getAllXappConfig() {
+	public AllXappConfig getAllXappConfig() {
 		logger.debug("getAllXappConfig");
-		try {
-			return xappApi.getAllXappConfig();
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getAllXappConfig failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.getAllXappConfig();
 	}
 
-	@ApiOperation(value = "Create xApp config.")
+	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = "/config", method = RequestMethod.POST)
-	public Object createXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
-		try {
-			return xappApi.createXappConfig(xAppConfig);
-		} catch (HttpStatusCodeException ex) {
-			logger.error("undeployXapp failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.createXappConfig(xAppConfig);
 	}
 
-	@ApiOperation(value = "Modify xApp config.")
+	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = "/config", method = RequestMethod.PUT)
-	public Object modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
-		try {
-			return xappApi.modifyXappConfig(xAppConfig);
-		} catch (HttpStatusCodeException ex) {
-			logger.error("modifyXappConfig failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.modifyXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Delete xApp configuration.")
 	@RequestMapping(value = "/config/{xAppName}", method = RequestMethod.DELETE)
-	public Object deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
 		logger.debug("deleteXappConfig {}", configMetadata);
-		try {
-			xappApi.deleteXappConfig(configMetadata);
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.error("deleteXappConfig failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		xappApi.deleteXappConfig(configMetadata);
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@RequestMapping(value = "/xapps/list", method = RequestMethod.GET)
-	public Object getAvailableXapps() {
+	public DashboardDeployableXapps getAvailableXapps() {
 		logger.debug("getAvailableXapps");
-		try {
-			AllDeployableXapps appNames = xappApi.listAllXapps();
-			// Answer a collection of structure instead of string
-			DashboardDeployableXapps apps = new DashboardDeployableXapps();
-			for (String n : appNames)
-				apps.add(new AppTransport(n));
-			return apps;
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getAvailableXapps failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		AllDeployableXapps appNames = xappApi.listAllXapps();
+		// Answer a collection of structure instead of string
+		// because I expect the AppMgr to be extended with
+		// additional properties for each one.
+		DashboardDeployableXapps apps = new DashboardDeployableXapps();
+		for (String n : appNames)
+			apps.add(new AppTransport(n));
+		return apps;
 	}
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@RequestMapping(value = "/xapps", method = RequestMethod.GET)
-	public Object getDeployedXapps() {
+	public AllDeployedXapps getDeployedXapps() {
 		logger.debug("getDeployedXapps");
-		try {
-			return xappApi.getAllXapps();
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getDeployedXapps failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.getAllXapps();
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
 	@RequestMapping(value = "/xapps/{xAppName}", method = RequestMethod.GET)
-	public Object getXapp(@PathVariable("xAppName") String xAppName) {
+	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
-		try {
-			return xappApi.getXappByName(xAppName);
-		} catch (HttpStatusCodeException ex) {
-			logger.error("getXapp failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.getXappByName(xAppName);
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@RequestMapping(value = "/xapps", method = RequestMethod.POST)
-	public Object deployXapp(@RequestBody XAppInfo xAppInfo) {
+	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
-		try {
-			return xappApi.deployXapp(xAppInfo);
-		} catch (HttpStatusCodeException ex) {
-			logger.error("deployXapp failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return xappApi.deployXapp(xAppInfo);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@RequestMapping(value = "/xapps/{xAppName}", method = RequestMethod.DELETE)
-	public Object undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
+	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
-		try {
-			xappApi.undeployXapp(xAppName);
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.error("undeployXapp failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		xappApi.undeployXapp(xAppName);
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 }
