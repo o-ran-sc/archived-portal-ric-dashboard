@@ -33,7 +33,6 @@ import org.oransc.ric.e2mgr.client.model.NodebIdentityGlobalNbId;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -41,9 +40,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -104,41 +101,27 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public Object healthGet(HttpServletResponse response) {
+	public void healthGet(HttpServletResponse response) {
 		logger.debug("healthGet");
-		try {
-			e2HealthCheckApi.healthGet();
-			response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("healthGet failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		e2HealthCheckApi.healthGet();
+		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
 	}
 
 	// This calls other methods to simplify the task of the front-end.
 	@ApiOperation(value = "Gets all RAN identities and statuses from the E2 manager.", response = RanDetailsTransport.class, responseContainer = "List")
 	@RequestMapping(value = "/ran", method = RequestMethod.GET)
-	public Object getRanDetails() {
+	public List<RanDetailsTransport> getRanDetails() {
 		logger.debug("getRanDetails");
-		List<NodebIdentity> nodebIdList = null;
-		try {
-			// TODO: remove mock when e2mgr delivers the getNodebIdList() method
-			nodebIdList = mockNodebIdList.isEmpty() ? e2NodebApi.getNodebIdList() : mockNodebIdList;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getRanDetails: getNodebIdList failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		// TODO: remove mock when e2mgr delivers the getNodebIdList() method
+		List<NodebIdentity> nodebIdList = mockNodebIdList.isEmpty() ? e2NodebApi.getNodebIdList() : mockNodebIdList;
 		List<RanDetailsTransport> details = new ArrayList<>();
 		for (NodebIdentity nbid : nodebIdList) {
 			GetNodebResponse nbResp = null;
 			try {
-				// Keep looping despite failures
+				// Catch exceptions to keep looping despite failures
 				nbResp = e2NodebApi.getNb(nbid.getInventoryName());
 			} catch (HttpStatusCodeException ex) {
-				logger.warn("getRanDetails failed for name {}: {}", nbid.getInventoryName(), ex.toString());
+				logger.warn("E2 getNb failed for name {}: {}", nbid.getInventoryName(), ex.toString());
 				nbResp = new GetNodebResponse().connectionStatus("UNKNOWN").ip("UNKNOWN").port(-1)
 						.ranName(nbid.getInventoryName());
 			}
@@ -149,73 +132,40 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
 	@RequestMapping(value = "/nodeb-ids", method = RequestMethod.GET)
-	public Object getNodebIdList() {
+	public List<NodebIdentity> getNodebIdList() {
 		logger.debug("getNodebIdList");
-		try {
-			return e2NodebApi.getNodebIdList();
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getNodebIdList failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		return e2NodebApi.getNodebIdList();
 	}
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
 	@RequestMapping(value = "/nodeb/{" + PP_RANNAME + "}", method = RequestMethod.GET)
-	public Object getNb(@PathVariable(PP_RANNAME) String ranName) {
+	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
-		try {
-			return e2NodebApi.getNb(ranName);
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getNb failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		return e2NodebApi.getNb(ranName);
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
 	@RequestMapping(value = "/nodeb", method = RequestMethod.DELETE)
-	public Object nodebDelete(HttpServletResponse response) {
+	public void nodebDelete(HttpServletResponse response) {
 		logger.debug("nodebDelete");
-		try {
-			e2NodebApi.nodebDelete();
-			response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("nodebDelete failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		e2NodebApi.nodebDelete();
+		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
 	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
-	public Object endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public void endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("endcSetup {}", setupRequest);
-		try {
-			e2NodebApi.endcSetup(setupRequest);
-			response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("endcSetup failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		e2NodebApi.endcSetup(setupRequest);
+		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
 	@RequestMapping(value = "/x2Setup", method = RequestMethod.POST)
-	public Object x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public void x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("x2Setup {}", setupRequest);
-		try {
-			e2NodebApi.x2Setup(setupRequest);
-			response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("x2Setup failed: {}", ex.toString());
-			return new ResponseEntity<ErrorTransport>(new ErrorTransport(ex.getRawStatusCode(), ex.toString()),
-					HttpStatus.BAD_GATEWAY);
-		}
+		e2NodebApi.x2Setup(setupRequest);
+		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 
 }

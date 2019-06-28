@@ -36,7 +36,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,7 +43,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpStatusCodeException;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -90,94 +88,60 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
-	public Object getHealthAlive(HttpServletResponse response) {
+	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
-		try {
-			healthApi.getHealthAlive();
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getHealthAlive failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		healthApi.getHealthAlive();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
 	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
-	public Object getHealthReady(HttpServletResponse response) {
+	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
-		try {
-			healthApi.getHealthReady();
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getHealthAlive failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		healthApi.getHealthReady();
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
 	@RequestMapping(value = "/gnodebs", method = RequestMethod.GET)
-	public Object getGnodebs() {
+	public GgNodeBTable getGnodebs() {
 		logger.debug("getGnodebs");
-		try {
-			return ncrtApi.getgNodeB();
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getGnodebs failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = "/ncrt", method = RequestMethod.GET)
-	public Object getNcrt( //
+	public NeighborCellRelationTable getNcrt( //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
 		logger.debug("getNcrt: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
-		try {
-			return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("getNcrt failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}
 
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.PUT)
-	public Object modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
 		logger.debug("modifyNcrt: servingCellNrcgi {}, neighborCellNrpci {}, ncrMod {}", servingCellNrcgi,
 				neighborCellNrpci, ncrMod);
-		try {
-			ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("modifyNcrt failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.DELETE)
-	public Object deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {
 		logger.debug("deleteNcrt: servingCellNrcgi {}, neighborCellNrpci {}", servingCellNrcgi, neighborCellNrpci);
-		try {
-			ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
-			response.setStatus(healthApi.getApiClient().getStatusCode().value());
-			return null;
-		} catch (HttpStatusCodeException ex) {
-			logger.warn("modifyNcrt failed: {}", ex.toString());
-			return ResponseEntity.status(HttpServletResponse.SC_BAD_GATEWAY).body(ex.getResponseBodyAsString());
-		}
+		ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
+		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 }

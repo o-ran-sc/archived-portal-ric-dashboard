@@ -19,24 +19,28 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material';
-import { merge } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
+import { merge } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { XappControlRow, XMDeployedApp, XMXappInstance } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { NotificationService } from '../services/ui/notification.service';
 
 export class AppControlDataSource extends DataSource<XappControlRow> {
 
-  private xAppInstancesSubject = new BehaviorSubject<XappControlRow[]>([]);
+  private appControlSubject = new BehaviorSubject<XappControlRow[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
   public loading$ = this.loadingSubject.asObservable();
 
-  emptyInstances: XMXappInstance =
+  public rowCount = 0;
+
+  private emptyInstances: XMXappInstance =
     { ip: null,
       name: null,
       port: null,
@@ -45,7 +49,9 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
       txMessages: [],
     };
 
-  constructor(private appMgrSvc: AppMgrService, private sort: MatSort) {
+  constructor(private appMgrSvc: AppMgrService,
+    private sort: MatSort,
+    private notificationService: NotificationService) {
     super();
   }
 
@@ -53,28 +59,36 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     this.loadingSubject.next(true);
     this.appMgrSvc.getDeployed()
       .pipe(
-        catchError(() => of([])),
+        catchError( (err: HttpErrorResponse) => {
+          console.log('AppControlDataSource failed: ' + err.message);
+          this.notificationService.error('Failed to get applications.');
+          return of([]);
+        }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe(xApps => this.xAppInstancesSubject.next(this.flatten(xApps)));
+      .subscribe( (xApps: XMDeployedApp[]) => {
+        this.rowCount = xApps.length;
+        const flattenedApps = this.flatten(xApps);
+        this.appControlSubject.next(flattenedApps);
+      });
   }
 
   connect(collectionViewer: CollectionViewer): Observable<XappControlRow[]> {
     const dataMutations = [
-      this.xAppInstancesSubject.asObservable(),
+      this.appControlSubject.asObservable(),
       this.sort.sortChange
     ];
     return merge(...dataMutations).pipe(map(() => {
-      return this.getSortedData([...this.xAppInstancesSubject.getValue()]);
+      return this.getSortedData([...this.appControlSubject.getValue()]);
     }));
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.xAppInstancesSubject.complete();
+    this.appControlSubject.complete();
     this.loadingSubject.complete();
   }
 
-  private flatten(allxappdata: XMDeployedApp[]) {
+  private flatten(allxappdata: XMDeployedApp[]): XappControlRow[]  {
     const xAppInstances: XappControlRow[] = [];
     for (const xapp of allxappdata) {
       if (!xapp.instances) {
@@ -115,6 +129,6 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
   }
 }
 
-function compare(a, b, isAsc) {
+function compare(a: any, b: any, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
