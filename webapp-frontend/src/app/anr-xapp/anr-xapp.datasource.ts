@@ -19,59 +19,70 @@
  */
 
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material';
-import { merge } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { of } from 'rxjs/observable/of';
+import { merge } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { ANRNeighborCellRelation } from '../interfaces/anr-xapp.types';
 import { ANRXappService } from '../services/anr-xapp/anr-xapp.service';
+import { NotificationService } from '../services/ui/notification.service';
 
-// https://blog.angular-university.io/angular-material-data-table/
 export class ANRXappDataSource extends DataSource<ANRNeighborCellRelation> {
 
-    private relationsSubject = new BehaviorSubject<ANRNeighborCellRelation[]>([]);
+  private relationsSubject = new BehaviorSubject<ANRNeighborCellRelation[]>([]);
 
-    private loadingSubject = new BehaviorSubject<boolean>(false);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
 
-    public loading$ = this.loadingSubject.asObservable();
+  public loading$ = this.loadingSubject.asObservable();
 
-  constructor(private anrXappService: ANRXappService, private sort: MatSort) {
-        super();
-    }
+  public rowCount = 1; // hide footer during intial load
 
-    loadTable(ggnodeb = '', servingCellNrcgi = '', neighborCellNrpci = '') {
-        this.loadingSubject.next(true);
-        this.anrXappService.getNcrtInfo(ggnodeb, servingCellNrcgi, neighborCellNrpci)
-            .pipe(
-                catchError(() => of([])),
-                finalize(() => this.loadingSubject.next(false))
-            )
-            .subscribe(ncrt => this.relationsSubject.next(ncrt));
-    }
+  constructor(private anrXappService: ANRXappService,
+    private sort: MatSort,
+    private notificationService: NotificationService) {
+    super();
+  }
 
-    connect(collectionViewer: CollectionViewer): Observable<ANRNeighborCellRelation[]> {
-      const dataMutations = [
-        this.relationsSubject.asObservable(),
-        this.sort.sortChange
-      ];
-      return merge(...dataMutations).pipe(map(() => {
-        return this.getSortedData([...this.relationsSubject.getValue()]);
-      }));
-    }
+  loadTable(ggnodeb: string = '', servingCellNrcgi: string = '', neighborCellNrpci: string = '') {
+    this.loadingSubject.next(true);
+    this.anrXappService.getNcrtInfo(ggnodeb, servingCellNrcgi, neighborCellNrpci)
+      .pipe(
+        catchError( (err: HttpErrorResponse) => {
+          console.log('ANRXappDataSource failed: ' + err.message);
+          this.notificationService.error('Failed to get data.');
+          return of([]);
+        }),
+        finalize(() => this.loadingSubject.next(false))
+      )
+      .subscribe( (ncrt: ANRNeighborCellRelation[]) => {
+        this.rowCount = ncrt.length;
+        this.relationsSubject.next(ncrt);
+      });
+  }
 
-    disconnect(collectionViewer: CollectionViewer): void {
-        this.relationsSubject.complete();
-        this.loadingSubject.complete();
-    }
+  connect(collectionViewer: CollectionViewer): Observable<ANRNeighborCellRelation[]> {
+    const dataMutations = [
+      this.relationsSubject.asObservable(),
+      this.sort.sortChange
+    ];
+    return merge(...dataMutations).pipe(map(() => {
+      return this.getSortedData([...this.relationsSubject.getValue()]);
+    }));
+  }
+
+  disconnect(collectionViewer: CollectionViewer): void {
+    this.relationsSubject.complete();
+    this.loadingSubject.complete();
+  }
 
   private getSortedData(data: ANRNeighborCellRelation[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
-
-    return data.sort((a, b) => {
+    return data.sort((a: ANRNeighborCellRelation, b: ANRNeighborCellRelation) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'cellIdentifierNrcgi': return compare(a.servingCellNrcgi, b.servingCellNrcgi, isAsc);
@@ -84,9 +95,8 @@ export class ANRXappDataSource extends DataSource<ANRNeighborCellRelation> {
       }
     });
   }
-
 }
 
-function compare(a, b, isAsc) {
+function compare(a: any, b: any, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

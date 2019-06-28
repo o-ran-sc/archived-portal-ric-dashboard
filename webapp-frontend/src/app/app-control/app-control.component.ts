@@ -31,7 +31,7 @@ import { AppControlDataSource } from './app-control.datasource';
 @Component({
   selector: 'rd-app-control',
   templateUrl: './app-control.component.html',
-  styleUrls: ['./app-control.component.css'],
+  styleUrls: ['./app-control.component.scss'],
   animations: [AppControlAnimations.messageTrigger]
 })
 export class AppControlComponent implements OnInit {
@@ -45,10 +45,10 @@ export class AppControlComponent implements OnInit {
     private router: Router,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
-    private notification: NotificationService) { }
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort);
+    this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort, this.notificationService);
     this.dataSource.loadTable();
   }
 
@@ -76,10 +76,10 @@ export class AppControlComponent implements OnInit {
               this.dataSource.loadTable();
               switch (response.status) {
                 case 200:
-                  this.notification.success('xApp undeployed successfully!');
+                  this.notificationService.success('xApp undeployed successfully!');
                   break;
                 default:
-                  this.notification.warn('xApp undeploy failed.');
+                  this.notificationService.warn('xApp undeploy failed.');
               }
             }
           );

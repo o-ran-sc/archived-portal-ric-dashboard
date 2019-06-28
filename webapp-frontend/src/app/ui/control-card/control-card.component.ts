@@ -24,7 +24,7 @@ import {UiService} from '../../services/ui/ui.service';
 @Component({
   selector: 'rd-control-card',
   templateUrl: './control-card.component.html',
-  styleUrls: ['./control-card.component.css']
+  styleUrls: ['./control-card.component.scss']
 })
 export class ControlCardComponent implements OnInit, OnDestroy {
   darkMode: boolean;

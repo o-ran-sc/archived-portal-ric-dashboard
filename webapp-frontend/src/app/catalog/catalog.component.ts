@@ -29,7 +29,7 @@ import { CatalogDataSource } from './catalog.datasource';
 @Component({
   selector: 'rd-app-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.css'],
+  styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent implements OnInit {
 
@@ -38,31 +38,31 @@ export class CatalogComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private appMgrSvc: AppMgrService,
+    private appMgrService: AppMgrService,
     private confirmDialogService: ConfirmDialogService,
-    private errorService: ErrorDialogService,
-    private notification: NotificationService) { }
+    private errorDiaglogService: ErrorDialogService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new CatalogDataSource(this.appMgrSvc, this.sort );
+    this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService );
     this.dataSource.loadTable();
   }
 
   onConfigureApp(name: string): void {
     const aboutError = 'Configure not implemented (yet)';
-    this.errorService.displayError(aboutError);
+    this.errorDiaglogService.displayError(aboutError);
   }
 
   onDeployApp(name: string): void {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + name + '?')
       .afterClosed().subscribe( (res: any) => {
         if (res) {
-          this.appMgrSvc.deployXapp(name).subscribe(
+          this.appMgrService.deployXapp(name).subscribe(
             (response: HttpResponse<object>) => {
-              this.notification.success('Deploy succeeded!');
+              this.notificationService.success('Deploy succeeded!');
             },
             (error: HttpErrorResponse) => {
-              this.notification.warn('Deploy failed: ' + error.message);
+              this.notificationService.warn('Deploy failed: ' + error.message);
             }
           );
         }
