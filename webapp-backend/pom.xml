@@ -56,7 +56,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
-			<version>20190626-SNAPSHOT</version>
+			<version>20190630-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
