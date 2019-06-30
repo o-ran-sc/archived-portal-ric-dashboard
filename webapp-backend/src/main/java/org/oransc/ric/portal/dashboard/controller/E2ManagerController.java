@@ -148,7 +148,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
-	@RequestMapping(value = "/nodeb/id", method = RequestMethod.GET)
+	@RequestMapping(value = "/nodeb-ids", method = RequestMethod.GET)
 	public Object getNodebIdList() {
 		logger.debug("getNodebIdList");
 		try {

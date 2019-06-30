@@ -134,7 +134,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /nodeb/ids:
+  /nodeb-ids:
     get:
       tags:
         - nodeb
