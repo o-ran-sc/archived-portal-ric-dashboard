@@ -16,6 +16,24 @@
       "revId": "cd067e11e5a80a26840c9ec8e2f1d63e8ed32861",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a917f941_c602c653",
+        "filename": "webapp-frontend/src/app/login/login.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-01T18:45:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f2a0157_bdc5a23b",
+      "revId": "cd067e11e5a80a26840c9ec8e2f1d63e8ed32861",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     }
   ]
 }
