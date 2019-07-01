@@ -22,7 +22,7 @@ import { DashboardService } from '../services/dashboard/dashboard.service';
 import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'rd-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })

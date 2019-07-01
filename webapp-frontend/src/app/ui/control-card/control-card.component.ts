@@ -22,15 +22,14 @@ import {Router} from '@angular/router';
 import {UiService} from '../../services/ui/ui.service';
 
 @Component({
-  selector: 'app-control-card',
+  selector: 'rd-control-card',
   templateUrl: './control-card.component.html',
   styleUrls: ['./control-card.component.css']
 })
 export class ControlCardComponent implements OnInit, OnDestroy {
   darkMode: boolean;
 
-  constructor(public router: Router, public ui: UiService) {
-  }
+  constructor(public router: Router, public ui: UiService) { }
 
   ngOnInit() {
     this.ui.darkModeState.subscribe((isDark) => {
@@ -38,9 +37,7 @@ export class ControlCardComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() { }
 
   openDetails() {
     this.router.navigateByUrl('../../control');

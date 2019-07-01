@@ -19,99 +19,73 @@
   -->
 <div class="stats__section">
 
-    <h3 class="stats__header">Platform stats</h3>
+	<h3 class="stats__header">Platform stats</h3>
 
-     <mat-card class="bar-chart-card">
-        <mat-card-header>
-            <mat-card-title>RIC Total Load</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <canvas baseChart
-                [datasets]="cpuChartData"
-                [labels]="cpuChartLabels"
-                [options]="cpuChartOptions"
-                [colors]="cpuChartColors"
-                [legend]="cpuChartLegend"
-                [chartType]="cpuChartType"
-                (click)="loadClickData()">
-        </canvas>
-        </mat-card-content>
-    </mat-card>
-<mat-divider></mat-divider>
-            <mat-tab-group>
-			  <mat-tab label="Pendulum xApp">  
-				    <mat-grid-list cols="3" rowHeight="3:2">
-					    <mat-grid-tile>
-					    	<mat-card>
-		                        <div>Additional Delay</div>
-		                        <mat-slider
-		                            thumbLabel
-		                            tickInterval="1"
-		                            min="0"
-		                            [max]="sliderDelayMax"
-		                            [(ngModel)]="delay" (click)="saveDelay()" ></mat-slider>
-						 	</mat-card>
-					    </mat-grid-tile>
-				        <mat-grid-tile>
-				            <mat-card class="bar-chart-card">
-				                <mat-card-header>
-				                    <mat-card-title>Pendulum Control Loop Latency</mat-card-title>
-				                </mat-card-header>
-				                <mat-card-content>
-				                    <canvas baseChart
-				                        [datasets]="latencyChartData"
-				                        [labels]="latencyChartLabels"
-				                        [options]="latencyChartOptions"
-				                        [colors]="latencyChartColors"
-				                        [legend]="latencyChartLegend"
-				                        [chartType]="latencyChartType"
-				                        (click)="loadClickData()">
-				                </canvas>
-				                </mat-card-content>
-				            </mat-card>
-				        </mat-grid-tile>
-				        <mat-grid-tile>
-				            <mat-card class="bar-chart-card">
-				                <mat-card-header>
-				                    <mat-card-title>Pendulum Control Load</mat-card-title>
-				                </mat-card-header>
-				                <mat-card-content>
-				                    <canvas baseChart
-				                        [datasets]="loadChartData"
-				                        [labels]="loadChartLabels"
-				                        [options]="loadChartOptions"
-				                        [colors]="loadChartColors"
-				                        [legend]="loadChartLegend"
-				                        [chartType]="loadChartType"
-				                        (click)="loadClickData()">
-				                </canvas>
-				                </mat-card-content>
-				            </mat-card>
-				        </mat-grid-tile>
-				    </mat-grid-list>
+	<mat-card class="bar-chart-card">
+		<mat-card-header>
+			<mat-card-title>RIC Total Load</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<canvas baseChart [datasets]="cpuChartData" [labels]="cpuChartLabels" [options]="cpuChartOptions"
+				[colors]="cpuChartColors" [legend]="cpuChartLegend" [chartType]="cpuChartType"
+				(click)="loadClickData()">
+			</canvas>
+		</mat-card-content>
+	</mat-card>
 
-			  </mat-tab>
-			  <mat-tab label="Reporting xApp">  
-			  	<mat-grid-list cols="3" rowHeight="3:2">
-				    <mat-grid-tile>
+	<mat-divider></mat-divider>
 
-<!-- 				    		<mat-slide-toggle labelPosition="before" [(ngModel)]="checked" (click)="saveLoad($event)" >Additional Load</mat-slide-toggle> -->
-				    		<mat-card>
-		                        <div>Additional Load</div>
-		                        <mat-slider
-		                            thumbLabel
-		                            tickInterval="1"
-		                            min="0"
-		                            [max]="sliderLoadMax"
-		                            [(ngModel)]="load" (click)="saveLoad()" ></mat-slider>
-						 	</mat-card>
-
-				    </mat-grid-tile>
-				</mat-grid-list>
-			  	
-			  </mat-tab>
-			</mat-tab-group>
-
+	<mat-tab-group>
+		<mat-tab label="Pendulum xApp">
+			<mat-grid-list cols="3" rowHeight="3:2">
+				<mat-grid-tile>
+					<mat-card>
+						<div>Additional Delay</div>
+						<mat-slider thumbLabel tickInterval="1" min="0" [max]="sliderDelayMax" [(ngModel)]="delay"
+							(click)="saveDelay()"></mat-slider>
+					</mat-card>
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<mat-card class="bar-chart-card">
+						<mat-card-header>
+							<mat-card-title>Pendulum Control Loop Latency</mat-card-title>
+						</mat-card-header>
+						<mat-card-content>
+							<canvas baseChart [datasets]="latencyChartData" [labels]="latencyChartLabels"
+								[options]="latencyChartOptions" [colors]="latencyChartColors"
+								[legend]="latencyChartLegend" [chartType]="latencyChartType" (click)="loadClickData()">
+							</canvas>
+						</mat-card-content>
+					</mat-card>
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<mat-card class="bar-chart-card">
+						<mat-card-header>
+							<mat-card-title>Pendulum Control Load</mat-card-title>
+						</mat-card-header>
+						<mat-card-content>
+							<canvas baseChart [datasets]="loadChartData" [labels]="loadChartLabels"
+								[options]="loadChartOptions" [colors]="loadChartColors" [legend]="loadChartLegend"
+								[chartType]="loadChartType" (click)="loadClickData()">
+							</canvas>
+						</mat-card-content>
+					</mat-card>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-tab>
+		<mat-tab label="Reporting xApp">
+			<mat-grid-list cols="3" rowHeight="3:2">
+				<mat-grid-tile>
+					<mat-card>
+						<div>Additional Load</div>
+						<mat-slider thumbLabel tickInterval="1" min="0" [max]="sliderLoadMax" [(ngModel)]="load"
+							(click)="saveLoad()"></mat-slider>
+					</mat-card>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-tab>
+	</mat-tab-group>
 
 </div>
-	<app-config-event></app-config-event>
+
+<rd-app-config-event></rd-app-config-event>

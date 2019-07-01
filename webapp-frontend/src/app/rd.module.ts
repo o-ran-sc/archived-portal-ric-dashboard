@@ -34,64 +34,63 @@ import { ChartsModule } from 'ng2-charts';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { UiService } from './services/ui/ui.service';
-import { AppMgrService } from './services/app-mgr/app-mgr.service';
-import { DashboardService } from './services/dashboard/dashboard.service';
-import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { AppControlComponent } from './app-control/app-control.component';
-import { ControlComponent } from './control/control.component';
-import { RANConnectionDialogComponent } from './ran-control/ran-connection-dialog.component';
-import { RanControlComponent } from './ran-control/ran-control.component';
-import { ANREditNCRDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
-import { StatsComponent } from './stats/stats.component';
-import { UserComponent } from './admin/user.component';
-import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
-import { ControlCardComponent } from './ui/control-card/control-card.component';
-import { StatCardComponent } from './ui/stat-card/stat-card.component';
-import { ModalEventComponent } from './ui/modal-event/modal-event.component';
-import { ConfigEventComponent } from './ui/config-event/config-event.component';
-import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
-import { FooterComponent } from './footer/footer.component';
-import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
-import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
-import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './admin/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { AnrEditNcrDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
+import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
+import { AppControlComponent } from './app-control/app-control.component';
+import { AppMgrService } from './services/app-mgr/app-mgr.service';
+import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { ConfigEventComponent } from './ui/config-event/config-event.component';
+import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
+import { ControlCardComponent } from './ui/control-card/control-card.component';
+import { ControlComponent } from './control/control.component';
+import { DashboardService } from './services/dashboard/dashboard.service';
+import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { ErrorDialogService } from './services/ui/error-dialog.service';
+import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { ModalEventComponent } from './ui/modal-event/modal-event.component';
+import { RanControlComponent } from './ran-control/ran-control.component';
+import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
+import { RdComponent } from './rd.component';
+import { RdRoutingModule } from './rd-routing.module';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StatCardComponent } from './ui/stat-card/stat-card.component';
+import { StatsComponent } from './stats/stats.component';
+import { UiService } from './services/ui/ui.service';
+import { UserComponent } from './admin/user.component';
 
 @NgModule({
   declarations: [
     AcXappComponent,
-    UserComponent,
-    ANREditNCRDialogComponent,
+    AddDashboardUserDialogComponent,
+    AnrEditNcrDialogComponent,
     AnrXappComponent,
-    AppComponent,
-    CatalogComponent,
+    AppControlComponent,
     CatalogCardComponent,
+    CatalogComponent,
     ConfigEventComponent,
     ConfirmDialogComponent,
     ControlCardComponent,
-    AppControlComponent,
+    ControlComponent,
+    EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     FooterComponent,
     LoginComponent,
     ModalEventComponent,
     RanControlComponent,
-    RANConnectionDialogComponent,
+    RanControlConnectDialogComponent,
+    RdComponent,
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
-    AddDashboardUserDialogComponent,
-    EditDashboardUserDialogComponent,
-    ControlComponent
+    UserComponent
   ],
-    imports: [
-    AppRoutingModule,
+  imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
@@ -120,10 +119,11 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
+    RdRoutingModule,
+    ReactiveFormsModule,
   ],
-    exports: [
+  exports: [
     FormsModule,
     MatDialogModule,
     MatButtonToggleModule,
@@ -139,25 +139,24 @@ import { EditDashboardUserDialogComponent } from './admin/edit-dashboard-user-di
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    RANConnectionDialogComponent,
-    ErrorDialogComponent
-    ],
-    entryComponents: [
-    RANConnectionDialogComponent,
-    ANREditNCRDialogComponent,
-    ConfirmDialogComponent,
+    RanControlConnectDialogComponent,
     ErrorDialogComponent,
+  ],
+  entryComponents: [
     AddDashboardUserDialogComponent,
-    EditDashboardUserDialogComponent
-    ],
+    AnrEditNcrDialogComponent,
+    ConfirmDialogComponent,
+    EditDashboardUserDialogComponent,
+    ErrorDialogComponent,
+    RanControlConnectDialogComponent,
+  ],
   providers: [
-      UiService,
-      AppMgrService,
-      DashboardService,
-      E2ManagerService,
-      ErrorDialogService
-    ],
-  bootstrap: [AppComponent]
+    AppMgrService,
+    DashboardService,
+    E2ManagerService,
+    ErrorDialogService,
+    UiService
+  ],
+  bootstrap: [RdComponent]
 })
-export class AppModule { }
-
+export class RdModule { }

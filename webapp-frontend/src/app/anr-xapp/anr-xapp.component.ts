@@ -28,11 +28,11 @@ import { ANRXappService } from '../services/anr-xapp/anr-xapp.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
-import { ANREditNCRDialogComponent } from './anr-edit-ncr-dialog.component';
+import { AnrEditNcrDialogComponent } from './anr-edit-ncr-dialog.component';
 import { ANRXappDataSource } from './anr-xapp.datasource';
 
 @Component({
-  selector: 'app-anr',
+  selector: 'rd-anr',
   templateUrl: './anr-xapp.component.html',
   styleUrls: ['./anr-xapp.component.scss']
 })
@@ -94,7 +94,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
   }
 
   modifyNcr(ncr: ANRNeighborCellRelation): void {
-    const dialogRef = this.dialog.open(ANREditNCRDialogComponent, {
+    const dialogRef = this.dialog.open(AnrEditNcrDialogComponent, {
       width: '300px',
       data: ncr
     });
