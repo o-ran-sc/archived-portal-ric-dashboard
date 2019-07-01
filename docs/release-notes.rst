@@ -20,13 +20,14 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.5, 28 June 2019
----------------------------
+Version 1.0.5, 2 July 2019
+--------------------------
 * Upgrade to Angular version 8
 * Upgrade to Spring-Boot 2.1.6.RELEASE
 * Fixed AC xApp policy page title is not aligned
 * Update E2 manager client to spec version 20190626
 * Add configuration-driven mock of E2 getNodebIdList
+* Revise front-end components to use prefix 'rd'
 
 Version 1.0.4, 27 June 2019
 ---------------------------

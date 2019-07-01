@@ -30,7 +30,7 @@ import { AddDashboardUserDialogComponent } from './add-dashboard-user-dialog/add
 import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 
 @Component({
-  selector: 'app-user',
+  selector: 'rd-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
