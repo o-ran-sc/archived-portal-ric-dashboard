@@ -22,7 +22,7 @@ import {Router} from '@angular/router';
 import {UiService} from '../../services/ui/ui.service';
 
 @Component({
-  selector: 'app-control-card',
+  selector: 'rd-app-control-card',
   templateUrl: './control-card.component.html',
   styleUrls: ['./control-card.component.css']
 })

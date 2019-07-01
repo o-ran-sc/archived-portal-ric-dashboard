@@ -18,14 +18,14 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
-import {UiService} from './services/ui/ui.service';
+import { UiService } from './services/ui/ui.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'rd-root',
+  templateUrl: './rd.component.html',
+  styleUrls: ['./rd.component.css']
 })
-export class AppComponent implements OnInit {
+export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
 

@@ -22,7 +22,7 @@ import {Router} from '@angular/router';
 import {UiService} from '../../services/ui/ui.service';
 
 @Component({
-  selector: 'app-stat-card',
+  selector: 'rd-stat-card',
   templateUrl: './stat-card.component.html',
   styleUrls: ['./stat-card.component.css']
 })
