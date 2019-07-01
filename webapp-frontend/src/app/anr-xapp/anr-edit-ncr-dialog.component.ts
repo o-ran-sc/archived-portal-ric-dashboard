@@ -25,17 +25,17 @@ import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ANRNeighborCellRelation, ANRNeighborCellRelationMod } from '../interfaces/anr-xapp.types';
 
 @Component({
-    selector: 'app-ncr-edit-dialog',
+    selector: 'rd-ncr-edit-dialog',
     templateUrl: './anr-edit-ncr-dialog.component.html',
     styleUrls: ['./anr-edit-ncr-dialog.component.scss']
 })
 
-export class ANREditNCRDialogComponent implements OnInit {
+export class AnrEditNcrDialogComponent implements OnInit {
 
     private ncrDialogForm: FormGroup;
 
     constructor(
-        private dialogRef: MatDialogRef<ANREditNCRDialogComponent>,
+        private dialogRef: MatDialogRef<AnrEditNcrDialogComponent>,
         private dataService: ANRXappService,
         private errorService: ErrorDialogService,
         @Inject(MAT_DIALOG_DATA) private data: ANRNeighborCellRelation) { }

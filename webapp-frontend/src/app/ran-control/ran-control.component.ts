@@ -19,7 +19,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RANConnectionDialogComponent } from './ran-connection-dialog.component';
+import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
@@ -28,7 +28,7 @@ import { RANControlDataSource } from './ran-control.datasource';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'control-ran-control',
+  selector: 'rd-ran-control',
   templateUrl: './ran-control.component.html',
   styleUrls: ['./ran-control.component.scss']
 })
@@ -48,7 +48,7 @@ export class RanControlComponent implements OnInit {
   }
 
   setupRANConnection() {
-    const dialogRef = this.dialog.open(RANConnectionDialogComponent, {
+    const dialogRef = this.dialog.open(RanControlConnectDialogComponent, {
       width: '450px',
       data: {}
     });

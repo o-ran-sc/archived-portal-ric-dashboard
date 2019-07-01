@@ -21,7 +21,7 @@ import { Component, Input, OnInit , Output, EventEmitter  } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-modal-event',
+  selector: 'rd-modal-event',
   templateUrl: './modal-event.component.html',
   styleUrls: ['./modal-event.component.scss']
 })
