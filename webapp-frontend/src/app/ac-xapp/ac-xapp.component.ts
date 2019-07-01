@@ -26,7 +26,7 @@ import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 
 @Component({
-  selector: 'app-ac-xapp',
+  selector: 'rd-ac-xapp',
   templateUrl: './ac-xapp.component.html',
   styleUrls: ['./ac-xapp.component.scss']
 })

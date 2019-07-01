@@ -20,7 +20,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
+  selector: 'rd-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

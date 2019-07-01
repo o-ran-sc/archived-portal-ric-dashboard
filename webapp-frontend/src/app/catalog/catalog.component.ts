@@ -27,7 +27,7 @@ import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
 
 @Component({
-  selector: 'app-catalog',
+  selector: 'rd-app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
 })
