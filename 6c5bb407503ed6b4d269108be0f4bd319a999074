@@ -34,6 +34,24 @@
       "revId": "6c5bb407503ed6b4d269108be0f4bd319a999074",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "505a6f2c_c04be33b",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2019-07-01T17:38:31Z",
+      "side": 1,
+      "message": "Ok then I am fine if you stay with rd-app-catalog.",
+      "parentUuid": "ccc57765_f7458cfa",
+      "revId": "6c5bb407503ed6b4d269108be0f4bd319a999074",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
