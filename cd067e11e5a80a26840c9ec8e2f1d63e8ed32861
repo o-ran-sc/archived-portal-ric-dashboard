@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f2a0157_bdc5a23b",
+        "filename": "webapp-frontend/src/app/login/login.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2019-07-01T18:32:42Z",
+      "side": 1,
+      "message": "Should this be \u003crd-control-card\u003e instead of \u003crd-app-control-card\u003e since this card is the navigation point for both app and RAN controls.",
+      "revId": "cd067e11e5a80a26840c9ec8e2f1d63e8ed32861",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
