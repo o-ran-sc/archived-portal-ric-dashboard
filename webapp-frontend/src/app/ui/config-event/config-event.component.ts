@@ -22,7 +22,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { StatsService } from '../../services/stats/stats.service';
 
 @Component({
-  selector: 'app-config-event',
+  selector: 'rd-app-config-event',
   templateUrl: './config-event.component.html',
   styleUrls: ['./config-event.component.scss']
 })

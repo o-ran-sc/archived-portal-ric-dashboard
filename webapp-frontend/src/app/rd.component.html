@@ -56,7 +56,7 @@
       </div>
     </section>
     <section #sidenav class="menu-body">
-       <app-sidenav-list></app-sidenav-list>
+       <rd-sidenav-list></rd-sidenav-list>
     </section>
     <section class="menu-footer">
 
@@ -116,8 +116,9 @@
 
   <!-- Footer -->
   <footer class="main__footer">
-  	<div class="main-footer__bg" [ngClass]="{'main-footer__bg-dark': darkModeActive}"></div>
-    <app-footer></app-footer>
+    <div class="main-footer__bg" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+      <rd-footer></rd-footer>
+    </div>
   </footer>
 
 </div>

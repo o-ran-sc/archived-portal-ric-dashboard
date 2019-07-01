@@ -29,7 +29,7 @@ import { AppControlAnimations } from './app-control.animations';
 import { AppControlDataSource } from './app-control.datasource';
 
 @Component({
-  selector: 'control-app-control',
+  selector: 'rd-app-control',
   templateUrl: './app-control.component.html',
   styleUrls: ['./app-control.component.css'],
   animations: [AppControlAnimations.messageTrigger]

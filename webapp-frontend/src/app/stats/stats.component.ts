@@ -28,7 +28,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-stats',
+    selector: 'rd-stats',
     templateUrl: './stats.component.html',
     styleUrls: ['./stats.component.scss']
 })

@@ -22,7 +22,7 @@ import {Router} from '@angular/router';
 import {UiService} from '../../services/ui/ui.service';
 
 @Component({
-  selector: 'app-catalog-card',
+  selector: 'rd-app-catalog-card',
   templateUrl: './catalog-card.component.html',
   styleUrls: ['./catalog-card.component.css']
 })

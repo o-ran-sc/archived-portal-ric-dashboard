@@ -4,6 +4,10 @@
 
 Run `mvn -Dspring.profiles.active=mock spring-boot:run` for a dev server. Navigate to `http://localhost:8080/swagger-ui.html`. 
 
+## Alternate configuration
+
+Run `mvn -Dspring.config.name=application-abc spring-boot:run` to read configuration from the file 'application-abc.properties' in the local directory.
+
 ## License
 
 Copyright (C) 2019 AT&T Intellectual Property & Nokia. All rights reserved.

@@ -27,17 +27,17 @@ import { E2SetupRequest } from '../interfaces/e2-mgr.types';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'app-signal-ranconnect-dialog',
+    selector: 'rd-ran-control-connect-dialog',
     templateUrl: './ran-connection-dialog.component.html',
     styleUrls: ['./ran-connection-dialog.component.css']
 })
 
-export class RANConnectionDialogComponent implements OnInit {
+export class RanControlConnectDialogComponent implements OnInit {
 
     public ranDialogForm: FormGroup;
 
     constructor(
-        private dialogRef: MatDialogRef<RANConnectionDialogComponent>,
+        private dialogRef: MatDialogRef<RanControlConnectDialogComponent>,
         private service: E2ManagerService,
         private errorService: ErrorDialogService,
         private notifService: NotificationService,

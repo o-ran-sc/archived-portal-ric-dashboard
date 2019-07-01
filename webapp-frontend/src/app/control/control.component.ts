@@ -20,7 +20,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-control',
+  selector: 'rd-control',
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css']
 })
