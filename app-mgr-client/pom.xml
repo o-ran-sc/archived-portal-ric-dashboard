@@ -110,8 +110,6 @@ limitations under the License.
 								<groupId>${project.groupId}</groupId>
 								<artifactId>${project.artifactId}</artifactId>
 								<artifactVersion>${project.version}</artifactVersion>
-								<artifactUrl>www.O-RAN-SC.org</artifactUrl>
-								<artifactDescription>xApp manager client library</artifactDescription>
 								<library>resttemplate</library>
 								<java8>true</java8>
 								<dateLibrary>java8</dateLibrary>

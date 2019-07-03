@@ -383,6 +383,14 @@ components:
           oneOf:
             - type: string
             - type: integer
+        globalNbId:
+          properties:
+            nbId:
+              type: string
+            plmnId:
+              type: string
+          additionalProperties: false
+          type: object
         gnb:
           properties:
             servedNrCells:
