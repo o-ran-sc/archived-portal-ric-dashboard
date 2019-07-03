@@ -10,7 +10,7 @@
       "prefix": "rd",
       "schematics": {
         "@schematics/angular:component": {
-            "styleext": "scss"
+          "styleext": "scss"
             }
         },
       "architect": {
@@ -27,14 +27,15 @@
               "src/assets"
             ],
             "styles": [
-                "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
-                "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
-                "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
-                "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
-                "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-                "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
-                "node_modules/material-design-icons/iconfont/material-icons.css",
-                "src/styles.scss"
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
             "node_modules/chart.js/dist/Chart.js",
