@@ -63,6 +63,7 @@ import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { StatsComponent } from './stats/stats.component';
 import { UiService } from './services/ui/ui.service';
 import { UserComponent } from './admin/user.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { UserComponent } from './admin/user.component';
     MDBBootstrapModule.forRoot(),
     RdRoutingModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   exports: [
     FormsModule,

@@ -16,23 +16,3 @@ html, body {
   font-size: 20px;
 }
 
-snack-bar-container.success.default {
-  background-color: #5cb85c;
-  color: #fff;
-}
-
-snack-bar-container.warn.default {
-  background-color: #f99157;
-  color: #fff;
-}
-
-snack-bar-container.error.default {
-  background-color: #fc7169;
-  color: #fff;
-}
-
-
-snack-bar-container.notification simple-snack-bar {
-  font-size: 18px !important;
-  font-weight: bold;
-}
