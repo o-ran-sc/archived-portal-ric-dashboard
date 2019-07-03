@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7840dd95_07397cf1",
+        "filename": "webapp-frontend/src/app/admin/user.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2019-07-03T19:20:27Z",
+      "side": 1,
+      "message": "Please add notificationService as a parameter to the following for users page to show a similar table load failure notification.",
+      "revId": "2df727cee8193be3994ba6cd8364dd2230c8715d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
