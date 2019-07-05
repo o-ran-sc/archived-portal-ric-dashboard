@@ -28,6 +28,7 @@ Version 1.0.5, 3 July 2019
 * Update E2 manager client to spec version 20190703
 * Add configuration-driven mock of E2 getNodebIdList
 * Revise front-end components to use prefix 'rd'
+* Revise the notification service to display multiple notifications
 
 Version 1.0.4, 27 June 2019
 ---------------------------
