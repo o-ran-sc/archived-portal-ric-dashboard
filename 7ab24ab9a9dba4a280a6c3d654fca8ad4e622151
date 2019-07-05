@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90e5af53_7880a16e",
+        "filename": "webapp-frontend/src/app/services/ui/notification.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-05T12:05:00Z",
+      "side": 1,
+      "message": "these imports are not used - if you use VS Code it warns you about such things - I will fix",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "7ab24ab9a9dba4a280a6c3d654fca8ad4e622151",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12cb29dc_40dfe0cb",
+        "filename": "webapp-frontend/src/app/services/ui/notification.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-07-05T12:05:00Z",
+      "side": 1,
+      "message": "How are titles shown?",
+      "range": {
+        "startLine": 48,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 30
+      },
+      "revId": "7ab24ab9a9dba4a280a6c3d654fca8ad4e622151",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
