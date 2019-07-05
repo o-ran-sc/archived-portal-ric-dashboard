@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.0.5, 3 July 2019
+Version 1.0.5, 5 July 2019
 --------------------------
 * Upgrade to Angular version 8
 * Upgrade to Spring-Boot 2.1.6.RELEASE
@@ -29,6 +29,7 @@ Version 1.0.5, 3 July 2019
 * Add configuration-driven mock of E2 getNodebIdList
 * Revise front-end components to use prefix 'rd'
 * Revise the notification service to display multiple notifications
+* Add JUnit test cases for controller methods
 
 Version 1.0.4, 27 June 2019
 ---------------------------

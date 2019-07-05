@@ -65,19 +65,29 @@ import io.swagger.annotations.ApiOperation;
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/e2mgr", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = E2ManagerController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class E2ManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final List<NodebIdentity> mockNodebIdList;
-
+	// Publish paths in constants so tests are easy to write
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/e2mgr";
+	// Endpoints
+	public static final String HEALTH_METHOD = "health";
+	public static final String NODEB_METHOD = "/nodeb";
+	public static final String NODEB_LIST_METHOD = "/nodeb-ids";
+	public static final String RAN_METHOD = "/ran";
+	public static final String ENDC_SETUP_METHOD = "/endcSetup";
+	public static final String X2_SETUP_METHOD = "/x2Setup";
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
 	// Populated by the autowired constructor
 	private final HealthCheckApi e2HealthCheckApi;
 	private final NodebApi e2NodebApi;
+
+	// TODO: remove this when E2 delivers the feature
+	private final List<NodebIdentity> mockNodebIdList;
 
 	@Autowired
 	public E2ManagerController(final HealthCheckApi e2HealthCheckApi, final NodebApi e2NodebApi,
@@ -97,13 +107,13 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getE2ManagerClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
-	@RequestMapping(value = "/health", method = RequestMethod.GET)
+	@RequestMapping(value = HEALTH_METHOD, method = RequestMethod.GET)
 	public Object healthGet(HttpServletResponse response) {
 		logger.debug("healthGet");
 		try {
@@ -119,7 +129,7 @@ public class E2ManagerController {
 
 	// This calls other methods to simplify the task of the front-end.
 	@ApiOperation(value = "Gets all RAN identities and statuses from the E2 manager.", response = RanDetailsTransport.class, responseContainer = "List")
-	@RequestMapping(value = "/ran", method = RequestMethod.GET)
+	@RequestMapping(value = RAN_METHOD, method = RequestMethod.GET)
 	public Object getRanDetails() {
 		logger.debug("getRanDetails");
 		List<NodebIdentity> nodebIdList = null;
@@ -148,7 +158,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
-	@RequestMapping(value = "/nodeb-ids", method = RequestMethod.GET)
+	@RequestMapping(value = NODEB_LIST_METHOD, method = RequestMethod.GET)
 	public Object getNodebIdList() {
 		logger.debug("getNodebIdList");
 		try {
@@ -161,7 +171,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
-	@RequestMapping(value = "/nodeb/{" + PP_RANNAME + "}", method = RequestMethod.GET)
+	@RequestMapping(value = NODEB_METHOD + "/{" + PP_RANNAME + "}", method = RequestMethod.GET)
 	public Object getNb(@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
 		try {
@@ -174,7 +184,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
-	@RequestMapping(value = "/nodeb", method = RequestMethod.DELETE)
+	@RequestMapping(value = NODEB_METHOD, method = RequestMethod.DELETE)
 	public Object nodebDelete(HttpServletResponse response) {
 		logger.debug("nodebDelete");
 		try {
@@ -189,7 +199,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
-	@RequestMapping(value = "/endcSetup", method = RequestMethod.POST)
+	@RequestMapping(value = ENDC_SETUP_METHOD, method = RequestMethod.POST)
 	public Object endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("endcSetup {}", setupRequest);
 		try {
@@ -204,7 +214,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
-	@RequestMapping(value = "/x2Setup", method = RequestMethod.POST)
+	@RequestMapping(value = X2_SETUP_METHOD, method = RequestMethod.POST)
 	public Object x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("x2Setup {}", setupRequest);
 		try {

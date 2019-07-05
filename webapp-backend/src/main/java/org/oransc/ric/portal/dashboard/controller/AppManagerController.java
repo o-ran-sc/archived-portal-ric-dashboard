@@ -60,10 +60,21 @@ import io.swagger.annotations.ApiOperation;
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/appmgr", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AppManagerController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AppManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	// Publish paths in constants so tests are easy to write
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/appmgr";
+	// Endpoints
+	public static final String HEALTH_ALIVE_METHOD = "/health/alive";
+	public static final String HEALTH_READY_METHOD = "/health/ready";
+	public static final String CONFIG_METHOD = "/config";
+	public static final String XAPPS_METHOD = "/xapps";
+	public static final String XAPPS_LIST_METHOD = XAPPS_METHOD + "/list";
+	// Path parameters
+	public static final String PP_XAPP_NAME = "xAppName";
 
 	// Populated by the autowired constructor
 	private final HealthApi healthApi;
@@ -81,14 +92,14 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getXappManagerClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Health check of xApp Manager - Liveness probe.")
-	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
-	public Object getHealth(HttpServletResponse response) {
+	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
+	public Object getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
 		try {
 			healthApi.getHealthAlive();
@@ -101,7 +112,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Readiness check of xApp Manager - Readiness probe.")
-	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
+	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
 	public Object getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
 		try {
@@ -115,7 +126,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
-	@RequestMapping(value = "/config", method = RequestMethod.GET)
+	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.GET)
 	public Object getAllXappConfig() {
 		logger.debug("getAllXappConfig");
 		try {
@@ -127,7 +138,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Create xApp config.")
-	@RequestMapping(value = "/config", method = RequestMethod.POST)
+	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.POST)
 	public Object createXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
 		try {
@@ -139,7 +150,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Modify xApp config.")
-	@RequestMapping(value = "/config", method = RequestMethod.PUT)
+	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.PUT)
 	public Object modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
 		try {
@@ -151,9 +162,10 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Delete xApp configuration.")
-	@RequestMapping(value = "/config/{xAppName}", method = RequestMethod.DELETE)
-	public Object deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
-		logger.debug("deleteXappConfig {}", configMetadata);
+	@RequestMapping(value = CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
+	public Object deleteXappConfig(@PathVariable(PP_XAPP_NAME) String xappName,
+			@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+		logger.debug("deleteXappConfig {}", xappName);
 		try {
 			xappApi.deleteXappConfig(configMetadata);
 			response.setStatus(healthApi.getApiClient().getStatusCode().value());
@@ -165,7 +177,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
-	@RequestMapping(value = "/xapps/list", method = RequestMethod.GET)
+	@RequestMapping(value = XAPPS_LIST_METHOD, method = RequestMethod.GET)
 	public Object getAvailableXapps() {
 		logger.debug("getAvailableXapps");
 		try {
@@ -182,7 +194,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
-	@RequestMapping(value = "/xapps", method = RequestMethod.GET)
+	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.GET)
 	public Object getDeployedXapps() {
 		logger.debug("getDeployedXapps");
 		try {
@@ -194,8 +206,8 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
-	@RequestMapping(value = "/xapps/{xAppName}", method = RequestMethod.GET)
-	public Object getXapp(@PathVariable("xAppName") String xAppName) {
+	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.GET)
+	public Object getXapp(@PathVariable(PP_XAPP_NAME) String xAppName) {
 		logger.debug("getXapp {}", xAppName);
 		try {
 			return xappApi.getXappByName(xAppName);
@@ -206,7 +218,7 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
-	@RequestMapping(value = "/xapps", method = RequestMethod.POST)
+	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.POST)
 	public Object deployXapp(@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
 		try {
@@ -218,8 +230,8 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
-	@RequestMapping(value = "/xapps/{xAppName}", method = RequestMethod.DELETE)
-	public Object undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
+	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
+	public Object undeployXapp(@PathVariable(PP_XAPP_NAME) String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
 		try {
 			xappApi.undeployXapp(xAppName);

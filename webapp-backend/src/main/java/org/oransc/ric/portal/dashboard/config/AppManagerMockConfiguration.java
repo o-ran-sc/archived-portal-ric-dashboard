@@ -108,22 +108,21 @@ public class AppManagerMockConfiguration {
 
 		when(mockApi.getAllXappConfig()).thenReturn(allXappConfigs);
 
-		when(mockApi.createXappConfig(any(XAppConfig.class))).thenReturn(new XAppConfig());
+		when(mockApi.createXappConfig(any(XAppConfig.class))).thenReturn(allXappConfigs.get(0));
 
-		when(mockApi.modifyXappConfig(any(XAppConfig.class))).thenReturn(new XAppConfig());
+		when(mockApi.modifyXappConfig(any(XAppConfig.class))).thenReturn(allXappConfigs.get(0));
 
 		doAnswer(i -> {
 			return null;
 		}).when(mockApi).deleteXappConfig(any(ConfigMetadata.class));
 
-		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(new Xapp());
+		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(deployedXapps.get(0));
 
 		when(mockApi.listAllXapps()).thenReturn(availXapps);
 
 		when(mockApi.getAllXapps()).thenReturn(deployedXapps);
 
-		Xapp xappByName = new Xapp().name("name").status(StatusEnum.UNKNOWN).version("v1");
-		when(mockApi.getXappByName(any(String.class))).thenReturn(xappByName);
+		when(mockApi.getXappByName(any(String.class))).thenReturn(deployedXapps.get(0));
 
 		doAnswer(i -> {
 			return null;
