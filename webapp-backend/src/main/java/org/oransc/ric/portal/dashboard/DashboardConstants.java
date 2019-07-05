@@ -25,9 +25,9 @@ public abstract class DashboardConstants {
 		// Sonar insists on hiding the constructor
 	}
 
-	public static final String ENDPOINT_PREFIX = "/api/";
-	public static final String HEALTHCHECK_PATH = "health";
-	public static final String VERSION_PATH = "version";
-	public static final String USER_PATH = "user";
+	public static final String ENDPOINT_PREFIX = "/api";
+
+	// Factor out method names used in multiple controllers
+	public static final String VERSION_METHOD = "version";
 
 }

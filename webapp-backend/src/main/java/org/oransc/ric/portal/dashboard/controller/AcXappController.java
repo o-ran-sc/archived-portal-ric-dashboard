@@ -49,10 +49,15 @@ import io.swagger.annotations.ApiParam;
  * gateway.</blockquote>
  */
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AcXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AcXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	// Publish paths in constants so tests are easy to write
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac";
+	// Endpoints
+	public static final String ADMCTRL_METHOD = "/admctrl";
 
 	// A "control" is an element in the XApp descriptor
 	private static final String AC_CONTROL_NAME = "admission_control_policy";
@@ -69,7 +74,7 @@ public class AcXappController {
 	}
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getA1MediatorClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
@@ -78,7 +83,7 @@ public class AcXappController {
 	 * GET policy is not supported at present by A1 Mediator! Always returns 501.
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "admctrl", method = RequestMethod.GET)
+	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.GET)
 	public Object getAdmissionControlPolicy(HttpServletResponse response) {
 		logger.debug("getAdmissionControlPolicy");
 		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
@@ -90,7 +95,7 @@ public class AcXappController {
 	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = "catime", method = RequestMethod.PUT)
+	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.PUT)
 	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);

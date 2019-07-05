@@ -52,18 +52,25 @@ import io.swagger.annotations.ApiOperation;
  */
 @Configuration
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/xapp/anr", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AnrXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AnrXappController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	// Query parameters
-	private static final String QP_NODEB = "ggnodeb";
-	private static final String QP_SERVING = "servingCellNrcgi";
-	private static final String QP_NEIGHBOR = "neighborCellNrpci";
+	// Publish paths in constants so tests are easy to write
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/anr";
+	// Endpoints
+	public static final String HEALTH_ALIVE_METHOD = "/health/alive";
+	public static final String HEALTH_READY_METHOD = "/health/ready";
+	public static final String GNODEBS_METHOD = "/gnodebs";
+	public static final String NCRT_METHOD = "/ncrt";
 	// Path parameters
-	private static final String PP_SERVING = "servingcells";
-	private static final String PP_NEIGHBOR = "neighborcells";
+	public static final String PP_SERVING = "servingcells";
+	public static final String PP_NEIGHBOR = "neighborcells";
+	// Query parameters
+	public static final String QP_NODEB = "ggnodeb";
+	public static final String QP_SERVING = "servingCellNrcgi";
+	public static final String QP_NEIGHBOR = "neighborCellNrpci";
 
 	// Populated by the autowired constructor
 	private final HealthApi healthApi;
@@ -81,13 +88,13 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getAnrXappClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
-	@RequestMapping(value = "/health/alive", method = RequestMethod.GET)
+	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
 	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
 		healthApi.getHealthAlive();
@@ -95,7 +102,7 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
-	@RequestMapping(value = "/health/ready", method = RequestMethod.GET)
+	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
 		healthApi.getHealthReady();
@@ -103,14 +110,14 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
-	@RequestMapping(value = "/gnodebs", method = RequestMethod.GET)
+	@RequestMapping(value = GNODEBS_METHOD, method = RequestMethod.GET)
 	public GgNodeBTable getGnodebs() {
 		logger.debug("getGnodebs");
 		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
-	@RequestMapping(value = "/ncrt", method = RequestMethod.GET)
+	@RequestMapping(value = NCRT_METHOD, method = RequestMethod.GET)
 	public NeighborCellRelationTable getNcrt( //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
@@ -122,7 +129,7 @@ public class AnrXappController {
 
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
-	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
+	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.PUT)
 	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
@@ -134,7 +141,7 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
-	@RequestMapping(value = "/ncrt/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
+	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.DELETE)
 	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //

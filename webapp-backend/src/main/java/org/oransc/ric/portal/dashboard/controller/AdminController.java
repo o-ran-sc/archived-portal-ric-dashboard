@@ -38,10 +38,15 @@ import io.swagger.annotations.ApiOperation;
  * Answers REST requests for admin services like version, health etc.
  */
 @RestController
-@RequestMapping(value = DashboardConstants.ENDPOINT_PREFIX + "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AdminController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	// Publish paths in constants so tests are easy to write
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
+	public static final String USER_METHOD = "user";
+	public static final String HEALTH_METHOD = "health";
 
 	private final DashboardUser[] users;
 
@@ -56,7 +61,7 @@ public class AdminController {
 	}
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion");
 		return new SuccessTransport(200,
@@ -64,14 +69,14 @@ public class AdminController {
 	}
 
 	@ApiOperation(value = "Checks the health of the application.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.HEALTHCHECK_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = HEALTH_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getHealth() {
 		logger.debug("getHealth");
 		return new SuccessTransport(200, "Dashboard is healthy!");
 	}
 
 	@ApiOperation(value = "Gets the list of application users.", response = DashboardUser.class, responseContainer = "List")
-	@RequestMapping(value = DashboardConstants.USER_PATH, method = RequestMethod.GET)
+	@RequestMapping(value = USER_METHOD, method = RequestMethod.GET)
 	public DashboardUser[] getUsers() {
 		logger.debug("getUsers");
 		return users;

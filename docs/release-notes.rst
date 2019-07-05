@@ -28,8 +28,9 @@ Version 1.0.5, 5 July 2019
 * Update E2 manager client to spec version 20190703
 * Add configuration-driven mock of E2 getNodebIdList
 * Revise front-end components to use prefix 'rd'
-* Revise the notification service to allow multiple
 * Improve error handling in BE and FE code
+* Revise the notification service to display multiple notifications
+* Add JUnit test cases for controller methods
 
 Version 1.0.4, 27 June 2019
 ---------------------------

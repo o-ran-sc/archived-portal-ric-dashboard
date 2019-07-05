@@ -19,17 +19,27 @@
  */
 package org.oransc.ric.portal.dashboard;
 
+import java.lang.invoke.MethodHandles;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * Tests whether the default (not mock) configuration classes run to completion.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DashboardApplicationTest {
+public class DefaultContextTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
 	public void contextLoads() {
+		logger.info("Context loads on default profile");
 	}
 
 }
