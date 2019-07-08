@@ -18,16 +18,28 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../services/dashboard/dashboard.service';
+import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
 
 @Component({
   selector: 'rd-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
+  model: any = {};
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // sessionStorage.setItem('token', '');
+  }
 
+  login() {
+    this.dashboardService.login(this.model.username, this.model.password)
+      .subscribe((r: DashboardSuccessTransport) => {
+        alert(r);
+      });
+  }
 }

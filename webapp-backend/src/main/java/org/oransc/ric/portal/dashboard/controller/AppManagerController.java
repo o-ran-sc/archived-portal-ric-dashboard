@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
@@ -42,6 +43,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,6 +73,7 @@ public class AppManagerController {
 	public static final String CONFIG_METHOD = "/config";
 	public static final String XAPPS_METHOD = "/xapps";
 	public static final String XAPPS_LIST_METHOD = XAPPS_METHOD + "/list";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_XAPP_NAME = "xAppName";
 
@@ -90,8 +93,9 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getXappManagerClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
@@ -99,6 +103,7 @@ public class AppManagerController {
 	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
+		// No role requirement
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -107,43 +112,57 @@ public class AppManagerController {
 	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
+		// No role requirement
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.GET)
-	public AllXappConfig getAllXappConfig() {
+	public AllXappConfig getAllXappConfig(HttpServletRequest request) {
 		logger.debug("getAllXappConfig");
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_UNPRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.getAllXappConfig();
 	}
 
 	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.POST)
-	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig createXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_PRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.createXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.PUT)
-	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig modifyXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_PRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.modifyXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Delete xApp configuration.")
 	@RequestMapping(value = CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
-	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+	public void deleteXappConfig(HttpServletRequest request, //
+			@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
 		logger.debug("deleteXappConfig {}", configMetadata);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_PRIV))
+			throw new AccessDeniedException("Expected role not found");
 		xappApi.deleteXappConfig(configMetadata);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@RequestMapping(value = XAPPS_LIST_METHOD, method = RequestMethod.GET)
-	public Object getAvailableXapps() {
+	public Object getAvailableXapps(HttpServletRequest request) {
 		logger.debug("getAvailableXapps");
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_UNPRIV))
+			throw new AccessDeniedException("Expected role not found");
 		AllDeployableXapps appNames = xappApi.listAllXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
@@ -156,29 +175,41 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.GET)
-	public AllDeployedXapps getDeployedXapps() {
+	public AllDeployedXapps getDeployedXapps(HttpServletRequest request) {
 		logger.debug("getDeployedXapps");
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_UNPRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.getAllXapps();
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
 	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.GET)
-	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
+	public Xapp getXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_UNPRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.getXappByName(xAppName);
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.POST)
-	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
+	public Xapp deployXapp(HttpServletRequest request, //
+			@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_PRIV))
+			throw new AccessDeniedException("Expected role not found");
 		return xappApi.deployXapp(xAppInfo);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
-	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
+	public void undeployXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName, // .
+			HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
+		if (!request.isUserInRole(DashboardConstants.USER_ROLE_PRIV))
+			throw new AccessDeniedException("Expected role not found");
 		xappApi.undeployXapp(xAppName);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}

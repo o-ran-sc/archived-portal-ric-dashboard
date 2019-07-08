@@ -54,6 +54,7 @@ import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
@@ -82,6 +83,7 @@ import { UserComponent } from './user/user.component';
     ErrorDialogComponent,
     FooterComponent,
     LoginComponent,
+    MainComponent,
     ModalEventComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
@@ -89,7 +91,7 @@ import { UserComponent } from './user/user.component';
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,

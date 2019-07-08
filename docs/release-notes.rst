@@ -20,6 +20,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.2.0, 8 July 2019
+--------------------------
+* Add user and role authentication
+
 Version 1.0.5, 5 July 2019
 --------------------------
 * Upgrade to Angular version 8

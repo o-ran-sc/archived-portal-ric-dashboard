@@ -30,4 +30,8 @@ public abstract class DashboardConstants {
 	// Factor out method names used in multiple controllers
 	public static final String VERSION_METHOD = "version";
 
+	// For use in annotations; Spring adds ROLE_ prefix??
+	public static final String USER_ROLE_UNPRIV = "PLAIN";
+	public static final String USER_ROLE_PRIV = "ADMIN";
+
 }
