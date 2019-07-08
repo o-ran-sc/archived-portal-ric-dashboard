@@ -17,29 +17,51 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
 
-import java.lang.invoke.MethodHandles;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+package org.oransc.ric.portal.dashboard.model;
 
 /**
- * Tests whether the default (not mock) configuration classes run to completion.
+ * Trivial model to transport data.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class DefaultContextTest {
+public class LoginTransport implements IDashboardResponse {
 
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	private String username;
+	private String password;
 
-	@Test
-	public void contextLoads() {
-		logger.info("Context loads on default profile");
+	/**
+	 * Builds an empty object.
+	 */
+	public LoginTransport() {
+		// no-arg constructor
+	}
+
+	/**
+	 * Builds an object with the specified value.
+	 * 
+	 * @param u
+	 *              Username
+	 * @param p
+	 *              Password
+	 */
+	public LoginTransport(String u, String p) {
+		this.username = u;
+		this.password = p;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

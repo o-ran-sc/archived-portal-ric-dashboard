@@ -1,21 +1,21 @@
 /*-
- * ===============LICENSE_START=======================================================
- * Acumos
- * ===================================================================================
- * Copyright (C) 2019 AT&T Intellectual Property & Tech Mahindra. All rights reserved.
- * ===================================================================================
- * This Acumos software file is distributed by AT&T and Tech Mahindra
- * under the Apache License, Version 2.0 (the "License");
+ * ========================LICENSE_START=================================
+ * O-RAN-SC
+ * %%
+ * Copyright (C) 2019 AT&T Intellectual Property and Nokia
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *  
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *  
- * This file is distributed on an "AS IS" BASIS,
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- * ===============LICENSE_END=========================================================
+ * ========================LICENSE_END===================================
  */
 package org.oransc.ric.portal.dashboard.controller;
 
@@ -50,9 +50,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * https://www.springboottutorial.com/spring-boot-exception-handling-for-rest-services
  */
 @ControllerAdvice
-public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	// Avoid hiding the "logger" field in the superclass.
+	private static final Logger slf4jLogger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/**
 	 * Generates the response when a REST controller method takes an
@@ -68,8 +69,9 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	 * @return A response entity with status code 502 plus some details in the body.
 	 */
 	@ExceptionHandler(HttpStatusCodeException.class)
-	public final ResponseEntity<?> handleHttpStatusCodeException(HttpStatusCodeException ex, WebRequest request) {
-		logger.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
+	public final ResponseEntity<? extends Object> handleHttpStatusCodeException(HttpStatusCodeException ex,
+			WebRequest request) {
+		slf4jLogger.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
 		return new ResponseEntity<ErrorTransport>(
 				new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex), HttpStatus.BAD_GATEWAY);
 	}

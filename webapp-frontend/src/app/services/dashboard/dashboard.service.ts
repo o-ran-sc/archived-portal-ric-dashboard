@@ -54,6 +54,19 @@ export class DashboardService {
   }
 
   /**
+   * Submits login request
+   * @param username user name
+   * @param password password
+   */
+  login(username: string, password: string): Observable<DashboardSuccessTransport> {
+    const body = {
+      username: username,
+      password: password
+    };
+    return this.httpClient.post<DashboardSuccessTransport>(this.basePath + 'login', body);
+  }
+
+  /**
    * Gets Dashboard users
    * @returns Observable that should yield a DashboardUser array
    */

@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
@@ -43,21 +44,21 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * * Proxies calls from the front end to the AC xApp via the A1 Mediator API.
- * All methods answer 502 on failure: <blockquote>HTTP server received an
- * invalid response from a server it consulted when acting as a proxy or
+ * Proxies calls from the front end to the AC xApp via the A1 Mediator API. All
+ * methods answer 502 on failure: <blockquote>HTTP server received an invalid
+ * response from a server it consulted when acting as a proxy or
  * gateway.</blockquote>
  */
 @RestController
 @RequestMapping(value = AcXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AcXappController {
+public class AcXappController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Publish paths in constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac";
-	// Endpoints
 	public static final String ADMCTRL_METHOD = "/admctrl";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 
 	// A "control" is an element in the XApp descriptor
 	private static final String AC_CONTROL_NAME = "admission_control_policy";
@@ -74,8 +75,9 @@ public class AcXappController {
 	}
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getA1MediatorClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
 
@@ -84,8 +86,9 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.GET)
-	public Object getAdmissionControlPolicy(HttpServletResponse response) {
-		logger.debug("getAdmissionControlPolicy");
+	public Object getAdmissionControlPolicy(HttpServletRequest request, HttpServletResponse response) {
+		logger.debug("getAdmissionControlPolic}");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
 		return null;
 	}
@@ -96,9 +99,11 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
 	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.PUT)
-	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
+	public void setAdmissionControlPolicy(HttpServletRequest request,
+			@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
 		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}

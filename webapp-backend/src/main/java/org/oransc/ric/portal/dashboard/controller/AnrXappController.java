@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.anrxapp.client.api.HealthApi;
@@ -53,7 +54,7 @@ import io.swagger.annotations.ApiOperation;
 @Configuration
 @RestController
 @RequestMapping(value = AnrXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AnrXappController {
+public class AnrXappController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -64,6 +65,7 @@ public class AnrXappController {
 	public static final String HEALTH_READY_METHOD = "/health/ready";
 	public static final String GNODEBS_METHOD = "/gnodebs";
 	public static final String NCRT_METHOD = "/ncrt";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_SERVING = "servingcells";
 	public static final String PP_NEIGHBOR = "neighborcells";
@@ -88,8 +90,9 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getAnrXappClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
@@ -97,6 +100,7 @@ public class AnrXappController {
 	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
 	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
+		// No role requirement
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -105,25 +109,28 @@ public class AnrXappController {
 	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
+		// No role requirement
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
 	@RequestMapping(value = GNODEBS_METHOD, method = RequestMethod.GET)
-	public GgNodeBTable getGnodebs() {
+	public GgNodeBTable getGnodebs(HttpServletRequest request) {
 		logger.debug("getGnodebs");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
 	@RequestMapping(value = NCRT_METHOD, method = RequestMethod.GET)
-	public NeighborCellRelationTable getNcrt( //
+	public NeighborCellRelationTable getNcrt(HttpServletRequest request, //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
 		logger.debug("getNcrt: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}
 
@@ -131,11 +138,13 @@ public class AnrXappController {
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.PUT)
-	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void modifyNcrt(HttpServletRequest request, //
+			@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
 		logger.debug("modifyNcrt: servingCellNrcgi {}, neighborCellNrpci {}, ncrMod {}", servingCellNrcgi,
 				neighborCellNrpci, ncrMod);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -143,10 +152,12 @@ public class AnrXappController {
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
 			+ "}", method = RequestMethod.DELETE)
-	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void deleteNcrt(HttpServletRequest request, //
+			@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {
 		logger.debug("deleteNcrt: servingCellNrcgi {}, neighborCellNrpci {}", servingCellNrcgi, neighborCellNrpci);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}

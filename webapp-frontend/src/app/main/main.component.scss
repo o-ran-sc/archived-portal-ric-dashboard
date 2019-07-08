@@ -17,6 +17,11 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
- .login__container {
+.main__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  align-items: center;
+  justify-items: center;
   height: 100%;
 }

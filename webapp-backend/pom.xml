@@ -25,7 +25,7 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.0.5-SNAPSHOT</version>
+		<version>1.2.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>ric-dash-be</artifactId>
 	<name>RIC Dashboard Webapp backend</name>
@@ -61,6 +61,10 @@ limitations under the License.
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -181,6 +185,26 @@ limitations under the License.
 				<configuration>
 					<skip>true</skip>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<!-- https://stackoverflow.com/questions/39126226/fabric8-springboot-full-example -->
 			<plugin>
