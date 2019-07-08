@@ -53,7 +53,7 @@ import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dia
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
@@ -64,6 +64,7 @@ import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { StatsComponent } from './stats/stats.component';
 import { UiService } from './services/ui/ui.service';
 import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import { UserComponent } from './user/user.component';
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     FooterComponent,
-    LoginComponent,
+    MainComponent,
     ModalEventComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
@@ -89,7 +90,8 @@ import { UserComponent } from './user/user.component';
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

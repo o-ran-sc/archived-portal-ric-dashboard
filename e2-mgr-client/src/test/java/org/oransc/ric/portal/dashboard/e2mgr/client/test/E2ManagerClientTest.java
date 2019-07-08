@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.e2mgr.client.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
@@ -39,6 +40,7 @@ public class E2ManagerClientTest {
 		try {
 			healthApi.healthGet();
 			System.out.println("getHealth answered: " + apiClient.getStatusCode().toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getHealth failed: " + e.toString());
 		}

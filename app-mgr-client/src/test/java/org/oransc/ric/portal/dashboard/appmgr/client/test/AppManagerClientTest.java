@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.appmgr.client.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
@@ -42,6 +43,7 @@ public class AppManagerClientTest {
 			HealthApi healthApi = new HealthApi(apiClient);
 			healthApi.getHealthAlive();
 			System.out.println("getHealthAlive answered: " + apiClient.getStatusCode().toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getHealthAlive failed: " + e.toString());
 		}
@@ -49,6 +51,7 @@ public class AppManagerClientTest {
 			XappApi xappApi = new XappApi(apiClient);
 			AllDeployedXapps allXapps = xappApi.getAllXapps();
 			System.out.println("getAllXapps answered: " + apiClient.getStatusCode().toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 			System.out.println("xApp count: " + allXapps.size());
 			for (Xapp x : allXapps)
 				System.out.println("xApp: " + x.toString());
