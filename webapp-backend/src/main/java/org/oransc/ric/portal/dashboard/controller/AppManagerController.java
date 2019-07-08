@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
@@ -59,7 +60,7 @@ import io.swagger.annotations.ApiOperation;
 @Configuration
 @RestController
 @RequestMapping(value = AppManagerController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AppManagerController {
+public class AppManagerController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -71,6 +72,7 @@ public class AppManagerController {
 	public static final String CONFIG_METHOD = "/config";
 	public static final String XAPPS_METHOD = "/xapps";
 	public static final String XAPPS_LIST_METHOD = XAPPS_METHOD + "/list";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_XAPP_NAME = "xAppName";
 
@@ -90,8 +92,9 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getXappManagerClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
@@ -99,6 +102,7 @@ public class AppManagerController {
 	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
+		// No role requirement
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -107,43 +111,52 @@ public class AppManagerController {
 	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
+		// No role requirement
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.GET)
-	public AllXappConfig getAllXappConfig() {
+	public AllXappConfig getAllXappConfig(HttpServletRequest request) {
 		logger.debug("getAllXappConfig");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getAllXappConfig();
 	}
 
 	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.POST)
-	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig createXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.createXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
 	@RequestMapping(value = CONFIG_METHOD, method = RequestMethod.PUT)
-	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig modifyXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.modifyXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Delete xApp configuration.")
 	@RequestMapping(value = CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
-	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+	public void deleteXappConfig(HttpServletRequest request, //
+			@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
 		logger.debug("deleteXappConfig {}", configMetadata);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		xappApi.deleteXappConfig(configMetadata);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@RequestMapping(value = XAPPS_LIST_METHOD, method = RequestMethod.GET)
-	public Object getAvailableXapps() {
+	public Object getAvailableXapps(HttpServletRequest request) {
 		logger.debug("getAvailableXapps");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		AllDeployableXapps appNames = xappApi.listAllXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
@@ -156,29 +169,37 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.GET)
-	public AllDeployedXapps getDeployedXapps() {
+	public AllDeployedXapps getDeployedXapps(HttpServletRequest request) {
 		logger.debug("getDeployedXapps");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getAllXapps();
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
 	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.GET)
-	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
+	public Xapp getXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getXappByName(xAppName);
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@RequestMapping(value = XAPPS_METHOD, method = RequestMethod.POST)
-	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
+	public Xapp deployXapp(HttpServletRequest request, //
+			@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.deployXapp(xAppInfo);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@RequestMapping(value = XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}", method = RequestMethod.DELETE)
-	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
+	public void undeployXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName, // .
+			HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		xappApi.undeployXapp(xAppName);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}

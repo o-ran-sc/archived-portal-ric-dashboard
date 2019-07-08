@@ -17,28 +17,22 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../services/dashboard/dashboard.service';
 
-import { LoginComponent } from './login.component';
+@Component({
+  selector: 'rd-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
+})
+export class MainComponent implements OnInit {
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  constructor(private dashboardService: DashboardService) { }
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  }));
+  ngOnInit() { }
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  logout() {
+    this.dashboardService.clearUserToken();
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+}

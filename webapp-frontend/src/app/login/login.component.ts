@@ -18,16 +18,57 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DashboardService } from '../services/dashboard/dashboard.service';
+import { DashboardSuccessTransport, LoginTransport } from '../interfaces/dashboard.types';
 
 @Component({
   selector: 'rd-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
 
-  ngOnInit() { }
+  constructor(private dashboardService: DashboardService,
+    private router: Router) { }
+
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
+    this.dashboardService.clearUserToken();
+  }
+
+  public validateControl(controlName: string) {
+    if (this.loginForm.controls[controlName].invalid && this.loginForm.controls[controlName].touched) {
+      return true;
+    }
+    return false;
+  }
+
+  public hasError(controlName: string, errorName: string) {
+    if (this.loginForm.controls[controlName].hasError(errorName)) {
+      return true;
+    }
+    return false;
+  }
+
+  login(loginFormValue: LoginTransport) {
+    if (this.loginForm.valid) {
+      this.dashboardService.login(loginFormValue.username, loginFormValue.password)
+        .subscribe( (r: DashboardSuccessTransport) => {
+          this.dashboardService.setUserToken(loginFormValue.username);
+          this.router.navigate(['']);
+        },
+        (err: any) => {
+          alert('Login failed.');
+        });
+    }
+  }
 
 }

@@ -23,6 +23,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
@@ -63,7 +64,7 @@ import io.swagger.annotations.ApiOperation;
 @Configuration
 @RestController
 @RequestMapping(value = E2ManagerController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class E2ManagerController {
+public class E2ManagerController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -76,6 +77,7 @@ public class E2ManagerController {
 	public static final String RAN_METHOD = "/ran";
 	public static final String ENDC_SETUP_METHOD = "/endcSetup";
 	public static final String X2_SETUP_METHOD = "/x2Setup";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
@@ -104,8 +106,9 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getE2ManagerClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
@@ -113,6 +116,7 @@ public class E2ManagerController {
 	@RequestMapping(value = HEALTH_METHOD, method = RequestMethod.GET)
 	public void healthGet(HttpServletResponse response) {
 		logger.debug("healthGet");
+		// No role requirement
 		e2HealthCheckApi.healthGet();
 		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
 	}
@@ -120,8 +124,9 @@ public class E2ManagerController {
 	// This calls other methods to simplify the task of the front-end.
 	@ApiOperation(value = "Gets all RAN identities and statuses from the E2 manager.", response = RanDetailsTransport.class, responseContainer = "List")
 	@RequestMapping(value = RAN_METHOD, method = RequestMethod.GET)
-	public List<RanDetailsTransport> getRanDetails() {
+	public List<RanDetailsTransport> getRanDetails(HttpServletRequest request) {
 		logger.debug("getRanDetails");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		// TODO: remove mock when e2mgr delivers the getNodebIdList() method
 		List<NodebIdentity> nodebIdList = mockNodebIdList.isEmpty() ? e2NodebApi.getNodebIdList() : mockNodebIdList;
 		List<RanDetailsTransport> details = new ArrayList<>();
@@ -142,38 +147,47 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
 	@RequestMapping(value = NODEB_LIST_METHOD, method = RequestMethod.GET)
-	public List<NodebIdentity> getNodebIdList() {
+	public List<NodebIdentity> getNodebIdList(HttpServletRequest request) {
 		logger.debug("getNodebIdList");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return e2NodebApi.getNodebIdList();
 	}
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
 	@RequestMapping(value = NODEB_METHOD + "/{" + PP_RANNAME + "}", method = RequestMethod.GET)
-	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
+	public GetNodebResponse getNb(HttpServletRequest request, //
+			@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return e2NodebApi.getNb(ranName);
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
 	@RequestMapping(value = NODEB_METHOD, method = RequestMethod.DELETE)
-	public void nodebDelete(HttpServletResponse response) {
+	public void nodebDelete(HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("nodebDelete");
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		e2NodebApi.nodebDelete();
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
 	@RequestMapping(value = ENDC_SETUP_METHOD, method = RequestMethod.POST)
-	public void endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public void endcSetup(HttpServletRequest request, @RequestBody SetupRequest setupRequest, //
+			HttpServletResponse response) {
 		logger.debug("endcSetup {}", setupRequest);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		e2NodebApi.endcSetup(setupRequest);
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
 	@RequestMapping(value = X2_SETUP_METHOD, method = RequestMethod.POST)
-	public void x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+	public void x2Setup(HttpServletRequest request, //
+			@RequestBody SetupRequest setupRequest, //
+			HttpServletResponse response) {
 		logger.debug("x2Setup {}", setupRequest);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		e2NodebApi.x2Setup(setupRequest);
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}

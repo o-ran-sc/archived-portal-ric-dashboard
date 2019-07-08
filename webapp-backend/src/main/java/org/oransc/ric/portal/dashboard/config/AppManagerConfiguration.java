@@ -20,8 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
@@ -49,10 +49,12 @@ public class AppManagerConfiguration {
 	private final String xappMgrUrl;
 
 	@Autowired
-	public AppManagerConfiguration(@Value("${xappmgr.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring xApp Manager at base URL {}", url);
-		new URL(url);
-		this.xappMgrUrl = url;
+	public AppManagerConfiguration(@Value("${appmgr.url.prefix}") final String urlPrefix,
+			@Value("${appmgr.url.suffix}") final String urlSuffix) throws URISyntaxException {
+		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
+		URI uri = new URI(urlPrefix + "/" + urlSuffix).normalize();
+		xappMgrUrl = uri.toString();
+		logger.info("Configuring App Manager at URL {}", xappMgrUrl);
 	}
 
 	private ApiClient apiClient() {

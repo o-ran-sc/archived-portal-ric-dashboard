@@ -17,53 +17,51 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.oransc.ric.portal.dashboard.controller.AcXappController;
+import org.oransc.ric.portal.dashboard.controller.AdminController;
+import org.oransc.ric.portal.dashboard.model.DashboardUser;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-public class AcXappControllerTest extends AbstractControllerTest {
+public class AdminControllerTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
 		Assert.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
-	public void getTest() throws IOException {
-		// Always returns 501; surprised that no exception is thrown.
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
+	public void healthTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD);
 		logger.info("Invoking {}", uri);
-		restTemplate.getForObject(uri, String.class);
+		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
+		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
-	public void putTest() throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode body = mapper.readTree("{ \"policy\" : true }");
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
-		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	public void usersTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH + "/" + AdminController.USER_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<List<DashboardUser>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<DashboardUser>>() {
+				});
+		Assert.assertFalse(response.getBody().isEmpty());
 	}
 
 }

@@ -17,11 +17,18 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-.main__container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto-fill, 1fr);
-  align-items: center;
-  justify-items: center;
+
+ .login__section {
   height: 100%;
+}
+
+/* used to place form fields on separate lines/rows in dialog */
+.input-display-block {
+  display: block;
+  width: 300px;
+}
+
+.login-button {
+  margin-top: 10px;
+  float: right;
 }

@@ -25,6 +25,11 @@ export interface DashboardSuccessTransport {
   data: string;
 }
 
+export interface LoginTransport {
+  username: string;
+  password: string;
+}
+
 export interface DashboardUser {
   id: number;
   firstName: string;

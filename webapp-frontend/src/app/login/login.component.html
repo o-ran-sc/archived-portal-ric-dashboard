@@ -17,8 +17,20 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div class = "main__container">
-  <rd-app-catalog-card></rd-app-catalog-card>
-  <rd-control-card></rd-control-card>
-  <rd-stat-card></rd-stat-card>
+
+<div class="login__section">
+    <h3 class="login__header">Login</h3>
+    <form [formGroup]="loginForm" novalidate autocomplete="off" (ngSubmit)="login(loginForm.value)" >
+        <mat-form-field class="input-display-block">
+            <input matInput type="text" placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="validateControl('username') && hasError('username', 'required')">User name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-display-block">
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+            <mat-error *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</mat-error>
+        </mat-form-field>
+        <div class="input-display-block">
+            <button class="mat-raised-button mat-primary login-button" [disabled]="!loginForm.valid">Login</button>
+        </div>
+    </form>
 </div>
