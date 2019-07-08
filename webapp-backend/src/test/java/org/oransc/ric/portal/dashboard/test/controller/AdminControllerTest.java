@@ -48,7 +48,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void healthTest() {
-		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.HEALTH_METHOD);
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
@@ -56,7 +56,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void usersTest() {
-		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.USER_METHOD);
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH + "/" + AdminController.USER_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<List<DashboardUser>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<DashboardUser>>() {

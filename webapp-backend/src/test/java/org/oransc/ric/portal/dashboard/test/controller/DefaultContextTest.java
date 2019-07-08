@@ -30,7 +30,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * Tests whether the default (not mock) configuration classes run to completion.
+ * Tests the default (not mock!) configuration classes.
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -43,6 +43,8 @@ public class DefaultContextTest {
 		// Silence Sonar warning about missing assertion.
 		Assertions.assertTrue(logger.isWarnEnabled());
 		logger.info("Context loads on default profile");
+		// Silence Sonar warning about missing assertion.
+		Assertions.assertTrue(logger.isWarnEnabled());
 	}
 
 }

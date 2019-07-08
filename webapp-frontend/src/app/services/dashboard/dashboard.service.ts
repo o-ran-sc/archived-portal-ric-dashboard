@@ -32,6 +32,7 @@ import { DashboardSuccessTransport, DashboardUser } from '../../interfaces/dashb
 export class DashboardService {
 
   private basePath = 'api/admin/';
+  private tokenName = 'usertoken';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
@@ -51,6 +52,27 @@ export class DashboardService {
    */
   getVersion(): Observable<DashboardSuccessTransport> {
     return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'version');
+  }
+
+  /**
+   * Submits login request
+   * @param username user name
+   * @param password password
+   */
+  login(username: string, password: string): Observable<DashboardSuccessTransport> {
+    const body = {
+      username: username,
+      password: password
+    };
+    return this.httpClient.post<DashboardSuccessTransport>(this.basePath + 'login', body);
+  }
+
+  setUserToken(username: string) {
+    sessionStorage.setItem(this.tokenName, username);
+  }
+
+  clearUserToken() {
+    sessionStorage.setItem(this.tokenName, '');
   }
 
   /**

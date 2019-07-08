@@ -17,21 +17,51 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
 
-public abstract class DashboardConstants {
+package org.oransc.ric.portal.dashboard.model;
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
+/**
+ * Trivial model to transport data.
+ */
+public class LoginTransport implements IDashboardResponse {
+
+	private String username;
+	private String password;
+
+	/**
+	 * Builds an empty object.
+	 */
+	public LoginTransport() {
+		// no-arg constructor
 	}
 
-	public static final String ENDPOINT_PREFIX = "/api";
+	/**
+	 * Builds an object with the specified value.
+	 * 
+	 * @param u
+	 *              Username
+	 * @param p
+	 *              Password
+	 */
+	public LoginTransport(String u, String p) {
+		this.username = u;
+		this.password = p;
+	}
 
-	// Factor out method names used in multiple controllers
-	public static final String VERSION_METHOD = "version";
+	public String getUsername() {
+		return username;
+	}
 
-	// For use in annotations; Spring adds ROLE_ prefix??
-	public static final String USER_ROLE_UNPRIV = "PLAIN";
-	public static final String USER_ROLE_PRIV = "ADMIN";
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }

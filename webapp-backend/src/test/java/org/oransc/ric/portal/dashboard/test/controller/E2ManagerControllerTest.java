@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;

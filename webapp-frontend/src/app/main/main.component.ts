@@ -18,6 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../services/dashboard/dashboard.service';
 
 @Component({
   selector: 'rd-main',
@@ -26,8 +27,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() { }
+
+  logout() {
+    this.dashboardService.clearUserToken();
+  }
 
 }

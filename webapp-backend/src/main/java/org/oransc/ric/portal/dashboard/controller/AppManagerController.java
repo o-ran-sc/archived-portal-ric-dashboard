@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
@@ -62,7 +63,7 @@ import io.swagger.annotations.ApiOperation;
 @Configuration
 @RestController
 @RequestMapping(value = AppManagerController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AppManagerController {
+public class AppManagerController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -96,6 +97,7 @@ public class AppManagerController {
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
 	public SuccessTransport getClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
@@ -103,6 +105,7 @@ public class AppManagerController {
 	@GetMapping(HEALTH_ALIVE_METHOD)
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
+		// No role requirement
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -111,43 +114,52 @@ public class AppManagerController {
 	@GetMapping(HEALTH_READY_METHOD)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
+		// No role requirement
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
 	@GetMapping(CONFIG_METHOD)
-	public AllXappConfig getAllXappConfig() {
+	public AllXappConfig getAllXappConfig(HttpServletRequest request) {
 		logger.debug("getAllXappConfig");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getAllXappConfig();
 	}
 
 	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
 	@PostMapping(CONFIG_METHOD)
-	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig createXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.createXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
 	@PutMapping(CONFIG_METHOD)
-	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
+	public XAppConfig modifyXappConfig(HttpServletRequest request, //
+			@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.modifyXappConfig(xAppConfig);
 	}
 
 	@ApiOperation(value = "Delete xApp configuration.")
 	@DeleteMapping(CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}")
-	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+	public void deleteXappConfig(HttpServletRequest request, //
+			@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
 		logger.debug("deleteXappConfig {}", configMetadata);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		xappApi.deleteXappConfig(configMetadata);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@GetMapping(XAPPS_LIST_METHOD)
-	public Object getAvailableXapps() {
+	public Object getAvailableXapps(HttpServletRequest request) {
 		logger.debug("getAvailableXapps");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		AllDeployableXapps appNames = xappApi.listAllXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
@@ -160,29 +172,37 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@GetMapping(XAPPS_METHOD)
-	public AllDeployedXapps getDeployedXapps() {
+	public AllDeployedXapps getDeployedXapps(HttpServletRequest request) {
 		logger.debug("getDeployedXapps");
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getAllXapps();
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
 	@GetMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
-	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
+	public Xapp getXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
+		checkRoles(request, DashboardConstants.USER_ROLE_UNPRIV, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.getXappByName(xAppName);
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@PostMapping(XAPPS_METHOD)
-	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
+	public Xapp deployXapp(HttpServletRequest request, //
+			@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return xappApi.deployXapp(xAppInfo);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@DeleteMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
-	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
+	public void undeployXapp(HttpServletRequest request, //
+			@PathVariable("xAppName") String xAppName, // .
+			HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		xappApi.undeployXapp(xAppName);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}

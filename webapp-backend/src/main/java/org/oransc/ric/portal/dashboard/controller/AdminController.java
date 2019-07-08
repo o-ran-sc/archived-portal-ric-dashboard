@@ -21,14 +21,20 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.DashboardUser;
+import org.oransc.ric.portal.dashboard.model.LoginTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,7 +45,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping(value = AdminController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AdminController {
+public class AdminController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -47,6 +53,7 @@ public class AdminController {
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
 	public static final String USER_METHOD = "user";
 	public static final String HEALTH_METHOD = "health";
+	public static final String LOGIN_METHOD = "login";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 
 	private final DashboardUser[] users;
@@ -68,6 +75,7 @@ public class AdminController {
 	@GetMapping(VERSION_METHOD)
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion");
+		// No role requirement
 		return new SuccessTransport(200,
 				DashboardApplication.getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}
@@ -76,13 +84,27 @@ public class AdminController {
 	@GetMapping(HEALTH_METHOD)
 	public SuccessTransport getHealth() {
 		logger.debug("getHealth");
+		// No role requirement
 		return new SuccessTransport(200, "Dashboard is healthy!");
+	}
+
+	@ApiOperation(value = "Requests login.", response = SuccessTransport.class)
+	@RequestMapping(LOGIN_METHOD)
+	public SuccessTransport login(@RequestBody LoginTransport loginRequest, HttpServletResponse response) {
+		logger.debug("login {}", loginRequest.getUsername());
+		// No role requirement
+		// TODO
+		if ("demo".equals(loginRequest.getUsername()) && "demo".equals(loginRequest.getPassword()))
+			return new SuccessTransport(200, "Login " + loginRequest.getUsername());
+		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		return null;
 	}
 
 	@ApiOperation(value = "Gets the list of application users.", response = DashboardUser.class, responseContainer = "List")
 	@GetMapping(USER_METHOD)
-	public DashboardUser[] getUsers() {
+	public DashboardUser[] getUsers(HttpServletRequest request) {
 		logger.debug("getUsers");
+		checkRoles(request, DashboardConstants.USER_ROLE_PRIV);
 		return users;
 	}
 
