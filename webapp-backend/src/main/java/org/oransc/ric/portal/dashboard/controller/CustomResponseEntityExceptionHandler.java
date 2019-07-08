@@ -52,8 +52,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	// Superclass has "logger" that is exposed here, so use a different name
-	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	// Avoid hiding the "logger" field in the superclass.
+	private static final Logger slf4jLogger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/**
 	 * Generates the response when a REST controller method takes an
@@ -71,9 +71,9 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	@ExceptionHandler(HttpStatusCodeException.class)
 	public final ResponseEntity<ErrorTransport> handleHttpStatusCodeException(HttpStatusCodeException ex,
 			WebRequest request) {
-		log.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
-		return new ResponseEntity<>(new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex),
-				HttpStatus.BAD_GATEWAY);
+		slf4jLogger.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
+		return new ResponseEntity<ErrorTransport>(
+				new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex), HttpStatus.BAD_GATEWAY);
 	}
 
 }

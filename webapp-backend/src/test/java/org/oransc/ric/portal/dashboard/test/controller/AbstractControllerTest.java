@@ -19,16 +19,19 @@
  */
 package org.oransc.ric.portal.dashboard.test.controller;
 
+import static org.oransc.ric.portal.dashboard.test.config.TestWebSecurityConfigurerAdapter.TESTPASS;
+import static org.oransc.ric.portal.dashboard.test.config.TestWebSecurityConfigurerAdapter.TESTUSER;
+
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -37,10 +40,18 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Defines values and objects reused by all the controller tests. I guess this
+ * violates the "composition over inheritance" advice but it saves many lines of
+ * code in each subclass.
+ *
+ * Activate profile "mock" to configure the mocked versions of remote endpoints
+ * 
+ * Activate profile "test" to configure the test credentials
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-// Need the fake answers from the backend
-@ActiveProfiles("mock")
+@ActiveProfiles({ "mock", "test" })
 public class AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -49,12 +60,18 @@ public class AbstractControllerTest {
 	// https://spring.io/guides/gs/testing-web/
 	@LocalServerPort
 	private int localServerPort;
-
-	@Autowired
+	private String httpUrl;
 	protected TestRestTemplate restTemplate;
 
+	@BeforeEach
+	public void setUp() throws Exception {
+		httpUrl = "http://localhost:" + localServerPort + "/";
+		restTemplate = new TestRestTemplate(TESTUSER, TESTPASS);
+	}
+
 	/**
-	 * Flexible URI builder.
+	 * Builds URI using localhost, the Spring-defined random port, plus the
+	 * arguments.
 	 * 
 	 * @param queryParams
 	 *                        Map of string-string query parameters
@@ -65,7 +82,7 @@ public class AbstractControllerTest {
 	 * @return URI
 	 */
 	protected URI buildUri(final Map<String, String> queryParams, final String... path) {
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("http://localhost:" + localServerPort + "/");
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(this.httpUrl);
 		for (int p = 0; p < path.length; ++p) {
 			if (path[p] == null || path[p].isEmpty()) {
 				throw new IllegalArgumentException("Unexpected null or empty at path index " + Integer.toString(p));
@@ -96,6 +113,8 @@ public class AbstractControllerTest {
 		// Silence Sonar warning about missing assertion.
 		Assertions.assertTrue(logger.isWarnEnabled());
 		logger.info("Context loads on mock profile");
+		// Silence Sonar warning about missing assertion.
+		Assertions.assertTrue(logger.isWarnEnabled());
 	}
 
 }

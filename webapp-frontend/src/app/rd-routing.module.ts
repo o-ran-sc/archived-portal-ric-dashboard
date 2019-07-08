@@ -26,11 +26,13 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { MainComponent } from './main/main.component';
+import { LoginComponent } from './login/login.component';
 import { StatsComponent } from './stats/stats.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     {path: '', component: MainComponent},
+    {path: 'login', component: LoginComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
     {path: 'ac', component: AcXappComponent},

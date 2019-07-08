@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.anrxapp.client.api.HealthApi;
@@ -55,7 +56,7 @@ import io.swagger.annotations.ApiOperation;
 @Configuration
 @RestController
 @RequestMapping(value = AnrXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AnrXappController {
+public class AnrXappController extends AbstractController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -94,6 +95,7 @@ public class AnrXappController {
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
 	public SuccessTransport getClientVersion() {
+		// No role requirement
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
@@ -101,6 +103,7 @@ public class AnrXappController {
 	@GetMapping(HEALTH_ALIVE_METHOD)
 	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
+		// No role requirement
 		healthApi.getHealthAlive();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
@@ -109,46 +112,53 @@ public class AnrXappController {
 	@GetMapping(HEALTH_READY_METHOD)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
+		// No role requirement
 		healthApi.getHealthReady();
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
 	@GetMapping(GNODEBS_METHOD)
-	public GgNodeBTable getGnodebs() {
+	public GgNodeBTable getGnodebs(HttpServletRequest request) {
 		logger.debug("getGnodebs");
+		checkRolesUnpriv(request);
 		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
 	@GetMapping(NCRT_METHOD)
-	public NeighborCellRelationTable getNcrt( //
+	public NeighborCellRelationTable getNcrt(HttpServletRequest request, //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
 			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
 		logger.debug("getNcrt: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
+		checkRolesUnpriv(request);
 		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
 	}
 
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@PutMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
-	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void modifyNcrt(HttpServletRequest request, //
+			@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
 		logger.debug("modifyNcrt: servingCellNrcgi {}, neighborCellNrpci {}, ncrMod {}", servingCellNrcgi,
 				neighborCellNrpci, ncrMod);
+		checkRolesPriv(request);
 		ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@DeleteMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
-	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
+	public void deleteNcrt(HttpServletRequest request, //
+			@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {
 		logger.debug("deleteNcrt: servingCellNrcgi {}, neighborCellNrpci {}", servingCellNrcgi, neighborCellNrpci);
+		checkRolesPriv(request);
 		ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
