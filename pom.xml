@@ -62,14 +62,6 @@ limitations under the License.
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- For Java 9 and later -->
-					<forkCount>0</forkCount>
-				</configuration>
-			</plugin>
 			<!-- Always generate a source jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -90,6 +82,12 @@ limitations under the License.
 				<configuration>
 					<skip>true</skip>
 				</configuration>
+			</plugin>
+			<!-- support sonar in multi-module project -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
 			</plugin>
 		</plugins>
 		<pluginManagement>
