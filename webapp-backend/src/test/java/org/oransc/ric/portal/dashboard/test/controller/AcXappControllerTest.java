@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
@@ -42,7 +42,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
 		Assert.assertFalse(st.getData().toString().isEmpty());
@@ -53,7 +53,8 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		// Always returns 501; surprised that no exception is thrown.
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
 		logger.info("Invoking {}", uri);
-		restTemplate.getForObject(uri, String.class);
+		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);		
+		Assert.assertTrue(response.getStatusCode().is5xxServerError());
 	}
 
 	@Test
@@ -62,6 +63,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		JsonNode body = mapper.readTree("{ \"policy\" : true }");
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
+		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
 		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}

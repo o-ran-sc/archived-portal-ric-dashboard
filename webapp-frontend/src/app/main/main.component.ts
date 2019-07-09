@@ -20,11 +20,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rd-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'rd-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   constructor() { }
 

@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -40,7 +40,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
 		Assert.assertFalse(st.getData().toString().isEmpty());

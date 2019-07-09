@@ -64,6 +64,8 @@ public class AnrXappController {
 	public static final String HEALTH_READY_METHOD = "/health/ready";
 	public static final String GNODEBS_METHOD = "/gnodebs";
 	public static final String NCRT_METHOD = "/ncrt";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
+
 	// Path parameters
 	public static final String PP_SERVING = "servingcells";
 	public static final String PP_NEIGHBOR = "neighborcells";
@@ -88,8 +90,8 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
-	public SuccessTransport getAnrXappClientVersion() {
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
+	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 

@@ -56,7 +56,7 @@ public class SimpleErrorController implements ErrorController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private static final String ERROR_PATH = "/error";
+	public static final String ERROR_PATH = "/error";
 	private static final String TRACE = "trace";
 	private final ErrorAttributes errorAttributes;
 

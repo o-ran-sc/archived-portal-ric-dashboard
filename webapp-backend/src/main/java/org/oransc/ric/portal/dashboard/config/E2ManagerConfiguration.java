@@ -20,8 +20,7 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
@@ -48,10 +47,12 @@ public class E2ManagerConfiguration {
 	private final String e2mgrUrl;
 
 	@Autowired
-	public E2ManagerConfiguration(@Value("${e2mgr.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring E2 Manager at base URL {}", url);
-		new URL(url);
-		this.e2mgrUrl = url;
+	public E2ManagerConfiguration(@Value("${e2mgr.url.prefix}") final String urlPrefix,
+			@Value("${e2mgr.url.suffix}") final String urlSuffix) throws Exception {
+		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
+		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
+		e2mgrUrl = uri.toString();
+		logger.info("Configuring E2 Manager at URL {}", e2mgrUrl);
 	}
 
 	private ApiClient apiClient() {
