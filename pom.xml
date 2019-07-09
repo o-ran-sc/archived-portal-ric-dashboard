@@ -35,7 +35,7 @@ limitations under the License.
 	<packaging>pom</packaging>
 	<version>1.2.0-SNAPSHOT</version>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 		<!-- Properties for the license-maven-plugin in child POMs -->
 		<lmp.organization.name>AT&amp;T Intellectual Property and Nokia</lmp.organization.name>
 		<lmp.project.name>O-RAN-SC</lmp.project.name>
@@ -62,14 +62,6 @@ limitations under the License.
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- For Java 9 and later -->
-					<forkCount>0</forkCount>
-				</configuration>
-			</plugin>
 			<!-- Always generate a source jar -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -90,6 +82,12 @@ limitations under the License.
 				<configuration>
 					<skip>true</skip>
 				</configuration>
+			</plugin>
+			<!-- support sonar in multi-module project -->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
 			</plugin>
 		</plugins>
 		<pluginManagement>

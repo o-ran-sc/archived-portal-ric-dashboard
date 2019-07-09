@@ -189,7 +189,7 @@ limitations under the License.
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
+				<version>0.8.4</version>
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>
@@ -222,7 +222,7 @@ limitations under the License.
 							<!-- Avoid maven artifact name here -->
 							<name>ric-dashboard:${project.version}</name>
 							<build>
-								<from>openjdk:8-jre-slim</from>
+								<from>openjdk:11-jre-slim</from>
 								<tags>
 									<!-- Add tag with build number -->
 									<tag>${project.version}</tag>
