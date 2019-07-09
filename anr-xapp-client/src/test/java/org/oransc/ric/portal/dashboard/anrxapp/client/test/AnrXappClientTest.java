@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.anrxapp.client.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.invoker.ApiClient;
@@ -39,6 +40,7 @@ public class AnrXappClientTest {
 		try {
 			healthApi.getHealthAlive();
 			System.out.println("getHealthAlive answered: " + apiClient.getStatusCode().toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getHealthAlive failed: " + e.toString());
 		}

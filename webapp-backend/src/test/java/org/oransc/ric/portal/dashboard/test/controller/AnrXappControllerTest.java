@@ -17,13 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.oransc.ric.anrxapp.client.model.GgNodeBTable;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationMod;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationTable;
@@ -41,10 +41,10 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
-		Assert.assertFalse(st.getData().toString().isEmpty());
+		Assertions.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.HEALTH_ALIVE_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.HEALTH_READY_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -68,7 +68,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.GNODEBS_METHOD);
 		logger.info("Invoking {}", uri);
 		GgNodeBTable list = restTemplate.getForObject(uri, GgNodeBTable.class);
-		Assert.assertFalse(list.getGNodeBIds().isEmpty());
+		Assertions.assertFalse(list.getGNodeBIds().isEmpty());
 	}
 
 	@Test
@@ -76,7 +76,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.NCRT_METHOD);
 		logger.info("Invoking {}", uri);
 		NeighborCellRelationTable table = restTemplate.getForObject(uri, NeighborCellRelationTable.class);
-		Assert.assertFalse(table.getNcrtRelations().isEmpty());
+		Assertions.assertFalse(table.getNcrtRelations().isEmpty());
 	}
 
 	@Test
@@ -86,7 +86,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		HttpEntity<NeighborCellRelationMod> entity = new HttpEntity<>(new NeighborCellRelationMod());
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 				AnrXappController.PP_SERVING, "serving", AnrXappController.PP_NEIGHBOR, "neighbor");
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 }

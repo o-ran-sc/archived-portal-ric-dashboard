@@ -17,13 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
 import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
@@ -45,10 +45,10 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
-		Assert.assertFalse(st.getData().toString().isEmpty());
+		Assertions.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.HEALTH_ALIVE_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.HEALTH_READY_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_LIST_METHOD);
 		logger.info("Invoking {}", uri);
 		DashboardDeployableXapps apps = restTemplate.getForObject(uri, DashboardDeployableXapps.class);
-		Assert.assertFalse(apps.isEmpty());
+		Assertions.assertFalse(apps.isEmpty());
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
 		AllDeployedXapps apps = restTemplate.getForObject(uri, AllDeployedXapps.class);
-		Assert.assertFalse(apps.isEmpty());
+		Assertions.assertFalse(apps.isEmpty());
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
 		Xapp app = restTemplate.getForObject(uri, Xapp.class);
-		Assert.assertFalse(app.getName().isEmpty());
+		Assertions.assertFalse(app.getName().isEmpty());
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		XAppInfo info = new XAppInfo();
 		Xapp app = restTemplate.postForObject(uri, info, Xapp.class);
-		Assert.assertFalse(app.getName().isEmpty());
+		Assertions.assertFalse(app.getName().isEmpty());
 	}
 
 	@Test
@@ -105,7 +105,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
 		AllXappConfig config = restTemplate.getForObject(uri, AllXappConfig.class);
-		Assert.assertFalse(config.isEmpty());
+		Assertions.assertFalse(config.isEmpty());
 	}
 
 	@Test
@@ -122,7 +122,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		XAppConfig newConfig = new XAppConfig();
 		XAppConfig response = restTemplate.postForObject(uri, newConfig, XAppConfig.class);
-		Assert.assertNotNull(response.getConfig());
+		Assertions.assertNotNull(response.getConfig());
 	}
 
 	@Test
@@ -132,7 +132,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		ConfigMetadata delConfig = new ConfigMetadata();
 		HttpEntity<ConfigMetadata> entity = new HttpEntity<>(delConfig);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 }

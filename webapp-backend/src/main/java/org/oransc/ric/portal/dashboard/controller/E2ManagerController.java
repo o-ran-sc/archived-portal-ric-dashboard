@@ -76,6 +76,7 @@ public class E2ManagerController {
 	public static final String RAN_METHOD = "/ran";
 	public static final String ENDC_SETUP_METHOD = "/endcSetup";
 	public static final String X2_SETUP_METHOD = "/x2Setup";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
@@ -104,8 +105,8 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
-	public SuccessTransport getE2ManagerClientVersion() {
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
+	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 

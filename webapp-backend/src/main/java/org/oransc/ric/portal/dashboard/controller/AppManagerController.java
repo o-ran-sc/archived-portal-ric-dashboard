@@ -71,6 +71,7 @@ public class AppManagerController {
 	public static final String CONFIG_METHOD = "/config";
 	public static final String XAPPS_METHOD = "/xapps";
 	public static final String XAPPS_LIST_METHOD = XAPPS_METHOD + "/list";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_XAPP_NAME = "xAppName";
 
@@ -90,8 +91,8 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
-	public SuccessTransport getXappManagerClientVersion() {
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
+	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
