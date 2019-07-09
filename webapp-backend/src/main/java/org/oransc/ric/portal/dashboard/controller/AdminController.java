@@ -47,21 +47,25 @@ public class AdminController {
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
 	public static final String USER_METHOD = "user";
 	public static final String HEALTH_METHOD = "health";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 
 	private final DashboardUser[] users;
+
+	private static final String ACTIVE = "Active";
+	private static final String INACTIVE = "Inactive";
 
 	public AdminController() {
 		// Mock data
 		users = new DashboardUser[] { //
-				new DashboardUser(1, "John", "Doe", "Active"), //
-				new DashboardUser(2, "Alice", "Nolan", "Active"), //
-				new DashboardUser(3, "Pierce", "King", "Inactive"), //
-				new DashboardUser(4, "Paul", "Smith", "Inactive"), //
-				new DashboardUser(5, "Jack", "Reacher", "Active") };
+				new DashboardUser(1, "John", "Doe", ACTIVE), //
+				new DashboardUser(2, "Alice", "Nolan", ACTIVE), //
+				new DashboardUser(3, "Pierce", "King", INACTIVE), //
+				new DashboardUser(4, "Paul", "Smith", INACTIVE), //
+				new DashboardUser(5, "Jack", "Reacher", ACTIVE) };
 	}
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion");
 		return new SuccessTransport(200,
