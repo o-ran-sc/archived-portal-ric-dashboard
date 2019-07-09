@@ -17,14 +17,14 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
@@ -44,10 +44,10 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
-		Assert.assertFalse(st.getData().toString().isEmpty());
+		Assertions.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.HEALTH_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		ResponseEntity<List<RanDetailsTransport>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<RanDetailsTransport>>() {
 				});
-		Assert.assertFalse(response.getBody().isEmpty());
+		Assertions.assertFalse(response.getBody().isEmpty());
 	}
 
 	@Test
@@ -75,7 +75,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		ResponseEntity<List<NodebIdentity>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<NodebIdentity>>() {
 				});
-		Assert.assertFalse(response.getBody().isEmpty());
+		Assertions.assertFalse(response.getBody().isEmpty());
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD, "nodeb");
 		logger.info("Invoking {}", uri);
 		GetNodebResponse response = restTemplate.getForObject(uri, GetNodebResponse.class);
-		Assert.assertNotNull(response.getRanName());
+		Assertions.assertNotNull(response.getRanName());
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		SetupRequest setup = new SetupRequest();
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.POST, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -111,7 +111,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		SetupRequest setup = new SetupRequest();
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.POST, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 }

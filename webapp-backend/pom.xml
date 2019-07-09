@@ -25,12 +25,11 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.0.5-SNAPSHOT</version>
+		<version>1.2.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>ric-dash-be</artifactId>
 	<name>RIC Dashboard Webapp backend</name>
 	<properties>
-		<java.version>1.8</java.version>
 		<springfox.version>2.9.2</springfox.version>
 		<!-- Set by Jenkins -->
 		<build.number>0</build.number>
@@ -95,9 +94,28 @@ limitations under the License.
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
@@ -118,20 +136,6 @@ limitations under the License.
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- Require Java 1.8 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- Spring sets the <version></version> -->
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
 			</plugin>
 			<!-- Add the build number to the jar manifest. Spring-Boot uses a complex 
 				packaging process that makes access to the original Manifest.MF very difficult. 
@@ -182,6 +186,26 @@ limitations under the License.
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- https://stackoverflow.com/questions/39126226/fabric8-springboot-full-example -->
 			<plugin>
 				<groupId>io.fabric8</groupId>
@@ -195,7 +219,8 @@ limitations under the License.
 					<images>
 						<image>
 							<!-- Specify a tag to avoid default tag "latest" -->
-							<name>${project.artifactId}:${project.version}</name>
+							<!-- Avoid maven artifact name here -->
+							<name>ric-dashboard:${project.version}</name>
 							<build>
 								<from>openjdk:8-jre-slim</from>
 								<tags>
@@ -212,7 +237,7 @@ limitations under the License.
 								</runCmds>
 								<cmd>
 									<!-- CDATA prevents Eclipse formatter from breaking line -->
-									<shell><![CDATA[cd /maven; java -Xms128m -Xmx1024m -Djava.security.egd=file:/dev/./urandom -jar ${project.artifactId}-${project.version}.${project.packaging}]]></shell>
+									<shell><![CDATA[cd /maven; java -Xms128m -Xmx256m -Djava.security.egd=file:/dev/./urandom -jar ${project.artifactId}-${project.version}.${project.packaging}]]></shell>
 								</cmd>
 							</build>
 						</image>

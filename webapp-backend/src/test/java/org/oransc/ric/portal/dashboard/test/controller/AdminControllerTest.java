@@ -17,14 +17,14 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.model.DashboardUser;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
@@ -40,10 +40,10 @@ public class AdminControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
-		Assert.assertFalse(st.getData().toString().isEmpty());
+		Assertions.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.HEALTH_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 		ResponseEntity<List<DashboardUser>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<DashboardUser>>() {
 				});
-		Assert.assertFalse(response.getBody().isEmpty());
+		Assertions.assertFalse(response.getBody().isEmpty());
 	}
 
 }

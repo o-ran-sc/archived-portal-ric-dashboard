@@ -25,7 +25,7 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.0.5-SNAPSHOT</version>
+		<version>1.2.0-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
 	<groupId>org.o-ran-sc.ric.plt.a1med.client</groupId>
@@ -42,6 +42,11 @@ limitations under the License.
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>
+		<!-- Required for Java 9 and later -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-annotations</artifactId>
@@ -124,30 +129,6 @@ limitations under the License.
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Require Java 1.8 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- Spring sets the <version></version> -->
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<!-- Generate source jar -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<!-- <version>3.0.0</version> -->
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- add build information to manifest. Java provides access to the implementation 
 				version for a package, so cram the build number into there. -->
 			<plugin>
@@ -163,15 +144,6 @@ limitations under the License.
 							<Implementation-Version>${project.version}-b${build.number}</Implementation-Version>
 						</manifestEntries>
 					</archive>
-				</configuration>
-			</plugin>
-			<!-- Skip the deploy-jar-to-nexus step -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<!-- Spring sets the <version>2.8</version> -->
-				<configuration>
-					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>

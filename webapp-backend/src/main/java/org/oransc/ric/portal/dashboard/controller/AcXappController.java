@@ -58,6 +58,7 @@ public class AcXappController {
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac";
 	// Endpoints
 	public static final String ADMCTRL_METHOD = "/admctrl";
+	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 
 	// A "control" is an element in the XApp descriptor
 	private static final String AC_CONTROL_NAME = "admission_control_policy";
@@ -74,7 +75,7 @@ public class AcXappController {
 	}
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = DashboardConstants.VERSION_METHOD, method = RequestMethod.GET)
+	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
 	public SuccessTransport getA1MediatorClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}

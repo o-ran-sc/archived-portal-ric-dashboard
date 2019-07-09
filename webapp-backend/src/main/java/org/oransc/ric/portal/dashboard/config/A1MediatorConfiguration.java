@@ -20,8 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
@@ -48,10 +48,12 @@ public class A1MediatorConfiguration {
 	private final String a1medUrl;
 
 	@Autowired
-	public A1MediatorConfiguration(@Value("${a1med.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring A1 Mediator at base URL {}", url);
-		new URL(url);
-		this.a1medUrl = url;
+	public A1MediatorConfiguration(@Value("${a1med.url.prefix}") final String urlPrefix, //
+			@Value("${a1med.url.suffix}") final String urlSuffix) throws URISyntaxException {
+		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
+		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
+		a1medUrl = uri.toString();
+		logger.info("Configuring A1 Mediator at URL {}", a1medUrl);
 	}
 
 	private ApiClient apiClient() {

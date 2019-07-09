@@ -33,9 +33,10 @@ limitations under the License.
 	<artifactId>ric-dash-parent</artifactId>
 	<name>RIC Dashboard project</name>
 	<packaging>pom</packaging>
-	<version>1.0.5-SNAPSHOT</version>
-	<!-- Properties for the license-maven-plugin in child POMs -->
+	<version>1.2.0-SNAPSHOT</version>
 	<properties>
+		<java.version>8</java.version>
+		<!-- Properties for the license-maven-plugin in child POMs -->
 		<lmp.organization.name>AT&amp;T Intellectual Property and Nokia</lmp.organization.name>
 		<lmp.project.name>O-RAN-SC</lmp.project.name>
 		<lmp.inception.year>2019</lmp.inception.year>
@@ -53,11 +54,39 @@ limitations under the License.
 	</modules>
 	<build>
 		<plugins>
-			<!-- do not deploy the root pom, only needed for build -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- For Java 9 and later -->
+					<forkCount>0</forkCount>
+				</configuration>
+			</plugin>
+			<!-- Always generate a source jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Always skip the deploy-jar-to-nexus step -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
-				<!--  spring sets the <version>2.8</version> -->
 				<configuration>
 					<skip>true</skip>
 				</configuration>
