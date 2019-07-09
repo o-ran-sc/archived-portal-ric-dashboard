@@ -17,14 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.test.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.Map;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,10 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 // Need the fake answers from the backend
 @ActiveProfiles("mock")
@@ -88,9 +89,12 @@ public class AbstractControllerTest {
 		return builder.build().encode().toUri();
 	}
 
-	// Must have at least one test here
+	// Because I put the annotations on this parent class,
+	// must define at least one test here.
 	@Test
 	public void contextLoads() {
+		// Silence Sonar warning about missing assertion.
+		Assertions.assertTrue(logger.isWarnEnabled());
 		logger.info("Context loads on mock profile");
 	}
 

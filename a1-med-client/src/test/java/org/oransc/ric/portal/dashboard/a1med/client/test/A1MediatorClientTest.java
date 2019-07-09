@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.a1med.client.test;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
@@ -39,6 +40,7 @@ public class A1MediatorClientTest {
 		try {
 			a1Api.a1ControllerGetHandler("policy");
 			System.out.println("getPolicy answered: " + apiClient.getStatusCode().toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getPolicy failed: " + e.toString());
 		}

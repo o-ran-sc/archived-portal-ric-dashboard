@@ -20,8 +20,8 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
@@ -48,10 +48,12 @@ public class AnrXappConfiguration {
 	private final String anrXappUrl;
 
 	@Autowired
-	public AnrXappConfiguration(@Value("${anrxapp.url}") final String url) throws MalformedURLException {
-		logger.info("Configuring ANR client at base URL {}", url);
-		new URL(url);
-		this.anrXappUrl = url;
+	public AnrXappConfiguration(@Value("${anrxapp.url.prefix}") final String urlPrefix,
+			@Value("${anrxapp.url.suffix}") final String urlSuffix) throws URISyntaxException {
+		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
+		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
+		anrXappUrl = uri.toString();
+		logger.info("Configuring ANR client at URL {}", anrXappUrl);
 	}
 
 	private ApiClient apiClient() {
