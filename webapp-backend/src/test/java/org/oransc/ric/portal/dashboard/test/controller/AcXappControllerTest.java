@@ -22,9 +22,9 @@ package org.oransc.ric.portal.dashboard.test.controller;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Assert;
-import org.junit.Test;
 import org.oransc.ric.portal.dashboard.controller.AcXappController;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
-		Assert.assertFalse(st.getData().toString().isEmpty());
+		Assertions.assertFalse(st.getData().toString().isEmpty());
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
-		Assert.assertTrue(response.getStatusCode().is5xxServerError());
+		Assertions.assertTrue(response.getStatusCode().is5xxServerError());
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
-		Assert.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 }

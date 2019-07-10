@@ -23,8 +23,6 @@
  */
 package org.oransc.ric.portal.dashboard.model;
 
-import java.util.Objects;
-
 public class DashboardUser {
 
 	private long id;
@@ -72,30 +70,6 @@ public class DashboardUser {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DashboardUser other = (DashboardUser) obj;
-		return Objects.equals(id, other.id) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(status, other.status);
 	}
 
 }

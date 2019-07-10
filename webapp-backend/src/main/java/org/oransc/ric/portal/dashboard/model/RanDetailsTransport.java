@@ -17,7 +17,6 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-
 package org.oransc.ric.portal.dashboard.model;
 
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
@@ -60,39 +59,6 @@ public class RanDetailsTransport {
 	public RanDetailsTransport nodebStatus(GetNodebResponse s) {
 		this.nodebStatus = s;
 		return this;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nodebIdentity == null) ? 0 : nodebIdentity.hashCode());
-		result = prime * result + ((nodebStatus == null) ? 0 : nodebStatus.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RanDetailsTransport other = (RanDetailsTransport) obj;
-		if (nodebIdentity == null) {
-			if (other.nodebIdentity != null)
-				return false;
-		} else if (!nodebIdentity.equals(other.nodebIdentity)) {
-			return false;
-		}
-		if (nodebStatus == null) {
-			if (other.nodebStatus != null)
-				return false;
-		} else if (!nodebStatus.equals(other.nodebStatus)) {
-			return false;
-		}
-		return true;
 	}
 
 }
