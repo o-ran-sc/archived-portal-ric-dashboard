@@ -83,13 +83,15 @@ public class RanDetailsTransport {
 		if (nodebIdentity == null) {
 			if (other.nodebIdentity != null)
 				return false;
-		} else if (!nodebIdentity.equals(other.nodebIdentity))
+		} else if (!nodebIdentity.equals(other.nodebIdentity)) {
 			return false;
+		}
 		if (nodebStatus == null) {
 			if (other.nodebStatus != null)
 				return false;
-		} else if (!nodebStatus.equals(other.nodebStatus))
+		} else if (!nodebStatus.equals(other.nodebStatus)) {
 			return false;
+		}
 		return true;
 	}
 

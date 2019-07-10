@@ -37,10 +37,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -90,13 +92,13 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
+	@GetMapping(VERSION_METHOD)
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
-	@RequestMapping(value = HEALTH_ALIVE_METHOD, method = RequestMethod.GET)
+	@GetMapping(HEALTH_ALIVE_METHOD)
 	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
 		healthApi.getHealthAlive();
@@ -104,7 +106,7 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
-	@RequestMapping(value = HEALTH_READY_METHOD, method = RequestMethod.GET)
+	@GetMapping(HEALTH_READY_METHOD)
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
 		healthApi.getHealthReady();
@@ -112,14 +114,14 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
-	@RequestMapping(value = GNODEBS_METHOD, method = RequestMethod.GET)
+	@GetMapping(GNODEBS_METHOD)
 	public GgNodeBTable getGnodebs() {
 		logger.debug("getGnodebs");
 		return ncrtApi.getgNodeB();
 	}
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
-	@RequestMapping(value = NCRT_METHOD, method = RequestMethod.GET)
+	@GetMapping(NCRT_METHOD)
 	public NeighborCellRelationTable getNcrt( //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
@@ -131,8 +133,7 @@ public class AnrXappController {
 
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
-	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
-			+ "}", method = RequestMethod.PUT)
+	@PutMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
 	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
@@ -143,8 +144,7 @@ public class AnrXappController {
 	}
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
-	@RequestMapping(value = NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR
-			+ "}", method = RequestMethod.DELETE)
+	@DeleteMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
 	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {

@@ -61,7 +61,7 @@ public class E2ManagerMockConfiguration {
 		nodebIdList = new ArrayList<>();
 		nodebIdList.add(nbid);
 		nodebResponse = new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
-				.ip("1.2.3.4").nodeType("mockNodeType").port(123).ranName("mockRanName");
+				.ip("127.0.0.1").nodeType("mockNodeType").port(123).ranName("mockRanName");
 	}
 
 	private ApiClient apiClient() {
@@ -76,11 +76,7 @@ public class E2ManagerMockConfiguration {
 		ApiClient apiClient = apiClient();
 		HealthCheckApi mockApi = mock(HealthCheckApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).healthGet();
-
+		doAnswer(i -> null).when(mockApi).healthGet();
 		return mockApi;
 	}
 
@@ -90,27 +86,11 @@ public class E2ManagerMockConfiguration {
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).nodebDelete();
-
-		doAnswer(i -> {
-			return nodebResponse;
-		}).when(mockApi).getNb(any(String.class));
-
-		doAnswer(i -> {
-			return nodebIdList;
-		}).when(mockApi).getNodebIdList();
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).endcSetup(any(SetupRequest.class));
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).x2Setup(any(SetupRequest.class));
-
+		doAnswer(i -> null).when(mockApi).nodebDelete();
+		doAnswer(i -> nodebResponse).when(mockApi).getNb(any(String.class));
+		doAnswer(i -> nodebIdList).when(mockApi).getNodebIdList();
+		doAnswer(i -> null).when(mockApi).endcSetup(any(SetupRequest.class));
+		doAnswer(i -> null).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;
 	}
 

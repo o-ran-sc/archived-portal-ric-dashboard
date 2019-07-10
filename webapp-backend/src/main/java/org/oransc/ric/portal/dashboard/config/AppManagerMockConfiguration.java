@@ -75,7 +75,7 @@ public class AppManagerMockConfiguration {
 			allXappConfigs.add(config);
 			availXapps.add(n);
 			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
-			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("1.2.3.4").port(200)
+			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("127.0.0.1").port(200)
 					.status(XappInstance.StatusEnum.RUNNING));
 			deployedXapps.add(xapp);
 		}
@@ -88,12 +88,8 @@ public class AppManagerMockConfiguration {
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		HealthApi mockApi = mock(HealthApi.class);
 		when(mockApi.getApiClient()).thenReturn(mockClient);
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).getHealthAlive();
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).getHealthReady();
+		doAnswer(i -> null).when(mockApi).getHealthAlive();
+		doAnswer(i -> null).when(mockApi).getHealthReady();
 		return mockApi;
 	}
 
@@ -102,40 +98,21 @@ public class AppManagerMockConfiguration {
 	public XappApi xappMgrXappApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
-
 		XappApi mockApi = mock(XappApi.class);
 		when(mockApi.getApiClient()).thenReturn(mockClient);
-
 		when(mockApi.getAllXappConfig()).thenReturn(allXappConfigs);
-
 		when(mockApi.createXappConfig(any(XAppConfig.class))).thenReturn(allXappConfigs.get(0));
-
 		when(mockApi.modifyXappConfig(any(XAppConfig.class))).thenReturn(allXappConfigs.get(0));
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).deleteXappConfig(any(ConfigMetadata.class));
-
+		doAnswer(i -> null).when(mockApi).deleteXappConfig(any(ConfigMetadata.class));
 		when(mockApi.deployXapp(any(XAppInfo.class))).thenReturn(deployedXapps.get(0));
-
 		when(mockApi.listAllXapps()).thenReturn(availXapps);
-
 		when(mockApi.getAllXapps()).thenReturn(deployedXapps);
-
 		when(mockApi.getXappByName(any(String.class))).thenReturn(deployedXapps.get(0));
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).undeployXapp(any(String.class));
-
+		doAnswer(i -> null).when(mockApi).undeployXapp(any(String.class));
 		SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
 				.id("subid").version(1);
 		when(mockApi.addSubscription(any(SubscriptionRequest.class))).thenReturn(subRes);
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).deleteSubscription(any(String.class));
-
+		doAnswer(i -> null).when(mockApi).deleteSubscription(any(String.class));
 		return mockApi;
 	}
 

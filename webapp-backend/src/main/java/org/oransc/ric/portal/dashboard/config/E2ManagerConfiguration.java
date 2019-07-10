@@ -20,7 +20,6 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
@@ -33,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
  * Creates an E2 manager client as a bean to be managed by the Spring container.
@@ -48,10 +48,10 @@ public class E2ManagerConfiguration {
 
 	@Autowired
 	public E2ManagerConfiguration(@Value("${e2mgr.url.prefix}") final String urlPrefix,
-			@Value("${e2mgr.url.suffix}") final String urlSuffix) throws Exception {
+			@Value("${e2mgr.url.suffix}") final String urlSuffix) {
 		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
-		e2mgrUrl = uri.toString();
+		e2mgrUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
+				.toString();
 		logger.info("Configuring E2 Manager at URL {}", e2mgrUrl);
 	}
 

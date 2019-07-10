@@ -51,7 +51,12 @@ public class AnrXappMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private final NeighborCellRelationTable ncrt, ncrtNodeB1, ncrtNodeB2, ncrtNodeB3;
+	// Sonar wants separate declarations
+	private final NeighborCellRelationTable ncrt;
+	private final NeighborCellRelationTable ncrtNodeB1;
+	private final NeighborCellRelationTable ncrtNodeB2;
+	private final NeighborCellRelationTable ncrtNodeB3;
+
 	private final GgNodeBTable gNodebTable;
 
 	private static final String GNODEB1 = "001EF5:0045FE50";
@@ -102,12 +107,8 @@ public class AnrXappMockConfiguration {
 		ApiClient apiClient = apiClient();
 		HealthApi mockApi = mock(HealthApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).getHealthAlive();
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).getHealthReady();
+		doAnswer(i -> null).when(mockApi).getHealthAlive();
+		doAnswer(i -> null).when(mockApi).getHealthReady();
 		return mockApi;
 	}
 
@@ -124,12 +125,9 @@ public class AnrXappMockConfiguration {
 		when(mockApi.getNcrt(eq(GNODEB1), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
 		when(mockApi.getNcrt(eq(GNODEB2), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
 		when(mockApi.getNcrt(eq(GNODEB3), any(String.class), any(String.class))).thenReturn(ncrtNodeB3);
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).deleteNcrt(any(String.class), any(String.class));
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).modifyNcrt(any(String.class), any(String.class), any(NeighborCellRelationMod.class));
+		doAnswer(i -> null).when(mockApi).deleteNcrt(any(String.class), any(String.class));
+		doAnswer(i -> null).when(mockApi).modifyNcrt(any(String.class), any(String.class),
+				any(NeighborCellRelationMod.class));
 		return mockApi;
 	}
 

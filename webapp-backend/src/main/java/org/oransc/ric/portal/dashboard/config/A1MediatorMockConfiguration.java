@@ -60,15 +60,8 @@ public class A1MediatorMockConfiguration {
 		ApiClient apiClient = apiClient();
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).a1ControllerGetHandler(any(String.class));
-
-		doAnswer(i -> {
-			return null;
-		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
-
+		doAnswer(i -> null).when(mockApi).a1ControllerGetHandler(any(String.class));
+		doAnswer(i -> null).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
 		return mockApi;
 	}
 

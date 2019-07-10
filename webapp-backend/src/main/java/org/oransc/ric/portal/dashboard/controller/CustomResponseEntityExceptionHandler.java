@@ -50,9 +50,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * https://www.springboottutorial.com/spring-boot-exception-handling-for-rest-services
  */
 @ControllerAdvice
-public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	// Superclass has "logger" that is exposed here, so use a different name
+	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/**
 	 * Generates the response when a REST controller method takes an
@@ -68,10 +69,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	 * @return A response entity with status code 502 plus some details in the body.
 	 */
 	@ExceptionHandler(HttpStatusCodeException.class)
-	public final ResponseEntity<?> handleHttpStatusCodeException(HttpStatusCodeException ex, WebRequest request) {
-		logger.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
-		return new ResponseEntity<ErrorTransport>(
-				new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex), HttpStatus.BAD_GATEWAY);
+	public final ResponseEntity<ErrorTransport> handleHttpStatusCodeException(HttpStatusCodeException ex,
+			WebRequest request) {
+		log.warn("Request {} failed, status code {}", request.getDescription(false), ex.getStatusCode());
+		return new ResponseEntity<>(new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex),
+				HttpStatus.BAD_GATEWAY);
 	}
 
 }

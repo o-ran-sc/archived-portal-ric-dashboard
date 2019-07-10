@@ -144,7 +144,6 @@ limitations under the License.
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<!-- Spring sets the <version>2.5</version> -->
 				<configuration>
 					<archive>
 						<manifest>
@@ -158,7 +157,6 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
-				<!-- spring-boot sets the <version>3.1.0</version> -->
 				<executions>
 					<execution>
 						<id>copy-resources</id>
@@ -181,7 +179,6 @@ limitations under the License.
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
-				<!-- spring sets the <version>2.8</version> -->
 				<configuration>
 					<skip>true</skip>
 				</configuration>

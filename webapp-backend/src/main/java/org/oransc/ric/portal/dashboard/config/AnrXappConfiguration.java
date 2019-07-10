@@ -20,8 +20,6 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.oransc.ric.anrxapp.client.api.HealthApi;
 import org.oransc.ric.anrxapp.client.api.NcrtApi;
@@ -34,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
  * Creates instances of the ANR xApp client APIs.
@@ -49,10 +48,10 @@ public class AnrXappConfiguration {
 
 	@Autowired
 	public AnrXappConfiguration(@Value("${anrxapp.url.prefix}") final String urlPrefix,
-			@Value("${anrxapp.url.suffix}") final String urlSuffix) throws URISyntaxException {
+			@Value("${anrxapp.url.suffix}") final String urlSuffix) {
 		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
-		anrXappUrl = uri.toString();
+		anrXappUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
+				.toString();
 		logger.info("Configuring ANR client at URL {}", anrXappUrl);
 	}
 

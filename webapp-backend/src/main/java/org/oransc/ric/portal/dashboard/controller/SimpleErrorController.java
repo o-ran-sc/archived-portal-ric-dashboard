@@ -30,7 +30,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
@@ -84,7 +84,7 @@ public class SimpleErrorController implements ErrorController {
 	 *                     HttpServletRequest
 	 * @return Map of String to Object
 	 */
-	@RequestMapping(ERROR_PATH)
+	@GetMapping(ERROR_PATH)
 	public Map<String, Object> error(HttpServletRequest aRequest) {
 		Map<String, Object> body = getErrorAttributes(aRequest, getTraceParameter(aRequest));
 		logger.warn("Failed in request for {}", body.get("path"));

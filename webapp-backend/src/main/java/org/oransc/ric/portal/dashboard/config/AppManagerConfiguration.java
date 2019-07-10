@@ -20,8 +20,6 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
@@ -34,6 +32,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
  * Creates an xApp manager client as a bean to be managed by the Spring
@@ -50,10 +49,10 @@ public class AppManagerConfiguration {
 
 	@Autowired
 	public AppManagerConfiguration(@Value("${appmgr.url.prefix}") final String urlPrefix,
-			@Value("${appmgr.url.suffix}") final String urlSuffix) throws URISyntaxException {
+			@Value("${appmgr.url.suffix}") final String urlSuffix) {
 		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
-		xappMgrUrl = uri.toString();
+		xappMgrUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
+				.toString();
 		logger.info("Configuring App Manager at URL {}", xappMgrUrl);
 	}
 

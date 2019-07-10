@@ -32,9 +32,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -75,7 +76,7 @@ public class AcXappController {
 	}
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@RequestMapping(value = VERSION_METHOD, method = RequestMethod.GET)
+	@GetMapping(VERSION_METHOD)
 	public SuccessTransport getA1MediatorClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
@@ -84,7 +85,7 @@ public class AcXappController {
 	 * GET policy is not supported at present by A1 Mediator! Always returns 501.
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.GET)
+	@GetMapping(ADMCTRL_METHOD)
 	public Object getAdmissionControlPolicy(HttpServletResponse response) {
 		logger.debug("getAdmissionControlPolicy");
 		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
@@ -96,7 +97,7 @@ public class AcXappController {
 	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
-	@RequestMapping(value = ADMCTRL_METHOD, method = RequestMethod.PUT)
+	@PutMapping(ADMCTRL_METHOD)
 	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);

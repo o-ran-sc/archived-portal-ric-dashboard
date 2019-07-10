@@ -20,8 +20,6 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
@@ -33,6 +31,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
  * Creates an A1 mediator client as a bean to be managed by the Spring
@@ -49,10 +48,10 @@ public class A1MediatorConfiguration {
 
 	@Autowired
 	public A1MediatorConfiguration(@Value("${a1med.url.prefix}") final String urlPrefix, //
-			@Value("${a1med.url.suffix}") final String urlSuffix) throws URISyntaxException {
+			@Value("${a1med.url.suffix}") final String urlSuffix) {
 		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		URI uri = new URI(urlPrefix.trim() + "/" + urlSuffix.trim()).normalize();
-		a1medUrl = uri.toString();
+		a1medUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
+				.toString();
 		logger.info("Configuring A1 Mediator at URL {}", a1medUrl);
 	}
 
