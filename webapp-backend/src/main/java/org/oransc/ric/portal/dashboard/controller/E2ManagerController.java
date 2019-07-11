@@ -29,7 +29,6 @@ import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
-import org.oransc.ric.e2mgr.client.model.NodebIdentityGlobalNbId;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -38,7 +37,6 @@ import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
@@ -58,9 +56,6 @@ import io.swagger.annotations.ApiOperation;
  * 502 on failure and wrap the remote details: <blockquote>HTTP server received
  * an invalid response from a server it consulted when acting as a proxy or
  * gateway.</blockquote>
- * 
- * In R1 the E2 interface does not yet implement the get-ID-list method, so this
- * class mocks up some functionality.
  */
 @Configuration
 @RestController
@@ -86,24 +81,12 @@ public class E2ManagerController {
 	private final HealthCheckApi e2HealthCheckApi;
 	private final NodebApi e2NodebApi;
 
-	// TODO: remove this when E2 delivers the feature
-	private final List<NodebIdentity> mockNodebIdList;
-
 	@Autowired
-	public E2ManagerController(final HealthCheckApi e2HealthCheckApi, final NodebApi e2NodebApi,
-			@Value("${e2mgr.mock.rannames:#{null}}") final String mockRanNames) {
+	public E2ManagerController(final HealthCheckApi e2HealthCheckApi, final NodebApi e2NodebApi) {
 		Assert.notNull(e2HealthCheckApi, "API must not be null");
 		Assert.notNull(e2NodebApi, "API must not be null");
 		this.e2HealthCheckApi = e2HealthCheckApi;
 		this.e2NodebApi = e2NodebApi;
-		mockNodebIdList = new ArrayList<>();
-		if (mockRanNames != null) {
-			logger.debug("ctor: Mocking RAN names: {}", mockRanNames);
-			for (String id : mockRanNames.split(",")) {
-				NodebIdentityGlobalNbId globalNbId = new NodebIdentityGlobalNbId().nbId("mockNbId").plmnId("mockPlmId");
-				mockNodebIdList.add(new NodebIdentity().globalNbId(globalNbId).inventoryName(id.trim()));
-			}
-		}
 	}
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
@@ -125,8 +108,7 @@ public class E2ManagerController {
 	@GetMapping(RAN_METHOD)
 	public List<RanDetailsTransport> getRanDetails() {
 		logger.debug("getRanDetails");
-		// TODO: remove mock when e2mgr delivers the getNodebIdList() method
-		List<NodebIdentity> nodebIdList = mockNodebIdList.isEmpty() ? e2NodebApi.getNodebIdList() : mockNodebIdList;
+		List<NodebIdentity> nodebIdList = e2NodebApi.getNodebIdList();
 		List<RanDetailsTransport> details = new ArrayList<>();
 		for (NodebIdentity nbid : nodebIdList) {
 			GetNodebResponse nbResp = null;

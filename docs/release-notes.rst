@@ -20,12 +20,13 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.0, 10 July 2019
+Version 1.2.0, 11 July 2019
 ---------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
 * Compile with Java version 11, run with image openjdk:11
 * Clean code of issues reported by Sonar
+* Drop mock RAN names feature that supported R1 testing
 
 Version 1.0.5, 5 July 2019
 --------------------------
