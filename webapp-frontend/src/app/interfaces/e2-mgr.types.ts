@@ -23,7 +23,7 @@
 export interface E2SetupRequest {
   ranName: string;
   ranIp: string;
-  ranPort: number;
+  ranPort: string;
 }
 
 export interface E2ErrorResponse {
@@ -56,4 +56,11 @@ export interface E2GetNodebResponse {
 export interface E2RanDetails {
   nodebIdentity: E2NodebIdentity;
   nodebStatus: E2GetNodebResponse;
+}
+
+export interface RanDialogFormData {
+  ranIp: string;
+  ranName: string;
+  ranPort: string;
+  ranType: string;
 }
