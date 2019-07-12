@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
 
@@ -39,12 +39,12 @@ export class AppMgrService {
     return this.httpClient.get<XMDeployedApp[]>(this.basePath);
   }
 
-  deployXapp(name: string) {
+  deployXapp(name: string): Observable<HttpResponse<Object>> {
     const xappInfo: XMXappInfo = { name: name };
     return this.httpClient.post(this.basePath, xappInfo, { observe: 'response' });
   }
 
-  undeployXapp(name: string) {
+  undeployXapp(name: string): Observable<HttpResponse<Object>> {
     return this.httpClient.delete((this.basePath + '/' + name), { observe: 'response' });
   }
 

@@ -51,20 +51,19 @@ public class AnrXappMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	private static final String GNODEB1 = "001EF5:0045FE50";
+	private static final String GNODEB2 = "001EF6:0045FE51";
+	private static final String GNODEB3 = "001EF7:0045FE52";
 	// Sonar wants separate declarations
 	private final NeighborCellRelationTable ncrt;
 	private final NeighborCellRelationTable ncrtNodeB1;
 	private final NeighborCellRelationTable ncrtNodeB2;
 	private final NeighborCellRelationTable ncrtNodeB3;
-
 	private final GgNodeBTable gNodebTable;
-
-	private static final String GNODEB1 = "001EF5:0045FE50";
-	private static final String GNODEB2 = "001EF6:0045FE51";
-	private static final String GNODEB3 = "001EF7:0045FE52";
+	// Simulate remote method delay for UI testing
+	private final int delayMs = 1500;
 
 	public AnrXappMockConfiguration() {
-
 		logger.info("Configuring mock ANR xApp client");
 		gNodebTable = new GgNodeBTable();
 		gNodebTable.addGNodeBIdsItem(GNODEB1).addGNodeBIdsItem(GNODEB2).addGNodeBIdsItem(GNODEB3);
@@ -118,16 +117,47 @@ public class AnrXappMockConfiguration {
 		ApiClient apiClient = apiClient();
 		NcrtApi mockApi = mock(NcrtApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-		when(mockApi.getgNodeB()).thenReturn(gNodebTable);
+		doAnswer(inv -> {
+			logger.debug("getgNodeB sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return gNodebTable;
+		}).when(mockApi).getgNodeB();
 		// Swagger sends nulls; front end sends empty strings
-		when(mockApi.getNcrt((String) isNull(), (String) isNull(), (String) isNull())).thenReturn(ncrt);
-		when(mockApi.getNcrt(eq(""), any(String.class), any(String.class))).thenReturn(ncrt);
-		when(mockApi.getNcrt(eq(GNODEB1), any(String.class), any(String.class))).thenReturn(ncrtNodeB1);
-		when(mockApi.getNcrt(eq(GNODEB2), any(String.class), any(String.class))).thenReturn(ncrtNodeB2);
-		when(mockApi.getNcrt(eq(GNODEB3), any(String.class), any(String.class))).thenReturn(ncrtNodeB3);
-		doAnswer(i -> null).when(mockApi).deleteNcrt(any(String.class), any(String.class));
-		doAnswer(i -> null).when(mockApi).modifyNcrt(any(String.class), any(String.class),
-				any(NeighborCellRelationMod.class));
+		doAnswer(inv -> {
+			logger.debug("getNcrt (1) sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return ncrt;
+		}).when(mockApi).getNcrt((String) isNull(), (String) isNull(), (String) isNull());
+		doAnswer(inv -> {
+			logger.debug("getNcrt (2) sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return ncrt;
+		}).when(mockApi).getNcrt(eq(""), any(String.class), any(String.class));
+		doAnswer(inv -> {
+			logger.debug("getNcrt (3) sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return ncrtNodeB1;
+		}).when(mockApi).getNcrt(eq(GNODEB1), any(String.class), any(String.class));
+		doAnswer(inv -> {
+			logger.debug("getNcrt (4) sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return ncrtNodeB2;
+		}).when(mockApi).getNcrt(eq(GNODEB2), any(String.class), any(String.class));
+		doAnswer(inv -> {
+			logger.debug("getNcrt (5) sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return ncrtNodeB3;
+		}).when(mockApi).getNcrt(eq(GNODEB3), any(String.class), any(String.class));
+		doAnswer(inv -> {
+			logger.debug("deleteNcrt sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).deleteNcrt(any(String.class), any(String.class));
+		doAnswer(inv -> {
+			logger.debug("modifyNcrt sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).modifyNcrt(any(String.class), any(String.class), any(NeighborCellRelationMod.class));
 		return mockApi;
 	}
 

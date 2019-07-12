@@ -183,6 +183,8 @@ public class AppManagerController {
 	@DeleteMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
 	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
+		if (1 > 0)
+			throw new IllegalArgumentException("hi");
 		xappApi.undeployXapp(xAppName);
 		response.setStatus(healthApi.getApiClient().getStatusCode().value());
 	}
