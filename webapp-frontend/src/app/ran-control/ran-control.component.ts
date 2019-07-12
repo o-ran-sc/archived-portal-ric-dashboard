@@ -18,6 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
@@ -25,7 +26,6 @@ import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { RANControlDataSource } from './ran-control.datasource';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'rd-ran-control',
@@ -52,30 +52,31 @@ export class RanControlComponent implements OnInit {
       width: '450px',
       data: {}
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.dataSource.loadTable();
+    dialogRef.afterClosed().subscribe( (result: boolean) => {
+      if (result) {
+        this.dataSource.loadTable();
+      }
     });
   }
 
   disconnectAllRANConnections() {
-    let httpErrRes: HttpErrorResponse;
     const aboutError = 'Disconnect all RAN Connections Failed: ';
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
-      .afterClosed().subscribe(res => {
+      .afterClosed().subscribe( (res: boolean) => {
         if (res) {
           this.e2MgrSvc.nodebDelete().subscribe(
-            response => {
+            ( response: HttpResponse<Object>) => {
               if (response.status === 200) {
                 this.notificationService.success('Disconnect all RAN Connections Succeeded!');
                 this.dataSource.loadTable();
               }
             },
-            (error => {
-              httpErrRes = error;
-              this.errorDialogService.displayError(aboutError + httpErrRes.message);
+            ( (error: HttpErrorResponse) => {
+              this.errorDialogService.displayError(aboutError + error.message);
             })
           );
         }
       });
   }
+
 }

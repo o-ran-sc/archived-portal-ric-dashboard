@@ -29,7 +29,7 @@ export class ConfirmDialogService {
 
   constructor(private dialog: MatDialog) { }
 
-  openConfirmDialog(msg) {
+  openConfirmDialog(msg: string) {
     return this.dialog.open(ConfirmDialogComponent, {
       width: '480px',
       position: { top: '100px' },

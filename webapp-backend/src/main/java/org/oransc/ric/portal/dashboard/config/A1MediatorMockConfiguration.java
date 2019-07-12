@@ -43,6 +43,8 @@ import org.springframework.http.HttpStatus;
 public class A1MediatorMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	// Simulate remote method delay for UI testing
+	private final int delayMs = 500;
 
 	public A1MediatorMockConfiguration() {
 		logger.info("Configuring mock A1 Mediator");
@@ -60,8 +62,16 @@ public class A1MediatorMockConfiguration {
 		ApiClient apiClient = apiClient();
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-		doAnswer(i -> null).when(mockApi).a1ControllerGetHandler(any(String.class));
-		doAnswer(i -> null).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
+		doAnswer(inv -> {
+			logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).a1ControllerGetHandler(any(String.class));
+		doAnswer(inv -> {
+			logger.debug("a1ControllerPutHandler sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
 		return mockApi;
 	}
 

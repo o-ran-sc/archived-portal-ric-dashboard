@@ -18,6 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { XappControlRow } from '../interfaces/app-mgr.types';
@@ -67,21 +68,24 @@ export class AppControlComponent implements OnInit {
     }
   }
 
-  undeployApp(app: XappControlRow): void {
+  onUndeployApp(app: XappControlRow): void {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy xApp ' + app.xapp + '?')
-      .afterClosed().subscribe(res => {
+      .afterClosed().subscribe( (res: boolean) => {
         if (res) {
           this.appMgrSvc.undeployXapp(app.xapp).subscribe(
-            response => {
+            ( httpResponse: HttpResponse<Object>) => {
               this.dataSource.loadTable();
-              switch (response.status) {
+              switch (httpResponse.status) {
                 case 200:
                   this.notificationService.success('xApp undeployed successfully!');
                   break;
                 default:
                   this.notificationService.warn('xApp undeploy failed.');
               }
-            }
+            },
+            ( (error: HttpErrorResponse) => {
+              this.notificationService.warn(error.message);
+            })
           );
         }
       });

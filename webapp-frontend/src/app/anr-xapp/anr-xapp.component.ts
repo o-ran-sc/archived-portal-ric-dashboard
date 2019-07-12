@@ -19,6 +19,7 @@
  */
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/observable/fromEvent';
@@ -108,7 +109,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
         if (res) {
           this.anrXappService.deleteNcr(ncr.servingCellNrcgi, ncr.neighborCellNrpci)
             .subscribe(
-              response => {
+              (response: HttpResponse<Object>) => {
                 switch (response.status) {
                   case 200:
                     this.notificationService.success('Delete succeeded!');
