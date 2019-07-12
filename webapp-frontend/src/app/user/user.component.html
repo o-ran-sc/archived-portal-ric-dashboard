@@ -17,49 +17,60 @@
   limitations under the License.
   ========================LICENSE_END===================================
 -->
-  <div class="user__section">
-    <h3 class="user__header">Users</h3>
-    <button mat-raised-button (click)="addUser()">Add User</button>
-    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-      <mat-spinner></mat-spinner>
-    </div>
-    <table mat-table [dataSource]="dataSource" matSort class="user-table mat-elevation-z8">
-
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <div class="user-button-row">
-            <button mat-icon-button (click)="editUser(element)">
-              <mat-icon matTooltip="Edit properties">edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="deleteUser(element)">
-              <mat-icon matTooltip="Delete user">delete</mat-icon>
-            </button>
-          </div>
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </table>
+<div class="user__section">
+  <h3 class="user__header">Users</h3>
+  <button mat-raised-button (click)="addUser()">Add User</button>
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner></mat-spinner>
   </div>
+  <table mat-table [dataSource]="dataSource" matSort class="user-table mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="user-button-row">
+          <button mat-icon-button (click)="editUser(element)">
+            <mat-icon matTooltip="Edit properties">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteUser(element)">
+            <mat-icon matTooltip="Delete user">delete</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="noRecordsFound">
+      <mat-footer-cell *matFooterCellDef>No records found.</mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}"></mat-footer-row>
+
+  </table>
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-spinner diameter=50></mat-spinner>
+  </div>
+
+</div>

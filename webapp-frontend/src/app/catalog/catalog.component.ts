@@ -25,6 +25,7 @@ import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
+import { XMDeployableApp } from '../interfaces/app-mgr.types';
 
 @Component({
   selector: 'rd-app-catalog',
@@ -53,12 +54,12 @@ export class CatalogComponent implements OnInit {
     this.errorDiaglogService.displayError(aboutError);
   }
 
-  onDeployApp(name: string): void {
-    this.confirmDialogService.openConfirmDialog('Deploy application ' + name + '?')
-      .afterClosed().subscribe( (res: any) => {
+  onDeployApp(app: XMDeployableApp): void {
+    this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
+      .afterClosed().subscribe( (res: boolean) => {
         if (res) {
-          this.appMgrService.deployXapp(name).subscribe(
-            (response: HttpResponse<object>) => {
+          this.appMgrService.deployXapp(app.name).subscribe(
+            (response: HttpResponse<Object>) => {
               this.notificationService.success('Deploy succeeded!');
             },
             (error: HttpErrorResponse) => {

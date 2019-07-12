@@ -36,10 +36,10 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="catalog-button-row">
-          <button mat-icon-button (click)="onConfigureApp(element.name)">
+          <button mat-icon-button (click)="onConfigureApp(element)">
             <mat-icon matTooltip="Adjust settings">settings</mat-icon>
           </button>
-          <button mat-icon-button (click)="onDeployApp(element.name)">
+          <button mat-icon-button (click)="onDeployApp(element)">
             <mat-icon matTooltip="Deploy app">cloud_upload</mat-icon>
           </button>
         </div>
@@ -57,7 +57,7 @@
   </table>
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
+    <mat-spinner diameter=50></mat-spinner>
   </div>
 
 </div>

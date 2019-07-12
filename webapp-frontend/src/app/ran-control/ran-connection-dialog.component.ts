@@ -18,13 +18,14 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, Inject } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
-import { E2SetupRequest } from '../interfaces/e2-mgr.types';
-import { HttpErrorResponse } from '@angular/common/http';
+import { E2SetupRequest, RanDialogFormData } from '../interfaces/e2-mgr.types';
 
 @Component({
     selector: 'rd-ran-control-connect-dialog',
@@ -35,13 +36,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RanControlConnectDialogComponent implements OnInit {
 
     public ranDialogForm: FormGroup;
+    public processing = false;
 
     constructor(
         private dialogRef: MatDialogRef<RanControlConnectDialogComponent>,
         private service: E2ManagerService,
         private errorService: ErrorDialogService,
-        private notifService: NotificationService,
-        @Inject(MAT_DIALOG_DATA) public data: E2SetupRequest) {
+        private notifService: NotificationService) {
+        // opens with empty fields; accepts no data to display
     }
 
     ngOnInit() {
@@ -55,64 +57,55 @@ export class RanControlConnectDialogComponent implements OnInit {
             ranIp: new FormControl('', [Validators.required, Validators.pattern(ipPattern)]),
             ranPort: new FormControl('', [Validators.required, Validators.pattern(portPattern)])
         });
-
     }
 
     onCancel() {
-        this.dialogRef.close();
+        this.dialogRef.close(false);
     }
 
-    public setupConnection = (ranFormValue) => {
-        if (this.ranDialogForm.valid) {
-            this.executeSetupConnection(ranFormValue);
+    setupConnection = (ranFormValue: RanDialogFormData) => {
+        if (!this.ranDialogForm.valid) {
+            // should never happen
+            return;
         }
-    }
-
-    private executeSetupConnection = (ranFormValue) => {
-        let httpErrRes: HttpErrorResponse;
-        const aboutError = 'RAN Connection Failed: ';
+        this.processing = true;
         const setupRequest: E2SetupRequest = {
             ranName: ranFormValue.ranName,
             ranIp: ranFormValue.ranIp,
             ranPort: ranFormValue.ranPort
         };
+        let observable: Observable<HttpResponse<Object>>;
         if (ranFormValue.ranType === 'endc') {
-            this.service.endcSetup(setupRequest).subscribe(
-                (response: any) => {
-                    this.notifService.success('Endc connect succeeded!');
-                    this.dialogRef.close();
-                },
-                (error => {
-                    httpErrRes = error;
-                    this.errorService.displayError(aboutError + httpErrRes.message);
-                })
-            );
+            observable = this.service.endcSetup(setupRequest);
         } else {
-            this.service.x2Setup(setupRequest).subscribe(
-                (response: any) => {
-                    this.notifService.success('X2 connect succeeded!');
-                    this.dialogRef.close();
-                },
-                (error => {
-                    httpErrRes = error;
-                    this.errorService.displayError(aboutError + httpErrRes.message);
-                })
-            );
+            observable = this.service.x2Setup(setupRequest);
         }
+        observable.subscribe(
+            (response: any) => {
+                this.processing = false;
+                this.notifService.success('Connect succeeded!');
+                this.dialogRef.close(true);
+            },
+            ( (error: HttpErrorResponse) => {
+                this.processing = false;
+                this.errorService.displayError('RAN Connection Failed: ' + error.message);
+                // keep the dialog open
+            })
+        );
     }
 
-    public hasError(controlName: string, errorName: string) {
+    hasError(controlName: string, errorName: string) {
         if (this.ranDialogForm.controls[controlName].hasError(errorName)) {
           return true;
         }
         return false;
     }
 
-    public validateControl(controlName: string) {
+    validateControl(controlName: string) {
         if (this.ranDialogForm.controls[controlName].invalid && this.ranDialogForm.controls[controlName].touched) {
             return true;
         }
         return false;
     }
 
-} // class AppRANConnectDialog
+}
