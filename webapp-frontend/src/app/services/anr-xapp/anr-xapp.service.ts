@@ -95,7 +95,7 @@ export class ANRXappService {
    * @param ggnbId Optional parameter for the gNB ID
    * @param servingCellNrcgi Serving cell NRCGI
    * @param neighborCellNrpci Neighbor cell NRPCI
-   * @returns Neighbor cell relation table, which wraps an array
+   * @returns Observable of ANR neighbor cell relation array
    */
   getNcrtInfo(ggnodeb: string = '', servingCellNrcgi: string = '', neighborCellNrpci: string = ''): Observable<ANRNeighborCellRelation[]> {
     const url = this.buildPath(this.ncrtPath);
@@ -115,9 +115,9 @@ export class ANRXappService {
    * @param servingCellNrcgi Serving cell NRCGI
    * @param neighborCellNrpci Neighbor cell NRPCI
    * @param mod Values to store in the specified relation
-   * @returns Response code only, no data
+   * @returns Observable that yields a response code only, no data
    */
-  modifyNcr(servingCellNrcgi: string, neighborCellNrpci: string, mod: ANRNeighborCellRelationMod): Observable<any> {
+  modifyNcr(servingCellNrcgi: string, neighborCellNrpci: string, mod: ANRNeighborCellRelationMod): Observable<Object> {
     const url = this.buildPath(this.ncrtPath, this.servingPath, servingCellNrcgi, this.neighborPath, neighborCellNrpci);
     return this.httpClient.put(url, mod, { observe: 'response' });
   }
@@ -126,9 +126,9 @@ export class ANRXappService {
    * Deletes neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI
    * @param servingCellNrcgi Serving cell NRCGI
    * @param neighborCellNrpci Neighbor cell NRPCI
-   * @returns Response code only, no data
+   * @returns Observable that yields a response code only, no data
    */
-  deleteNcr(servingCellNrcgi: string, neighborCellNrpci: string): Observable<any> {
+  deleteNcr(servingCellNrcgi: string, neighborCellNrpci: string): Observable<Object> {
     const url = this.buildPath(this.ncrtPath, this.servingPath, servingCellNrcgi, this.neighborPath, neighborCellNrpci);
     return this.httpClient.delete(url, { observe: 'response' });
   }

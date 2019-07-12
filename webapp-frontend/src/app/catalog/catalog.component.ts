@@ -55,10 +55,10 @@ export class CatalogComponent implements OnInit {
 
   onDeployApp(name: string): void {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + name + '?')
-      .afterClosed().subscribe( (res: any) => {
+      .afterClosed().subscribe( (res: boolean) => {
         if (res) {
           this.appMgrService.deployXapp(name).subscribe(
-            (response: HttpResponse<object>) => {
+            (response: HttpResponse<Object>) => {
               this.notificationService.success('Deploy succeeded!');
             },
             (error: HttpErrorResponse) => {
