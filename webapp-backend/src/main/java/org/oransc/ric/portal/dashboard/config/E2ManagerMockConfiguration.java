@@ -53,6 +53,8 @@ public class E2ManagerMockConfiguration {
 
 	private final List<NodebIdentity> nodebIdList;
 	private final GetNodebResponse nodebResponse;
+	// Simulate remote method delay for UI testing
+	private final int delayMs = 500;
 
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
@@ -86,11 +88,31 @@ public class E2ManagerMockConfiguration {
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
-		doAnswer(i -> null).when(mockApi).nodebDelete();
-		doAnswer(i -> nodebResponse).when(mockApi).getNb(any(String.class));
-		doAnswer(i -> nodebIdList).when(mockApi).getNodebIdList();
-		doAnswer(i -> null).when(mockApi).endcSetup(any(SetupRequest.class));
-		doAnswer(i -> null).when(mockApi).x2Setup(any(SetupRequest.class));
+		doAnswer(inv -> {
+			logger.debug("nodebDelete sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).nodebDelete();
+		doAnswer(inv -> {
+			logger.debug("getNb sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return nodebResponse;
+		}).when(mockApi).getNb(any(String.class));
+		doAnswer(inv -> {
+			logger.debug("getNodebIdList sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return nodebIdList;
+		}).when(mockApi).getNodebIdList();
+		doAnswer(inv -> {
+			logger.debug("endcSetup sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).endcSetup(any(SetupRequest.class));
+		doAnswer(inv -> {
+			logger.debug("x2Setup sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+			return null;
+		}).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;
 	}
 
