@@ -17,19 +17,25 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.portalapi;
 
-public abstract class DashboardConstants {
+import org.onap.portalsdk.core.onboarding.exception.CipherUtilException;
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
-	}
+/**
+ * Supports an upgrade path among methods in CipherUtil because the PortalSDK is
+ * changing encryption methods.
+ */
+public interface IPortalSdkDecryptor {
 
-	public static final String ENDPOINT_PREFIX = "/api";
-
-	public static final String LOGIN_PAGE = "/login.html";
-
-	// Factor out method names used in multiple controllers
-	public static final String VERSION_METHOD = "version";
+	/**
+	 * Decrypts the specified value using a known key.
+	 * 
+	 * @param cipherText
+	 *                       Encrypted value
+	 * @return Clear text on success, null otherwise.
+	 * @throws CipherUtilException
+	 *                                 if any decryption step fails
+	 */
+	String decrypt(String cipherText) throws CipherUtilException;
 
 }
