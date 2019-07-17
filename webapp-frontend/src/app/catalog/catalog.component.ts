@@ -60,11 +60,16 @@ export class CatalogComponent implements OnInit {
         if (res) {
           this.appMgrService.deployXapp(app.name).subscribe(
             (response: HttpResponse<Object>) => {
-              this.notificationService.success('Deploy succeeded!');
+              this.notificationService.success('App deploy succeeded!');
             },
-            (error: HttpErrorResponse) => {
-              this.notificationService.warn('Deploy failed: ' + error.message);
-            }
+            ( (her: HttpErrorResponse) => {
+              // the error field should have an ErrorTransport object
+              let msg = her.message;
+              if (her.error && her.error.message) {
+                msg = her.error.message;
+              }
+              this.notificationService.warn('App deploy failed: ' + msg);
+            })
           );
         }
       }

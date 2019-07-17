@@ -28,6 +28,7 @@ import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,6 +67,7 @@ public class AdminController {
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
+	// No role required
 	public SuccessTransport getVersion() {
 		logger.debug("getVersion");
 		return new SuccessTransport(200,
@@ -74,6 +76,7 @@ public class AdminController {
 
 	@ApiOperation(value = "Checks the health of the application.", response = SuccessTransport.class)
 	@GetMapping(HEALTH_METHOD)
+	// No role required
 	public SuccessTransport getHealth() {
 		logger.debug("getHealth");
 		return new SuccessTransport(200, "Dashboard is healthy!");
@@ -81,6 +84,7 @@ public class AdminController {
 
 	@ApiOperation(value = "Gets the list of application users.", response = DashboardUser.class, responseContainer = "List")
 	@GetMapping(USER_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public DashboardUser[] getUsers() {
 		logger.debug("getUsers");
 		return users;

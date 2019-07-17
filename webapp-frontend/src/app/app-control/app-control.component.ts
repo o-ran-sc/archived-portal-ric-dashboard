@@ -69,7 +69,7 @@ export class AppControlComponent implements OnInit {
   }
 
   onUndeployApp(app: XappControlRow): void {
-    this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy xApp ' + app.xapp + '?')
+    this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy App ' + app.xapp + '?')
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
           this.appMgrSvc.undeployXapp(app.xapp).subscribe(
@@ -77,14 +77,19 @@ export class AppControlComponent implements OnInit {
               this.dataSource.loadTable();
               switch (httpResponse.status) {
                 case 200:
-                  this.notificationService.success('xApp undeployed successfully!');
+                  this.notificationService.success('App undeployed successfully!');
                   break;
                 default:
-                  this.notificationService.warn('xApp undeploy failed.');
+                  this.notificationService.warn('App undeploy failed.');
               }
             },
-            ( (error: HttpErrorResponse) => {
-              this.notificationService.warn(error.message);
+            ( (her: HttpErrorResponse) => {
+              // the error field should have an ErrorTransport object
+              let msg = her.message;
+              if (her.error && her.error.message) {
+                msg = her.error.message;
+              }
+              this.notificationService.warn('App undeploy failed: ' + msg);
             })
           );
         }

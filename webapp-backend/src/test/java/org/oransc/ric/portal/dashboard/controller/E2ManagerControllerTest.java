@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
-import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -62,7 +61,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void ranDetailsTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RAN_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<List<RanDetailsTransport>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
+		ResponseEntity<List<RanDetailsTransport>> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<RanDetailsTransport>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
@@ -72,7 +71,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void nodebListTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_LIST_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<List<NodebIdentity>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
+		ResponseEntity<List<NodebIdentity>> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<NodebIdentity>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
@@ -82,7 +81,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void nodebStatusTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD, "nodeb");
 		logger.info("Invoking {}", uri);
-		GetNodebResponse response = restTemplate.getForObject(uri, GetNodebResponse.class);
+		GetNodebResponse response = testRestTemplateStandardRole().getForObject(uri, GetNodebResponse.class);
 		Assertions.assertNotNull(response.getRanName());
 	}
 
@@ -90,7 +89,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void bigRedButtonTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
@@ -100,7 +99,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		SetupRequest setup = new SetupRequest();
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.POST, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
@@ -110,7 +109,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		SetupRequest setup = new SetupRequest();
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.POST, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 

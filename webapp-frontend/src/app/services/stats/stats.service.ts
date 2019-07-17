@@ -134,8 +134,8 @@ export class StatsService {
             this.delayMax = res[5].value;
             this.loadMax = res[6].value;
         },
-        (err: HttpErrorResponse) => {
-            console.log (err.message);
+        (her: HttpErrorResponse) => {
+            console.log ('loadConfig failed: ' + her.message);
           });
     }
 }

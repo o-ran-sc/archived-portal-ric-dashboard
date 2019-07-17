@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -30,7 +30,6 @@ import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
 import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
 import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
-import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.model.DashboardDeployableXapps;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -71,7 +70,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 	public void appListTest() {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_LIST_METHOD);
 		logger.info("Invoking {}", uri);
-		DashboardDeployableXapps apps = restTemplate.getForObject(uri, DashboardDeployableXapps.class);
+		DashboardDeployableXapps apps = testRestTemplateStandardRole().getForObject(uri, DashboardDeployableXapps.class);
 		Assertions.assertFalse(apps.isEmpty());
 	}
 
@@ -79,7 +78,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 	public void appStatusesTest() {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
-		AllDeployedXapps apps = restTemplate.getForObject(uri, AllDeployedXapps.class);
+		AllDeployedXapps apps = testRestTemplateStandardRole().getForObject(uri, AllDeployedXapps.class);
 		Assertions.assertFalse(apps.isEmpty());
 	}
 
@@ -87,7 +86,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 	public void appStatusTest() {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
-		Xapp app = restTemplate.getForObject(uri, Xapp.class);
+		Xapp app = testRestTemplateStandardRole().getForObject(uri, Xapp.class);
 		Assertions.assertFalse(app.getName().isEmpty());
 	}
 
@@ -96,7 +95,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
 		XAppInfo info = new XAppInfo();
-		Xapp app = restTemplate.postForObject(uri, info, Xapp.class);
+		Xapp app = testRestTemplateAdminRole().postForObject(uri, info, Xapp.class);
 		Assertions.assertFalse(app.getName().isEmpty());
 	}
 
@@ -104,7 +103,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 	public void undeployAppTest() {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
@@ -112,7 +111,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 	public void getConfigTest() {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
-		AllXappConfig config = restTemplate.getForObject(uri, AllXappConfig.class);
+		AllXappConfig config = testRestTemplateStandardRole().getForObject(uri, AllXappConfig.class);
 		Assertions.assertFalse(config.isEmpty());
 	}
 
@@ -121,7 +120,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
 		XAppConfig newConfig = new XAppConfig();
-		XAppConfig response = restTemplate.postForObject(uri, newConfig, XAppConfig.class);
+		XAppConfig response = testRestTemplateAdminRole().postForObject(uri, newConfig, XAppConfig.class);
 		Assertions.assertNotNull(response.getConfig());
 	}
 
@@ -131,7 +130,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		ConfigMetadata delConfig = new ConfigMetadata();
 		HttpEntity<ConfigMetadata> entity = new HttpEntity<>(delConfig);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, entity,
+				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 

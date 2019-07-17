@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,12 +92,14 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
+	// No role required
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
 	@GetMapping(HEALTH_METHOD)
+	// No role required
 	public void healthGet(HttpServletResponse response) {
 		logger.debug("healthGet");
 		e2HealthCheckApi.healthGet();
@@ -106,6 +109,7 @@ public class E2ManagerController {
 	// This calls other methods to simplify the task of the front-end.
 	@ApiOperation(value = "Gets all RAN identities and statuses from the E2 manager.", response = RanDetailsTransport.class, responseContainer = "List")
 	@GetMapping(RAN_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public List<RanDetailsTransport> getRanDetails() {
 		logger.debug("getRanDetails");
 		List<NodebIdentity> nodebIdList = e2NodebApi.getNodebIdList();
@@ -127,6 +131,7 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
 	@GetMapping(NODEB_LIST_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public List<NodebIdentity> getNodebIdList() {
 		logger.debug("getNodebIdList");
 		return e2NodebApi.getNodebIdList();
@@ -134,6 +139,7 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
 	@GetMapping(NODEB_METHOD + "/{" + PP_RANNAME + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
 		return e2NodebApi.getNb(ranName);
@@ -141,6 +147,7 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
 	@DeleteMapping(NODEB_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void nodebDelete(HttpServletResponse response) {
 		logger.debug("nodebDelete");
 		e2NodebApi.nodebDelete();
@@ -149,6 +156,7 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
 	@PostMapping(ENDC_SETUP_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("endcSetup {}", setupRequest);
 		e2NodebApi.endcSetup(setupRequest);
@@ -157,6 +165,7 @@ public class E2ManagerController {
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
 	@PostMapping(X2_SETUP_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("x2Setup {}", setupRequest);
 		e2NodebApi.x2Setup(setupRequest);

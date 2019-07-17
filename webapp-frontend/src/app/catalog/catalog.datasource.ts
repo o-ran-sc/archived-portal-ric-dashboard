@@ -50,9 +50,9 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
     this.loadingSubject.next(true);
     this.appMgrSvc.getDeployable()
       .pipe(
-        catchError( (err: HttpErrorResponse) => {
-          console.log('CatalogDataSource failed: ' + err.message);
-          this.notificationService.error('Failed to get applications.');
+        catchError( (her: HttpErrorResponse) => {
+          console.log('CatalogDataSource failed: ' + her.message);
+          this.notificationService.error('Failed to get applications: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))
