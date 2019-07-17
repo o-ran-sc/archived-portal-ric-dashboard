@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.config;
+package org.oransc.ric.portal.dashboard.config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -30,6 +30,7 @@ import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -43,8 +44,10 @@ import org.springframework.http.HttpStatus;
 public class A1MediatorMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 	// Simulate remote method delay for UI testing
-	private final int delayMs = 500;
+	@Value("${mock.config.delay:0}")
+	private int delayMs;
 
 	public A1MediatorMockConfiguration() {
 		logger.info("Configuring mock A1 Mediator");
@@ -63,13 +66,17 @@ public class A1MediatorMockConfiguration {
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(inv -> {
-			logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).a1ControllerGetHandler(any(String.class));
 		doAnswer(inv -> {
-			logger.debug("a1ControllerPutHandler sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("a1ControllerPutHandler sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
 		return mockApi;

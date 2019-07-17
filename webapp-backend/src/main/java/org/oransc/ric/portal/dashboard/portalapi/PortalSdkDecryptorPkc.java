@@ -17,19 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.portalapi;
 
-public abstract class DashboardConstants {
+import org.onap.portalsdk.core.onboarding.exception.CipherUtilException;
+import org.onap.portalsdk.core.onboarding.util.CipherUtil;
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
+public class PortalSdkDecryptorPkc implements IPortalSdkDecryptor {
+
+	public String decrypt(String cipherText) throws CipherUtilException {
+		return CipherUtil.decryptPKC(cipherText);
 	}
-
-	public static final String ENDPOINT_PREFIX = "/api";
-
-	public static final String LOGIN_PAGE = "/login.html";
-
-	// Factor out method names used in multiple controllers
-	public static final String VERSION_METHOD = "version";
 
 }

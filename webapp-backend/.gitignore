@@ -30,3 +30,5 @@
 /build/
 
 /application-tlab2.properties
+/application.properties
+/users.json
