@@ -1,15 +1,46 @@
 # RIC Dashboard Web Application Backend
 
-## Launch server
+The RIC Dashboard back-end provides REST services to the Dashboard front-end
+Typescript features running in the user's browser.
 
-Run `mvn -Dspring.config.name=application-abc spring-boot:run` to run a server configured
-by the file 'application-abc.properties' in the local directory.
+This back-end uses the ONAP Portal's "EPSDK-FW" library to support single-sign-on
+(SSO) when users first authenticate at the ONAP Portal UI.  The SSO feature can
+be disabled by running the back-end as a development server, see below.
 
-## Development server
+## Launch regular server
 
-Set an environment variable via JVM argument "-Dorg.oransc.ric.portal.dashboard=mock"
-and run the JUnit test case DashboardServerTest for a development server to run standalone
-with mock configuration and data that simulates the behavior of remote endpoints.
+This server requires several well-known properties files on the Java classpath.
+These steps are required:
+
+1. Check the set of properties files in the config folder, and create files from
+   templates as needed.  E.g., copy "key.properties.template" to "key.properties".
+2. Add the config folder to the Java classpath
+3a. Launch the server with this command-line invocation:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
+
+3b. To use the configuration in the "application-abc.properties" file, addd a
+    key-value pair for "spring.config.name" and launch with an invocation like this:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dspring.config.name=application-abc \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
+
+## Launch development server
+
+A development server uses local configuration and serves mock data that simulates
+the behavior of remote endpoints.  Test-area resources provide required property
+files. These steps are required:
+
+1. Set an environment variable via JVM argument: "-Dorg.oransc.ric.portal.dashboard=mock"
+2. Run the JUnit test case DashboardServerTest (not exactly a classic test)
+
+Launch the server with this command-line invocation:
+
+     mvn -Dorg.oransc.ric.portal.dashboard=mock -Dtest=DashboardTestServer test
 
 ## Swagger API documentation
 
