@@ -7,9 +7,29 @@ by the file 'application-abc.properties' in the local directory.
 
 ## Development server
 
-Set an environment variable via JVM argument "-Dorg.oransc.ric.portal.dashboard=mock"
-and run the JUnit test case DashboardServerTest for a development server to run standalone
-with mock configuration and data that simulates the behavior of remote endpoints.
+This back-end project can be configured to use local configuration and serve mock data
+that simulates the behavior of remote endpoints.  These steps are required:
+
+1. Check the set of properties files in the config folder, and create files from
+   templates as needed.  For example, copy "key.properties.template" to "key.properties".
+2. Add the "config" folder to the Java classpath
+3. Set an environment variable via JVM argument: "-Dorg.oransc.ric.portal.dashboard=mock"
+4. Run the JUnit test case DashboardServerTest
+
+All but the first step can be done with suitable configuration in Eclipse, or via the
+following command-line invocation:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
+
+If you need to use the configuration in the "application-abc.properties" file, add
+a "spring.config.name" key=value pair. Then the previous command becomes:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dspring.config.name=application-abc \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
 
 ## Swagger API documentation
 
