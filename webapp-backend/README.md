@@ -1,12 +1,19 @@
 # RIC Dashboard Web Application Backend
 
+## Launch server
+
+Run `mvn -Dspring.config.name=application-abc spring-boot:run` to run a server configured
+by the file 'application-abc.properties' in the local directory.
+
 ## Development server
 
-Run `mvn -Dspring.profiles.active=mock spring-boot:run` for a dev server. Navigate to `http://localhost:8080/swagger-ui.html`. 
+Set an environment variable via JVM argument "-Dorg.oransc.ric.portal.dashboard=mock"
+and run the JUnit test case DashboardServerTest for a development server to run standalone
+with mock configuration and data that simulates the behavior of remote endpoints.
 
-## Alternate configuration
+## Swagger API documentation
 
-Run `mvn -Dspring.config.name=application-abc spring-boot:run` to read configuration from the file 'application-abc.properties' in the local directory.
+View the server's API documentation at URL `http://localhost:8080/swagger-ui.html`.
 
 ## License
 

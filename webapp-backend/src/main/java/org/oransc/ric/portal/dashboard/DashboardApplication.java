@@ -28,9 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-// Using this package limits the annotation scan to the dashboard classes.
-// Do not want Spring to find the autowired annotations in the generated
-// classes.
+// Limit scan to dashboard classes; exclude generated API classes
 @ComponentScan("org.oransc.ric.portal.dashboard")
 public class DashboardApplication {
 

@@ -38,7 +38,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
  * Creates instances of the ANR xApp client APIs.
  */
 @Configuration
-@Profile("!mock")
+@Profile("!test")
 public class AnrXappConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

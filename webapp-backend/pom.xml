@@ -34,6 +34,13 @@ limitations under the License.
 		<!-- Set by Jenkins -->
 		<build.number>0</build.number>
 	</properties>
+	<repositories>
+		<repository>
+			<id>onap-releases</id>
+			<name>ONAP - Release Repository</name>
+			<url>https://nexus.onap.org/content/repositories/releases</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<!-- xApps -->
 		<dependency>
@@ -83,12 +90,13 @@ limitations under the License.
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${springfox.version}</version>
 		</dependency>
+		<!-- Test dependencies -->
 		<!-- Mockito supports development, not just testing -->
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
 		</dependency>
-		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

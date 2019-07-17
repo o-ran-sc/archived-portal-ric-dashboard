@@ -39,7 +39,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
  * container.
  */
 @Configuration
-@Profile("!mock")
+@Profile("!test")
 public class AppManagerConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
