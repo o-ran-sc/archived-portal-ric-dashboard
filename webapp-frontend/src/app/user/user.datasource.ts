@@ -50,9 +50,9 @@ export class UserDataSource extends DataSource<DashboardUser> {
     this.loadingSubject.next(true);
     this.dashboardSvc.getUsers()
       .pipe(
-        catchError( (err: HttpErrorResponse) => {
-          console.log('UserDataSource failed: ' + err.message);
-          this.notificationService.error('Failed to get users.');
+        catchError( (her: HttpErrorResponse) => {
+          console.log('UserDataSource failed: ' + her.message);
+          this.notificationService.error('Failed to get users: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))

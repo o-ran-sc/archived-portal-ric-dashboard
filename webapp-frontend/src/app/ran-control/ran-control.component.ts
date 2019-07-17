@@ -66,12 +66,17 @@ export class RanControlComponent implements OnInit {
           this.e2MgrSvc.nodebDelete().subscribe(
             ( response: HttpResponse<Object>) => {
               if (response.status === 200) {
-                this.notificationService.success('Disconnect all RAN Connections Succeeded!');
+                this.notificationService.success('Disconnect succeeded!');
                 this.dataSource.loadTable();
               }
             },
-            ( (error: HttpErrorResponse) => {
-              this.errorDialogService.displayError(aboutError + error.message);
+            ( (her: HttpErrorResponse) => {
+              // the error field should have an ErrorTransport object
+              let msg = her.message;
+              if (her.error && her.error.message) {
+                msg = her.error.message;
+              }
+              this.errorDialogService.displayError('Disconnect failed: ' + msg);
             })
           );
         }

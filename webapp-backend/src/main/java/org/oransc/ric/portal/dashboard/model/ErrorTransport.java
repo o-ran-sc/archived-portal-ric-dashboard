@@ -26,7 +26,7 @@ package org.oransc.ric.portal.dashboard.model;
 public class ErrorTransport implements IDashboardResponse {
 
 	private Integer status;
-	private String error;
+	private String message;
 	private String exception;
 
 	/**
@@ -62,7 +62,7 @@ public class ErrorTransport implements IDashboardResponse {
 	 */
 	public ErrorTransport(int statusCode, String errMsg, Exception exception) {
 		this.status = statusCode;
-		this.error = errMsg;
+		this.message = errMsg;
 		if (exception != null) {
 			final int enough = 512;
 			String exString = exception.toString();
@@ -79,12 +79,12 @@ public class ErrorTransport implements IDashboardResponse {
 		this.status = status;
 	}
 
-	public String getError() {
-		return error;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setMessage(String error) {
+		this.message = error;
 	}
 
 	public String getException() {

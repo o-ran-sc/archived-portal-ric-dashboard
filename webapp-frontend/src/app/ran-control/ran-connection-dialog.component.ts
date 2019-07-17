@@ -86,9 +86,14 @@ export class RanControlConnectDialogComponent implements OnInit {
                 this.notifService.success('Connect succeeded!');
                 this.dialogRef.close(true);
             },
-            ( (error: HttpErrorResponse) => {
+            ( (her: HttpErrorResponse) => {
                 this.processing = false;
-                this.errorService.displayError('RAN Connection Failed: ' + error.message);
+                // the error field carries the server's response
+                let msg = her.message;
+                if (her.error && her.error.message) {
+                  msg = her.error.message;
+                }
+                this.errorService.displayError('Connect failed: ' + msg);
                 // keep the dialog open
             })
         );

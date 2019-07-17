@@ -19,16 +19,15 @@
   ========================LICENSE_END===================================
   -->
 
-
 <configuration>
 
 	<!-- Basic logback configuration for dev and test -->
 
 	<!-- component name is log file basename -->
 	<property name="componentName" value="ric-dashboard"></property>
-	<!-- gather files in a subdirectory - usually a volume in docker -->
+	<!-- gather files in a subdirectory -->
 	<property name="logDirectory" value="logs" />
-	<!-- basic pattern -->
+	<!-- output pattern -->
 	<property name="pattern" value="%d{&quot;yyyy-MM-dd'T'HH:mm:ss.SSSXXX&quot;, UTC} [%thread] %-5level %logger{36} - %msg%n"/>
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -44,11 +43,11 @@
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 			<fileNamePattern>${logDirectory}/${componentName}.%i.log.zip</fileNamePattern>
 			<minIndex>1</minIndex>
-			<maxIndex>5</maxIndex>
+			<maxIndex>9</maxIndex>
 		</rollingPolicy>
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<maxFileSize>1MB</maxFileSize>
+			<maxFileSize>10MB</maxFileSize>
 		</triggeringPolicy>
 		<!-- defaults to type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
 		<encoder>
@@ -65,7 +64,10 @@
 	<!-- Code under test should be chatty --> >
 	<logger name="org.oransc.ric.portal.dashboard" level="DEBUG" />
 
-	<!-- Report URLs to the log -->
+	<!-- Watch authentication done by EPSDK-FW -->
+	<logger name="org.onap.portalsdk.core.onboarding.crossapi" level="DEBUG" />
+
+	<!-- Report request URLs -->
 	<logger name="org.springframework.web.client.RestTemplate" level="DEBUG" />
 
 </configuration>

@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.oransc.ric.anrxapp.client.model.GgNodeBTable;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationMod;
 import org.oransc.ric.anrxapp.client.model.NeighborCellRelationTable;
-import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +66,7 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 	public void gnodebsTest() {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.GNODEBS_METHOD);
 		logger.info("Invoking {}", uri);
-		GgNodeBTable list = restTemplate.getForObject(uri, GgNodeBTable.class);
+		GgNodeBTable list = testRestTemplateStandardRole().getForObject(uri, GgNodeBTable.class);
 		Assertions.assertFalse(list.getGNodeBIds().isEmpty());
 	}
 
@@ -75,7 +74,8 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 	public void ncrtGetTest() {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.NCRT_METHOD);
 		logger.info("Invoking {}", uri);
-		NeighborCellRelationTable table = restTemplate.getForObject(uri, NeighborCellRelationTable.class);
+		NeighborCellRelationTable table = testRestTemplateStandardRole().getForObject(uri,
+				NeighborCellRelationTable.class);
 		Assertions.assertFalse(table.getNcrtRelations().isEmpty());
 	}
 
@@ -85,7 +85,8 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 				AnrXappController.PP_SERVING, "serving", AnrXappController.PP_NEIGHBOR, "neighbor");
 		logger.info("Invoking {}", uri);
 		HttpEntity<NeighborCellRelationMod> entity = new HttpEntity<>(new NeighborCellRelationMod());
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
+				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
@@ -94,7 +95,8 @@ public class AnrXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AnrXappController.CONTROLLER_PATH, AnrXappController.NCRT_METHOD,
 				AnrXappController.PP_SERVING, "serving", AnrXappController.PP_NEIGHBOR, "neighbor");
 		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.DELETE, null, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null,
+				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
