@@ -47,9 +47,9 @@ export class RANControlDataSource extends DataSource<E2RanDetails> {
     this.loadingSubject.next(true);
     this.e2MgrSvcservice.getRan()
       .pipe(
-        catchError( (err: HttpErrorResponse) => {
-          console.log('RANControlDataSource failed: ' + err.message);
-          this.notificationService.error('Failed to get RAN details.');
+        catchError( (her: HttpErrorResponse) => {
+          console.log('RANControlDataSource failed: ' + her.message);
+          this.notificationService.error('Failed to get RAN details: ' + her.message);
           return of([]);
         }),
         finalize( () =>  this.loadingSubject.next(false) )

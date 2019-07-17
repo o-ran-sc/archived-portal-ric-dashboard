@@ -50,9 +50,9 @@ export class ANRXappDataSource extends DataSource<ANRNeighborCellRelation> {
     this.loadingSubject.next(true);
     this.anrXappService.getNcrtInfo(ggnodeb, servingCellNrcgi, neighborCellNrpci)
       .pipe(
-        catchError( (err: HttpErrorResponse) => {
-          console.log('ANRXappDataSource failed: ' + err.message);
-          this.notificationService.error('Failed to get data.');
+        catchError( (her: HttpErrorResponse) => {
+          console.log('ANRXappDataSource failed: ' + her.message);
+          this.notificationService.error('Failed to get data: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))

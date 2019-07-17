@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.config;
+package org.oransc.ric.portal.dashboard.config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -37,6 +37,7 @@ import org.oransc.ric.e2mgr.client.model.NodebIdentityGlobalNbId;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -51,10 +52,12 @@ public class E2ManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// Simulate remote method delay for UI testing
+	@Value("${mock.config.delay:0}")
+	private int delayMs;
+
 	private final List<NodebIdentity> nodebIdList;
 	private final GetNodebResponse nodebResponse;
-	// Simulate remote method delay for UI testing
-	private final int delayMs = 500;
 
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
@@ -89,28 +92,38 @@ public class E2ManagerMockConfiguration {
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(inv -> {
-			logger.debug("nodebDelete sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("nodebDelete sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).nodebDelete();
 		doAnswer(inv -> {
-			logger.debug("getNb sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("getNb sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return nodebResponse;
 		}).when(mockApi).getNb(any(String.class));
 		doAnswer(inv -> {
-			logger.debug("getNodebIdList sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("getNodebIdList sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return nodebIdList;
 		}).when(mockApi).getNodebIdList();
 		doAnswer(inv -> {
-			logger.debug("endcSetup sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("endcSetup sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).endcSetup(any(SetupRequest.class));
 		doAnswer(inv -> {
-			logger.debug("x2Setup sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("x2Setup sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;

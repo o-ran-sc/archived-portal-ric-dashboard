@@ -59,9 +59,9 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     this.loadingSubject.next(true);
     this.appMgrSvc.getDeployed()
       .pipe(
-        catchError( (err: HttpErrorResponse) => {
-          console.log('AppControlDataSource failed: ' + err.message);
-          this.notificationService.error('Failed to get applications.');
+        catchError( (her: HttpErrorResponse) => {
+          console.log('AppControlDataSource failed: ' + her.message);
+          this.notificationService.error('Failed to get applications: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))

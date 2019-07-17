@@ -27,7 +27,18 @@ public abstract class DashboardConstants {
 
 	public static final String ENDPOINT_PREFIX = "/api";
 
+	public static final String LOGIN_PAGE = "/login.html";
+
 	// Factor out method names used in multiple controllers
 	public static final String VERSION_METHOD = "version";
+
+	// The role names are defined by ONAP Portal.
+	// The prefix "ROLE_" is required by Spring.
+	// These are used in Java code annotations that require constants.
+	public static final String ROLE_NAME_STANDARD = "Standard_User";
+	public static final String ROLE_NAME_ADMIN = "System_Administrator";
+	private static final String ROLE_PREFIX = "ROLE_";
+	public static final String ROLE_ADMIN = ROLE_PREFIX + ROLE_NAME_ADMIN;
+	public static final String ROLE_STANDARD = ROLE_PREFIX + ROLE_NAME_STANDARD;
 
 }

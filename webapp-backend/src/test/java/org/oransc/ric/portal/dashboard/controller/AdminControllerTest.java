@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -25,7 +25,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.model.DashboardUser;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -55,13 +54,22 @@ public class AdminControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void usersTest() {
+	public void getUsersTest() {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.USER_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<List<DashboardUser>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
+		ResponseEntity<List<DashboardUser>> response = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<DashboardUser>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
+	}
+
+	@Test
+	public void getUsersTestRoleAuthFail() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.USER_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				String.class);
+		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
 	}
 
 }

@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -77,6 +78,7 @@ public class AcXappController {
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
+	// No role required
 	public SuccessTransport getA1MediatorClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
@@ -86,6 +88,7 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
 	@GetMapping(ADMCTRL_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public Object getAdmissionControlPolicy(HttpServletResponse response) {
 		logger.debug("getAdmissionControlPolicy");
 		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
@@ -98,6 +101,7 @@ public class AcXappController {
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
 	@PutMapping(ADMCTRL_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("setAdmissionControlPolicy {}", acPolicy);
