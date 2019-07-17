@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -93,12 +94,14 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Gets the ANR client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
+	// No role required
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Performs a liveness probe on the ANR xApp, result expressed as the response code.")
 	@GetMapping(HEALTH_ALIVE_METHOD)
+	// No role required
 	public void getHealthAlive(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
 		healthApi.getHealthAlive();
@@ -107,6 +110,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Performs a readiness probe on the ANR xApp, result expressed as the response code.")
 	@GetMapping(HEALTH_READY_METHOD)
+	// No role required
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
 		healthApi.getHealthReady();
@@ -115,6 +119,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Returns list of gNodeB IDs based on NCRT in ANR", response = GgNodeBTable.class)
 	@GetMapping(GNODEBS_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public GgNodeBTable getGnodebs() {
 		logger.debug("getGnodebs");
 		return ncrtApi.getgNodeB();
@@ -122,6 +127,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Returns neighbor cell relation table for all gNodeBs or based on query parameters", response = NeighborCellRelationTable.class)
 	@GetMapping(NCRT_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public NeighborCellRelationTable getNcrt( //
 			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
 			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
@@ -134,6 +140,7 @@ public class AnrXappController {
 	// /ncrt/servingcells/{servCellNrcgi}/neighborcells/{neighCellNrpci} :
 	@ApiOperation(value = "Modify neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@PutMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void modifyNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			@RequestBody NeighborCellRelationMod ncrMod, HttpServletResponse response) {
@@ -145,6 +152,7 @@ public class AnrXappController {
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
 	@DeleteMapping(NCRT_METHOD + "/" + PP_SERVING + "/{" + PP_SERVING + "}/" + PP_NEIGHBOR + "/{" + PP_NEIGHBOR + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void deleteNcrt(@PathVariable(PP_SERVING) String servingCellNrcgi, //
 			@PathVariable(PP_NEIGHBOR) String neighborCellNrpci, //
 			HttpServletResponse response) {

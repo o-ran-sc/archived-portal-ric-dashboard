@@ -17,27 +17,28 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard;
+package org.oransc.ric.portal.dashboard.config;
 
-public abstract class DashboardConstants {
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
-	private DashboardConstants() {
-		// Sonar insists on hiding the constructor
+/**
+ * Allows non-Spring-managed classes to obtain the Spring application context.
+ */
+@Component
+public class SpringContextCache implements ApplicationContextAware {
+
+	private static ApplicationContext applicationContext = null;
+
+	@Override
+	public void setApplicationContext(final ApplicationContext appContext) throws BeansException {
+		applicationContext = appContext;
 	}
 
-	public static final String ENDPOINT_PREFIX = "/api";
-
-	public static final String LOGIN_PAGE = "/login.html";
-
-	// Factor out method names used in multiple controllers
-	public static final String VERSION_METHOD = "version";
-
-	// The role names are defined by ONAP Portal.
-	// The prefix "ROLE_" is required by Spring
-	public static final String ROLE_NAME_USER = "standard";
-	public static final String ROLE_NAME_ADMIN = "admin";
-	private static final String ROLE_PREFIX = "ROLE_";
-	public static final String ROLE_ADMIN = ROLE_PREFIX + ROLE_NAME_ADMIN;
-	public static final String ROLE_USER = ROLE_PREFIX + ROLE_NAME_USER;
+	public static ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
 
 }

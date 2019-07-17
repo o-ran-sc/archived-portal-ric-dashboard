@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,12 +96,14 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
+	// No role required
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
 	@ApiOperation(value = "Health check of xApp Manager - Liveness probe.")
 	@GetMapping(HEALTH_ALIVE_METHOD)
+	// No role required
 	public void getHealth(HttpServletResponse response) {
 		logger.debug("getHealthAlive");
 		healthApi.getHealthAlive();
@@ -109,6 +112,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Readiness check of xApp Manager - Readiness probe.")
 	@GetMapping(HEALTH_READY_METHOD)
+	// No role required
 	public void getHealthReady(HttpServletResponse response) {
 		logger.debug("getHealthReady");
 		healthApi.getHealthReady();
@@ -117,6 +121,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
 	@GetMapping(CONFIG_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public AllXappConfig getAllXappConfig() {
 		logger.debug("getAllXappConfig");
 		return xappApi.getAllXappConfig();
@@ -124,6 +129,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
 	@PostMapping(CONFIG_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig {}", xAppConfig);
 		return xappApi.createXappConfig(xAppConfig);
@@ -131,6 +137,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
 	@PutMapping(CONFIG_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig {}", xAppConfig);
 		return xappApi.modifyXappConfig(xAppConfig);
@@ -138,6 +145,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Delete xApp configuration.")
 	@DeleteMapping(CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
 		logger.debug("deleteXappConfig {}", configMetadata);
 		xappApi.deleteXappConfig(configMetadata);
@@ -146,6 +154,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@GetMapping(XAPPS_LIST_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public Object getAvailableXapps() {
 		logger.debug("getAvailableXapps");
 		AllDeployableXapps appNames = xappApi.listAllXapps();
@@ -160,6 +169,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
 	@GetMapping(XAPPS_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public AllDeployedXapps getDeployedXapps() {
 		logger.debug("getDeployedXapps");
 		return xappApi.getAllXapps();
@@ -167,6 +177,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
 	@GetMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_USER })
 	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
 		logger.debug("getXapp {}", xAppName);
 		return xappApi.getXappByName(xAppName);
@@ -174,6 +185,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@PostMapping(XAPPS_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
 		logger.debug("deployXapp {}", xAppInfo);
 		return xappApi.deployXapp(xAppInfo);
@@ -181,6 +193,7 @@ public class AppManagerController {
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@DeleteMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
 		xappApi.undeployXapp(xAppName);

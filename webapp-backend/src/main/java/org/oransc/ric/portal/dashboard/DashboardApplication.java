@@ -19,6 +19,8 @@
  */
 package org.oransc.ric.portal.dashboard;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.invoke.MethodHandles;
 
 import org.slf4j.Logger;
@@ -34,8 +36,19 @@ public class DashboardApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public static void main(String[] args) {
+	// Unfortunately these names are not available as constants
+	private static final String[] propertyFiles = { "ESAPI.properties", "key.properties", "portal.properties",
+			"validation.properties" };
+
+	public static void main(String[] args) throws IOException {
 		SpringApplication.run(DashboardApplication.class, args);
+		for (String pf : propertyFiles) {
+			InputStream in = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(pf);
+			if (in == null)
+				logger.warn("Failed to find property file on classpath: {}", pf);
+			else
+				in.close();
+		}
 		// Force this onto the console by using level WARN
 		logger.warn("main: version '{}' successful start",
 				getImplementationVersion(MethodHandles.lookup().lookupClass()));

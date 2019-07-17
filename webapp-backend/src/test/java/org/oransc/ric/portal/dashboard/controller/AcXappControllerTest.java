@@ -17,15 +17,14 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import org.oransc.ric.portal.dashboard.controller.AcXappController;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +52,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		// Always returns 501; surprised that no exception is thrown.
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
+		ResponseEntity<String> response = testRestTemplateUser().exchange(uri, HttpMethod.GET, null, String.class);
 		Assertions.assertTrue(response.getStatusCode().is5xxServerError());
 	}
 
@@ -64,7 +63,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = restTemplate.exchange(uri, HttpMethod.PUT, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdmin().exchange(uri, HttpMethod.PUT, entity, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 

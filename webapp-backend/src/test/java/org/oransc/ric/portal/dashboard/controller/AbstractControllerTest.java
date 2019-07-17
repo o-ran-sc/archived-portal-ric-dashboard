@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.controller;
+package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -26,6 +26,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.oransc.ric.portal.dashboard.config.WebSecurityMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,16 @@ public class AbstractControllerTest {
 		// Silence Sonar warning about missing assertion.
 		Assertions.assertTrue(logger.isWarnEnabled());
 		logger.info("Context loads on mock profile");
+	}
+
+	public TestRestTemplate testRestTemplateAdmin() {
+		return restTemplate.withBasicAuth(WebSecurityMockConfiguration.TEST_ADMIN,
+				WebSecurityMockConfiguration.TEST_PASS);
+	}
+
+	public TestRestTemplate testRestTemplateUser() {
+		return restTemplate.withBasicAuth(WebSecurityMockConfiguration.TEST_USER,
+				WebSecurityMockConfiguration.TEST_PASS);
 	}
 
 }
