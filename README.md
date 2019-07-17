@@ -1,46 +1,39 @@
 # O-RAN-SC RIC Dashboard Web Application
 
-This webapp is built with Angular 7 and Spring-Boot 2.
+The O-RAN SC RIC Dashboard provides administrative and operator functions
+for a disaggregated radio access network (RAN) controller.
+The web app is built as a single-page app using an Angular 8 front end
+and a Spring-Boot 2 back end.
 
 ## Deployment configuration
 
-The application expects an application.properties file to be provided,
-probably mounted as a file from a Kubernetes configuration map, with
-the following content:
+The application expects the following configuration files,
+usually mounted as files from Kubernetes configuration maps:
 
-    # A1 Mediator
-    a1med.url = http://A1-URL
-    # ANR xApp
-    anrxapp.url = http://ANR-URL
-    # E2 Manager
-    e2mgr.url = http://E2-URL
-    # Xapp Manager
-    xappmgr.url = http://MGR-URL
+    application.properties (in launch directory)
+    key.properties (on classpath)
+    portal.properties (on classpath)
+
+Sample files are in directory src/main/resources and src/test/resources.
 
 ## Development guide
 
 This section gives a quickstart guide for developers.
 
-### Check prerequisites
+### Prerequisites
 
-1. Java development kit (JDK), version 1.8 or later
+1. Java development kit (JDK), version 11 or later
 2. Maven dependency-management tool, version 3.4 or later
 
 ### Build and launch the web app
 
-    mvn -Ddocker.skip=true clean install
-    cd webapp-backend
-    mvn spring-boot:run
+Instructions for launching a backend Sprint-Boot server
+are available in the webapp-backend README file.
+After launching, open a browser on http://localhost:8080
 
-Then open a browser on http://localhost:8080
-
-In addition to the above, you can run the Angular server
-for debugging the frontend and backend separately:
-
-    cd webapp-frontend
-    ./ng serve --proxy-config proxy.conf.json
-
-Then open a browser on http://localhost:4200
+Instructions for launching a frontend Angular server (only for development)
+are available in the webapp-frontend README file.
+After launching, open a browser on http://localhost:4200
 
 ## License
 

@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.test.config;
+package org.oransc.ric.portal.dashboard.config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -42,6 +42,7 @@ import org.oransc.ric.plt.appmgr.client.model.Xapp.StatusEnum;
 import org.oransc.ric.plt.appmgr.client.model.XappInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -57,12 +58,14 @@ public class AppManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// Simulate remote method delay for UI testing
+	@Value("${mock.config.delay:0}")
+	private int delayMs;
+
 	private final AllDeployableXapps availXapps;
 	private final AllDeployedXapps deployedXapps;
 	private final AllXappConfig allXappConfigs;
 	private final SubscriptionResponse subRes;
-	// Simulate remote method delay for UI testing
-	private final int delayMs = 500;
 
 	public AppManagerMockConfiguration() {
 		logger.info("Configuring mock xApp Manager");
@@ -105,58 +108,80 @@ public class AppManagerMockConfiguration {
 		XappApi mockApi = mock(XappApi.class);
 		when(mockApi.getApiClient()).thenReturn(mockClient);
 		doAnswer(inv -> {
-			logger.debug("getAllXappConfig sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("getAllXappConfig sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return allXappConfigs;
 		}).when(mockApi).getAllXappConfig();
 		doAnswer(inv -> {
-			logger.debug("createXappConfig sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("createXappConfig sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return allXappConfigs.get(0);
 		}).when(mockApi).createXappConfig(any(XAppConfig.class));
 		doAnswer(inv -> {
-			logger.debug("modifyXappConfig sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("modifyXappConfig sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return allXappConfigs.get(0);
 		}).when(mockApi).modifyXappConfig(any(XAppConfig.class));
 		doAnswer(inv -> {
-			logger.debug("deleteXappConfig sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("deleteXappConfig sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).deleteXappConfig(any(ConfigMetadata.class));
 		doAnswer(inv -> {
-			logger.debug("deployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("deployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
+				Thread.sleep(delayMs);
+			}
 			return deployedXapps.get(0);
 		}).when(mockApi).deployXapp(any(XAppInfo.class));
 		doAnswer(inv -> {
-			logger.debug("listAllXapps sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("listAllXapps sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return availXapps;
 		}).when(mockApi).listAllXapps();
 		doAnswer(inv -> {
-			logger.debug("getAllXapps sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("getAllXapps sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return deployedXapps;
 		}).when(mockApi).getAllXapps();
 		doAnswer(inv -> {
-			logger.debug("getXappByName of {} sleeping {}", inv.getArgument(0), delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("getXappByName of {} sleeping {}", inv.getArgument(0), delayMs);
+				Thread.sleep(delayMs);
+			}
 			return deployedXapps.get(0);
 		}).when(mockApi).getXappByName(any(String.class));
 		doAnswer(inv -> {
-			logger.debug("undeployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("undeployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).undeployXapp(any(String.class));
 		doAnswer(inv -> {
-			logger.debug("addSubscription sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("addSubscription sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return subRes;
 		}).when(mockApi).addSubscription(any(SubscriptionRequest.class));
 		doAnswer(inv -> {
-			logger.debug("deleteSubscription sleeping {}", delayMs);
-			Thread.sleep(delayMs);
+			if (delayMs > 0) {
+				logger.debug("deleteSubscription sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
 			return null;
 		}).when(mockApi).deleteSubscription(any(String.class));
 		return mockApi;
