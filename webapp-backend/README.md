@@ -1,15 +1,43 @@
 # RIC Dashboard Web Application Backend
 
-## Launch server
+The RIC Dashboard back-end integrates ONAP-Portal-SDK libraries to support 
+single-sign-on (SSO) to this application from the ONAP Portal UI.  The SSO
+feature can be disabled by running the back-end as a development server.
 
-Run `mvn -Dspring.config.name=application-abc spring-boot:run` to run a server configured
-by the file 'application-abc.properties' in the local directory.
+## Launch regular server
 
-## Development server
+This server requires several well-known properties files on the Java classpath. 
+These steps are required:
 
-Set an environment variable via JVM argument "-Dorg.oransc.ric.portal.dashboard=mock"
-and run the JUnit test case DashboardServerTest for a development server to run standalone
-with mock configuration and data that simulates the behavior of remote endpoints.
+1. Check the set of properties files in the config folder, and create files from
+   templates as needed.  E.g., copy "key.properties.template" to "key.properties".
+2. Add the config folder to the Java classpath
+3a. Launch the server with this command-line invocation:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
+
+3b. To use the configuration in the "application-abc.properties" file, addd a
+    key-value pair for "spring.config.name" and launch with an invocation like this:
+
+    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+        -Dspring.config.name=application-abc \
+        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
+        org.springframework.boot.loader.PropertiesLauncher
+
+## Launch development server
+
+This back-end project can be configured to use local configuration and serve mock
+data that simulates the behavior of remote endpoints.  These steps are required:
+
+1. Check the set of properties files in the config folder, and create files from
+   templates as needed.  E.g., copy "key.properties.template" to "key.properties".
+2. Add the config folder to the Java classpath
+3. Set an environment variable via JVM argument: "-Dorg.oransc.ric.portal.dashboard=mock"
+4. Run the JUnit test case DashboardServerTest
+
+All but the first step can be done with suitable configuration in Eclipse.
 
 ## Swagger API documentation
 

@@ -19,7 +19,6 @@
   ========================LICENSE_END===================================
   -->
 
-
 <configuration>
 
 	<!-- Basic logback configuration for dev and test -->
@@ -64,6 +63,9 @@
 
 	<!-- Code under test should be chatty --> >
 	<logger name="org.oransc.ric.portal.dashboard" level="DEBUG" />
+
+	<!-- Watch authentication done by EPSDK-FW -->
+	<logger name="org.onap.portalsdk.core.onboarding.crossapi" level="DEBUG" />
 
 	<!-- Report URLs to the log -->
 	<logger name="org.springframework.web.client.RestTemplate" level="DEBUG" />
