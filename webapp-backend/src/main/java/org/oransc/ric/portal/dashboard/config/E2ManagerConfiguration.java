@@ -38,7 +38,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
  * Creates an E2 manager client as a bean to be managed by the Spring container.
  */
 @Configuration
-@Profile("!mock")
+@Profile("!test")
 public class E2ManagerConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

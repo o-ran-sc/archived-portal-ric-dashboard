@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.test.config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -45,7 +45,7 @@ import org.springframework.http.HttpStatus;
 /**
  * Creates a mock implementation of the ANR xApp client APIs.
  */
-@Profile("mock")
+@Profile("test")
 @Configuration
 public class AnrXappMockConfiguration {
 

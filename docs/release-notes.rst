@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.0, 12 July 2019
+Version 1.2.0, 17 July 2019
 ---------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -28,6 +28,7 @@ Version 1.2.0, 12 July 2019
 * Clean code of issues reported by Sonar
 * Drop mock RAN names feature that supported R1 testing
 * Extend mock endpoints to simulate delay seen in tests
+* Move mock configuration classes into test area
 
 Version 1.0.5, 5 July 2019
 --------------------------

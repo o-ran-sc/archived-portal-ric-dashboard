@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.test.config;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
@@ -51,7 +51,7 @@ import org.springframework.http.HttpStatus;
  * Creates an implementation of the xApp manager client that answers requests
  * with mock data.
  */
-@Profile("mock")
+@Profile("test")
 @Configuration
 public class AppManagerMockConfiguration {
 

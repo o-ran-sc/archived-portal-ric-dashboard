@@ -38,7 +38,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
  * container.
  */
 @Configuration
-@Profile("!mock")
+@Profile("!test")
 public class A1MediatorConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
