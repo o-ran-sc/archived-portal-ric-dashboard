@@ -30,3 +30,6 @@
 /build/
 
 /application-tlab2.properties
+/portal-authentication.properties
+/key.properties
+/application.properties
