@@ -29,6 +29,7 @@ Version 1.2.0, 17 July 2019
 * Drop mock RAN names feature that supported R1 testing
 * Extend mock endpoints to simulate delay seen in tests
 * Move mock configuration classes into test area
+* Dashboard: Display xAPP metrics using data obtained from DMaaP
 
 Version 1.0.5, 5 July 2019
 --------------------------
