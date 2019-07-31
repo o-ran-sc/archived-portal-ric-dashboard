@@ -52,7 +52,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.a1med.client</groupId>
 			<artifactId>a1-med-client</artifactId>
-			<version>0.4.0-SNAPSHOT</version>
+			<version>0.10.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.appmgr.client</groupId>

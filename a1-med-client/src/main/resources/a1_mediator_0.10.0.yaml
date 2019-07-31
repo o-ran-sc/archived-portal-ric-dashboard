@@ -1,26 +1,37 @@
-# ========================LICENSE_START=================================
-# O-RAN-SC
-# %%
-# Copyright (C) 2019 AT&T Intellectual Property and Nokia
-# %%
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+# ==================================================================================
+#       Copyright (c) 2019 Nokia
+#       Copyright (c) 2018-2019 AT&T Intellectual Property.
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
 #
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ========================LICENSE_END===================================
+#          http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+# ==================================================================================
 openapi: 3.0.0
 info:
-  version: 0.4.0
+  version: 0.10.0
   title: RIC A1
 paths:
-  '/ric/policies/{policyname}':
+  '/a1-p/healthcheck':
+    get:
+      description: >
+        perform a healthcheck on a1
+      tags:
+        - A1 Mediator
+      operationId: a1.controller.healthcheck_handler
+      responses:
+        200:
+          description: >
+            a1 is healthy. Anything other than a 200 should be considered a1 as failing
+
+  '/a1-p/policies/{policyname}':
     parameters:
       - name: policyname
         in: path
@@ -91,12 +102,15 @@ paths:
       responses:
         '200':
           description: >
-            policy state successfully retrieved.
-            TODO, what describes the format returned here?
-            content:
-              application/json:
-                schema:
-                  type: object
+            The downstream component responsible for implementing this policy replied with a good response. Check the manifest for response details.
+        '400':
+          description: >
+            The downstream component for implementing this policy does not support policy fetching.
         '404':
-          description: there is no policy with this name
+          description: >
+            there is no policy with this name
+        '504':
+          description: >
+            the downstream component responsible for handling this policy did not respond (in time)
+
 
