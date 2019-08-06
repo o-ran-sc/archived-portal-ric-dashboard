@@ -20,9 +20,10 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.1, ? Aug 2019
+Version 1.2.1, 12 Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
+* Add xapp dynamic configuration feature
 
 Version 1.2.0, 8 Aug 2019
 -------------------------

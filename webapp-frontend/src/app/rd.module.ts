@@ -39,6 +39,7 @@ import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { AnrEditNcrDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
+import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
 import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
@@ -52,8 +53,10 @@ import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
@@ -71,6 +74,7 @@ import { UserComponent } from './user/user.component';
     AddDashboardUserDialogComponent,
     AnrEditNcrDialogComponent,
     AnrXappComponent,
+    AppConfigurationComponent,
     AppControlComponent,
     CatalogCardComponent,
     CatalogComponent,
@@ -95,6 +99,7 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     BrowserAnimationsModule,
     ChartsModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     MatButtonModule,
@@ -102,6 +107,7 @@ import { UserComponent } from './user/user.component';
     MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
+    MaterialDesignFrameworkModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -123,7 +129,7 @@ import { UserComponent } from './user/user.component';
     MDBBootstrapModule.forRoot(),
     RdRoutingModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot()   
   ],
   exports: [
     FormsModule,
@@ -142,15 +148,16 @@ import { UserComponent } from './user/user.component';
     MatButtonModule,
     MatInputModule,
     RanControlConnectDialogComponent,
-    ErrorDialogComponent,
+    ErrorDialogComponent
   ],
   entryComponents: [
     AddDashboardUserDialogComponent,
     AnrEditNcrDialogComponent,
+    AppConfigurationComponent,
     ConfirmDialogComponent,
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
-    RanControlConnectDialogComponent,
+    RanControlConnectDialogComponent
   ],
   providers: [
     AppMgrService,
