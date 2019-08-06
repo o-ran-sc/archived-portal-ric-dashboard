@@ -26,6 +26,8 @@ import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
+import { MatDialog } from '@angular/material/dialog';
+import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 
 @Component({
   selector: 'rd-app-catalog',
@@ -41,6 +43,7 @@ export class CatalogComponent implements OnInit {
   constructor(
     private appMgrService: AppMgrService,
     private confirmDialogService: ConfirmDialogService,
+    private dialog: MatDialog,
     private errorDiaglogService: ErrorDialogService,
     private notificationService: NotificationService) { }
 
@@ -49,9 +52,20 @@ export class CatalogComponent implements OnInit {
     this.dataSource.loadTable();
   }
 
-  onConfigureApp(name: string): void {
-    const aboutError = 'Configure not implemented (yet)';
-    this.errorDiaglogService.displayError(aboutError);
+  onConfigureApp(xapp: Element): void {
+    //const aboutError = 'Configure not implemented (yet)';
+    //this.errorDiaglogService.displayError(aboutError);
+    const dialogRef = this.dialog.open(AppConfigurationComponent, {
+      width: '40%',
+      maxHeight:'500px',
+      position: {
+        top:'10%'
+      },
+      data: xapp
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 
   onDeployApp(app: XMDeployableApp): void {

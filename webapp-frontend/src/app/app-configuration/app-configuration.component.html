@@ -1,0 +1,20 @@
+<div mat-dialog-title *ngIf="loading$ | async">
+  Loading {{data.name}} Configuration
+  <mat-spinner diameter=70></mat-spinner>
+</div>
+
+<div *ngIf="((loading$ | async)==false) ">
+  <div class="toolbar">
+    <div mat-dialog-title>
+      {{data.name}} Configuration
+    </div>
+  </div>
+  <div class="form">
+    <json-schema-form loadExternalAssets="true"
+                      framework="material-design"
+                      [data]="xappconfigdata"
+                      [schema]="xappconfigschema"
+                      (onSubmit)="updateconfig($event)">
+    </json-schema-form>
+  </div>
+</div>

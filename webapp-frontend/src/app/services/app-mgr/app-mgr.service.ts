@@ -48,4 +48,14 @@ export class AppMgrService {
     return this.httpClient.delete((this.basePath + '/' + name), { observe: 'response' });
   }
 
+  getConfig(name: string) {
+    //fetch json from local
+    return this.httpClient.get("/assets/mockdata/config.json");
+  }
+
+  putConfig(config: any): Observable<HttpResponse<Object>> {
+    return this.httpClient.post((this.basePath + '/config' ), config, { observe: 'response' });
+  }
+
+
 }

@@ -24,7 +24,7 @@ import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule
     MatIconModule, MatInputModule, MatListModule, MatPaginatorModule,
     MatProgressSpinnerModule, MatSelectModule, MatSidenavModule, MatSliderModule,
     MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
-    MatTabsModule} from '@angular/material';
+    MatTabsModule,} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -64,6 +64,9 @@ import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { StatsComponent } from './stats/stats.component';
 import { UiService } from './services/ui/ui.service';
 import { UserComponent } from './user/user.component';
+import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 
 @NgModule({
   declarations: [
@@ -89,7 +92,8 @@ import { UserComponent } from './user/user.component';
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
-    UserComponent
+    UserComponent,
+    AppConfigurationComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +127,9 @@ import { UserComponent } from './user/user.component';
     MDBBootstrapModule.forRoot(),
     RdRoutingModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    FlexLayoutModule,
+    MaterialDesignFrameworkModule,
+    ToastrModule.forRoot()   
   ],
   exports: [
     FormsModule,
@@ -151,6 +157,7 @@ import { UserComponent } from './user/user.component';
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     RanControlConnectDialogComponent,
+    AppConfigurationComponent,
   ],
   providers: [
     AppMgrService,
