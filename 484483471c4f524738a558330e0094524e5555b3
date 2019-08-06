@@ -422,6 +422,30 @@
       "revId": "484483471c4f524738a558330e0094524e5555b3",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd33c395_e0e90083",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-08-06T17:42:16Z",
+      "side": 1,
+      "message": "Xapp manager defined this structure\nIn the original data, the metadata.name is ANR. To match our mocker data I changed that name to \"Automatic Neighbor Relation\"\n\n{\n  \"metadata\": {\n    \"name\": \"xapp-dummy\",\n    \"configName\": \"xapp-dummy-config-map\",\n    \"namespace\": \"ricxapp\"\n  },\n  \"descriptor\": {},\n  \"config\": {}\n}",
+      "parentUuid": "39b6ca12_0647c1b1",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
