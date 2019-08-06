@@ -37,6 +37,7 @@ Version 1.2.0, 15 Aug 2019
 * Update E2 manager client to spec version 20190813
 * Add controller for page refresh of Angular routes
 * Extend E2 mock configuration for demo purposes
+* Add xapp dynamic configuration feature
 
 Version 1.0.5, 5 July 2019
 --------------------------
