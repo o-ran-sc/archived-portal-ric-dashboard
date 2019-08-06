@@ -1,0 +1,308 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dec2980e_e41c7544",
+        "filename": "webapp-frontend/package-lock.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "do we have to use a beta?",
+      "range": {
+        "startLine": 659,
+        "startChar": 24,
+        "endLine": 659,
+        "endChar": 28
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cee063c_71d92d19",
+        "filename": "webapp-frontend/package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "I\u0027m concerned about the \"6\" here -- we are using Angular 8 -- is there a strong dependency on version 6?",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55989a78_37a78c67",
+        "filename": "webapp-frontend/src/app/app-configuration/app-configuration.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "Pls add license header",
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a71601d_e93b80ae",
+        "filename": "webapp-frontend/src/app/app-configuration/app-configuration.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "So this is a reusable component that can accept config data for any Application?",
+      "range": {
+        "startLine": 14,
+        "startChar": 13,
+        "endLine": 14,
+        "endChar": 38
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "770e4ac0_ccabfef1",
+        "filename": "webapp-frontend/src/app/app-configuration/app-configuration.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "please use camelCase or snake_case, something to make this more readable",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de2952b7_77b51fb4",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "what datatype is Element??",
+      "range": {
+        "startLine": 55,
+        "startChar": 23,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c963e36f_5b6d85bd",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "Please remove, don\u0027t comment out",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4731e89_42ab35ec",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "Please respect the alphabetical order of the imports, and move these into their appropriate places",
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3618c905_2dd2ae74",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "this is kind of weird, adding a comma here but nothing else?",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "537059b6_fb10dfb7",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a108c7a_3246322a",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 34
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "170196fe_1568a51d",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 29
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a74978_eba706e5",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "Please create a service etc. etc. to fetch from backend and I\u0027ll add the controller method for you immediately",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8102fe5f_8de444d7",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-06T15:51:14Z",
+      "side": 1,
+      "message": "The data should be pulled from the backend, not cached in the frontend. Let me know the endpoint you need and I\u0027ll add it immediately.",
+      "revId": "484483471c4f524738a558330e0094524e5555b3",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
