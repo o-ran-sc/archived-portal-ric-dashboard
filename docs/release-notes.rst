@@ -20,7 +20,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.0, 31 July 2019
+Version 1.2.0, 6 August 2019
 ---------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -31,6 +31,7 @@ Version 1.2.0, 31 July 2019
 * Move mock configuration classes into test area
 * Add EPSDK-FW user management and Portal security
 * Update A1 mediator client to spec version 0.10.0
+* Add an app-configuration component
 
 Version 1.0.5, 5 July 2019
 --------------------------
