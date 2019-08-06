@@ -24,7 +24,7 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 8 Aug 2019
+Version 1.2.0, 12 Aug 2019
 -------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -36,6 +36,7 @@ Version 1.2.0, 8 Aug 2019
 * Update A1 mediator client to spec version 0.10.0
 * Update App manager client to spec version 0.1.7
 * Update E2 manager client to spec version 20190808
+* Add xapp dynamic configuration feature
 
 Version 1.0.5, 5 July 2019
 --------------------------
