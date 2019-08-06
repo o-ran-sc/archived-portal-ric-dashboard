@@ -69,7 +69,7 @@ public class AppManagerMockConfiguration {
 
 	public AppManagerMockConfiguration() {
 		logger.info("Configuring mock xApp Manager");
-		final String[] appNames = { "AdmissionControl", "Automatic Neighbor Relation", "Dual Connectivity" };
+		final String[] appNames = { "AdmissionControl", "Automatic Neighbor Relation", "UE Event Collector" };
 		final String configJson = " { \"config\" : \"example\" }";
 		final String descriptorJson = " { \"descriptor\" : \"example\" }";
 		allXappConfigs = new AllXappConfig();
