@@ -22,6 +22,30 @@
       "revId": "cd1ea2f56fdf2e07efe7a5ef7548c2bc45b91479",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5df9dff_4af34054",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-08-06T17:44:42Z",
+      "side": 1,
+      "message": "There is no need to pass xapp name into this, since it will return all the configurations. I will fix that.",
+      "parentUuid": "9e98ce34_cb338b79",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "cd1ea2f56fdf2e07efe7a5ef7548c2bc45b91479",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
