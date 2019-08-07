@@ -57,7 +57,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.appmgr.client</groupId>
 			<artifactId>app-mgr-client</artifactId>
-			<version>0.1.5-SNAPSHOT</version>
+			<version>0.1.7-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>

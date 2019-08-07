@@ -157,7 +157,7 @@ public class AppManagerController {
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public Object getAvailableXapps() {
 		logger.debug("getAvailableXapps");
-		AllDeployableXapps appNames = xappApi.listAllXapps();
+		AllDeployableXapps appNames = xappApi.listAllDeployableXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
 		// additional properties for each one.

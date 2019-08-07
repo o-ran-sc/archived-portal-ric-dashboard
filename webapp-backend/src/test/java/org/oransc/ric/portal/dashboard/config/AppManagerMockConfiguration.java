@@ -62,7 +62,7 @@ public class AppManagerMockConfiguration {
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
-	private final AllDeployableXapps availXapps;
+	private final AllDeployableXapps deployableApps;
 	private final AllDeployedXapps deployedXapps;
 	private final AllXappConfig allXappConfigs;
 	private final SubscriptionResponse subRes;
@@ -73,13 +73,13 @@ public class AppManagerMockConfiguration {
 		final String configJson = " { \"config\" : \"example\" }";
 		final String descriptorJson = " { \"descriptor\" : \"example\" }";
 		allXappConfigs = new AllXappConfig();
-		availXapps = new AllDeployableXapps();
+		deployableApps = new AllDeployableXapps();
 		deployedXapps = new AllDeployedXapps();
 		for (String n : appNames) {
 			ConfigMetadata metadata = new ConfigMetadata().configName("config-" + n).name(n).namespace("namespace");
 			XAppConfig config = new XAppConfig().config(configJson).descriptor(descriptorJson).metadata(metadata);
 			allXappConfigs.add(config);
-			availXapps.add(n);
+			deployableApps.add(n);
 			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
 			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("127.0.0.1").port(200)
 					.status(XappInstance.StatusEnum.RUNNING));
@@ -144,11 +144,11 @@ public class AppManagerMockConfiguration {
 		}).when(mockApi).deployXapp(any(XAppInfo.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
-				logger.debug("listAllXapps sleeping {}", delayMs);
+				logger.debug("listAllDeployableXapps sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return availXapps;
-		}).when(mockApi).listAllXapps();
+			return deployableApps;
+		}).when(mockApi).listAllDeployableXapps();
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("getAllXapps sleeping {}", delayMs);
