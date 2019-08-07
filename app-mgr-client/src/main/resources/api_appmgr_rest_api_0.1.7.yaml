@@ -18,7 +18,7 @@
 swagger: '2.0'
 info:
   description: This is a draft API for RIC appmgr
-  version: 0.1.5
+  version: 0.1.7
   title: RIC appmgr
   license:
     name: Apache 2.0
@@ -31,7 +31,7 @@ paths:
   /health/alive :
     get :
       summary     : Health check of xApp Manager - Liveness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthAlive
       responses   :
@@ -40,7 +40,7 @@ paths:
   /health/ready :
     get :
       summary     : Readiness check of xApp Manager - Readiness probe
-      tags        : 
+      tags        :
         - health
       operationId : getHealthReady
       responses   :
@@ -114,12 +114,12 @@ paths:
             $ref: '#/definitions/AllDeployedXapps'
         '500':
           description: Internal error
-  '/xapps/list':
+  '/xapps/search':
     get:
       summary: Returns the list of all deployable xapps
       tags:
         - xapp
-      operationId: listAllXapps
+      operationId: listAllDeployableXapps
       produces:
         - application/json
       responses:
@@ -282,7 +282,7 @@ paths:
             $ref: '#/definitions/ConfigMetadata'
       responses:
         '204':
-          description: Successful deletion of xApp
+          description: Successful deletion of xApp config
         '400':
           description: Invalid parameters supplied
         '500':
@@ -306,8 +306,8 @@ paths:
           schema:
             $ref: '#/definitions/subscriptionRequest'
       responses:
-        '200':
-          description: Subscription successful
+        '201':
+          description: Subscription successfully created
           schema:
             $ref: '#/definitions/subscriptionResponse'
         '400':
