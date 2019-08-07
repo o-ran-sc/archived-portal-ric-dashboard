@@ -75,9 +75,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		logger.debug("configure: portalapi.username {}", userName);
 		// A chain of ".and()" always baffles me
-		http.authorizeRequests().anyRequest().authenticated();
+		// AUTH http.authorizeRequests().anyRequest().authenticated();
 		// http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-		http.addFilterBefore(portalAuthenticationFilterBean(), BasicAuthenticationFilter.class);
+		// AUTH http.addFilterBefore(portalAuthenticationFilterBean(), BasicAuthenticationFilter.class);
 	}
 
 	/**

@@ -14,9 +14,14 @@ server, see below.
 
 This server requires several configuration files:
 
-    application.properties (in launch directory)
-    key.properties (on Java classpath)
-    portal.properties (on Java classpath)
+    application.properties - read from filesystem
+    key.properties - read from Java classpath
+    portal.properties - read from Java classpath
+
+All files should be placed in a "config" directory.  That name is important;
+Spring automatically searches that directory for the application.properties file.
+Further, that directory is placed on the Java classpath so the additional
+files can be read at runtime.
 
 These steps are required:
 
@@ -24,14 +29,15 @@ These steps are required:
    files from templates as needed.  E.g., copy
    "key.properties.template" to "key.properties".
 2. Add the config folder to the Java classpath
-3a. Launch the server with this command-line invocation:
+3a. Launch the server with this command-line invocation that includes the
+   config directory on the Java classpath:
 
     java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
         -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
         org.springframework.boot.loader.PropertiesLauncher
 
-3b. To use the configuration in the "application-abc.properties" file, addd a
-key-value pair for "spring.config.name" and launch with an invocation like this:
+3b. Alternately, to use the configuration in the "application-abc.properties" file,
+add a key-value pair for "spring.config.name" and launch with this invocation:
 
     java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
         -Dspring.config.name=application-abc \
@@ -39,6 +45,8 @@ key-value pair for "spring.config.name" and launch with an invocation like this:
         org.springframework.boot.loader.PropertiesLauncher
 
 ### Production user authentication
+
+TODO AUTH: Authentication temporarily disabled for Sprint 2 testing!
 
 The regular server authenticates requests using cookies that are set
 by the ONAP Portal:
