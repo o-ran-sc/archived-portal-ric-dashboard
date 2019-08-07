@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 import java.net.URLEncoder;
+import java.util.HashSet;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -36,11 +37,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.onap.portalsdk.core.onboarding.util.PortalApiProperties;
+import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.EcompUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
@@ -99,13 +102,45 @@ public class PortalAuthenticationFilter implements Filter {
 		// No resources to release
 	}
 
-	/**
-	 * Checks for valid cookies and allows request to be served if found; redirects
-	 * to Portal otherwise. Requests for pages ignored in the web security config do
-	 * not hit this filter.
+	/*
+	 * Populates security context with a mock user in the admin role.
+	 * 
+	 * TODO: AUTH
 	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth == null || auth.getAuthorities().isEmpty()) {
+			logger.debug("doFilter adding auth to request {}", req);
+			EcompRole admin = new EcompRole();
+			admin.setId(1L);
+			admin.setName(DashboardConstants.ROLE_ADMIN);
+			HashSet<EcompRole> roles = new HashSet<>();
+			roles.add(admin);
+			EcompUser user = new EcompUser();
+			user.setLoginId("fakeLoginId");
+			user.setRoles(roles);
+			user.setActive(true);
+			EcompUserDetails userDetails = new EcompUserDetails(user);
+			PreAuthenticatedAuthenticationToken authToken = new PreAuthenticatedAuthenticationToken(userDetails,
+					"fakeCredentials", userDetails.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authToken);
+		}
+		else {
+			logger.debug("doFilter: authorities {}", auth.getAuthorities());
+		}
+		chain.doFilter(req, res);
+	}
+
+	/*
+	 * Checks for valid cookies and allows request to be served if found; redirects
+	 * to Portal otherwise. Requests for pages ignored in the web security config do
+	 * not hit this filter.
+	 * 
+	 * TODO: AUTH
+	 */
+	public void doFilter_EPSDKFW(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		logger.debug("doFilter {}", req);
 		HttpServletRequest request = (HttpServletRequest) req;

@@ -20,16 +20,19 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.2.1, ? Aug 2019
+-------------------------
+* Add EPSDK-FW user management and Portal security
+
 Version 1.2.0, 7 Aug 2019
 -------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
-* Compile with Java version 11, run with image openjdk:11
+* Compile with Java version 11, use base openjdk:11-jre-slim
 * Clean code of issues reported by Sonar
 * Drop mock RAN names feature that supported R1 testing
 * Extend mock endpoints to simulate delay seen in tests
 * Move mock configuration classes into test area
-* Add EPSDK-FW user management and Portal security
 * Update A1 mediator client to spec version 0.10.0
 * Update App manager client to spec version 0.1.7
 

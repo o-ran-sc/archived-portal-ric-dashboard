@@ -70,4 +70,8 @@
 	<!-- Report request URLs -->
 	<logger name="org.springframework.web.client.RestTemplate" level="DEBUG" />
 
+	<!-- for debugging security
+	<logger name="org.springframework.security" level="DEBUG" />
+	-->
+
 </configuration>

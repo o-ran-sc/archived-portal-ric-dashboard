@@ -31,7 +31,6 @@ import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
-import org.oransc.ric.portal.dashboard.controller.SimpleErrorController;
 import org.oransc.ric.portal.dashboard.portalapi.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthenticationFilter;
@@ -48,6 +47,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -76,7 +76,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		logger.debug("configure: portalapi.username {}", userName);
 		// A chain of ".and()" always baffles me
 		http.authorizeRequests().anyRequest().authenticated();
-		// http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		http.addFilterBefore(portalAuthenticationFilterBean(), BasicAuthenticationFilter.class);
 	}
 
@@ -101,8 +101,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.VERSION_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.HEALTH_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.VERSION_METHOD, //
-			DashboardConstants.LOGIN_PAGE, //
-			SimpleErrorController.ERROR_PATH };
+			DashboardConstants.LOGIN_PAGE //
+	};
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {

@@ -24,10 +24,8 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -41,11 +39,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
  * 
  * Why 502? I quote: <blockquote>HTTP server received an invalid response from a
  * server it consulted when acting as a proxy or gateway.</blockquote>
- *
- * This class and the methods are not strictly necessary, the
- * SimpleErrorController is invoked when any controller method takes an uncaught
- * exception, but this approach provides a better response to the front end and
- * doesn't signal internal server error.
  * 
  * Also see:<br>
  * https://www.baeldung.com/exception-handling-for-rest-with-spring
@@ -61,11 +54,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	 * Generates the response when a REST controller method takes an
 	 * HttpStatusCodeException.
 	 * 
-	 * It appears that the container internally redirects to /error because the web
-	 * request that arrives here has URI /error, and {@link
-	 * org.oransc.ric.portal.dashboard.controller.SimpleErrorController} runs before
-	 * this.
-	 * 
 	 * @param ex The exception
 	 * 
 	 * @param request The original request
@@ -79,23 +67,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 				ex.getStatusCode());
 		return new ResponseEntity<>(new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex),
 				HttpStatus.BAD_GATEWAY);
-	}
-
-	/*
-	 * This exception also happens when Spring security denies access to a method
-	 * due to missing/wrong roles (granted authorities). Override the method to
-	 * answer permission denied, even though that may obscure a genuine developer
-	 * error.
-	 * 
-	 * The web request that arrives here has URI /error; how to obtain the URI of
-	 * the original request?!?
-	 */
-	@Override
-	public final ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		log.warn("handleHttpRequestMethodNotSupported: answering 'permission denied' for method {}", ex.getMethod());
-		return new ResponseEntity<Object>(new ErrorTransport(HttpStatus.UNAUTHORIZED.value(),
-				"Permission denied for method " + ex.getMethod(), ex), HttpStatus.UNAUTHORIZED);
 	}
 
 }
