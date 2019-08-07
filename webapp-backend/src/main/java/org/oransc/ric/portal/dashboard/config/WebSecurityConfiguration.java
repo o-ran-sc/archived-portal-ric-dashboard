@@ -73,7 +73,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private String userCookie;
 
 	protected void configure(HttpSecurity http) throws Exception {
-		logger.debug("configure");
+		logger.debug("configure: portalapi.username {}", userName);
 		// A chain of ".and()" always baffles me
 		http.authorizeRequests().anyRequest().authenticated();
 		// http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

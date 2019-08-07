@@ -69,7 +69,8 @@ public class AdminController {
 	@GetMapping(VERSION_METHOD)
 	// No role required
 	public SuccessTransport getVersion() {
-		logger.debug("getVersion");
+		// These endpoints are invoked repeatedly by K8S
+		logger.trace("getVersion");
 		return new SuccessTransport(200,
 				DashboardApplication.getImplementationVersion(MethodHandles.lookup().lookupClass()));
 	}
@@ -78,7 +79,8 @@ public class AdminController {
 	@GetMapping(HEALTH_METHOD)
 	// No role required
 	public SuccessTransport getHealth() {
-		logger.debug("getHealth");
+		// These endpoints are invoked repeatedly by K8S
+		logger.trace("getHealth");
 		return new SuccessTransport(200, "Dashboard is healthy!");
 	}
 
