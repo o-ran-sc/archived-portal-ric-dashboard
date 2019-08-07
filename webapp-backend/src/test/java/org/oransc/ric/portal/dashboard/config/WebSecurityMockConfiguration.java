@@ -104,6 +104,7 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		// This disables Spring security, but not the app's filter.
 		web.ignoring().antMatchers(WebSecurityConfiguration.OPEN_PATHS);
+		web.ignoring().antMatchers("/", "/csrf"); // allow swagger-ui to load
 	}
 
 	@Bean
