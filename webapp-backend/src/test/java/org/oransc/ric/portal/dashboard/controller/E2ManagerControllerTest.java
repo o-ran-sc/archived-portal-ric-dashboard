@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
+import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
@@ -86,15 +87,6 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void bigRedButtonTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
-		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null,
-				Void.class);
-		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
-	}
-
-	@Test
 	public void endcSetupTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.ENDC_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
@@ -113,6 +105,28 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
 				Void.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	}
+
+	// Aka big--button test
+	@Test
+	public void nodebPutTest() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, null, Void.class);
+		logger.debug("nodebPutTest: response {}", voidResponse);
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	}
+
+	@Test
+	public void resetTest() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RESET_METHOD, "ranName");
+		logger.info("Invoking {}", uri);
+		ResetRequest reset = new ResetRequest();
+		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
+				Void.class);
+		logger.debug("resetTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 

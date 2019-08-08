@@ -74,10 +74,10 @@ export class E2ManagerService {
 
   /**
    * Sends a request to drop all RAN connections
-   * @returns Observable. Response code indicates result.
+   * @returns Observable with body.
    */
-  nodebDelete(): Observable<HttpResponse<Object>> {
-    return this.httpClient.delete((this.basePath + 'nodeb'), { observe: 'response' });
+  nodebPut(): Observable<any> {
+    return this.httpClient.put((this.basePath + 'nodeb'), { observe: 'body' });
   }
 
 }

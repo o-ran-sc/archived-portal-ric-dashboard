@@ -34,6 +34,7 @@ import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.NodebIdentityGlobalNbId;
+import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,7 +98,14 @@ public class E2ManagerMockConfiguration {
 				Thread.sleep(delayMs);
 			}
 			return null;
-		}).when(mockApi).nodebDelete();
+		}).when(mockApi).nodebPut();
+		doAnswer(inv -> {
+			if (delayMs > 0) {
+				logger.debug("reset sleeping {}", delayMs);
+				Thread.sleep(delayMs);
+			}
+			return null;
+		}).when(mockApi).reset(any(String.class), any(ResetRequest.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("getNb sleeping {}", delayMs);
