@@ -20,6 +20,7 @@
 package org.oransc.ric.portal.dashboard.portalapi;
 
 import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +45,8 @@ public class PortalAuthManager {
 
 	public PortalAuthManager(final String appName, final String username, final String password,
 			final String decryptorClassName, final String userCookie)
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException, NoSuchMethodException, SecurityException {
 		credentialsMap = new HashMap<>();
 		// The map keys are hardcoded in EPSDK-FW, no constants are defined :(
 		credentialsMap.put("appName", appName);
@@ -54,7 +56,7 @@ public class PortalAuthManager {
 		// Instantiate here so configuration errors are detected at app-start time
 		logger.debug("ctor: using decryptor class {}", decryptorClassName);
 		Class<?> decryptorClass = Class.forName(decryptorClassName);
-		portalSdkDecryptor = (IPortalSdkDecryptor) decryptorClass.newInstance();
+		portalSdkDecryptor = (IPortalSdkDecryptor) decryptorClass.getDeclaredConstructor().newInstance();
 	}
 
 	/**

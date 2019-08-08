@@ -63,21 +63,19 @@ export class RanControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
-          this.e2MgrSvc.nodebDelete().subscribe(
-            ( response: HttpResponse<Object>) => {
-              if (response.status === 200) {
-                this.notificationService.success('Disconnect succeeded!');
-                this.dataSource.loadTable();
-              }
+          this.e2MgrSvc.nodebPut().subscribe(
+            ( body: any ) => {
+              this.notificationService.success('Disconnect succeeded!');
+              this.dataSource.loadTable();
             },
-            ( (her: HttpErrorResponse) => {
+            (her: HttpErrorResponse) => {
               // the error field should have an ErrorTransport object
               let msg = her.message;
               if (her.error && her.error.message) {
                 msg = her.error.message;
               }
               this.errorDialogService.displayError('Disconnect failed: ' + msg);
-            })
+            }
           );
         }
       });

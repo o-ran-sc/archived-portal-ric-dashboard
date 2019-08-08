@@ -29,6 +29,7 @@ import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
+import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -41,10 +42,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,6 +73,7 @@ public class E2ManagerController {
 	public static final String NODEB_METHOD = "/nodeb";
 	public static final String NODEB_LIST_METHOD = "/nodeb-ids";
 	public static final String RAN_METHOD = "/ran";
+	public static final String RESET_METHOD = "/reset";
 	public static final String ENDC_SETUP_METHOD = "/endcSetup";
 	public static final String X2_SETUP_METHOD = "/x2Setup";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
@@ -145,15 +147,6 @@ public class E2ManagerController {
 		return e2NodebApi.getNb(ranName);
 	}
 
-	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
-	@DeleteMapping(NODEB_METHOD)
-	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void nodebDelete(HttpServletResponse response) {
-		logger.debug("nodebDelete");
-		e2NodebApi.nodebDelete();
-		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
-	}
-
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
 	@PostMapping(ENDC_SETUP_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
@@ -169,6 +162,25 @@ public class E2ManagerController {
 	public void x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
 		logger.debug("x2Setup {}", setupRequest);
 		e2NodebApi.x2Setup(setupRequest);
+		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+	}
+
+	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
+	@PutMapping(NODEB_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public void nodebPut(HttpServletResponse response) {
+		logger.debug("nodebPut");
+		e2NodebApi.nodebPut();
+		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+	}
+
+	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")
+	@PutMapping(RESET_METHOD + "/{" + PP_RANNAME + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public void reset(@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest,
+			HttpServletResponse response) {
+		logger.debug("reset");
+		e2NodebApi.reset(ranName, resetRequest);
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 

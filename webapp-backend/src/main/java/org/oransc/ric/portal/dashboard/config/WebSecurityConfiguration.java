@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.lang.reflect.InvocationTargetException;
 
 import org.onap.portalsdk.core.onboarding.crossapi.PortalRestAPIProxy;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
@@ -112,7 +113,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PortalAuthManager portalAuthManagerBean()
-			throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+			throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		return new PortalAuthManager(appName, userName, password, decryptor, userCookie);
 	}
 
@@ -131,7 +133,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 * correctly.
 	 */
 	public PortalAuthenticationFilter portalAuthenticationFilterBean()
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalAuthManagerBean(),
 				dashboardUserManagerBean());
 		return portalAuthenticationFilter;
