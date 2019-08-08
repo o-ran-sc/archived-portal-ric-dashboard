@@ -97,7 +97,7 @@ public class E2ManagerMockConfiguration {
 				Thread.sleep(delayMs);
 			}
 			return null;
-		}).when(mockApi).nodebDelete();
+		}).when(mockApi).nodebPut();
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("getNb sleeping {}", delayMs);

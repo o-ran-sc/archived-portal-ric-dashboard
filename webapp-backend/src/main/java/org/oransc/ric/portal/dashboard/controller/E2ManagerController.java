@@ -41,10 +41,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -146,11 +146,11 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
-	@DeleteMapping(NODEB_METHOD)
+	@PutMapping(NODEB_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void nodebDelete(HttpServletResponse response) {
-		logger.debug("nodebDelete");
-		e2NodebApi.nodebDelete();
+	public void nodebPut(HttpServletResponse response) {
+		logger.debug("nodebPut");
+		e2NodebApi.nodebPut();
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 

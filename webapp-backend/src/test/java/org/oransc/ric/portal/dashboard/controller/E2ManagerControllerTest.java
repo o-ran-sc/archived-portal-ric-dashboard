@@ -89,8 +89,9 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void bigRedButtonTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null,
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, null,
 				Void.class);
+		logger.debug("bigRedButtonTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 

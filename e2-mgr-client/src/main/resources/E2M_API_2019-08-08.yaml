@@ -119,7 +119,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
   /nodeb:
-    delete:
+    put:
       tags:
         - nodeb
       summary: >-
@@ -155,6 +155,48 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /nodeb/{ranName}/reset:
+    put:
+      tags:
+        - nodeb
+      summary: >-
+        Upon receipt of this message, 'ranName' shall abort any other ongoing procedures over X2 between the RIC and the RAN. The RAN shall delete all the context information related to the RIC, except the application level configuration data exchanged during the X2 Setup or eNB Configuration Update procedures, and release the corresponding resource.  
+      operationId: reset
+      parameters:
+        - name: ranName
+          in: path
+          required: true
+          description: Name of RAN to return
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetRequest'
+        required: false
+      responses:
+        '204':
+          description: Successful operation
+        '400':
+          description: Invalid input (invalid cause, RAN in wrong state)
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: A RAN with the specified name was not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /health:
     get:
       tags:
@@ -179,6 +221,77 @@ components:
           format: uint16
         ranName:
           type: string
+    ResetRequest:
+      type: object
+      required:
+        - cause
+      properties:
+        cause:
+          type: string
+          enum: [misc:control-processing-overload,
+misc:hardware-failure,
+misc:om-intervention,
+misc:not-enough-user-plane-processing-resources,
+misc:unspecified,
+protocol:transfer-syntax-error,
+protocol:abstract-syntax-error-reject,
+protocol:abstract-syntax-error-ignore-and-notify,
+protocol:message-not-compatible-with-receiver-state,
+protocol:semantic-error,
+protocol:unspecified,
+protocol:abstract-syntax-error-falsely-constructed-message,
+transport:transport-resource-unavailable,
+radioNetwork:handover-desirable-for-radio-reasons,
+radioNetwork:time-critical-handover,
+radioNetwork:resource-optimisation-handover,
+radioNetwork:reduce-load-in-serving-cell,
+radioNetwork:partial-handover,
+radioNetwork:unknown-new-eNB-UE-X2AP-ID, 
+radioNetwork:unknown-old-eNB-UE-X2AP-ID, 
+radioNetwork:unknown-pair-of-UE-X2AP-ID,
+radioNetwork:ho-target-not-allowed,
+radioNetwork:tx2relocoverall-expiry,
+radioNetwork:trelocprep-expiry,
+radioNetwork:cell-not-available,
+radioNetwork:no-radio-resources-available-in-target-cell,
+radioNetwork:invalid-MME-GroupID,
+radioNetwork:unknown-MME-Code,
+radioNetwork:encryption-and-or-integrity-protection-algorithms-not-supported,
+radioNetwork:reportCharacteristicsEmpty,
+radioNetwork:noReportPeriodicity,
+radioNetwork:existingMeasurementID,
+radioNetwork:unknown-eNB-Measurement-ID,
+radioNetwork:measurement-temporarily-not-available,
+radioNetwork:unspecified,
+radioNetwork:load-balancing,
+radioNetwork:handover-optimisation,
+radioNetwork:value-out-of-allowed-range,
+radioNetwork:multiple-E-RAB-ID-instances,
+radioNetwork:switch-off-ongoing,
+radioNetwork:not-supported-QCI-value,
+radioNetwork:measurement-not-supported-for-the-object,
+radioNetwork:tDCoverall-expiry,
+radioNetwork:tDCprep-expiry,
+radioNetwork:action-desirable-for-radio-reasons,
+radioNetwork:reduce-load,
+radioNetwork:resource-optimisation,
+radioNetwork:time-critical-action,
+radioNetwork:target-not-allowed,
+radioNetwork:no-radio-resources-available,
+radioNetwork:invalid-QoS-combination,
+radioNetwork:encryption-algorithms-not-aupported,
+radioNetwork:procedure-cancelled,
+radioNetwork:rRM-purpose,
+radioNetwork:improve-user-bit-rate,
+radioNetwork:user-inactivity,
+radioNetwork:radio-connection-with-UE-lost,
+radioNetwork:failure-in-the-radio-interface-procedure,
+radioNetwork:bearer-option-not-supported,
+radioNetwork:mCG-Mobility,
+radioNetwork:sCG-Mobility,
+radioNetwork:count-reaches-max-value,
+radioNetwork:unknown-old-en-gNB-UE-X2AP-ID,
+radioNetwork:pDCP-Overload]
     NodebIdentity:
       properties:
         globalNbId:
@@ -801,7 +914,7 @@ components:
       properties:
         errorCode:
           type: string
-          description: '401 - corrupted json, 402 - validation error, 501 - internal problem'
+          description: '401 - corrupted json, 402 - validation error, 403 - RAN in wrong state, 500 - RNIB error, 501 - internal problem, 502 - RMR error'
         errorMessage:
           type: string
           description: Human readable text
