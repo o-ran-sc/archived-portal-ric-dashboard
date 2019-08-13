@@ -168,9 +168,9 @@ public class E2ManagerController {
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
 	@PutMapping(NODEB_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void nodebPut(HttpServletResponse response) {
-		logger.debug("nodebPut");
-		e2NodebApi.nodebPut();
+	public void nodebShutdownPut(HttpServletResponse response) {
+		logger.debug("nodebShutdownPut");
+		e2NodebApi.nodebShutdownPut();
 		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
 	}
 

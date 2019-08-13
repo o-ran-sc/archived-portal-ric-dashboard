@@ -62,7 +62,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
-			<version>20190808-SNAPSHOT</version>
+			<version>20190813-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.onap.portal.sdk</groupId>
@@ -271,7 +271,7 @@ limitations under the License.
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.28.0</version>
+				<version>0.30.0</version>
 				<configuration>
 					<verbose>true</verbose>
 					<!-- environment variables supplied by Jenkins -->

@@ -118,13 +118,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /nodeb:
+  /nodeb/shutdown:
     put:
       tags:
         - nodeb
       summary: >-
-        Close all connections to the RANs and delete the data from the
-        nodeb-rnib DB
+        Close all connections to the RANs
       responses:
         '204':
           description: Successful operation
@@ -160,7 +159,7 @@ paths:
       tags:
         - nodeb
       summary: >-
-        Upon receipt of this message, 'ranName' shall abort any other ongoing procedures over X2 between the RIC and the RAN. The RAN shall delete all the context information related to the RIC, except the application level configuration data exchanged during the X2 Setup or eNB Configuration Update procedures, and release the corresponding resource.  
+        Upon receipt of this message, 'ranName' shall abort any other ongoing procedures over X2 between the RIC and the RAN. The RAN shall delete all the context information related to the RIC, except the application level configuration data exchanged during the X2 Setup or eNB Configuration Update procedures, and release the corresponding resource.
       operationId: reset
       parameters:
         - name: ranName
@@ -246,8 +245,8 @@ radioNetwork:time-critical-handover,
 radioNetwork:resource-optimisation-handover,
 radioNetwork:reduce-load-in-serving-cell,
 radioNetwork:partial-handover,
-radioNetwork:unknown-new-eNB-UE-X2AP-ID, 
-radioNetwork:unknown-old-eNB-UE-X2AP-ID, 
+radioNetwork:unknown-new-eNB-UE-X2AP-ID,
+radioNetwork:unknown-old-eNB-UE-X2AP-ID,
 radioNetwork:unknown-pair-of-UE-X2AP-ID,
 radioNetwork:ho-target-not-allowed,
 radioNetwork:tx2relocoverall-expiry,
