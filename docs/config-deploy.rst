@@ -113,9 +113,16 @@ Application user name expected at ONAP portal. No default value.
 
 Port where the Tomcat server listens for requests. Default is ``8080``
 
+``stats.acappmetrics.url``
+
+Url to the kibana source which visualizes AC App metrics. No default value and needs to be replaced with actual value during deployment time.
+
 ``userfile``
 
 Path of file that stores user details. Default is ``users.json``
+
+
+
 
 
 Key Properties
