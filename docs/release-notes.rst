@@ -40,6 +40,7 @@ Version 1.2.0, 16 Aug 2019
 * Add pattern for matching AC/admin application name
 * Add custom (plain but not white-label) error page
 * Synch A1 method paths in front-end and back-end
+* Display AC xAPP metrics data on dashboard
 
 Version 1.0.5, 5 July 2019
 --------------------------

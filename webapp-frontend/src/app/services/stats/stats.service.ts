@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -49,6 +49,8 @@ export class StatsService {
               'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
             })
           };
+
+    private basePath = 'api/admin/';
 
     constructor(private httpClient: HttpClient) {
         // this.loadConfig();
@@ -101,6 +103,14 @@ export class StatsService {
 
     getRandomValue() {
         return Math.round((Math.random() * (20 - 0)) + 0);
+    }
+
+    // Gets xApp metrics kibana url for the named application
+    getAppMetricsUrl(appName: string)  {
+        return this.httpClient.get(this.basePath + 'metrics', {
+            params: new HttpParams()
+                .set('app', appName)
+        });
     }
 
     saveConfig(key: string, value: string) {
