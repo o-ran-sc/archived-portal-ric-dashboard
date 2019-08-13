@@ -28,6 +28,7 @@ RIC Dashboard
    :caption: Contents:
 
    overview.rst
+   config.rst
    release-notes.rst
 
 * :ref:`search`

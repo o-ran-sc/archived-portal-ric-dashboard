@@ -72,10 +72,10 @@ public class AnrXappController {
 	// Path parameters
 	public static final String PP_SERVING = "servingcells";
 	public static final String PP_NEIGHBOR = "neighborcells";
-	// Query parameters
-	public static final String QP_NODEB = "ggnodeb";
-	public static final String QP_SERVING = "servingCellNrcgi";
-	public static final String QP_NEIGHBOR = "neighborCellNrpci";
+	// Request parameters
+	public static final String RP_NODEB = "ggnodeb";
+	public static final String RP_SERVING = "servingCellNrcgi";
+	public static final String RP_NEIGHBOR = "neighborCellNrpci";
 
 	// Populated by the autowired constructor
 	private final HealthApi healthApi;
@@ -129,9 +129,9 @@ public class AnrXappController {
 	@GetMapping(NCRT_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public NeighborCellRelationTable getNcrt( //
-			@RequestParam(name = QP_NODEB, required = false) String ggnbId, //
-			@RequestParam(name = QP_SERVING, required = false) String servingCellNrcgi, //
-			@RequestParam(name = QP_NEIGHBOR, required = false) String neighborCellNrpci) {
+			@RequestParam(name = RP_NODEB, required = false) String ggnbId, //
+			@RequestParam(name = RP_SERVING, required = false) String servingCellNrcgi, //
+			@RequestParam(name = RP_NEIGHBOR, required = false) String neighborCellNrpci) {
 		logger.debug("getNcrt: ggnbid {}, servingCellNrpci {}, neighborCellNrcgi {}", ggnbId, servingCellNrcgi,
 				neighborCellNrpci);
 		return ncrtApi.getNcrt(ggnbId, servingCellNrcgi, neighborCellNrpci);
