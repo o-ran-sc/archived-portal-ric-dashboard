@@ -29,16 +29,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * Catches Http status code exceptions and builds a response with code 502 and
- * some details wrapped in an ErrorTransport object. This factors out try-catch
+ * Catches certain exceptions. This controller advice factors out try-catch
  * blocks in many controller methods.
- * 
- * Why 502? I quote: <blockquote>HTTP server received an invalid response from a
- * server it consulted when acting as a proxy or gateway.</blockquote>
  * 
  * Also see:<br>
  * https://www.baeldung.com/exception-handling-for-rest-with-spring
@@ -50,23 +47,36 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	// Superclass has "logger" that is exposed here, so use a different name
 	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	/*
-	 * Generates the response when a REST controller method takes an
-	 * HttpStatusCodeException.
+	/**
+	 * Logs the error and generates a JSON response when a REST controller method
+	 * takes a RestClientResponseException. This is thrown by the Http client when a
+	 * remote method returns a non-2xx code. All the controller methods are proxies
+	 * in that they just forward the request along to a remote system, so if that
+	 * remote system fails, return 502 plus some details about the failure, rather
+	 * than the generic 500 that Spring-Boot will return on an uncaught exception.
 	 * 
-	 * @param ex The exception
+	 * Why 502? I quote: <blockquote>HTTP server received an invalid response from a
+	 * server it consulted when acting as a proxy or gateway.</blockquote>
 	 * 
-	 * @param request The original request
+	 * @param ex
+	 *                    The exception
+	 * 
+	 * @param request
+	 *                    The original request
 	 * 
 	 * @return A response entity with status code 502 plus some details in the body.
 	 */
-	@ExceptionHandler(HttpStatusCodeException.class)
-	public final ResponseEntity<ErrorTransport> handleHttpStatusCodeException(HttpStatusCodeException ex,
-			WebRequest request) {
-		log.warn("handleHttpStatusCodeException: request {}, status code {}", request.getDescription(false),
-				ex.getStatusCode());
-		return new ResponseEntity<>(new ErrorTransport(ex.getRawStatusCode(), ex.getResponseBodyAsString(), ex),
-				HttpStatus.BAD_GATEWAY);
+	@ExceptionHandler({ RestClientResponseException.class })
+	public final ResponseEntity<ErrorTransport> handleProxyMethodException(Exception ex, WebRequest request) {
+		// Capture the full stack trace in the log.
+		log.error("handleProxyMethodException: request {}, exception {}", request.getDescription(false), ex);
+		if (ex instanceof HttpStatusCodeException) {
+			HttpStatusCodeException hsce = (HttpStatusCodeException) ex;
+			return new ResponseEntity<>(new ErrorTransport(hsce.getRawStatusCode(), hsce.getResponseBodyAsString(),
+					ex.toString(), request.getDescription(false)), HttpStatus.BAD_GATEWAY);
+		} else {
+			return new ResponseEntity<>(new ErrorTransport(500, ex), HttpStatus.BAD_GATEWAY);
+		}
 	}
 
 }

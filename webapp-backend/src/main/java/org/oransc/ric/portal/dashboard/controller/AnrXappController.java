@@ -50,8 +50,13 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Provides methods to contact the ANR xApp which manages a Neighbor Cell
- * Relation Table (NCRT).
+ * Proxies calls from the front end to the ANR xApp, which manages a Neighbor
+ * Cell Relation Table (NCRT).
+ * 
+ * If a method throws RestClientResponseException, it is handled by
+ * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
+ * which returns status 502. All other exceptions are handled by Spring which
+ * returns status 500.
  */
 @Configuration
 @RestController

@@ -45,10 +45,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * * Proxies calls from the front end to the AC xApp via the A1 Mediator API.
- * All methods answer 502 on failure: <blockquote>HTTP server received an
- * invalid response from a server it consulted when acting as a proxy or
- * gateway.</blockquote>
+ * Proxies calls from the front end to the AC xApp via the A1 Mediator API.
+ * 
+ * If a method throws RestClientResponseException, it is handled by
+ * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
+ * which returns status 502. All other exceptions are handled by Spring which
+ * returns status 500.
  */
 @RestController
 @RequestMapping(value = AcXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)

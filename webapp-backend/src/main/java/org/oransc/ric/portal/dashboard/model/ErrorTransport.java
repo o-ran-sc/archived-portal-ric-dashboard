@@ -20,14 +20,19 @@
 
 package org.oransc.ric.portal.dashboard.model;
 
+import java.time.Instant;
+
 /**
- * Model for message returned on failure, to be serialized as JSON.
+ * This mimics the model Spring-Boot uses for a message returned on failure, to
+ * be serialized as JSON.
  */
 public class ErrorTransport implements IDashboardResponse {
 
+	private Instant timestamp;
 	private Integer status;
+	private String error;
 	private String message;
-	private String exception;
+	private String path;
 
 	/**
 	 * Builds an empty object.
@@ -37,38 +42,52 @@ public class ErrorTransport implements IDashboardResponse {
 	}
 
 	/**
-	 * Builds an object with the specified values.
+	 * Convenience constructor for minimal value set.
 	 * 
-	 * @param statusCode
-	 *                       Integer value like 400
-	 * @param errMsg
-	 *                       Explanation
+	 * @param status
+	 *                   Integer value like 400
+	 * @param error
+	 *                   Error message
 	 */
-	public ErrorTransport(int statusCode, String errMsg) {
-		this(statusCode, errMsg, null);
+	public ErrorTransport(int status, String error) {
+		this(status, error, null, null);
 	}
 
 	/**
-	 * Builds an object with the specified status code, message and a String version
-	 * of the exception.
+	 * Convenience constructor for populating an error from an exception
 	 * 
-	 * @param statusCode
-	 *                       Integer value like 500
-	 * @param errMsg
-	 *                       Explanation
-	 * @param exception
-	 *                       Exception that should be reported; optional and ignored
-	 *                       if null.
+	 * @param status
+	 *                      Integer value like 400
+	 * @param throwable
+	 *                      The caught exception/throwable to convert to String with
+	 *                      an upper bound on characters
 	 */
-	public ErrorTransport(int statusCode, String errMsg, Exception exception) {
-		this.status = statusCode;
-		this.message = errMsg;
-		if (exception != null) {
-			final int enough = 512;
-			String exString = exception.toString();
-			String exceptionMsg = exString.length() > enough ? exString.substring(0, enough) : exString;
-			this.exception = exceptionMsg;
-		}
+	public ErrorTransport(int status, Throwable throwable) {
+		this.timestamp = Instant.now();
+		this.status = status;
+		final int enough = 256;
+		String exString = throwable.toString();
+		this.error = exString.length() > enough ? exString.substring(0, enough) : exString;
+	}
+
+	/**
+	 * Builds an object with all fields
+	 * 
+	 * @param status
+	 *                    Integer value like 500
+	 * @param error
+	 *                    Explanation
+	 * @param message
+	 *                    Additional explanation
+	 * @param path
+	 *                    Requested path
+	 */
+	public ErrorTransport(int status, String error, String message, String path) {
+		this.timestamp = Instant.now();
+		this.status = status;
+		this.error = error;
+		this.message = message;
+		this.path = path;
 	}
 
 	public Integer getStatus() {
@@ -87,12 +106,28 @@ public class ErrorTransport implements IDashboardResponse {
 		this.message = error;
 	}
 
-	public String getException() {
-		return exception;
+	public Instant getTimestamp() {
+		return timestamp;
 	}
 
-	public void setException(String exception) {
-		this.exception = exception;
+	public void setTimestamp(Instant timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }
