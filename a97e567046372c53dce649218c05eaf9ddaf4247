@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42ce0885_3be95471",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "Please move this to 1.2.0.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a888ac8c_febbf023",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "lower case only please, for simplicity",
+      "range": {
+        "startLine": 53,
+        "startChar": 50,
+        "endLine": 53,
+        "endChar": 61
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46a777a8_ec28bd44",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "lower case please",
+      "range": {
+        "startLine": 60,
+        "startChar": 27,
+        "endLine": 60,
+        "endChar": 38
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad652c48_091a07e9",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "use logger",
+      "range": {
+        "startLine": 104,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 5
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46fb0d19_d0ea6acd",
+        "filename": "webapp-backend/src/main/resources/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "Don\u0027t add whitespace",
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0de259_2991b3a6",
+        "filename": "webapp-backend/src/main/resources/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "Please use this:\n\n   dashboard.stats.xAppmetrics.url \u003d http://jar-app-props-kibana-url",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 317
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81692db5_501e2eb3",
+        "filename": "webapp-backend/src/main/resources/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "remove entirely",
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fe4a924_78422328",
+        "filename": "webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "Maybe omit \"xApp\" it\u0027s enough to have getMetricsUrl",
+      "range": {
+        "startLine": 109,
+        "startChar": 7,
+        "endLine": 109,
+        "endChar": 11
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6a03bd_a677f054",
+        "filename": "webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "Why hardwired to AC ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 20,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba8b076_fb210978",
+        "filename": "webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T15:04:56Z",
+      "side": 1,
+      "message": "pls remove",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "a97e567046372c53dce649218c05eaf9ddaf4247",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
