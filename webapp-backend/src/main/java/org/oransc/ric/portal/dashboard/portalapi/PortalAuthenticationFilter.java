@@ -126,8 +126,7 @@ public class PortalAuthenticationFilter implements Filter {
 			PreAuthenticatedAuthenticationToken authToken = new PreAuthenticatedAuthenticationToken(userDetails,
 					"fakeCredentials", userDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authToken);
-		}
-		else {
+		} else {
 			logger.debug("doFilter: authorities {}", auth.getAuthorities());
 		}
 		chain.doFilter(req, res);

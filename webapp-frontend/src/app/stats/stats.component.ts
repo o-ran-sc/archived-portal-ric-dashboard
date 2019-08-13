@@ -22,6 +22,8 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { StatsService } from '../services/stats/stats.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
+import { DomSanitizer, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
     selector: 'rd-stats',
@@ -36,6 +38,7 @@ export class StatsComponent implements OnInit {
     checked = false;
     load;
     delay;
+    metricsUrlAc : SafeResourceUrl;
 
     public latencyChartColors: Array<any> = [
         { // blue
@@ -304,7 +307,7 @@ export class StatsComponent implements OnInit {
         return value;
     }
 
-    constructor(private service: StatsService, private httpClient: HttpClient) {
+    constructor(private service: StatsService, private httpClient: HttpClient, private sanitize: DomSanitizer) {
         this.sliderLoadMax = Number(this.service.loadMax) || 0;
         this.sliderDelayMax = Number(this.service.delayMax) || 0;
         // console.log('this.sliderLoadMax: ' + this.sliderLoadMax);
@@ -321,6 +324,9 @@ export class StatsComponent implements OnInit {
         });
         this.fetchMetrics().subscribe(metricsv => {
             // console.log('metricsv.load: ' + metricsv['load']);
+        });
+        this.service.getAppMetricsUrl('AC').subscribe((res:DashboardSuccessTransport) => {
+            this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
         });
     }
 
@@ -347,34 +353,25 @@ export class StatsComponent implements OnInit {
 
     fetchMetrics() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.metricsPath, this.service.httpOptions).pipe(map(res => {
-            // console.log(res);
-            // console.log(res['load']);
             return res;
         }));
     }
 
     fetchDelay() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.delayPath, this.service.httpOptions).pipe(map(res => {
-            // console.log(res);
-            // console.log(res['delay']);
             const delayv = res['delay'];
-            // console.log(delayv);
             this.delay = delayv;
             return this.delay;
         }));
     }
 
     saveDelay() {
-        // console.log(this.delay);
         this.service.putDelay(this.delay);
     }
 
     fetchLoad() {
         return this.httpClient.get<any[]>(this.service.hostURL + this.service.loadPath, this.service.httpOptions).pipe(map(res => {
-            // console.log(res);
-            // console.log(res['load']);
             const loadv = res['load'];
-            // console.log(loadv);
             this.load = loadv;
             return this.load;
         }));
@@ -382,7 +379,6 @@ export class StatsComponent implements OnInit {
     }
 
     saveLoad() {
-        // console.log(this.load);
         this.service.putLoad(this.load);
     }
 
