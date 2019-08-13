@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a898d7e4_1de3ead5",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-13T12:57:36Z",
+      "side": 1,
+      "message": "Nicolas would you please add additional App descriptors (schemas?) here? For example we have the Admission Control app\u0027s schema also.",
+      "revId": "7f6603015f6743188862de2713ce89db820524a1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
