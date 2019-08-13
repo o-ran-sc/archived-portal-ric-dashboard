@@ -66,7 +66,7 @@ E2 Manager URL prefix. Usually a service name like
 
 ``e2mgr.url.suffix``
 
-E2 Manager URL prefix. Default is "/v1".
+E2 Manager URL suffix. Default is "/v1".
 
 ``mock.config.delay``
 
@@ -102,6 +102,10 @@ Tomcat server port, default 8080
 ``userfile``
 
 Path to file that stores user details; default "users.json"
+
+``stats.acappmetrics.url``
+
+Url to the kibana source which visualizes AC App metrics. This needs to be replaced with actual value during deployment time.
 
 
 Key Properties

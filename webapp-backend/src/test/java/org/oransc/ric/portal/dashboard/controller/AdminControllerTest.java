@@ -21,11 +21,15 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.model.DashboardUser;
+import org.oransc.ric.portal.dashboard.model.ErrorTransport;
+import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +74,32 @@ public class AdminControllerTest extends AbstractControllerTest {
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				String.class);
 		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
+	}
+
+	@Test
+	public void getxAppMetricsUrlTest() {
+		Map<String, String> metricsQueryParms = new HashMap<String, String>();
+		metricsQueryParms.put("app", "AC");
+		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
+		logger.debug("Invoking {}", uri);
+		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				SuccessTransport.class);
+		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
+		
+		//	Assertions.assertTrue(response.getStatusCode().is4xxClientError());
+			
+	}
+
+	@Test
+	public void getxAppMetricsUrlTestFail() {
+		Map<String, String> metricsQueryParms = new HashMap<String, String>(); 
+		metricsQueryParms.put("app", "");
+		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
+		logger.debug("Invoking {}", uri);
+		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				ErrorTransport.class);
+		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
+			
 	}
 
 }
