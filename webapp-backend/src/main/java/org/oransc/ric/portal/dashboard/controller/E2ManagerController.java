@@ -54,10 +54,12 @@ import org.springframework.web.client.HttpStatusCodeException;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Proxies calls from the front end to the E2 Manager API. All methods answer
- * 502 on failure and wrap the remote details: <blockquote>HTTP server received
- * an invalid response from a server it consulted when acting as a proxy or
- * gateway.</blockquote>
+ * Proxies calls from the front end to the E2 Manager API.
+ * 
+ * If a method throws RestClientResponseException, it is handled by
+ * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
+ * which returns status 502. All other exceptions are handled by Spring which
+ * returns status 500.
  */
 @Configuration
 @RestController

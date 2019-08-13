@@ -32,6 +32,7 @@ import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
+import org.oransc.ric.portal.dashboard.controller.SimpleErrorController;
 import org.oransc.ric.portal.dashboard.portalapi.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthenticationFilter;
@@ -102,6 +103,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.VERSION_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.HEALTH_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.VERSION_METHOD, //
+			SimpleErrorController.ERROR_PATH, //
 			DashboardConstants.LOGIN_PAGE //
 	};
 

@@ -56,9 +56,12 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Proxies calls from the front end to the App Manager API. All methods answer
- * 502 on failure: <blockquote>HTTP server received an invalid response from a
- * server it consulted when acting as a proxy or gateway.</blockquote>
+ * Proxies calls from the front end to the App Manager API.
+ * 
+ * If a method throws RestClientResponseException, it is handled by
+ * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
+ * which returns status 502. All other exceptions are handled by Spring which
+ * returns status 500.
  */
 @Configuration
 @RestController
