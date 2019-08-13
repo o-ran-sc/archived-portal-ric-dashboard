@@ -32,6 +32,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Value;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -49,11 +51,18 @@ public class AdminController {
 	public static final String USER_METHOD = "user";
 	public static final String HEALTH_METHOD = "health";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
+	public static final String XAPPMETRICS_METHOD = "metrics";
 
 	private final DashboardUser[] users;
 
 	private static final String ACTIVE = "Active";
 	private static final String INACTIVE = "Inactive";
+
+	// Query parameters
+	public static final String XPP_TYPE = "xapptype";
+
+	@Value("${stats.acappmetrics.url}")
+	private String acAppMetricsUrl;
 
 	public AdminController() {
 		// Mock data
@@ -90,6 +99,17 @@ public class AdminController {
 	public DashboardUser[] getUsers() {
 		logger.debug("getUsers");
 		return users;
+	}
+
+	@ApiOperation(value = "Gets the xApp metrics kibana url.", response = SuccessTransport.class)
+	@GetMapping(XAPPMETRICS_METHOD)
+	public SuccessTransport getxAppMetricsUrl(@RequestParam String app) {
+		if (app.equals("AC")) {
+			logger.debug("get AC AppMetricsUrl: acAppMetricsUrl {}");
+			return new SuccessTransport(200, acAppMetricsUrl);
+		}
+		else
+			return new SuccessTransport(400, "Client must provide a valid xApp name");
 	}
 
 }

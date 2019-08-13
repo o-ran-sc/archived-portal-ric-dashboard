@@ -21,7 +21,9 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -71,5 +73,17 @@ public class AdminControllerTest extends AbstractControllerTest {
 				String.class);
 		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
 	}
+
+	@Test
+	public void getxAppMetricsUrlTest() {
+		Map<String, String> metricsQueryParms = new HashMap<String, String>(); 
+		metricsQueryParms.put("app", "AC");
+		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<SuccessTransport> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				SuccessTransport.class);
+		Assertions.assertFalse(response.getBody().getData().toString().isEmpty());
+	}
+
 
 }
