@@ -23,6 +23,7 @@ RIC Dashboard Release Notes
 Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
+* Display xAPP metrics data (AC xAPP) received from DMaaP in appropriate graph on dashboard
 
 Version 1.2.0, 8 Aug 2019
 -------------------------

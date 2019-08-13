@@ -50,6 +50,8 @@ export class StatsService {
             })
           };
 
+    private basePath = 'api/admin/';
+
     constructor(private httpClient: HttpClient) {
         // this.loadConfig();
         // this.getLoad();
@@ -101,6 +103,11 @@ export class StatsService {
 
     getRandomValue() {
         return Math.round((Math.random() * (20 - 0)) + 0);
+    }
+
+    // Gets xApp metrics kibana url
+    getxAppMetricsUrl()  {
+        return this.httpClient.get(this.basePath + 'xAppMetrics');
     }
 
     saveConfig(key: string, value: string) {

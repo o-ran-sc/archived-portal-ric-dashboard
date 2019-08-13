@@ -32,6 +32,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -49,12 +50,16 @@ public class AdminController {
 	public static final String USER_METHOD = "user";
 	public static final String HEALTH_METHOD = "health";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
+	public static final String XAPPMETRICS_METHOD = "xAppMetrics";
 
 	private final DashboardUser[] users;
 
 	private static final String ACTIVE = "Active";
 	private static final String INACTIVE = "Inactive";
 
+	@Value("${dashboard.stats.xAppmetrics.url}")
+	private String xAppMetricsUrl;
+	
 	public AdminController() {
 		// Mock data
 		users = new DashboardUser[] { //
@@ -90,6 +95,15 @@ public class AdminController {
 	public DashboardUser[] getUsers() {
 		logger.debug("getUsers");
 		return users;
+	}
+	
+	@ApiOperation(value = "Gets the xApp metrics kibana url.", response = SuccessTransport.class)
+	@GetMapping(XAPPMETRICS_METHOD)
+	public SuccessTransport retrievexAppMetricsUrl() {
+		// Complex Method
+		System.out.println("*****XApp Metrics*****"+xAppMetricsUrl);
+		return new SuccessTransport(200, xAppMetricsUrl);
+		
 	}
 
 }
