@@ -39,6 +39,7 @@ Version 1.2.0, 15 Aug 2019
 * Extend E2 mock configuration for demo purposes
 * Add pattern for matching AC/admin application name
 * Add custom (plain but not white-label) error page
+* Display AC xAPP metrics data on dashboard
 
 Version 1.0.5, 5 July 2019
 --------------------------
