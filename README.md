@@ -1,39 +1,14 @@
 # O-RAN-SC RIC Dashboard Web Application
 
-The O-RAN SC RIC Dashboard provides administrative and operator functions
-for a disaggregated radio access network (RAN) controller.
-The web app is built as a single-page app using an Angular 8 front end
-and a Spring-Boot 2 back end.
+The O-RAN SC RIC Dashboard provides administrative and operator
+functions for a radio access network (RAN) controller.
+This web app consists of an Angular (version 8) front end
+and a Java (version 11) Spring-Boot (version 2.1) back end.
 
-## Deployment configuration
+Please see the documentation in the docs/ folder.
 
-The application expects the following configuration files,
-usually mounted as files from Kubernetes configuration maps:
-
-    application.properties (in launch directory)
-    key.properties (on classpath)
-    portal.properties (on classpath)
-
-Sample files are in directory src/main/resources and src/test/resources.
-
-## Development guide
-
-This section gives a quickstart guide for developers.
-
-### Prerequisites
-
-1. Java development kit (JDK), version 11 or later
-2. Maven dependency-management tool, version 3.4 or later
-
-### Build and launch the web app
-
-Instructions for launching a backend Sprint-Boot server
-are available in the webapp-backend README file.
-After launching, open a browser on http://localhost:8080
-
-Instructions for launching a frontend Angular server (only for development)
-are available in the webapp-frontend README file.
-After launching, open a browser on http://localhost:4200
+The backend server publishes live API documentation at the
+URL `http://your-host-name-here:8080/swagger-ui.html`
 
 ## License
 
