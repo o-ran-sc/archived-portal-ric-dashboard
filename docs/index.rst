@@ -18,7 +18,6 @@
 
 .. RIC Dashboard documentation master
 
-=============
 RIC Dashboard
 =============
 
@@ -28,7 +27,8 @@ RIC Dashboard
    :caption: Contents:
 
    overview.rst
-   config.rst
+   config-deploy.rst
+   developer-guide.rst
    release-notes.rst
 
 * :ref:`search`
