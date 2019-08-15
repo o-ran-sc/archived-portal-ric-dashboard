@@ -34,7 +34,7 @@ Version 1.2.0, 15 Aug 2019
 * Move mock configuration classes into test area
 * Update A1 mediator client to spec version 0.10.0
 * Update App manager client to spec version 0.1.7
-* Update E2 manager client to spec version 20190813
+* Update E2 manager client to spec version 20190815
 * Add controller for page refresh of Angular routes
 * Extend E2 mock configuration for demo purposes
 
