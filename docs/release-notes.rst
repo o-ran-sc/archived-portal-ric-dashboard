@@ -23,7 +23,7 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 13 Aug 2019
+Version 1.2.0, 15 Aug 2019
 --------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -36,6 +36,7 @@ Version 1.2.0, 13 Aug 2019
 * Update App manager client to spec version 0.1.7
 * Update E2 manager client to spec version 20190813
 * Add controller for page refresh of Angular routes
+* Extend E2 mock configuration for demo purposes
 
 Version 1.0.5, 5 July 2019
 --------------------------

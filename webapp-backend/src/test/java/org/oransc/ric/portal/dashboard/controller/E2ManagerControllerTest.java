@@ -29,6 +29,7 @@ import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
+import org.oransc.ric.portal.dashboard.config.E2ManagerMockConfiguration;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -41,6 +42,22 @@ import org.springframework.http.ResponseEntity;
 public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	private ResponseEntity<Void> endcSetup() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.ENDC_SETUP_METHOD);
+		logger.info("Invoking {}", uri);
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
+		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
+		return testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity, Void.class);
+	}
+
+	private ResponseEntity<Void> reset() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RESET_METHOD, "ignored");
+		logger.info("Invoking {}", uri);
+		ResetRequest reset = new ResetRequest();
+		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
+		return testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
+	}
 
 	@Test
 	public void versionTest() {
@@ -60,58 +77,62 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void ranDetailsTest() {
+		endcSetup();
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RAN_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<List<RanDetailsTransport>> response = testRestTemplateStandardRole().exchange(uri,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<RanDetailsTransport>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
+		reset();
 	}
 
 	@Test
 	public void nodebListTest() {
+		endcSetup();
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_LIST_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<List<NodebIdentity>> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<NodebIdentity>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
+		reset();
 	}
 
 	@Test
 	public void nodebStatusTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD, "nodeb");
+		endcSetup();
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_SHUTDOWN_METHOD,
+				E2ManagerMockConfiguration.MOCK_RAN_NAME);
 		logger.info("Invoking {}", uri);
 		GetNodebResponse response = testRestTemplateStandardRole().getForObject(uri, GetNodebResponse.class);
 		Assertions.assertNotNull(response.getRanName());
+		reset();
 	}
 
 	@Test
 	public void endcSetupTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.ENDC_SETUP_METHOD);
-		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest();
-		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
-				Void.class);
+		ResponseEntity<Void> voidResponse = endcSetup();
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		reset();
 	}
 
 	@Test
 	public void x2SetupTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.X2_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest();
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
 				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		reset();
 	}
 
 	// Aka big--button test
 	@Test
-	public void nodebPutTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD);
+	public void nodebShutdownPutTest() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_SHUTDOWN_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, null, Void.class);
 		logger.debug("nodebPutTest: response {}", voidResponse);
@@ -120,12 +141,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void resetTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RESET_METHOD, "ranName");
-		logger.info("Invoking {}", uri);
-		ResetRequest reset = new ResetRequest();
-		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
-				Void.class);
+		ResponseEntity<Void> voidResponse = reset();
 		logger.debug("resetTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
