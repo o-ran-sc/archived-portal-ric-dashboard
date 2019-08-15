@@ -29,6 +29,7 @@ import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
+import org.oransc.ric.portal.dashboard.config.E2ManagerMockConfiguration;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -80,7 +81,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void nodebStatusTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD, "nodeb");
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_METHOD,
+				E2ManagerMockConfiguration.MOCK_RAN_NAME);
 		logger.info("Invoking {}", uri);
 		GetNodebResponse response = testRestTemplateStandardRole().getForObject(uri, GetNodebResponse.class);
 		Assertions.assertNotNull(response.getRanName());
@@ -90,7 +92,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void endcSetupTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.ENDC_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest();
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
 				Void.class);
@@ -101,7 +103,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void x2SetupTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.X2_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest();
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
 				Void.class);
@@ -116,6 +118,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, null, Void.class);
 		logger.debug("nodebPutTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		// Restore one row of data!
+		endcSetupTest();
 	}
 
 	@Test
@@ -128,6 +132,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 				Void.class);
 		logger.debug("resetTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+		// Restore one row of data!
+		endcSetupTest();
 	}
 
 }
