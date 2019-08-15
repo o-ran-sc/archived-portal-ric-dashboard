@@ -70,7 +70,7 @@ public class E2ManagerController {
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/e2mgr";
 	// Endpoints
 	public static final String HEALTH_METHOD = "health";
-	public static final String NODEB_METHOD = "/nodeb";
+	public static final String NODEB_SHUTDOWN_METHOD = "/nodebShutdownPut";
 	public static final String NODEB_LIST_METHOD = "/nodeb-ids";
 	public static final String RAN_METHOD = "/ran";
 	public static final String RESET_METHOD = "/reset";
@@ -140,7 +140,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
-	@GetMapping(NODEB_METHOD + "/{" + PP_RANNAME + "}")
+	@GetMapping(NODEB_SHUTDOWN_METHOD + "/{" + PP_RANNAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
 		logger.debug("getNb {}", ranName);
@@ -166,7 +166,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
-	@PutMapping(NODEB_METHOD)
+	@PutMapping(NODEB_SHUTDOWN_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void nodebShutdownPut(HttpServletResponse response) {
 		logger.debug("nodebShutdownPut");

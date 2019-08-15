@@ -77,7 +77,7 @@ export class E2ManagerService {
    * @returns Observable with body.
    */
   nodebPut(): Observable<any> {
-    return this.httpClient.put((this.basePath + 'nodeb'), { observe: 'body' });
+    return this.httpClient.put((this.basePath + 'nodebShutdownPut'), { observe: 'body' });
   }
 
 }
