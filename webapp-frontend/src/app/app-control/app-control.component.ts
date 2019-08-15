@@ -55,11 +55,12 @@ export class AppControlComponent implements OnInit {
 
   controlApp(app: XappControlRow): void {
     // TODO: identify apps without hardcoding to names
-    const acAppPattern =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
+    const acAppPattern0 =  /[Aa][Dd][Mm][Ii][Nn]/;
+    const acAppPattern1 =  /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
     const anrAppPattern0 = /ANR/;
     const anrAppPattern1 = /[Aa][Uu][Tt][Oo][Mm][Aa][Tt][Ii][Cc]/;
     const anrAppPattern2 = /[Nn][Ee][Ii][Gg][Hh][Bb][Oo][Rr]/;
-    if (acAppPattern.test(app.xapp)) {
+    if (acAppPattern0.test(app.xapp) || acAppPattern1.test(app.xapp)) {
       this.router.navigate(['/ac']);
     } else if (anrAppPattern0.test(app.xapp) || (anrAppPattern1.test(app.xapp) && anrAppPattern2.test(app.xapp))) {
       this.router.navigate(['/anr']);
