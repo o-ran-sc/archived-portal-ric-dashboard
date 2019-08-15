@@ -26,7 +26,9 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
@@ -58,16 +60,18 @@ public class E2ManagerMockConfiguration {
 	private int delayMs;
 
 	private final List<NodebIdentity> nodebIdList;
-	private final GetNodebResponse nodebResponse;
+	private final Map<String, GetNodebResponse> nodebResponseMap;
+	private final NodebIdentityGlobalNbId globalNbId;
 
 	public E2ManagerMockConfiguration() {
 		logger.info("Configuring mock E2 Manager");
-		NodebIdentityGlobalNbId globalNbId = new NodebIdentityGlobalNbId().nbId("mockNbId").plmnId("mockPlmId");
-		NodebIdentity nbid = new NodebIdentity().inventoryName("mockInvName").globalNbId(globalNbId);
+		globalNbId = new NodebIdentityGlobalNbId().nbId("mockNbId").plmnId("mockPlmId");
 		nodebIdList = new ArrayList<>();
-		nodebIdList.add(nbid);
-		nodebResponse = new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
-				.ip("127.0.0.1").nodeType("mockNodeType").port(123).ranName("mockRanName");
+		nodebResponseMap = new HashMap<>();
+		final String invName = "Mock RAN";
+		nodebIdList.add(new NodebIdentity().inventoryName(invName).globalNbId(globalNbId));
+		nodebResponseMap.put(invName, new GetNodebResponse().connectionStatus("mockConnectionStatus")
+				.failureType("mockFailureType").ip("127.0.0.1").nodeType("mockNodeType").port(123).ranName(invName));
 	}
 
 	private ApiClient apiClient() {
@@ -94,9 +98,10 @@ public class E2ManagerMockConfiguration {
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(inv -> {
 			if (delayMs > 0) {
-				logger.debug("nodebDelete sleeping {}", delayMs);
+				logger.debug("nodebShutdownPut sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
+			nodebIdList.clear();
 			return null;
 		}).when(mockApi).nodebShutdownPut();
 		doAnswer(inv -> {
@@ -111,7 +116,8 @@ public class E2ManagerMockConfiguration {
 				logger.debug("getNb sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return nodebResponse;
+			String invName = inv.<String>getArgument(0);
+			return nodebResponseMap.get(invName);
 		}).when(mockApi).getNb(any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
@@ -125,6 +131,11 @@ public class E2ManagerMockConfiguration {
 				logger.debug("endcSetup sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
+			SetupRequest sr = inv.<SetupRequest>getArgument(0);
+			nodebIdList.add(new NodebIdentity().inventoryName(sr.getRanName()).globalNbId(globalNbId));
+			nodebResponseMap.put(sr.getRanName(),
+					new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
+							.ip(sr.getRanIp()).nodeType("ENDC").port(sr.getRanPort()).ranName(sr.getRanName()));
 			return null;
 		}).when(mockApi).endcSetup(any(SetupRequest.class));
 		doAnswer(inv -> {
@@ -132,6 +143,11 @@ public class E2ManagerMockConfiguration {
 				logger.debug("x2Setup sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
+			SetupRequest sr = inv.<SetupRequest>getArgument(0);
+			nodebIdList.add(new NodebIdentity().inventoryName(sr.getRanName()).globalNbId(globalNbId));
+			nodebResponseMap.put(sr.getRanName(),
+					new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
+							.ip(sr.getRanIp()).nodeType("X2").port(sr.getRanPort()).ranName(sr.getRanName()));
 			return null;
 		}).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;
