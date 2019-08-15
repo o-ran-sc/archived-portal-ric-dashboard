@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "120a038e_383b5ee4",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/DashboardConstants.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T15:29:40Z",
+      "side": 1,
+      "message": "\"APP_NAME\" is always AC?  No, I don\u0027t think so.  This should be APP_NAME_AC.",
+      "range": {
+        "startLine": 35,
+        "startChar": 1,
+        "endLine": 35,
+        "endChar": 9
+      },
+      "revId": "436c7ecc038d34ccb5c44ded6dbc11b8e72582ef",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c25be59_06129a4d",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T15:29:40Z",
+      "side": 1,
+      "message": "there is no need to make a copy of a constant.  Please drop this line and use the constant directly.",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 7
+      },
+      "revId": "436c7ecc038d34ccb5c44ded6dbc11b8e72582ef",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
