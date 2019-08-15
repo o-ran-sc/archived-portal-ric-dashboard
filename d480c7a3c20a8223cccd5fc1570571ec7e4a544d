@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fff96a0d_f09c504b",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "Please define this as a constant somewhere, possibly in DashboardConstants, and use it.",
+      "range": {
+        "startLine": 108,
+        "startChar": 6,
+        "endLine": 108,
+        "endChar": 10
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09323b7f_6f34fac7",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "you might echo back the invalid app name that was received.",
+      "range": {
+        "startLine": 114,
+        "startChar": 3,
+        "endLine": 114,
+        "endChar": 11
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f75fa577_7030002e",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "Please define this as a constant somewhere, possibly in DashboardConstants, and use it.",
+      "range": {
+        "startLine": 82,
+        "startChar": 31,
+        "endLine": 82,
+        "endChar": 35
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36b46e6e_ac9d4423",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "Ideally you WILL assert something about the reponse -- so please fix, don\u0027t remove, don\u0027t comment out",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 5
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c47ea4b9_d65e9114",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "maybe a bogus value instead of missing?",
+      "range": {
+        "startLine": 96,
+        "startChar": 31,
+        "endLine": 96,
+        "endChar": 35
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "913ffb55_aaa102ec",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "Please clean dangling whitespace like this",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 3
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d5f9c24_3f45649f",
+        "filename": "webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-15T13:21:37Z",
+      "side": 1,
+      "message": "Can this be defined in a front-end constants file please?",
+      "range": {
+        "startLine": 328,
+        "startChar": 38,
+        "endLine": 328,
+        "endChar": 42
+      },
+      "revId": "d480c7a3c20a8223cccd5fc1570571ec7e4a544d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
