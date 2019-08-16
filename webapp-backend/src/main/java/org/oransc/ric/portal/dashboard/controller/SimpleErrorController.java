@@ -21,14 +21,20 @@
 package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -56,6 +62,13 @@ public class SimpleErrorController implements ErrorController {
 
 	public static final String ERROR_PATH = "/error";
 
+	private final ErrorAttributes errorAttributes;
+
+	@Autowired
+	public SimpleErrorController(ErrorAttributes errorAttributes) {
+		this.errorAttributes = errorAttributes;
+	}
+
 	@Override
 	public String getErrorPath() {
 		logger.warn("getErrorPath");
@@ -63,8 +76,15 @@ public class SimpleErrorController implements ErrorController {
 	}
 
 	@GetMapping
-	public String handleError() {
-		logger.warn("handleError");
+	public String handleError(HttpServletRequest request) {
+		ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+		Throwable t = errorAttributes.getError(servletWebRequest);
+		if (t != null)
+			logger.warn("handleError", t);
+		Map<String, Object> attributes = errorAttributes.getErrorAttributes(servletWebRequest, true);
+		attributes.forEach((attribute, value) -> {
+			logger.warn("handleError: {} -> {}", attribute, value);
+		});
 		// Return the name of the page INCLUDING suffix, which I guess is a "view" name.
 		// Just "error" is not enough, but don't seem to need a ModelAndView object.
 		return "error.html";

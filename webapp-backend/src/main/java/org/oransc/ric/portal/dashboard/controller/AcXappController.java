@@ -59,10 +59,10 @@ public class AcXappController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Publish paths in constants so tests are easy to write
-	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/admctrl";
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/admctl";
 	// Endpoints
-	public static final String POLICY_METHOD = "policy";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
+	public static final String POLICY_METHOD = "policy";
 
 	// A "control" is an element in the XApp descriptor
 	private static final String AC_CONTROL_NAME = "admission_control_policy";
@@ -86,7 +86,8 @@ public class AcXappController {
 	}
 
 	/*
-	 * GET policy is not supported at present by A1 Mediator! Always returns 501.
+	 * This controller is deliberately kept ignorant of the data expected by AC. The
+	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
 	@GetMapping(POLICY_METHOD)
