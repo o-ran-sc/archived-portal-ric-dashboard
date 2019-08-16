@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2aab84a8_ff927eba",
+        "filename": "webapp-frontend/package-lock.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "did you add this manually?  Extra whitespace (tab character) snuck in here",
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "370dc03f_ac480363",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "Please reword to \"Activate\"",
+      "range": {
+        "startLine": 409,
+        "startChar": 18,
+        "endLine": 409,
+        "endChar": 24
+      },
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d6ec0b7_a4128ecf",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "This title is a little confusing -- Retry to what?",
+      "range": {
+        "startLine": 448,
+        "startChar": 22,
+        "endLine": 448,
+        "endChar": 30
+      },
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1282ca5c_47e46186",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "Activate",
+      "range": {
+        "startLine": 837,
+        "startChar": 18,
+        "endLine": 837,
+        "endChar": 24
+      },
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76fa0ea5_6624fa34",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "Perhaps make this RAN ?",
+      "range": {
+        "startLine": 845,
+        "startChar": 18,
+        "endLine": 845,
+        "endChar": 21
+      },
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78bea0d8_2afb9dd0",
+        "filename": "webapp-frontend/src/assets/mockdata/config.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-16T15:41:16Z",
+      "side": 1,
+      "message": "Perhaps make this RIC ?",
+      "range": {
+        "startLine": 849,
+        "startChar": 18,
+        "endLine": 849,
+        "endChar": 21
+      },
+      "revId": "00f56960fe0bf86ec6f7f98caf180f8e0c35c0c6",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
