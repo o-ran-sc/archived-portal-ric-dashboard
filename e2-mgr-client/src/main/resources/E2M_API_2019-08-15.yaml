@@ -154,7 +154,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /nodeb/{ranName}/reset:
+  /nodeb-reset/{ranName}:
     put:
       tags:
         - nodeb
@@ -240,6 +240,7 @@ protocol:semantic-error,
 protocol:unspecified,
 protocol:abstract-syntax-error-falsely-constructed-message,
 transport:transport-resource-unavailable,
+transport:unspecified,
 radioNetwork:handover-desirable-for-radio-reasons,
 radioNetwork:time-critical-handover,
 radioNetwork:resource-optimisation-handover,
@@ -913,7 +914,7 @@ radioNetwork:pDCP-Overload]
       properties:
         errorCode:
           type: string
-          description: '401 - corrupted json, 402 - validation error, 403 - RAN in wrong state, 500 - RNIB error, 501 - internal problem, 502 - RMR error'
+          description: '401 - corrupted json, 402 - validation error, 403 - RAN in wrong state, 404 - resource not found, 500 - RNIB error, 501 - internal problem, 502 - RMR error'
         errorMessage:
           type: string
           description: Human readable text
