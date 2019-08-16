@@ -59,9 +59,9 @@ public class AcXappController {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Publish paths in constants so tests are easy to write
-	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/ac";
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/admctrl";
 	// Endpoints
-	public static final String ADMCTRL_METHOD = "/admctrl";
+	public static final String POLICY_METHOD = "policy";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 
 	// A "control" is an element in the XApp descriptor
@@ -89,7 +89,7 @@ public class AcXappController {
 	 * GET policy is not supported at present by A1 Mediator! Always returns 501.
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
-	@GetMapping(ADMCTRL_METHOD)
+	@GetMapping(POLICY_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public Object getAdmissionControlPolicy(HttpServletResponse response) {
 		logger.debug("getAdmissionControlPolicy");
@@ -102,11 +102,11 @@ public class AcXappController {
 	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
-	@PutMapping(ADMCTRL_METHOD)
+	@PutMapping(POLICY_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void setAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
+	public void putAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
 			HttpServletResponse response) {
-		logger.debug("setAdmissionControlPolicy {}", acPolicy);
+		logger.debug("putAdmissionControlPolicy {}", acPolicy);
 		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
 		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}

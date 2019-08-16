@@ -33,7 +33,8 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 })
 export class ACXappService {
 
-  private basePath = 'api/xapp/ac';
+  private basePath = 'api/xapp/admctl';
+  private policyPath = 'policy';
 
   private buildPath(...args: any[]) {
     let result = this.basePath;
@@ -60,12 +61,21 @@ export class ACXappService {
   }
 
   /**
+   * Gets admission control parameters.
+   * @returns Observable that should yield an ACAdmissionIntervalControl
+   */
+  getPolicy(): Observable<ACAdmissionIntervalControl> {
+    const url = this.buildPath(this.policyPath);
+    return this.httpClient.get<ACAdmissionIntervalControl>(url);
+  }
+
+  /**
    * Puts admission control parameters.
    * @param policy an instance of ACAdmissionIntervalControl
    * @returns Observable that should yield a response code, no data
    */
   putPolicy(policy: ACAdmissionIntervalControl): Observable<any> {
-    const url = this.buildPath('catime');
+    const url = this.buildPath(this.policyPath);
     return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
   }
 

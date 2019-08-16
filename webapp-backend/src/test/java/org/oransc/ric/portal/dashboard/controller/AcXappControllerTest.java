@@ -50,7 +50,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 	@Test
 	public void getTest() throws IOException {
 		// Always returns 501; surprised that no exception is thrown.
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
+		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.POLICY_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				String.class);
@@ -61,7 +61,7 @@ public class AcXappControllerTest extends AbstractControllerTest {
 	public void putTest() throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode body = mapper.readTree("{ \"policy\" : true }");
-		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.ADMCTRL_METHOD);
+		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.POLICY_METHOD);
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
