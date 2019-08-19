@@ -41,6 +41,7 @@ Version 1.2.0, 19 Aug 2019
 * Add custom (plain but not white-label) error page
 * Synch A1 method paths in front-end and back-end
 * Add xapp dynamic configuration feature
+* Disable x-frame-options response header
 
 Version 1.0.5, 5 July 2019
 --------------------------
