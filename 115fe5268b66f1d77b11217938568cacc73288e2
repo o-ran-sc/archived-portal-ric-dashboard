@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cfb18ae_0a14bdf9",
+        "filename": "docs/config-deploy.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "But in the application.properties file this is \"metrics.url.ac\" ??",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 24
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ea040e0_fb77c786",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Perhaps mention URL for Kibana?",
+      "range": {
+        "startLine": 43,
+        "startChar": 34,
+        "endLine": 43,
+        "endChar": 43
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69c2c0c2_427a7769",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/DashboardConstants.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "please don\u0027t add unnecessary WS",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad08a87e_ff028f49",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Please watch for extra whitespace",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b853d93_129007fe",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Please update to match the current method name",
+      "range": {
+        "startLine": 109,
+        "startChar": 17,
+        "endLine": 109,
+        "endChar": 34
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e044b2c0_d92da7c9",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Also a bit of whitespace snuck in here",
+      "range": {
+        "startLine": 115,
+        "startChar": 3,
+        "endLine": 115,
+        "endChar": 4
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37aa7fcb_5a81beb4",
+        "filename": "webapp-backend/src/main/resources/application.properties",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "perhaps include \"-ac-\" in this string?  I know it\u0027s silly",
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b58730b2_c88d8dc0",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "please remove old code, don\u0027t comment out.",
+      "range": {
+        "startLine": 44,
+        "startChar": 1,
+        "endLine": 44,
+        "endChar": 2
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2676c3f6_9665883c",
+        "filename": "webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Please align this with the previous mat-tab, looks like a different whitespace, tab vs space",
+      "range": {
+        "startLine": 87,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 12
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18bcf66c_978a5596",
+        "filename": "webapp-frontend/src/app/stats/stats.component.scss",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "Is this extra blank line necessary?",
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ae64c4_94484e32",
+        "filename": "webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-19T18:33:02Z",
+      "side": 1,
+      "message": "perhaps consider naming this metricsUrlAc to be consistent with the property?  I think you should avoid inventing fifteen versions of the same constant.",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "115fe5268b66f1d77b11217938568cacc73288e2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
