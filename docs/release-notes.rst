@@ -23,7 +23,7 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 19 Aug 2019
+Version 1.2.0, 20 Aug 2019
 --------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -42,6 +42,7 @@ Version 1.2.0, 19 Aug 2019
 * Synch A1 method paths in front-end and back-end
 * Add xapp dynamic configuration feature
 * Disable x-frame-options response header
+* fix button highlight
 
 Version 1.0.5, 5 July 2019
 --------------------------
