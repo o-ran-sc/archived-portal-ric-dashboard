@@ -43,6 +43,7 @@ Version 1.2.0, 20 Aug 2019
 * Add xapp dynamic configuration feature
 * Disable x-frame-options response header
 * Repair app manager undeploy-app method
+* Fix button highlight
 
 Version 1.0.5, 5 July 2019
 --------------------------
