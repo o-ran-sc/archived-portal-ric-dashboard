@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9a4b4cc_30899270",
+        "filename": "webapp-frontend/src/styles.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-08-20T17:55:26Z",
+      "side": 1,
+      "message": "This is a global style, it affects every single button in the app, are you 100% certain you really want !important at this high of a level? What was the ask here, and what is this solution?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "0989a45c03a4756b838baf30d8d732f0e4dce4fe",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
