@@ -16,3 +16,8 @@ html, body {
   text-align: center;
   font-size: 20px;
 }
+
+button:focus, button:active:focus, button.active:focus {
+  outline: none;
+  outline-style: none;
+}
