@@ -200,7 +200,7 @@ public class AppManagerController {
 	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
 		logger.debug("undeployXapp {}", xAppName);
 		xappApi.undeployXapp(xAppName);
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+		response.setStatus(xappApi.getApiClient().getStatusCode().value());
 	}
 
 }
