@@ -45,6 +45,7 @@ Version 1.2.0, 21 Aug 2019
 * Repair app manager undeploy-app method
 * Display AC xAPP metrics data via Kibana source (metrics.url.ac) on dashboard
 * Pass AC policy parameter without parsing as JSON
+* Use snake_case (not camelCase) names in AC policy front end
 
 Version 1.0.5, 5 July 2019
 --------------------------

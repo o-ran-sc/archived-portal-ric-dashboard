@@ -25,25 +25,25 @@
       <mat-checkbox formControlName="enforce">Enforce</mat-checkbox>
     </div>
     <mat-form-field class="input-display-block">
-      <input matInput type="text" placeholder="Window length" formControlName="windowLength">
+      <input matInput type="text" placeholder="Window length" formControlName="window_length">
       <mat-hint align="end">Sliding window length in minutes for measurement, range 1..60.</mat-hint>
-      <mat-error *ngIf="validateControl('windowLength') && hasError('windowLength', 'required')">Number is required
+      <mat-error *ngIf="validateControl('window_length') && hasError('window_length', 'required')">Number is required
       </mat-error>
-      <mat-error *ngIf="hasError('windowLength', 'pattern')">Valid number is required</mat-error>
+      <mat-error *ngIf="hasError('window_length', 'pattern')">Valid number is required</mat-error>
     </mat-form-field>
     <mat-form-field class="input-display-block">
-      <input matInput type="text" placeholder="Blocking rate" formControlName="blockingRate">
+      <input matInput type="text" placeholder="Blocking rate" formControlName="blocking_rate">
       <mat-hint align="end">Connections to block if above trigger threshold, range 1..100.</mat-hint>
-      <mat-error *ngIf="validateControl('blockingRate') && hasError('blockingRate', 'required')">Number is required
+      <mat-error *ngIf="validateControl('blocking_rate') && hasError('blocking_rate', 'required')">Number is required
       </mat-error>
-      <mat-error *ngIf="hasError('blockingRate', 'pattern')">Valid number is required</mat-error>
+      <mat-error *ngIf="hasError('blocking_rate', 'pattern')">Valid number is required</mat-error>
     </mat-form-field>
     <mat-form-field class="input-display-block">
-      <input matInput type="text" placeholder="Trigger threshold" formControlName="triggerThreshold">
+      <input matInput type="text" placeholder="Trigger threshold" formControlName="trigger_threshold">
       <mat-hint align="end">Number of events in window to trigger blocking, minimum 1.</mat-hint>
-      <mat-error *ngIf="validateControl('triggerThreshold') && hasError('triggerThreshold', 'required')">Number is
+      <mat-error *ngIf="validateControl('trigger_threshold') && hasError('trigger_threshold', 'required')">Number is
         required</mat-error>
-      <mat-error *ngIf="hasError('triggerThreshold', 'pattern')">Valid number is required</mat-error>
+      <mat-error *ngIf="hasError('trigger_threshold', 'pattern')">Valid number is required</mat-error>
     </mat-form-field>
     <div class="input-display-block">
       <button class="mat-raised-button mat-primary update-button" [disabled]="!acForm.valid">Update</button>

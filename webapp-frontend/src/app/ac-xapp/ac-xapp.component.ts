@@ -48,10 +48,11 @@ export class AcXappComponent implements OnInit {
     const triggerPattern = /^([0-9]+)$/;
     // No way to fetch current settings via A1 at present
     this.acForm = new FormGroup({
+      // Names must match the ACAdmissionIntervalControl interface
       enforce: new FormControl(true,  [Validators.required]),
-      windowLength: new FormControl('', [Validators.required, Validators.pattern(windowLengthPattern)]),
-      blockingRate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
-      triggerThreshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
+      window_length: new FormControl('', [Validators.required, Validators.pattern(windowLengthPattern)]),
+      blocking_rate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
+      trigger_threshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
     });
     this.acXappService.getVersion().subscribe((res: string) => this.acVersion = res);
   }
