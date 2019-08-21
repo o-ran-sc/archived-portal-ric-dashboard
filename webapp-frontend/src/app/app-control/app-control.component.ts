@@ -75,14 +75,9 @@ export class AppControlComponent implements OnInit {
         if (res) {
           this.appMgrSvc.undeployXapp(app.xapp).subscribe(
             ( httpResponse: HttpResponse<Object>) => {
+              // Answers 204/No content on success
+              this.notificationService.success('App undeployed successfully!');
               this.dataSource.loadTable();
-              switch (httpResponse.status) {
-                case 200:
-                  this.notificationService.success('App undeployed successfully!');
-                  break;
-                default:
-                  this.notificationService.warn('App undeploy failed.');
-              }
             },
             ( (her: HttpErrorResponse) => {
               // the error field should have an ErrorTransport object
