@@ -39,8 +39,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -100,12 +98,14 @@ public class AcXappController {
 
 	/*
 	 * This controller is deliberately kept ignorant of the data expected by AC. The
-	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
+	 * fields are defined in the ACAdmissionIntervalControl Typescript interface. AC
+	 * uses snake_case keys but Jackson automatically converts to CamelCase on
+	 * parse. To avoid this conversion, specify the request parameter as String.
 	 */
 	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
 	@PutMapping(POLICY_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void putAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody JsonNode acPolicy, //
+	public void putAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody String acPolicy, //
 			HttpServletResponse response) {
 		logger.debug("putAdmissionControlPolicy {}", acPolicy);
 		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);

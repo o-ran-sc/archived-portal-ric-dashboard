@@ -44,6 +44,7 @@ Version 1.2.0, 21 Aug 2019
 * Disable x-frame-options response header
 * Repair app manager undeploy-app back/front methods
 * Display AC xAPP metrics data via Kibana source (metrics.url.ac) on dashboard
+* Pass AC policy parameter without parsing as JSON
 
 Version 1.0.5, 5 July 2019
 --------------------------
