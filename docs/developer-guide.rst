@@ -82,7 +82,8 @@ Production user authentication
 
 The server uses the ONAP Portal's "EPSDK-FW" library to support a
 single-sign-on (SSO) feature, which requires users to authenticate
-at the ONAP Portal UI.
+at the ONAP Portal UI. The RIC Dashboard can be on-boarded as an 
+application on the ONAP Portal using its application on-boarding UI.
 
 The server authenticates requests using cookies that are set
 by the ONAP Portal::
