@@ -26,15 +26,16 @@ import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../..
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
 /**
- * Services for calling the Dashboard's AC endpoints.
+ * Services for calling the Dashboard's A1 endpoints to get/put AC policies.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class ACXappService {
 
-  private basePath = 'api/xapp/admctl';
-  private policyPath = 'policy';
+  private basePath = 'api/a1-p';
+  private policyPath = 'policies';
+  private acPolicyName = 'admission_control_policy';
 
   private buildPath(...args: any[]) {
     let result = this.basePath;
@@ -61,21 +62,21 @@ export class ACXappService {
   }
 
   /**
-   * Gets admission control parameters.
+   * Gets admission control policy.
    * @returns Observable that should yield an ACAdmissionIntervalControl
    */
   getPolicy(): Observable<ACAdmissionIntervalControl> {
-    const url = this.buildPath(this.policyPath);
+    const url = this.buildPath(this.policyPath, this.acPolicyName);
     return this.httpClient.get<ACAdmissionIntervalControl>(url);
   }
 
   /**
-   * Puts admission control parameters.
+   * Puts admission control policy.
    * @param policy an instance of ACAdmissionIntervalControl
    * @returns Observable that should yield a response code, no data
    */
   putPolicy(policy: ACAdmissionIntervalControl): Observable<any> {
-    const url = this.buildPath(this.policyPath);
+    const url = this.buildPath(this.policyPath, this.acPolicyName);
     return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
   }
 

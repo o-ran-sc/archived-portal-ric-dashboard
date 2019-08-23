@@ -24,6 +24,7 @@ import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../in
 import { ACXappService } from '../services/ac-xapp/ac-xapp.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'rd-ac-xapp',
@@ -34,9 +35,6 @@ export class AcXappComponent implements OnInit {
 
   private acForm: FormGroup;
 
-  // this is probably the A1 version string
-  acVersion: string;
-
   constructor(
     private acXappService: ACXappService,
     private errorDialogService: ErrorDialogService,
@@ -46,22 +44,39 @@ export class AcXappComponent implements OnInit {
     const windowLengthPattern = /^([0-9]{1}|[1-5][0-9]{1}|60)$/;
     const blockingRatePattern = /^([0-9]{1,2}|100)$/;
     const triggerPattern = /^([0-9]+)$/;
-    // No way to fetch current settings via A1 at present
     this.acForm = new FormGroup({
       // Names must match the ACAdmissionIntervalControl interface
-      enforce: new FormControl(true,  [Validators.required]),
+      enforce: new FormControl(true, [Validators.required]),
       window_length: new FormControl('', [Validators.required, Validators.pattern(windowLengthPattern)]),
       blocking_rate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
       trigger_threshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
     });
-    this.acXappService.getVersion().subscribe((res: string) => this.acVersion = res);
+    // TODO: show pending action indicator
+    this.acXappService.getPolicy().subscribe((res: ACAdmissionIntervalControl) => {
+      this.acForm.controls['enforce'].setValue(res.enforce);
+      this.acForm.controls['window_length'].setValue(res.window_length);
+      this.acForm.controls['blocking_rate'].setValue(res.blocking_rate);
+      this.acForm.controls['trigger_threshold'].setValue(res.trigger_threshold);
+      // TODO: clear pending action indicator
+    },
+      (error: HttpErrorResponse) => {
+        // TODO: clear pending action indicator
+        this.errorDialogService.displayError(error.message);
+      });
   }
 
   updateAc = (acFormValue: ACAdmissionIntervalControl) => {
     if (this.acForm.valid) {
-      this.acXappService.putPolicy(acFormValue).subscribe(
+      // convert strings to numbers using the plus operator
+      const acFormValueConverted = {
+        enforce: acFormValue.enforce,
+        window_length: +acFormValue.window_length,
+        blocking_rate: +acFormValue.blocking_rate,
+        trigger_threshold: +acFormValue.trigger_threshold
+      };
+      this.acXappService.putPolicy(acFormValueConverted).subscribe(
         response => {
-          if (response.status === 200 ) {
+          if (response.status === 200) {
             this.notificationService.success('AC update policy succeeded!');
           }
         },

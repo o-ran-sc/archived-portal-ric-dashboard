@@ -25,6 +25,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
@@ -36,6 +38,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 /**
  * Creates a mock implementation of the A1 mediator client API.
  */
@@ -45,12 +50,28 @@ public class A1MediatorMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// A "control" is an element in the XApp descriptor
+	public static final String AC_CONTROL_NAME = "admission_control_policy";
+
 	// Simulate remote method delay for UI testing
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
+	private final Map<String, String> appPolicyMap;
+
 	public A1MediatorMockConfiguration() {
 		logger.info("Configuring mock A1 Mediator");
+		appPolicyMap = new HashMap<>();
+		// Define a mock AC policy
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode node = mapper.createObjectNode();
+		// These fields are defined in the ACAdmissionIntervalControl 
+		// Typescript interface, but are otherwise unknown to this backend.
+		node.put("enforce", Boolean.TRUE);
+		node.put("window_length", 0);
+		node.put("blocking_rate", 0);
+		node.put("trigger_threshold", 0);
+		appPolicyMap.put(AC_CONTROL_NAME, node.toString());
 	}
 
 	private ApiClient apiClient() {
@@ -70,13 +91,17 @@ public class A1MediatorMockConfiguration {
 				logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return null;
+			String appName = inv.<String>getArgument(0);
+			return appPolicyMap.get(appName);
 		}).when(mockApi).a1ControllerGetHandler(any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("a1ControllerPutHandler sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
+			String appName = inv.<String>getArgument(0);
+			String policy = inv.<String>getArgument(1);
+			appPolicyMap.put(appName, policy);
 			return null;
 		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
 		return mockApi;

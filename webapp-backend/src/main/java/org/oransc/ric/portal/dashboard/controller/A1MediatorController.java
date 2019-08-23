@@ -34,6 +34,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +44,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * Proxies calls from the front end to the AC xApp via the A1 Mediator API.
+ * Proxies calls from the front end to the A1 Mediator API to get and put
+ * policies. The first application managed via this path is Admission Control.
  * 
  * If a method throws RestClientResponseException, it is handled by
  * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
@@ -51,25 +53,23 @@ import io.swagger.annotations.ApiParam;
  * returns status 500.
  */
 @RestController
-@RequestMapping(value = AcXappController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AcXappController {
+@RequestMapping(value = A1MediatorController.CONTROLLER_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+public class A1MediatorController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Publish paths in constants so tests are easy to write
-	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/xapp/admctl";
+	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/a1-p";
 	// Endpoints
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
-	public static final String POLICY_METHOD = "policy";
-
-	// A "control" is an element in the XApp descriptor
-	private static final String AC_CONTROL_NAME = "admission_control_policy";
+	// Path parameters
+	public static final String PP_POLICIES = "policies";
 
 	// Populated by the autowired constructor
 	private final A1MediatorApi a1MediatorApi;
 
 	@Autowired
-	public AcXappController(final A1MediatorApi a1MediatorApi) {
+	public A1MediatorController(final A1MediatorApi a1MediatorApi) {
 		Assert.notNull(a1MediatorApi, "API must not be null");
 		this.a1MediatorApi = a1MediatorApi;
 		if (logger.isDebugEnabled())
@@ -84,31 +84,27 @@ public class AcXappController {
 	}
 
 	/*
-	 * This controller is deliberately kept ignorant of the data expected by AC. The
-	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
+	 * This method is deliberately kept ignorant of the data passing thru.
 	 */
-	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
-	@GetMapping(POLICY_METHOD)
+	@ApiOperation(value = "Gets the specified policy from the A1 Mediator")
+	@GetMapping(PP_POLICIES + "/{" + PP_POLICIES + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Object getAdmissionControlPolicy(HttpServletResponse response) {
-		logger.debug("getAdmissionControlPolicy");
-		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
-		return null;
+	public Object getPolicy(@PathVariable(PP_POLICIES) String policyName) {
+		logger.debug("getPolicy {}", policyName);
+		return a1MediatorApi.a1ControllerGetHandler(policyName);
 	}
 
 	/*
-	 * This controller is deliberately kept ignorant of the data expected by AC. The
-	 * fields are defined in the ACAdmissionIntervalControl Typescript interface. AC
-	 * uses snake_case keys but Jackson automatically converts to CamelCase on
-	 * parse. To avoid this conversion, specify the request parameter as String.
+	 * This method is deliberately kept ignorant of the data passing thru.
 	 */
-	@ApiOperation(value = "Sets the admission control policy for AC xApp via the A1 Mediator")
-	@PutMapping(POLICY_METHOD)
+	@ApiOperation(value = "Puts the specified policy to the A1 Mediator")
+	@PutMapping(PP_POLICIES + "/{" + PP_POLICIES + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void putAdmissionControlPolicy(@ApiParam(value = "Admission control policy") @RequestBody String acPolicy, //
+	public void putPolicy(@PathVariable(PP_POLICIES) String policyName,
+			@ApiParam(value = "Policy body") @RequestBody String policy, //
 			HttpServletResponse response) {
-		logger.debug("putAdmissionControlPolicy {}", acPolicy);
-		a1MediatorApi.a1ControllerPutHandler(AC_CONTROL_NAME, acPolicy);
+		logger.debug("putPolicy name {} value {}", policyName, policy);
+		a1MediatorApi.a1ControllerPutHandler(policyName, policy);
 		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
 	}
 
