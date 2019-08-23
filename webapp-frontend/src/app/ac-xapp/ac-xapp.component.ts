@@ -34,9 +34,6 @@ export class AcXappComponent implements OnInit {
 
   private acForm: FormGroup;
 
-  // this is probably the A1 version string
-  acVersion: string;
-
   constructor(
     private acXappService: ACXappService,
     private errorDialogService: ErrorDialogService,
@@ -46,7 +43,6 @@ export class AcXappComponent implements OnInit {
     const windowLengthPattern = /^([0-9]{1}|[1-5][0-9]{1}|60)$/;
     const blockingRatePattern = /^([0-9]{1,2}|100)$/;
     const triggerPattern = /^([0-9]+)$/;
-    // No way to fetch current settings via A1 at present
     this.acForm = new FormGroup({
       // Names must match the ACAdmissionIntervalControl interface
       enforce: new FormControl(true,  [Validators.required]),
@@ -54,7 +50,12 @@ export class AcXappComponent implements OnInit {
       blocking_rate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
       trigger_threshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
     });
-    this.acXappService.getVersion().subscribe((res: string) => this.acVersion = res);
+    this.acXappService.getPolicy().subscribe((res: ACAdmissionIntervalControl) => {
+      this.acForm.controls['enforce'].setValue(res.enforce);
+      this.acForm.controls['window_length'].setValue(res.window_length);
+      this.acForm.controls['blocking_rate'].setValue(res.blocking_rate);
+      this.acForm.controls['trigger_threshold'].setValue(res.trigger_threshold);
+    });
   }
 
   updateAc = (acFormValue: ACAdmissionIntervalControl) => {

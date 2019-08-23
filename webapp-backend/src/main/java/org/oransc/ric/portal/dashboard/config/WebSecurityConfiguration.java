@@ -27,7 +27,7 @@ import org.onap.portalsdk.core.onboarding.crossapi.PortalRestAPIProxy;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.LoginServlet;
-import org.oransc.ric.portal.dashboard.controller.AcXappController;
+import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
@@ -93,7 +93,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/swagger-ui.html", //
 			"/webjars/**", //
 			PortalApiConstants.API_PREFIX + "/**", //
-			AcXappController.CONTROLLER_PATH + "/" + AcXappController.VERSION_METHOD, //
+			A1MediatorController.CONTROLLER_PATH + "/" + A1MediatorController.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //
 			AnrXappController.CONTROLLER_PATH + "/" + AnrXappController.HEALTH_ALIVE_METHOD, //
