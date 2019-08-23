@@ -70,7 +70,7 @@ public class A1MediatorMockConfiguration {
 				logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return null;
+			return "{}";
 		}).when(mockApi).a1ControllerGetHandler(any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {

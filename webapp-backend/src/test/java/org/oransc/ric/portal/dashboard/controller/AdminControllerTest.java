@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.DashboardUser;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
-import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,21 +82,22 @@ public class AdminControllerTest extends AbstractControllerTest {
 		metricsQueryParms.put("app", DashboardConstants.APP_NAME_AC);
 		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
 		logger.debug("Invoking {}", uri);
-		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
-				SuccessTransport.class);
+		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
+				null, SuccessTransport.class);
 		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
 		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test
 	public void getxAppMetricsUrlTestFail() {
-		Map<String, String> metricsQueryParms = new HashMap<String, String>(); 
-		//Providing a bogus value for application name in query parameter to test failure 
+		Map<String, String> metricsQueryParms = new HashMap<String, String>();
+		// Providing a bogus value for application name in query parameter to test
+		// failure
 		metricsQueryParms.put("app", "ABCD");
 		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
 		logger.debug("Invoking {}", uri);
-		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
-				ErrorTransport.class);
+		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
+				null, ErrorTransport.class);
 		logger.debug("{}", errorResponse.getBody().getError().toString());
 		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
 	}

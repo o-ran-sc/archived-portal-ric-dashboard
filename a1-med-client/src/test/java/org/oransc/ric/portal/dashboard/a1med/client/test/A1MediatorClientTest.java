@@ -28,7 +28,7 @@ import org.springframework.web.client.RestClientException;
 /**
  * Demonstrates use of the generated A1 mediator client.
  * 
- * The test fails because no server is available.
+ * The tests fail because no server is available.
  */
 public class A1MediatorClientTest {
 
@@ -38,8 +38,17 @@ public class A1MediatorClientTest {
 		apiClient.setBasePath("http://localhost:30099/");
 		A1MediatorApi a1Api = new A1MediatorApi(apiClient);
 		try {
-			a1Api.a1ControllerGetHandler("policy");
-			System.out.println("getPolicy answered: " + apiClient.getStatusCode().toString());
+			Object o = a1Api.a1ControllerGetHandler("policy");
+			System.out.println(
+					"getPolicy answered code {} " + apiClient.getStatusCode().toString() + ", content " + o.toString());
+			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
+		} catch (RestClientException e) {
+			System.err.println("getPolicy failed: " + e.toString());
+		}
+		try {
+			String policy = "{}";
+			a1Api.a1ControllerPutHandler("policy", policy);
+			System.out.println("putPolicy answered: " + apiClient.getStatusCode().toString());
 			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getPolicy failed: " + e.toString());
