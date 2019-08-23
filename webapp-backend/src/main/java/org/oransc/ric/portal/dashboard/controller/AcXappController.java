@@ -84,15 +84,14 @@ public class AcXappController {
 	}
 
 	/*
-	 * This controller is deliberately kept ignorant of the data expected by AC. The
-	 * fields are defined in the ACAdmissionIntervalControl Typescript interface.
+	 * This controller is deliberately kept ignorant of the name expected by AC.
 	 */
 	@ApiOperation(value = "Gets the admission control policy for AC xApp via the A1 Mediator")
 	@GetMapping(POLICY_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Object getAdmissionControlPolicy(HttpServletResponse response) {
+	public Object getAdmissionControlPolicy() {
 		logger.debug("getAdmissionControlPolicy");
-		response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+		a1MediatorApi.a1ControllerGetHandler(AC_CONTROL_NAME);
 		return null;
 	}
 

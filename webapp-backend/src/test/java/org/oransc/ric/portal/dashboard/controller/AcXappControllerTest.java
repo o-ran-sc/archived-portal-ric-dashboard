@@ -49,12 +49,11 @@ public class AcXappControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void getTest() throws IOException {
-		// Always returns 501; surprised that no exception is thrown.
 		URI uri = buildUri(null, AcXappController.CONTROLLER_PATH, AcXappController.POLICY_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				String.class);
-		Assertions.assertTrue(response.getStatusCode().is5xxServerError());
+		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test

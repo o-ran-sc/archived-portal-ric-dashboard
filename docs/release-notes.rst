@@ -23,7 +23,7 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 21 Aug 2019
+Version 1.2.0, 22 Aug 2019
 --------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -32,7 +32,7 @@ Version 1.2.0, 21 Aug 2019
 * Drop mock RAN names feature that supported R1 testing
 * Extend mock endpoints to simulate delay seen in tests
 * Move mock configuration classes into test area
-* Update A1 mediator client to spec version 0.10.0
+* Update A1 mediator client to spec version 0.10.3
 * Update App manager client to spec version 0.1.7
 * Update E2 manager client to spec version 20190815
 * Add controller for page refresh of Angular routes
