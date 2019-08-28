@@ -18,13 +18,15 @@
  * ========================LICENSE_END===================================
  */
 
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppMgrService } from '../services/app-mgr/app-mgr.service';
-import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { finalize } from 'rxjs/operators';
-
+import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { NotificationService } from './../services/ui/notification.service';
 
 @Component({
   selector: 'rd-app-configuration',
@@ -40,12 +42,14 @@ export class AppConfigurationComponent implements OnInit {
     private dialogRef: MatDialogRef<AppConfigurationComponent>,
     private appMgrService: AppMgrService,
     private errorDiaglogService: ErrorDialogService,
+    private loadingDialogService: LoadingDialogService,
+    private notificationService: NotificationService,
     @Inject(MAT_DIALOG_DATA) private data
   ) { }
 
   xappMetadata: any;
   xappConfigSchema: any;
-  xappConfigData: any; 
+  xappConfigData: any;
   xappLayout:any;
   ngOnInit() {
     this.loadingSubject.next(true);
@@ -67,8 +71,26 @@ export class AppConfigurationComponent implements OnInit {
       config: event,
       layout: this.xappLayout
     }
+    this.loadingDialogService.startLoading("Updating " + this.data.name + " configuration");
     this.appMgrService.putConfig(config)
-    this.dialogRef.close();
+      .pipe(
+        finalize(() => {
+          this.loadingDialogService.stopLoading();
+          this.dialogRef.close();
+        })
+    )
+      .subscribe(
+        (response: HttpResponse<Object>) => {
+          this.notificationService.success('Configuration update succeeded!');
+        },
+        ((her: HttpErrorResponse) => {
+          let msg = her.message;
+          if (her.error && her.error.message) {
+            msg = her.error.message;
+          }
+          this.notificationService.warn('Configuration update failed: ' + msg);
+        })
+      );
   }
 
   loadConfigForm(name: string, allConfig: any) {

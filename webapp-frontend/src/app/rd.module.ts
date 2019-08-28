@@ -55,6 +55,7 @@ import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
+import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
@@ -85,6 +86,7 @@ import { UserComponent } from './user/user.component';
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     FooterComponent,
+    LoadingDialogComponent,
     MainComponent,
     ModalEventComponent,
     RanControlComponent,
@@ -157,6 +159,7 @@ import { UserComponent } from './user/user.component';
     ConfirmDialogComponent,
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
+    LoadingDialogComponent,
     RanControlConnectDialogComponent
   ],
   providers: [

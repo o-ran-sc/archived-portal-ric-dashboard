@@ -17,17 +17,19 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { XappControlRow } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { AppControlAnimations } from './app-control.animations';
 import { AppControlDataSource } from './app-control.datasource';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'rd-app-control',
@@ -46,6 +48,7 @@ export class AppControlComponent implements OnInit {
     private router: Router,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
+    private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
@@ -73,7 +76,12 @@ export class AppControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy App ' + app.xapp + '?')
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
-          this.appMgrSvc.undeployXapp(app.xapp).subscribe(
+          this.loadingDialogService.startLoading("Undeploying " + app.xapp);
+          this.appMgrSvc.undeployXapp(app.xapp)
+            .pipe(
+              finalize(() => this.loadingDialogService.stopLoading())
+            )
+            .subscribe(
             ( httpResponse: HttpResponse<Object>) => {
               // Answers 204/No content on success
               this.notificationService.success('App undeployed successfully!');

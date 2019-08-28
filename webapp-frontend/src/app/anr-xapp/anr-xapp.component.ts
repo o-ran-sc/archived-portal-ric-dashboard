@@ -18,15 +18,16 @@
  * ========================LICENSE_END===================================
  */
 
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/observable/fromEvent';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
 import { ANRNeighborCellRelation } from '../interfaces/anr-xapp.types';
 import { ANRXappService } from '../services/anr-xapp/anr-xapp.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { AnrEditNcrDialogComponent } from './anr-edit-ncr-dialog.component';
@@ -54,6 +55,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
     private dialog: MatDialog,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
+    private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
@@ -107,7 +109,11 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
       .openConfirmDialog('Are you sure you want to delete this relation?')
       .afterClosed().subscribe(res => {
         if (res) {
+          this.loadingDialogService.startLoading("Deleting");
           this.anrXappService.deleteNcr(ncr.servingCellNrcgi, ncr.neighborCellNrpci)
+            .pipe(
+              finalize(() => this.loadingDialogService.stopLoading())
+            )
             .subscribe(
               (response: HttpResponse<Object>) => {
                 switch (response.status) {

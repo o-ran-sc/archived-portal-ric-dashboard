@@ -29,32 +29,32 @@ export class AppMgrService {
     // injects to variable httpClient
   }
 
-  private basePath = 'api/appmgr/xapps';
+  private basePath = 'api/appmgr';
 
   getDeployable(): Observable<XMDeployableApp[]> {
-    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/list');
+    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
   }
 
   getDeployed(): Observable<XMDeployedApp[]> {
-    return this.httpClient.get<XMDeployedApp[]>(this.basePath);
+    return this.httpClient.get<XMDeployedApp[]>(this.basePath + '/xapps');
   }
 
   deployXapp(name: string): Observable<HttpResponse<Object>> {
     const xappInfo: XMXappInfo = { name: name };
-    return this.httpClient.post(this.basePath, xappInfo, { observe: 'response' });
+    return this.httpClient.post((this.basePath + '/xapps'), xappInfo, { observe: 'response' });
   }
 
   undeployXapp(name: string): Observable<HttpResponse<Object>> {
-    return this.httpClient.delete((this.basePath + '/' + name), { observe: 'response' });
+    return this.httpClient.delete((this.basePath + '/xapps'+ '/' + name), { observe: 'response' });
   }
 
   getConfig(): Observable<any[]>{
     return this.httpClient.get<any[]>("/assets/mockdata/config.json");
-    //return this.httpClient.get<any[]>((this.basePath + '/config'));
+    //return this.httpClient.get<any[]>((this.basePath  + '/config'));
   }
 
   putConfig(config: any): Observable<HttpResponse<Object>> {
-    return this.httpClient.post((this.basePath + '/config' ), config, { observe: 'response' });
+    return this.httpClient.put((this.basePath + '/config' ), config, { observe: 'response' });
   }
 
 

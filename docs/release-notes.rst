@@ -47,6 +47,9 @@ Version 1.2.0, 23 Aug 2019
 * Use snake_case (not camelCase) names in AC policy front end
 * Update A1 mediator client to spec version 0.10.3
 * Extend AC control screen to read policy from A1
+* Create loading-dialog component and service
+* Showing the loading-dialog while making API call
+* Add notification and error handling for xapp configuration
 
 Version 1.0.5, 5 July 2019
 --------------------------
