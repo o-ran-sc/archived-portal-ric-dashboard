@@ -31,6 +31,8 @@ import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { AnrEditNcrDialogComponent } from './anr-edit-ncr-dialog.component';
 import { ANRXappDataSource } from './anr-xapp.datasource';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'rd-anr',
@@ -54,6 +56,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
     private dialog: MatDialog,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
+    private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
@@ -107,7 +110,11 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
       .openConfirmDialog('Are you sure you want to delete this relation?')
       .afterClosed().subscribe(res => {
         if (res) {
+          this.loadingDialogService.startLoading("Deleting");
           this.anrXappService.deleteNcr(ncr.servingCellNrcgi, ncr.neighborCellNrpci)
+            .pipe(
+              finalize(() => this.loadingDialogService.stopLoading())
+            )
             .subscribe(
               (response: HttpResponse<Object>) => {
                 switch (response.status) {

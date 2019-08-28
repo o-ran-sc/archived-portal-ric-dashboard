@@ -17,14 +17,16 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
+import { finalize } from 'rxjs/operators';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
-import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
+import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { RANControlDataSource } from './ran-control.datasource';
 
 @Component({
@@ -40,6 +42,7 @@ export class RanControlComponent implements OnInit {
     private errorDialogService: ErrorDialogService,
     private confirmDialogService: ConfirmDialogService,
     private notificationService: NotificationService,
+    private loadingDialogService: LoadingDialogService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -63,7 +66,12 @@ export class RanControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
-          this.e2MgrSvc.nodebPut().subscribe(
+          this.loadingDialogService.startLoading("Disconnecting");
+          this.e2MgrSvc.nodebPut()
+            .pipe(
+              finalize(() => this.loadingDialogService.stopLoading())
+            )
+            .subscribe(
             ( body: any ) => {
               this.notificationService.success('Disconnect succeeded!');
               this.dataSource.loadTable();
