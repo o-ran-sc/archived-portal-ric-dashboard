@@ -17,17 +17,19 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
-import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { finalize } from 'rxjs/operators';
+import { XMDeployableApp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
-import { XMDeployableApp } from '../interfaces/app-mgr.types';
-import { MatDialog } from '@angular/material/dialog';
-import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 
 @Component({
   selector: 'rd-app-catalog',
@@ -45,6 +47,7 @@ export class CatalogComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private dialog: MatDialog,
     private errorDiaglogService: ErrorDialogService,
+    private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
@@ -68,7 +71,12 @@ export class CatalogComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
-          this.appMgrService.deployXapp(app.name).subscribe(
+          this.loadingDialogService.startLoading("Deploying " + app.name);
+          this.appMgrService.deployXapp(app.name)
+            .pipe(
+              finalize(() => this.loadingDialogService.stopLoading())
+            )
+            .subscribe(
             (response: HttpResponse<Object>) => {
               this.notificationService.success('App deploy succeeded!');
             },
