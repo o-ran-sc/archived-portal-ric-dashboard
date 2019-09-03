@@ -23,7 +23,7 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 23 Aug 2019
+Version 1.2.0, 11 Sep 2019
 --------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
@@ -33,7 +33,6 @@ Version 1.2.0, 23 Aug 2019
 * Extend mock endpoints to simulate delay seen in tests
 * Move mock configuration classes into test area
 * Update App manager client to spec version 0.1.7
-* Update E2 manager client to spec version 20190815
 * Add controller for page refresh of Angular routes
 * Extend E2 mock configuration for demo purposes
 * Add pattern for matching AC/admin application name
@@ -50,6 +49,7 @@ Version 1.2.0, 23 Aug 2019
 * Create loading-dialog component and service
 * Showing the loading-dialog while making API call
 * Add notification and error handling for xapp configuration
+* Update E2 manager client to spec version 2.0.5 of 2019-09-11
 
 Version 1.0.5, 5 July 2019
 --------------------------

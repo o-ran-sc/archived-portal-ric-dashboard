@@ -52,7 +52,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	private ResponseEntity<Void> reset() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.RESET_METHOD, "ignored");
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_PREFIX, "ignored",
+				E2ManagerController.RESET_METHOD);
 		logger.info("Invoking {}", uri);
 		ResetRequest reset = new ResetRequest();
 		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
