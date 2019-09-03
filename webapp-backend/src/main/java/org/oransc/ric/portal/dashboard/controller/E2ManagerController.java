@@ -70,15 +70,17 @@ public class E2ManagerController {
 
 	// Publish paths in constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/e2mgr";
-	// Endpoints
+	// Dashboard only
 	public static final String HEALTH_METHOD = "health";
-	public static final String NODEB_SHUTDOWN_METHOD = "/nodebShutdownPut";
-	public static final String NODEB_LIST_METHOD = "/nodeb-ids";
 	public static final String RAN_METHOD = "/ran";
-	public static final String RESET_METHOD = "/reset";
-	public static final String ENDC_SETUP_METHOD = "/endcSetup";
-	public static final String X2_SETUP_METHOD = "/x2Setup";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
+	// Keep these consistent with the E2M implementation
+	public static final String NODEB_PREFIX = "/nodeb";
+	public static final String NODEB_SHUTDOWN_METHOD = NODEB_PREFIX + "/shutdown";
+	public static final String NODEB_LIST_METHOD = NODEB_PREFIX + "/ids";
+	public static final String RESET_METHOD = "/reset";
+	public static final String ENDC_SETUP_METHOD = NODEB_PREFIX + "/endc-setup";
+	public static final String X2_SETUP_METHOD = NODEB_PREFIX + "/x2-setup";
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
@@ -177,7 +179,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")
-	@PutMapping(RESET_METHOD + "/{" + PP_RANNAME + "}")
+	@PutMapping(NODEB_PREFIX  + "/{" + PP_RANNAME + "}"+ RESET_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void reset(@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest,
 			HttpServletResponse response) {

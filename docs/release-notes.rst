@@ -23,8 +23,8 @@ Version 1.2.1, ? Aug 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
 
-Version 1.2.0, 23 Aug 2019
---------------------------
+Version 1.2.0, 3 Sep 2019
+-------------------------
 * Split URL properties into prefix/suffix parts
 * Add jacoco plugin to back-end for code coverage
 * Compile with Java version 11, use base openjdk:11-jre-slim
@@ -33,7 +33,6 @@ Version 1.2.0, 23 Aug 2019
 * Extend mock endpoints to simulate delay seen in tests
 * Move mock configuration classes into test area
 * Update App manager client to spec version 0.1.7
-* Update E2 manager client to spec version 20190815
 * Add controller for page refresh of Angular routes
 * Extend E2 mock configuration for demo purposes
 * Add pattern for matching AC/admin application name
@@ -47,6 +46,7 @@ Version 1.2.0, 23 Aug 2019
 * Use snake_case (not camelCase) names in AC policy front end
 * Update A1 mediator client to spec version 0.10.3
 * Extend AC control screen to read policy from A1
+* Update E2 manager client to spec version 20190828
 
 Version 1.0.5, 5 July 2019
 --------------------------
