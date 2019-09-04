@@ -46,3 +46,6 @@
 
 # OSx cruft
 **/.DS_Store
+
+# documentation
+.tox
