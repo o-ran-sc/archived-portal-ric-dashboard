@@ -1,0 +1,8 @@
+Verified+1: ORAN Jobbuilder <releng+oran-jobbuilder@linuxfoundation.org>
+Code-Review+1: Aric Gardner <agardner@linuxfoundation.org>
+Code-Review+2: Manoop Talasila <talasila@research.att.com>
+Submitted-by: Manoop Talasila <talasila@research.att.com>
+Submitted-at: Wed, 04 Sep 2019 21:24:24 +0000
+Reviewed-on: https://gerrit.o-ran-sc.org/r/c/portal/ric-dashboard/+/891
+Project: portal/ric-dashboard
+Branch: refs/heads/master
