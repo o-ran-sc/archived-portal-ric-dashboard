@@ -50,6 +50,7 @@ Version 1.2.0, 23 Aug 2019
 * Create loading-dialog component and service
 * Showing the loading-dialog while making API call
 * Add notification and error handling for xapp configuration
+* Display MC xAPP metrics data via Kibana source (metrics.url.mc) on dashboard
 
 Version 1.0.5, 5 July 2019
 --------------------------
