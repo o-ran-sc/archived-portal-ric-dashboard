@@ -65,6 +65,8 @@ public class AdminController {
 	@Value("${metrics.url.ac}")
 	private String acAppMetricsUrl;
 
+	@Value("${metrics.url.mc}")
+	private String mcAppMetricsUrl;
 	public AdminController() {
 		// Mock data
 		users = new DashboardUser[] { //
@@ -105,10 +107,15 @@ public class AdminController {
 	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
 	@GetMapping(XAPPMETRICS_METHOD)
 	public IDashboardResponse getAppMetricsUrl(@RequestParam String app, HttpServletResponse response) {
-		if (DashboardConstants.APP_NAME_AC.equals(app)) {
-			logger.debug("getAppMetricsUrl: acAppMetricsUrl {}", acAppMetricsUrl);
-			return new SuccessTransport(200, acAppMetricsUrl);
-		} else {
+		String metricsUrl = null;
+		if (DashboardConstants.APP_NAME_AC.equals(app))
+			metricsUrl = acAppMetricsUrl;
+		else if (DashboardConstants.APP_NAME_MC.equals(app))
+			metricsUrl = mcAppMetricsUrl;
+		logger.debug("getAppMetricsUrl: app {} metricsurl {}", app, metricsUrl);
+		if (metricsUrl != null)
+			return new SuccessTransport(200, metricsUrl);
+		else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return new ErrorTransport(400, "Client provided app name is invalid as: " + app);
 		}

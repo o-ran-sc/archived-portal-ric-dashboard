@@ -50,6 +50,7 @@ Version 1.2.0, 11 Sep 2019
 * Showing the loading-dialog while making API call
 * Add notification and error handling for xapp configuration
 * Update E2 manager client to spec version 2.0.5 of 2019-09-11
+* Display MC xAPP metrics data via Kibana source (metrics.url.mc) on dashboard
 
 Version 1.0.5, 5 July 2019
 --------------------------
