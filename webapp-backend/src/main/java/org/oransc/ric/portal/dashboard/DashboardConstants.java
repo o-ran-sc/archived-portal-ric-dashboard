@@ -30,7 +30,7 @@ public abstract class DashboardConstants {
 	// Factor out method names used in multiple controllers
 	public static final String VERSION_METHOD = "version";
 	public static final String APP_NAME_AC = "AC";
-
+	public static final String APP_NAME_MC = "MC";
 	// The role names are defined by ONAP Portal.
 	// The prefix "ROLE_" is required by Spring.
 	// These are used in Java code annotations that require constants.
