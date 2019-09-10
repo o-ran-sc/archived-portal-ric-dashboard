@@ -65,6 +65,9 @@ public class AdminController {
 	@Value("${metrics.url.ac}")
 	private String acAppMetricsUrl;
 
+	@Value("${metrics.url.mc}")
+	private String mcAppMetricsUrl;
+	
 	public AdminController() {
 		// Mock data
 		users = new DashboardUser[] { //
@@ -108,7 +111,11 @@ public class AdminController {
 		if (DashboardConstants.APP_NAME_AC.equals(app)) {
 			logger.debug("getAppMetricsUrl: acAppMetricsUrl {}", acAppMetricsUrl);
 			return new SuccessTransport(200, acAppMetricsUrl);
-		} else {
+		} else if (DashboardConstants.APP_NAME_MC.equals(app)) {
+			logger.debug("getAppMetricsUrl: mcAppMetricsUrl {}", mcAppMetricsUrl);
+			return new SuccessTransport(200, mcAppMetricsUrl);
+		} 
+		else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return new ErrorTransport(400, "Client provided app name is invalid as: " + app);
 		}

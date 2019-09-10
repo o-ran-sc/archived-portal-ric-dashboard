@@ -39,6 +39,7 @@ export class StatsComponent implements OnInit {
     load;
     delay;
     metricsUrlAc : SafeResourceUrl;
+    metricsUrlMc : SafeResourceUrl;
 
     public latencyChartColors: Array<any> = [
         { // blue
@@ -327,6 +328,10 @@ export class StatsComponent implements OnInit {
         });
         this.service.getAppMetricsUrl('AC').subscribe((res:DashboardSuccessTransport) => {
             this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
+        });
+
+        this.service.getAppMetricsUrl('MC').subscribe((res:DashboardSuccessTransport) => {
+            this.metricsUrlMc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
         });
     }
 
