@@ -15,11 +15,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========================LICENSE_END===================================
+
 openapi: 3.0.0
 info:
   title: E2 Manager Service
   description: E2 Manager Service APIs
-  version: 1.0.0
+  version: 2.0.5
 servers:
   - url: 'http://{apiRoot}/v1'
     variables:
@@ -133,7 +134,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /nodeb-ids:
+  /nodeb/ids:
     get:
       tags:
         - nodeb
@@ -154,12 +155,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /nodeb-reset/{ranName}:
+  /nodeb/{ranName}/reset:
     put:
       tags:
         - nodeb
       summary: >-
-        Upon receipt of this message, 'ranName' shall abort any other ongoing procedures over X2 between the RIC and the RAN. The RAN shall delete all the context information related to the RIC, except the application level configuration data exchanged during the X2 Setup or eNB Configuration Update procedures, and release the corresponding resource.
+        Upon receipt of this message, 'ranName' shall abort any other ongoing procedures over X2 between the RIC and the RAN. The RAN shall delete all the context information related to the RIC, except the application level configuration data exchanged during the X2 Setup or eNB Configuration Update procedures, and release the corresponding resource.  
       operationId: reset
       parameters:
         - name: ranName
@@ -246,8 +247,8 @@ radioNetwork:time-critical-handover,
 radioNetwork:resource-optimisation-handover,
 radioNetwork:reduce-load-in-serving-cell,
 radioNetwork:partial-handover,
-radioNetwork:unknown-new-eNB-UE-X2AP-ID,
-radioNetwork:unknown-old-eNB-UE-X2AP-ID,
+radioNetwork:unknown-new-eNB-UE-X2AP-ID, 
+radioNetwork:unknown-old-eNB-UE-X2AP-ID, 
 radioNetwork:unknown-pair-of-UE-X2AP-ID,
 radioNetwork:ho-target-not-allowed,
 radioNetwork:tx2relocoverall-expiry,

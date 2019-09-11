@@ -16,6 +16,7 @@
 /.settings
 /target/
 /.mvn/wrapper/maven-wrapper.jar
+/.tox
 
 ### STS ###
 .apt_generated
