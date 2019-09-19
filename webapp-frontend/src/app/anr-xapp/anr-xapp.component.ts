@@ -125,7 +125,8 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
                       break;
                     default:
                       this.notificationService.warn('Delete failed.');
-                  }
+                  };
+                  this.loadNcrtPage();
                 },
                 (error: HttpErrorResponse) => {
                   this.errorDialogService.displayError(error.message);
