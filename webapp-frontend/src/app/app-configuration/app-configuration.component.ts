@@ -50,7 +50,7 @@ export class AppConfigurationComponent implements OnInit {
   xappMetadata: any;
   xappConfigSchema: any;
   xappConfigData: any;
-  xappLayout:any;
+  xappLayout: any;
   ngOnInit() {
     this.loadingSubject.next(true);
     this.appMgrService.getConfig()
@@ -58,10 +58,10 @@ export class AppConfigurationComponent implements OnInit {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(
-      (allConfig: any) => {
-        this.loadConfigForm(this.data.name, allConfig)
-      }
-    )
+        (allConfig: any) => {
+          this.loadConfigForm(this.data.name, allConfig)
+        }
+      );
   }
 
   updateconfig(event) {
@@ -78,7 +78,7 @@ export class AppConfigurationComponent implements OnInit {
           this.loadingDialogService.stopLoading();
           this.dialogRef.close();
         })
-    )
+      )
       .subscribe(
         (response: HttpResponse<Object>) => {
           this.notificationService.success('Configuration update succeeded!');
@@ -99,7 +99,7 @@ export class AppConfigurationComponent implements OnInit {
       this.xappMetadata = xappConfig.metadata
       this.xappConfigSchema = xappConfig.descriptor;
       this.xappConfigData = xappConfig.config;
-      this.xappLayout= xappConfig.layout;
+      this.xappLayout = xappConfig.layout;
     } else {
       this.errorDiaglogService.displayError("Cannot find configration data for " + name);
       this.dialogRef.close();

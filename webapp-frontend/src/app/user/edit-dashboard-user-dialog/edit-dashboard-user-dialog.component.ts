@@ -26,7 +26,7 @@ import { ErrorDialogService } from '../../services/ui/error-dialog.service';
 
 
 @Component({
-  selector: 'edit-app-dashboard-user-dialog',
+  selector: 'rd-edit-app-dashboard-user-dialog',
   templateUrl: './edit-dashboard-user-dialog.component.html',
   styleUrls: ['./edit-dashboard-user-dialog.component.scss']
 })

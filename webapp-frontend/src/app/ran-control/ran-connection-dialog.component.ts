@@ -73,11 +73,11 @@ export class RanControlConnectDialogComponent implements OnInit {
     }
     this.processing = true;
     const setupRequest: E2SetupRequest = {
-      ranName: ranFormValue.ranName,
-      ranIp: ranFormValue.ranIp,
-      ranPort: ranFormValue.ranPort
+      ranName: ranFormValue.ranName.trim(),
+      ranIp: ranFormValue.ranIp.trim(),
+      ranPort: ranFormValue.ranPort.trim()
     };
-    this.loadingDialogService.startLoading("Setting up connection ");
+    this.loadingDialogService.startLoading('Setting up connection');
     let observable: Observable<HttpResponse<Object>>;
     if (ranFormValue.ranType === 'endc') {
       observable = this.service.endcSetup(setupRequest);
@@ -91,7 +91,7 @@ export class RanControlConnectDialogComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.processing = false;
-          this.notifService.success('Connect succeeded!');
+          this.notifService.success('Connect request sent!');
           this.dialogRef.close(true);
         },
         ((her: HttpErrorResponse) => {
@@ -101,7 +101,7 @@ export class RanControlConnectDialogComponent implements OnInit {
           if (her.error && her.error.message) {
             msg = her.error.message;
           }
-          this.errorService.displayError('Connect failed: ' + msg);
+          this.errorService.displayError('Connect request failed: ' + msg);
           // keep the dialog open
         })
       );
