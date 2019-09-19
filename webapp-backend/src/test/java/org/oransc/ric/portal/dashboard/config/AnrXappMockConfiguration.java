@@ -169,12 +169,35 @@ public class AnrXappMockConfiguration {
 				logger.debug("deleteNcrt sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
+			String servCellNrcgi = inv.<String>getArgument(0);
+			String neighCellNrpci = inv.<String>getArgument(1);
+			for (NeighborCellRelation ncr : ncrt.getNcrtRelations()) {
+				if (servCellNrcgi.equals(ncr.getServingCellNrcgi())
+						&& neighCellNrpci.equals(ncr.getNeighborCellNrpci())) {
+					logger.debug("deleteNcrt: removing {}", ncr);
+					ncrt.getNcrtRelations().remove(ncr);
+					break;
+				}
+			}
 			return null;
 		}).when(mockApi).deleteNcrt(any(String.class), any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("modifyNcrt sleeping {}", delayMs);
 				Thread.sleep(delayMs);
+			}
+			String servCellNrcgi = inv.<String>getArgument(0);
+			String neighCellNrpci = inv.<String>getArgument(1);
+			NeighborCellRelationMod mod = inv.<NeighborCellRelationMod>getArgument(2);
+			for (NeighborCellRelation ncr : ncrt.getNcrtRelations()) {
+				if (servCellNrcgi.equals(ncr.getServingCellNrcgi())
+						&& neighCellNrpci.equals(ncr.getNeighborCellNrpci())) {
+					logger.debug("modifyNcrt: modifying {} to {}", ncr, mod);
+					ncr.setFlagNoHo(mod.isFlagNoHo());
+					ncr.setFlagNoRemove(mod.isFlagNoRemove());
+					ncr.setFlagNoXn(mod.isFlagNoXn());
+					break;
+				}
 			}
 			return null;
 		}).when(mockApi).modifyNcrt(any(String.class), any(String.class), any(NeighborCellRelationMod.class));
