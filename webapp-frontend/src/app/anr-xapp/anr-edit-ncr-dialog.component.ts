@@ -58,13 +58,16 @@ export class AnrEditNcrDialogComponent implements OnInit {
     modifyNcr = (ncrFormValue: ANRNeighborCellRelation) => {
         if (this.ncrDialogForm.valid) {
             const ncrm = {} as ANRNeighborCellRelationMod;
-            // there must be a better way
+            // there must be a better way to build the struct
             ncrm.neighborCellNrcgi = ncrFormValue.neighborCellNrcgi;
             ncrm.neighborCellNrpci = ncrFormValue.neighborCellNrpci;
             ncrm.flagNoHo = ncrFormValue.flagNoHo;
             ncrm.flagNoXn = ncrFormValue.flagNoXn;
             ncrm.flagNoRemove = ncrFormValue.flagNoRemove;
-            this.dataService.modifyNcr(ncrFormValue.servingCellNrcgi, ncrFormValue.neighborCellNrpci, ncrm).subscribe((val: any[]) => { },
+            this.dataService.modifyNcr(ncrFormValue.servingCellNrcgi, ncrFormValue.neighborCellNrpci, ncrm).subscribe(
+                (val: any[]) => {
+                    // Success
+                },
                 (error => {
                     this.errorService.displayError('NCR update failed: ' + error.message);
                 })

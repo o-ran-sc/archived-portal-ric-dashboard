@@ -30,7 +30,7 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
 export class E2ManagerService {
 
-  private basePath = 'api/e2mgr/';
+  private basePath = 'api/e2mgr/nodeb/';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
@@ -61,7 +61,7 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   endcSetup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'endcSetup', req, { observe: 'response' });
+    return this.httpClient.post(this.basePath + 'endc-setup', req, { observe: 'response' });
   }
 
   /**
@@ -69,7 +69,7 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   x2Setup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'x2Setup', req, { observe: 'response' });
+    return this.httpClient.post(this.basePath + 'x2-setup', req, { observe: 'response' });
   }
 
   /**
@@ -77,7 +77,7 @@ export class E2ManagerService {
    * @returns Observable with body.
    */
   nodebPut(): Observable<any> {
-    return this.httpClient.put((this.basePath + 'nodebShutdownPut'), { observe: 'body' });
+    return this.httpClient.put((this.basePath + 'shutdown'), { observe: 'body' });
   }
 
 }

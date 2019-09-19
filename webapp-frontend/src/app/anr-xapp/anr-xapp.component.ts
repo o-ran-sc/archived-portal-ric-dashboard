@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material';
 import { MatDialog } from '@angular/material/dialog';
@@ -99,35 +99,38 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
       width: '300px',
       data: ncr
     });
-    dialogRef.afterClosed().subscribe(result => {
-      this.loadNcrtPage();
-    });
+    dialogRef.afterClosed().subscribe(
+        (result: any) => {
+          this.loadNcrtPage();
+        }
+    );
   }
 
   deleteNcr(ncr: ANRNeighborCellRelation): void {
     this.confirmDialogService
       .openConfirmDialog('Are you sure you want to delete this relation?')
-      .afterClosed().subscribe(res => {
-        if (res) {
-          this.loadingDialogService.startLoading("Deleting");
-          this.anrXappService.deleteNcr(ncr.servingCellNrcgi, ncr.neighborCellNrpci)
-            .pipe(
-              finalize(() => this.loadingDialogService.stopLoading())
-            )
-            .subscribe(
-              (response: HttpResponse<Object>) => {
-                switch (response.status) {
-                  case 200:
-                    this.notificationService.success('Delete succeeded!');
-                    break;
-                  default:
-                    this.notificationService.warn('Delete failed.');
-                }
-              },
-              error => {
-                this.errorDialogService.displayError(error.message);
-              });
-        }
+      .afterClosed().subscribe(
+        (res: any) => {
+          if (res) {
+            this.loadingDialogService.startLoading("Deleting");
+            this.anrXappService.deleteNcr(ncr.servingCellNrcgi, ncr.neighborCellNrpci)
+              .pipe(
+                finalize(() => this.loadingDialogService.stopLoading())
+              )
+              .subscribe(
+                (response: HttpResponse<Object>) => {
+                  switch (response.status) {
+                    case 200:
+                      this.notificationService.success('Delete succeeded!');
+                      break;
+                    default:
+                      this.notificationService.warn('Delete failed.');
+                  }
+                },
+                (error: HttpErrorResponse) => {
+                  this.errorDialogService.displayError(error.message);
+                });
+          }
       });
   }
 

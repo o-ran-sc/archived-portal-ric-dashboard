@@ -19,9 +19,13 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.1, ? Aug 2019
+Version 1.2.?, ? 2019
 -------------------------
 * Add EPSDK-FW user management and Portal security
+
+Version 1.2.1, 19 Sep 2019
+--------------------------
+* Trim whitespace from all form input strings
 
 Version 1.2.0, 11 Sep 2019
 --------------------------

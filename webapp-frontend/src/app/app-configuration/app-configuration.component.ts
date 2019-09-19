@@ -58,10 +58,10 @@ export class AppConfigurationComponent implements OnInit {
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe(
-      (allConfig: any) => {
-        this.loadConfigForm(this.data.name, allConfig)
-      }
-    )
+        (allConfig: any) => {
+          this.loadConfigForm(this.data.name, allConfig)
+        }
+      );
   }
 
   updateconfig(event) {
