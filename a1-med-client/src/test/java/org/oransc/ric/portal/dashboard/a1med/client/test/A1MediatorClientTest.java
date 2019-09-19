@@ -19,18 +19,24 @@
  */
 package org.oransc.ric.portal.dashboard.a1med.client.test;
 
+import java.lang.invoke.MethodHandles;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestClientException;
 
 /**
  * Demonstrates use of the generated A1 mediator client.
- * 
+ *
  * The tests fail because no server is available.
  */
 public class A1MediatorClientTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
 	public void demo() {
@@ -38,17 +44,17 @@ public class A1MediatorClientTest {
 		apiClient.setBasePath("http://localhost:30099/");
 		A1MediatorApi a1Api = new A1MediatorApi(apiClient);
 		try {
-			Object o = a1Api.a1ControllerGetHandler("policy");
-			System.out.println(
-					"getPolicy answered code {} " + apiClient.getStatusCode().toString() + ", content " + o.toString());
+			Object o = a1Api.a1ControllerGetPolicyInstance(1, "policy");
+			logger.info(
+					"getPolicy answered code {} content {}", apiClient.getStatusCode().toString(), o.toString());
 			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getPolicy failed: " + e.toString());
 		}
 		try {
 			String policy = "{}";
-			a1Api.a1ControllerPutHandler("policy", policy);
-			System.out.println("putPolicy answered: " + apiClient.getStatusCode().toString());
+			a1Api.a1ControllerCreateOrReplacePolicyInstance(1, "policy", policy);
+			logger.info("putPolicy answered: {}", apiClient.getStatusCode().toString());
 			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
 			System.err.println("getPolicy failed: " + e.toString());
