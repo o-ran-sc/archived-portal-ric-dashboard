@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,9 +22,9 @@ package org.oransc.ric.portal.dashboard.config;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
-
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.controller.A1Controller;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
@@ -74,7 +74,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DashboardUserManager userManager;
 
-	protected void configure(HttpSecurity http) throws Exception {
+	@Override
+    protected void configure(HttpSecurity http) throws Exception {
 		logger.debug("configure: portalapi.username {}", userName);
 		// A chain of ".and()" always baffles me
 		http.authorizeRequests().anyRequest().authenticated();
@@ -93,6 +94,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/swagger-ui.html", //
 			"/webjars/**", //
 			PortalApiConstants.API_PREFIX + "/**", //
+			A1Controller.CONTROLLER_PATH + "/" + A1Controller.VERSION_METHOD, //
 			A1MediatorController.CONTROLLER_PATH + "/" + A1MediatorController.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //

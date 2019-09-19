@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,7 +20,6 @@
 package org.oransc.ric.portal.dashboard;
 
 import java.lang.invoke.MethodHandles;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,11 +34,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * This class supports front-end web development. Placing this class in the test
  * area allows excluding the mock configuration classes and the Mockito
  * dependencies from the packaged version of the app.
- * 
+ *
  * To launch a development server set the environment variable as listed below.
  * This runs a Spring-Boot server with mock back-end beans, and keeps the server
  * alive for manual testing. Supply this JVM argument:
- * 
+ *
  * <pre>
  * -Dorg.oransc.ric.portal.dashboard=mock
  * </pre>

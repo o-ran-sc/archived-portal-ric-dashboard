@@ -33,7 +33,7 @@ limitations under the License.
 	<artifactId>ric-dash-parent</artifactId>
 	<name>RIC Dashboard project</name>
 	<packaging>pom</packaging>
-	<version>1.2.4-SNAPSHOT</version>
+	<version>1.2.5-SNAPSHOT</version>
 	<properties>
 		<java.version>11</java.version>
 		<!-- Properties for the license-maven-plugin in child POMs -->
@@ -45,6 +45,7 @@ limitations under the License.
 		<lmp.process.end.tag>========================LICENSE_END===================================</lmp.process.end.tag>
 	</properties>
 	<modules>
+		<module>a1-controller-client</module>
 		<module>a1-med-client</module>
 		<module>anr-xapp-client</module>
 		<module>app-mgr-client</module>
