@@ -2,8 +2,7 @@
   ========================LICENSE_START=================================
   O-RAN-SC
   %%
-  Copyright (C) 2019 AT&T Intellectual Property
-  Modifications Copyright (C) 2019 Nordix Foundation
+  Copyright (C) 2019 Nordix Foundation
   %%
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -18,9 +17,15 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div class = "main__container">
-  <rd-app-catalog-card></rd-app-catalog-card>
-  <rd-control-card></rd-control-card>
-  <rd-stat-card></rd-stat-card>
-  <rd-policy-card></rd-policy-card>
+<div class="add__card" routerLink="/policy" [ngClass]="{'add__card-dark': darkMode}">
+  <div class="header__container">
+    <span class="card__title">Policy Control</span><br><br><br>
+    <div style="color: black; size: 1em; text-align: center">
+        <mat-icon>build</mat-icon>Config</div>
+
+
+  </div>
+  <div class="body__container">
+    <img src="../../../assets/policy.png" width="250px"/>
+  </div>
 </div>
