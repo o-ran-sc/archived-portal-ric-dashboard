@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property and Nokia
+ * Copyright (C) 2019 AT&T Intellectual Property and Nokia, Nordix Foundation
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule
     MatIconModule, MatInputModule, MatListModule, MatPaginatorModule,
     MatProgressSpinnerModule, MatSelectModule, MatSidenavModule, MatSliderModule,
     MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule,
-    MatTabsModule} from '@angular/material';
+    MatTabsModule,  MatToolbarModule, MatMenuModule} from '@angular/material';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -59,6 +59,11 @@ import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.compo
 import { MainComponent } from './main/main.component';
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
+import { PolicyInstanceComponent } from './policy-control/policy-instance.component';
+import { PolicyInstanceDialogComponent } from './policy-control/policy-instance-dialog.component';
+import { PolicyCardComponent } from './ui/policy-card/policy-card.component';
+import { PolicyComponent } from './policy/policy.component';
+import { PolicyControlComponent } from './policy-control/policy-control.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
 import { RdComponent } from './rd.component';
@@ -89,6 +94,11 @@ import { UserComponent } from './user/user.component';
     LoadingDialogComponent,
     MainComponent,
     ModalEventComponent,
+    PolicyInstanceComponent,
+    PolicyCardComponent,
+    PolicyComponent,
+    PolicyControlComponent,
+    PolicyInstanceDialogComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
     RdComponent,
@@ -128,10 +138,12 @@ import { UserComponent } from './user/user.component';
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
+    MatToolbarModule,
     MDBBootstrapModule.forRoot(),
     RdRoutingModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatMenuModule
   ],
   exports: [
     FormsModule,
@@ -155,6 +167,7 @@ import { UserComponent } from './user/user.component';
   entryComponents: [
     AddDashboardUserDialogComponent,
     AnrEditNcrDialogComponent,
+    PolicyInstanceDialogComponent,
     AppConfigurationComponent,
     ConfirmDialogComponent,
     EditDashboardUserDialogComponent,

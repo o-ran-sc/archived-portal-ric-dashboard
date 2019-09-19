@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property and Nokia
+ * Copyright (C) 2019 AT&T Intellectual Property and Nokia, Nordix Foundation
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
+import { PolicyInstanceComponent } from './policy-control/policy-instance.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
+import { PolicyComponent } from './policy/policy.component';
 import { MainComponent } from './main/main.component';
 import { StatsComponent } from './stats/stats.component';
 import { UserComponent } from './user/user.component';
@@ -33,7 +35,9 @@ const routes: Routes = [
     {path: '', component: MainComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
+    {path: 'policy', component: PolicyComponent},
     {path: 'ac', component: AcXappComponent},
+    {path: 'policyInstance', component: PolicyInstanceComponent},
     {path: 'anr', component: AnrXappComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'user', component: UserComponent},

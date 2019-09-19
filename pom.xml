@@ -3,7 +3,7 @@
 ========================LICENSE_START=================================
 O-RAN-SC
 %%
-Copyright (C) 2019 AT&T Intellectual Property and Nokia
+Copyright (C) 2019 AT&T Intellectual Property and Nokia, Nordix Foundation
 %%
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ limitations under the License.
 		<lmp.process.end.tag>========================LICENSE_END===================================</lmp.process.end.tag>
 	</properties>
 	<modules>
+		<module>a1-controller-client</module>
 		<module>a1-med-client</module>
 		<module>anr-xapp-client</module>
 		<module>app-mgr-client</module>

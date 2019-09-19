@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property and Nokia
+ * Copyright (C) 2019 AT&T Intellectual Property and Nokia, Nordix Foundation
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
+import org.oransc.ric.portal.dashboard.controller.A1Controller;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
@@ -91,6 +92,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/swagger-ui.html", //
 			"/webjars/**", //
 			PortalApiConstants.API_PREFIX + "/**", //
+			A1Controller.CONTROLLER_PATH + "/" + A1Controller.VERSION_METHOD, //
 			A1MediatorController.CONTROLLER_PATH + "/" + A1MediatorController.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //
