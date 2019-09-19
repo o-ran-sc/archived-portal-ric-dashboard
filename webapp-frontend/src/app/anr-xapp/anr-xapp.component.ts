@@ -122,6 +122,7 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
                   switch (response.status) {
                     case 200:
                       this.notificationService.success('Delete succeeded!');
+                      this.loadNcrtPage();
                       break;
                     default:
                       this.notificationService.warn('Delete failed.');

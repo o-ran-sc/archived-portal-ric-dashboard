@@ -27,6 +27,7 @@ Version 1.2.1, 19 Sep 2019
 --------------------------
 * Repair E2 URLs in front end like endc-setup/endcSetup
 * Trim whitespace in form input strings
+* Extend ANR mock feature to persist edits for demos
 
 Version 1.2.0, 11 Sep 2019
 --------------------------
