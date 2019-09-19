@@ -1,0 +1,87 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 Nordix Foundation
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div class="mat-elevation-z8 header row">
+    <div class="logo">
+        <img src="../../assets/oran-logo.png" width="30px" height="30px" style="position: relative; z-index: 50" />
+    </div>
+    <div class="headerText">
+        <div *ngIf="jsonSchemaObject.title">{{this.jsonSchemaObject.title}}</div>
+        <div *ngIf="!jsonSchemaObject.title">{{this.policyTypeName}}</div>
+    </div>
+</div>
+
+<div class="text-muted" *ngIf="jsonSchemaObject.description">{{jsonSchemaObject.description}}</div>
+
+
+<div class="text-muted" fxLayout="row" fxLayoutGap="50px">
+    <div *ngIf="policyInstanceId">{{policyInstanceId}}</div>
+    <div *ngIf="!policyInstanceId">Not created</div>
+</div>
+
+
+<div fxLayout="row" fxLayoutAlign="space-around start" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="flex-start center">
+    <mat-card fxFlex="0 0 calc(90% - 12px)">
+        <h4 class="default-cursor" (click)="toggleVisible('form')">
+            <mat-icon matTooltip="Properties">{{isVisible.form ? 'expand_less' : 'expand_more'}}</mat-icon>
+            Properties
+        </h4>
+        <div *ngIf="isVisible.form" class="json-schema-form" [@expandSection]="true" >
+            <div *ngIf="!formActive">{{jsonFormStatusMessage}}</div>
+
+            <json-schema-form *ngIf="formActive"
+                loadExternalAssets="true"
+                [form]="jsonSchemaObject"
+                [(data)]="jsonObject"
+                [options]="jsonFormOptions"
+                [framework]="'material-design'"
+                [language]="'en'"
+                (onChanges)="onChanges($event)"
+                (onSubmit)="onSubmit($event)"
+                (isValid)="isValid($event)"
+                (validationErrors)="validationErrors($event)">
+            </json-schema-form>
+
+        </div>
+        <hr>
+        <h4 [class.text-danger]="!formIsValid && !isVisible.output"
+            [class.default-cursor]="formIsValid || isVisible.output" (click)="toggleVisible('output')">
+             <mat-icon matTooltip="Json">{{isVisible.output ? 'expand_less' : 'expand_more'}}</mat-icon>
+             Json
+        </h4>
+        <div *ngIf="isVisible.output" fxLayout="column" [@expandSection]="true">
+            <div>
+                <strong *ngIf="formIsValid || prettyValidationErrors" [class.text-muted]="formIsValid"
+                    [class.text-danger]="!formIsValid">
+                    {{formIsValid ? 'Json' : 'Not valid'}}
+                </strong>
+                <span *ngIf="!formIsValid && !prettyValidationErrors">Invalid form</span>
+                <span *ngIf="prettyValidationErrors">— errors:</span>
+                <div *ngIf="prettyValidationErrors" class="text-danger" [innerHTML]="prettyValidationErrors"></div>
+            </div>
+            <div>
+                <pre [class.data-good]="!prettyValidationErrors && prettyLiveFormData !== '{}'"
+                    [class.data-bad]="prettyValidationErrors">{{prettyLiveFormData}}
+           </pre>
+                <strong class="text-muted">Schema</strong>
+                <pre>{{schemaAsString}}</pre>
+            </div>
+        </div>
+    </mat-card>
+</div>
