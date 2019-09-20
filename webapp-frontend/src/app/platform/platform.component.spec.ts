@@ -17,18 +17,28 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'rd-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.scss']
-})
-export class ControlComponent implements OnInit {
+import { PlatformComponent } from './platform.component';
 
-  constructor() { }
+describe('PlatformComponent', () => {
+  let component: PlatformComponent;
+  let fixture: ComponentFixture<PlatformComponent>;
 
-  ngOnInit() {
-  }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ PlatformComponent ]
+    })
+    .compileComponents();
+  }));
 
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PlatformComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

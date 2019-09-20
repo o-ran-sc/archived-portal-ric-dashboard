@@ -20,11 +20,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rd-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.scss']
+  selector: 'rd-platform',
+  templateUrl: './platform.component.html',
+  styleUrls: ['./platform.component.scss']
 })
-export class ControlComponent implements OnInit {
+export class PlatformComponent implements OnInit {
 
   constructor() { }
 

@@ -76,7 +76,29 @@ name like ``http://ricplt-entry/appmgr``
 
 ``appmgr.url.suffix``
 
-Application Manager URL suffix. Default is ``/ric/v1``
+Application Manager URL suffix. Default is ``/ric/v1``.
+
+``caasingress.aux.url.prefix``
+
+CAAS-Ingress application URL prefix for the RIC Auxiliary cluster.  No useful default.
+
+``caasingress.aux.url.suffix``
+
+CAAS-Ingress application URL suffix for the RIC Auxiliary cluster. Default is ``api``.
+
+``caasingress.insecure``
+
+Flag whether to disable SSL/TLS certificate and hostname verification.
+If true, the dashboard can communicate with a CAAS-Ingress endpoint that
+uses self-signed certificates.
+
+``caasingress.plt.url.prefix``
+
+CAAS-Ingress application URL prefix for the RIC Platform cluster.  No useful default.
+
+``caasingress.plt.url.suffix``
+
+CAAS-Ingress application URL suffix for the RIC-PLT cluster. Default is ``api``.
 
 ``e2mgr.url.prefix``
 
@@ -85,12 +107,12 @@ E2 Manager URL prefix. No useful default. Usually a service name like
 
 ``e2mgr.url.suffix``
 
-E2 Manager URL prefix. Default is ``/v1``
+E2 Manager URL prefix. Default is ``/v1``.
 
 ``mock.config.delay``
 
 Sleep period for mock methods in milliseconds.  This mimics slow
-endpoints. Default is ``0``
+endpoints. Default is ``0``.
 
 ``portalapi.appname``
 
@@ -99,7 +121,7 @@ Application name expected at ONAP portal. Default is ``RIC Dashboard``
 ``portalapi.decryptor``
 
 Java class that decrypts ciphertext from Portal. Default is
-``org.oransc.ric.portal.dashboard.portalapi.PortalSdkDecryptorAes``
+``org.oransc.ric.portal.dashboard.portalapi.PortalSdkDecryptorAes``.
 
 ``portalapi.password``
 
@@ -114,7 +136,7 @@ lab testing.
 
 ``portalapi.usercookie``
 
-Name of request cookie with user ID. Default is ``UserId``
+Name of request cookie with user ID. Default is ``UserId``.
 
 ``portalapi.username``
 
@@ -122,7 +144,7 @@ REST user name expected at ONAP portal. No default value.
 
 ``server.port``
 
-Port where the Tomcat server listens for requests. Default is ``8080``
+Port where the Tomcat server listens for requests. Default is ``8080``.
 
 ``metrics.url.ac``
 
@@ -130,7 +152,7 @@ Url to the kibana source which visualizes AC App metrics. No default value and n
 
 ``userfile``
 
-Path of file that stores user details. Default is ``users.json``
+Path of file that stores user details. Default is ``users.json``.
 
 
 Key Properties
@@ -178,7 +200,7 @@ Java class name.  No default value.  Value must be
 
 ``role_access_centralized``
 
-Selector for role access.  No default value.  Value must be ``remote``
+Selector for role access.  No default value.  Value must be ``remote``.
 
 ``ueb_app_key``
 

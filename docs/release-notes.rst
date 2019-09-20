@@ -25,6 +25,8 @@ Version 1.2.4, 10 Oct 2019
   removed cached copy
 * Revise app manager client to use API spec in new submodule ric-plt/appmgr;
   removed cached copy
+* Add Platform page showing Kubernetes pods in aux and platform obtained from CAAS-Ingress
+* Update Angular libraries to recent stable versions
 
 Version 1.2.3, 4 Oct 2019
 -------------------------

@@ -72,7 +72,7 @@ public class PortalApIMockConfiguration {
 		doAnswer(inv -> {
 			logger.debug("getUserId");
 			return "userId";
-		}).when(mockManager).valdiateEcompSso(any(HttpServletRequest.class));
+		}).when(mockManager).validateEcompSso(any(HttpServletRequest.class));
 		doAnswer(inv -> {
 			logger.debug("getAppCredentials");
 			return credentialsMap;

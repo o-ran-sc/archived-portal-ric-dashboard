@@ -26,6 +26,7 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { MainComponent } from './main/main.component';
+import { PlatformComponent } from './platform/platform.component';
 import { StatsComponent } from './stats/stats.component';
 import { UserComponent } from './user/user.component';
 
@@ -36,6 +37,7 @@ const routes: Routes = [
     {path: 'ac', component: AcXappComponent},
     {path: 'anr', component: AnrXappComponent},
     {path: 'stats', component: StatsComponent},
+    {path: 'platform', component: PlatformComponent},
     {path: 'user', component: UserComponent},
 ];
 

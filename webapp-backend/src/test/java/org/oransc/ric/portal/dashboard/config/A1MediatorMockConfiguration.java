@@ -65,7 +65,7 @@ public class A1MediatorMockConfiguration {
 		// Define a mock AC policy
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode node = mapper.createObjectNode();
-		// These fields are defined in the ACAdmissionIntervalControl 
+		// These fields are defined in the ACAdmissionIntervalControl
 		// Typescript interface, but are otherwise unknown to this backend.
 		node.put("enforce", Boolean.TRUE);
 		node.put("window_length", 0);
