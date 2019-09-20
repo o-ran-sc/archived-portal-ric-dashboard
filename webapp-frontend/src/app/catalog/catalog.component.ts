@@ -40,7 +40,7 @@ export class CatalogComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private appMgrService: AppMgrService,
@@ -51,16 +51,16 @@ export class CatalogComponent implements OnInit {
     private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService );
+    this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService);
     this.dataSource.loadTable();
   }
 
   onConfigureApp(xapp: XMDeployableApp): void {
     const dialogRef = this.dialog.open(AppConfigurationComponent, {
       width: '40%',
-      maxHeight:'500px',
+      maxHeight: '500px',
       position: {
-        top:'10%'
+        top: '10%'
       },
       data: xapp
     });
@@ -69,29 +69,29 @@ export class CatalogComponent implements OnInit {
 
   onDeployApp(app: XMDeployableApp): void {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
-      .afterClosed().subscribe( (res: boolean) => {
+      .afterClosed().subscribe((res: boolean) => {
         if (res) {
-          this.loadingDialogService.startLoading("Deploying " + app.name);
+          this.loadingDialogService.startLoading('Deploying ' + app.name);
           this.appMgrService.deployXapp(app.name)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())
             )
             .subscribe(
-            (response: HttpResponse<Object>) => {
-              this.notificationService.success('App deploy succeeded!');
-            },
-            ( (her: HttpErrorResponse) => {
-              // the error field should have an ErrorTransport object
-              let msg = her.message;
-              if (her.error && her.error.message) {
-                msg = her.error.message;
-              }
-              this.notificationService.warn('App deploy failed: ' + msg);
-            })
-          );
+              (response: HttpResponse<Object>) => {
+                this.notificationService.success('App deploy succeeded!');
+              },
+              ((her: HttpErrorResponse) => {
+                // the error field should have an ErrorTransport object
+                let msg = her.message;
+                if (her.error && her.error.message) {
+                  msg = her.error.message;
+                }
+                this.notificationService.warn('App deploy failed: ' + msg);
+              })
+            );
         }
       }
-    );
+      );
   }
 
 }

@@ -19,6 +19,11 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.2.4, 9 Oct 2019
+-------------------------
+* Add Platform page showing Kubernetes pods in aux and platform obtained from CAAS-Ingress
+* Update Angular libraries to recent stable versions
+
 Version 1.2.3, 4 Oct 2019
 -------------------------
 * Serve unauthenticated user a login-at-portal page without using redirect

@@ -94,17 +94,17 @@ public class PortalAuthManager {
 	 * @return User ID if the ECOMP cookie is present and the sign-on process
 	 *         established a user ID; else null.
 	 */
-	public String valdiateEcompSso(HttpServletRequest request) {
+	public String validateEcompSso(HttpServletRequest request) {
 		// Check ECOMP Portal cookie
 		Cookie ep = getCookie(request, PortalApiConstants.EP_SERVICE);
 		if (ep == null) {
-			logger.debug("valdiateEcompSso: cookie not found: {}", PortalApiConstants.EP_SERVICE);
+			logger.debug("validateEcompSso: cookie not found: {}", PortalApiConstants.EP_SERVICE);
 			return null;
 		}
 		logger.trace("validateEcompSso: found cookie {}", PortalApiConstants.EP_SERVICE);
 		Cookie user = getCookie(request, userIdCookieName);
 		if (user == null) {
-			logger.debug("valdiateEcompSso: cookie not found: {}", userIdCookieName);
+			logger.debug("validateEcompSso: cookie not found: {}", userIdCookieName);
 			return null;
 		}
 		logger.trace("validateEcompSso: user cookie {}", userIdCookieName);
@@ -112,7 +112,7 @@ public class PortalAuthManager {
 		try {
 			userid = portalSdkDecryptor.decrypt(user.getValue());
 		} catch (CipherUtilException e) {
-			throw new IllegalArgumentException("valdiateEcompSso failed", e);
+			throw new IllegalArgumentException("validateEcompSso failed", e);
 		}
 		return userid;
 	}

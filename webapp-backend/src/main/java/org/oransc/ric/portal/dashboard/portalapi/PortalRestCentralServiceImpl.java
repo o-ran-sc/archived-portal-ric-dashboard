@@ -70,7 +70,7 @@ public class PortalRestCentralServiceImpl implements IPortalRestCentralService {
 	@Override
 	public String getUserId(HttpServletRequest request) throws PortalAPIException {
 		logger.debug("getuserId");
-		return authManager.valdiateEcompSso(request);
+		return authManager.validateEcompSso(request);
 	}
 
 	@Override

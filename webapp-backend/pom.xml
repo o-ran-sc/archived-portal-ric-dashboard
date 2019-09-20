@@ -25,7 +25,7 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.2.3-SNAPSHOT</version>
+		<version>1.2.4-SNAPSHOT</version>
 	</parent>
 	<artifactId>ric-dash-be</artifactId>
 	<name>RIC Dashboard Webapp backend</name>
@@ -185,6 +185,7 @@ limitations under the License.
 				<artifactId>license-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>first</id>
 						<goals>
 							<goal>update-file-header</goal>
 						</goals>
@@ -197,6 +198,9 @@ limitations under the License.
 							<processStartTag>${lmp.process.start.tag}</processStartTag>
 							<processEndTag>${lmp.process.end.tag}</processEndTag>
 							<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+							<excludes>
+								<exclude>**/*.json</exclude>
+							</excludes>
 						</configuration>
 					</execution>
 				</executions>

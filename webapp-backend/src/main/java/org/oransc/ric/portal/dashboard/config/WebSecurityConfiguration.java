@@ -102,8 +102,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.VERSION_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.HEALTH_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.VERSION_METHOD, //
-			SimpleErrorController.ERROR_PATH
-	};
+			SimpleErrorController.ERROR_PATH };
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
