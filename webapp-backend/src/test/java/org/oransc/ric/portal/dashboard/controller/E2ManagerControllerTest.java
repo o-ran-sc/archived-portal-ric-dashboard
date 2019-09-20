@@ -46,7 +46,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	private ResponseEntity<Void> endcSetup() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.ENDC_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.RAN_NAME_1);
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		return testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity, Void.class);
 	}
@@ -104,7 +104,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void nodebStatusTest() {
 		endcSetup();
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.NODEB_SHUTDOWN_METHOD,
-				E2ManagerMockConfiguration.MOCK_RAN_NAME);
+				E2ManagerMockConfiguration.RAN_NAME_1);
 		logger.info("Invoking {}", uri);
 		GetNodebResponse response = testRestTemplateStandardRole().getForObject(uri, GetNodebResponse.class);
 		Assertions.assertNotNull(response.getRanName());
@@ -122,7 +122,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	public void x2SetupTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, E2ManagerController.X2_SETUP_METHOD);
 		logger.info("Invoking {}", uri);
-		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.MOCK_RAN_NAME);
+		SetupRequest setup = new SetupRequest().ranName(E2ManagerMockConfiguration.RAN_NAME_1);
 		HttpEntity<SetupRequest> entity = new HttpEntity<>(setup);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.POST, entity,
 				Void.class);

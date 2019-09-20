@@ -120,6 +120,7 @@ public class E2ManagerController {
 	public List<RanDetailsTransport> getRanDetails() {
 		logger.debug("getRanDetails");
 		List<NodebIdentity> nodebIdList = e2NodebApi.getNodebIdList();
+		logger.debug("getRanDetails: nodebIdList {}", nodebIdList);
 		List<RanDetailsTransport> details = new ArrayList<>();
 		for (NodebIdentity nbid : nodebIdList) {
 			GetNodebResponse nbResp = null;
