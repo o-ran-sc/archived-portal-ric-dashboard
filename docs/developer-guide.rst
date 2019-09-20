@@ -19,7 +19,8 @@
 RIC Dashboard Developer Guide
 =============================
 
-This document provides a quickstart for developers of the O-RAN SC RIC Dashboard web application.
+This document provides a quickstart for developers of the O-RAN SC RIC Dashboard web
+application.
 
 Prerequisites
 -------------
@@ -27,7 +28,20 @@ Prerequisites
 1. Java development kit (JDK), version 11 or later
 2. Maven dependency-management tool, version 3.4 or later
 
-Other tools including the Node Package Manager (npm) are fetched dynamically.
+Other required tools including the Node Package Manager (npm) are fetched dynamically.
+
+Clone and Update Submodules
+---------------------------
+
+After cloning the repository, initialize and update all git submodules like this::
+
+    git submodule init
+    git submodule update
+    
+Check the submodule status at any time like this::
+
+    git submodule status
+
 
 Angular Front-End Application
 -----------------------------

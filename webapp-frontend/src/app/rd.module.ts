@@ -42,6 +42,7 @@ import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
 import { AppMgrService } from './services/app-mgr/app-mgr.service';
+import { CaasIngressComponent } from './caas-ingress/caas-ingress.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ConfigEventComponent } from './ui/config-event/config-event.component';
@@ -59,6 +60,7 @@ import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.compo
 import { MainComponent } from './main/main.component';
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 import { ModalEventComponent } from './ui/modal-event/modal-event.component';
+import { PlatformComponent } from './platform/platform.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
 import { RdComponent } from './rd.component';
@@ -77,6 +79,7 @@ import { UserComponent } from './user/user.component';
     AnrXappComponent,
     AppConfigurationComponent,
     AppControlComponent,
+    CaasIngressComponent,
     CatalogCardComponent,
     CatalogComponent,
     ConfigEventComponent,
@@ -89,6 +92,7 @@ import { UserComponent } from './user/user.component';
     LoadingDialogComponent,
     MainComponent,
     ModalEventComponent,
+    PlatformComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
     RdComponent,
@@ -134,23 +138,23 @@ import { UserComponent } from './user/user.component';
     ToastrModule.forRoot()
   ],
   exports: [
+    ErrorDialogComponent,
     FormsModule,
-    MatDialogModule,
+    MatButtonModule,
     MatButtonToggleModule,
-    MatExpansionModule,
-    MatSliderModule,
     MatCardModule,
-    MatIconModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
     MatGridListModule,
+    MatIconModule,
+    MatInputModule,
     MatListModule,
     MatSidenavModule,
+    MatSliderModule,
     MatSlideToggleModule,
     MatTabsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    RanControlConnectDialogComponent,
-    ErrorDialogComponent
+    RanControlConnectDialogComponent
   ],
   entryComponents: [
     AddDashboardUserDialogComponent,

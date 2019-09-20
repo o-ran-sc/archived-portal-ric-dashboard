@@ -1,0 +1,1445 @@
+{
+	"kind": "PodList",
+	"apiVersion": "v1",
+	"metadata": {
+		"selfLink": "/api/v1/namespaces/ricplt/pods",
+		"resourceVersion": "2736817"
+	},
+	"items": [
+		{
+			"metadata": {
+				"name": "deployment-ricplt-a1mediator-784c66f6cf-r624q",
+				"generateName": "deployment-ricplt-a1mediator-784c66f6cf-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-a1mediator-784c66f6cf-r624q",
+				"uid": "60e5f2c5-283b-4559-9b42-ff380332d649",
+				"resourceVersion": "211336",
+				"creationTimestamp": "2019-10-01T18:54:51Z",
+				"labels": {
+					"app": "ricplt-a1mediator",
+					"pod-template-hash": "784c66f6cf",
+					"release": "r1-a1mediator"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-a1mediator-784c66f6cf",
+						"uid": "608fcde7-871f-4689-852d-b272419bca8e",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "a1conf",
+						"configMap": {
+							"name": "configmap-ricplt-a1mediator-a1conf",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-a1mediator",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-a1:0.10.3",
+						"ports": [
+							{
+								"name": "http",
+								"containerPort": 10000,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 4562,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-a1mediator-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "a1conf",
+								"mountPath": "/opt/ricmanifest.json",
+								"subPath": "ricmanifest.json"
+							},
+							{
+								"name": "a1conf",
+								"mountPath": "/opt/rmr_string_int_mapping.txt",
+								"subPath": "rmr_string_int_mapping.txt"
+							},
+							{
+								"name": "a1conf",
+								"mountPath": "/opt/route/local.rt",
+								"subPath": "local.rt"
+							},
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"livenessProbe": {
+							"httpGet": {
+								"path": "/a1-p/healthcheck",
+								"port": "http",
+								"scheme": "HTTP"
+							},
+							"timeoutSeconds": 1,
+							"periodSeconds": 10,
+							"successThreshold": 1,
+							"failureThreshold": 3
+						},
+						"readinessProbe": {
+							"httpGet": {
+								"path": "/a1-p/healthcheck",
+								"port": "http",
+								"scheme": "HTTP"
+							},
+							"timeoutSeconds": 1,
+							"periodSeconds": 10,
+							"successThreshold": 1,
+							"failureThreshold": 3
+						},
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.201",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "a1mediator",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:51Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:55:01Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:55:01Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:51Z"
+					}
+				],
+				"hostIP": "192.168.1.201",
+				"podIP": "10.0.0.27",
+				"startTime": "2019-10-01T18:54:51Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-a1mediator",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:53Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "ranco-dev-tools.o-ran-sc.org:10001/ric-plt-a1:0.10.3",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-a1@sha256:64a61ed84d4d05dfa1690bb45949da333d7b088e2e12dbba0ce60c06445f52cb",
+						"containerID": "docker://dc2998415a45cd65192601ba32b0c51ed29280431524812541abb70d016d49c4"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-appmgr-64c8b955b4-d7mbb",
+				"generateName": "deployment-ricplt-appmgr-64c8b955b4-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-appmgr-64c8b955b4-d7mbb",
+				"uid": "7f7e14de-7ded-42d1-bac5-94a7b455c777",
+				"resourceVersion": "211158",
+				"creationTimestamp": "2019-10-01T18:54:48Z",
+				"labels": {
+					"app": "ricplt-appmgr",
+					"pod-template-hash": "64c8b955b4",
+					"release": "r1-appmgr"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-appmgr-64c8b955b4",
+						"uid": "b88c3af6-03aa-4d6b-8470-a72361117b46",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "config-volume",
+						"configMap": {
+							"name": "configmap-ricplt-appmgr-appconfig",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "cert-volume",
+						"configMap": {
+							"name": "xapp-mgr-certs",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "secret-volume",
+						"secret": {
+							"secretName": "xapp-mgr-creds",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "helm-secret-volume",
+						"emptyDir": {
+							
+						}
+					},
+					{
+						"name": "appmgr-bin-volume",
+						"configMap": {
+							"name": "configmap-ricplt-appmgr-bin",
+							"defaultMode": 493
+						}
+					},
+					{
+						"name": "svcacct-ricplt-appmgr-token-cjw9h",
+						"secret": {
+							"secretName": "svcacct-ricplt-appmgr-token-cjw9h",
+							"defaultMode": 420
+						}
+					}
+				],
+				"initContainers": [
+					{
+						"name": "container-ricplt-appmgr-copy-tiller-secret",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/it-dep-init:0.0.1",
+						"command": [
+							"/appmgr-tiller-secret-copier.sh"
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-appmgr-env"
+								}
+							}
+						],
+						"env": [
+							{
+								"name": "SVCACCT_NAME",
+								"value": "svcacct-ricplt-appmgr"
+							},
+							{
+								"name": "CLUSTER_NAME",
+								"value": "kubernetes"
+							},
+							{
+								"name": "KUBECONFIG",
+								"value": "/tmp/kubeconfig"
+							},
+							{
+								"name": "K8S_API_HOST",
+								"value": "https://10.254.0.1:443"
+							},
+							{
+								"name": "SECRET_NAMESPACE",
+								"value": "ricinfra"
+							},
+							{
+								"name": "SECRET_NAME",
+								"value": "secret-helm-client-ricxapp"
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "helm-secret-volume",
+								"mountPath": "/opt/ric/secret"
+							},
+							{
+								"name": "appmgr-bin-volume",
+								"mountPath": "/svcacct-to-kubeconfig.sh",
+								"subPath": "svcacct-to-kubeconfig.sh"
+							},
+							{
+								"name": "appmgr-bin-volume",
+								"mountPath": "/appmgr-tiller-secret-copier.sh",
+								"subPath": "appmgr-tiller-secret-copier.sh"
+							},
+							{
+								"name": "svcacct-ricplt-appmgr-token-cjw9h",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "IfNotPresent"
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-appmgr",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-appmgr:0.1.9",
+						"ports": [
+							{
+								"name": "http",
+								"containerPort": 8080,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 4560,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-appmgr-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "config-volume",
+								"mountPath": "/opt/ric/config/appmgr.yaml",
+								"subPath": "appmgr.yaml"
+							},
+							{
+								"name": "cert-volume",
+								"mountPath": "/opt/ric/certificates"
+							},
+							{
+								"name": "helm-secret-volume",
+								"mountPath": "/opt/ric/secret"
+							},
+							{
+								"name": "secret-volume",
+								"mountPath": "/opt/ric/secret/helm_repo_username",
+								"subPath": "helm_repo_username"
+							},
+							{
+								"name": "secret-volume",
+								"mountPath": "/opt/ric/secret/helm_repo_password",
+								"subPath": "helm_repo_password"
+							},
+							{
+								"name": "svcacct-ricplt-appmgr-token-cjw9h",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "svcacct-ricplt-appmgr",
+				"serviceAccount": "svcacct-ricplt-appmgr",
+				"nodeName": "192.168.1.201",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "appmgr",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:50Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:51Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:51Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:48Z"
+					}
+				],
+				"hostIP": "192.168.1.201",
+				"podIP": "10.0.0.26",
+				"startTime": "2019-10-01T18:54:48Z",
+				"initContainerStatuses": [
+					{
+						"name": "container-ricplt-appmgr-copy-tiller-secret",
+						"state": {
+							"terminated": {
+								"exitCode": 0,
+								"reason": "Completed",
+								"startedAt": "2019-10-01T18:54:49Z",
+								"finishedAt": "2019-10-01T18:54:49Z",
+								"containerID": "docker://d806f7bf7d66a0b3d9cdbcba1f777c9928ae0751783b06450b5f72e383adf3aa"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "ranco-dev-tools.o-ran-sc.org:10001/it-dep-init:0.0.1",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/it-dep-init@sha256:d3a2c02660a0b5da5a7e38626c49018ca7f5e3bc39106b0728ff72245cd20be5",
+						"containerID": "docker://d806f7bf7d66a0b3d9cdbcba1f777c9928ae0751783b06450b5f72e383adf3aa"
+					}
+				],
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-appmgr",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:50Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "ranco-dev-tools.o-ran-sc.org:10001/ric-plt-appmgr:0.1.9",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-appmgr@sha256:5c076f702d570b385d10200cda8d504475ce44eb1bcbb131b1d50e00eabae4d7",
+						"containerID": "docker://8196d695481d8cacf25f68480ec47a368f9d61917d83a29d6886276606df384f"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-dbaas-9f976d6bb-wwkvq",
+				"generateName": "deployment-ricplt-dbaas-9f976d6bb-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-dbaas-9f976d6bb-wwkvq",
+				"uid": "4ab2084c-317f-4cef-bb83-24c13f225b62",
+				"resourceVersion": "211288",
+				"creationTimestamp": "2019-10-01T18:54:48Z",
+				"labels": {
+					"app": "ricplt-dbaas",
+					"pod-template-hash": "9f976d6bb",
+					"release": "r1-dbaas"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-dbaas-9f976d6bb",
+						"uid": "d151adbb-612c-4044-a6f3-647346a7bc56",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-dbaas",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-dbaas:0.1.0",
+						"ports": [
+							{
+								"name": "sql",
+								"containerPort": 6379,
+								"protocol": "TCP"
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 0,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.202",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:48Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:55Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:55Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:48Z"
+					}
+				],
+				"hostIP": "192.168.1.202",
+				"podIP": "10.0.0.5",
+				"startTime": "2019-10-01T18:54:48Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-dbaas",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:55Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-dbaas:0.1.0",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-dbaas@sha256:f63cfa353f355155ec6455a68d18c631900a2602bf7cc2ba35d6210971736b76",
+						"containerID": "docker://dff3e2bec343655c6b2b89e2181c6996c30378084b648e3b786a390b3c45dcf2"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-e2mgr-585b8c84b6-bst98",
+				"generateName": "deployment-ricplt-e2mgr-585b8c84b6-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-e2mgr-585b8c84b6-bst98",
+				"uid": "2ea1fbea-9c01-4070-9050-721bcf946f59",
+				"resourceVersion": "2736606",
+				"creationTimestamp": "2019-10-01T18:54:49Z",
+				"labels": {
+					"app": "ricplt-e2mgr",
+					"pod-template-hash": "585b8c84b6",
+					"release": "r1-e2mgr"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-e2mgr-585b8c84b6",
+						"uid": "62912fb5-b72e-4911-9be7-6ef3010ae73f",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "local-router-file",
+						"configMap": {
+							"name": "configmap-ricplt-e2mgr-router-configmap",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-e2mgr",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2mgr:2.0.6.1",
+						"ports": [
+							{
+								"name": "http",
+								"containerPort": 3800,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 3801,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-e2mgr-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "local-router-file",
+								"mountPath": "/opt/E2Manager/router.txt",
+								"subPath": "router.txt"
+							},
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always",
+						"securityContext": {
+							"privileged": false
+						},
+						"stdin": true,
+						"tty": true
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.203",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "e2mgr",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Pending",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:49Z"
+					},
+					{
+						"type": "Ready",
+						"status": "False",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:49Z",
+						"reason": "ContainersNotReady",
+						"message": "containers with unready status: [container-ricplt-e2mgr]"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "False",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:49Z",
+						"reason": "ContainersNotReady",
+						"message": "containers with unready status: [container-ricplt-e2mgr]"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:49Z"
+					}
+				],
+				"hostIP": "192.168.1.203",
+				"podIP": "10.0.0.28",
+				"startTime": "2019-10-01T18:54:49Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-e2mgr",
+						"state": {
+							"waiting": {
+								"reason": "ImagePullBackOff",
+								"message": "Back-off pulling image \"registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2mgr:2.0.6.1\""
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": false,
+						"restartCount": 0,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2mgr:2.0.6.1",
+						"imageID": ""
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-e2term-7b9b7bb954-4b9mj",
+				"generateName": "deployment-ricplt-e2term-7b9b7bb954-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-e2term-7b9b7bb954-4b9mj",
+				"uid": "3afd0a40-d688-42cc-bb64-684aac1a190f",
+				"resourceVersion": "2736127",
+				"creationTimestamp": "2019-10-01T18:54:50Z",
+				"labels": {
+					"app": "ricplt-e2term",
+					"pod-template-hash": "7b9b7bb954",
+					"release": "r1-e2term"
+				},
+				"annotations": {
+					"danm.k8s.io/interfaces": "[\n  {\"clusterNetwork\":\"default\", \"ip\":\"dynamic\"},\n  {\"clusterNetwork\":\"ran\", \"ip\":\"dynamic\", \"ip6\":\"dynamic\"}\n]\n",
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-e2term-7b9b7bb954",
+						"uid": "180a2dcb-a379-42c5-9664-d008aa25ed6f",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "local-router-file",
+						"configMap": {
+							"name": "configmap-ricplt-e2term-router-configmap",
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-e2term",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2:2.0.6.1",
+						"ports": [
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 38000,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-e2term-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "local-router-file",
+								"mountPath": "/opt/e2/router.txt",
+								"subPath": "router.txt"
+							},
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always",
+						"securityContext": {
+							"privileged": false
+						},
+						"stdin": true,
+						"tty": true
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirstWithHostNet",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.204",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "e2term",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Pending",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:50Z"
+					},
+					{
+						"type": "Ready",
+						"status": "False",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:50Z",
+						"reason": "ContainersNotReady",
+						"message": "containers with unready status: [container-ricplt-e2term]"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "False",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:50Z",
+						"reason": "ContainersNotReady",
+						"message": "containers with unready status: [container-ricplt-e2term]"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:50Z"
+					}
+				],
+				"hostIP": "192.168.1.204",
+				"podIP": "10.0.0.13",
+				"startTime": "2019-10-01T18:54:50Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-e2term",
+						"state": {
+							"waiting": {
+								"reason": "ImagePullBackOff",
+								"message": "Back-off pulling image \"registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2:2.0.6.1\""
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": false,
+						"restartCount": 0,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-e2:2.0.6.1",
+						"imageID": ""
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-rtmgr-9df5684bd-zk8vh",
+				"generateName": "deployment-ricplt-rtmgr-9df5684bd-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-rtmgr-9df5684bd-zk8vh",
+				"uid": "3b473514-81ce-40e0-80f8-5065adaad4a5",
+				"resourceVersion": "211240",
+				"creationTimestamp": "2019-10-01T18:54:48Z",
+				"labels": {
+					"app": "ricplt-rtmgr",
+					"pod-template-hash": "9df5684bd",
+					"release": "r1-rtmgr"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-rtmgr-9df5684bd",
+						"uid": "4cdea1b8-0bfa-4969-9eec-f7d809fd570b",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "rtmgrcfg",
+						"configMap": {
+							"name": "configmap-ricplt-rtmgr-rtmgrcfg",
+							"items": [
+								{
+									"key": "rtmgrcfg",
+									"path": "rtmgr-config.json",
+									"mode": 420
+								}
+							],
+							"defaultMode": 420
+						}
+					},
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-rtmgr",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-rtmgr:0.3.3",
+						"command": [
+							"/run_rtmgr.sh"
+						],
+						"ports": [
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 4560,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-rtmgr-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "rtmgrcfg",
+								"readOnly": true,
+								"mountPath": "/cfg"
+							},
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.205",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "rtmgr",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:48Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:53Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:53Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:48Z"
+					}
+				],
+				"hostIP": "192.168.1.205",
+				"podIP": "10.0.0.14",
+				"startTime": "2019-10-01T18:54:48Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-rtmgr",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:52Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-rtmgr:0.3.3",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-rtmgr@sha256:3a4df1ea7f9038e8d44a1f4f699d08086ea17c8086d3e8d79dd104f1caedacb9",
+						"containerID": "docker://7e8c9ee1b33ea431cde8b6185499ccf9c28c6905278919ca4c60c8722437ac23"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-submgr-59748656fb-nxlgx",
+				"generateName": "deployment-ricplt-submgr-59748656fb-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-submgr-59748656fb-nxlgx",
+				"uid": "e1c0de67-8818-4d24-9fc8-f53b80159231",
+				"resourceVersion": "211300",
+				"creationTimestamp": "2019-10-01T18:54:52Z",
+				"labels": {
+					"app": "ricplt-submgr",
+					"pod-template-hash": "59748656fb",
+					"release": "r1-submgr"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-submgr-59748656fb",
+						"uid": "5dab922e-aaeb-4e5f-9aa9-aef573d60dda",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-submgr",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-submgr:0.7.1",
+						"command": [
+							"/run_submgr.sh"
+						],
+						"ports": [
+							{
+								"name": "http",
+								"containerPort": 3800,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrroute",
+								"containerPort": 4561,
+								"protocol": "TCP"
+							},
+							{
+								"name": "rmrdata",
+								"containerPort": 4560,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-submgr-env"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.205",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "submgr",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:52Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:56Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:56Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:52Z"
+					}
+				],
+				"hostIP": "192.168.1.205",
+				"podIP": "10.0.0.15",
+				"startTime": "2019-10-01T18:54:52Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-submgr",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:56Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 0,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-submgr:0.7.1",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-submgr@sha256:a6a74837a106eb7047a2c692fec7fa7c931ed6c82364a4d18bac859a6c9fd1f8",
+						"containerID": "docker://b8a1e8193d9a98b20a675ecbc0555d2beea750b89a85bbedb94a72cb6a97b1a0"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		},
+		{
+			"metadata": {
+				"name": "deployment-ricplt-vespamgr-d9c8fdcf8-nb4lp",
+				"generateName": "deployment-ricplt-vespamgr-d9c8fdcf8-",
+				"namespace": "ricplt",
+				"selfLink": "/api/v1/namespaces/ricplt/pods/deployment-ricplt-vespamgr-d9c8fdcf8-nb4lp",
+				"uid": "90cf9a83-9f71-41aa-853c-eddf671962df",
+				"resourceVersion": "211317",
+				"creationTimestamp": "2019-10-01T18:54:53Z",
+				"labels": {
+					"app": "ricplt-vespamgr",
+					"pod-template-hash": "d9c8fdcf8",
+					"release": "r1-vespamgr"
+				},
+				"annotations": {
+					"kubernetes.io/psp": "caas-default"
+				},
+				"ownerReferences": [
+					{
+						"apiVersion": "apps/v1",
+						"kind": "ReplicaSet",
+						"name": "deployment-ricplt-vespamgr-d9c8fdcf8",
+						"uid": "89ea5799-b592-409b-a63b-e457f8e8a848",
+						"controller": true,
+						"blockOwnerDeletion": true
+					}
+				]
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "default-token-l8tqd",
+						"secret": {
+							"secretName": "default-token-l8tqd",
+							"defaultMode": 420
+						}
+					}
+				],
+				"containers": [
+					{
+						"name": "container-ricplt-vespamgr",
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-vespamgr:0.0.3",
+						"ports": [
+							{
+								"name": "http",
+								"containerPort": 8080,
+								"protocol": "TCP"
+							}
+						],
+						"envFrom": [
+							{
+								"configMapRef": {
+									"name": "configmap-ricplt-vespamgr"
+								}
+							},
+							{
+								"secretRef": {
+									"name": "vespa-secrets"
+								}
+							}
+						],
+						"resources": {
+							
+						},
+						"volumeMounts": [
+							{
+								"name": "default-token-l8tqd",
+								"readOnly": true,
+								"mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"terminationMessagePolicy": "File",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 30,
+				"dnsPolicy": "ClusterFirst",
+				"serviceAccountName": "default",
+				"serviceAccount": "default",
+				"nodeName": "192.168.1.202",
+				"securityContext": {
+					
+				},
+				"imagePullSecrets": [
+					{
+						"name": "docker-reg-cred"
+					}
+				],
+				"hostname": "vespamgr",
+				"schedulerName": "default-scheduler",
+				"enableServiceLinks": true
+			},
+			"status": {
+				"phase": "Running",
+				"conditions": [
+					{
+						"type": "Initialized",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:53Z"
+					},
+					{
+						"type": "Ready",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:58Z"
+					},
+					{
+						"type": "ContainersReady",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:58Z"
+					},
+					{
+						"type": "PodScheduled",
+						"status": "True",
+						"lastProbeTime": null,
+						"lastTransitionTime": "2019-10-01T18:54:53Z"
+					}
+				],
+				"hostIP": "192.168.1.202",
+				"podIP": "10.0.0.6",
+				"startTime": "2019-10-01T18:54:53Z",
+				"containerStatuses": [
+					{
+						"name": "container-ricplt-vespamgr",
+						"state": {
+							"running": {
+								"startedAt": "2019-10-01T18:54:57Z"
+							}
+						},
+						"lastState": {
+							
+						},
+						"ready": true,
+						"restartCount": 9,
+						"image": "registry.kube-system.svc.rec.io:5555/ric/ric-plt-vespamgr:0.0.3",
+						"imageID": "docker-pullable://registry.kube-system.svc.rec.io:5555/ric/ric-plt-vespamgr@sha256:e3f7f2b7d7088f6db65f648d6d965c4e967dd4b45fc9b84255abe93ffa2d7611",
+						"containerID": "docker://9df25927cbad72ddf66a255bd9bf054be8a55c26a90acce690aa51d0c950eee3"
+					}
+				],
+				"qosClass": "BestEffort"
+			}
+		}
+	]
+}
