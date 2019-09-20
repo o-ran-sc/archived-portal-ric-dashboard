@@ -148,7 +148,7 @@ public class AnrXappController {
 		logger.debug("modifyNcrt: servingCellNrcgi {}, neighborCellNrpci {}, ncrMod {}", servingCellNrcgi,
 				neighborCellNrpci, ncrMod);
 		ncrtApi.modifyNcrt(servingCellNrcgi, neighborCellNrpci, ncrMod);
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+		response.setStatus(ncrtApi.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Delete neighbor cell relation based on Serving Cell NRCGI and Neighbor Cell NRPCI")
@@ -159,7 +159,7 @@ public class AnrXappController {
 			HttpServletResponse response) {
 		logger.debug("deleteNcrt: servingCellNrcgi {}, neighborCellNrpci {}", servingCellNrcgi, neighborCellNrpci);
 		ncrtApi.deleteNcrt(servingCellNrcgi, neighborCellNrpci);
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+		response.setStatus(ncrtApi.getApiClient().getStatusCode().value());
 	}
 
 }

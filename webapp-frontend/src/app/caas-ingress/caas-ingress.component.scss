@@ -17,18 +17,35 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'rd-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.scss']
-})
-export class ControlComponent implements OnInit {
+ .caas-ingress__section {
+}
 
-  constructor() { }
+.caas-ingress__header {
+    text-align: center;
+    color: #432c85;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: .1em;
+    transform: translate(149 56);
+}
 
-  ngOnInit() {
-  }
+.spinner-container {
+  height: 100px;
+  width: 100px;
+}
 
+.spinner-container mat-spinner {
+  margin: 130px auto 0 auto;
+}
+
+.caas-ingress-table {
+  width: 100%;
+  min-height: 150px;
+  margin-top: 10px;
+  background-color: transparent;
+}
+
+.display-none {
+  display: none;
 }
