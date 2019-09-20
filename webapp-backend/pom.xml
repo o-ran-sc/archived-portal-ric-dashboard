@@ -292,6 +292,8 @@ limitations under the License.
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<runCmds>
+									<!-- Include debug tool for limited network -->
+									<runCmd><![CDATA[apt-get update && apt-get -y install curl]]></runCmd>
 									<!-- Ensure logs dir exists and is world writable -->
 									<runCmd>mkdir /logs</runCmd>
 									<runCmd>chmod -R 777 /logs</runCmd>

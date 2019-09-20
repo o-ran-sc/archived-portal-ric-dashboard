@@ -30,6 +30,7 @@ Version 1.2.1, 20 Sep 2019
 * Block whitespace in E2 IP input field validation
 * Relax validation in E2 RAN name field validation
 * Make RAN connection table robust to missing fields
+* Install curl when building Docker image
 
 Version 1.2.0, 11 Sep 2019
 --------------------------
