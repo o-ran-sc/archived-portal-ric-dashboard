@@ -27,34 +27,48 @@
 
   <table mat-table class="ran-control-table mat-elevation-z8" [dataSource]="dataSource">
 
+    <ng-template #noValue></ng-template>
+
     <ng-container matColumnDef="nbId">
       <mat-header-cell *matHeaderCellDef>Nodeb ID</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebIdentity.globalNbId.nbId}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebIdentity.globalNbId; else noValue">{{ran.nodebIdentity.globalNbId.nbId}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="nodeType">
       <mat-header-cell *matHeaderCellDef>Node Type</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.nodeType}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebStatus; else noValue">{{ran.nodebStatus.nodeType}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranName">
       <mat-header-cell *matHeaderCellDef>RAN Name</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebIdentity.inventoryName}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebIdentity; else noValue">{{ran.nodebIdentity.inventoryName}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranIp">
       <mat-header-cell *matHeaderCellDef>IP</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.ip}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebStatus; else noValue">{{ran.nodebStatus.ip}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ranPort">
       <mat-header-cell *matHeaderCellDef>Port</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.port}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebStatus; else noValue">{{ran.nodebStatus.port}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="connectionStatus">
       <mat-header-cell *matHeaderCellDef>Connection Status</mat-header-cell>
-      <mat-cell *matCellDef="let ran">{{ran.nodebStatus.connectionStatus}}</mat-cell>
+      <mat-cell *matCellDef="let ran">
+        <div *ngIf="ran.nodebStatus; else noValue">{{ran.nodebStatus.connectionStatus}}</div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="noRecordsFound">
@@ -63,7 +77,8 @@
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}">
+    </mat-footer-row>
 
   </table>
 
