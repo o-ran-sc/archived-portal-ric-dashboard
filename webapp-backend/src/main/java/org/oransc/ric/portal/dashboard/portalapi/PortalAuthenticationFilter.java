@@ -182,7 +182,7 @@ public class PortalAuthenticationFilter implements Filter {
 		if (logger.isTraceEnabled())
 			logger.trace("doFilter: req {}", request.getRequestURI());
 		// Need to authenticate the request
-		final String userId = authManager.valdiateEcompSso(request);
+		final String userId = authManager.validateEcompSso(request);
 		final EcompUser ecompUser = (userId == null ? null : userManager.getUser(userId));
 		if (userId == null || ecompUser == null) {
 			logger.debug("doFilter: unauthorized user requests URI {}, serving login page", request.getRequestURI());
