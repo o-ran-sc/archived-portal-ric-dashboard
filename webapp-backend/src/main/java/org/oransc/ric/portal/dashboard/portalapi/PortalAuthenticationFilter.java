@@ -20,6 +20,7 @@
 package org.oransc.ric.portal.dashboard.portalapi;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
 import java.net.URLEncoder;
@@ -76,15 +77,39 @@ public class PortalAuthenticationFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// Unfortunately these names are not available as constants
+	private static final String[] securityPropertyFiles = { "ESAPI.properties", "key.properties", "portal.properties",
+			"validation.properties" };
+
 	public static final String REDIRECT_URL_KEY = "redirectUrl";
 
+	private final boolean enforcePortalSecurity;
 	private final PortalAuthManager authManager;
 
 	private final DashboardUserManager userManager;
 
-	public PortalAuthenticationFilter(PortalAuthManager authManager, DashboardUserManager userManager) {
+	public PortalAuthenticationFilter(boolean portalSecurity, PortalAuthManager authManager,
+			DashboardUserManager userManager) {
+		this.enforcePortalSecurity = portalSecurity;
 		this.authManager = authManager;
 		this.userManager = userManager;
+		if (portalSecurity) {
+			// Throw if security is requested and prerequisites are not met
+			for (String pf : securityPropertyFiles) {
+				InputStream in = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(pf);
+				if (in == null) {
+					String msg = "Failed to find property file on classpath: " + pf;
+					logger.error(msg);
+					throw new RuntimeException(msg);
+				} else {
+					try {
+						in.close();
+					} catch (IOException ex) {
+						logger.warn("Failed to close stream", ex);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -102,13 +127,23 @@ public class PortalAuthenticationFilter implements Filter {
 		// No resources to release
 	}
 
-	/*
-	 * Populates security context with a mock user in the admin role.
-	 * 
-	 * TODO: AUTH
+	/**
+	 * Requests for pages ignored in the web security config do not hit this filter.
 	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+		if (enforcePortalSecurity)
+			doFilterEPSDKFW(req, res, chain);
+		else
+			doFilterMockUserAdminRole(req, res, chain);
+	}
+
+	/*
+	 * Populates security context with a mock user in the admin role.
+	 * 
+	 */
+	private void doFilterMockUserAdminRole(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth == null || auth.getAuthorities().isEmpty()) {
@@ -134,12 +169,9 @@ public class PortalAuthenticationFilter implements Filter {
 
 	/*
 	 * Checks for valid cookies and allows request to be served if found; redirects
-	 * to Portal otherwise. Requests for pages ignored in the web security config do
-	 * not hit this filter.
-	 * 
-	 * TODO: AUTH
+	 * to Portal otherwise.
 	 */
-	public void doFilter_EPSDKFW(ServletRequest req, ServletResponse res, FilterChain chain)
+	private void doFilterEPSDKFW(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		logger.debug("doFilter {}", req);
 		HttpServletRequest request = (HttpServletRequest) req;
