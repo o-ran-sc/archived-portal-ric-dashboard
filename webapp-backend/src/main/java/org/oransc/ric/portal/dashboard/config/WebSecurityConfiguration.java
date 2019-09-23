@@ -61,8 +61,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	// Although constructor arguments are recommended over field injection,
 	// this results in fewer lines of code.
-	@Value("${userfile}")
-	private String userFilePath;
+	@Value("${portalapi.security}")
+	private Boolean portalapiSecurity;
 	@Value("${portalapi.appname}")
 	private String appName;
 	@Value("${portalapi.username}")
@@ -73,6 +73,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private String decryptor;
 	@Value("${portalapi.usercookie}")
 	private String userCookie;
+	@Value("${userfile}")
+	private String userFilePath;
 
 	protected void configure(HttpSecurity http) throws Exception {
 		logger.debug("configure: portalapi.username {}", userName);
@@ -138,8 +140,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PortalAuthenticationFilter portalAuthenticationFilterBean()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalAuthManagerBean(),
-				dashboardUserManagerBean());
+		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalapiSecurity,
+				portalAuthManagerBean(), dashboardUserManagerBean());
 		return portalAuthenticationFilter;
 	}
 

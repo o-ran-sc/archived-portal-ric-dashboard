@@ -25,7 +25,7 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.2.1-SNAPSHOT</version>
+		<version>1.2.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>ric-dash-be</artifactId>
 	<name>RIC Dashboard Webapp backend</name>
