@@ -145,13 +145,16 @@ listed here in alphabetical order.
 
 ``ecomp_redirect_url``
 
-URL of ONAP Portal.  No default value. Usually a value like
+Portal URL that is reachable by a user's browser.  Enter this in the
+helm chart for property key "portalapi.ecomp_redirect_url".  This is
+a value like
 ``https://portal.api.simpledemo.onap.org:30225/ONAPPORTAL/login.htm``
 
 ``ecomp_rest_url``
 
-URL of ONAP Portal REST endpoint.  No default value.  Usually a value
-like ``http://portal-app.onap:8989/ONAPPORTAL/auxapi``
+Portal REST URL that is reachable by the Dashboard back-end. Enter
+this in the helm chart for property key "portalapi.ecomp_rest_url".
+This is a value like ``http://portal-app.onap:8989/ONAPPORTAL/auxapi``
 
 ``portal.api.impl.class``
 
@@ -172,14 +175,35 @@ Deployment
 ----------
 
 A production server requires the configuration files listed above.
-All files should be placed in a ``config`` directory.  That name is important;
-Spring automatically searches that directory for the ``application.properties``
-file. Further, that directory can easily be placed on the Java classpath so
-the additional files can be found at runtime.
+All files should be placed in a ``config`` directory.  That name is
+important; Spring automatically searches that directory for the
+``application.properties`` file. Further, that directory can easily be
+placed on the Java classpath so the additional files can be found at
+runtime.
 
-After creating and mounting Kubernetes config maps appropriately, launch
-the server with this command-line invocation to include the ``config`` directory
-on the Java classpath::
+
+Configure ONAP Portal for Dashboard
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ONAP Portal needs two properties with information about the
+deployed Dashboard:
+
+#. Dashboard URL that is reachable by a user's browser. The domain
+   of this host name must match the Portal URL that is reachable by a
+   user's browser for cookie-based authentication to function as
+   expected.  This is a value like
+   ``http://dashboard.simpledemo.onap.org``
+#. Dashboard REST URL that is reachable by the Portal back-end server.
+   This can be use a host name or an IP address, because it does not
+   use cookie-based authentication.  This is a value like
+   ``http://192.168.1.1:8080/auxapi/v3``
+
+Launch Server
+^^^^^^^^^^^^^
+
+After creating, populating and mounting Kubernetes config maps
+appropriately, launch the server with this command-line invocation to
+include the ``config`` directory on the Java classpath::
 
     java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
         -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
