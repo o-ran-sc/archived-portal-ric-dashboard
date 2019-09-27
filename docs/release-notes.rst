@@ -19,9 +19,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.2, 23 Sep 2019
+Version 1.2.2, 27 Sep 2019
 --------------------------
-* Supoprt Portal security using EPSDK-FW cookie and user management
+* Support Portal security using EPSDK-FW cookie and user management
 
 Version 1.2.1, 20 Sep 2019
 --------------------------

@@ -20,32 +20,36 @@ RIC Dashboard Configuration and Deployment
 ==========================================
 
 This documents the configuration and deployment of the O-RAN SC RIC
-Dashboard web application.
+Dashboard web application, which is often deployed together with the
+ONAP Portal.
 
 Configuration
 -------------
 
-The application requires the following configuration files.  In the
-usual Kubernetes deployment, all files are provided by a configuration
-map::
+The application requires the following configuration files::
 
     application.properties
     key.properties
     portal.properties
 
+In the usual Kubernetes deployment, all file contents are provided by
+a configuration map.
 
 Application Properties
 ^^^^^^^^^^^^^^^^^^^^^^
 
-This Spring-Boot application reads key-value pairs from the file
-``application.properties`` in the current working directory when
-launched, or from the same file in a ``config`` subdirectory.  Many
-properties have default values cached within the application, in file
-``src/main/resources/application.properties``.  Properties with
+The file ``application.properties`` must be provided when the
+application is launched, either in the current working directory or in
+a ``config`` subdirectory (latter is preferred). The Helm chart that
+deploys the application should mount this file appropriately.
+
+Many properties have default values cached within the application, in
+file ``src/main/resources/application.properties``.  Properties with
 default values do NOT need to be repeated in a deployment-specific
 configuration.  Properties without default values MUST be specified in
-a deployment-specific configuration. The properties are listed below
-in alphabetical order.
+a deployment-specific configuration.
+
+The properties are listed below in alphabetical order.
 
 ``a1med.url.prefix``
 
@@ -99,7 +103,14 @@ Java class that decrypts ciphertext from Portal. Default is
 
 ``portalapi.password``
 
-Application password expected at ONAP portal. No default value.
+REST password expected at ONAP portal. No default value.
+
+``portalapi.security``
+
+Boolean flag whether the Dashboard limits access to users (browsers)
+that present security tokens set by the ONAP Portal.  If false, no
+access control is performed, which is only appropriate for isolated
+lab testing.
 
 ``portalapi.usercookie``
 
@@ -107,7 +118,7 @@ Name of request cookie with user ID. Default is ``UserId``
 
 ``portalapi.username``
 
-Application user name expected at ONAP portal. No default value.
+REST user name expected at ONAP portal. No default value.
 
 ``server.port``
 
@@ -126,9 +137,12 @@ Key Properties
 ^^^^^^^^^^^^^^
 
 The file ``key.properties`` must be provided on the Java classpath for
-the EPSDK-FW library.  A sample file is in directory
-``src/test/resources``.  The file must contain the following entries,
-listed here in alphabetical order.
+the Spring-Boot application, as required by the EPSDK-FW library. The
+Helm chart for the application should mount this file appropriately.
+A sample file is in directory ``src/test/resources``.
+
+The file must contain the following entries, listed here in
+alphabetical order.
 
 ``cipher.enc.key``
 
@@ -139,19 +153,23 @@ Portal Properties
 ^^^^^^^^^^^^^^^^^
 
 The file ``portal.properties`` must be provided on the Java classpath
-for the EPSDK-FW library.  A sample file is in directory
-``src/test/resources``.  The file must contain the following entries,
-listed here in alphabetical order.
+for the application, as required by the EPSDK-FW library.  The Helm
+chart for the application should mount this file appropriately.  A
+sample file is in directory ``src/test/resources``.
+
+The file must contain the following entries, listed here in
+alphabetical order.
 
 ``ecomp_redirect_url``
 
-URL of ONAP Portal.  No default value. Usually a value like
+Portal URL that is reachable by a user's browser.  This is a value
+like
 ``https://portal.api.simpledemo.onap.org:30225/ONAPPORTAL/login.htm``
 
 ``ecomp_rest_url``
 
-URL of ONAP Portal REST endpoint.  No default value.  Usually a value
-like ``http://portal-app.onap:8989/ONAPPORTAL/auxapi``
+Portal REST URL that is reachable by the Dashboard back-end. 
+This is a value like ``http://portal-app.onap:8989/ONAPPORTAL/auxapi``
 
 ``portal.api.impl.class``
 
@@ -172,14 +190,47 @@ Deployment
 ----------
 
 A production server requires the configuration files listed above.
-All files should be placed in a ``config`` directory.  That name is important;
-Spring automatically searches that directory for the ``application.properties``
-file. Further, that directory can easily be placed on the Java classpath so
-the additional files can be found at runtime.
+All files should be placed in a ``config`` directory.  That name is
+important; Spring automatically searches that directory for the
+``application.properties`` file. Further, that directory can easily be
+placed on the Java classpath so the additional files can be found at
+runtime.
 
-After creating and mounting Kubernetes config maps appropriately, launch
-the server with this command-line invocation to include the ``config`` directory
-on the Java classpath::
+
+On-Board Dashboard to ONAP Portal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When on-boarding the Dashboard to the ONAP Portal the administrator
+must supply the following information about the deployed instance:
+
+- Dashboard URL that is reachable by a user's browser. The domain of
+  this host name must match the Portal URL that is similarly reachable
+  by a user's browser for cookie-based authentication to function as
+  expected.  This should be a value like
+  ``http://dashboard.simpledemo.onap.org:8080``
+- Dashboard REST URL that is reachable by the Portal back-end server.
+  This can be a host name or an IP address, because it does not use
+  cookie-based authentication.  This should be a value like
+  ``http://192.168.1.1:8080/auxapi/v3``
+
+The Dashboard server only listens on a single port, so the examples
+above both use the same port number.  Different port numbers might be
+required if an ingress controller or other proxy server is used.
+
+After the on-boarding process is complete, the administrator must
+enter values from the Portal for the following properties explained
+above:
+
+- ``portalapi.password``
+- ``portalapi.username``
+- ``ueb_app_key``
+
+Launch Server
+^^^^^^^^^^^^^
+
+After creating, populating and mounting Kubernetes config maps
+appropriately, launch the server with this command-line invocation to
+include the ``config`` directory on the Java classpath::
 
     java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
         -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \

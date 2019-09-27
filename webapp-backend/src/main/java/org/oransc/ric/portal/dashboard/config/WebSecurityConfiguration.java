@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 
-import org.onap.portalsdk.core.onboarding.crossapi.PortalRestAPIProxy;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.LoginServlet;
@@ -143,22 +142,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalapiSecurity,
 				portalAuthManagerBean(), dashboardUserManagerBean());
 		return portalAuthenticationFilter;
-	}
-
-	/**
-	 * Instantiates the EPSDK-FW servlet. Needed because this app is not configured
-	 * to scan the EPSDK-FW packages; there's also a chance that Spring-Boot does
-	 * not automatically process @WebServlet annotations.
-	 * 
-	 * @return Servlet registration bean for the Portal Rest API proxy servlet.
-	 */
-	@Bean
-	public ServletRegistrationBean<PortalRestAPIProxy> portalApiProxyServletBean() {
-		PortalRestAPIProxy servlet = new PortalRestAPIProxy();
-		final ServletRegistrationBean<PortalRestAPIProxy> servletBean = new ServletRegistrationBean<>(servlet,
-				PortalApiConstants.API_PREFIX + "/*");
-		servletBean.setName("PortalRestApiProxyServlet");
-		return servletBean;
 	}
 
 	/**
