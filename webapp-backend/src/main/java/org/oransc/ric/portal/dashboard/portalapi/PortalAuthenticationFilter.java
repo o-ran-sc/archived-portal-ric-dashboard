@@ -44,6 +44,7 @@ import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.EcompUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
@@ -147,7 +148,10 @@ public class PortalAuthenticationFilter implements Filter {
 			throws IOException, ServletException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth == null || auth.getAuthorities().isEmpty()) {
-			logger.debug("doFilter adding auth to request {}", req);
+			if (logger.isDebugEnabled()) {
+				logger.debug("doFilter adding auth to request URI {}",
+						(req instanceof HttpServletRequest) ? ((HttpServletRequest) req).getRequestURL() : req);
+			}
 			EcompRole admin = new EcompRole();
 			admin.setId(1L);
 			admin.setName(DashboardConstants.ROLE_ADMIN);
@@ -173,16 +177,21 @@ public class PortalAuthenticationFilter implements Filter {
 	 */
 	private void doFilterEPSDKFW(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-		logger.debug("doFilter {}", req);
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
+		if (logger.isTraceEnabled())
+			logger.trace("doFilter: req {}", request.getRequestURI());
 		// Need to authenticate the request
 		final String userId = authManager.valdiateEcompSso(request);
 		final EcompUser ecompUser = (userId == null ? null : userManager.getUser(userId));
 		if (userId == null || ecompUser == null) {
-			String redirectURL = buildLoginPageUrl(request);
-			logger.trace("doFilter: unauthorized, redirecting to {}", redirectURL);
-			response.sendRedirect(redirectURL);
+			logger.debug("doFilter: unauthorized user requests URI {}, serving login page", request.getRequestURI());
+			StringBuffer sb = request.getRequestURL();
+			sb.append(request.getQueryString() == null ? "" : "?" + request.getQueryString());
+			String body = generateLoginRedirectPage(sb.toString());
+			response.setContentType(MediaType.TEXT_HTML_VALUE);
+			response.getWriter().print(body);
+			response.getWriter().flush();
 		} else {
 			EcompUserDetails userDetails = new EcompUserDetails(ecompUser);
 			// Using portal session as credentials is a hack
@@ -194,19 +203,44 @@ public class PortalAuthenticationFilter implements Filter {
 		}
 	}
 
-	private String buildLoginPageUrl(HttpServletRequest request) {
-		logger.trace("buildLoginPageUrl");
-		// Why so much work to recover the original request?
-		final StringBuffer sb = request.getRequestURL();
-		sb.append(request.getQueryString() == null ? "" : "?" + request.getQueryString());
-		final String requestedUrl = sb.toString();
-		String encodedUrl = null;
-		try {
-			encodedUrl = URLEncoder.encode(requestedUrl, "UTF-8");
-		} catch (UnsupportedEncodingException ex) {
-			logger.error("buildLoginPageUrl: Failed to encode {}", requestedUrl);
-		}
-		return DashboardConstants.LOGIN_PAGE + "?" + REDIRECT_URL_KEY + "=" + encodedUrl;
+	/**
+	 * Generates a page with text only, absolutely no references to any webapp
+	 * resources, so this can be served to an unauthenticated user without
+	 * triggering a new authentication attempt. The page has a link to the Portal
+	 * URL from configuration, with a return URL that is the original request.
+	 * 
+	 * @param appUrl
+	 *                   Original requested URL
+	 * @return HTML
+	 * @throws UnsupportedEncodingException
+	 *                                          On error
+	 */
+	private static String generateLoginRedirectPage(String appUrl) throws UnsupportedEncodingException {
+		String encodedAppUrl = URLEncoder.encode(appUrl, "UTF-8");
+		String portalBaseUrl = PortalApiProperties.getProperty(PortalApiConstants.ECOMP_REDIRECT_URL);
+		String redirectUrl = portalBaseUrl + "?" + PortalAuthenticationFilter.REDIRECT_URL_KEY + "=" + encodedAppUrl;
+		String aHref = "<a href=\"" + redirectUrl + "\">";
+		// If only Java had "here" documents.
+		String body = String.join(//
+				System.getProperty("line.separator"), //
+				"<html>", //
+				"<head>", //
+				"<title>RIC Dashboard</title>", //
+				"<style>", //
+				"html, body { ", //
+				"  font-family: Helvetica, Arial, sans-serif;", //
+				"}", //
+				"</style>", //
+				"</head>", //
+				"<body>", //
+				"<h2>RIC Dashboard</h2>", //
+				"<h4>Please log in.</h4>", //
+				"<p>", //
+				aHref, "Click here to authenticate at the ONAP Portal</a>", //
+				"</p>", //
+				"</body>", //
+				"</html>");
+		return body;
 	}
 
 	/**

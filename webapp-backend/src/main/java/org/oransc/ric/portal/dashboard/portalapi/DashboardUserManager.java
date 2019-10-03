@@ -23,10 +23,14 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
+import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,16 +42,47 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Provides user-management services.
  * 
- * This first implementation serializes user details to a file. TODO: migrate to
- * a database.
+ * This first implementation serializes user details to a file.
+ * 
+ * TODO: migrate to a database.
  */
 public class DashboardUserManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	public static final String USER_FILE_PATH = "/tmp/dashboard-users.json";
+
 	private final File userFile;
 	private final List<EcompUser> users;
 
+	/**
+	 * convenience constructor that uses default file path
+	 * 
+	 * @param clear
+	 *                  If true, start empty and remove any existing file.
+	 * 
+	 * @throws IOException
+	 *                         On file error
+	 */
+	public DashboardUserManager(boolean clear) throws IOException {
+		this(USER_FILE_PATH);
+		if (clear) {
+			logger.debug("ctor: removing file {}", userFile.getAbsolutePath());
+			File f = new File(DashboardUserManager.USER_FILE_PATH);
+			if (f.exists())
+				f.delete();
+			users.clear();
+		}
+	}
+
+	/**
+	 * Uses specified file path
+	 * 
+	 * @param userFilePath
+	 *                         File path
+	 * @throws IOException
+	 *                         If file cannot be read
+	 */
 	public DashboardUserManager(final String userFilePath) throws IOException {
 		logger.debug("ctor: userfile {}", userFilePath);
 		if (userFilePath == null)
@@ -117,6 +152,24 @@ public class DashboardUserManager {
 		} catch (Exception ex) {
 			throw new PortalAPIException("Save failed", ex);
 		}
+	}
+
+	// Test infrastructure
+	public static void main(String[] args) throws Exception {
+		DashboardUserManager dum = new DashboardUserManager(false);
+		EcompUser user = new EcompUser();
+		user.setActive(true);
+		user.setLoginId("demo");
+		user.setFirstName("First");
+		user.setLastName("Last");
+		EcompRole role = new EcompRole();
+		role.setId(1L);
+		role.setName(DashboardConstants.ROLE_NAME_ADMIN);
+		Set<EcompRole> roles = new HashSet<>();
+		roles.add(role);
+		user.setRoles(roles);
+		dum.createUser(user);
+		logger.debug("Created user {}", user);
 	}
 
 }

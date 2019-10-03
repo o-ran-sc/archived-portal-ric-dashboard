@@ -67,6 +67,7 @@ public class AdminController {
 
 	@Value("${metrics.url.mc}")
 	private String mcAppMetricsUrl;
+
 	public AdminController() {
 		// Mock data
 		users = new DashboardUser[] { //

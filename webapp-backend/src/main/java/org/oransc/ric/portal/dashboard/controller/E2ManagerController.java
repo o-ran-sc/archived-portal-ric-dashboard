@@ -74,7 +74,7 @@ public class E2ManagerController {
 	public static final String HEALTH_METHOD = "health";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Keep these consistent with the E2M implementation
-	/*package*/ static final String NODEB_PREFIX = "/nodeb";
+	/* package */ static final String NODEB_PREFIX = "/nodeb";
 	public static final String RAN_METHOD = NODEB_PREFIX + "/ran";
 	public static final String NODEB_SHUTDOWN_METHOD = NODEB_PREFIX + "/shutdown";
 	public static final String NODEB_LIST_METHOD = NODEB_PREFIX + "/ids";
@@ -181,7 +181,7 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")
-	@PutMapping(NODEB_PREFIX  + "/{" + PP_RANNAME + "}"+ RESET_METHOD)
+	@PutMapping(NODEB_PREFIX + "/{" + PP_RANNAME + "}" + RESET_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void reset(@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest,
 			HttpServletResponse response) {
