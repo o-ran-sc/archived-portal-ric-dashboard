@@ -210,8 +210,8 @@ must supply the following information about the deployed instance:
   ``http://dashboard.simpledemo.onap.org:8080``
 - Dashboard REST URL that is reachable by the Portal back-end server.
   This can be a host name or an IP address, because it does not use
-  cookie-based authentication.  This should be a value like
-  ``http://192.168.1.1:8080/auxapi/v3``
+  cookie-based authentication.  This must be a URL with suffix "/api/v3"
+  for example ``http://192.168.1.1:8080/api/v3``.
 
 The Dashboard server only listens on a single port, so the examples
 above both use the same port number.  Different port numbers might be

@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.invoke.MethodHandles;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashSet;
 
@@ -147,7 +149,10 @@ public class PortalAuthenticationFilter implements Filter {
 			throws IOException, ServletException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth == null || auth.getAuthorities().isEmpty()) {
-			logger.debug("doFilter adding auth to request {}", req);
+			if (logger.isDebugEnabled()) {
+				logger.debug("doFilter adding auth to request URI {}",
+						(req instanceof HttpServletRequest) ? ((HttpServletRequest) req).getRequestURL() : req);
+			}
 			EcompRole admin = new EcompRole();
 			admin.setId(1L);
 			admin.setName(DashboardConstants.ROLE_ADMIN);
@@ -173,7 +178,10 @@ public class PortalAuthenticationFilter implements Filter {
 	 */
 	private void doFilterEPSDKFW(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-		logger.debug("doFilter {}", req);
+		if (logger.isTraceEnabled()) {
+			logger.trace("doFilter request URI {}",
+					(res instanceof HttpServletRequest) ? ((HttpServletRequest) res).getRequestURL() : req);
+		}
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		// Need to authenticate the request
@@ -181,7 +189,11 @@ public class PortalAuthenticationFilter implements Filter {
 		final EcompUser ecompUser = (userId == null ? null : userManager.getUser(userId));
 		if (userId == null || ecompUser == null) {
 			String redirectURL = buildLoginPageUrl(request);
-			logger.trace("doFilter: unauthorized, redirecting to {}", redirectURL);
+			if (logger.isDebugEnabled()) {
+				logger.debug("doFilter: unauthorized req {}, redirecting to {}",
+						(req instanceof HttpServletRequest) ? ((HttpServletRequest) req).getRequestURL() : req,
+						redirectURL);
+			}
 			response.sendRedirect(redirectURL);
 		} else {
 			EcompUserDetails userDetails = new EcompUserDetails(ecompUser);
@@ -194,9 +206,19 @@ public class PortalAuthenticationFilter implements Filter {
 		}
 	}
 
-	private String buildLoginPageUrl(HttpServletRequest request) {
+	/**
+	 * Builds URL to the built-in login page, honoring the original protocol aka
+	 * scheme, host name, port and with the original path encoded as a request
+	 * parameter.
+	 * 
+	 * @param request
+	 *                    HttpServletRequest
+	 * @return URL string
+	 * @throws MalformedURLException
+	 *                                   On error
+	 */
+	private String buildLoginPageUrl(HttpServletRequest request) throws MalformedURLException {
 		logger.trace("buildLoginPageUrl");
-		// Why so much work to recover the original request?
 		final StringBuffer sb = request.getRequestURL();
 		sb.append(request.getQueryString() == null ? "" : "?" + request.getQueryString());
 		final String requestedUrl = sb.toString();
@@ -206,7 +228,9 @@ public class PortalAuthenticationFilter implements Filter {
 		} catch (UnsupportedEncodingException ex) {
 			logger.error("buildLoginPageUrl: Failed to encode {}", requestedUrl);
 		}
-		return DashboardConstants.LOGIN_PAGE + "?" + REDIRECT_URL_KEY + "=" + encodedUrl;
+		URL url = new URL(request.getScheme(), request.getServerName(), request.getServerPort(),
+				DashboardConstants.LOGIN_PAGE + "?" + REDIRECT_URL_KEY + "=" + encodedUrl);
+		return url.toString();
 	}
 
 	/**
