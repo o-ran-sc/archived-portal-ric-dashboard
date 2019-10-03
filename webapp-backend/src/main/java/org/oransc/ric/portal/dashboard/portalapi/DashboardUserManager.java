@@ -23,10 +23,14 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
+import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,6 +121,25 @@ public class DashboardUserManager {
 		} catch (Exception ex) {
 			throw new PortalAPIException("Save failed", ex);
 		}
+	}
+
+	// Test infrastructure
+	public static void main(String[] args) throws Exception {
+		String filePath = "/tmp/users.json";
+		DashboardUserManager dum = new DashboardUserManager(filePath);
+		EcompUser user = new EcompUser();
+		user.setActive(true);
+		user.setLoginId("demo");
+		user.setFirstName("First");
+		user.setLastName("Last");
+		EcompRole role = new EcompRole();
+		role.setId(1L);
+		role.setName(DashboardConstants.ROLE_NAME_ADMIN);
+		Set<EcompRole> roles = new HashSet<>();
+		roles.add(role);
+		user.setRoles(roles);
+		dum.createUser(user);
+		logger.debug("Wrote file {}", filePath);
 	}
 
 }

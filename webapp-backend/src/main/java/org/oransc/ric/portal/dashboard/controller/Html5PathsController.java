@@ -19,9 +19,12 @@
  */
 package org.oransc.ric.portal.dashboard.controller;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,14 +49,19 @@ public class Html5PathsController {
 	 * https://stackoverflow.com/questions/44692781/configure-spring-boot-to-redirect-404-to-a-single-page-app
 	 * 
 	 * @param request
-	 *                    HttpServletRequest
-	 * @return Forward directive to index.html
+	 *                     HttpServletRequest
+	 * @param response
+	 *                     HttpServletResponse
+	 * @throws IOException
+	 *                         On error
 	 */
 	@RequestMapping(method = { RequestMethod.OPTIONS, RequestMethod.GET }, //
 			path = { "/catalog", "/control", "/stats", "/user" })
-	public String forwardAngularRoutes(HttpServletRequest request) {
-		logger.debug("forwardAngularRoutes: {}", request.getRequestURI());
-		return "forward:/index.html";
+	public void forwardAngularRoutes(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		URL url = new URL(request.getScheme(), request.getServerName(), request.getServerPort(), "/index.html");
+		if (logger.isDebugEnabled())
+			logger.debug("forwardAngularRoutes: {} redirected to {}", request.getRequestURI(), url);
+		response.sendRedirect(url.toString());
 	}
 
 }

@@ -25,7 +25,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.LoginServlet;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
@@ -38,7 +37,6 @@ import org.oransc.ric.portal.dashboard.portalapi.PortalAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -142,22 +140,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalapiSecurity,
 				portalAuthManagerBean(), dashboardUserManagerBean());
 		return portalAuthenticationFilter;
-	}
-
-	/**
-	 * Instantiates a trivial login servlet that serves a basic page with a link to
-	 * authenticate at Portal. The login filter redirects to this page instead of
-	 * Portal.
-	 * 
-	 * @return Servlet registration bean for the Dashboard login servlet.
-	 */
-	@Bean
-	public ServletRegistrationBean<LoginServlet> loginServletBean() {
-		LoginServlet servlet = new LoginServlet();
-		final ServletRegistrationBean<LoginServlet> servletBean = new ServletRegistrationBean<>(servlet,
-				DashboardConstants.LOGIN_PAGE);
-		servletBean.setName("LoginServlet");
-		return servletBean;
 	}
 
 }
