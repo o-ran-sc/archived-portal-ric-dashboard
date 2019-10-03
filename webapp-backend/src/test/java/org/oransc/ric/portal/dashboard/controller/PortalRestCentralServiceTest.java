@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.PortalApIMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +38,6 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	// paths are hardcoded here exactly like the EPSDK-FW library :(
-
 	@Test
 	public void getAnalyticsTest() {
 		// paths are hardcoded here exactly like the EPSDK-FW library :(
@@ -52,12 +49,13 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void getLoginPageTest() {
-		URI uri = buildUri(null, DashboardConstants.LOGIN_PAGE);
+	public void getErrorPageTest() {
+		// Send unauthorized request
+		URI uri = buildUri(null, "/favicon.ico");
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
-		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
-		Assertions.assertTrue(response.getBody().contains("Please log in"));
+		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
+		Assertions.assertTrue(response.getBody().contains("Static error page"));
 	}
 
 	private HttpEntity<Object> getEntityWithHeaders(Object body) {

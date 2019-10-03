@@ -19,6 +19,11 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 1.2.3, 4 Oct 2019
+-------------------------
+* Serve unauthenticated user a login-at-portal page without using redirect
+* Upgrade to Spring-Boot 2.1.9.RELEASE
+
 Version 1.2.2, 27 Sep 2019
 --------------------------
 * Support Portal security using EPSDK-FW cookie and user management
