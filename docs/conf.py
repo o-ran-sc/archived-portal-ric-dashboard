@@ -1,2 +1,2 @@
-from docs_conf import *
-master_doc = 'index'
+from docs_conf.conf import *
+linkcheck_ignore = [r'http://localhost:\d+/']
