@@ -41,7 +41,7 @@
 /.nb-gradle/
 /build/
 
-### visual studio ###
+### visual studio files ###
 .vs
 **/.vscode
 
