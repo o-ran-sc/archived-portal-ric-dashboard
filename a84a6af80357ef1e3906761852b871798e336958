@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bb07c7bf_d852937b",
+        "filename": "a1-controller-client/src/main/resources/a1_controller_0.1.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Ok, replying to my own comment :) I see now that this cached copy is basically version 1.0.0 of the A1 Mediator, only with every instance of \"A1 Mediator\" changed to \"A1 Controller\", a purely cosmetic change.  \n\nNow that I have finally made the long overdue change in dashboard to use git submodules instead of cached copies, would you please consider doing the same here?",
+      "parentUuid": "02a70fa6_733d4110",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9bec016b_3bab8bdc",
         "filename": "a1-controller-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1ControllerClientTest.java",
         "patchSetId": 1
@@ -455,6 +479,696 @@
         "startChar": 1,
         "endLine": 50,
         "endChar": 25
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99355b81_410d1f92",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1ControllerMockConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "I\u0027m a little surprised to see this string (\"XApp\") in a Nordix-copyrighted file :)",
+      "range": {
+        "startLine": 60,
+        "startChar": 37,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39291f48_12591728",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1ControllerMockConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Controller?",
+      "range": {
+        "startLine": 68,
+        "startChar": 35,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1575b434_c865556b",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1ControllerMockConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Since java doesn\u0027t have handy \"\u003c\u003cHERE\" document syntax, I recommend putting this into a JSON file in src/test/resources and pull it in at construction time. I\u0027ve done this for the big JSON block of Kubernetes pod status data returned by CaaS-Ingress, it\u0027s a whole lot easier than escaping every quote character and forcing newline breaks etc. etc.",
+      "range": {
+        "startLine": 155,
+        "startChar": 2,
+        "endLine": 155,
+        "endChar": 7
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36aa8c5e_d3a09207",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1ControllerMockConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Never discard exceptions, at least log a warning to help yourself?",
+      "range": {
+        "startLine": 337,
+        "startChar": 4,
+        "endLine": 337,
+        "endChar": 5
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e33f3d80_ab9ffa09",
+        "filename": "webapp-frontend/src/app/navigation/sidenav-list/sidenav-list.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "please browse the link shown in this page for a different icon",
+      "range": {
+        "startLine": 36,
+        "startChar": 16,
+        "endLine": 36,
+        "endChar": 26
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eec88430_63a1550e",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "I see you have flagged this as sortable, but I don\u0027t see the matching code in the component",
+      "range": {
+        "startLine": 32,
+        "startChar": 41,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bad041e_527f30e2",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.datasource.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "The description column is also marked as sortable, missing code here for that",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 7
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a68361c_24829a29",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "please use HTML comment syntax, not both HTML and Java code",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 3
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c107ec_82983444",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 3
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d50d7d40_b875db6b",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "please try to avoid trailing whitespace like this.  An editor like VS Code is free and very, very useful -- the autoformat feature is pretty solid.",
+      "range": {
+        "startLine": 28,
+        "startChar": 41,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a6538aa_7f42f3c1",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Do you use a Layout element to make it prettier?  I don\u0027t see it being supplied here",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ceed554_07a698ba",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "This kind of trailing whitespace jumps out at me in Gerrit :/",
+      "range": {
+        "startLine": 77,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61f284a0_4309516c",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "what is the ncr-table?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 2
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29eda4d0_32c71b79",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Are you showing a version?  Probably not",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 2
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a6ff441_7b2f44b5",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "what is nonrr ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 9
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bf17cb5_a2a7a6a0",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.datasource.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "The instance column is also marked sortable, missing the item in the switch here tho",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 7
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ed74324_e4f56d16",
+        "filename": "webapp-frontend/src/app/policy/policy.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Why add a trivial policy component that only wraps the policy-control component?  This seems unnecessary.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 3
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771254cd_2a3950a8",
+        "filename": "webapp-frontend/src/app/policy/policy.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "I am not convinced this is necessary, I think you can instantiate the policy-control component directly. This layer doesn\u0027t add any value.  Am I missing something drop-dead obvious?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09df9dc2_df99ab2b",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "I think you could directly use the PolicyControlComponent here?",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed739f02_76182ae6",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Please keep this list sorted.",
+      "range": {
+        "startLine": 27,
+        "startChar": 38,
+        "endLine": 27,
+        "endChar": 51
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d966a24d_ba25e3b2",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Please keep this list sorted",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "befe4c6f_2aadcd49",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Please keep this list sorted",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8e72846_06397b99",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Please keep this list sorted",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcfe6b43_006265a0",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 146,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 17
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6d11fa9_9aa2a6e3",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Please keep this list sorted",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "715852db_61872de0",
+        "filename": "webapp-frontend/src/app/services/policy/policy.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "Just \"policy endpoint\" might be enuf here",
+      "range": {
+        "startLine": 29,
+        "startChar": 28,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcd9af22_83eb1663",
+        "filename": "webapp-frontend/src/app/services/policy/policy.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "The type decl below says PolicyInstance, not NonRRPolicyControl (?)",
+      "range": {
+        "startLine": 76,
+        "startChar": 46,
+        "endLine": 76,
+        "endChar": 64
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5484ac_26b5e853",
+        "filename": "webapp-frontend/src/app/services/policy/policy.service.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "This param does not occur (?)",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1813711a_5e334370",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "I really think we need a new image file here :/",
+      "range": {
+        "startLine": 29,
+        "startChar": 30,
+        "endLine": 29,
+        "endChar": 41
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2c402d_624806df",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T14:35:18Z",
+      "side": 1,
+      "message": "this one is already used on another card, please find something else",
+      "range": {
+        "startLine": 24,
+        "startChar": 42,
+        "endLine": 24,
+        "endChar": 54
       },
       "revId": "a84a6af80357ef1e3906761852b871798e336958",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
