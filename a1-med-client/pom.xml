@@ -25,12 +25,13 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>1.2.3-SNAPSHOT</version>
+		<version>1.2.4-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
 	<groupId>org.o-ran-sc.ric.plt.a1med.client</groupId>
 	<artifactId>a1-med-client</artifactId>
 	<name>RIC A1 Mediator client</name>
+	<!-- Update to match submodule tag -->
 	<version>0.10.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -102,7 +103,7 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/a1_mediator_0.10.3.yaml</inputSpec>
+							<inputSpec>${project.basedir}/ric-plt-a1/a1/openapi.yaml</inputSpec>
 							<language>java</language>
 							<packageName>${client.base.package.name}</packageName>
 							<modelPackage>${client.base.package.name}.model</modelPackage>

@@ -1,7 +1,8 @@
 # App Manager Client Generator
 
-This projects generates a REST client library from the Swagger specification
-file stored in src/main/resources and packages it in a jar.
+This projects generates a REST client library from the OpenAPI specification
+file obtained from the ric-plt/appmgr project, available here as a git submodule
+with a pinned version, and packages it in a jar.
 
 ## Eclipse and STS Users
 

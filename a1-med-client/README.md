@@ -1,7 +1,8 @@
 # A1 Mediator Client Generator
 
 This projects generates a REST client library from the OpenAPI specification
-file stored here and packages it in a jar.
+file obtained from the ric-plt/a1 project, available here as a git submodule
+with a pinned version, and packages it in a jar.
 
 ## Eclipse and STS Users
 
