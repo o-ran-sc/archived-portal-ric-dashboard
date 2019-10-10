@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02a70fa6_733d4110",
+        "filename": "a1-controller-client/src/main/resources/a1_controller_0.1.0.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "How is this different from file a1-med-client/src/main/resources/a1_mediator_0.10.3.yaml ?  I am not comfortable with having TWO clients for the A1 interface in this dashboard.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bec016b_3bab8bdc",
+        "filename": "a1-controller-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1ControllerClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Please do not use System.out.  Use SLF4J logger.debug() or logger.info()",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 4
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67ad1a94_b142cf97",
+        "filename": "a1-controller-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1ControllerClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Please do not use System.err.  Use SLF4J logger.error()",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 46,
+        "endChar": 6
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b62108_1357c1a2",
+        "filename": "a1-controller-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1ControllerClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 51,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 8
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c567000b_af6abaae",
+        "filename": "a1-controller-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1ControllerClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 6
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b90424_86139bd7",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "There\u0027s a pending change to remove Nokia from this repository entirely.  Please stay tuned.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04a09eb1_f87fbf61",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "You must bump the version when you make a large change like this!",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 4
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8536a0f3_99235a4a",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "How is the new a1-controller-client different from the existing a1-med-client?",
+      "range": {
+        "startLine": 48,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d35b7767_4c25006f",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "A1 Mediator?  I think this comment is not right",
+      "range": {
+        "startLine": 53,
+        "startChar": 57,
+        "endLine": 54,
+        "endChar": 7
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebf37705_a71a31ce",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Pls see comment about dumb/smart backend below",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c5a946_dd60c48e",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Why does this back-end method have to be so large? I have tried to follow a design of a dumb Java backend, just a reflection of the remote APIs, and keep the bulk of the intelligence in the front-end.",
+      "range": {
+        "startLine": 116,
+        "startChar": 1,
+        "endLine": 116,
+        "endChar": 5
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3645dad8_7ebd4e36",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "See below re Integer/String",
+      "range": {
+        "startLine": 133,
+        "startChar": 68,
+        "endLine": 133,
+        "endChar": 74
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0365c7bb_c0aaa9a1",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Standard role must not be allowed to make changes",
+      "range": {
+        "startLine": 142,
+        "startChar": 43,
+        "endLine": 142,
+        "endChar": 75
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2de9e275_f27d7a4c",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "please try declaring as Integer, Spring should enforce the constraint, I think there\u0027s no need to catch as String and decode as Integer",
+      "range": {
+        "startLine": 144,
+        "startChar": 42,
+        "endLine": 144,
+        "endChar": 48
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c16fa6f6_b7c8ca95",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Standard role must not be allowed to delete",
+      "range": {
+        "startLine": 153,
+        "startChar": 43,
+        "endLine": 153,
+        "endChar": 75
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cd3eab6_cd9705ca",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1Controller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "See above re Integer/String",
+      "range": {
+        "startLine": 154,
+        "startChar": 69,
+        "endLine": 154,
+        "endChar": 75
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f93c6e01_51793a10",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "If you keep the backend dumb, you will not need this model",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 10
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8de51cd5_17d4dbfe",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyType.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "This seems redundant, tt seems to me that the generated code from a YAML file should provide a usable model for policy type, what is not suitable about that?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 10
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f83150fa_9fe66658",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyTypes.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "Is this really required?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41b7c5c2_f2e7e77c",
+        "filename": "webapp-backend/src/main/resources/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-10T10:25:57Z",
+      "side": 1,
+      "message": "This assumes the a1 mediator is a different entity from the a1 controller?",
+      "range": {
+        "startLine": 49,
+        "startChar": 1,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "a84a6af80357ef1e3906761852b871798e336958",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
