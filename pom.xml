@@ -37,7 +37,7 @@ limitations under the License.
 	<properties>
 		<java.version>11</java.version>
 		<!-- Properties for the license-maven-plugin in child POMs -->
-		<lmp.organization.name>AT&amp;T Intellectual Property and Nokia</lmp.organization.name>
+		<lmp.organization.name>AT&amp;T Intellectual Property</lmp.organization.name>
 		<lmp.project.name>O-RAN-SC</lmp.project.name>
 		<lmp.inception.year>2019</lmp.inception.year>
 		<lmp.license.name>apache_v2</lmp.license.name>
@@ -54,6 +54,28 @@ limitations under the License.
 	</modules>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<configuration>
+					<organizationName>${lmp.organization.name}</organizationName>
+					<inceptionYear>${lmp.inception.year}</inceptionYear>
+					<projectName>${lmp.project.name}</projectName>
+					<licenseName>${lmp.license.name}</licenseName>
+					<processStartTag>${lmp.process.start.tag}</processStartTag>
+					<processEndTag>${lmp.process.end.tag}</processEndTag>
+					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -32,31 +32,18 @@ limitations under the License.
 	<build>
 		<plugins>
 			<plugin>
+				<!-- Most configuration and all execution is inherited -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>update-file-header</goal>
-						</goals>
-						<phase>process-sources</phase>
-						<configuration>
-							<organizationName>${lmp.organization.name}</organizationName>
-							<inceptionYear>${lmp.inception.year}</inceptionYear>
-							<projectName>${lmp.project.name}</projectName>
-							<licenseName>${lmp.license.name}</licenseName>
-							<processStartTag>${lmp.process.start.tag}</processStartTag>
-							<processEndTag>${lmp.process.end.tag}</processEndTag>
-							<roots>
-								<root>e2e</root>
-								<root>src</root>
-							</roots>
-							<excludes>
-								<exclude>**/*.json</exclude>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
+				<configuration>
+					<roots>
+						<root>e2e</root>
+						<root>src</root>
+					</roots>
+					<excludes>
+						<exclude>**/*.json</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.github.eirslett</groupId>

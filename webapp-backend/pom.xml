@@ -3,7 +3,7 @@
 ========================LICENSE_START=================================
 O-RAN-SC
 %%
-Copyright (C) 2019 AT&T Intellectual Property and Nokia
+Copyright (C) 2019 AT&T Intellectual Property
 %%
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -181,29 +181,17 @@ limitations under the License.
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<!-- Most configuration and all execution is inherited -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>first</id>
-						<goals>
-							<goal>update-file-header</goal>
-						</goals>
-						<phase>process-sources</phase>
-						<configuration>
-							<organizationName>${lmp.organization.name}</organizationName>
-							<inceptionYear>${lmp.inception.year}</inceptionYear>
-							<projectName>${lmp.project.name}</projectName>
-							<licenseName>${lmp.license.name}</licenseName>
-							<processStartTag>${lmp.process.start.tag}</processStartTag>
-							<processEndTag>${lmp.process.end.tag}</processEndTag>
-							<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
-							<excludes>
-								<exclude>**/*.json</exclude>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
+				<configuration>
+					<roots>
+						<root>src</root>
+					</roots>
+					<excludes>
+						<exclude>**/*.json</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 			<!-- Add the build number to the jar manifest. Spring-Boot uses a complex 
 				packaging process that makes access to the original Manifest.MF very difficult. 
