@@ -1,6 +1,6 @@
 .. _portal-ric-dashboard:
 
-.. ===============LICENSE_START=======================================================
+.. ===============LICENSE_START======================================================
 .. O-RAN SC CC-BY-4.0
 .. %%
 .. Copyright (C) 2019 AT&T Intellectual Property and Nokia
@@ -16,7 +16,7 @@
 .. WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
-.. ===============LICENSE_END=========================================================
+.. ===============LICENSE_END========================================================
 
 .. RIC Dashboard documentation master
 
