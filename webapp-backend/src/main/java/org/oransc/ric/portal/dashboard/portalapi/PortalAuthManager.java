@@ -27,6 +27,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.onap.portalsdk.core.onboarding.crossapi.IPortalRestCentralService;
 import org.onap.portalsdk.core.onboarding.exception.CipherUtilException;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.slf4j.Logger;
@@ -48,10 +49,9 @@ public class PortalAuthManager {
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 		credentialsMap = new HashMap<>();
-		// The map keys are hardcoded in EPSDK-FW, no constants are defined :(
-		credentialsMap.put("appName", appName);
-		credentialsMap.put("username", username);
-		credentialsMap.put("password", password);
+		credentialsMap.put(IPortalRestCentralService.CREDENTIALS_APP, appName);
+		credentialsMap.put(IPortalRestCentralService.CREDENTIALS_USER, username);
+		credentialsMap.put(IPortalRestCentralService.CREDENTIALS_PASS, password);
 		this.userIdCookieName = userCookie;
 		// Instantiate here so configuration errors are detected at app-start time
 		logger.debug("ctor: using decryptor class {}", decryptorClassName);

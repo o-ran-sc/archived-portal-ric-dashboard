@@ -49,13 +49,14 @@ public class DashboardUserManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public static final String USER_FILE_PATH = "/tmp/dashboard-users.json";
+	// This default value is only useful for development and testing.
+	public static final String USER_FILE_PATH = "dashboard-users.json";
 
 	private final File userFile;
 	private final List<EcompUser> users;
 
 	/**
-	 * convenience constructor that uses default file path
+	 * Development/test-only constructor that uses default file path.
 	 * 
 	 * @param clear
 	 *                  If true, start empty and remove any existing file.
@@ -75,7 +76,7 @@ public class DashboardUserManager {
 	}
 
 	/**
-	 * Uses specified file path
+	 * Constructur that accepts a file path
 	 * 
 	 * @param userFilePath
 	 *                         File path

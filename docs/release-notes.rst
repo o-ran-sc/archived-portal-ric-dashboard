@@ -30,6 +30,7 @@ Version 1.2.4, 21 Oct 2019
 * Revise user controller to answer data sent by portal, drop the mock implementation
 * Set global style for page titles
 * Align page titles to top left,decrease font size
+* Update EPSDK-FW to version 2.6
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
