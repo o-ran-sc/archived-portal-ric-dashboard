@@ -28,6 +28,7 @@ Version 1.2.4, 18 Oct 2019
 * Add Platform page showing Kubernetes pods in aux and platform obtained from CAAS-Ingress
 * Update Angular libraries to recent stable versions
 * Revise user controller to answer data sent by portal, drop the mock implementation
+* Update EPSDK-FW to version 2.6
 
 Version 1.2.3, 4 Oct 2019
 -------------------------

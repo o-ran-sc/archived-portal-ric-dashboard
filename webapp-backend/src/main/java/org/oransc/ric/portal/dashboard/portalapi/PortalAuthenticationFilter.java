@@ -36,6 +36,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.onap.portalsdk.core.onboarding.util.KeyProperties;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.onap.portalsdk.core.onboarding.util.PortalApiProperties;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
@@ -43,6 +44,7 @@ import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.model.EcompUserDetails;
+import org.owasp.esapi.reference.DefaultSecurityConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -79,8 +81,9 @@ public class PortalAuthenticationFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	// Unfortunately these names are not available as constants
-	private static final String[] securityPropertyFiles = { "ESAPI.properties", "key.properties", "portal.properties",
+	// Unfortunately not all file names are defined as constants
+	private static final String[] securityPropertyFiles = { KeyProperties.PROPERTY_FILE_NAME,
+			PortalApiProperties.PROPERTY_FILE_NAME, DefaultSecurityConfiguration.DEFAULT_RESOURCE_FILE,
 			"validation.properties" };
 
 	public static final String REDIRECT_URL_KEY = "redirectUrl";
