@@ -1,0 +1,705 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40e9f4f7_78bba69f",
+        "filename": "a1-med-client/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Why this strange version string?  the submodule provides version 1.0.0",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ca13431_6240fc51",
+        "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Instead of commenting out, instead please update this test method.",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a85a3442_442ae518",
+        "filename": "webapp-backend/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "This probably should be 1.0.0, I\u0027m not a fan of this odd version string",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cfbc84a_15257ffe",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "If this is a path parameter, please follow the established convention in this project and use prefix PP_",
+      "range": {
+        "startLine": 77,
+        "startChar": 28,
+        "endLine": 77,
+        "endChar": 51
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b79c3fb3_f7537ab0",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "please don\u0027t comment out and return null, this method is now useless. should the entire method be removed?",
+      "range": {
+        "startLine": 105,
+        "startChar": 14,
+        "endLine": 105,
+        "endChar": 138
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "905d0bb0_ccd36b19",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "See above",
+      "range": {
+        "startLine": 118,
+        "startChar": 1,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d52e14e8_0f772bb7",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Maybe this method name should be getAllPolicyInstances?",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e3ac41b_29e45bff",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "... with the specified IDs",
+      "range": {
+        "startLine": 154,
+        "startChar": 55,
+        "endLine": 154,
+        "endChar": 59
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a2b9b5d_025d7815",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "singular or plural? I think singular",
+      "range": {
+        "startLine": 163,
+        "startChar": 43,
+        "endLine": 163,
+        "endChar": 52
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c78b06c9_aa226588",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "If this is JSON, I suggest declaring as type JSONNode to ensure only syntactically valid input is accepted.",
+      "range": {
+        "startLine": 168,
+        "startChar": 80,
+        "endLine": 168,
+        "endChar": 86
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa132272_c88d4208",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "singular or plural?",
+      "range": {
+        "startLine": 173,
+        "startChar": 43,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf37ba8f_ee2b4161",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Almost certainly need a no-arg constructor",
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "497ee2e7_70537d6d",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "It\u0027s helpful to show the class name",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 10
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34b6a342_ce85408a",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "If these methods are dead, we should remove them not comment out",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 12
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f8ded1f_7931e421",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "would you possibly consider naming this something like MockPolicyStore or MockA1Mediator ?",
+      "range": {
+        "startLine": 191,
+        "startChar": 7,
+        "endLine": 191,
+        "endChar": 15
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abff6d04_5eef3b93",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Most JSON has been moved to a file but not this, is it special or ?",
+      "range": {
+        "startLine": 193,
+        "startChar": 35,
+        "endLine": 198,
+        "endChar": 29
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b432aec_9657ceea",
+        "filename": "webapp-backend/src/test/resources/policy-schema-1.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Please consider using a filename that reflects the schema content; e.g., anr-policy-schema-1.json etc.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fff8c59_4f610828",
+        "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "A descriptive filename would really help here, please",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "258ab869_a0112d0d",
+        "filename": "webapp-backend/src/test/resources/policy-schema-3.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "A descriptive file name, please",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2328c961_fb90f947",
+        "filename": "webapp-backend/src/test/resources/policy-schema-4.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Please use a descriptive file name",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0734f6aa_a17a7029",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "would you consider using HTML entities instead of pasting these high-code-page characters directly into the source?  Maybe I\u0027m just being old school about it tho.",
+      "range": {
+        "startLine": 35,
+        "startChar": 31,
+        "endLine": 35,
+        "endChar": 40
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d7b683e_d882dd95",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "I try not to commit debugging code like this, please remove.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c58e1e0_6b64a208",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Form or format?",
+      "range": {
+        "startLine": 170,
+        "startChar": 63,
+        "endLine": 170,
+        "endChar": 67
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8390e05f_f93628cc",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "JavaScript ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 17,
+        "endLine": 171,
+        "endChar": 27
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f128fd5_5f101521",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Plural?",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 53
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd2bb54_a4ab8966",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Policy **Instance** right?",
+      "range": {
+        "startLine": 60,
+        "startChar": 23,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20f89ef8_3438cacf",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Please keep the list sorted",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc1fcf44_26ca9e12",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "I have not been good about sorting this one :/",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adcdbaa8_6c20294b",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "Suggest naming this policy__card or something more descriptive",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "302243be_8918299d",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "What is add?  I thought this was for the policy card?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd0a86dc_082d8b65",
+        "filename": "webapp-frontend/src/assets/policy.png",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T14:24:38Z",
+      "side": 1,
+      "message": "This quite a complex image to squash into a small card.",
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
