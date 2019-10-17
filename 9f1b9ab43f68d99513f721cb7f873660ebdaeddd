@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c4fbb38_48ce50fa",
+        "filename": "webapp-frontend/src/styles.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T19:06:07Z",
+      "side": 1,
+      "message": "would you please consider making this a bit more specific, maybe \u0027rd-global-page-title\u0027 or something that is highly unlikely to clash with another style package?",
+      "range": {
+        "startLine": 20,
+        "startChar": 1,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "9f1b9ab43f68d99513f721cb7f873660ebdaeddd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98887fd6_ae2a72db",
+        "filename": "webapp-frontend/src/styles.scss",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-17T19:06:07Z",
+      "side": 1,
+      "message": "In my Chrome browser when I inspect a title element it shows this transform element crossed out, and a tooltip shows \"invalid property value\".  What is this supposed to do?  Would you please check it?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 7
+      },
+      "revId": "9f1b9ab43f68d99513f721cb7f873660ebdaeddd",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
