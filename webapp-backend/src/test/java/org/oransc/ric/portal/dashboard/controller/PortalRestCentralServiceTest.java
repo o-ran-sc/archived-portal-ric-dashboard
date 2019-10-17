@@ -21,11 +21,16 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
+import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.PortalApIMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,14 +73,25 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		return entity;
 	}
 
+	private EcompUser createEcompUser(String loginId) {
+		EcompUser user = new EcompUser();
+		user.setLoginId(loginId);
+		EcompRole role = new EcompRole();
+		role.setRoleFunctions(Collections.EMPTY_SET);
+		role.setId(1L);
+		role.setName(DashboardConstants.ROLE_NAME_ADMIN);
+		Set<EcompRole> roles = new HashSet<>();
+		roles.add(role);
+		user.setRoles(roles);
+		return user;
+	}
+
 	@Test
 	public void createUserTest() {
 		final String loginId = "login1";
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
 		logger.info("Invoking {}", create);
-		EcompUser user = new EcompUser();
-		user.setLoginId(loginId);
-		HttpEntity<Object> requestEntity = getEntityWithHeaders(user);
+		HttpEntity<Object> requestEntity = getEntityWithHeaders(createEcompUser(loginId));
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
@@ -84,9 +100,8 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 	public void updateUserTest() {
 		final String loginId = "login2";
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
+		EcompUser user = createEcompUser(loginId);
 		logger.info("Invoking {}", create);
-		EcompUser user = new EcompUser();
-		user.setLoginId(loginId);
 		HttpEntity<Object> requestEntity = getEntityWithHeaders(user);
 		// Create
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
