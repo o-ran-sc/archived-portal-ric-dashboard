@@ -19,7 +19,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.4, 18 Oct 2019
+Version 1.2.4, 21 Oct 2019
 --------------------------
 * Revise a1-med-client to use API spec in new submodule ric-plt/a1;
   removed cached copy
@@ -28,6 +28,8 @@ Version 1.2.4, 18 Oct 2019
 * Add Platform page showing Kubernetes pods in aux and platform obtained from CAAS-Ingress
 * Update Angular libraries to recent stable versions
 * Revise user controller to answer data sent by portal, drop the mock implementation
+* Set global style for page titles
+* Align page titles to top left,decrease font size
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
