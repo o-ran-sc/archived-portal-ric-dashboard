@@ -479,6 +479,30 @@
     },
     {
       "key": {
+        "uuid": "a9a5b796_8358bfc3",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "An other way would be to use icons. I think the visual effect is maybe a bit less  intuitive but maybe a bit more discrete/elegant. It looks more like:  ^Json\n\n\n\u003cmat-icon matTooltip\u003d\"Json\"\u003e{{isVisible.output ? \u0027expand_less\u0027 : \u0027expand_more\u0027}}\u003c/mat-icon\u003e\n\nThis is included in next patchset.",
+      "parentUuid": "0734f6aa_a17a7029",
+      "range": {
+        "startLine": 35,
+        "startChar": 31,
+        "endLine": 35,
+        "endChar": 40
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d7b683e_d882dd95",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
         "patchSetId": 2
@@ -502,6 +526,30 @@
     },
     {
       "key": {
+        "uuid": "161beb13_ba542b85",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d7b683e_d882dd95",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c58e1e0_6b64a208",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
         "patchSetId": 2
@@ -513,6 +561,30 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "Form or format?",
+      "range": {
+        "startLine": 170,
+        "startChar": 63,
+        "endLine": 170,
+        "endChar": 67
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874855c4_4b84e991",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "This should not happen if valid models are used. \nReprased",
+      "parentUuid": "1c58e1e0_6b64a208",
       "range": {
         "startLine": 170,
         "startChar": 63,
@@ -548,6 +620,30 @@
     },
     {
       "key": {
+        "uuid": "72a4c796_be698c55",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "Reprased",
+      "parentUuid": "8390e05f_f93628cc",
+      "range": {
+        "startLine": 171,
+        "startChar": 17,
+        "endLine": 171,
+        "endChar": 27
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f128fd5_5f101521",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.html",
         "patchSetId": 2
@@ -559,6 +655,30 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "Plural?",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 53
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfd72d3c_79ecf766",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "This whole component is removed in next patchset.",
+      "parentUuid": "4f128fd5_5f101521",
       "range": {
         "startLine": 21,
         "startChar": 45,
@@ -594,6 +714,30 @@
     },
     {
       "key": {
+        "uuid": "7d9e851d_dd075493",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance.datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "The whole line can be removed, since a message is shown in the notificationService anyway.",
+      "parentUuid": "5dd2bb54_a4ab8966",
+      "range": {
+        "startLine": 60,
+        "startChar": 23,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "20f89ef8_3438cacf",
         "filename": "webapp-frontend/src/app/rd-routing.module.ts",
         "patchSetId": 2
@@ -605,6 +749,30 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "Please keep the list sorted",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 6
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6381a22_9d7319b1",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-18T12:29:35Z",
+      "side": 1,
+      "message": "The PolicyInstanceComponent is removed in a later commit.",
+      "parentUuid": "20f89ef8_3438cacf",
       "range": {
         "startLine": 27,
         "startChar": 0,
