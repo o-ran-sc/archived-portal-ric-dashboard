@@ -49,8 +49,8 @@ import org.springframework.http.HttpStatus;
 /**
  * Creates a mock implementation of the E2 Manager client API.
  */
-@Profile("test")
 @Configuration
+@Profile("test")
 public class E2ManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

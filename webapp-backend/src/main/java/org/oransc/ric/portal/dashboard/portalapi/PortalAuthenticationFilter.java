@@ -41,6 +41,7 @@ import org.onap.portalsdk.core.onboarding.util.PortalApiProperties;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.model.EcompUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

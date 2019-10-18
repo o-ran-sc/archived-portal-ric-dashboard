@@ -25,9 +25,9 @@
   </div>
   <table mat-table [dataSource]="dataSource" matSort class="user-table mat-elevation-z8">
 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    <ng-container matColumnDef="loginId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Login ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.loginId}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
@@ -40,9 +40,9 @@
       <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Active? </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.active}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">

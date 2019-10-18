@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,13 +26,13 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { merge } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
-import { DashboardUser } from '../interfaces/dashboard.types';
+import { EcompUser } from '../interfaces/dashboard.types';
 import { DashboardService } from '../services/dashboard/dashboard.service';
 import { NotificationService } from '../services/ui/notification.service';
 
-export class UserDataSource extends DataSource<DashboardUser> {
+export class UserDataSource extends DataSource<EcompUser> {
 
-  private userSubject = new BehaviorSubject<DashboardUser[]>([]);
+  private userSubject = new BehaviorSubject<EcompUser[]>([]);
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -57,13 +57,13 @@ export class UserDataSource extends DataSource<DashboardUser> {
         }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe( (users: DashboardUser[]) => {
+      .subscribe( (users: EcompUser[]) => {
         this.rowCount = users.length;
         this.userSubject.next(users);
       });
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<DashboardUser[]> {
+  connect(collectionViewer: CollectionViewer): Observable<EcompUser[]> {
     const dataMutations = [
       this.userSubject.asObservable(),
       this.sort.sortChange
@@ -78,18 +78,18 @@ export class UserDataSource extends DataSource<DashboardUser> {
     this.loadingSubject.complete();
   }
 
-  private getSortedData(data: DashboardUser[]) {
+  private getSortedData(data: EcompUser[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
 
-    return data.sort((a: DashboardUser, b: DashboardUser) => {
+    return data.sort((a: EcompUser, b: EcompUser) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'id': return this.compare(a.id, b.id, isAsc);
+        case 'loginId': return this.compare(a.loginId, b.loginId, isAsc);
         case 'firstName': return this.compare(a.firstName, b.firstName, isAsc);
         case 'lastName': return this.compare(a.lastName, b.lastName, isAsc);
-        case 'status': return this.compare(a.status, b.status, isAsc);
+        case 'active': return this.compare(a.active, b.active, isAsc);
         default: return 0;
       }
     });

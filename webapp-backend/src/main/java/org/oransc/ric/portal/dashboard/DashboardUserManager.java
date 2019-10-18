@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.portalapi;
+package org.oransc.ric.portal.dashboard;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +30,6 @@ import java.util.Set;
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +39,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * Provides user-management services.
+ * Provides simple user-management services.
  * 
  * This first implementation serializes user details to a file.
  * 
@@ -96,6 +95,15 @@ public class DashboardUserManager {
 		} else {
 			users = new ArrayList<>();
 		}
+	}
+
+	/**
+	 * Gets the current users.
+	 * 
+	 * @return List of EcompUser objects, possibly empty
+	 */
+	public List<EcompUser> getUsers() {
+		return this.users;
 	}
 
 	/**

@@ -20,24 +20,27 @@
 package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.model.DashboardUser;
+import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -57,25 +60,16 @@ public class AdminController {
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
 
-	private final DashboardUser[] users;
-
-	private static final String ACTIVE = "Active";
-	private static final String INACTIVE = "Inactive";
-
 	@Value("${metrics.url.ac}")
 	private String acAppMetricsUrl;
 
 	@Value("${metrics.url.mc}")
 	private String mcAppMetricsUrl;
 
+	@Autowired
+	private DashboardUserManager dashboardUserManager;
+
 	public AdminController() {
-		// Mock data
-		users = new DashboardUser[] { //
-				new DashboardUser(1, "John", "Doe", ACTIVE), //
-				new DashboardUser(2, "Alice", "Nolan", ACTIVE), //
-				new DashboardUser(3, "Pierce", "King", INACTIVE), //
-				new DashboardUser(4, "Paul", "Smith", INACTIVE), //
-				new DashboardUser(5, "Jack", "Reacher", ACTIVE) };
 	}
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
@@ -97,16 +91,17 @@ public class AdminController {
 		return new SuccessTransport(200, "Dashboard is healthy!");
 	}
 
-	@ApiOperation(value = "Gets the list of application users.", response = DashboardUser.class, responseContainer = "List")
+	@ApiOperation(value = "Gets the list of application users.", response = EcompUser.class, responseContainer = "List")
 	@GetMapping(USER_METHOD)
-	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public DashboardUser[] getUsers() {
+	@Secured({ DashboardConstants.ROLE_ADMIN }) // regular users should not see this
+	public List<EcompUser> getUsers() {
 		logger.debug("getUsers");
-		return users;
+		return dashboardUserManager.getUsers();
 	}
 
 	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
 	@GetMapping(XAPPMETRICS_METHOD)
+	// No role required
 	public IDashboardResponse getAppMetricsUrl(@RequestParam String app, HttpServletResponse response) {
 		String metricsUrl = null;
 		if (DashboardConstants.APP_NAME_AC.equals(app))
@@ -121,4 +116,5 @@ public class AdminController {
 			return new ErrorTransport(400, "Client provided app name is invalid as: " + app);
 		}
 	}
+
 }

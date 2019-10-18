@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.onap.portalsdk.core.onboarding.crossapi.IPortalRestCentralService;
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
+import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.config.SpringContextCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -27,8 +27,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.model.DashboardUser;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -61,8 +61,8 @@ public class AdminControllerTest extends AbstractControllerTest {
 	public void getUsersTest() {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.USER_METHOD);
 		logger.info("Invoking {}", uri);
-		ResponseEntity<List<DashboardUser>> response = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<DashboardUser>>() {
+		ResponseEntity<List<EcompUser>> response = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<EcompUser>>() {
 				});
 		Assertions.assertFalse(response.getBody().isEmpty());
 	}

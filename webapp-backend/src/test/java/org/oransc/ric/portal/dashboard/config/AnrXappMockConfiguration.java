@@ -46,8 +46,8 @@ import org.springframework.http.HttpStatus;
 /**
  * Creates a mock implementation of the ANR xApp client APIs.
  */
-@Profile("test")
 @Configuration
+@Profile("test")
 public class AnrXappMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

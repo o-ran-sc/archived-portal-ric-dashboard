@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../services/dashboard/dashboard.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
-import { DashboardUser } from './../interfaces/dashboard.types';
+import { EcompUser } from './../interfaces/dashboard.types';
 import { NotificationService } from './../services/ui/notification.service';
 import { UserDataSource } from './user.datasource';
 import { AddDashboardUserDialogComponent } from './add-dashboard-user-dialog/add-dashboard-user-dialog.component';
@@ -36,7 +36,7 @@ import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/e
 
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'status', 'action'];
+  displayedColumns: string[] = ['loginId', 'firstName', 'lastName', 'active', 'action'];
   dataSource: UserDataSource;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
     this.dataSource.loadTable();
   }
 
-  editUser(user: DashboardUser) {
+  editUser(user: EcompUser) {
     const dialogRef = this.dialog.open(EditDashboardUserDialogComponent, {
       width: '450px',
       data: user

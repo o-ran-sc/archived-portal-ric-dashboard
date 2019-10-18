@@ -39,8 +39,8 @@ import org.springframework.context.annotation.Profile;
  * Creates mock implementations of Kubernetes clients that answer requests with
  * sample data read from the filesystem.
  */
-@Profile("test")
 @Configuration
+@Profile("test")
 public class CaasIngressMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

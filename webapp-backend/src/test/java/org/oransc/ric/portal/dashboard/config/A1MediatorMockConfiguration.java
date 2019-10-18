@@ -44,8 +44,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 /**
  * Creates a mock implementation of the A1 mediator client API.
  */
-@Profile("test")
 @Configuration
+@Profile("test")
 public class A1MediatorMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

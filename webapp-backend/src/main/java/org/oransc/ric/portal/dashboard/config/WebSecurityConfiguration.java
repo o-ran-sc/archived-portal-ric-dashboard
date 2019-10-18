@@ -24,17 +24,18 @@ import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
+import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
 import org.oransc.ric.portal.dashboard.controller.SimpleErrorController;
-import org.oransc.ric.portal.dashboard.portalapi.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -69,8 +70,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private String decryptor;
 	@Value("${portalapi.usercookie}")
 	private String userCookie;
-	@Value("${userfile}")
-	private String userFilePath;
+
+	@Autowired
+	DashboardUserManager userManager;
 
 	protected void configure(HttpSecurity http) throws Exception {
 		logger.debug("configure: portalapi.username {}", userName);
@@ -117,11 +119,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new PortalAuthManager(appName, userName, password, decryptor, userCookie);
 	}
 
-	@Bean
-	public DashboardUserManager dashboardUserManagerBean() throws IOException {
-		return new DashboardUserManager(userFilePath);
-	}
-
 	/*
 	 * If this is annotated with @Bean, it is created automatically AND REGISTERED,
 	 * and Spring processes annotations in the source of the class. However, the
@@ -135,7 +132,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalapiSecurity,
-				portalAuthManagerBean(), dashboardUserManagerBean());
+				portalAuthManagerBean(), this.userManager);
 		return portalAuthenticationFilter;
 	}
 

@@ -35,7 +35,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	public void auxTest() {
 		final String nsAux = "ricaux";
 		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
-				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_AUX, CaasIngressController.PP_NAMESPACE, nsAux);
+				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_AUX, CaasIngressController.PP_NAMESPACE,
+				nsAux);
 		logger.info("Invoking {}", uri);
 		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
 		Assertions.assertFalse(s.isEmpty());
@@ -46,7 +47,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	public void pltTest() {
 		final String nsPlt = "ricplt";
 		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
-				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_PLT, CaasIngressController.PP_NAMESPACE, nsPlt);
+				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_PLT, CaasIngressController.PP_NAMESPACE,
+				nsPlt);
 		logger.info("Invoking {}", uri);
 		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
 		Assertions.assertFalse(s.isEmpty());

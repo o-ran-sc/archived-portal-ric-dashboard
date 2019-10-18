@@ -19,20 +19,12 @@
  */
 package org.oransc.ric.portal.dashboard.config;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
-import java.util.HashSet;
-import java.util.Set;
 
-import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
-import org.onap.portalsdk.core.restful.domain.EcompRole;
-import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.portalapi.DashboardUserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -87,25 +79,6 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 		// This disables Spring security, but not the app's filter.
 		web.ignoring().antMatchers(WebSecurityConfiguration.OPEN_PATHS);
 		web.ignoring().antMatchers("/", "/csrf"); // allow swagger-ui to load
-	}
-
-	// This implementation is so light it can be used during tests.
-	@Bean
-	public DashboardUserManager dashboardUserManager() throws IOException, PortalAPIException {
-		DashboardUserManager dum = new DashboardUserManager(true);
-		// Mock user for convenience in testing
-		EcompUser demo = new EcompUser();
-		demo.setLoginId("demo");
-		demo.setFirstName("Demo");
-		demo.setLastName("User");
-		demo.setActive(true);
-		EcompRole role = new EcompRole();
-		role.setName("view");
-		Set<EcompRole> roles = new HashSet<>();
-		roles.add(role);
-		demo.setRoles(roles);
-		dum.createUser(demo);
-		return dum;
 	}
 
 }

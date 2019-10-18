@@ -52,8 +52,8 @@ import org.springframework.http.HttpStatus;
  * Creates an implementation of the xApp manager client that answers requests
  * with mock data.
  */
-@Profile("test")
 @Configuration
+@Profile("test")
 public class AppManagerMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
