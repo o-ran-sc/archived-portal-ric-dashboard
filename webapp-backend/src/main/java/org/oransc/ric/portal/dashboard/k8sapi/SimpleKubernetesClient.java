@@ -45,8 +45,9 @@ public class SimpleKubernetesClient {
 
 	public String listPods(String namespace) {
 		logger.debug("listPods for namespace {}", namespace);
-		String podsUrl = new DefaultUriBuilderFactory(k8sUrl.trim()).builder().path("v1").path("namespaces")
-				.path(namespace.trim()).path("pods").build().normalize().toString();
+		String podsUrl = new DefaultUriBuilderFactory(k8sUrl.trim()).builder().pathSegment("v1")
+				.pathSegment("namespaces").pathSegment(namespace.trim()).pathSegment("pods").build().normalize()
+				.toString();
 		RestTemplate rt = new RestTemplate();
 		ResponseEntity<String> podsResponse = rt.getForEntity(podsUrl, String.class);
 		return podsResponse.getBody();

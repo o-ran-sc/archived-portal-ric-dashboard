@@ -32,6 +32,7 @@ Version 1.2.4, 21 Oct 2019
 * Align page titles to top left,decrease font size
 * Update EPSDK-FW to version 2.6
 * Make constructor robust to missing caasingress.insecure property
+* Repair bug that omitted slashes in CAAS-Ingress URL builder
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
