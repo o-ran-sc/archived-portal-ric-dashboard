@@ -1,0 +1,8 @@
+Verified+1: ORAN Jobbuilder <releng+oran-jobbuilder@linuxfoundation.org>
+Code-Review+1: Manoop Talasila <talasila@research.att.com>
+Code-Review+2: Chris Lott <cl778h@att.com>
+Submitted-by: Chris Lott <cl778h@att.com>
+Submitted-at: Mon, 21 Oct 2019 14:13:29 +0000
+Reviewed-on: https://gerrit.o-ran-sc.org/r/c/portal/ric-dashboard/+/1178
+Project: portal/ric-dashboard
+Branch: refs/heads/master
