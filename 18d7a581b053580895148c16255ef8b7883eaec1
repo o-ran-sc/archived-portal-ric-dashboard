@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "56520461_4e902946",
+        "filename": "a1-med-client/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T14:42:59Z",
+      "side": 1,
+      "message": "The A1 project uses Python. It has a pom.xml file only to support Sonar analysis, and the version string there is irrelevant.  Please use something more appropriate here than \"0\".  And there\u0027s no value in using a -SNAPSHOT suffix because this jar is never pushed to a Nexus snapshot repository.",
+      "parentUuid": "3eb0e9d4_634a558f",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ca13431_6240fc51",
         "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
         "patchSetId": 2
