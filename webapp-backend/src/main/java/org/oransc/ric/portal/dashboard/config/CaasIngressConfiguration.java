@@ -50,20 +50,21 @@ public class CaasIngressConfiguration {
 
 	@Autowired
 	public CaasIngressConfiguration( //
-			@Value("${caasingress.insecure}") final Boolean insecureFlag, //
 			@Value("${caasingress.aux.url.prefix}") final String auxUrlPrefix, //
 			@Value("${caasingress.aux.url.suffix}") final String auxUrlSuffix, //
 			@Value("${caasingress.plt.url.prefix}") final String pltUrlPrefix,
-			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix)
+			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix,
+			@Value("${caasingress.insecure}") final Boolean insecureFlag) //
 			throws KeyManagementException, NoSuchAlgorithmException {
 		logger.debug("ctor caasingress aux prefix '{}' suffix '{}'", auxUrlPrefix, auxUrlSuffix);
 		logger.debug("ctor caasingress plt prefix '{}' suffix '{}'", pltUrlPrefix, pltUrlSuffix);
+		logger.debug("ctor caasingress insecure flag {}", insecureFlag);
 		caasIngressAuxUrl = new DefaultUriBuilderFactory(auxUrlPrefix.trim()).builder().path(auxUrlSuffix.trim())
 				.build().normalize().toString();
 		caasIngressPltUrl = new DefaultUriBuilderFactory(pltUrlPrefix.trim()).builder().path(pltUrlSuffix.trim())
 				.build().normalize().toString();
 		logger.info("Configuring CAAS-Ingress URLs: aux {}, plt {}", caasIngressAuxUrl, caasIngressPltUrl);
-		if (insecureFlag) {
+		if (insecureFlag != null && insecureFlag) {
 			logger.warn("ctor: insecure flag set, disabling SSL checks");
 			HttpsURLConnectionUtils.turnOffSslChecking();
 		}

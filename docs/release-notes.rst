@@ -31,6 +31,7 @@ Version 1.2.4, 21 Oct 2019
 * Set global style for page titles
 * Align page titles to top left,decrease font size
 * Update EPSDK-FW to version 2.6
+* Make constructor robust to missing caasingress.insecure property
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
