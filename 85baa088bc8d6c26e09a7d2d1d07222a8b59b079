@@ -1,0 +1,579 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "464db46f_219f637c",
+        "filename": "a1-med-client/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Please do what the comment says, update to match the submodule tag (not the submodule pom.xml file which is irrelevant)",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 20
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb9cfdf3_47d08be5",
+        "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Please a logger, never use System.out, not even in tests.",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 11
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92bc45e8_275fd29b",
+        "filename": "webapp-backend/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "See comment in that pom.file file",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6068476_cc69eb2b",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Maybe PP_POLICIES and PP_POLICY_INSTANCE_ID could be made consistent please -- either use just the bare \"policy\" that means an instance (policies, policy_id), or use \"policy_instance\" to be parallel with \"policy_type\" (policy_instances, policy_instance_id).  Either is fine by me.",
+      "range": {
+        "startLine": 76,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 9
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9433d86e_7d43a4c1",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Please add more detail to this Swagger annotation, include the response type and the response container.\n\n\t@ApiOperation(value \u003d \"Gets the list of foo.\", response \u003d Foo.class, responseContainer \u003d \"List\")",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "019f46f9_46082c75",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "might not hurt to include in the log string \"type\" and \"instance\" (or typeId, instanceId) just to make your life simple if you need to decipher it quickly, and to be consistent with methods below",
+      "range": {
+        "startLine": 135,
+        "startChar": 34,
+        "endLine": 135,
+        "endChar": 39
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35b0ae5a_58c22c71",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "I think I wrote this comment, but today it looks completely wrong to me!",
+      "range": {
+        "startLine": 65,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac383c26_2bb10a81",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "I\u0027m confused why this get-policy-type action gets a policyType object from the database, then creates a new policy type object, populates the new object, and returns the new object.  Why not just return the database object?  I must be missing something.",
+      "range": {
+        "startLine": 117,
+        "startChar": 3,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2786b21_139c5f45",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Incorrect method name",
+      "range": {
+        "startLine": 129,
+        "startChar": 18,
+        "endLine": 129,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "680a2fd8_84b67f4a",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Incorrect method name",
+      "range": {
+        "startLine": 138,
+        "startChar": 18,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afdfa04e_717d4591",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Incorrect method name",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf005411_241474bd",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "incorrect method name",
+      "range": {
+        "startLine": 161,
+        "startChar": 18,
+        "endLine": 161,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8371b39a_c76e1e31",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Please move this field up to the top, the Sonar code analysis will complain that fields are expected first etc blah blah.",
+      "range": {
+        "startLine": 328,
+        "startChar": 1,
+        "endLine": 328,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "534580a3_97f1b3b5",
+        "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "So this is schema \"2\".  I understand it\u0027s just for testing, but I still think it would help if the file name were a bit more descriptive, possibly just something like \"demo1-policy-schema\" or \"vehicle-policy-schema\" etc.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d030247_6094a8d0",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Nicolas provided a new way of doing page titles, I just merged it a few minutes ago, please take a look at the latest HTML and SCSS files, I think you will like the new appearance.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ea9b3b7_46fa60d2",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "This will go away when you incorporate Nicolas\u0027s very new changes :)",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "721aef03_827f2959",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Please trim trailing whitespace",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92d91b15_e501b474",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "If you don\u0027t mind, I\u0027ve tried to organize imports in .ts files so that Angular stuff always appears first, and project stuff always appears last, thanks in advance for considering it.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 81
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "480f80b6_66207bc6",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "refresh or modify?",
+      "range": {
+        "startLine": 159,
+        "startChar": 58,
+        "endLine": 159,
+        "endChar": 65
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6974e36a_906957a9",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.datasource.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "maybe, possibly, a better name for this is PolicyTypeDataSource? Because your other datasource is called PolicyInstanceDataSource.",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb37c79b_f1d51ce3",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "If this dialog supports both policy types AND instances, please choose a better file name.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "016f1b75_bfd66715",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "What is tslint complaining about here?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bec5c107_6b4498a3",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "Maybe a GUID is a better choice?",
+      "range": {
+        "startLine": 104,
+        "startChar": 36,
+        "endLine": 104,
+        "endChar": 55
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac6cbbe2_dda740bb",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "why does this function reach out to class variables? Would you please consider revising this to accept \"data\" as a parameter?",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 3
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8961cab_9066fe9d",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-21T15:19:08Z",
+      "side": 1,
+      "message": "would you please keep this list sorted?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
