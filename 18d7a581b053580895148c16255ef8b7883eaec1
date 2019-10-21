@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3eb0e9d4_634a558f",
+        "filename": "a1-med-client/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "In the pom file in the submodule the version is specified to 0, so I don\u0027t hink we can use any other version here.The jar file containing the generated code has the name a1-med-client-0-SNAPSHOT.jar.",
+      "parentUuid": "40e9f4f7_78bba69f",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ca13431_6240fc51",
         "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9fcaf796_19753508",
+        "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ca13431_6240fc51",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a85a3442_442ae518",
         "filename": "webapp-backend/pom.xml",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "This probably should be 1.0.0, I\u0027m not a fan of this odd version string",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56337a03_a85f411d",
+        "filename": "webapp-backend/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "In the pom file in the submodule the version is specified to 0, so I don\u0027t hink we can use any other version here.The jar file containing the generated code has the name a1-med-client-0-SNAPSHOT.jar.",
+      "parentUuid": "a85a3442_442ae518",
       "range": {
         "startLine": 55,
         "startChar": 12,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "fff37ed8_258cb57b",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cfbc84a_15257ffe",
+      "range": {
+        "startLine": 77,
+        "startChar": 28,
+        "endLine": 77,
+        "endChar": 51
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b79c3fb3_f7537ab0",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28fb8af0_e51f3d71",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b79c3fb3_f7537ab0",
+      "range": {
+        "startLine": 105,
+        "startChar": 14,
+        "endLine": 105,
+        "endChar": 138
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "e8d50c1f_893f8b24",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "905d0bb0_ccd36b19",
+      "range": {
+        "startLine": 118,
+        "startChar": 1,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d52e14e8_0f772bb7",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 2
@@ -160,6 +304,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51f569c8_e0ff7899",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d52e14e8_0f772bb7",
+      "range": {
+        "startLine": 142,
+        "startChar": 15,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "7894ed25_56b20b79",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3ac41b_29e45bff",
+      "range": {
+        "startLine": 154,
+        "startChar": 55,
+        "endLine": 154,
+        "endChar": 59
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a2b9b5d_025d7815",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 2
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "18201670_3d7bf2e5",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a2b9b5d_025d7815",
+      "range": {
+        "startLine": 163,
+        "startChar": 43,
+        "endLine": 163,
+        "endChar": 52
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c78b06c9_aa226588",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 2
@@ -220,6 +436,30 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "If this is JSON, I suggest declaring as type JSONNode to ensure only syntactically valid input is accepted.",
+      "range": {
+        "startLine": 168,
+        "startChar": 80,
+        "endLine": 168,
+        "endChar": 86
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c7e7308_30a86bdb",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "I get \"415 Unsupported Media Type\" when I change to JSONNode. I don\u0027t know how to change that in the client since the method used declares that it uses Json as body.\n    /**\n     * Constructs a `PUT` request that interprets the body as a JSON object and returns the full HTTP response.\n     *\n     * @param url The endpoint URL.\n     * @param body The resources to add/update.\n     * @param options HTTP options",
+      "parentUuid": "c78b06c9_aa226588",
       "range": {
         "startLine": 168,
         "startChar": 80,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "9a70f5d8_e6cb29b3",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa132272_c88d4208",
+      "range": {
+        "startLine": 173,
+        "startChar": 43,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf37ba8f_ee2b4161",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
         "patchSetId": 2
@@ -266,6 +530,24 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "Almost certainly need a no-arg constructor",
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78f73b5_a2473cbe",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Can you please explain why? Doesn\u0027t Java provide a default constructor if you don\u0027t wite one? The code works as is as far as I can tell.",
+      "parentUuid": "bf37ba8f_ee2b4161",
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "c2cd1ec6_2e590fcf",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/PolicyInstance.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "497ee2e7_70537d6d",
+      "range": {
+        "startLine": 46,
+        "startChar": 9,
+        "endLine": 46,
+        "endChar": 10
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34b6a342_ce85408a",
         "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
         "patchSetId": 2
@@ -315,6 +621,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d568bb1_6b33122a",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34b6a342_ce85408a",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 12
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -341,6 +671,30 @@
     },
     {
       "key": {
+        "uuid": "0a4b56fc_2cdf8568",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f8ded1f_7931e421",
+      "range": {
+        "startLine": 191,
+        "startChar": 7,
+        "endLine": 191,
+        "endChar": 15
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "abff6d04_5eef3b93",
         "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
         "patchSetId": 2
@@ -361,6 +715,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af994fc9_76b72739",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abff6d04_5eef3b93",
+      "range": {
+        "startLine": 193,
+        "startChar": 35,
+        "endLine": 198,
+        "endChar": 29
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -387,6 +765,30 @@
     },
     {
       "key": {
+        "uuid": "2e6392d6_3463cb04",
+        "filename": "webapp-backend/src/test/resources/policy-schema-1.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b432aec_9657ceea",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2fff8c59_4f610828",
         "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
         "patchSetId": 2
@@ -407,6 +809,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89987c95_1103fe86",
+        "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "This is only here to fill the policy type list, it doesn\u0027t have a more meaningful name than this.",
+      "parentUuid": "2fff8c59_4f610828",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -433,6 +859,30 @@
     },
     {
       "key": {
+        "uuid": "6efccfce_e9b5f0d5",
+        "filename": "webapp-backend/src/test/resources/policy-schema-3.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "This is only here to fill the policy type list, it doesn\u0027t have a more meaningful name than this.",
+      "parentUuid": "258ab869_a0112d0d",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2328c961_fb90f947",
         "filename": "webapp-backend/src/test/resources/policy-schema-4.json",
         "patchSetId": 2
@@ -453,6 +903,30 @@
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b94f14fa_ed32ddc2",
+        "filename": "webapp-backend/src/test/resources/policy-schema-4.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "This is only here to fill the policy type list, it doesn\u0027t have a more meaningful name than this.",
+      "parentUuid": "2328c961_fb90f947",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -831,6 +1305,30 @@
     },
     {
       "key": {
+        "uuid": "6f6f8e79_303afdd2",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adcdbaa8_6c20294b",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "302243be_8918299d",
         "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.scss",
         "patchSetId": 2
@@ -854,6 +1352,30 @@
     },
     {
       "key": {
+        "uuid": "cc1b8598_5dcf1bff",
+        "filename": "webapp-frontend/src/app/ui/policy-card/policy-card.component.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "302243be_8918299d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 5
+      },
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0a86dc_082d8b65",
         "filename": "webapp-frontend/src/assets/policy.png",
         "patchSetId": 2
@@ -865,6 +1387,24 @@
       "writtenOn": "2019-10-17T14:24:38Z",
       "side": 1,
       "message": "This quite a complex image to squash into a small card.",
+      "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc7221e_9d1c90d8",
+        "filename": "webapp-frontend/src/assets/policy.png",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-21T14:35:52Z",
+      "side": 1,
+      "message": "Will be replaced with a better picture at a later stage",
+      "parentUuid": "bd0a86dc_082d8b65",
       "revId": "18d7a581b053580895148c16255ef8b7883eaec1",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
