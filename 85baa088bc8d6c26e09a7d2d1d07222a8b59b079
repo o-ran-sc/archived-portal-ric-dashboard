@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d7f8d9cf_28f5e2d9",
+        "filename": "a1-med-client/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "464db46f_219f637c",
+      "range": {
+        "startLine": 35,
+        "startChar": 10,
+        "endLine": 35,
+        "endChar": 20
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb9cfdf3_47d08be5",
         "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d150e614_aa0f00f2",
+        "filename": "a1-med-client/src/test/java/org/oransc/ric/portal/dashboard/a1med/client/test/A1MediatorClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb9cfdf3_47d08be5",
+      "range": {
+        "startLine": 42,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 11
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e746a738_634ec55d",
+        "filename": "webapp-backend/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92bc45e8_275fd29b",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 22
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6068476_cc69eb2b",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c45aa2_6e4d06e8",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6068476_cc69eb2b",
+      "range": {
+        "startLine": 76,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 9
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "e9f85182_b395e974",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9433d86e_7d43a4c1",
+      "range": {
+        "startLine": 100,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "019f46f9_46082c75",
         "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9eff790f_dac7d6ee",
+        "filename": "webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/A1MediatorController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "019f46f9_46082c75",
+      "range": {
+        "startLine": 135,
+        "startChar": 34,
+        "endLine": 135,
+        "endChar": 39
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -183,6 +327,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d16cb77_df7dcbe1",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac383c26_2bb10a81",
+      "range": {
+        "startLine": 117,
+        "startChar": 3,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +469,30 @@
     },
     {
       "key": {
+        "uuid": "4ecca9a1_2699f19e",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8371b39a_c76e1e31",
+      "range": {
+        "startLine": 328,
+        "startChar": 1,
+        "endLine": 328,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "534580a3_97f1b3b5",
         "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
         "patchSetId": 3
@@ -321,6 +513,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7b83cf1_e581f1ba",
+        "filename": "webapp-backend/src/test/resources/policy-schema-2.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "534580a3_97f1b3b5",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 5
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -416,6 +632,30 @@
     },
     {
       "key": {
+        "uuid": "b8bc57e8_e3052d0a",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92d91b15_e501b474",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 81
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "480f80b6_66207bc6",
         "filename": "webapp-frontend/src/app/policy-control/policy-control.component.ts",
         "patchSetId": 3
@@ -462,6 +702,30 @@
     },
     {
       "key": {
+        "uuid": "e786eaa4_6b0623a0",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.datasource.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6974e36a_906957a9",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb37c79b_f1d51ce3",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
         "patchSetId": 3
@@ -482,6 +746,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f1fe27_92f4db46",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "This dialog only  handles a policy instance. The instance is based on a type, but you can\u0027t do anything with the type in this dialog. It will use the create schema of the type to set up the inputs needed to create/edit the instance.",
+      "parentUuid": "eb37c79b_f1d51ce3",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -574,6 +862,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "725ed126_7cef95c6",
+        "filename": "webapp-frontend/src/app/rd-routing.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T08:53:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8961cab_9066fe9d",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     }
   ]
 }
