@@ -19,18 +19,32 @@
  */
 
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './../../ui/confirm-dialog/confirm-dialog.component';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConfirmDialogService {
+export class ConfirmDialogService  {
 
-  constructor(private dialog: MatDialog) { }
+  darkMode: boolean;
+  panelClass: string = "";
+
+  constructor(private dialog: MatDialog,
+    public ui: UiService) { }
 
   openConfirmDialog(msg: string) {
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     return this.dialog.open(ConfirmDialogComponent, {
+      panelClass: this.panelClass,
       width: '480px',
       position: { top: '100px' },
       data: {

@@ -28,6 +28,7 @@ import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { RANControlDataSource } from './ran-control.datasource';
+import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-ran-control',
@@ -35,6 +36,9 @@ import { RANControlDataSource } from './ran-control.datasource';
   styleUrls: ['./ran-control.component.scss']
 })
 export class RanControlComponent implements OnInit {
+
+  darkMode: boolean;
+  panelClass: string = "";
   displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
 
@@ -43,18 +47,29 @@ export class RanControlComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private notificationService: NotificationService,
     private loadingDialogService: LoadingDialogService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new RANControlDataSource(this.e2MgrSvc, this.notificationService);
     this.dataSource.loadTable();
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
   }
 
   setupRANConnection() {
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     const dialogRef = this.dialog.open(RanControlConnectDialogComponent, {
+      panelClass: this.panelClass,
       width: '450px'
     });
-    dialogRef.afterClosed().subscribe( (result: boolean) => {
+    dialogRef.afterClosed()
+      .subscribe((result: boolean) => {
       if (result) {
         this.dataSource.loadTable();
       }

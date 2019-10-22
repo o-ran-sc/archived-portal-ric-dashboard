@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+.dark-theme {
+  color: white;
+  $dark-primary: mat-palette($mat-yellow);
+  $dark-accent: mat-palette($mat-amber, A400, A100, A700);
+  $dark-warn: mat-palette($mat-red);
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+.dark-theme .rd-global-page-title {
+  color:white;
+}

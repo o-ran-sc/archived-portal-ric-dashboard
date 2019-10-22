@@ -21,7 +21,11 @@ a {
     text-decoration: none;
     color: black;
 }
- 
+
+.dark a {
+  color: white;
+}
+
 a:hover, a:active{
     color: lightgray;
 }

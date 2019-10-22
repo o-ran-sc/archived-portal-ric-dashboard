@@ -21,18 +21,32 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoadingDialogComponent } from './../../ui/loading-dialog/loading-dialog.component';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingDialogService {
 
-  constructor(private dialog: MatDialog) { }
+  darkMode: boolean;
+  panelClass: string = "";
+
+  constructor(private dialog: MatDialog,
+    public ui: UiService) { }
 
   private loadingDialogRef: MatDialogRef<LoadingDialogComponent>;
 
   startLoading(msg: string) {
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     this.loadingDialogRef = this.dialog.open(LoadingDialogComponent, {
+      panelClass: this.panelClass,
       disableClose: true,
       width: '480px',
       position: { top: '100px' },

@@ -19,7 +19,7 @@
   -->
 
 <!-- browse icons at https://material.io/tools/icons/?style=baseline -->
-<mat-nav-list>
+<mat-nav-list [ngClass]="{'dark': darkMode}">
   <a mat-list-item routerLink="/" (click)="onSidenavClose()">
     <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
   </a>

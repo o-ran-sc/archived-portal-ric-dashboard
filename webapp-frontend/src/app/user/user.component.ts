@@ -27,6 +27,7 @@ import { NotificationService } from './../services/ui/notification.service';
 import { UserDataSource } from './user.datasource';
 import { AddDashboardUserDialogComponent } from './add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-user',
@@ -36,6 +37,8 @@ import { EditDashboardUserDialogComponent } from './edit-dashboard-user-dialog/e
 
 export class UserComponent implements OnInit {
 
+  darkMode: boolean;
+  panelClass: string = "";
   displayedColumns: string[] = ['loginId', 'firstName', 'lastName', 'active', 'action'];
   dataSource: UserDataSource;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -44,15 +47,25 @@ export class UserComponent implements OnInit {
     private dashboardSvc: DashboardService,
     private errorService: ErrorDialogService,
     private notificationService: NotificationService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new UserDataSource(this.dashboardSvc, this.sort, this.notificationService);
     this.dataSource.loadTable();
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
   }
 
   editUser(user: EcompUser) {
+    if (this.darkMode) {
+      this.panelClass = "dark-theme"
+    } else {
+      this.panelClass = "";
+    }
     const dialogRef = this.dialog.open(EditDashboardUserDialogComponent, {
+      panelClass: this.panelClass,
       width: '450px',
       data: user
     });
@@ -67,7 +80,13 @@ export class UserComponent implements OnInit {
   }
 
   addUser() {
+    if (this.darkMode) {
+      this.panelClass = "dark-theme"
+    } else {
+      this.panelClass = "";
+    }
     const dialogRef = this.dialog.open(AddDashboardUserDialogComponent, {
+      panelClass: this.panelClass,
       width: '450px'
     });
     dialogRef.afterClosed().subscribe(result => {
