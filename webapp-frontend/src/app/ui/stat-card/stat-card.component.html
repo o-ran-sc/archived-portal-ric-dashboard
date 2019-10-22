@@ -7,9 +7,9 @@
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-  
+
        http://www.apache.org/licenses/LICENSE-2.0
-  
+
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,15 +20,18 @@
 <div class="add__card" routerLink="/stats" [ngClass]="{'add__card-dark': darkMode}">
   <div class="header__container">
     <span class="card__title">xApp Stats</span><br><br><br>
-    <div style="color: black; size: 1em; text-align: center">
-        <mat-icon>alarm</mat-icon> Control Loop Latency</div>
-    <div style="color: black; size: 1em; text-align: center">
-        <mat-icon>backup</mat-icon> Load generator</div>
-    <div style="color: black; size: 1em; text-align: center">
-        <mat-icon>timeline</mat-icon>Performance</div>
-    
+    <div class="card_item">
+      <mat-icon>alarm</mat-icon> Control Loop Latency
+    </div>
+    <div class="card_item">
+      <mat-icon>backup</mat-icon> Load generator
+    </div>
+    <div class="card_item">
+      <mat-icon>timeline</mat-icon>Performance
+    </div>
+
   </div>
   <div class="body__container">
-    <img src="../../../assets/latency.png" width="100%" height="100%"/>
+    <img src="../../../assets/latency.png"/>
   </div>
 </div>

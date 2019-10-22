@@ -21,18 +21,33 @@ import { ErrorDialogComponent } from '../../ui/error-dialog/error-dialog.compone
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { Injectable } from '@angular/core';
- 
+import { UiService } from './ui.service';
+
 @Injectable()
 export class ErrorDialogService {
 
+  darkMode: boolean;
+  panelClass: string = "";
   public errorMessage: string = '';
-  constructor(private dialog: MatDialog) { }
-  public displayError(error: string){
+
+  constructor(private dialog: MatDialog,
+    public ui: UiService) { }
+
+  public displayError(error: string) {
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     return this.dialog.open(ErrorDialogComponent, {
-            width: '400px',
-            position: { top: '100px' },
-            disableClose: true,
-            data: {'errorMessage': error}
-        });
+      panelClass: this.panelClass,
+      width: '400px',
+      position: { top: '100px' },
+      disableClose: true,
+      data: { 'errorMessage': error }
+    });
   }
 }

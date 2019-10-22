@@ -20,7 +20,7 @@
 
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs/operators';
@@ -32,6 +32,7 @@ import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { AnrEditNcrDialogComponent } from './anr-edit-ncr-dialog.component';
 import { ANRXappDataSource } from './anr-xapp.datasource';
+import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-anr',
@@ -40,6 +41,8 @@ import { ANRXappDataSource } from './anr-xapp.datasource';
 })
 export class AnrXappComponent implements AfterViewInit, OnInit {
 
+  darkMode: boolean;
+  panelClass: string = "";
   dataSource: ANRXappDataSource;
   gNodeBIds: string[];
   @ViewChild('ggNodeB', { static: true }) ggNodeB: ElementRef;
@@ -56,13 +59,17 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new ANRXappDataSource(this.anrXappService, this.sort, this.notificationService);
     this.dataSource.loadTable();
     // Empty string occurs first in the array of gNodeBIds
     this.anrXappService.getgNodeBs().subscribe((res: string[]) => this.gNodeBIds = res);
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
   }
 
   ngAfterViewInit() {
@@ -95,7 +102,13 @@ export class AnrXappComponent implements AfterViewInit, OnInit {
   }
 
   modifyNcr(ncr: ANRNeighborCellRelation): void {
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     const dialogRef = this.dialog.open(AnrEditNcrDialogComponent, {
+      panelClass: this.panelClass,
       width: '300px',
       data: ncr
     });
