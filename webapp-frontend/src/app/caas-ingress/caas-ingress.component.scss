@@ -43,13 +43,13 @@
 
 /* column classes are magically defined by Angular */
 .mat-column-namespace {
-  max-width: 125px;
-}
-.mat-column-ip {
-  max-width: 75px;
+  max-width: 100px;
 }
 .mat-column-status {
-  max-width: 75px;
+  max-width: 100px;
+}
+.mat-column-ip {
+  max-width: 100px;
 }
 .mat-column-containers {
   max-width: 75px;
