@@ -683,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "087c29f7_64cd0649",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "Looks OK. We can use that.",
+      "parentUuid": "1d030247_6094a8d0",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ea9b3b7_46fa60d2",
         "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
         "patchSetId": 3
@@ -706,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "1ee36e9e_5008f023",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ea9b3b7_46fa60d2",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "721aef03_827f2959",
         "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
         "patchSetId": 3
@@ -726,6 +774,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ed1177_e4ddf54d",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.scss",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721aef03_827f2959",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -796,6 +868,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08522231_e9ecdd97",
+        "filename": "webapp-frontend/src/app/policy-control/policy-control.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "Refresh, before the  dialog is opened, the instance data is refreshed.",
+      "parentUuid": "480f80b6_66207bc6",
+      "range": {
+        "startLine": 159,
+        "startChar": 58,
+        "endLine": 159,
+        "endChar": 65
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -916,6 +1012,30 @@
     },
     {
       "key": {
+        "uuid": "2ab0fa0d_04559eac",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "No idea, I do not remember putting that line there. :)",
+      "parentUuid": "016f1b75_bfd66715",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bec5c107_6b4498a3",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
         "patchSetId": 3
@@ -939,6 +1059,30 @@
     },
     {
       "key": {
+        "uuid": "7114e26f_243ba86b",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "I will change to uuid.",
+      "parentUuid": "bec5c107_6b4498a3",
+      "range": {
+        "startLine": 104,
+        "startChar": 36,
+        "endLine": 104,
+        "endChar": 55
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac6cbbe2_dda740bb",
         "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
         "patchSetId": 3
@@ -959,6 +1103,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ee59066_a26aaf34",
+        "filename": "webapp-frontend/src/app/policy-control/policy-instance-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000262
+      },
+      "writtenOn": "2019-10-22T12:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac6cbbe2_dda740bb",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 3
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
