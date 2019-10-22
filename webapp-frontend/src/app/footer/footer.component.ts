@@ -18,8 +18,9 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../services/dashboard/dashboard.service';
 import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
+import { DashboardService } from '../services/dashboard/dashboard.service';
+import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-footer',
@@ -31,14 +32,18 @@ import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
  * Fetches the version on load for display in the footer
  */
 export class FooterComponent implements OnInit {
-
+  darkMode: boolean;
   dashboardVersion: string;
 
   // Inject the service
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+              public ui: UiService ) { }
 
   ngOnInit() {
     this.dashboardService.getVersion().subscribe((res: DashboardSuccessTransport) => this.dashboardVersion = res.data);
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
   }
 
 }

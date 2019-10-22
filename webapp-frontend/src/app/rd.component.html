@@ -107,16 +107,16 @@
   </header>
 
   <!-- Main Content -->
-  <main class="main__container">
+  <main class="main__container" [ngClass]="{'main-container__bg-dark': darkModeActive}" >
     <div class = main__container__body>
-      <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
+      <div class="main-container__bg"></div>
       <router-outlet></router-outlet>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="main__footer">
-    <div class="main-footer__bg" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+  <footer class="main__footer" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+    <div class="main-footer__bg">
       <rd-footer></rd-footer>
     </div>
   </footer>
