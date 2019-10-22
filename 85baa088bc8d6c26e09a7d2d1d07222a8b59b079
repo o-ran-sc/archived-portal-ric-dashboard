@@ -307,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "ea827621_26f1a2ee",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T12:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35b0ae5a_58c22c71",
+      "range": {
+        "startLine": 65,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 9
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac383c26_2bb10a81",
         "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
         "patchSetId": 3
@@ -377,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "981655a3_b4467be4",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T12:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2786b21_139c5f45",
+      "range": {
+        "startLine": 129,
+        "startChar": 18,
+        "endLine": 129,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "680a2fd8_84b67f4a",
         "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
         "patchSetId": 3
@@ -397,6 +445,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60664d2e_8bdd283b",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T12:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "680a2fd8_84b67f4a",
+      "range": {
+        "startLine": 138,
+        "startChar": 18,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
@@ -423,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "e62c5a05_ac6a4ff3",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T12:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afdfa04e_717d4591",
+      "range": {
+        "startLine": 148,
+        "startChar": 18,
+        "endLine": 148,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf005411_241474bd",
         "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
         "patchSetId": 3
@@ -443,6 +539,30 @@
       "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c053dd_a9effcb5",
+        "filename": "webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/A1MediatorMockConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1000201
+      },
+      "writtenOn": "2019-10-22T12:35:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf005411_241474bd",
+      "range": {
+        "startLine": 161,
+        "startChar": 18,
+        "endLine": 161,
+        "endChar": 40
+      },
+      "revId": "85baa088bc8d6c26e09a7d2d1d07222a8b59b079",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": false
     },
     {
       "key": {
