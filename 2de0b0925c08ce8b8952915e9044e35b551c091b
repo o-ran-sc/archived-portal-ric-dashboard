@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80a8097c_f544f4c1",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-23T19:17:36Z",
+      "side": 1,
+      "message": "since you have broken up the long line, please remove this lint comment",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 1
+      },
+      "revId": "2de0b0925c08ce8b8952915e9044e35b551c091b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca919730_8ba5fde8",
+        "filename": "webapp-frontend/src/app/ui/catalog-card/catalog-card.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-23T19:17:36Z",
+      "side": 1,
+      "message": "Thank you for cleaning up this template",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "2de0b0925c08ce8b8952915e9044e35b551c091b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18bdc3d5_857d04cf",
+        "filename": "webapp-frontend/src/styles/dark-theme.scss",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-10-23T19:17:36Z",
+      "side": 1,
+      "message": "Please add license header",
+      "range": {
+        "startLine": 1,
+        "startChar": 1,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "2de0b0925c08ce8b8952915e9044e35b551c091b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
