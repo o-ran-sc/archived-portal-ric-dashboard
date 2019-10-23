@@ -30,6 +30,7 @@ import { AppConfigurationComponent } from './../app-configuration/app-configurat
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
+import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-app-catalog',
@@ -38,6 +39,8 @@ import { CatalogDataSource } from './catalog.datasource';
 })
 export class CatalogComponent implements OnInit {
 
+  darkMode: boolean;
+  panelClass: string = "";
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -48,23 +51,32 @@ export class CatalogComponent implements OnInit {
     private dialog: MatDialog,
     private errorDiaglogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService);
     this.dataSource.loadTable();
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
   }
 
   onConfigureApp(xapp: XMDeployableApp): void {
+    if (this.darkMode) {
+      this.panelClass = "dark-theme";
+    } else {
+      this.panelClass = "";
+    }
     const dialogRef = this.dialog.open(AppConfigurationComponent, {
+      panelClass: this.panelClass,
       width: '40%',
       maxHeight: '500px',
       position: {
         top: '10%'
       },
       data: xapp
-    });
-
+    })
   }
 
   onDeployApp(app: XMDeployableApp): void {

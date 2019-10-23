@@ -18,9 +18,9 @@
   ========================LICENSE_END===================================
   -->
 <!-- Slide Menu-->
-<mat-drawer-container autosize>
-  <mat-drawer #drawer mode="push">
-  <section class="menu-header">
+<mat-drawer-container autosize >
+  <mat-drawer #drawer mode="push" [ngClass]="{'side-menu__dark': darkModeActive}">
+  <section class="menu-header" [ngClass]="{'menu-header__dark': darkModeActive}">
 
     <div class="left__section3Col" *ngIf="drawer.opened"  [ngClass]="{'menumargin-top': drawer.opened}">
       <svg (click)="drawer.toggle()" class="hamburger__icon" id="Menu_Burger_Icon" data-name="Menu Burger Icon"
@@ -55,8 +55,8 @@
         <span class="email__text">demo@o-ran-sc.org</span>
       </div>
     </section>
-    <section #sidenav class="menu-body">
-       <rd-sidenav-list></rd-sidenav-list>
+    <section #sidenav class="menu-body" >
+       <rd-sidenav-list ></rd-sidenav-list>
     </section>
     <section class="menu-footer">
 
@@ -107,16 +107,16 @@
   </header>
 
   <!-- Main Content -->
-  <main class="main__container">
-    <div class = main__container__body>
-      <div class="main-container__bg" [ngClass]="{'main-container__bg-dark': darkModeActive}"></div>
+  <main class="main__container" [ngClass]="{'main-container__bg-dark': darkModeActive}" >
+    <div class = main__container__body [ngClass]="{'dark-theme': darkModeActive}">
+      <div class="main-container__bg"></div>
       <router-outlet></router-outlet>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="main__footer">
-    <div class="main-footer__bg" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+  <footer class="main__footer" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+    <div class="main-footer__bg">
       <rd-footer></rd-footer>
     </div>
   </footer>

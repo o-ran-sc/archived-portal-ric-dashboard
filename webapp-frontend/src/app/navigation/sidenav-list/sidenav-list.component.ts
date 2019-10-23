@@ -18,6 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { UiService } from '../../services/ui/ui.service';
 
 @Component({
   selector: 'rd-sidenav-list',
@@ -25,11 +26,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sidenav-list.component.scss']
 })
 export class SidenavListComponent implements OnInit {
+  darkMode: boolean;
   @Output() sidenavClose = new EventEmitter();
 
-  constructor() { }
+  constructor(public ui: UiService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
+  }
 
   public onSidenavClose = () => {
     this.sidenavClose.emit();

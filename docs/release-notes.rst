@@ -19,7 +19,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.4, 21 Oct 2019
+Version 1.2.4, 23 Oct 2019
 --------------------------
 * Revise a1-med-client to use API spec in new submodule ric-plt/a1;
   removed cached copy
@@ -33,6 +33,7 @@ Version 1.2.4, 21 Oct 2019
 * Update EPSDK-FW to version 2.6
 * Make constructor robust to missing caasingress.insecure property
 * Repair bug that omitted slashes in CAAS-Ingress URL builder
+* Improve the dark mode
 
 Version 1.2.3, 4 Oct 2019
 -------------------------

@@ -47,6 +47,10 @@ main {
     Slide Menu
 = = = = = = = = =
 */
+.side-menu__dark {
+  color: white;
+  background: gray;
+}
 
 .side-menu__container {
   position: fixed;
@@ -104,6 +108,9 @@ main {
 
 .slide-menu-active {
   transform: none;
+}
+.menu-header.menu-header__dark {
+  background: #2B244D;
 }
 
 .menu-header {
@@ -348,9 +355,7 @@ mat-drawer-content {
 */
 .main__footer {
   background: transparent;
-  margin: 10px;
   z-index: 100;
-  height: 35px;
 }
 
 .main__footer-dark {
