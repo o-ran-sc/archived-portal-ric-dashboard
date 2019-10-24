@@ -45,7 +45,7 @@
 
     <ng-container matColumnDef="containers">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Containers </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.spec.containers.length}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.readyCount}}/{{element.spec.containers.length}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="restartCount">

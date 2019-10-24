@@ -59,10 +59,14 @@ export class CaasIngressDataSource extends DataSource<V1Pod> {
       )
       .subscribe((pl: V1PodList) => {
         this.rowCount = pl.items.length;
-        // precompute the restart count to keep HTML simple
+        // precompute container ready, restart counts to keep HTML simple
         for (const v1pod of pl.items) {
+          v1pod['readyCount'] = 0;
           v1pod['restartCount'] = 0;
           for (const cs of v1pod.status.containerStatuses) {
+            if (cs.ready) {
+              v1pod['readyCount'] = v1pod['readyCount'] + 1;
+            }
             v1pod['restartCount'] = v1pod['restartCount'] + cs.restartCount;
           }
         }
