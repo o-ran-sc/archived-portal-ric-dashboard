@@ -19,7 +19,6 @@
  */
 package org.oransc.ric.portal.dashboard.config;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 
@@ -74,6 +73,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DashboardUserManager userManager;
 
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		logger.debug("configure: portalapi.username {}", userName);
 		// A chain of ".and()" always baffles me
@@ -87,7 +87,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 * Resource paths that do not require authentication, especially including
 	 * Swagger-generated documentation.
 	 */
-	public static final String[] OPEN_PATHS = { //
+	protected static final String[] OPEN_PATHS = { //
 			"/v2/api-docs", //
 			"/swagger-resources/**", //
 			"/swagger-ui.html", //
@@ -113,9 +113,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public PortalAuthManager portalAuthManagerBean()
-			throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public PortalAuthManager portalAuthManagerBean() throws ClassNotFoundException, IllegalAccessException,
+			InstantiationException, InvocationTargetException, NoSuchMethodException {
 		return new PortalAuthManager(appName, userName, password, decryptor, userCookie);
 	}
 
@@ -128,12 +127,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 * bypass this filter, which seems to me means the filter participates
 	 * correctly.
 	 */
-	public PortalAuthenticationFilter portalAuthenticationFilterBean()
-			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException,
-			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		PortalAuthenticationFilter portalAuthenticationFilter = new PortalAuthenticationFilter(portalapiSecurity,
-				portalAuthManagerBean(), this.userManager);
-		return portalAuthenticationFilter;
+	public PortalAuthenticationFilter portalAuthenticationFilterBean() throws ClassNotFoundException,
+			IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+		return new PortalAuthenticationFilter(portalapiSecurity, portalAuthManagerBean(), this.userManager);
 	}
 
 }

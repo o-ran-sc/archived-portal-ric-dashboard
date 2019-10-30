@@ -19,7 +19,6 @@
  */
 package org.oransc.ric.portal.dashboard.config;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -33,7 +32,7 @@ public class SpringContextCache implements ApplicationContextAware {
 	private static ApplicationContext applicationContext = null;
 
 	@Override
-	public void setApplicationContext(final ApplicationContext appContext) throws BeansException {
+	public void setApplicationContext(final ApplicationContext appContext) {
 		applicationContext = appContext;
 	}
 

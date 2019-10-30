@@ -21,24 +21,23 @@ package org.oransc.ric.portal.dashboard.k8sapi;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.portal.dashboard.util.HttpsURLConnectionUtils;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-public class CaasIngressDemo {
-
+public class SimpleKubernetesClientTest {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public static void main(String[] args) throws Exception {
-		HttpsURLConnectionUtils.turnOffSslChecking();
-		// Get IP address from REC deployment team for testing
-		final String podsUrl = "https://10.0.0.1:16443/api/v1/namespaces/ricaux/pods";
-		RestTemplate rt = new RestTemplate();
-		ResponseEntity<String> podsResponse = rt.getForEntity(podsUrl, String.class);
-		logger.info(podsResponse.getBody());
-		HttpsURLConnectionUtils.turnOnSslChecking();
+	@Test
+	public void simpleK8sClientTest() {
+		SimpleKubernetesClient client = new SimpleKubernetesClient("http://foo.bar");
+		try {
+			String json = client.listPods("namespace");
+			Assert.assertNotNull(json);
+		} catch (RuntimeException ex) {
+			logger.warn("Failed as expected");
+		}
 	}
 
 }

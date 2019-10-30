@@ -20,7 +20,6 @@
 
 package org.oransc.ric.portal.dashboard;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ public class DashboardApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
 		// Ensure this appears on the console by using level WARN
 		logger.warn("main: version '{}' successful start",
