@@ -19,11 +19,13 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.4, 24 Oct 2019
+Version 1.2.4, 28 Oct 2019
 --------------------------
 * Revise a1-med-client to use API spec in new submodule ric-plt/a1;
   removed cached copy
 * Revise app manager client to use API spec in new submodule ric-plt/appmgr;
+  removed cached copy
+* Revise e2-mgr-client to use API spec in new submodule ric-plt/e2mgr;
   removed cached copy
 * Add Platform page showing Kubernetes pods in aux and platform obtained from CAAS-Ingress
 * Update Angular libraries to recent stable versions

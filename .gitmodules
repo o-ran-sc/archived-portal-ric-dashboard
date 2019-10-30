@@ -4,3 +4,6 @@
 [submodule "app-mgr-client/ric-plt-appmgr"]
 	path = app-mgr-client/ric-plt-appmgr
 	url = ../../ric-plt/appmgr
+[submodule "e2-mgr-client/ric-plt-e2mgr"]
+	path = e2-mgr-client/ric-plt-e2mgr
+	url = ../../ric-plt/e2mgr
