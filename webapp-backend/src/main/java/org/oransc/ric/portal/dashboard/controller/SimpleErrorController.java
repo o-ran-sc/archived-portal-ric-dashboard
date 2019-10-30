@@ -82,9 +82,8 @@ public class SimpleErrorController implements ErrorController {
 		if (t != null)
 			logger.warn("handleError", t);
 		Map<String, Object> attributes = errorAttributes.getErrorAttributes(servletWebRequest, true);
-		attributes.forEach((attribute, value) -> {
-			logger.warn("handleError: {} -> {}", attribute, value);
-		});
+		// use compact lambda syntax to silence Sonar complaint
+		attributes.forEach((attribute, value) -> logger.warn("handleError: {} -> {}", attribute, value));
 		// Return the name of the page INCLUDING suffix, which I guess is a "view" name.
 		// Just "error" is not enough, but don't seem to need a ModelAndView object.
 		return "error.html";

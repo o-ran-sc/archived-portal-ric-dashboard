@@ -20,8 +20,6 @@
 package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -74,8 +72,7 @@ public class CaasIngressController {
 	private final SimpleKubernetesClient ciPltClient;
 
 	@Autowired
-	public CaasIngressController(final SimpleKubernetesClient ciAuxApi, final SimpleKubernetesClient ciPltApi)
-			throws KeyManagementException, NoSuchAlgorithmException {
+	public CaasIngressController(final SimpleKubernetesClient ciAuxApi, final SimpleKubernetesClient ciPltApi) {
 		Assert.notNull(ciAuxApi, "auxApi must not be null");
 		Assert.notNull(ciPltApi, "pltApi must not be null");
 		this.ciAuxClient = ciAuxApi;

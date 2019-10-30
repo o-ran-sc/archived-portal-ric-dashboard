@@ -69,9 +69,6 @@ public class AdminController {
 	@Autowired
 	private DashboardUserManager dashboardUserManager;
 
-	public AdminController() {
-	}
-
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
 	// No role required

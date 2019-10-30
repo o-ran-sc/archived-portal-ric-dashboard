@@ -19,7 +19,6 @@
  */
 package org.oransc.ric.portal.dashboard.config;
 
-import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -72,13 +71,13 @@ public class CaasIngressConfiguration {
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public SimpleKubernetesClient ciAuxApi() throws IOException {
+	public SimpleKubernetesClient ciAuxApi() {
 		return new SimpleKubernetesClient(caasIngressAuxUrl);
 	}
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public SimpleKubernetesClient ciPltApi() throws IOException {
+	public SimpleKubernetesClient ciPltApi() {
 		return new SimpleKubernetesClient(caasIngressPltUrl);
 	}
 

@@ -52,8 +52,8 @@ public class PortalRestCentralServiceImpl implements IPortalRestCentralService {
 
 	public PortalRestCentralServiceImpl() throws IOException, PortalAPIException {
 		final ApplicationContext context = SpringContextCache.getApplicationContext();
-		authManager = (PortalAuthManager) context.getBean(PortalAuthManager.class);
-		userManager = (DashboardUserManager) context.getBean(DashboardUserManager.class);
+		authManager = context.getBean(PortalAuthManager.class);
+		userManager = context.getBean(DashboardUserManager.class);
 	}
 
 	/*
