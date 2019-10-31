@@ -23,6 +23,7 @@ Version 1.2.5, 31 Oct 2019
 --------------------------
 * Revise e2-mgr-client to use API spec in new submodule ric-plt/e2mgr;
   removed cached copy
+* Revise stats screen to drop mock load, pendulum, reporting items
 
 Version 1.2.4, 24 Oct 2019
 --------------------------
