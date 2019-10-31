@@ -58,7 +58,6 @@ import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { CaasIngressComponent } from './caas-ingress/caas-ingress.component';
 import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { ConfigEventComponent } from './ui/config-event/config-event.component';
 import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
 import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { ControlComponent } from './control/control.component';
@@ -72,7 +71,6 @@ import { FooterComponent } from './footer/footer.component';
 import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
-import { ModalEventComponent } from './ui/modal-event/modal-event.component';
 import { PlatformComponent } from './platform/platform.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
@@ -95,7 +93,6 @@ import { UserComponent } from './user/user.component';
     CaasIngressComponent,
     CatalogCardComponent,
     CatalogComponent,
-    ConfigEventComponent,
     ConfirmDialogComponent,
     ControlCardComponent,
     ControlComponent,
@@ -104,7 +101,6 @@ import { UserComponent } from './user/user.component';
     FooterComponent,
     LoadingDialogComponent,
     MainComponent,
-    ModalEventComponent,
     PlatformComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
