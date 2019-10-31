@@ -10,6 +10,7 @@ Version 1.3.0, 4 Nov 2019
   removed cached copy
 * Silence many Sonar complaints
 * Revise license statements in documentation files
+* Revise stats screen to drop mock load, pendulum, reporting items
 
 Version 1.2.4, 24 Oct 2019
 --------------------------
