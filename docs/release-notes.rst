@@ -4,12 +4,13 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.5, 31 Oct 2019
---------------------------
+Version 1.2.5, 4 Nov 2019
+-------------------------
 * Revise e2-mgr-client to use API spec in new submodule ric-plt/e2mgr;
   removed cached copy
 * Silence many Sonar complaints
 * Revise license statements in documentation files
+* Revise stats screen to drop mock load, pendulum, reporting items
 
 Version 1.2.4, 24 Oct 2019
 --------------------------
