@@ -55,11 +55,13 @@ requests at this URL:
 The directory ``src/test/resources`` contains usable versions of the required property
 files.  These steps are required to launch:
 
-1. Set an environment variable via JVM argument: ``-Dorg.oransc.ric.portal.dashboard=mock``
-2. Run the JUnit test case ``DashboardServerTest`` which is not exactly a "test" because it never finishes.
+1. Install all project jar files locally
+2. Set an environment variable via JVM argument: ``-Dorg.oransc.ric.portal.dashboard=mock``
+3. Run the JUnit test case ``DashboardServerTest`` which is not exactly a "test" because it never finishes.
 
-Both steps can be done with this command-line invocation::
+These steps can be done with these commands::
 
+     mvn -Ddocker.skip=true -DskipTests=true install
      mvn -Dorg.oransc.ric.portal.dashboard=mock -Dtest=DashboardTestServer test
 
 Development user authentication
