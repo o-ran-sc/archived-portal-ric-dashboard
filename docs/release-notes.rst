@@ -4,8 +4,8 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.2.5, 31 Oct 2019
---------------------------
+Version 1.3.0, 4 Nov 2019
+-------------------------
 * Revise e2-mgr-client to use API spec in new submodule ric-plt/e2mgr;
   removed cached copy
 * Silence many Sonar complaints
@@ -13,6 +13,7 @@ Version 1.2.5, 31 Oct 2019
 
 Version 1.2.4, 24 Oct 2019
 --------------------------
+* This version is used for the AT&T/Nokia co-create PIZ trials Nov 2019.
 * Revise a1-med-client to use API spec in new submodule ric-plt/a1;
   removed cached copy
 * Revise app manager client to use API spec in new submodule ric-plt/appmgr;
