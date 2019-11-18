@@ -26,7 +26,6 @@ import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
-import org.oransc.ric.portal.dashboard.controller.AnrXappController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
 import org.oransc.ric.portal.dashboard.controller.SimpleErrorController;
@@ -96,9 +95,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			A1MediatorController.CONTROLLER_PATH + "/" + A1MediatorController.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //
-			AnrXappController.CONTROLLER_PATH + "/" + AnrXappController.HEALTH_ALIVE_METHOD, //
-			AnrXappController.CONTROLLER_PATH + "/" + AnrXappController.HEALTH_READY_METHOD, //
-			AnrXappController.CONTROLLER_PATH + "/" + AnrXappController.VERSION_METHOD, //
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.HEALTH_ALIVE_METHOD, //
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.HEALTH_READY_METHOD, //
 			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.VERSION_METHOD, //

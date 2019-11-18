@@ -43,11 +43,6 @@ limitations under the License.
 	</repositories>
 	<dependencies>
 		<!-- xApps -->
-		<dependency>
-			<groupId>org.o-ran-sc.ric.xapp.anr.client</groupId>
-			<artifactId>anr-xapp-client</artifactId>
-			<version>0.0.8-SNAPSHOT</version>
-		</dependency>
 		<!-- Platform components -->
 		<dependency>
 			<groupId>org.o-ran-sc.ric.plt.a1med.client</groupId>

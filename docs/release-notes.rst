@@ -30,6 +30,7 @@ Version 1.2.4, 24 Oct 2019
 * Repair bug that omitted slashes in CAAS-Ingress URL builder
 * Improve the dark mode
 * Show container ready count with total count
+* Remove ANR xApp
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
