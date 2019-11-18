@@ -22,7 +22,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
-import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { MainComponent } from './main/main.component';
@@ -35,7 +34,6 @@ const routes: Routes = [
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
     {path: 'ac', component: AcXappComponent},
-    {path: 'anr', component: AnrXappComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'platform', component: PlatformComponent},
     {path: 'user', component: UserComponent},

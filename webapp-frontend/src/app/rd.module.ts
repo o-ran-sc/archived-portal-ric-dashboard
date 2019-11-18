@@ -50,8 +50,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
-import { AnrEditNcrDialogComponent } from './anr-xapp/anr-edit-ncr-dialog.component';
-import { AnrXappComponent } from './anr-xapp/anr-xapp.component';
 import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
 import { AppMgrService } from './services/app-mgr/app-mgr.service';
@@ -86,8 +84,6 @@ import { UserComponent } from './user/user.component';
   declarations: [
     AcXappComponent,
     AddDashboardUserDialogComponent,
-    AnrEditNcrDialogComponent,
-    AnrXappComponent,
     AppConfigurationComponent,
     AppControlComponent,
     CaasIngressComponent,
@@ -167,7 +163,6 @@ import { UserComponent } from './user/user.component';
   ],
   entryComponents: [
     AddDashboardUserDialogComponent,
-    AnrEditNcrDialogComponent,
     AppConfigurationComponent,
     ConfirmDialogComponent,
     EditDashboardUserDialogComponent,
