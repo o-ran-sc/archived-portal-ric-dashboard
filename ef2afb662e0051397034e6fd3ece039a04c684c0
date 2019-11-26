@@ -69,6 +69,30 @@
       "revId": "ef2afb662e0051397034e6fd3ece039a04c684c0",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f71dc89b_9d7a3f2c",
+        "filename": "pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-26T18:09:29Z",
+      "side": 1,
+      "message": "Nicolas, those are TAB characters.  Gerrit shows tabs as \"\u003e\u003e\" so we can see them more clearly.  I\u0027m sure your IDE knows how to do tabs.",
+      "parentUuid": "3bd60e4a_e8baa566",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 4
+      },
+      "revId": "ef2afb662e0051397034e6fd3ece039a04c684c0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
