@@ -1,0 +1,11 @@
+# the release job adds prefix o-ran-sc/ to the image names
+---
+distribution_type: container
+container_release_tag: 1.3.0
+container_pull_registry: nexus3.o-ran-sc.org:10004
+container_push_registry: nexus3.o-ran-sc.org:10002
+project: portal/ric-dashboard
+ref: cec131cf4b0279bd6a6d4dd31642270cebe38711
+containers:
+    - name: portal-ric-dashboard
+      version: 1.3.0
