@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "272d9b3f_ef4d0b57",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-26T18:08:16Z",
+      "side": 1,
+      "message": "This line is in the wrong place.  1.2.4 is the PIZ version.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "ef2afb662e0051397034e6fd3ece039a04c684c0",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8d21240c_30eee54b",
         "filename": "pom.xml",
         "patchSetId": 4
