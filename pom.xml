@@ -47,8 +47,8 @@ limitations under the License.
 	<modules>
 		<module>a1-med-client</module>
 		<module>app-mgr-client</module>
-    <module>e2-mgr-client</module>
-    <module>webapp-frontend</module>
+		<module>e2-mgr-client</module>
+		<module>webapp-frontend</module>
 		<module>webapp-backend</module>
 	</modules>
 	<build>

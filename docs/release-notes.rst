@@ -5,13 +5,15 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 1.3.0, 4 Nov 2019
--------------------------
+Version 1.3.0, 26 Nov 2019
+--------------------------
+* This is the Amber release version
 * Revise e2-mgr-client to use API spec in new submodule ric-plt/e2mgr;
   removed cached copy
 * Silence many Sonar complaints
 * Revise license statements in documentation files
 * Revise stats screen to drop mock load, pendulum, reporting items
+* Remove ANR xApp
 
 Version 1.2.4, 24 Oct 2019
 --------------------------
@@ -30,7 +32,6 @@ Version 1.2.4, 24 Oct 2019
 * Repair bug that omitted slashes in CAAS-Ingress URL builder
 * Improve the dark mode
 * Show container ready count with total count
-* Remove ANR xApp
 
 Version 1.2.3, 4 Oct 2019
 -------------------------
