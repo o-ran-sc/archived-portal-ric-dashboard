@@ -46,9 +46,9 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
     super();
   }
 
-  loadTable() {
+	loadTable(instanceKey: string) {
     this.loadingSubject.next(true);
-    this.appMgrSvc.getDeployable()
+		this.appMgrSvc.getDeployable(instanceKey)
       .pipe(
         catchError( (her: HttpErrorResponse) => {
           console.log('CatalogDataSource failed: ' + her.message);

@@ -21,15 +21,17 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { XappControlRow } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { AppControlAnimations } from './app-control.animations';
 import { AppControlDataSource } from './app-control.datasource';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'rd-app-control',
@@ -41,7 +43,9 @@ export class AppControlComponent implements OnInit {
 
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: AppControlDataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+	private instanceChange: Subscription;
+	private instanceKey: string;
 
   constructor(
     private appMgrSvc: AppMgrService,
@@ -49,11 +53,22 @@ export class AppControlComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
-    private notificationService: NotificationService) { }
+    public instanceSelectorService: InstanceSelectorService,
+		private notificationService: NotificationService) { }
+		
 
   ngOnInit() {
     this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort, this.notificationService);
-    this.dataSource.loadTable();
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+			if (instanceKey) {
+				this.instanceKey = instanceKey;
+				this.dataSource.loadTable(instanceKey);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   controlApp(app: XappControlRow): void {
@@ -72,15 +87,15 @@ export class AppControlComponent implements OnInit {
       .afterClosed().subscribe( (res: boolean) => {
         if (res) {
           this.loadingDialogService.startLoading("Undeploying " + app.xapp);
-          this.appMgrSvc.undeployXapp(app.xapp)
+					this.appMgrSvc.undeployXapp(this.instanceKey, app.xapp)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())
             )
             .subscribe(
             ( httpResponse: HttpResponse<Object>) => {
               // Answers 204/No content on success
-              this.notificationService.success('App undeployed successfully!');
-              this.dataSource.loadTable();
+								this.notificationService.success('App undeployed successfully!');
+								this.dataSource.loadTable(this.instanceKey);
             },
             ( (her: HttpErrorResponse) => {
               // the error field should have an ErrorTransport object

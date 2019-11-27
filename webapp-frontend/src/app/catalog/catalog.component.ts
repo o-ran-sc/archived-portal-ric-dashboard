@@ -18,48 +18,62 @@
  * ========================LICENSE_END===================================
  */
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
-import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
-import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss'],
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
   darkMode: boolean;
   panelClass: string = "";
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
+	private instanceChange: Subscription;
+	private instanceKey: string;
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private appMgrService: AppMgrService,
     private confirmDialogService: ConfirmDialogService,
     private dialog: MatDialog,
-    private errorDiaglogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService,
+    public instanceSelectorService: InstanceSelectorService,
     public ui: UiService) { }
-
+		
   ngOnInit() {
     this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService);
-    this.dataSource.loadTable();
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
     });
+
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+			if (instanceKey) {
+				this.instanceKey = instanceKey;
+				this.dataSource.loadTable(instanceKey);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   onConfigureApp(xapp: XMDeployableApp): void {
@@ -68,14 +82,18 @@ export class CatalogComponent implements OnInit {
     } else {
       this.panelClass = "";
     }
-    const dialogRef = this.dialog.open(AppConfigurationComponent, {
-      panelClass: this.panelClass,
-      width: '40%',
-      maxHeight: '500px',
-      position: {
-        top: '10%'
-      },
-      data: xapp
+		const dialogRef = this.dialog.open(AppConfigurationComponent, {
+			panelClass: this.panelClass,
+			width: '40%',
+			maxHeight: '500px',
+			position: {
+				top: '10%'
+			},
+			data: {
+				xapp: xapp,
+				instanceKey: this.instanceKey
+			} 
+
     })
   }
 
@@ -84,7 +102,7 @@ export class CatalogComponent implements OnInit {
       .afterClosed().subscribe((res: boolean) => {
         if (res) {
           this.loadingDialogService.startLoading('Deploying ' + app.name);
-          this.appMgrService.deployXapp(app.name)
+          this.appMgrService.deployXapp(this.instanceKey, app.name)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())
             )

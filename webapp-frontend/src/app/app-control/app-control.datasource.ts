@@ -55,9 +55,9 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     super();
   }
 
-  loadTable() {
+	loadTable(instanceKey:string) {
     this.loadingSubject.next(true);
-    this.appMgrSvc.getDeployed()
+		this.appMgrSvc.getDeployed(instanceKey)
       .pipe(
         catchError( (her: HttpErrorResponse) => {
           console.log('AppControlDataSource failed: ' + her.message);

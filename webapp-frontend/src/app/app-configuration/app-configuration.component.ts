@@ -59,7 +59,7 @@ export class AppConfigurationComponent implements OnInit {
       )
       .subscribe(
         (allConfig: any) => {
-          this.loadConfigForm(this.data.name, allConfig)
+          this.loadConfigForm(this.data.xapp.name, allConfig)
         }
       );
   }
@@ -71,8 +71,8 @@ export class AppConfigurationComponent implements OnInit {
       config: event,
       layout: this.xappLayout
     }
-    this.loadingDialogService.startLoading("Updating " + this.data.name + " configuration");
-    this.appMgrService.putConfig(config)
+    this.loadingDialogService.startLoading("Updating " + this.data.xapp.name + " configuration");
+		this.appMgrService.putConfig(this.data.instanceKey,config)
       .pipe(
         finalize(() => {
           this.loadingDialogService.stopLoading();

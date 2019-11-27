@@ -13,6 +13,9 @@ Version 2.0.0, 22 Dec 2019
 * Drop AUX cluster container list fetched via CAAS Ingress
 * Revise controller methods to require RIC instance key
 * Upgrade to Spring-Boot 2.1.11.RELEASE
+* Add instance-selector service
+* Revise ac-xapp, app-mgr, caas-ingress, e2-mgr service to support multiple ric instances
+* Revise ac-xapp, app-control, catalog, caas-ingress, ran-control components to listen to the instance change
 
 Version 1.3.0, 26 Nov 2019
 --------------------------
