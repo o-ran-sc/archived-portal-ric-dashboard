@@ -21,18 +21,28 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service'
 
 @Injectable()
 export class AppMgrService {
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSvc: InstanceSelectorService) {
     // injects to variable httpClient
   }
 
   private basePath = 'api/appmgr';
 
   getDeployable(): Observable<XMDeployableApp[]> {
-    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
+    var deployableApps: Observable<XMDeployableApp[]> 
+    this.instanceSvc.getSelectedInstance().subscribe((selectedInstance) => {
+      console.log("update path " + this.basePath + "/" + selectedInstance)
+      // var apiPath = this.basePath + "/" + selectedInstance
+      deployableApps = this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
+    })
+    console.log(deployableApps)
+    return deployableApps
   }
 
   getDeployed(): Observable<XMDeployedApp[]> {
