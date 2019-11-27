@@ -18,7 +18,10 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { UiService } from './services/ui/ui.service';
+import { RicInstance } from './interfaces/dashboard.types';
 
 @Component({
   selector: 'rd-root',
@@ -28,13 +31,25 @@ import { UiService } from './services/ui/ui.service';
 export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
+  private instancelist: RicInstance[];
+  private selectedInstance: RicInstance;
 
-  constructor(public ui: UiService) {
+  constructor(
+    public ui: UiService,
+    private router: Router,
+    private instanceSelector: InstanceSelectorService ) {
   }
 
   ngOnInit() {
     this.ui.darkModeState.subscribe((value) => {
       this.darkModeActive = value;
+    });
+
+    this.instanceSelector.getInstanceLoading().subscribe((isLoadingFinish: boolean) => {
+      if (isLoadingFinish) {
+        this.instancelist = this.instanceSelector.getInstanceList();
+        this.selectedInstance = this.instanceSelector.getSelectedInstance().value
+      }
     });
   }
 
@@ -44,6 +59,10 @@ export class RdComponent implements OnInit {
 
   modeToggleSwitch() {
     this.ui.darkModeState.next(!this.darkModeActive);
+  }
+
+  changeInstance(event) {
+    this.instanceSelector.updateSelectedInstance(event.value)
   }
 
 }
