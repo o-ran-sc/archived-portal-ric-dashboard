@@ -18,10 +18,11 @@
  * ========================LICENSE_END===================================
  */
 
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { V1PodList } from '@kubernetes/client-node';
 import { Observable } from 'rxjs';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service';
 
 /**
 * Services for calling the Dashboard's caas-ingress endpoints to get Kubernetes details.
@@ -31,18 +32,20 @@ import { Observable } from 'rxjs';
 })
 export class CaasIngressService {
 
-  private basePath = 'api/caas-ingress';
+  private component = 'caas-ingress';
   private podsPath = 'pods';
 
   private buildPath(...args: any[]) {
-    let result = this.basePath;
+    let result = this.instanceSelectorService.getApiBasePath(this.component);
     args.forEach(part => {
       result = result + '/' + part;
     });
     return result;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSelectorService: InstanceSelectorService) {
     // injects to variable httpClient
   }
 

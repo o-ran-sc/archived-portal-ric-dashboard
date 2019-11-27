@@ -18,12 +18,13 @@
  * ========================LICENSE_END===================================
  */
 
- import { Injectable } from '@angular/core';
- import { HttpClient } from '@angular/common/http';
- import { Observable } from 'rxjs';
- import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../../interfaces/ac-xapp.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service';
 
 /**
  * Services for calling the Dashboard's A1 endpoints to get/put AC policies.
@@ -33,19 +34,21 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 })
 export class ACXappService {
 
-  private basePath = 'api/a1-p';
+  private component = 'a1-p';
   private policyPath = 'policies';
   private acPolicyName = 'admission_control_policy';
 
   private buildPath(...args: any[]) {
-    let result = this.basePath;
+    let result = this.instanceSelectorService.getApiBasePath(this.component);
     args.forEach(part => {
       result = result + '/' + part;
     });
     return result;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSelectorService: InstanceSelectorService) {
     // injects to variable httpClient
   }
 
