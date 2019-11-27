@@ -19,6 +19,8 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { UiService } from './services/ui/ui.service';
+import { Router } from '@angular/router';
+import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 
 @Component({
   selector: 'rd-root',
@@ -28,14 +30,19 @@ import { UiService } from './services/ui/ui.service';
 export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
+  private instancelist;
 
-  constructor(public ui: UiService) {
+  constructor(
+    public ui: UiService,
+    private router: Router,
+    private instanceSelector: InstanceSelectorService ) {
   }
 
   ngOnInit() {
     this.ui.darkModeState.subscribe((value) => {
       this.darkModeActive = value;
     });
+    this.instancelist=this.instanceSelector.getInstanceList();
   }
 
   toggleMenu() {
@@ -44,6 +51,13 @@ export class RdComponent implements OnInit {
 
   modeToggleSwitch() {
     this.ui.darkModeState.next(!this.darkModeActive);
+  }
+
+  changeInstance(event) {
+    // update the selectored instance
+    this.instanceSelector.selectInstance(event.value)
+    //jump to home page
+    this.router.navigate(['']);
   }
 
 }
