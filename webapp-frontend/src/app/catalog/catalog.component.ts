@@ -18,31 +18,36 @@
  * ========================LICENSE_END===================================
  */
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { finalize } from 'rxjs/operators';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
-import { UiService } from '../services/ui/ui.service';
+import { Subscription } from 'rxjs';
+import { RicInstance } from './../interfaces/dashboard.types';
 
 @Component({
   selector: 'rd-app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss'],
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy  {
 
   darkMode: boolean;
   panelClass: string = "";
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
+  private instanceChange: Subscription;
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
@@ -52,14 +57,25 @@ export class CatalogComponent implements OnInit {
     private errorDiaglogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService,
+    public instanceSelectorService: InstanceSelectorService,
     public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new CatalogDataSource(this.appMgrService, this.sort, this.notificationService);
-    this.dataSource.loadTable();
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
     });
+
+     this.instanceSelectorService.getInstanceArray().subscribe((instanceArray: RicInstance[]) => {
+      this.instanceSelectorService.initselectedInstanceKey(instanceArray[0].key);
+       this.instanceChange =this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+        this.dataSource.loadTable();
+      })
+    });
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   onConfigureApp(xapp: XMDeployableApp): void {

@@ -18,6 +18,8 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit } from '@angular/core';
+import { RicInstance } from './interfaces/dashboard.types';
+import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { UiService } from './services/ui/ui.service';
 
 @Component({
@@ -28,14 +30,24 @@ import { UiService } from './services/ui/ui.service';
 export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
+  private instanceArray: RicInstance[];
+  private selectedInstanceKey: string ;
 
-  constructor(public ui: UiService) {
+  constructor(
+    public ui: UiService,
+    private instanceSelectorService: InstanceSelectorService ) {
   }
 
   ngOnInit() {
     this.ui.darkModeState.subscribe((value) => {
       this.darkModeActive = value;
     });
+
+    this.instanceSelectorService.getInstanceArray().subscribe((instanceArray: RicInstance[]) => {
+      this.instanceArray = instanceArray;
+      this.selectedInstanceKey = instanceArray[0].key;
+      this.instanceSelectorService.initselectedInstanceKey(instanceArray[0].key);
+    })
   }
 
   toggleMenu() {
@@ -44,6 +56,10 @@ export class RdComponent implements OnInit {
 
   modeToggleSwitch() {
     this.ui.darkModeState.next(!this.darkModeActive);
+  }
+
+  changeInstance(selectedInstancekey: string) {
+    this.instanceSelectorService.updateSelectedInstance(selectedInstancekey);
   }
 
 }
