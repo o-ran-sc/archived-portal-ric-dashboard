@@ -18,9 +18,9 @@
  * ========================LICENSE_END===================================
  */
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { E2SetupRequest, RanDialogFormData } from '../interfaces/e2-mgr.types';
@@ -45,7 +45,8 @@ export class RanControlConnectDialogComponent implements OnInit {
     private service: E2ManagerService,
     private errorService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
-    private notifService: NotificationService) {
+    private notifService: NotificationService,
+    @Inject(MAT_DIALOG_DATA) private data) {
     // opens with empty fields; accepts no data to display
   }
 
@@ -80,9 +81,9 @@ export class RanControlConnectDialogComponent implements OnInit {
     this.loadingDialogService.startLoading('Setting up connection');
     let observable: Observable<HttpResponse<Object>>;
     if (ranFormValue.ranType === 'endc') {
-      observable = this.service.endcSetup(setupRequest);
+      observable = this.service.endcSetup(this.data.instanceKey, setupRequest);
     } else {
-      observable = this.service.x2Setup(setupRequest);
+      observable = this.service.x2Setup(this.data.instanceKey, setupRequest);
     }
     observable
       .pipe(

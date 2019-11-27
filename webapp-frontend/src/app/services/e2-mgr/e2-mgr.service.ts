@@ -17,12 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
+import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { CommonService } from '../common/common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +31,11 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
 export class E2ManagerService {
 
-  private basePath = 'api/e2mgr/nodeb/';
+  private component = 'e2mgr';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private commonSvc: CommonService) {
     // injects to variable httpClient
   }
 
@@ -40,8 +43,8 @@ export class E2ManagerService {
    * Gets E2 client version details
    * @returns Observable that should yield a String
    */
-  getVersion(): Observable<string> {
-    const url = this.basePath + 'version';
+  getVersion(instanceKey: string): Observable<string> {
+    const url = 'api/e2mgr/version';
     return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
       // Extract the string here
       map(res => res['data'])
@@ -52,32 +55,36 @@ export class E2ManagerService {
    * Gets RAN details
    * @returns Observable that should yield an array of objects
    */
-  getRan(): Observable<Array<E2RanDetails>> {
-    return this.httpClient.get<Array<E2RanDetails>>(this.basePath + 'ran');
+  getRan(instanceKey: string): Observable<Array<E2RanDetails>> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'ran');
+    return this.httpClient.get<Array<E2RanDetails>>(url);
   }
 
   /**
    * Sends a request to setup an ENDC/gNodeB connection
    * @returns Observable. On success there is no data, only a code.
    */
-  endcSetup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'endc-setup', req, { observe: 'response' });
+  endcSetup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'endc-setup');
+    return this.httpClient.post(url, req, { observe: 'response' });
   }
 
   /**
    * Sends a request to setup an X2/eNodeB connection
    * @returns Observable. On success there is no data, only a code.
    */
-  x2Setup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'x2-setup', req, { observe: 'response' });
+  x2Setup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'x2-setup');
+    return this.httpClient.post(url, req, { observe: 'response' });
   }
 
   /**
    * Sends a request to drop all RAN connections
    * @returns Observable with body.
    */
-  nodebPut(): Observable<any> {
-    return this.httpClient.put((this.basePath + 'shutdown'), { observe: 'body' });
+  nodebPut(instanceKey: string): Observable<any> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'shutdown');
+    return this.httpClient.put(url, { observe: 'body' });
   }
 
 }

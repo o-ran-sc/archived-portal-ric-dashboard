@@ -17,45 +17,54 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
+import { XMDeployableApp, XMDeployedApp, XMXappInfo } from '../../interfaces/app-mgr.types';
+import { CommonService } from '../common/common.service';
 
 @Injectable()
 export class AppMgrService {
 
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
+  private component = 'appmgr';
+
+  constructor(
+    private httpClient: HttpClient,
+    private commonSvc: CommonService) {
   }
 
-  private basePath = 'api/appmgr';
-
-  getDeployable(): Observable<XMDeployableApp[]> {
-    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
+  getDeployable(instanceKey: string): Observable<XMDeployableApp[]> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'xapps', 'list');
+    return this.httpClient.get<XMDeployableApp[]>(url);
   }
 
-  getDeployed(): Observable<XMDeployedApp[]> {
-    return this.httpClient.get<XMDeployedApp[]>(this.basePath + '/xapps');
+  getDeployed(instanceKey: string): Observable<XMDeployedApp[]> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'xapps');
+    return this.httpClient.get<XMDeployedApp[]>(url);
   }
 
-  deployXapp(name: string): Observable<HttpResponse<Object>> {
+  deployXapp(instanceKey: string, name: string): Observable<HttpResponse<Object>> {
     const xappInfo: XMXappInfo = { name: name };
-    return this.httpClient.post((this.basePath + '/xapps'), xappInfo, { observe: 'response' });
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'xapps');
+    return this.httpClient.post(url, xappInfo, { observe: 'response' });
   }
 
-  undeployXapp(name: string): Observable<HttpResponse<Object>> {
-    return this.httpClient.delete((this.basePath + '/xapps'+ '/' + name), { observe: 'response' });
+  undeployXapp(instanceKey: string, name: string): Observable<HttpResponse<Object>> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'xapps', name);
+    return this.httpClient.delete(url, { observe: 'response' });
   }
 
-  getConfig(): Observable<any[]>{
+  getConfig(instanceKey: string): Observable<any[]> {
+    // For demo purpose, pull example config from local
     return this.httpClient.get<any[]>("/assets/mockdata/config.json");
-    //return this.httpClient.get<any[]>((this.basePath  + '/config'));
+    // Once Xapp manager contains layout, should call backend to get xapp config 
+    //const url = this.commonSvc.buildPath(instanceKey, this.component, 'config');
+    //return this.httpClient.get<any[]>(url);
   }
 
-  putConfig(config: any): Observable<HttpResponse<Object>> {
-    return this.httpClient.put((this.basePath + '/config' ), config, { observe: 'response' });
+  putConfig(instanceKey: string, config: any): Observable<HttpResponse<Object>> {
+    const url = this.commonSvc.buildPath(instanceKey, this.component, 'config');
+    return this.httpClient.put(url, config, { observe: 'response' });
   }
-
 
 }

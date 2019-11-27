@@ -17,7 +17,10 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -31,6 +34,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -39,46 +43,47 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ChartsModule } from 'ng2-charts';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
+import { ChartsModule } from 'ng2-charts';
 import { ToastrModule } from 'ngx-toastr';
+
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
-import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
-import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { CaasIngressComponent } from './caas-ingress/caas-ingress.component';
-import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
-import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { ControlComponent } from './control/control.component';
+import { CommonService } from './services/common/common.service';
+import { FooterComponent } from './footer/footer.component';
+import { MainComponent } from './main/main.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { PlatformComponent } from './platform/platform.component';
+import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
+import { RanControlComponent } from './ran-control/ran-control.component';
+import { RdRoutingModule } from './rd-routing.module';
+import { RdComponent } from './rd.component';
+import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
-import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
-import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FooterComponent } from './footer/footer.component';
-import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
-import { MainComponent } from './main/main.component';
-import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
-import { PlatformComponent } from './platform/platform.component';
-import { RanControlComponent } from './ran-control/ran-control.component';
-import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
-import { RdComponent } from './rd.component';
-import { RdRoutingModule } from './rd-routing.module';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { StatCardComponent } from './ui/stat-card/stat-card.component';
-import { StatsComponent } from './stats/stats.component';
 import { UiService } from './services/ui/ui.service';
+import { StatsComponent } from './stats/stats.component';
+import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
+import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
+import { ControlCardComponent } from './ui/control-card/control-card.component';
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
+import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
+import { StatCardComponent } from './ui/stat-card/stat-card.component';
+import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
+import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 import { UserComponent } from './user/user.component';
+
+
 
 @NgModule({
   declarations: [
@@ -172,9 +177,11 @@ import { UserComponent } from './user/user.component';
   ],
   providers: [
     AppMgrService,
+    CommonService,
     DashboardService,
     E2ManagerService,
     ErrorDialogService,
+    InstanceSelectorService,
     UiService
   ],
   bootstrap: [RdComponent]

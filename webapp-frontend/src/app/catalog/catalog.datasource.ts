@@ -33,31 +33,29 @@ import { NotificationService } from '../services/ui/notification.service';
 export class CatalogDataSource extends DataSource<XMDeployableApp> {
 
   private catalogSubject = new BehaviorSubject<XMDeployableApp[]>([]);
-
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
   public loading$ = this.loadingSubject.asObservable();
-
   public rowCount = 1; // hide footer during intial load
 
-  constructor(private appMgrSvc: AppMgrService,
+  constructor(
+    private appMgrSvc: AppMgrService,
     private sort: MatSort,
     private notificationService: NotificationService) {
     super();
   }
 
-  loadTable() {
+  loadTable(instanceKey: string) {
     this.loadingSubject.next(true);
-    this.appMgrSvc.getDeployable()
+    this.appMgrSvc.getDeployable(instanceKey)
       .pipe(
-        catchError( (her: HttpErrorResponse) => {
+        catchError((her: HttpErrorResponse) => {
           console.log('CatalogDataSource failed: ' + her.message);
           this.notificationService.error('Failed to get applications: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe( (xApps: XMDeployableApp[]) => {
+      .subscribe((xApps: XMDeployableApp[]) => {
         this.rowCount = xApps.length;
         this.catalogSubject.next(xApps);
       });

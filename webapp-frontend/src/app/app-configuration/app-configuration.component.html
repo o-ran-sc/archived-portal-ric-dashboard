@@ -19,14 +19,14 @@
   -->
 
 <div mat-dialog-title *ngIf="loading$ | async">
-  Loading {{data.name}} Configuration
+  Loading {{data.xapp.name}} Configuration
   <mat-spinner diameter=70></mat-spinner>
 </div>
 
 <div *ngIf="((loading$ | async)==false) " class="config-div">
 
   <div mat-dialog-title class="config-title">
-    {{data.name}} Configuration
+    {{data.xapp.name}} Configuration
   </div>
 
   <div  class="config-form">

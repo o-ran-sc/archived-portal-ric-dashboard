@@ -18,45 +18,21 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by Dashboard admin services
+import { Injectable } from '@angular/core';
 
-export interface DashboardSuccessTransport {
-  status: number;
-  data: string;
-}
+@Injectable({
+  providedIn: 'root'
+})
+export class CommonService {
 
-export interface EcompRoleFunction {
-  name: string;
-  code: string;
-  type: string;
-  action: string;
-}
+  constructor() { }
 
-export interface EcompRole {
-  id: number;
-  name: string;
-  [position: number]: EcompRoleFunction;
-}
+  buildPath(instanceKey: string, component: string, ...args: any[]) {
+    let result = 'api/' + component + '/ric/' + instanceKey;
+    args.forEach(part => {
+      result = result + '/' + part;
+    });
+    return result;
+  }
 
-export interface EcompUser {
-  orgId?: number;
-  managerId?: string;
-  firstName?: string;
-  middleInitial?: string;
-  lastName?: string;
-  phone?: string;
-  email?: string;
-  hrid?: string;
-  orgUserId?: string;
-  orgCode?: string;
-  orgManagerUserId?: string;
-  jobTitle?: string;
-  loginId: string;
-  active: boolean;
-  [position: number]: EcompRole;
-}
-
-export interface RicInstance {
-  key: string;
-  name: string;
 }
