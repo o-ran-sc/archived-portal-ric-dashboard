@@ -17,12 +17,14 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
+import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +32,11 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
 export class E2ManagerService {
 
-  private basePath = 'api/e2mgr/nodeb/';
+  private component = 'e2mgr';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSelectorService: InstanceSelectorService) {
     // injects to variable httpClient
   }
 
@@ -41,8 +45,7 @@ export class E2ManagerService {
    * @returns Observable that should yield a String
    */
   getVersion(): Observable<string> {
-    const url = this.basePath + 'version';
-    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+    return this.httpClient.get<DashboardSuccessTransport>(this.instanceSelectorService.getApiBasePath(this.component) + 'version').pipe(
       // Extract the string here
       map(res => res['data'])
     );
@@ -53,7 +56,7 @@ export class E2ManagerService {
    * @returns Observable that should yield an array of objects
    */
   getRan(): Observable<Array<E2RanDetails>> {
-    return this.httpClient.get<Array<E2RanDetails>>(this.basePath + 'ran');
+    return this.httpClient.get<Array<E2RanDetails>>(this.instanceSelectorService.getApiBasePath(this.component) + '/nodeb/ran');
   }
 
   /**
@@ -61,7 +64,7 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   endcSetup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'endc-setup', req, { observe: 'response' });
+    return this.httpClient.post(this.instanceSelectorService.getApiBasePath(this.component) + '/nodeb/endc-setup', req, { observe: 'response' });
   }
 
   /**
@@ -69,7 +72,7 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   x2Setup(req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    return this.httpClient.post(this.basePath + 'x2-setup', req, { observe: 'response' });
+    return this.httpClient.post(this.instanceSelectorService.getApiBasePath(this.component) + '/nodeb/x2-setup', req, { observe: 'response' });
   }
 
   /**
@@ -77,7 +80,7 @@ export class E2ManagerService {
    * @returns Observable with body.
    */
   nodebPut(): Observable<any> {
-    return this.httpClient.put((this.basePath + 'shutdown'), { observe: 'body' });
+    return this.httpClient.put((this.instanceSelectorService.getApiBasePath(this.component) + '/nodeb/shutdown'), { observe: 'body' });
   }
 
 }

@@ -21,15 +21,17 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { XappControlRow } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { AppControlAnimations } from './app-control.animations';
 import { AppControlDataSource } from './app-control.datasource';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'rd-app-control',
@@ -41,7 +43,8 @@ export class AppControlComponent implements OnInit {
 
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: AppControlDataSource;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  private instanceChange: Subscription;
 
   constructor(
     private appMgrSvc: AppMgrService,
@@ -49,11 +52,20 @@ export class AppControlComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
+    public instanceSelectorService: InstanceSelectorService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort, this.notificationService);
-    this.dataSource.loadTable();
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+      if (instanceKey) {
+        this.dataSource.loadTable();
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   controlApp(app: XappControlRow): void {
