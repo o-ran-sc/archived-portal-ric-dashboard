@@ -21,17 +21,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service'
 
 @Injectable()
 export class AppMgrService {
 
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSvc: InstanceSelectorService) {
   }
 
   private basePath = 'api/appmgr';
 
   getDeployable(): Observable<XMDeployableApp[]> {
+    //get the instance key then update the path
+    // need create another function to generate the api path
+    var path = 'api/ric/' + this.instanceSvc.getSelectedInstance().value.key + '/appmgr'
     return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
   }
 
@@ -56,6 +61,5 @@ export class AppMgrService {
   putConfig(config: any): Observable<HttpResponse<Object>> {
     return this.httpClient.put((this.basePath + '/config' ), config, { observe: 'response' });
   }
-
 
 }

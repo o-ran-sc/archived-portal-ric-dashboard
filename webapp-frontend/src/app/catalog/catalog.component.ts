@@ -24,13 +24,14 @@ import { MatSort } from '@angular/material/sort';
 import { finalize } from 'rxjs/operators';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
-import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-app-catalog',
@@ -52,6 +53,7 @@ export class CatalogComponent implements OnInit {
     private errorDiaglogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService,
+    public instanceSelectorService: InstanceSelectorService,
     public ui: UiService) { }
 
   ngOnInit() {
@@ -59,6 +61,9 @@ export class CatalogComponent implements OnInit {
     this.dataSource.loadTable();
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
+    });
+    this.instanceSelectorService.getSelectedInstance().subscribe((instance) => {
+      this.dataSource.loadTable();
     });
   }
 
