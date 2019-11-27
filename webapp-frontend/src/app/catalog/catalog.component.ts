@@ -31,6 +31,7 @@ import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
 import { UiService } from '../services/ui/ui.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service'
 
 @Component({
   selector: 'rd-app-catalog',
@@ -52,6 +53,7 @@ export class CatalogComponent implements OnInit {
     private errorDiaglogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService,
+    public instanceSelectorService: InstanceSelectorService,
     public ui: UiService) { }
 
   ngOnInit() {
@@ -59,6 +61,11 @@ export class CatalogComponent implements OnInit {
     this.dataSource.loadTable();
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
+    });
+    this.instanceSelectorService.selectedInstance.subscribe((instance) => {
+      console.log("change instance " + instance.key)
+      //reload table
+      this.dataSource.loadTable();
     });
   }
 
