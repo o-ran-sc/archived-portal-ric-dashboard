@@ -41,7 +41,8 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
   public rowCount = 1; // hide footer during intial load
 
   private emptyInstances: XMXappInstance =
-    { ip: null,
+    {
+      ip: null,
       name: null,
       port: null,
       status: null,
@@ -55,18 +56,18 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     super();
   }
 
-  loadTable() {
+  loadTable(instanceKey: string) {
     this.loadingSubject.next(true);
-    this.appMgrSvc.getDeployed()
+    this.appMgrSvc.getDeployed(instanceKey)
       .pipe(
-        catchError( (her: HttpErrorResponse) => {
+        catchError((her: HttpErrorResponse) => {
           console.log('AppControlDataSource failed: ' + her.message);
           this.notificationService.error('Failed to get applications: ' + her.message);
           return of([]);
         }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe( (xApps: XMDeployedApp[]) => {
+      .subscribe((xApps: XMDeployedApp[]) => {
         this.rowCount = xApps.length;
         const flattenedApps = this.flatten(xApps);
         this.appControlSubject.next(flattenedApps);
@@ -88,7 +89,7 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     this.loadingSubject.complete();
   }
 
-  private flatten(allxappdata: XMDeployedApp[]): XappControlRow[]  {
+  private flatten(allxappdata: XMDeployedApp[]): XappControlRow[] {
     const xAppInstances: XappControlRow[] = [];
     for (const xapp of allxappdata) {
       if (!xapp.instances) {

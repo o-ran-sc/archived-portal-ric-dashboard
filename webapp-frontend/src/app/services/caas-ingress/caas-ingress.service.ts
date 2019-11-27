@@ -18,8 +18,8 @@
  * ========================LICENSE_END===================================
  */
 
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { V1PodList } from '@kubernetes/client-node';
 import { Observable } from 'rxjs';
 
@@ -31,18 +31,19 @@ import { Observable } from 'rxjs';
 })
 export class CaasIngressService {
 
-  private basePath = 'api/caas-ingress';
+  private component = 'caas-ingress';
   private podsPath = 'pods';
 
-  private buildPath(...args: any[]) {
-    let result = this.basePath;
+  private buildPath(instanceKey: string, ...args: any[]) {
+    let result = 'api/' + this.component + '/ric/' + instanceKey;
     args.forEach(part => {
       result = result + '/' + part;
     });
     return result;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
@@ -50,8 +51,8 @@ export class CaasIngressService {
    * Gets list of pods
    * @returns Observable that should yield a V1PodList
    */
-  getPodList(cluster: string, namespace: string): Observable<V1PodList> {
-    const url = this.buildPath('pods', 'cluster', cluster, 'namespace', namespace);
+  getPodList(instanceKey: string, cluster: string, namespace: string): Observable<V1PodList> {
+    const url = this.buildPath(instanceKey, 'pods', 'cluster', cluster, 'namespace', namespace);
     return this.httpClient.get<V1PodList>(url);
   }
 

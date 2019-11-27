@@ -18,10 +18,10 @@
  * ========================LICENSE_END===================================
  */
 
- import { Injectable } from '@angular/core';
- import { HttpClient } from '@angular/common/http';
- import { Observable } from 'rxjs';
- import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../../interfaces/ac-xapp.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 
@@ -33,19 +33,20 @@ import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 })
 export class ACXappService {
 
-  private basePath = 'api/a1-p';
+  private component = 'a1-p';
   private policyPath = 'policies';
   private acPolicyName = 'admission_control_policy';
 
-  private buildPath(...args: any[]) {
-    let result = this.basePath;
+  private buildPath(instanceKey: string, ...args: any[]) {
+    let result = 'api/' + this.component + '/ric/' + instanceKey;
     args.forEach(part => {
       result = result + '/' + part;
     });
     return result;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
@@ -53,8 +54,8 @@ export class ACXappService {
    * Gets version details
    * @returns Observable that should yield a String
    */
-  getVersion(): Observable<string> {
-    const url = this.buildPath('version');
+  getVersion(instanceKey: string): Observable<string> {
+    const url = this.buildPath(instanceKey, 'version');
     return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
       // Extract the string here
       map(res => res['data'])
@@ -65,8 +66,8 @@ export class ACXappService {
    * Gets admission control policy.
    * @returns Observable that should yield an ACAdmissionIntervalControl
    */
-  getPolicy(): Observable<ACAdmissionIntervalControl> {
-    const url = this.buildPath(this.policyPath, this.acPolicyName);
+  getPolicy(instanceKey: string): Observable<ACAdmissionIntervalControl> {
+    const url = this.buildPath(instanceKey, this.policyPath, this.acPolicyName);
     return this.httpClient.get<ACAdmissionIntervalControl>(url);
   }
 
@@ -75,8 +76,8 @@ export class ACXappService {
    * @param policy an instance of ACAdmissionIntervalControl
    * @returns Observable that should yield a response code, no data
    */
-  putPolicy(policy: ACAdmissionIntervalControl): Observable<any> {
-    const url = this.buildPath(this.policyPath, this.acPolicyName);
+  putPolicy(instanceKey: string, policy: ACAdmissionIntervalControl): Observable<any> {
+    const url = this.buildPath(instanceKey, this.policyPath, this.acPolicyName);
     return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
   }
 

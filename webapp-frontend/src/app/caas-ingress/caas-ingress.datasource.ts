@@ -46,9 +46,9 @@ export class CaasIngressDataSource extends DataSource<V1Pod> {
     super();
   }
 
-  loadTable(cluster: string, namespace: string) {
+  loadTable(instanceKey: string, cluster: string, namespace: string) {
     this.loadingSubject.next(true);
-    this.caasIngressService.getPodList(cluster, namespace)
+    this.caasIngressService.getPodList(instanceKey, cluster, namespace)
       .pipe(
         catchError((her: HttpErrorResponse) => {
           console.log('CaasIngressDataSource failed: ' + her.message);

@@ -20,15 +20,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
+import { UiService } from '../services/ui/ui.service';
 import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { RANControlDataSource } from './ran-control.datasource';
-import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-ran-control',
@@ -41,21 +43,35 @@ export class RanControlComponent implements OnInit {
   panelClass: string = "";
   displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
+  private instanceChange: Subscription;
+  private instanceKey: string;
 
   constructor(private e2MgrSvc: E2ManagerService,
     private errorDialogService: ErrorDialogService,
     private confirmDialogService: ConfirmDialogService,
     private notificationService: NotificationService,
     private loadingDialogService: LoadingDialogService,
+    public instanceSelectorService: InstanceSelectorService,
     public dialog: MatDialog,
     public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new RANControlDataSource(this.e2MgrSvc, this.notificationService);
-    this.dataSource.loadTable();
+
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
     });
+
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+      if (instanceKey) {
+        this.instanceKey = instanceKey;
+        this.dataSource.loadTable(instanceKey);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   setupRANConnection() {
@@ -66,40 +82,43 @@ export class RanControlComponent implements OnInit {
     }
     const dialogRef = this.dialog.open(RanControlConnectDialogComponent, {
       panelClass: this.panelClass,
-      width: '450px'
+      width: '450px',
+      data: {
+        instanceKey: this.instanceKey
+      }
     });
     dialogRef.afterClosed()
       .subscribe((result: boolean) => {
-      if (result) {
-        this.dataSource.loadTable();
-      }
-    });
+        if (result) {
+          this.dataSource.loadTable(this.instanceKey);
+        }
+      });
   }
 
   disconnectAllRANConnections() {
     const aboutError = 'Disconnect all RAN Connections Failed: ';
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
-      .afterClosed().subscribe( (res: boolean) => {
+      .afterClosed().subscribe((res: boolean) => {
         if (res) {
           this.loadingDialogService.startLoading("Disconnecting");
-          this.e2MgrSvc.nodebPut()
+          this.e2MgrSvc.nodebPut(this.instanceKey)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())
             )
             .subscribe(
-            ( body: any ) => {
-              this.notificationService.success('Disconnect succeeded!');
-              this.dataSource.loadTable();
-            },
-            (her: HttpErrorResponse) => {
-              // the error field should have an ErrorTransport object
-              let msg = her.message;
-              if (her.error && her.error.message) {
-                msg = her.error.message;
+              (body: any) => {
+                this.notificationService.success('Disconnect succeeded!');
+                this.dataSource.loadTable(this.instanceKey);
+              },
+              (her: HttpErrorResponse) => {
+                // the error field should have an ErrorTransport object
+                let msg = her.message;
+                if (her.error && her.error.message) {
+                  msg = her.error.message;
+                }
+                this.errorDialogService.displayError('Disconnect failed: ' + msg);
               }
-              this.errorDialogService.displayError('Disconnect failed: ' + msg);
-            }
-          );
+            );
         }
       });
   }
