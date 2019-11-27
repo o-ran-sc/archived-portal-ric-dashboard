@@ -21,31 +21,33 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { XMXappInfo, XMDeployableApp, XMDeployedApp } from '../../interfaces/app-mgr.types';
+import { InstanceSelectorService } from '../instance-selector/instance-selector.service'
 
 @Injectable()
 export class AppMgrService {
 
-  constructor(private httpClient: HttpClient) {
-    // injects to variable httpClient
+  constructor(
+    private httpClient: HttpClient,
+    private instanceSelectorService: InstanceSelectorService) {
   }
 
-  private basePath = 'api/appmgr';
+
 
   getDeployable(): Observable<XMDeployableApp[]> {
-    return this.httpClient.get<XMDeployableApp[]>(this.basePath + '/xapps/list');
+    return this.httpClient.get<XMDeployableApp[]>(this.instanceSelectorService.getBasePath()+ 'appmgr/xapps/list');
   }
 
   getDeployed(): Observable<XMDeployedApp[]> {
-    return this.httpClient.get<XMDeployedApp[]>(this.basePath + '/xapps');
+    return this.httpClient.get<XMDeployedApp[]>(this.instanceSelectorService.getBasePath() + '/xapps');
   }
 
   deployXapp(name: string): Observable<HttpResponse<Object>> {
     const xappInfo: XMXappInfo = { name: name };
-    return this.httpClient.post((this.basePath + '/xapps'), xappInfo, { observe: 'response' });
+    return this.httpClient.post((this.instanceSelectorService.getBasePath() + '/xapps'), xappInfo, { observe: 'response' });
   }
 
   undeployXapp(name: string): Observable<HttpResponse<Object>> {
-    return this.httpClient.delete((this.basePath + '/xapps'+ '/' + name), { observe: 'response' });
+    return this.httpClient.delete((this.instanceSelectorService.getBasePath() + '/xapps'+ '/' + name), { observe: 'response' });
   }
 
   getConfig(): Observable<any[]>{
@@ -54,8 +56,7 @@ export class AppMgrService {
   }
 
   putConfig(config: any): Observable<HttpResponse<Object>> {
-    return this.httpClient.put((this.basePath + '/config' ), config, { observe: 'response' });
+    return this.httpClient.put((this.instanceSelectorService.getBasePath() + '/config' ), config, { observe: 'response' });
   }
-
 
 }

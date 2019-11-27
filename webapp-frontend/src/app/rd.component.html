@@ -73,15 +73,15 @@
            viewBox="31.5 30 49.9 32">
         <rect id="Rectangle_9" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
               class="hamburger__icon__fill" data-name="Rectangle 9" rx="2"
-              transform="translate(31.5 58)"/>
+              transform="translate(31.5 58)" />
         <rect id="Rectangle_10" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
               class="hamburger__icon__fill" data-name="Rectangle 10" rx="2"
-              transform="translate(31.5 44)"/>
+              transform="translate(31.5 44)" />
         <rect id="Rectangle_11" width="49.9" height="4" [ngClass]="{'hamburger__icon__fill-dark': darkModeActive}"
               class="hamburger__icon__fill" data-name="Rectangle 11" rx="2"
-              transform="translate(31.5 30)"/>
+              transform="translate(31.5 30)" />
       </svg>
-      <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50"/>
+      <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50" />
       <svg class="logo__icon" viewBox="150.3 22.2 313.7 42.8">
         <text [ngClass]="{'logo__text-dark': darkModeActive}" class="logo__text" fill="#432c85"
               font-size="30" font-weight="600"
@@ -92,12 +92,21 @@
 
     </div>
 
-    <h3 class="date__text"></h3>
+    <div>
+      <mat-label class="selectorLable">Select RIC Instance</mat-label>
+      <mat-form-field>
+        <mat-select (selectionChange)="changeInstance($event.value)" [(value)]="selectedInstance">
+          <mat-option *ngFor="let instance of instancelist" [value]="instance">
+            {{instance.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <div class="mode-toggle__container">
       <span class="mode-toggle__text">Light</span>
       <label class="toggle-button__container">
-        <input (click)="modeToggleSwitch()" type="checkbox" class="mode-toggle__input"/>
+        <input (click)="modeToggleSwitch()" type="checkbox" class="mode-toggle__input" />
         <span [ngClass]="{'mode-toggle__bg-checked': darkModeActive}" class="mode-toggle__bg"></span>
         <span [ngClass]="{'mode-toggle__circle-checked': darkModeActive}" class="mode-toggle__circle"></span>
       </label>
