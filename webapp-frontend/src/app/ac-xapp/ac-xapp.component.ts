@@ -18,13 +18,15 @@
  * ========================LICENSE_END===================================
  */
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../interfaces/ac-xapp.types';
+import { FormControl, FormGroup, Validators, OnDestroy } from '@angular/forms';
+import { ACAdmissionIntervalControl } from '../interfaces/ac-xapp.types';
 import { ACXappService } from '../services/ac-xapp/ac-xapp.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { NotificationService } from './../services/ui/notification.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 
 @Component({
   selector: 'rd-ac-xapp',
@@ -34,16 +36,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AcXappComponent implements OnInit {
 
   private acForm: FormGroup;
+  private instanceChange: Subscription;
 
   constructor(
     private acXappService: ACXappService,
     private errorDialogService: ErrorDialogService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    public instanceSelectorService: InstanceSelectorService, ) { }
 
   ngOnInit() {
     const windowLengthPattern = /^([0-9]{1}|[1-5][0-9]{1}|60)$/;
     const blockingRatePattern = /^([0-9]{1,2}|100)$/;
     const triggerPattern = /^([0-9]+)$/;
+
     this.acForm = new FormGroup({
       // Names must match the ACAdmissionIntervalControl interface
       enforce: new FormControl(true, [Validators.required]),
@@ -51,18 +56,27 @@ export class AcXappComponent implements OnInit {
       blocking_rate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
       trigger_threshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
     });
-    // TODO: show pending action indicator
-    this.acXappService.getPolicy().subscribe((res: ACAdmissionIntervalControl) => {
-      this.acForm.controls['enforce'].setValue(res.enforce);
-      this.acForm.controls['window_length'].setValue(res.window_length);
-      this.acForm.controls['blocking_rate'].setValue(res.blocking_rate);
-      this.acForm.controls['trigger_threshold'].setValue(res.trigger_threshold);
-      // TODO: clear pending action indicator
-    },
-      (error: HttpErrorResponse) => {
-        // TODO: clear pending action indicator
-        this.errorDialogService.displayError(error.message);
-      });
+
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+      if (instanceKey) {
+        // TODO: show pending action indicator
+        this.acXappService.getPolicy().subscribe((res: ACAdmissionIntervalControl) => {
+          this.acForm.controls['enforce'].setValue(res.enforce);
+          this.acForm.controls['window_length'].setValue(res.window_length);
+          this.acForm.controls['blocking_rate'].setValue(res.blocking_rate);
+          this.acForm.controls['trigger_threshold'].setValue(res.trigger_threshold);
+          // TODO: clear pending action indicator
+        },
+          (error: HttpErrorResponse) => {
+            // TODO: clear pending action indicator
+            this.errorDialogService.displayError(error.message);
+          });
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   updateAc = (acFormValue: ACAdmissionIntervalControl) => {

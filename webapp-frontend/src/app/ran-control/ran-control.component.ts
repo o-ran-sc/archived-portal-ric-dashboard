@@ -20,15 +20,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
+import { UiService } from '../services/ui/ui.service';
 import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { RANControlDataSource } from './ran-control.datasource';
-import { UiService } from '../services/ui/ui.service';
 
 @Component({
   selector: 'rd-ran-control',
@@ -41,21 +43,33 @@ export class RanControlComponent implements OnInit {
   panelClass: string = "";
   displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
+  private instanceChange: Subscription;
 
   constructor(private e2MgrSvc: E2ManagerService,
     private errorDialogService: ErrorDialogService,
     private confirmDialogService: ConfirmDialogService,
     private notificationService: NotificationService,
     private loadingDialogService: LoadingDialogService,
+    public instanceSelectorService: InstanceSelectorService,
     public dialog: MatDialog,
     public ui: UiService) { }
 
   ngOnInit() {
     this.dataSource = new RANControlDataSource(this.e2MgrSvc, this.notificationService);
-    this.dataSource.loadTable();
+
     this.ui.darkModeState.subscribe((isDark) => {
       this.darkMode = isDark;
     });
+
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+      if (instanceKey) {
+        this.dataSource.loadTable();
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   setupRANConnection() {

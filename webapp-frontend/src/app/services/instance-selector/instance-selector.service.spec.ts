@@ -18,45 +18,15 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by Dashboard admin services
+import { TestBed } from '@angular/core/testing';
 
-export interface DashboardSuccessTransport {
-  status: number;
-  data: string;
-}
+import { InstanceSelectorService } from './instance-selector.service';
 
-export interface EcompRoleFunction {
-  name: string;
-  code: string;
-  type: string;
-  action: string;
-}
+describe('InstanceSelectorService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-export interface EcompRole {
-  id: number;
-  name: string;
-  [position: number]: EcompRoleFunction;
-}
-
-export interface EcompUser {
-  orgId?: number;
-  managerId?: string;
-  firstName?: string;
-  middleInitial?: string;
-  lastName?: string;
-  phone?: string;
-  email?: string;
-  hrid?: string;
-  orgUserId?: string;
-  orgCode?: string;
-  orgManagerUserId?: string;
-  jobTitle?: string;
-  loginId: string;
-  active: boolean;
-  [position: number]: EcompRole;
-}
-
-export interface RicInstance {
-  key: string;
-  name: string;
-}
+  it('should be created', () => {
+    const service: InstanceSelectorService = TestBed.get(InstanceSelectorService);
+    expect(service).toBeTruthy();
+  });
+});
