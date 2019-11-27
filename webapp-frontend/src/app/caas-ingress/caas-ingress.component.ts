@@ -20,12 +20,14 @@
 
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { CaasIngressDataSource } from './caas-ingress.datasource';
+import { Subscription } from 'rxjs';
 import { CaasIngressService } from '../services/caas-ingress/caas-ingress.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
+import { CaasIngressDataSource } from './caas-ingress.datasource';
 
 @Component({
   selector: 'rd-caas-ingress',
@@ -40,19 +42,29 @@ export class CaasIngressComponent implements OnInit {
   @Input() namespace: string;
 
   dataSource: CaasIngressDataSource;
-  displayedColumns: string[] = [ 'namespace', 'name', 'status', 'ip', 'containers', 'restartCount', 'creationTime' ];
+  displayedColumns: string[] = ['namespace', 'name', 'status', 'ip', 'containers', 'restartCount', 'creationTime'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  private instanceChange: Subscription;
 
   constructor(
     private caasIngressSvc: CaasIngressService,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
+    public instanceSelectorService: InstanceSelectorService,
     private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.dataSource = new CaasIngressDataSource(this.caasIngressSvc, this.sort, this.notificationService);
-    this.dataSource.loadTable(this.cluster, this.namespace);
+    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
+      if (instanceKey) {
+        this.dataSource.loadTable(this.cluster, this.namespace);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
 }
