@@ -83,4 +83,11 @@ public class EcompUserDetails implements UserDetails {
 		return ecompUser.isActive();
 	}
 
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[ecompUser=" + ecompUser + ", isAccountNonExpired=" + isAccountNonExpired()
+				+ ", isAccountNonLocked=" + isAccountNonLocked() + ", isCredentialsNonExpired="
+				+ isCredentialsNonExpired() + "]";
+	}
+
 }

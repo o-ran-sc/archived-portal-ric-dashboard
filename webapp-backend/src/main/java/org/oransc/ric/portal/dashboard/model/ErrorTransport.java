@@ -130,4 +130,10 @@ public class ErrorTransport implements IDashboardResponse {
 		this.path = path;
 	}
 
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[timestamp=" + getTimestamp() + ", error=" + getError() + ", path="
+				+ getPath() + "]";
+	}
+
 }

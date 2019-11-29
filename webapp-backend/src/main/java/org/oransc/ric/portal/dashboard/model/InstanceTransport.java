@@ -17,52 +17,36 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+
 package org.oransc.ric.portal.dashboard.model;
 
-public class SuccessTransport implements IDashboardResponse {
+/**
+ * Trivial model to transport key-name pairs that represent RIC instances.
+ */
+public class InstanceTransport {
 
-	private int status;
-	private Object data;
+	private String key;
+	private String name;
 
-	/**
-	 * Builds an empty object
-	 */
-	public SuccessTransport() {
-		// no-arg constructor
+	public String getKey() {
+		return key;
 	}
 
-	/**
-	 * Builds an object with the specified values.
-	 * 
-	 * @param status
-	 *                   Status code
-	 * @param data
-	 *                   Data to transport
-	 */
-	public SuccessTransport(int status, Object data) {
-		this.status = status;
-		this.data = data;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
-	public int getStatus() {
-		return status;
+	public String getName() {
+		return name;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
+	public void setName(String s) {
+		this.name = s;
 	}
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + "[status=" + getStatus() + ", data=" + getData() + "]";
+		return this.getClass().getName() + "[key=" + getKey() + ", name=" + getName() + "]";
 	}
 
 }

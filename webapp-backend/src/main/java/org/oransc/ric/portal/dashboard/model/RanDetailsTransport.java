@@ -61,4 +61,10 @@ public class RanDetailsTransport {
 		return this;
 	}
 
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[nodebIdentity=" + getNodebIdentity() + ", nodebStatus=" + getNodebStatus()
+				+ "]";
+	}
+
 }

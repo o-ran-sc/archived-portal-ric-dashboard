@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
+import org.oransc.ric.portal.dashboard.model.InstanceTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +56,16 @@ public class AdminControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	}
+
+	@Test
+	public void getInstancesTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminController.INSTANCE_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<List<InstanceTransport>> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<InstanceTransport>>() {
+				});
+		Assertions.assertFalse(response.getBody().isEmpty());
 	}
 
 	@Test
