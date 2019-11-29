@@ -14,7 +14,7 @@ Configuration
 
 The application requires the following configuration files::
 
-    application.properties
+    application.yaml
     key.properties
     portal.properties
 
@@ -24,16 +24,16 @@ a configuration map.
 Application Properties
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The file ``application.properties`` must be provided when the
-application is launched, either in the current working directory or in
-a ``config`` subdirectory (latter is preferred). The Helm chart that
-deploys the application should mount this file appropriately.
+The file ``application.yaml`` must be provided when the application
+is launched, either in the current working directory or in a ``config``
+subdirectory (latter is preferred). The Helm chart that deploys the
+application should mount this file appropriately.
 
 Many properties have default values cached within the application, in
-file ``src/main/resources/application.properties``.  Properties with
-default values do NOT need to be repeated in a deployment-specific
-configuration.  Properties without default values MUST be specified in
-a deployment-specific configuration.
+file ``src/main/resources/application.yaml``.  Properties with default
+values do NOT need to be repeated in a deployment-specific configuration.
+Properties without default values MUST be specified in a
+deployment-specific configuration.
 
 The properties are listed below in alphabetical order.
 
@@ -200,7 +200,7 @@ Deployment
 A production server requires the configuration files listed above.
 All files should be placed in a ``config`` directory.  That name is
 important; Spring automatically searches that directory for the
-``application.properties`` file. Further, that directory can easily be
+``application.yaml`` file. Further, that directory can easily be
 placed on the Java classpath so the additional files can be found at
 runtime.
 
@@ -241,13 +241,5 @@ appropriately, launch the server with this command-line invocation to
 include the ``config`` directory on the Java classpath::
 
     java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
-        -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
-        org.springframework.boot.loader.PropertiesLauncher
-
-Alternately, to use the configuration in the "application-abc.properties" file,
-modify the command to have "spring.config.name=name" like this::
-
-    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
-        -Dspring.config.name=application-abc \
         -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
         org.springframework.boot.loader.PropertiesLauncher

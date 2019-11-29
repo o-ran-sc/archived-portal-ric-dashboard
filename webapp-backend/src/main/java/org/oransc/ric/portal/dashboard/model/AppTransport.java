@@ -21,9 +21,8 @@
 package org.oransc.ric.portal.dashboard.model;
 
 /**
- * Trivial model to transport available application from the App manager. I
- * expect that system will soon add additional attributes. This allows coding to
- * a structure rather than a scalar.
+ * Trivial model to transport available application details from the App
+ * manager.
  */
 public class AppTransport implements IDashboardResponse {
 
@@ -61,6 +60,11 @@ public class AppTransport implements IDashboardResponse {
 
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[name=" + getName() + ", version=" + getVersion() + "]";
 	}
 
 }
