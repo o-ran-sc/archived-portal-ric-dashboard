@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08de79da_60671818",
+        "filename": "webapp-frontend/src/app/interfaces/instance.types.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "please fix this comment",
+      "range": {
+        "startLine": 21,
+        "startChar": 30,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "879da703_061d58be",
+        "filename": "webapp-frontend/src/app/interfaces/instance.types.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "I see no need for a new separate file here, I suggest you move this into dashboard.types.ts",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee4fda7_d36184f7",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "please define a type for this parameter, after all this is TypeScript",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 22
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae8cdcf7_e29abe4f",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "I think this should call a function defined by the selectedInstance class, not reach in directly and touch an internal field.  The usual reasons - information hiding, abstraction, encapsulation etc.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 3
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cabacd8d_fbd842d6",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "Please keep these two lists each sorted alphabetically.  First a list with all the Angular stuff, then a list with our app stuff.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "321aa03a_563206b1",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "Do you really want a trailing comma here?",
+      "range": {
+        "startLine": 180,
+        "startChar": 13,
+        "endLine": 180,
+        "endChar": 14
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c09a0946_3e7cac7d",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "this should be a var? private?  something I think, not just bare.  And it has no Typescript type either.",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0306df0c_1bed4d88",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21e9ac62_3b210f85",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "This should call a getter function, not reach directly into the service and read a value.",
+      "range": {
+        "startLine": 40,
+        "startChar": 28,
+        "endLine": 40,
+        "endChar": 71
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa86833e_9e6396e8",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "please remove such debug statements when you commit to Gerrit",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 3
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4a4961a_c158f17f",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "what calls this function?  I don\u0027t see an invocation",
+      "range": {
+        "startLine": 67,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 24
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25e3e086_fdbf9ee1",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "I think this should be private.  Instead of allowing other classes to call next() on this directly, please define a function that does so, so the field can remain hidden. And the function should have a clear signature, defining the type of data object that it accepts.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04373d39_338bb9ce",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-11-29T15:27:50Z",
+      "side": 1,
+      "message": "I think here in the constructor you might make the call to the backend to get the list of instances and cache it?   For now of course stubbed out.  Do not want to go to the backend every single invocation.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 9
+      },
+      "revId": "b08c144ca700e7c23f078bc2e6151cbbdbed1033",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
