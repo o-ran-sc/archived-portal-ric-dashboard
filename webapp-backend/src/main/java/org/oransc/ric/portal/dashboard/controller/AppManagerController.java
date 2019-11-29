@@ -158,7 +158,7 @@ public class AppManagerController {
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
 	@GetMapping(XAPPS_LIST_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Object getAvailableXapps() {
+	public DashboardDeployableXapps getAvailableXapps() {
 		logger.debug("getAvailableXapps");
 		AllDeployableXapps appNames = xappApi.listAllDeployableXapps();
 		// Answer a collection of structure instead of string

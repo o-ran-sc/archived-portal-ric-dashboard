@@ -28,8 +28,10 @@ import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.config.RICInstanceConfiguration;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
+import org.oransc.ric.portal.dashboard.model.InstanceTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,8 +57,9 @@ public class AdminController {
 
 	// Publish paths in constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
-	public static final String USER_METHOD = "user";
 	public static final String HEALTH_METHOD = "health";
+	public static final String INSTANCE_METHOD = "instance";
+	public static final String USER_METHOD = "user";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
 
@@ -68,6 +71,9 @@ public class AdminController {
 
 	@Autowired
 	private DashboardUserManager dashboardUserManager;
+
+	@Autowired
+	private RICInstanceConfiguration instanceConfig;
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
@@ -96,9 +102,17 @@ public class AdminController {
 		return dashboardUserManager.getUsers();
 	}
 
+	@ApiOperation(value = "Gets the list of RIC instances.", response = InstanceTransport.class, responseContainer = "List")
+	@GetMapping(INSTANCE_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
+	public List<InstanceTransport> getInstances() {
+		logger.debug("getInstances");
+		return instanceConfig.getInstances();
+	}
+
 	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
 	@GetMapping(XAPPMETRICS_METHOD)
-	// No role required
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public IDashboardResponse getAppMetricsUrl(@RequestParam String app, HttpServletResponse response) {
 		String metricsUrl = null;
 		if (DashboardConstants.APP_NAME_AC.equals(app))

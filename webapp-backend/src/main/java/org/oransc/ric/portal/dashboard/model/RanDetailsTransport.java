@@ -22,7 +22,7 @@ package org.oransc.ric.portal.dashboard.model;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 
-public class RanDetailsTransport {
+public class RanDetailsTransport implements IDashboardResponse {
 
 	private NodebIdentity nodebIdentity;
 	private GetNodebResponse nodebStatus;
@@ -59,6 +59,12 @@ public class RanDetailsTransport {
 	public RanDetailsTransport nodebStatus(GetNodebResponse s) {
 		this.nodebStatus = s;
 		return this;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[nodebIdentity=" + getNodebIdentity() + ", nodebStatus=" + getNodebStatus()
+				+ "]";
 	}
 
 }

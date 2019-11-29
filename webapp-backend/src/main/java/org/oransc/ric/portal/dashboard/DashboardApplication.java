@@ -22,8 +22,12 @@ package org.oransc.ric.portal.dashboard;
 
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.config.RICInstanceConfiguration;
+import org.oransc.ric.portal.dashboard.model.InstanceTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,15 +35,23 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 // Limit scan to dashboard classes; exclude generated API classes
 @ComponentScan("org.oransc.ric.portal.dashboard")
-public class DashboardApplication {
+public class DashboardApplication implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	@Autowired
+	private RICInstanceConfiguration instanceConfig;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
-		// Ensure this appears on the console by using level WARN
-		logger.warn("main: version '{}' successful start",
-				getImplementationVersion(MethodHandles.lookup().lookupClass()));
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// Ensure output appears on the console by using level WARN
+		logger.warn("run: version '{}'", getImplementationVersion(MethodHandles.lookup().lookupClass()));
+		for (InstanceTransport it : instanceConfig.getInstances())
+			logger.warn("run: RIC instance {}", it);
 	}
 
 	/**
