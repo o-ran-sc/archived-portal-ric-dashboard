@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "33a0ac8c_d1560238",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-02T22:25:42Z",
+      "side": 1,
+      "message": "My IDE shots the imports by the import path. I will see whether I can change its setting",
+      "parentUuid": "55d9e2b5_c33e370d",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 7
+      },
+      "revId": "f1873f87152dd9a7b37af225185c7ecc264f0a34",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f6b2856_199abdfa",
         "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
         "patchSetId": 5
