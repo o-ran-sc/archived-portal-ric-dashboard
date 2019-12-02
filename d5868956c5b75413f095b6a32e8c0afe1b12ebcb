@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c48621c_6b1027f6",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-02T19:01:33Z",
+      "side": 1,
+      "message": "this should have a type, not be just \"any\".  Even tho you don\u0027t use the value here.",
+      "range": {
+        "startLine": 65,
+        "startChar": 66,
+        "endLine": 65,
+        "endChar": 74
+      },
+      "revId": "d5868956c5b75413f095b6a32e8c0afe1b12ebcb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb2d6fc_3f68a6c5",
+        "filename": "webapp-frontend/src/app/rd.component.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-02T19:01:33Z",
+      "side": 1,
+      "message": "Probably should say \"Select RIC Instance\" or something like that.  Please show the label to the LEFT of the drop-down, not on top, then it will fit a bit better in the top bar.",
+      "range": {
+        "startLine": 97,
+        "startChar": 19,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "d5868956c5b75413f095b6a32e8c0afe1b12ebcb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63622438_fa4a3728",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-02T19:01:33Z",
+      "side": 1,
+      "message": "Looks so weird. This should have a type (string?) and a semicolon, right?\n\nIs this public?",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 18
+      },
+      "revId": "d5868956c5b75413f095b6a32e8c0afe1b12ebcb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87e2bb5f_ce152890",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-02T19:01:33Z",
+      "side": 1,
+      "message": "Please sort this list.  You added \"NgModule\" which should appear after all the Mat* modules.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "d5868956c5b75413f095b6a32e8c0afe1b12ebcb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5213c4f_0324be6d",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-02T19:01:33Z",
+      "side": 1,
+      "message": "This is so convoluted. And it will have to be repeated all over. How about adding a method to the instance service to get the key in a single invocation?",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 76
+      },
+      "revId": "d5868956c5b75413f095b6a32e8c0afe1b12ebcb",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
