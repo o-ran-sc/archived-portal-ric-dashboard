@@ -118,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "81f46ae6_191d09f3",
+        "filename": "webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-02T22:27:15Z",
+      "side": 1,
+      "message": "*sorts",
+      "parentUuid": "33a0ac8c_d1560238",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 7
+      },
+      "revId": "f1873f87152dd9a7b37af225185c7ecc264f0a34",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f6b2856_199abdfa",
         "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
         "patchSetId": 5
