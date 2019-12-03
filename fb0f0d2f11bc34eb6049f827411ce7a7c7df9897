@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8906f1e0_beb704a7",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "why test if an instance is selected?  An instance should ALWAYS be selected, if only because on first load you choose the first one as the default selection.",
+      "range": {
+        "startLine": 65,
+        "startChar": 33,
+        "endLine": 65,
+        "endChar": 51
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b6fdb6_9b5e061a",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "The intent here is to reload the table on each change of the selected instance, is that right?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25330b9e_d9aceb94",
+        "filename": "webapp-frontend/src/app/rd.component.html",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "please fix Label",
+      "range": {
+        "startLine": 96,
+        "startChar": 32,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6093bb4f_99c12d0a",
+        "filename": "webapp-frontend/src/app/rd.component.scss",
+        "patchSetId": 6
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "please fix typo \"Label\"",
+      "range": {
+        "startLine": 378,
+        "startChar": 9,
+        "endLine": 378,
+        "endChar": 14
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f16f27e_c77bd327",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "This is an array, not a list.",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b29cea25_34b541ea",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "A tiny thing, you may wish to just store the index in the array instead of the object.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 39
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0763de0f_548cf3a9",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "Please guard this with a test of whether the selection actually CHANGED.  A user might click the drop-down list and go back to the current selection.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 3
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "092ecc50_79282472",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "please be consistent with spaces",
+      "range": {
+        "startLine": 37,
+        "startChar": 92,
+        "endLine": 37,
+        "endChar": 93
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "774f5938_192fa939",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "What do you think, is this approach helpful?",
+      "range": {
+        "startLine": 41,
+        "startChar": 48,
+        "endLine": 41,
+        "endChar": 90
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6ac3e9_f5b9f9c8",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-03T15:05:53Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand the need for this.  An instance must always be selected.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "fb0f0d2f11bc34eb6049f827411ce7a7c7df9897",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
