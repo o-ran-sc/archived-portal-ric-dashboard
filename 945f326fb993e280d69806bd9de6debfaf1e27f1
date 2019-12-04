@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41ef2cd3_0b92dfa1",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-04T20:23:21Z",
+      "side": 1,
+      "message": "what if isInited is false?  Then this just does nothing?  How is that supposed to work?",
+      "range": {
+        "startLine": 65,
+        "startChar": 10,
+        "endLine": 65,
+        "endChar": 18
+      },
+      "revId": "945f326fb993e280d69806bd9de6debfaf1e27f1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62e1b0be_f4c3c257",
+        "filename": "webapp-frontend/src/app/rd.component.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-04T20:23:21Z",
+      "side": 1,
+      "message": "Wait, I didn\u0027t mean to use an index here in the drop-down list.  Just use the key here.",
+      "range": {
+        "startLine": 99,
+        "startChar": 60,
+        "endLine": 99,
+        "endChar": 87
+      },
+      "revId": "945f326fb993e280d69806bd9de6debfaf1e27f1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1957b0e8_ba2c4b43",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-04T20:23:21Z",
+      "side": 1,
+      "message": "I was thinking that here you MIGHT save just the index into the array rather than a copy of the object, but I did not want you to have to change the HTML etc. to send in the index.  Sorry for causing confusion \u0026 unnecessary work here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 3
+      },
+      "revId": "945f326fb993e280d69806bd9de6debfaf1e27f1",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
