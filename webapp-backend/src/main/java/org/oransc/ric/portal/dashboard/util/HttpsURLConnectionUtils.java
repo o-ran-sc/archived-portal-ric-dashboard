@@ -46,7 +46,7 @@ public final class HttpsURLConnectionUtils {
 
 	private static final TrustManager[] UNQUESTIONING_TRUST_MANAGER = new TrustManager[] { new X509TrustManager() {
 		public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-			return null;
+			return new java.security.cert.X509Certificate[0];
 		}
 
 		public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException {

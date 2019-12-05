@@ -31,7 +31,7 @@ import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.config.PortalApIMockConfiguration;
+import org.oransc.ric.portal.dashboard.config.PortalApiMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -65,10 +65,10 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 
 	private HttpEntity<Object> getEntityWithHeaders(Object body) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(PortalApIMockConfiguration.PORTAL_USERNAME_HEADER_KEY,
-				PortalApIMockConfiguration.PORTAL_USERNAME_HEADER_KEY);
-		headers.set(PortalApIMockConfiguration.PORTAL_PASSWORD_HEADER_KEY,
-				PortalApIMockConfiguration.PORTAL_PASSWORD_HEADER_KEY);
+		headers.set(PortalApiMockConfiguration.PORTAL_USERNAME_HEADER_KEY,
+				PortalApiMockConfiguration.PORTAL_USERNAME_HEADER_KEY);
+		headers.set(PortalApiMockConfiguration.PORTAL_PASSWORD_HEADER_KEY,
+				PortalApiMockConfiguration.PORTAL_PASSWORD_HEADER_KEY);
 		HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 		return entity;
 	}

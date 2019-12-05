@@ -41,7 +41,7 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Profile("test")
-public class PortalApIMockConfiguration {
+public class PortalApiMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -73,10 +73,6 @@ public class PortalApIMockConfiguration {
 			logger.debug("getUserId");
 			return "userId";
 		}).when(mockManager).validateEcompSso(any(HttpServletRequest.class));
-		doAnswer(inv -> {
-			logger.debug("getAppCredentials");
-			return credentialsMap;
-		}).when(mockManager).getAppCredentials();
 		return mockManager;
 	}
 

@@ -19,6 +19,7 @@
  */
 package org.oransc.ric.portal.dashboard.config;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 
@@ -93,9 +94,13 @@ public class CaasIngressMockConfiguration {
 	public SimpleKubernetesClient ciPltApi() throws IOException {
 		SimpleKubernetesClient mockClient = mock(SimpleKubernetesClient.class);
 		doAnswer(inv -> {
-			logger.debug("listPods for plt");
-			return pltPods;
-		}).when(mockClient).listPods("ricplt");
+			String ns = inv.<String>getArgument(0);
+			logger.debug("listPods for namespace {}", ns);
+			if ("ricplt".equals(ns))
+				return pltPods;
+			else
+				throw new Exception("Fake server failure");
+		}).when(mockClient).listPods(any(String.class));
 		return mockClient;
 	}
 

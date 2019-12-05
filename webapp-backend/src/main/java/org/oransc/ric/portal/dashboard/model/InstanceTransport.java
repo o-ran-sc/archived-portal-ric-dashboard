@@ -28,6 +28,26 @@ public class InstanceTransport implements IDashboardResponse {
 	private String key;
 	private String name;
 
+	/**
+	 * Builds an empty object.
+	 */
+	public InstanceTransport() {
+		// no-arg constructor
+	}
+
+	/**
+	 * Convenience constructor for minimal value set.
+	 * 
+	 * @param key
+	 *                 Key
+	 * @param name
+	 *                 Name
+	 */
+	public InstanceTransport(String key, String name) {
+		this.key = key;
+		this.name = name;
+	}
+
 	public String getKey() {
 		return key;
 	}

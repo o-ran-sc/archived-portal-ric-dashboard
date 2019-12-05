@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.slf4j.Logger;
@@ -55,7 +56,13 @@ public class DashboardUserManagerTest {
 		DashboardUserManager dum = new DashboardUserManager(true);
 		EcompUser user = createEcompUser(loginId);
 		dum.createUser(user);
-		logger.debug("Created user {}", user);
+		logger.info("Created user {}", user);
+		try {
+			dum.createUser(user);
+			throw new Exception("Unexpected success");
+		} catch (PortalAPIException ex) {
+			logger.info("caught expected exception: {}", ex.toString());
+		}
 		Assert.assertFalse(dum.getUsers().isEmpty());
 		EcompUser fetched = dum.getUser(loginId);
 		Assert.assertEquals(fetched, user);
@@ -63,6 +70,12 @@ public class DashboardUserManagerTest {
 		dum.updateUser(loginId, fetched);
 		EcompUser missing = dum.getUser("foo");
 		Assert.assertNull(missing);
+		EcompUser unk = createEcompUser("unknown");
+		try {
+			dum.updateUser("unk", unk);
+		} catch (PortalAPIException ex) {
+			logger.info("caught expected exception: {}", ex.toString());
+		}
 	}
 
 }

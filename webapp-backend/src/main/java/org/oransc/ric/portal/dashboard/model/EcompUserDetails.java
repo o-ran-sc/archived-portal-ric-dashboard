@@ -34,7 +34,7 @@ public class EcompUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	// use transient per Sonar warning
-	private transient final EcompUser ecompUser;
+	private final transient EcompUser ecompUser;
 
 	// This is the default Spring role-name prefix.
 	private static final String ROLEP = "ROLE_";

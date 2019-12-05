@@ -22,6 +22,7 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -53,6 +54,29 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
 		Assertions.assertFalse(s.isEmpty());
 		Assertions.assertTrue(s.contains(nsPlt));
+	}
+
+	@Test
+	public void unknownClusterTest() {
+		final String nsPlt = "ricplt";
+		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
+				CaasIngressController.PP_CLUSTER, "cluster", CaasIngressController.PP_NAMESPACE, nsPlt);
+		logger.info("Invoking {}", uri);
+		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
+		Assert.assertNull(s);
+	}
+
+	// Unknown namespace triggers a controller exception
+	@Test
+	public void bogusNsTest() {
+		final String ns = "unknown";
+		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
+				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_PLT, CaasIngressController.PP_NAMESPACE,
+				ns);
+		logger.info("Invoking {}", uri);
+		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
+		Assertions.assertFalse(s.isEmpty());
+		Assertions.assertTrue(s.contains("RIC Dashboard Error"));
 	}
 
 }
