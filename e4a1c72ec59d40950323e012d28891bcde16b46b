@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf022415_f8db6d17",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "a tiny thing, please move this up with the other @angular and rxjs imports",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 7
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3430b64f_ae696599",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "Why do you have to subscribe to the instance array?  It\u0027s not needed here.\n\nWhat about deleting the subscription to the instance array?  I only see you deleting the subscription to the selected instance key change.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c14a0c4_5e426585",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "Need to show the please-wait-job-progress screen until this returns.  The back-end might take a moment.  Don\u0027t let the user continue until the instance array answer has been received.",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 50,
+        "endChar": 3
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9857b1_7ba4c7f4",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "maybe for clarity name this \u0027instanceBasePath\u0027 ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 18
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c0550a0_282eb95c",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "guard this because you might get an empty array -- don\u0027t crash just log an error",
+      "range": {
+        "startLine": 45,
+        "startChar": 55,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beda10e6_ad19e562",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T13:56:41Z",
+      "side": 1,
+      "message": "Please use capital S here",
+      "range": {
+        "startLine": 45,
+        "startChar": 19,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
