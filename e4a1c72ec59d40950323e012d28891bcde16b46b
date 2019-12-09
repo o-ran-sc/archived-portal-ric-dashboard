@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "99402c21_dc9c645d",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-09T18:44:58Z",
+      "side": 1,
+      "message": "Thanks for explaining. How can we hide this detail? I do not want to add this to single module that needs to know if the instance changes.  I think you were working on something like this, because you asked me, is it possible to create a BehaviorSubject from an Observable.  I still don\u0027t know the answer to that.",
+      "parentUuid": "4a57aea8_bf9c0471",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c14a0c4_5e426585",
         "filename": "webapp-frontend/src/app/rd.component.ts",
         "patchSetId": 9
