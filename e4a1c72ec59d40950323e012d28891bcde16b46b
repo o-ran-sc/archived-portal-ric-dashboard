@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "9287f3c0_e8648554",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-09T21:01:21Z",
+      "side": 1,
+      "message": "Defined a new method in instance-selector service.\ngetSelectedInstanceKeyObservable()\nIt will return a Observable of a BehaviorSubject\nObservable\u003cBehaviorSubject\u003cstring\u003e\u003e\n\nSo that in other components, it only need get that SelectedInstanceKeyObservable, then subscribe\nthe BehaviorSubject in it. It will not need to pull unrelated instance array data",
+      "parentUuid": "d781d32d_c56b863a",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "e4a1c72ec59d40950323e012d28891bcde16b46b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c14a0c4_5e426585",
         "filename": "webapp-frontend/src/app/rd.component.ts",
         "patchSetId": 9
