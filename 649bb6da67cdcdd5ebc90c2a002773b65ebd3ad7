@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f031ca4_a836a10b",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-10T21:47:38Z",
+      "side": 1,
+      "message": "remove assigning new value to selectedInstanceKey, that was done in getInstanceArray method.",
+      "range": {
+        "startLine": 73,
+        "startChar": 45,
+        "endLine": 73,
+        "endChar": 46
+      },
+      "revId": "649bb6da67cdcdd5ebc90c2a002773b65ebd3ad7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
