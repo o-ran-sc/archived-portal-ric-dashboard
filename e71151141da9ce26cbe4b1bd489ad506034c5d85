@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3495e6c_5cd46706",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-10T14:20:33Z",
+      "side": 1,
+      "message": "I hear you telling me that every component must create two subscriptions. I see that you have combined them into a single function invocation.  Wow this is a lot more complicated than I expected.",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 3
+      },
+      "revId": "e71151141da9ce26cbe4b1bd489ad506034c5d85",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
