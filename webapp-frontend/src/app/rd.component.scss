@@ -26,11 +26,7 @@
   position: relative;
 }
 
-/*
-================
-    Header
-================
-*/
+/* Header */
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     height: 100%;
 }
@@ -43,10 +39,7 @@ main {
     padding: 10px;
 }
 
-/*
-    Slide Menu
-= = = = = = = = =
-*/
+/* Slide Menu */
 .side-menu__dark {
   color: white;
   background: gray;
@@ -348,11 +341,7 @@ mat-drawer-content {
   transition: opacity 300ms linear;
 }
 
-/*
-================-
-    Footer
-================
-*/
+/* Footer */
 .main__footer {
   background: transparent;
   z-index: 100;

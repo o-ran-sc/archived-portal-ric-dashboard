@@ -5,6 +5,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version cc-2.0.0, 9 Dec 2019
+----------------------------
+* Restore ANR XApp
+
 Version 2.0.0, 2 Dec 2019
 -------------------------
 * Change application properties file to YAML format

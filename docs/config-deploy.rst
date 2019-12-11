@@ -176,7 +176,7 @@ like
 
 ``ecomp_rest_url``
 
-Portal REST URL that is reachable by the Dashboard back-end. 
+Portal REST URL that is reachable by the Dashboard back-end.
 This is a value like ``http://portal-app.onap:8989/ONAPPORTAL/auxapi``
 
 ``portal.api.impl.class``
