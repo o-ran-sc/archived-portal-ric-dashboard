@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 
- import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CaasIngressComponent } from './caas-ingress.component';
 

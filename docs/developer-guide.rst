@@ -23,7 +23,7 @@ After cloning the repository, initialize and update all git submodules like this
 
     git submodule init
     git submodule update
-    
+
 Check the submodule status at any time like this::
 
     git submodule status
@@ -84,7 +84,7 @@ Production user authentication
 
 The server uses the ONAP Portal's "EPSDK-FW" library to support a
 single-sign-on (SSO) feature, which requires users to authenticate
-at the ONAP Portal UI. The RIC Dashboard can be on-boarded as an 
+at the ONAP Portal UI. The RIC Dashboard can be on-boarded as an
 application on the ONAP Portal using its application on-boarding UI.
 
 The server authenticates requests using cookies that are set
