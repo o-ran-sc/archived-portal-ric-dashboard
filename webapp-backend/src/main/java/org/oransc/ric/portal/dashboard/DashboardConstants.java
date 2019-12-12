@@ -26,8 +26,11 @@ public abstract class DashboardConstants {
 	}
 
 	public static final String ENDPOINT_PREFIX = "/api";
+	// Spring path parameters
+	public static final String RIC_INSTANCE_KEY = "ric";
 	// Factor out method names used in multiple controllers
 	public static final String VERSION_METHOD = "version";
+	// Apps with metric panels
 	public static final String APP_NAME_AC = "AC";
 	public static final String APP_NAME_MC = "MC";
 	// The role names are defined by ONAP Portal.

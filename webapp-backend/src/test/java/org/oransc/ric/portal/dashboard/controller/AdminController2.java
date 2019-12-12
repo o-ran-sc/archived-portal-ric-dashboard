@@ -21,7 +21,6 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -38,9 +37,6 @@ import org.springframework.web.client.RestClientResponseException;
 public class AdminController2 {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-	// Publish paths in constants so tests are easy to write
-	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
 
 	@GetMapping("throw1")
 	public void throw1() {

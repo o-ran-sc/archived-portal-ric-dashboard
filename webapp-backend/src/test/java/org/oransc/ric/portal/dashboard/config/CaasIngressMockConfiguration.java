@@ -22,6 +22,7 @@ package org.oransc.ric.portal.dashboard.config;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,9 +77,7 @@ public class CaasIngressMockConfiguration {
 		return sb.toString();
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public SimpleKubernetesClient ciPltApi() throws IOException {
+	private SimpleKubernetesClient simpleKubernetesClient() {
 		SimpleKubernetesClient mockClient = mock(SimpleKubernetesClient.class);
 		doAnswer(inv -> {
 			String ns = inv.<String>getArgument(0);
@@ -86,9 +85,18 @@ public class CaasIngressMockConfiguration {
 			if ("ricplt".equals(ns))
 				return pltPods;
 			else
-				throw new Exception("Fake server failure");
+				throw new IllegalArgumentException("Fake server failure");
 		}).when(mockClient).listPods(any(String.class));
 		return mockClient;
+	}
+
+	@Bean
+	// The bean (method) name must be globally unique
+	public SimpleKubernetesClientBuilder simpleKubernetesClientBuilder() {
+		final SimpleKubernetesClientBuilder mockBuilder = mock(SimpleKubernetesClientBuilder.class);
+		SimpleKubernetesClient client = simpleKubernetesClient();
+		when(mockBuilder.getSimpleKubernetesClient(any(String.class))).thenReturn(client);
+		return mockBuilder;
 	}
 
 }

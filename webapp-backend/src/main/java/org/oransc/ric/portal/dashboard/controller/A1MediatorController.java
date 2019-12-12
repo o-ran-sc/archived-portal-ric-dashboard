@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.A1MediatorApiBuilder;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +46,7 @@ import io.swagger.annotations.ApiParam;
 
 /**
  * Proxies calls from the front end to the A1 Mediator API to get and put
- * policies. The first application managed via this path is Admission Control.
+ * policies. All methods are deliberately kept ignorant of the data format.
  * 
  * If a method throws RestClientResponseException, it is handled by
  * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
@@ -58,54 +59,51 @@ public class A1MediatorController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	// Publish paths in constants so tests are easy to write
+	/** This path lacks the RIC instance pattern */
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/a1-p";
-	// Endpoints
-	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_POLICIES = "policies";
+	// The get and put methods use the same path
+	private static final String POLICY_METHOD_PATH = /* controller path + */ DashboardConstants.RIC_INSTANCE_KEY + "/{"
+			+ DashboardConstants.RIC_INSTANCE_KEY + "}/" + PP_POLICIES + "/{" + PP_POLICIES + "}";
 
 	// Populated by the autowired constructor
-	private final A1MediatorApi a1MediatorApi;
+	private final A1MediatorApiBuilder a1MediatorClientBuilder;
 
 	@Autowired
-	public A1MediatorController(final A1MediatorApi a1MediatorApi) {
-		Assert.notNull(a1MediatorApi, "API must not be null");
-		this.a1MediatorApi = a1MediatorApi;
+	public A1MediatorController(final A1MediatorApiBuilder a1MediatorApiBuilder) {
+		Assert.notNull(a1MediatorApiBuilder, "builder must not be null");
+		this.a1MediatorClientBuilder = a1MediatorApiBuilder;
 		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with client type {}", a1MediatorApi.getClass().getName());
+			logger.debug("ctor: configured with builder type {}", a1MediatorApiBuilder.getClass().getName());
 	}
 
 	@ApiOperation(value = "Gets the A1 client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@GetMapping(VERSION_METHOD)
+	@GetMapping(DashboardConstants.VERSION_METHOD)
 	// No role required
 	public SuccessTransport getA1MediatorClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
 
-	/*
-	 * This method is deliberately kept ignorant of the data passing thru.
-	 */
 	@ApiOperation(value = "Gets the specified policy from the A1 Mediator")
-	@GetMapping(PP_POLICIES + "/{" + PP_POLICIES + "}")
+	@GetMapping(POLICY_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Object getPolicy(@PathVariable(PP_POLICIES) String policyName) {
-		logger.debug("getPolicy {}", policyName);
-		return a1MediatorApi.a1ControllerGetHandler(policyName);
+	public Object getPolicy(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_POLICIES) String policyName) {
+		logger.debug("getPolicy instance {} policy {}", instanceKey, policyName);
+		return a1MediatorClientBuilder.getA1MediatorApi(instanceKey).a1ControllerGetHandler(policyName);
 	}
 
-	/*
-	 * This method is deliberately kept ignorant of the data passing thru.
-	 */
 	@ApiOperation(value = "Puts the specified policy to the A1 Mediator")
-	@PutMapping(PP_POLICIES + "/{" + PP_POLICIES + "}")
+	@PutMapping(POLICY_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void putPolicy(@PathVariable(PP_POLICIES) String policyName,
-			@ApiParam(value = "Policy body") @RequestBody String policy, //
+	public void putPolicy(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_POLICIES) String policyName, @ApiParam(value = "Policy body") @RequestBody String policy, //
 			HttpServletResponse response) {
-		logger.debug("putPolicy name {} value {}", policyName, policy);
-		a1MediatorApi.a1ControllerPutHandler(policyName, policy);
-		response.setStatus(a1MediatorApi.getApiClient().getStatusCode().value());
+		logger.debug("putPolicy instance {} name {} value {}", instanceKey, policyName, policy);
+		A1MediatorApi api = a1MediatorClientBuilder.getA1MediatorApi(instanceKey);
+		api.a1ControllerPutHandler(policyName, policy);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 }

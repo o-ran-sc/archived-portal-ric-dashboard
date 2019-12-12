@@ -88,9 +88,7 @@ public class AppManagerMockConfiguration {
 		subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL).id("subid").version(1);
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public HealthApi xappMgrHealthApi() {
+	private HealthApi healthApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		HealthApi mockApi = mock(HealthApi.class);
@@ -100,9 +98,7 @@ public class AppManagerMockConfiguration {
 		return mockApi;
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public XappApi xappMgrXappApi() {
+	private XappApi xappApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		XappApi mockApi = mock(XappApi.class);
@@ -185,6 +181,17 @@ public class AppManagerMockConfiguration {
 			return null;
 		}).when(mockApi).deleteSubscription(any(String.class));
 		return mockApi;
+	}
+
+	@Bean
+	// Must use the same name as the non-mock configuration
+	public AppManagerApiBuilder appManagerApiBuilder() {
+		final AppManagerApiBuilder mockBuilder = mock(AppManagerApiBuilder.class);
+		final HealthApi mockHealthApi = healthApi();
+		when(mockBuilder.getHealthApi(any(String.class))).thenReturn(mockHealthApi);
+		final XappApi mockXappApi = xappApi();
+		when(mockBuilder.getXappApi(any(String.class))).thenReturn(mockXappApi);
+		return mockBuilder;
 	}
 
 }

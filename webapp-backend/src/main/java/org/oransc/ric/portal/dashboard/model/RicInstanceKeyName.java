@@ -20,10 +20,12 @@
 
 package org.oransc.ric.portal.dashboard.model;
 
+import java.util.Objects;
+
 /**
- * Trivial model to transport key-name pairs that represent RIC instances.
+ * Transport model for RIC instance key-name pairs.
  */
-public class InstanceTransport implements IDashboardResponse {
+public class RicInstanceKeyName implements IDashboardResponse {
 
 	private String key;
 	private String name;
@@ -31,7 +33,7 @@ public class InstanceTransport implements IDashboardResponse {
 	/**
 	 * Builds an empty object.
 	 */
-	public InstanceTransport() {
+	public RicInstanceKeyName() {
 		// no-arg constructor
 	}
 
@@ -43,7 +45,7 @@ public class InstanceTransport implements IDashboardResponse {
 	 * @param name
 	 *                 Name
 	 */
-	public InstanceTransport(String key, String name) {
+	public RicInstanceKeyName(String key, String name) {
 		this.key = key;
 		this.name = name;
 	}
@@ -56,6 +58,11 @@ public class InstanceTransport implements IDashboardResponse {
 		this.key = key;
 	}
 
+	public RicInstanceKeyName key(String key) {
+		this.key = key;
+		return this;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -64,9 +71,35 @@ public class InstanceTransport implements IDashboardResponse {
 		this.name = s;
 	}
 
+	public RicInstanceKeyName name(String name) {
+		this.name = name;
+		return this;
+	}
+
 	@Override
 	public String toString() {
 		return this.getClass().getName() + "[key=" + getKey() + ", name=" + getName() + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RicInstanceKeyName other = (RicInstanceKeyName) obj;
+		return Objects.equals(key, other.key);
 	}
 
 }

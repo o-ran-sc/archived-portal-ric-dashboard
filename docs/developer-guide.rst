@@ -58,7 +58,7 @@ files.  These steps are required to launch:
 
 1. Install all project jar files locally
 2. Set an environment variable via JVM argument: ``-Dorg.oransc.ric.portal.dashboard=mock``
-3. Run the JUnit test case ``DashboardServerTest`` which is not exactly a "test" because it never finishes.
+3. Run the JUnit test case ``DashboardTestServer`` which is not exactly a "test" because it never finishes.
 
 These steps can be done with these commands::
 

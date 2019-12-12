@@ -45,24 +45,21 @@ portalapi:
     username:
     password:
 
-# endpoint URLs must be supplied at deployment time
+# Instance-specific URL prefixes must be supplied at deployment time
 
 # A1 Mediator
 a1med:
     url:
-        prefix: http://jar-app-props-default-A1-URL-prefix
         suffix:
 
 # App Manager
 appmgr:
     url:
-        prefix: http://jar-app-props-default-Xapp-Mgr-URL
         suffix: /ric/v1
 
 # E2 Manager
 e2mgr:
     url:
-        prefix: http://jar-app-props-default-E2-URL
         suffix: /v1
 
 # Kubernetes API via https://github.com/nokia/caas-ingress
@@ -71,7 +68,6 @@ caasingress:
     insecure: true
     plt:
         url:
-            prefix: https://jar-app-props-default-caas-ingress-plt-URL
             suffix: /api
 
 # Mimic slow endpoints by defining sleep period, in milliseconds
@@ -91,6 +87,12 @@ ric-instance-list:
         -
           key: i1
           name: Primary RIC Instance
+          appUrlPrefix: App prefix 1
+          caasUrlPrefix: Caas prefix 1
+          pltUrlPrefix: Plt prefix 1
         -
           key: i2
           name: RIC Instance Nr Two
+          appUrlPrefix: App prefix 2
+          caasUrlPrefix: Caas prefix 2
+          pltUrlPrefix: Plt prefix 2

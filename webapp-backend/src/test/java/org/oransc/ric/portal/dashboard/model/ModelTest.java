@@ -84,15 +84,15 @@ public class ModelTest extends AbstractModelTest {
 		logger.info(m.toString());
 	}
 
-	private void checkInstanceTransport(InstanceTransport m) {
+	private void checkInstanceTransport(RicInstanceKeyName m) {
 		Assert.assertEquals(s1, m.getKey());
 		Assert.assertEquals(s2, m.getName());
 	}
 
 	@Test
 	public void testInstanceTransport() {
-		InstanceTransport m = new InstanceTransport(s1, s1);
-		m = new InstanceTransport();
+		RicInstanceKeyName m = new RicInstanceKeyName(s1, s1);
+		m = new RicInstanceKeyName();
 		m.setKey(s1);
 		m.setName(s2);
 		checkInstanceTransport(m);

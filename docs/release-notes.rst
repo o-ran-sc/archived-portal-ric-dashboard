@@ -11,6 +11,8 @@ Version 2.0.0, 22 Dec 2019
 * Add mock list of RIC instances to application properties
 * Add admin controller method to fetch list of RIC instances
 * Drop AUX cluster container list fetched via CAAS Ingress
+* Revise controller methods to require RIC instance key
+* Upgrade to Spring-Boot 2.1.11.RELEASE
 
 Version 1.3.0, 26 Nov 2019
 --------------------------

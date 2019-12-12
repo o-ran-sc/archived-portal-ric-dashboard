@@ -33,6 +33,7 @@ import org.oransc.ric.e2mgr.client.model.ResetRequest;
 import org.oransc.ric.e2mgr.client.model.SetupRequest;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.E2ManagerApiBuilder;
 import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -68,65 +69,67 @@ public class E2ManagerController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	// Publish paths in constants so tests are easy to write
+	// Publish paths in constants for tests
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/e2mgr";
 	// Dashboard only
 	public static final String HEALTH_METHOD = "health";
-	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Keep these consistent with the E2M implementation
-	/* package */ static final String NODEB_PREFIX = "/nodeb";
+	/* package */ static final String NODEB_PREFIX = "nodeb";
 	public static final String RAN_METHOD = NODEB_PREFIX + "/ran";
 	public static final String NODEB_SHUTDOWN_METHOD = NODEB_PREFIX + "/shutdown";
 	public static final String NODEB_LIST_METHOD = NODEB_PREFIX + "/ids";
 	public static final String ENDC_SETUP_METHOD = NODEB_PREFIX + "/endc-setup";
 	public static final String X2_SETUP_METHOD = NODEB_PREFIX + "/x2-setup";
 	// Reset uses prefix, adds a path parameter below
-	public static final String RESET_METHOD = "/reset";
+	public static final String RESET_METHOD = "reset";
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
 	// Populated by the autowired constructor
-	private final HealthCheckApi e2HealthCheckApi;
-	private final NodebApi e2NodebApi;
+	private final E2ManagerApiBuilder e2ManagerApiBuilder;
 
 	@Autowired
-	public E2ManagerController(final HealthCheckApi e2HealthCheckApi, final NodebApi e2NodebApi) {
-		Assert.notNull(e2HealthCheckApi, "API must not be null");
-		Assert.notNull(e2NodebApi, "API must not be null");
-		this.e2HealthCheckApi = e2HealthCheckApi;
-		this.e2NodebApi = e2NodebApi;
+	public E2ManagerController(final E2ManagerApiBuilder e2ManagerApiBuilder) {
+		Assert.notNull(e2ManagerApiBuilder, "builder must not be null");
+		this.e2ManagerApiBuilder = e2ManagerApiBuilder;
+		if (logger.isDebugEnabled())
+			logger.debug("ctor: configured with builder type {}", e2ManagerApiBuilder.getClass().getName());
 	}
 
 	@ApiOperation(value = "Gets the E2 manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@GetMapping(VERSION_METHOD)
+	@GetMapping(DashboardConstants.VERSION_METHOD)
 	// No role required
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthCheckApi.class));
 	}
 
 	@ApiOperation(value = "Gets the health from the E2 manager, expressed as the response code.")
-	@GetMapping(HEALTH_METHOD)
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + HEALTH_METHOD)
 	// No role required
-	public void healthGet(HttpServletResponse response) {
-		logger.debug("healthGet");
-		e2HealthCheckApi.healthGet();
-		response.setStatus(e2HealthCheckApi.getApiClient().getStatusCode().value());
+	public void healthGet(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			HttpServletResponse response) {
+		logger.debug("healthGet instance {}", instanceKey);
+		HealthCheckApi api = e2ManagerApiBuilder.getHealthCheckApi(instanceKey);
+		api.healthGet();
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 	// This calls other methods to simplify the task of the front-end.
 	@ApiOperation(value = "Gets all RAN identities and statuses from the E2 manager.", response = RanDetailsTransport.class, responseContainer = "List")
-	@GetMapping(RAN_METHOD)
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + RAN_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public List<RanDetailsTransport> getRanDetails() {
-		logger.debug("getRanDetails");
-		List<NodebIdentity> nodebIdList = e2NodebApi.getNodebIdList();
+	public List<RanDetailsTransport> getRanDetails(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getRanDetails instance {}", instanceKey);
+		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
+		List<NodebIdentity> nodebIdList = api.getNodebIdList();
 		logger.debug("getRanDetails: nodebIdList {}", nodebIdList);
 		List<RanDetailsTransport> details = new ArrayList<>();
 		for (NodebIdentity nbid : nodebIdList) {
 			GetNodebResponse nbResp = null;
 			try {
 				// Catch exceptions to keep looping despite failures
-				nbResp = e2NodebApi.getNb(nbid.getInventoryName());
+				nbResp = api.getNb(nbid.getInventoryName());
 			} catch (HttpStatusCodeException ex) {
 				logger.warn("E2 getNb failed for name {}: {}", nbid.getInventoryName(), ex.toString());
 				nbResp = new GetNodebResponse().connectionStatus("UNKNOWN").ip("UNKNOWN").port(-1)
@@ -138,56 +141,71 @@ public class E2ManagerController {
 	}
 
 	@ApiOperation(value = "Get RAN identities list.", response = NodebIdentity.class, responseContainer = "List")
-	@GetMapping(NODEB_LIST_METHOD)
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ NODEB_LIST_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public List<NodebIdentity> getNodebIdList() {
-		logger.debug("getNodebIdList");
-		return e2NodebApi.getNodebIdList();
+	public List<NodebIdentity> getNodebIdList(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getNodebIdList instance {}", instanceKey);
+		return e2ManagerApiBuilder.getNodebApi(instanceKey).getNodebIdList();
 	}
 
 	@ApiOperation(value = "Get RAN by name.", response = GetNodebResponse.class)
-	@GetMapping(NODEB_SHUTDOWN_METHOD + "/{" + PP_RANNAME + "}")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + NODEB_PREFIX
+			+ "/{" + PP_RANNAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public GetNodebResponse getNb(@PathVariable(PP_RANNAME) String ranName) {
-		logger.debug("getNb {}", ranName);
-		return e2NodebApi.getNb(ranName);
+	public GetNodebResponse getNb(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_RANNAME) String ranName) {
+		logger.debug("getNb instance {} name {}", instanceKey, ranName);
+		return e2ManagerApiBuilder.getNodebApi(instanceKey).getNb(ranName);
 	}
 
 	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
-	@PostMapping(ENDC_SETUP_METHOD)
+	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ ENDC_SETUP_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void endcSetup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
-		logger.debug("endcSetup {}", setupRequest);
-		e2NodebApi.endcSetup(setupRequest);
-		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+	public void endcSetup(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+		logger.debug("endcSetup instance {} request {}", instanceKey, setupRequest);
+		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
+		api.endcSetup(setupRequest);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
-	@PostMapping(X2_SETUP_METHOD)
+	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ X2_SETUP_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void x2Setup(@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
-		logger.debug("x2Setup {}", setupRequest);
-		e2NodebApi.x2Setup(setupRequest);
-		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+	public void x2Setup(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody SetupRequest setupRequest, HttpServletResponse response) {
+		logger.debug("x2Setup instance {} request {}", instanceKey, setupRequest);
+		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
+		api.x2Setup(setupRequest);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
-	@PutMapping(NODEB_SHUTDOWN_METHOD)
+	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ NODEB_SHUTDOWN_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void nodebShutdownPut(HttpServletResponse response) {
-		logger.debug("nodebShutdownPut");
-		e2NodebApi.nodebShutdownPut();
-		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+	public void nodebShutdownPut(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			HttpServletResponse response) {
+		logger.debug("nodebShutdownPut instance {}", instanceKey);
+		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
+		api.nodebShutdownPut();
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")
-	@PutMapping(NODEB_PREFIX + "/{" + PP_RANNAME + "}" + RESET_METHOD)
+	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + NODEB_PREFIX
+			+ "/{" + PP_RANNAME + "}/" + RESET_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void reset(@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest,
+	public void reset(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest,
 			HttpServletResponse response) {
-		logger.debug("reset");
-		e2NodebApi.reset(ranName, resetRequest);
-		response.setStatus(e2NodebApi.getApiClient().getStatusCode().value());
+		logger.debug("reset instance {} name {}", instanceKey, ranName);
+		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
+		api.reset(ranName, resetRequest);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 }

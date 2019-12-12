@@ -34,6 +34,7 @@ import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.AppManagerApiBuilder;
 import org.oransc.ric.portal.dashboard.model.AppTransport;
 import org.oransc.ric.portal.dashboard.model.DashboardDeployableXapps;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
@@ -72,95 +73,106 @@ public class AppManagerController {
 
 	// Publish paths in constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/appmgr";
-	// Endpoints
-	public static final String HEALTH_ALIVE_METHOD = "/health/alive";
-	public static final String HEALTH_READY_METHOD = "/health/ready";
-	public static final String CONFIG_METHOD = "/config";
-	public static final String XAPPS_METHOD = "/xapps";
+	public static final String HEALTH_ALIVE_METHOD = "health/alive";
+	public static final String HEALTH_READY_METHOD = "health/ready";
+	public static final String CONFIG_METHOD = "config";
+	public static final String XAPPS_METHOD = "xapps";
 	public static final String XAPPS_LIST_METHOD = XAPPS_METHOD + "/list";
-	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	// Path parameters
 	public static final String PP_XAPP_NAME = "xAppName";
+	// minimize repeats
+	private static final String CONFIG_METHOD_PATH = DashboardConstants.RIC_INSTANCE_KEY + "/{"
+			+ DashboardConstants.RIC_INSTANCE_KEY + "}/" + CONFIG_METHOD;
+	private static final String XAPPS_METHOD_PATH = DashboardConstants.RIC_INSTANCE_KEY + "/{"
+			+ DashboardConstants.RIC_INSTANCE_KEY + "}/" + XAPPS_METHOD;
 
 	// Populated by the autowired constructor
-	private final HealthApi healthApi;
-	private final XappApi xappApi;
+	private final AppManagerApiBuilder appManagerApiBuilder;
 
 	@Autowired
-	public AppManagerController(final HealthApi healthApi, final XappApi xappApi) {
-		Assert.notNull(healthApi, "health API must not be null");
-		Assert.notNull(xappApi, "xapp API must not be null");
-		this.healthApi = healthApi;
-		this.xappApi = xappApi;
+	public AppManagerController(final AppManagerApiBuilder appManagerApiBuilder) {
+		Assert.notNull(appManagerApiBuilder, "builder must not be null");
+		this.appManagerApiBuilder = appManagerApiBuilder;
 		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with client types {} and {}", healthApi.getClass().getName(),
-					xappApi.getClass().getName());
+			logger.debug("ctor: configured with builder type {}", appManagerApiBuilder.getClass().getName());
 	}
 
-	@ApiOperation(value = "Gets the XApp manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
-	@GetMapping(VERSION_METHOD)
+	@ApiOperation(value = "Gets the App manager client library MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
+	@GetMapping(DashboardConstants.VERSION_METHOD)
 	// No role required
 	public SuccessTransport getClientVersion() {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(HealthApi.class));
 	}
 
-	@ApiOperation(value = "Health check of xApp Manager - Liveness probe.")
-	@GetMapping(HEALTH_ALIVE_METHOD)
+	@ApiOperation(value = "Health check of App Manager - Liveness probe.")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ HEALTH_ALIVE_METHOD)
 	// No role required
-	public void getHealth(HttpServletResponse response) {
-		logger.debug("getHealthAlive");
-		healthApi.getHealthAlive();
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+	public void getHealth(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			HttpServletResponse response) {
+		logger.debug("getHealthAlive instance {}", instanceKey);
+		HealthApi api = appManagerApiBuilder.getHealthApi(instanceKey);
+		api.getHealthAlive();
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Readiness check of xApp Manager - Readiness probe.")
-	@GetMapping(HEALTH_READY_METHOD)
+	@ApiOperation(value = "Readiness check of App Manager - Readiness probe.")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ HEALTH_READY_METHOD)
 	// No role required
-	public void getHealthReady(HttpServletResponse response) {
-		logger.debug("getHealthReady");
-		healthApi.getHealthReady();
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+	public void getHealthReady(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			HttpServletResponse response) {
+		logger.debug("getHealthReady instance {}", instanceKey);
+		HealthApi api = appManagerApiBuilder.getHealthApi(instanceKey);
+		api.getHealthReady();
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
-	@ApiOperation(value = "Returns the configuration of all xapps.", response = AllXappConfig.class)
-	@GetMapping(CONFIG_METHOD)
+	@ApiOperation(value = "Returns the configuration of all Xapps.", response = AllXappConfig.class)
+	@GetMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public AllXappConfig getAllXappConfig() {
-		logger.debug("getAllXappConfig");
-		return xappApi.getAllXappConfig();
+	public AllXappConfig getAllXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getAllXappConfig instance {}", instanceKey);
+		return appManagerApiBuilder.getXappApi(instanceKey).getAllXappConfig();
 	}
 
-	@ApiOperation(value = "Create xApp config.", response = XAppConfig.class)
-	@PostMapping(CONFIG_METHOD)
+	@ApiOperation(value = "Create XApp config.", response = XAppConfig.class)
+	@PostMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public XAppConfig createXappConfig(@RequestBody XAppConfig xAppConfig) {
-		logger.debug("createXappConfig {}", xAppConfig);
-		return xappApi.createXappConfig(xAppConfig);
+	public XAppConfig createXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody XAppConfig xAppConfig) {
+		logger.debug("createXappConfig instance {} config {}", instanceKey, xAppConfig);
+		return appManagerApiBuilder.getXappApi(instanceKey).createXappConfig(xAppConfig);
 	}
 
-	@ApiOperation(value = "Modify xApp config.", response = XAppConfig.class)
-	@PutMapping(CONFIG_METHOD)
+	@ApiOperation(value = "Modify XApp config.", response = XAppConfig.class)
+	@PutMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public XAppConfig modifyXappConfig(@RequestBody XAppConfig xAppConfig) {
-		logger.debug("modifyXappConfig {}", xAppConfig);
-		return xappApi.modifyXappConfig(xAppConfig);
+	public XAppConfig modifyXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody XAppConfig xAppConfig) {
+		logger.debug("modifyXappConfig instance {} config {}", instanceKey, xAppConfig);
+		return appManagerApiBuilder.getXappApi(instanceKey).modifyXappConfig(xAppConfig);
 	}
 
-	@ApiOperation(value = "Delete xApp configuration.")
-	@DeleteMapping(CONFIG_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@ApiOperation(value = "Delete XApp configuration.")
+	@DeleteMapping(CONFIG_METHOD_PATH + "/{" + PP_XAPP_NAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void deleteXappConfig(@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
-		logger.debug("deleteXappConfig {}", configMetadata);
-		xappApi.deleteXappConfig(configMetadata);
-		response.setStatus(healthApi.getApiClient().getStatusCode().value());
+	public void deleteXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody ConfigMetadata configMetadata, HttpServletResponse response) {
+		logger.debug("deleteXappConfig instance {} config {}", instanceKey, configMetadata);
+		XappApi api = appManagerApiBuilder.getXappApi(instanceKey);
+		api.deleteXappConfig(configMetadata);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 	@ApiOperation(value = "Returns a list of deployable xapps.", response = DashboardDeployableXapps.class)
-	@GetMapping(XAPPS_LIST_METHOD)
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ XAPPS_LIST_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public DashboardDeployableXapps getAvailableXapps() {
-		logger.debug("getAvailableXapps");
-		AllDeployableXapps appNames = xappApi.listAllDeployableXapps();
+	public DashboardDeployableXapps getAvailableXapps(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getAvailableXapps instance {}", instanceKey);
+		AllDeployableXapps appNames = appManagerApiBuilder.getXappApi(instanceKey).listAllDeployableXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
 		// additional properties for each one.
@@ -171,36 +183,40 @@ public class AppManagerController {
 	}
 
 	@ApiOperation(value = "Returns the status of all deployed xapps.", response = AllDeployedXapps.class)
-	@GetMapping(XAPPS_METHOD)
+	@GetMapping(XAPPS_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public AllDeployedXapps getDeployedXapps() {
-		logger.debug("getDeployedXapps");
-		return xappApi.getAllXapps();
+	public AllDeployedXapps getDeployedXapps(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getDeployedXapps instance {}", instanceKey);
+		return appManagerApiBuilder.getXappApi(instanceKey).getAllXapps();
 	}
 
 	@ApiOperation(value = "Returns the status of a given xapp.", response = Xapp.class)
-	@GetMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@GetMapping(XAPPS_METHOD_PATH + "/{" + PP_XAPP_NAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Xapp getXapp(@PathVariable("xAppName") String xAppName) {
-		logger.debug("getXapp {}", xAppName);
-		return xappApi.getXappByName(xAppName);
+	public Xapp getXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_XAPP_NAME) String appName) {
+		logger.debug("getXapp instance {} name {}", instanceKey, appName);
+		return appManagerApiBuilder.getXappApi(instanceKey).getXappByName(appName);
 	}
 
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
-	@PostMapping(XAPPS_METHOD)
+	@PostMapping(XAPPS_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public Xapp deployXapp(@RequestBody XAppInfo xAppInfo) {
-		logger.debug("deployXapp {}", xAppInfo);
-		return xappApi.deployXapp(xAppInfo);
+	public Xapp deployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody XAppInfo appInfo) {
+		logger.debug("deployXapp instance {} info {}", instanceKey, appInfo);
+		return appManagerApiBuilder.getXappApi(instanceKey).deployXapp(appInfo);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
-	@DeleteMapping(XAPPS_METHOD + "/{" + PP_XAPP_NAME + "}")
+	@DeleteMapping(XAPPS_METHOD_PATH + "/{" + PP_XAPP_NAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void undeployXapp(@PathVariable("xAppName") String xAppName, HttpServletResponse response) {
-		logger.debug("undeployXapp {}", xAppName);
-		xappApi.undeployXapp(xAppName);
-		response.setStatus(xappApi.getApiClient().getStatusCode().value());
+	public void undeployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_XAPP_NAME) String appName, HttpServletResponse response) {
+		logger.debug("undeployXapp instance {} name {}", instanceKey, appName);
+		XappApi api = appManagerApiBuilder.getXappApi(instanceKey);
+		api.undeployXapp(appName);
+		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
 }

@@ -23,7 +23,7 @@ import java.lang.invoke.MethodHandles;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
-import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
 import org.oransc.ric.portal.dashboard.util.HttpsURLConnectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
  * Creates instances of CAAS-Ingres clients.
@@ -44,19 +43,18 @@ public class CaasIngressConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String caasIngressPltUrl;
+	private final String urlSuffix;
+	private final RicInstanceList instanceConfig;
 
 	@Autowired
 	public CaasIngressConfiguration( //
-			@Value("${caasingress.plt.url.prefix}") final String pltUrlPrefix,
-			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix,
-			@Value("${caasingress.insecure}") final Boolean insecureFlag) //
-			throws KeyManagementException, NoSuchAlgorithmException {
-		logger.debug("ctor caasingress plt prefix '{}' suffix '{}'", pltUrlPrefix, pltUrlSuffix);
-		logger.debug("ctor caasingress insecure flag {}", insecureFlag);
-		caasIngressPltUrl = new DefaultUriBuilderFactory(pltUrlPrefix.trim()).builder().path(pltUrlSuffix.trim())
-				.build().normalize().toString();
-		logger.info("Configuring CAAS-Ingress URL: plt {}", caasIngressPltUrl);
+			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix, //
+			@Value("${caasingress.insecure}") final Boolean insecureFlag, //
+			final RicInstanceList instanceConfig) throws KeyManagementException, NoSuchAlgorithmException {
+		logger.debug("ctor: suffix {} insecure flag {}", pltUrlSuffix, insecureFlag);
+		this.urlSuffix = pltUrlSuffix;
+		this.instanceConfig = instanceConfig;
+		// This is a brutal hack:
 		if (insecureFlag != null && insecureFlag) {
 			logger.warn("ctor: insecure flag set, disabling SSL checks");
 			HttpsURLConnectionUtils.turnOffSslChecking();
@@ -65,8 +63,8 @@ public class CaasIngressConfiguration {
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public SimpleKubernetesClient ciPltApi() {
-		return new SimpleKubernetesClient(caasIngressPltUrl);
+	public SimpleKubernetesClientBuilder simpleKubernetesClientBuilder() {
+		return new SimpleKubernetesClientBuilder(instanceConfig, urlSuffix);
 	}
 
 }

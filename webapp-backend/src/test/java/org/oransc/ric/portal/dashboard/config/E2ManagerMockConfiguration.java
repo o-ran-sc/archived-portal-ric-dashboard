@@ -59,8 +59,8 @@ public class E2ManagerMockConfiguration {
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
-	public static final String RAN_NAME_1 = "Connected RAN";
-	public static final String RAN_NAME_2 = "Unknown RAN";
+	public static final String RAN_NAME_1 = "Connected-RAN";
+	public static final String RAN_NAME_2 = "Unknown-RAN";
 
 	private final List<NodebIdentity> nodebIdList;
 	private final Map<String, GetNodebResponse> nodebResponseMap;
@@ -91,9 +91,7 @@ public class E2ManagerMockConfiguration {
 		return mockClient;
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public HealthCheckApi e2MgrHealthCheckApi() {
+	private HealthCheckApi healthCheckApi() {
 		ApiClient apiClient = apiClient();
 		HealthCheckApi mockApi = mock(HealthCheckApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
@@ -101,9 +99,7 @@ public class E2ManagerMockConfiguration {
 		return mockApi;
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public NodebApi e2MgrNodebApi() {
+	private NodebApi nodebApi() {
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
@@ -162,6 +158,17 @@ public class E2ManagerMockConfiguration {
 			return null;
 		}).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;
+	}
+
+	@Bean
+	// Must use the same name as the non-mock configuration
+	public E2ManagerApiBuilder e2ManagerApiBuilder() {
+		final E2ManagerApiBuilder mockBuilder = mock(E2ManagerApiBuilder.class);
+		final HealthCheckApi mockHealthCheckApi = healthCheckApi();
+		when(mockBuilder.getHealthCheckApi(any(String.class))).thenReturn(mockHealthCheckApi);
+		final NodebApi mockNodebApi = nodebApi();
+		when(mockBuilder.getNodebApi(any(String.class))).thenReturn(mockNodebApi);
+		return mockBuilder;
 	}
 
 }

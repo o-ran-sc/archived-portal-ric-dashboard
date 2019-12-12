@@ -55,13 +55,13 @@ public class AbstractControllerTest {
 	protected TestRestTemplate restTemplate;
 
 	/**
-	 * Flexible URI builder.
+	 * Builds URI from path components and query parameters.
 	 * 
 	 * @param queryParams
 	 *                        Map of string-string query parameters
 	 * @param path
 	 *                        Array of path components. If a component has an
-	 *                        embedded slash, the string is split and each
+	 *                        embedded slash, that string is split and each
 	 *                        subcomponent is added individually.
 	 * @return URI
 	 */

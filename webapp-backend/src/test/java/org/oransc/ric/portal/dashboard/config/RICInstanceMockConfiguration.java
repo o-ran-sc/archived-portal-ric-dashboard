@@ -25,42 +25,32 @@ import java.util.List;
 
 import org.oransc.ric.portal.dashboard.model.RicInstance;
 import org.oransc.ric.portal.dashboard.model.RicInstanceList;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 /**
- * Publishes a list of RIC instances from configuration, written as a YAML list
- * in application properties like this:
- * 
- * <pre>
- * ric-instance-list:
-    instances:
-        -
-          key: key1
-          name: Friendly Name One
-          urlPrefix: http://foo.bar.one/
-        -
-          key: key2
-          name: Friendly Name Two
-          urlPrefix: http://foo.bar.two/
- * </pre>
+ * Publishes a mock list of RIC instances.
  */
-@Configuration
-@ConfigurationProperties(prefix = "ric-instance-list")
-@Profile("!test")
-public class RICInstanceConfiguration {
+@Component
+@Profile("test")
+public class RICInstanceMockConfiguration {
 
-	private List<RicInstance> instances = new ArrayList<>();
-
-	// Called by spring with config data
-	public void setInstances(List<RicInstance> instances) {
-		this.instances = instances;
-	}
+	// Publish constants for use in tests
+	public static final String INSTANCE_KEY_1 = "i1";
+	public static final String INSTANCE_KEY_2 = "i2";
 
 	@Bean
 	public RicInstanceList ricInstanceList() {
+		List<RicInstance> instances = new ArrayList<>();
+		RicInstance i1 = new RicInstance().key(INSTANCE_KEY_1).name("Friendly Name One")
+				.appUrlPrefix("http://foo.bar/app").pltUrlPrefix("http://foo.bar/plt")
+				.caasUrlPrefix("http://foo.bar/caas");
+		instances.add(i1);
+		RicInstance i2 = new RicInstance().key(INSTANCE_KEY_2).name("Friendly Name Two")
+				.appUrlPrefix("http://foo.bar/2/app").pltUrlPrefix("http://foo.bar/2/plt")
+				.caasUrlPrefix("http://foo.bar/2/caas");
+		instances.add(i2);
 		return new RicInstanceList(instances);
 	}
 

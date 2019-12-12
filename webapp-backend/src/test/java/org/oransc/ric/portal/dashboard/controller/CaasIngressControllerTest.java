@@ -25,6 +25,8 @@ import java.net.URI;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +37,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	@Test
 	public void pltTest() {
 		final String nsPlt = "ricplt";
-		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
+		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, CaasIngressController.PODS_METHOD,
 				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_PLT, CaasIngressController.PP_NAMESPACE,
 				nsPlt);
 		logger.info("Invoking {}", uri);
@@ -47,7 +50,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	@Test
 	public void unknownClusterTest() {
 		final String nsPlt = "ricplt";
-		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
+		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, CaasIngressController.PODS_METHOD,
 				CaasIngressController.PP_CLUSTER, "cluster", CaasIngressController.PP_NAMESPACE, nsPlt);
 		logger.info("Invoking {}", uri);
 		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
@@ -58,7 +62,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	@Test
 	public void bogusNsTest() {
 		final String ns = "unknown";
-		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
+		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, CaasIngressController.PODS_METHOD,
 				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_PLT, CaasIngressController.PP_NAMESPACE,
 				ns);
 		logger.info("Invoking {}", uri);

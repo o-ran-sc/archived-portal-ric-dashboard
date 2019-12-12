@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,6 +78,22 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 		} else {
 			return new ResponseEntity<>(new ErrorTransport(500, ex), HttpStatus.BAD_GATEWAY);
 		}
+	}
+
+	/**
+	 * Logs a warning if an invalid RIC instance key is used.
+	 * 
+	 * @param ex
+	 *                    The exception
+	 * @param request
+	 *                    The original request
+	 * @return A response entity with status code 400
+	 */
+	@ExceptionHandler({ UnknownInstanceException.class })
+	public final ResponseEntity<ErrorTransport> handleUnknownInstanceException(Exception ex, WebRequest request) {
+		log.warn("handleUnknownInstanceException: request {}, exception {}", request.getDescription(false),
+				ex.toString());
+		return new ResponseEntity<>(new ErrorTransport(400, ex), HttpStatus.BAD_REQUEST);
 	}
 
 }

@@ -24,6 +24,7 @@ import java.lang.invoke.MethodHandles;
 import javax.servlet.http.HttpServletResponse;
 
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.SimpleKubernetesClientBuilder;
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +60,7 @@ public class CaasIngressController {
 	// Publish constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/caas-ingress";
 	// Endpoints
-	public static final String PODS_METHOD = "/pods";
+	public static final String PODS_METHOD = "pods";
 	// Path parameters
 	public static final String PP_CLUSTER = "cluster";
 	public static final String PP_NAMESPACE = "namespace";
@@ -67,28 +68,31 @@ public class CaasIngressController {
 	public static final String CLUSTER_PLT = "plt";
 	public static final String CLUSTER_RIC = "ric"; // alternate for PLT
 
-	private final SimpleKubernetesClient ciPltClient;
+	// Populated by the autowired constructor
+	private final SimpleKubernetesClientBuilder simpleKubernetesClientBuilder;
 
 	@Autowired
-	public CaasIngressController(final SimpleKubernetesClient ciPltApi) {
-		Assert.notNull(ciPltApi, "pltApi must not be null");
-		this.ciPltClient = ciPltApi;
+	public CaasIngressController(final SimpleKubernetesClientBuilder simpleKubernetesClientBuilder) {
+		Assert.notNull(simpleKubernetesClientBuilder, "builder must not be null");
+		this.simpleKubernetesClientBuilder = simpleKubernetesClientBuilder;
 		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with plt api {}", ciPltClient.getClass().getName());
+			logger.debug("ctor: configured with builder type {}", simpleKubernetesClientBuilder.getClass().getName());
 	}
 
 	/*
 	 * No need to parse the V1PodList, just pass thru as a string.
 	 */
 	@ApiOperation(value = "Gets list of pods in the specified cluster for the specified namespace", response = String.class)
-	@GetMapping(PODS_METHOD + "/" + PP_CLUSTER + "/{" + PP_CLUSTER + "}" + "/" + PP_NAMESPACE + "/{" + PP_NAMESPACE
-			+ "}")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + PODS_METHOD
+			+ "/" + PP_CLUSTER + "/{" + PP_CLUSTER + "}" + "/" + PP_NAMESPACE + "/{" + PP_NAMESPACE + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public String listPods(@PathVariable(PP_CLUSTER) String cluster, @PathVariable(PP_NAMESPACE) String namespace,
-			HttpServletResponse response) {
-		logger.debug("listPods: cluster {}, namespace {}", cluster, namespace);
+	public String listPods(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, //
+			@PathVariable(PP_CLUSTER) String cluster, //
+			@PathVariable(PP_NAMESPACE) String namespace, HttpServletResponse response) {
+		logger.debug("listPods: instance {} cluster {} namespace {}", instanceKey, cluster, namespace);
+		SimpleKubernetesClient client = simpleKubernetesClientBuilder.getSimpleKubernetesClient(instanceKey);
 		if (CLUSTER_PLT.equalsIgnoreCase(cluster) || CLUSTER_RIC.equalsIgnoreCase(cluster)) {
-			return ciPltClient.listPods(namespace);
+			return client.listPods(namespace);
 		} else {
 			logger.warn("listPods: unknown cluster {}", cluster);
 			response.setStatus(HttpStatus.BAD_REQUEST.value());

@@ -21,9 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.NodebApi;
-import org.oransc.ric.e2mgr.client.invoker.ApiClient;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +29,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
- * Creates an E2 manager client as a bean to be managed by the Spring container.
+ * Creates an E2 manager client builder as a bean to be managed by the Spring
+ * container.
  */
 @Configuration
 @Profile("!test")
@@ -44,33 +41,21 @@ public class E2ManagerConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String e2mgrUrl;
+	private final String urlSuffix;
+	private final RicInstanceList instanceConfig;
 
 	@Autowired
-	public E2ManagerConfiguration(@Value("${e2mgr.url.prefix}") final String urlPrefix,
-			@Value("${e2mgr.url.suffix}") final String urlSuffix) {
-		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		e2mgrUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
-				.toString();
-		logger.info("Configuring E2 Manager at URL {}", e2mgrUrl);
-	}
-
-	private ApiClient apiClient() {
-		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(e2mgrUrl);
-		return apiClient;
+	public E2ManagerConfiguration(@Value("${e2mgr.url.suffix}") final String urlSuffix,
+			final RicInstanceList instanceConfig) {
+		logger.info("ctor: URL suffix {}", urlSuffix);
+		this.urlSuffix = urlSuffix;
+		this.instanceConfig = instanceConfig;
 	}
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public HealthCheckApi e2MgrHealthCheckApi() {
-		return new HealthCheckApi(apiClient());
-	}
-
-	@Bean
-	// The bean (method) name must be globally unique
-	public NodebApi e2MgrNodebApi() {
-		return new NodebApi(apiClient());
+	public E2ManagerApiBuilder e2ManagerApiBuilder() {
+		return new E2ManagerApiBuilder(instanceConfig, urlSuffix);
 	}
 
 }

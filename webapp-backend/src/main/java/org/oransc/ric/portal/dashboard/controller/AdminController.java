@@ -28,10 +28,10 @@ import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
-import org.oransc.ric.portal.dashboard.config.RICInstanceConfiguration;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
-import org.oransc.ric.portal.dashboard.model.InstanceTransport;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicInstanceKeyName;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +73,7 @@ public class AdminController {
 	private DashboardUserManager dashboardUserManager;
 
 	@Autowired
-	private RICInstanceConfiguration instanceConfig;
+	private RicInstanceList instanceConfig;
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
@@ -102,12 +102,12 @@ public class AdminController {
 		return dashboardUserManager.getUsers();
 	}
 
-	@ApiOperation(value = "Gets the list of RIC instances.", response = InstanceTransport.class, responseContainer = "List")
+	@ApiOperation(value = "Gets the list of RIC instances.", response = RicInstanceKeyName.class, responseContainer = "List")
 	@GetMapping(INSTANCE_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public List<InstanceTransport> getInstances() {
+	public List<RicInstanceKeyName> getInstances() {
 		logger.debug("getInstances");
-		return instanceConfig.getInstances();
+		return instanceConfig.getKeyNameList();
 	}
 
 	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
