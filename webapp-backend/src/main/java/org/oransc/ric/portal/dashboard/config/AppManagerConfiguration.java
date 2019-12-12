@@ -21,9 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.plt.appmgr.client.api.HealthApi;
-import org.oransc.ric.plt.appmgr.client.api.XappApi;
-import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +29,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
- * Creates an xApp manager client as a bean to be managed by the Spring
+ * Creates an App manager client builder as a bean to be managed by the Spring
  * container.
  */
 @Configuration
@@ -45,38 +41,21 @@ public class AppManagerConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String xappMgrUrl;
+	private final String urlSuffix;
+	private final RicInstanceList instanceConfig;
 
 	@Autowired
-	public AppManagerConfiguration(@Value("${appmgr.url.prefix}") final String urlPrefix,
-			@Value("${appmgr.url.suffix}") final String urlSuffix) {
-		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		xappMgrUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
-				.toString();
-		logger.info("Configuring App Manager at URL {}", xappMgrUrl);
+	public AppManagerConfiguration(@Value("${appmgr.url.suffix}") final String urlSuffix,
+			final RicInstanceList instanceConfig) {
+		logger.info("ctor: URL suffix {}", urlSuffix);
+		this.urlSuffix = urlSuffix;
+		this.instanceConfig = instanceConfig;
 	}
 
-	private ApiClient apiClient() {
-		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(xappMgrUrl);
-		return apiClient;
-	}
-
-	/**
-	 * @return A HealthApi with an ApiClient configured from properties
-	 */
 	@Bean
 	// The bean (method) name must be globally unique
-	public HealthApi xappMgrHealthApi() {
-		return new HealthApi(apiClient());
+	public AppManagerApiBuilder appManagerApiBuilder() {
+		return new AppManagerApiBuilder(instanceConfig, urlSuffix);
 	}
 
-	/**
-	 * @return An XappApi with an ApiClient configured from properties
-	 */
-	@Bean
-	// The bean (method) name must be globally unique
-	public XappApi xappMgrXappApi() {
-		return new XappApi(apiClient());
-	}
 }

@@ -30,6 +30,8 @@ import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
 import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
 import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 import org.oransc.ric.portal.dashboard.model.DashboardDeployableXapps;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -44,7 +46,7 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.VERSION_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
 		Assertions.assertFalse(st.getData().toString().isEmpty());
@@ -52,7 +54,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void healthAliveTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.HEALTH_ALIVE_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.HEALTH_ALIVE_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
@@ -60,7 +63,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void healthReadyTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.HEALTH_READY_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.HEALTH_READY_METHOD);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = restTemplate.getForEntity(uri, Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
@@ -68,7 +72,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void appListTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_LIST_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_LIST_METHOD);
 		logger.info("Invoking {}", uri);
 		DashboardDeployableXapps apps = testRestTemplateStandardRole().getForObject(uri,
 				DashboardDeployableXapps.class);
@@ -77,7 +82,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void appStatusesTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
 		AllDeployedXapps apps = testRestTemplateStandardRole().getForObject(uri, AllDeployedXapps.class);
 		Assertions.assertFalse(apps.isEmpty());
@@ -85,7 +91,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void appStatusTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
 		Xapp app = testRestTemplateStandardRole().getForObject(uri, Xapp.class);
 		Assertions.assertFalse(app.getName().isEmpty());
@@ -93,7 +100,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void deployAppTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
 		XAppInfo info = new XAppInfo();
 		Xapp app = testRestTemplateAdminRole().postForObject(uri, info, Xapp.class);
@@ -102,7 +110,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void undeployAppTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.XAPPS_METHOD, "app");
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_METHOD, "app");
 		logger.info("Invoking {}", uri);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null,
 				Void.class);
@@ -111,7 +120,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void getConfigTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
 		AllXappConfig config = testRestTemplateStandardRole().getForObject(uri, AllXappConfig.class);
 		Assertions.assertFalse(config.isEmpty());
@@ -119,7 +129,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void createConfigTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD);
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
 		XAppConfig newConfig = new XAppConfig();
 		XAppConfig response = testRestTemplateAdminRole().postForObject(uri, newConfig, XAppConfig.class);
@@ -128,7 +139,8 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void deleteConfigTest() {
-		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, AppManagerController.CONFIG_METHOD, "app");
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH,  DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.CONFIG_METHOD, "app");
 		logger.info("Invoking {}", uri);
 		ConfigMetadata delConfig = new ConfigMetadata();
 		HttpEntity<ConfigMetadata> entity = new HttpEntity<>(delConfig);

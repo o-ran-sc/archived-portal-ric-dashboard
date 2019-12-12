@@ -42,7 +42,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
- * Creates a mock implementation of the A1 mediator client API.
+ * Creates a mock implementation of the A1 mediator client builder.
  */
 @Configuration
 @Profile("test")
@@ -54,13 +54,14 @@ public class A1MediatorMockConfiguration {
 	public static final String AC_CONTROL_NAME = "admission_control_policy";
 
 	// Simulate remote method delay for UI testing
-	@Value("${mock.config.delay:0}")
-	private int delayMs;
+	private final int delayMs;
 
+	// Mock values
 	private final Map<String, String> appPolicyMap;
 
-	public A1MediatorMockConfiguration() {
-		logger.info("Configuring mock A1 Mediator");
+	public A1MediatorMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
+		logger.info("ctor: mock A1 Mediator configured with delay {}", delayMs);
+		this.delayMs = delayMs;
 		appPolicyMap = new HashMap<>();
 		// Define a mock AC policy
 		ObjectMapper mapper = new ObjectMapper();
@@ -80,9 +81,7 @@ public class A1MediatorMockConfiguration {
 		return mockClient;
 	}
 
-	@Bean
-	// Use the same name as regular configuration
-	public A1MediatorApi a1MediatorApi() {
+	private A1MediatorApi a1MediatorApi() {
 		ApiClient apiClient = apiClient();
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
@@ -105,6 +104,15 @@ public class A1MediatorMockConfiguration {
 			return null;
 		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
 		return mockApi;
+	}
+
+	@Bean
+	// Must use the same name as the non-mock configuration
+	public A1MediatorApiBuilder a1MediatorApiBuilder() {
+		final A1MediatorApi mockApi = a1MediatorApi();
+		final A1MediatorApiBuilder mockBuilder = mock(A1MediatorApiBuilder.class);
+		when(mockBuilder.getA1MediatorApi(any(String.class))).thenReturn(mockApi);
+		return mockBuilder;
 	}
 
 }

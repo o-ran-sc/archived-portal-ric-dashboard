@@ -50,7 +50,6 @@ portalapi:
 # A1 Mediator
 a1med:
     url:
-        prefix: http://jar-app-props-default-A1-URL-prefix
         suffix:
 
 # App Manager

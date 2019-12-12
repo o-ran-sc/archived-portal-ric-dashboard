@@ -22,8 +22,8 @@ package org.oransc.ric.portal.dashboard;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.portal.dashboard.config.RICInstanceConfiguration;
-import org.oransc.ric.portal.dashboard.model.InstanceTransport;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicInstanceKeyName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class DashboardApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Autowired
-	private RICInstanceConfiguration instanceConfig;
+	private RicInstanceList instanceConfig;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
@@ -50,7 +50,7 @@ public class DashboardApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// Ensure output appears on the console by using level WARN
 		logger.warn("run: version '{}'", getImplementationVersion(MethodHandles.lookup().lookupClass()));
-		for (InstanceTransport it : instanceConfig.getInstances())
+		for (RicInstanceKeyName it : instanceConfig.getInstances())
 			logger.warn("run: RIC instance {}", it);
 	}
 

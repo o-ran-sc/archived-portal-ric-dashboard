@@ -21,9 +21,9 @@
 package org.oransc.ric.portal.dashboard.model;
 
 /**
- * Trivial model to transport key-name pairs that represent RIC instances.
+ * Transport model for RIC instance key-name pairs.
  */
-public class InstanceTransport implements IDashboardResponse {
+public class RicInstanceKeyName implements IDashboardResponse {
 
 	private String key;
 	private String name;
@@ -31,7 +31,7 @@ public class InstanceTransport implements IDashboardResponse {
 	/**
 	 * Builds an empty object.
 	 */
-	public InstanceTransport() {
+	public RicInstanceKeyName() {
 		// no-arg constructor
 	}
 
@@ -43,7 +43,7 @@ public class InstanceTransport implements IDashboardResponse {
 	 * @param name
 	 *                 Name
 	 */
-	public InstanceTransport(String key, String name) {
+	public RicInstanceKeyName(String key, String name) {
 		this.key = key;
 		this.name = name;
 	}

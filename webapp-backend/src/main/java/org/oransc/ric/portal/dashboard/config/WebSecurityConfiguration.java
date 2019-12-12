@@ -23,6 +23,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
@@ -92,12 +93,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/swagger-ui.html", //
 			"/webjars/**", //
 			PortalApiConstants.API_PREFIX + "/**", //
-			A1MediatorController.CONTROLLER_PATH + "/" + A1MediatorController.VERSION_METHOD, //
+			A1MediatorController.CONTROLLER_PATH + "/" + DashboardConstants.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //
-			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.HEALTH_ALIVE_METHOD, //
-			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.HEALTH_READY_METHOD, //
-			AppManagerController.CONTROLLER_PATH + "/" + AppManagerController.VERSION_METHOD, //
+			AppManagerController.CONTROLLER_PATH + "/" + DashboardConstants.RIC_INSTANCE_KEY + "/*/" + AppManagerController.HEALTH_ALIVE_METHOD, //
+			AppManagerController.CONTROLLER_PATH + "/" + DashboardConstants.RIC_INSTANCE_KEY + "/*/" + AppManagerController.HEALTH_READY_METHOD, //
+			AppManagerController.CONTROLLER_PATH + "/" + DashboardConstants.VERSION_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.HEALTH_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + E2ManagerController.VERSION_METHOD, //
 			SimpleErrorController.ERROR_PATH };

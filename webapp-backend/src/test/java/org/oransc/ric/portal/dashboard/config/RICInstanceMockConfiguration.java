@@ -25,42 +25,28 @@ import java.util.List;
 
 import org.oransc.ric.portal.dashboard.model.RicInstance;
 import org.oransc.ric.portal.dashboard.model.RicInstanceList;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 /**
- * Publishes a list of RIC instances from configuration, written as a YAML list
- * in application properties like this:
- * 
- * <pre>
- * ric-instance-list:
-    instances:
-        -
-          key: key1
-          name: Friendly Name One
-          urlPrefix: http://foo.bar.one/
-        -
-          key: key2
-          name: Friendly Name Two
-          urlPrefix: http://foo.bar.two/
- * </pre>
+ * Publishes a mock list of RIC instances.
  */
-@Configuration
-@ConfigurationProperties(prefix = "ric-instance-list")
-@Profile("!test")
-public class RICInstanceConfiguration {
+@Component
+@Profile("test")
+public class RICInstanceMockConfiguration {
 
-	private List<RicInstance> instances = new ArrayList<>();
-
-	// Called by spring with config data
-	public void setInstances(List<RicInstance> instances) {
-		this.instances = instances;
-	}
-
+	// Publish constants for use in tests
+	public static final String INSTANCE_KEY_1 = "i1";
+	public static final String INSTANCE_KEY_2 = "i2";
+	
 	@Bean
 	public RicInstanceList ricInstanceList() {
+		List<RicInstance> instances = new ArrayList<>();
+		RicInstance i1 = new RicInstance(INSTANCE_KEY_1, "Friendly Name One", "http://foo.bar/one/");
+		instances.add(i1);
+		RicInstance i2 = new RicInstance(INSTANCE_KEY_2, "Friendly Name Two", "http://foo.bar/two/");
+		instances.add(i2);
 		return new RicInstanceList(instances);
 	}
 

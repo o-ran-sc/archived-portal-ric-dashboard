@@ -26,7 +26,9 @@ import java.net.URI;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.A1MediatorMockConfiguration;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +45,7 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void versionTest() {
-		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, A1MediatorController.VERSION_METHOD);
+		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
 		SuccessTransport st = restTemplate.getForObject(uri, SuccessTransport.class);
 		Assertions.assertFalse(st.getData().toString().isEmpty());
@@ -51,7 +53,8 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void getTest() throws IOException {
-		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, A1MediatorController.PP_POLICIES,
+		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
 				A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
@@ -62,12 +65,13 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 
 	@Test
 	public void putTest() throws IOException {
+		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
+				A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode body = mapper.readTree("{ \"policy\" : true }");
-		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, A1MediatorController.PP_POLICIES,
-				A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
-		logger.info("Invoking {}", uri);
+		logger.info("Invoking {} with body {}", uri, body);
 		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
 				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());

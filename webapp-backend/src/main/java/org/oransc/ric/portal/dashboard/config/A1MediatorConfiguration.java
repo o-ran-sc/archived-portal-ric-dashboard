@@ -21,8 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
-import org.oransc.ric.a1med.client.invoker.ApiClient;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +29,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.DefaultUriBuilderFactory;
 
 /**
- * Creates an A1 mediator client as a bean to be managed by the Spring
+ * Creates an A1 mediator client builder as a bean to be managed by the Spring
  * container.
  */
 @Configuration
@@ -44,27 +41,21 @@ public class A1MediatorConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String a1medUrl;
+	private final String urlSuffix;
+	private final RicInstanceList instanceConfig;
 
 	@Autowired
-	public A1MediatorConfiguration(@Value("${a1med.url.prefix}") final String urlPrefix, //
-			@Value("${a1med.url.suffix}") final String urlSuffix) {
-		logger.debug("ctor prefix '{}' suffix '{}'", urlPrefix, urlSuffix);
-		a1medUrl = new DefaultUriBuilderFactory(urlPrefix.trim()).builder().path(urlSuffix.trim()).build().normalize()
-				.toString();
-		logger.info("Configuring A1 Mediator at URL {}", a1medUrl);
-	}
-
-	private ApiClient apiClient() {
-		ApiClient apiClient = new ApiClient(new RestTemplate());
-		apiClient.setBasePath(a1medUrl);
-		return apiClient;
+	public A1MediatorConfiguration(@Value("${a1med.url.suffix}") final String urlSuffix,
+			final RicInstanceList instanceConfig) {
+		logger.info("ctor: URL suffix {}", urlSuffix);
+		this.urlSuffix = urlSuffix;
+		this.instanceConfig = instanceConfig;
 	}
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public A1MediatorApi a1MediatorApi() {
-		return new A1MediatorApi(apiClient());
+	public A1MediatorApiBuilder a1MediatorApiBuilder() {
+		return new A1MediatorApiBuilder(instanceConfig, urlSuffix);
 	}
 
 }
