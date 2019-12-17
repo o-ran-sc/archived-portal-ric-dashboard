@@ -44,35 +44,23 @@ public class CaasIngressConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Populated by the autowired constructor
-	private final String caasIngressAuxUrl;
 	private final String caasIngressPltUrl;
 
 	@Autowired
 	public CaasIngressConfiguration( //
-			@Value("${caasingress.aux.url.prefix}") final String auxUrlPrefix, //
-			@Value("${caasingress.aux.url.suffix}") final String auxUrlSuffix, //
 			@Value("${caasingress.plt.url.prefix}") final String pltUrlPrefix,
 			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix,
 			@Value("${caasingress.insecure}") final Boolean insecureFlag) //
 			throws KeyManagementException, NoSuchAlgorithmException {
-		logger.debug("ctor caasingress aux prefix '{}' suffix '{}'", auxUrlPrefix, auxUrlSuffix);
 		logger.debug("ctor caasingress plt prefix '{}' suffix '{}'", pltUrlPrefix, pltUrlSuffix);
 		logger.debug("ctor caasingress insecure flag {}", insecureFlag);
-		caasIngressAuxUrl = new DefaultUriBuilderFactory(auxUrlPrefix.trim()).builder().path(auxUrlSuffix.trim())
-				.build().normalize().toString();
 		caasIngressPltUrl = new DefaultUriBuilderFactory(pltUrlPrefix.trim()).builder().path(pltUrlSuffix.trim())
 				.build().normalize().toString();
-		logger.info("Configuring CAAS-Ingress URLs: aux {}, plt {}", caasIngressAuxUrl, caasIngressPltUrl);
+		logger.info("Configuring CAAS-Ingress URL: plt {}", caasIngressPltUrl);
 		if (insecureFlag != null && insecureFlag) {
 			logger.warn("ctor: insecure flag set, disabling SSL checks");
 			HttpsURLConnectionUtils.turnOffSslChecking();
 		}
-	}
-
-	@Bean
-	// The bean (method) name must be globally unique
-	public SimpleKubernetesClient ciAuxApi() {
-		return new SimpleKubernetesClient(caasIngressAuxUrl);
 	}
 
 	@Bean

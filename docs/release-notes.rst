@@ -5,11 +5,12 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.0, 2 Dec 2019
--------------------------
+Version 2.0.0, 22 Dec 2019
+--------------------------
 * Change application properties file to YAML format
 * Add mock list of RIC instances to application properties
 * Add admin controller method to fetch list of RIC instances
+* Drop AUX cluster container list fetched via CAAS Ingress
 
 Version 1.3.0, 26 Nov 2019
 --------------------------

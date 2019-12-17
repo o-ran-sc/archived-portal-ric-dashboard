@@ -69,10 +69,6 @@ e2mgr:
 caasingress:
     # Set insecure=true to disable SSL certificate and hostname checking
     insecure: true
-    aux:
-        url:
-            prefix: https://jar-app-props-default-caas-ingress-aux-URL
-            suffix: /api
     plt:
         url:
             prefix: https://jar-app-props-default-caas-ingress-plt-URL

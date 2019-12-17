@@ -33,18 +33,6 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
-	public void auxTest() {
-		final String nsAux = "ricaux";
-		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,
-				CaasIngressController.PP_CLUSTER, CaasIngressController.CLUSTER_AUX, CaasIngressController.PP_NAMESPACE,
-				nsAux);
-		logger.info("Invoking {}", uri);
-		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
-		Assertions.assertFalse(s.isEmpty());
-		Assertions.assertTrue(s.contains(nsAux));
-	}
-
-	@Test
 	public void pltTest() {
 		final String nsPlt = "ricplt";
 		URI uri = buildUri(null, CaasIngressController.CONTROLLER_PATH, CaasIngressController.PODS_METHOD,

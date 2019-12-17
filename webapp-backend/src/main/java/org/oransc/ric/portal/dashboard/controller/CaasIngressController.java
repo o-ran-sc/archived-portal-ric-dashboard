@@ -64,22 +64,17 @@ public class CaasIngressController {
 	public static final String PP_CLUSTER = "cluster";
 	public static final String PP_NAMESPACE = "namespace";
 	// Parameter values
-	public static final String CLUSTER_AUX = "aux";
 	public static final String CLUSTER_PLT = "plt";
 	public static final String CLUSTER_RIC = "ric"; // alternate for PLT
 
-	private final SimpleKubernetesClient ciAuxClient;
 	private final SimpleKubernetesClient ciPltClient;
 
 	@Autowired
-	public CaasIngressController(final SimpleKubernetesClient ciAuxApi, final SimpleKubernetesClient ciPltApi) {
-		Assert.notNull(ciAuxApi, "auxApi must not be null");
+	public CaasIngressController(final SimpleKubernetesClient ciPltApi) {
 		Assert.notNull(ciPltApi, "pltApi must not be null");
-		this.ciAuxClient = ciAuxApi;
 		this.ciPltClient = ciPltApi;
 		if (logger.isDebugEnabled())
-			logger.debug("ctor: configured with aux api {}, plt api {}", ciAuxClient.getClass().getName(),
-					ciPltClient.getClass().getName());
+			logger.debug("ctor: configured with plt api {}", ciPltClient.getClass().getName());
 	}
 
 	/*
@@ -92,9 +87,7 @@ public class CaasIngressController {
 	public String listPods(@PathVariable(PP_CLUSTER) String cluster, @PathVariable(PP_NAMESPACE) String namespace,
 			HttpServletResponse response) {
 		logger.debug("listPods: cluster {}, namespace {}", cluster, namespace);
-		if (CLUSTER_AUX.equalsIgnoreCase(cluster)) {
-			return ciAuxClient.listPods(namespace);
-		} else if (CLUSTER_PLT.equalsIgnoreCase(cluster) || CLUSTER_RIC.equalsIgnoreCase(cluster)) {
+		if (CLUSTER_PLT.equalsIgnoreCase(cluster) || CLUSTER_RIC.equalsIgnoreCase(cluster)) {
 			return ciPltClient.listPods(namespace);
 		} else {
 			logger.warn("listPods: unknown cluster {}", cluster);

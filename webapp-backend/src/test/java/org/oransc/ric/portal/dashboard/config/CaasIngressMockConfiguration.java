@@ -50,13 +50,11 @@ public class CaasIngressMockConfiguration {
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
-	private final String auxPods;
 	private final String pltPods;
 
 	public CaasIngressMockConfiguration() throws IOException {
 		logger.info("Configuring mock CAAS-Ingres clients");
 		// Files in src/test/resources
-		auxPods = readDataFromPath("caas-ingress-ricaux-pods.json");
 		pltPods = readDataFromPath("caas-ingress-ricplt-pods.json");
 	}
 
@@ -76,17 +74,6 @@ public class CaasIngressMockConfiguration {
 		reader.close();
 		is.close();
 		return sb.toString();
-	}
-
-	@Bean
-	// Use the same name as regular configuration
-	public SimpleKubernetesClient ciAuxApi() throws IOException {
-		SimpleKubernetesClient mockClient = mock(SimpleKubernetesClient.class);
-		doAnswer(inv -> {
-			logger.debug("listPods for aux");
-			return auxPods;
-		}).when(mockClient).listPods("ricaux");
-		return mockClient;
 	}
 
 	@Bean
