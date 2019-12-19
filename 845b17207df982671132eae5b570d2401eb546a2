@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4fe0b84_b9991094",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "I really like this -- it seems to be the bare minimum, and a component does not need to know about initializing the service etc.\n\nNow the challenge is making all the other parts work!",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 3
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38ec4cc_25ed35c3",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "Please use capital L here",
+      "range": {
+        "startLine": 49,
+        "startChar": 44,
+        "endLine": 49,
+        "endChar": 45
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eae7477e_796588e9",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "Probably have to trigger the event here also, to help with case of page reload? Or will that do harm??",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d8c3e15_0d5a6639",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "Please don\u0027t hard-code this repeatedly, use a private constant in this class",
+      "range": {
+        "startLine": 35,
+        "startChar": 94,
+        "endLine": 35,
+        "endChar": 100
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c567937_124db44f",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "See above re constant",
+      "range": {
+        "startLine": 39,
+        "startChar": 93,
+        "endLine": 39,
+        "endChar": 99
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1832bd66_2d89739a",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "See above re constant",
+      "range": {
+        "startLine": 44,
+        "startChar": 77,
+        "endLine": 44,
+        "endChar": 85
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5864a066_47403487",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "See above re constant",
+      "range": {
+        "startLine": 48,
+        "startChar": 79,
+        "endLine": 48,
+        "endChar": 87
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27a12fd9_9f9bf143",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "See above re constant",
+      "range": {
+        "startLine": 53,
+        "startChar": 58,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "614405a7_df99ffa6",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "See above re constant",
+      "range": {
+        "startLine": 57,
+        "startChar": 76,
+        "endLine": 57,
+        "endChar": 84
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb1b3f8a_3fe57ca1",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "Please document that this may return an empty string, in which case it should not be used!",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 3
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "168944cc_bda2595f",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-19T15:03:15Z",
+      "side": 1,
+      "message": "If this.selectedInstanceKey has an empty string, this function returns garbage. How is the caller supposed to handle the situation?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 5
+      },
+      "revId": "845b17207df982671132eae5b570d2401eb546a2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
