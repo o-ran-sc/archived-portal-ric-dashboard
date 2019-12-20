@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b49b3ed6_dd0f2369",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Would you please use today\u0027s date, 20 Dec ?",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc990b6_7e98dc3d",
+        "filename": "pom.xml",
+        "patchSetId": 20
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "I think maybe you should not have committed this change!  :)",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58707704_c2c27996",
+        "filename": "webapp-frontend/src/app/ac-xapp/ac-xapp.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Should pass along the instanceKey to getPolicy() ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 27,
+        "endLine": 63,
+        "endChar": 38
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8f08c81_997bbdfb",
+        "filename": "webapp-frontend/src/app/app-control/app-control.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Why does this use tab characters, when the old lines use spaces?  Please be consistent and go back to spaces.",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 2
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83c64653_d05288d6",
+        "filename": "webapp-frontend/src/app/app-control/app-control.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "More tabs that should be spaces",
+      "range": {
+        "startLine": 90,
+        "startChar": 1,
+        "endLine": 90,
+        "endChar": 5
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ba42685_39ed1cbf",
+        "filename": "webapp-frontend/src/app/app-control/app-control.datasource.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Maybe a space after the colon, please?",
+      "range": {
+        "startLine": 58,
+        "startChar": 22,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53624356_004e38fa",
+        "filename": "webapp-frontend/src/app/app-control/app-control.datasource.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Pls use spaces not tab",
+      "range": {
+        "startLine": 58,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 3
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a21b435_26ec6191",
+        "filename": "webapp-frontend/src/app/caas-ingress/caas-ingress.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Should this also be canceled in a ngOnDestroy method?\n\n  ngOnDestroy() {\n    this.instanceChange.unsubscribe();\n  }",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 39
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b19be7_82b02af2",
+        "filename": "webapp-frontend/src/app/catalog/catalog.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Pls use space not tab",
+      "range": {
+        "startLine": 47,
+        "startChar": 1,
+        "endLine": 47,
+        "endChar": 3
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af4d6beb_3d7fb2fe",
+        "filename": "webapp-frontend/src/app/catalog/catalog.datasource.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Please mind the whitespace",
+      "range": {
+        "startLine": 49,
+        "startChar": 1,
+        "endLine": 49,
+        "endChar": 6
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58571374_ff3aa451",
+        "filename": "webapp-frontend/src/app/ran-control/ran-control.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "No tabs here, glad to see :)",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a7f1df3_e6837227",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Please don\u0027t add extra blank lines. Here there are two in a row.  Just one is enuf, pls.",
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ad792e7_c28ad35b",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "I know we corresponded about this via Gerrit.  I still think this event, the first arrival, the first set of the selected instance, should call the changeInstance() function defined below instead of just assigning the value.  But you had a good reason for not doing so.  I wish I could remember :/",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "975b8ac0_b4e39cc4",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Please drop tabs, go back to spaces",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 3
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec7d94ef_ad64cd92",
+        "filename": "webapp-frontend/src/app/services/caas-ingress/caas-ingress.service.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "This looks wrong to me, the service should accept the path.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 77
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "580f9e2d_8116f156",
+        "filename": "webapp-frontend/src/app/services/caas-ingress/caas-ingress.service.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "Should not be here",
+      "range": {
+        "startLine": 48,
+        "startChar": 3,
+        "endLine": 48,
+        "endChar": 63
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38932c8f_00cc272e",
+        "filename": "webapp-frontend/src/app/services/e2-mgr/e2-mgr.service.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "This service (E2) should not import ISS",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8499a0e_d4e95c05",
+        "filename": "webapp-frontend/src/app/services/e2-mgr/e2-mgr.service.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T17:50:50Z",
+      "side": 1,
+      "message": "The version method is not specific to a RIC instance.  This should not be using an instance key.",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 93
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
