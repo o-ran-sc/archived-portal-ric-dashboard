@@ -295,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "7b1b8cb3_d62cfdd6",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-20T18:49:48Z",
+      "side": 1,
+      "message": "For that part, because in the pervious design, we decided to save instanceArray in cache. And multiple components will call getInstanceArray method. And I am not sure which component will finish it first. So I deviced to init selectedInstanceKey value in getInstanceArray. \n\n  getInstanceArray(): Observable\u003cRicInstance[]\u003e {\n    if (this.instanceArray) {\n      return this.instanceArray;\n    }\n    return this.instanceArray \u003d this.httpClient.get\u003cRicInstance[]\u003e(this.basePath)\n      .pipe(\n        tap(ricInstanceArray \u003d\u003e {\n          this.initselectedInstanceKey(ricInstanceArray[0].key);\n        }),\n        shareReplay(1)\n      );\n  }\n\nHere just set the init value of the selector. But not call updateSelectedInstance, and trigger the instance key chage .\n\nRight now, since only RD component will call that getInstanceArray(), I can remove the pipe from getInstanceArray() and let this rd component update the SelectedInstance.\n\nWhat do you think?",
+      "parentUuid": "7ad792e7_c28ad35b",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 56
+      },
+      "revId": "9193f87e8d671710c0f8cddf979a0b4e50bb4f37",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "975b8ac0_b4e39cc4",
         "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
         "patchSetId": 20
