@@ -22,6 +22,30 @@
       "revId": "fefa4c290806aa69e8fde306b8b8580ea374177d",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c80fa275_247c91d3",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-20T15:00:05Z",
+      "side": 1,
+      "message": "Hi Chris, what\u0027s the reason of this ideal didn\u0027t work?  Is that because the path pattern not always be api/componment/ric/key?",
+      "parentUuid": "768a8382_7171f370",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 3
+      },
+      "revId": "fefa4c290806aa69e8fde306b8b8580ea374177d",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
