@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9f39891b_b13bc4be",
+        "filename": "webapp-frontend/src/app/services/ac-xapp/ac-xapp.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-20T20:13:27Z",
+      "side": 1,
+      "message": "Is this the api pattern api/a1-p/version?\nThis method never be called, should we keep that?",
+      "parentUuid": "36a7994d_b92e7905",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ab1c224f_dd14148c",
         "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
         "patchSetId": 22
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f6e3675b_15c44228",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-20T20:13:27Z",
+      "side": 1,
+      "message": "That is the real function we should call. Do you think we use enable it now, instead of read the local file.",
+      "parentUuid": "ab1c224f_dd14148c",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f26e0f74_a9b23aaa",
         "filename": "webapp-frontend/src/app/services/caas-ingress/caas-ingress.service.ts",
         "patchSetId": 22
@@ -59,6 +107,30 @@
       "writtenOn": "2019-12-20T19:39:45Z",
       "side": 1,
       "message": "This function is repeated in many controllers. Can it please be published somewhere and reused easily?",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 3
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "237cd0cb_cbe94c67",
+        "filename": "webapp-frontend/src/app/services/caas-ingress/caas-ingress.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2019-12-20T20:13:27Z",
+      "side": 1,
+      "message": "I will create a common service. Then put it there.",
+      "parentUuid": "f26e0f74_a9b23aaa",
       "range": {
         "startLine": 37,
         "startChar": 2,
