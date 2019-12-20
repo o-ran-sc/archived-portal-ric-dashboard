@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36a7994d_b92e7905",
+        "filename": "webapp-frontend/src/app/services/ac-xapp/ac-xapp.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T19:39:45Z",
+      "side": 1,
+      "message": "Please revert, the version endpoint is implemented solely the Dashboard backend, it does not call a remote RIC instance.",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1c224f_dd14148c",
+        "filename": "webapp-frontend/src/app/services/app-mgr/app-mgr.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T19:39:45Z",
+      "side": 1,
+      "message": "Please remove, don\u0027t comment out",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 44
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f26e0f74_a9b23aaa",
+        "filename": "webapp-frontend/src/app/services/caas-ingress/caas-ingress.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T19:39:45Z",
+      "side": 1,
+      "message": "This function is repeated in many controllers. Can it please be published somewhere and reused easily?",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 3
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38203dad_ad640f61",
+        "filename": "webapp-frontend/src/app/services/e2-mgr/e2-mgr.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T19:39:45Z",
+      "side": 1,
+      "message": "See other comment; again the Version is a back-end property, not a remote RIC instance feature",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a53298c_9bb4f51c",
+        "filename": "webapp-frontend/src/app/services/instance-selector/instance-selector.service.ts",
+        "patchSetId": 22
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2019-12-20T19:39:45Z",
+      "side": 1,
+      "message": "Please reformat to make this very important comment pretty.",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 138
+      },
+      "revId": "753f73c8cd70f868264f5c0e471a954ce3107929",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
