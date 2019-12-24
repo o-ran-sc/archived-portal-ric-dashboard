@@ -23,7 +23,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
 import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
-import { CommonService } from '../common/common.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,20 +32,20 @@ import { CommonService } from '../common/common.service';
 export class E2ManagerService {
 
   private component = 'e2mgr';
+  private nodebPath = 'nodeb';
 
   constructor(
-    private httpClient: HttpClient,
-    private commonSvc: CommonService) {
-    // injects to variable httpClient
+    private dashboardSvc: DashboardService,
+    private httpClient: HttpClient) {
   }
 
   /**
    * Gets E2 client version details
-   * @returns Observable that should yield a String
+   * @returns Observable that yields a String
    */
   getVersion(instanceKey: string): Observable<string> {
-    const url = 'api/e2mgr/version';
-    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+    const path = this.dashboardSvc.buildPath(this.component, null, 'version');
+    return this.httpClient.get<DashboardSuccessTransport>(path).pipe(
       // Extract the string here
       map(res => res['data'])
     );
@@ -53,11 +53,11 @@ export class E2ManagerService {
 
   /**
    * Gets RAN details
-   * @returns Observable that should yield an array of objects
+   * @returns Observable that yields an array of E2RanDetails objects
    */
   getRan(instanceKey: string): Observable<Array<E2RanDetails>> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'ran');
-    return this.httpClient.get<Array<E2RanDetails>>(url);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.nodebPath, 'ran');
+    return this.httpClient.get<Array<E2RanDetails>>(path);
   }
 
   /**
@@ -65,8 +65,8 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   endcSetup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'endc-setup');
-    return this.httpClient.post(url, req, { observe: 'response' });
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.nodebPath, 'endc-setup');
+    return this.httpClient.post(path, req, { observe: 'response' });
   }
 
   /**
@@ -74,8 +74,8 @@ export class E2ManagerService {
    * @returns Observable. On success there is no data, only a code.
    */
   x2Setup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'x2-setup');
-    return this.httpClient.post(url, req, { observe: 'response' });
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.nodebPath, 'x2-setup');
+    return this.httpClient.post(path, req, { observe: 'response' });
   }
 
   /**
@@ -83,8 +83,8 @@ export class E2ManagerService {
    * @returns Observable with body.
    */
   nodebPut(instanceKey: string): Observable<any> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'shutdown');
-    return this.httpClient.put(url, { observe: 'body' });
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.nodebPath, 'shutdown');
+    return this.httpClient.put(path, { observe: 'body' });
   }
 
 }

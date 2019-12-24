@@ -24,7 +24,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ACAdmissionIntervalControl, ACAdmissionIntervalControlAck } from '../../interfaces/ac-xapp.types';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
-import { CommonService } from '../common/common.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 /**
  * Services for calling the Dashboard's A1 endpoints to get/put AC policies.
@@ -39,18 +39,17 @@ export class ACXappService {
   private acPolicyName = 'admission_control_policy';
 
   constructor(
-    private httpClient: HttpClient,
-    private commonSvc: CommonService) {
-    // injects to variable httpClient
+    private dashboardSvc: DashboardService,
+    private httpClient: HttpClient) {
   }
 
   /**
-   * Gets version details
-   * @returns Observable that should yield a String
+   * Gets AC client version details
+   * @returns Observable that yields a String
    */
-  getVersion(): Observable<string> {
-    const url = 'api/a1-p/version'
-    return this.httpClient.get<DashboardSuccessTransport>(url).pipe(
+  getVersion(instanceKey: string): Observable<string> {
+    const path = this.dashboardSvc.buildPath(this.component, null, 'version');
+    return this.httpClient.get<DashboardSuccessTransport>(path).pipe(
       // Extract the string here
       map(res => res['data'])
     );
@@ -58,21 +57,21 @@ export class ACXappService {
 
   /**
    * Gets admission control policy.
-   * @returns Observable that should yield an ACAdmissionIntervalControl
+   * @returns Observable that yields an ACAdmissionIntervalControl
    */
   getPolicy(instanceKey: string): Observable<ACAdmissionIntervalControl> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);
-    return this.httpClient.get<ACAdmissionIntervalControl>(url);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyPath, this.acPolicyName);
+    return this.httpClient.get<ACAdmissionIntervalControl>(path);
   }
 
   /**
    * Puts admission control policy.
    * @param policy an instance of ACAdmissionIntervalControl
-   * @returns Observable that should yield a response code, no data
+   * @returns Observable that yields a response code, no data
    */
   putPolicy(instanceKey: string, policy: ACAdmissionIntervalControl): Observable<any> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);
-    return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyPath, this.acPolicyName);
+    return this.httpClient.put<ACAdmissionIntervalControlAck>(path, policy, { observe: 'response' });
   }
 
 }

@@ -23,6 +23,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 import { RicInstance } from '../../interfaces/dashboard.types';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +31,18 @@ import { RicInstance } from '../../interfaces/dashboard.types';
 export class InstanceSelectorService {
   private selectedInstanceKey: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private instanceArray: Observable<RicInstance[]>;
-  private basePath = 'api/admin/instance';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private dashboardSvc: DashboardService,
+    private httpClient: HttpClient) {
+  }
 
   getInstanceArray(): Observable<RicInstance[]> {
     if (this.instanceArray) {
       return this.instanceArray;
     }
-    return this.instanceArray = this.httpClient.get<RicInstance[]>(this.basePath)
+    const path = this.dashboardSvc.buildPath('admin', null, 'instance');
+    return this.instanceArray = this.httpClient.get<RicInstance[]>(path)
       .pipe(
         tap(ricInstanceArray => {
           this.initselectedInstanceKey(ricInstanceArray[0].key);

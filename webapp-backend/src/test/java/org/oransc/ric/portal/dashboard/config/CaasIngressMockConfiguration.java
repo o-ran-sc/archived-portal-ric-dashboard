@@ -51,14 +51,6 @@ public class CaasIngressMockConfiguration {
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
-	private final String pltPods;
-
-	public CaasIngressMockConfiguration() throws IOException {
-		logger.info("Configuring mock CAAS-Ingres clients");
-		// Files in src/test/resources
-		pltPods = readDataFromPath("caas-ingress-ricplt-pods.json");
-	}
-
 	private String readDataFromPath(String path) throws IOException {
 		InputStream is = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(path);
 		if (is == null) {
@@ -77,7 +69,13 @@ public class CaasIngressMockConfiguration {
 		return sb.toString();
 	}
 
-	private SimpleKubernetesClient simpleKubernetesClient() {
+	private SimpleKubernetesClient simpleKubernetesClient(String instanceKey) throws IOException {
+		// File in src/test/resources
+		String pltPods;
+		if (RICInstanceMockConfiguration.INSTANCE_KEY_1.equals(instanceKey))
+			pltPods = readDataFromPath("caas-ingress-ricplt-pods-1.json");
+		else
+			pltPods = readDataFromPath("caas-ingress-ricplt-pods-2.json");
 		SimpleKubernetesClient mockClient = mock(SimpleKubernetesClient.class);
 		doAnswer(inv -> {
 			String ns = inv.<String>getArgument(0);
@@ -92,10 +90,12 @@ public class CaasIngressMockConfiguration {
 
 	@Bean
 	// The bean (method) name must be globally unique
-	public SimpleKubernetesClientBuilder simpleKubernetesClientBuilder() {
+	public SimpleKubernetesClientBuilder simpleKubernetesClientBuilder() throws IOException {
 		final SimpleKubernetesClientBuilder mockBuilder = mock(SimpleKubernetesClientBuilder.class);
-		SimpleKubernetesClient client = simpleKubernetesClient();
-		when(mockBuilder.getSimpleKubernetesClient(any(String.class))).thenReturn(client);
+		SimpleKubernetesClient client1 = simpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		when(mockBuilder.getSimpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_1)).thenReturn(client1);
+		SimpleKubernetesClient client2 = simpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_2);
+		when(mockBuilder.getSimpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_2)).thenReturn(client2);
 		return mockBuilder;
 	}
 

@@ -43,13 +43,13 @@ public class RICInstanceMockConfiguration {
 	@Bean
 	public RicInstanceList ricInstanceList() {
 		List<RicInstance> instances = new ArrayList<>();
-		RicInstance i1 = new RicInstance().key(INSTANCE_KEY_1).name("Friendly Name One")
-				.appUrlPrefix("http://foo.bar/app").pltUrlPrefix("http://foo.bar/plt")
-				.caasUrlPrefix("http://foo.bar/caas");
+		RicInstance i1 = new RicInstance().key(INSTANCE_KEY_1).name("RIC Instance A")
+				.appUrlPrefix("http://foo.bar/a/app").pltUrlPrefix("http://foo.bar/a/plt")
+				.caasUrlPrefix("http://foo.bar/a/caas");
 		instances.add(i1);
-		RicInstance i2 = new RicInstance().key(INSTANCE_KEY_2).name("Friendly Name Two")
-				.appUrlPrefix("http://foo.bar/2/app").pltUrlPrefix("http://foo.bar/2/plt")
-				.caasUrlPrefix("http://foo.bar/2/caas");
+		RicInstance i2 = new RicInstance().key(INSTANCE_KEY_2).name("RIC Instance B")
+				.appUrlPrefix("http://foo.bar/b/app").pltUrlPrefix("http://foo.bar/b/plt")
+				.caasUrlPrefix("http://foo.bar/b/caas");
 		instances.add(i2);
 		return new RicInstanceList(instances);
 	}

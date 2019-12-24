@@ -25,6 +25,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Arrays;
 
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
@@ -62,32 +63,12 @@ public class AppManagerMockConfiguration {
 	@Value("${mock.config.delay:0}")
 	private int delayMs;
 
-	private final AllDeployableXapps deployableApps;
-	private final AllDeployedXapps deployedXapps;
-	private final AllXappConfig allXappConfigs;
-	private final SubscriptionResponse subRes;
-
-	public AppManagerMockConfiguration() {
-		logger.info("Configuring mock xApp Manager");
-		final String[] appNames = { "AdmissionControl", "UE Event Collector" };
-		final String configJson = " { \"config\" : \"example\" }";
-		final String descriptorJson = " { \"descriptor\" : \"example\" }";
-		allXappConfigs = new AllXappConfig();
-		deployableApps = new AllDeployableXapps();
-		deployedXapps = new AllDeployedXapps();
-		for (String n : appNames) {
-			ConfigMetadata metadata = new ConfigMetadata().configName("config-" + n).name(n).namespace("namespace");
-			XAppConfig config = new XAppConfig().config(configJson).descriptor(descriptorJson).metadata(metadata);
-			allXappConfigs.add(config);
-			deployableApps.add(n);
-			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
-			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("127.0.0.1").port(200)
-					.status(XappInstance.StatusEnum.RUNNING));
-			deployedXapps.add(xapp);
-		}
-		subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL).id("subid").version(1);
-	}
-
+	/**
+	 * Builds a mock HealthApi object. Does not accept an instance key because this
+	 * API answers no text.
+	 * 
+	 * @return mock HealthApi
+	 */
 	private HealthApi healthApi() {
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
@@ -98,7 +79,39 @@ public class AppManagerMockConfiguration {
 		return mockApi;
 	}
 
-	private XappApi xappApi() {
+	/**
+	 * Builds a mock XappApi object.
+	 * 
+	 * @param instanceKey
+	 *                        RIC instance
+	 * @return Object that returns instance-specific results
+	 */
+	private XappApi xappApi(String instanceKey) {
+		logger.debug("Creating XappApi for instance {}", instanceKey);
+		// Create instance-specific objects
+		String[] appNames = { "AdmissionControl " + instanceKey, "UE Event Collector " + instanceKey };
+		if (RICInstanceMockConfiguration.INSTANCE_KEY_1.equals(instanceKey)) {
+			appNames = Arrays.copyOf(appNames, appNames.length + 1);
+			appNames[appNames.length - 1] = "ANR " + instanceKey;
+		}
+		final String configJson = " { \"config\" : \"example-" + instanceKey + "\"}";
+		final String descriptorJson = " { \"descriptor\" : \"example-" + instanceKey + "\"}";
+		final AllXappConfig allXappConfigs = new AllXappConfig();
+		final AllDeployableXapps deployableApps = new AllDeployableXapps();
+		final AllDeployedXapps deployedXapps = new AllDeployedXapps();
+		for (String n : appNames) {
+			ConfigMetadata metadata = new ConfigMetadata().configName("config-" + n).name(n).namespace("namespace");
+			XAppConfig config = new XAppConfig().config(configJson).descriptor(descriptorJson).metadata(metadata);
+			allXappConfigs.add(config);
+			deployableApps.add(n);
+			Xapp xapp = new Xapp().name(n).version("version").status(StatusEnum.UNKNOWN);
+			xapp.addInstancesItem(new XappInstance().name("abcd-1234").ip("127.0.0.1").port(200)
+					.status(XappInstance.StatusEnum.RUNNING));
+			deployedXapps.add(xapp);
+		}
+		final SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
+				.id("subid").version(1);
+		// Mock the methods to return the instance-specific objects
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
 		XappApi mockApi = mock(XappApi.class);
@@ -189,8 +202,10 @@ public class AppManagerMockConfiguration {
 		final AppManagerApiBuilder mockBuilder = mock(AppManagerApiBuilder.class);
 		final HealthApi mockHealthApi = healthApi();
 		when(mockBuilder.getHealthApi(any(String.class))).thenReturn(mockHealthApi);
-		final XappApi mockXappApi = xappApi();
-		when(mockBuilder.getXappApi(any(String.class))).thenReturn(mockXappApi);
+		final XappApi mockXappApi1 = xappApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		when(mockBuilder.getXappApi(RICInstanceMockConfiguration.INSTANCE_KEY_1)).thenReturn(mockXappApi1);
+		final XappApi mockXappApi2 = xappApi(RICInstanceMockConfiguration.INSTANCE_KEY_2);
+		when(mockBuilder.getXappApi(RICInstanceMockConfiguration.INSTANCE_KEY_2)).thenReturn(mockXappApi2);
 		return mockBuilder;
 	}
 
