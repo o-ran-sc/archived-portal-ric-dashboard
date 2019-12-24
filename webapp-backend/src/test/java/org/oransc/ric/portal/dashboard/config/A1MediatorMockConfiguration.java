@@ -60,7 +60,7 @@ public class A1MediatorMockConfiguration {
 	private final Map<String, String> appPolicyMap;
 
 	public A1MediatorMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
-		logger.info("ctor: mock A1 Mediator configured with delay {}", delayMs);
+		logger.debug("ctor: configured with delay {}", delayMs);
 		this.delayMs = delayMs;
 		appPolicyMap = new HashMap<>();
 		// Define a mock AC policy
@@ -81,7 +81,7 @@ public class A1MediatorMockConfiguration {
 		return mockClient;
 	}
 
-	private A1MediatorApi a1MediatorApi() {
+	private A1MediatorApi a1MediatorApi(String instanceKey) {
 		ApiClient apiClient = apiClient();
 		A1MediatorApi mockApi = mock(A1MediatorApi.class);
 		when(mockApi.getApiClient()).thenReturn(apiClient);
@@ -109,9 +109,11 @@ public class A1MediatorMockConfiguration {
 	@Bean
 	// Must use the same name as the non-mock configuration
 	public A1MediatorApiBuilder a1MediatorApiBuilder() {
-		final A1MediatorApi mockApi = a1MediatorApi();
 		final A1MediatorApiBuilder mockBuilder = mock(A1MediatorApiBuilder.class);
-		when(mockBuilder.getA1MediatorApi(any(String.class))).thenReturn(mockApi);
+		for (final String key : RICInstanceMockConfiguration.INSTANCE_KEYS) {
+			final A1MediatorApi mockApi = a1MediatorApi(key);
+			when(mockBuilder.getA1MediatorApi(key)).thenReturn(mockApi);
+		}
 		return mockBuilder;
 	}
 

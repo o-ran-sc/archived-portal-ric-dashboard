@@ -17,17 +17,19 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class StatsService {
+
+    private component = 'admin';
+
     baseJSONServerUrl = 'http://localhost:3000';
     dataMetrics = [{}];
     latencyMetrics;
@@ -50,15 +52,14 @@ export class StatsService {
             })
           };
 
-    private basePath = 'api/admin/';
-
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private dashboardSvc: DashboardService,
+        private httpClient: HttpClient) {
         // this.loadConfig();
         // this.getLoad();
     }
 
     getMetrics() {
-
         return this.dataMetrics; // @TODO implement the service to fetch the backend data
     }
 
@@ -78,36 +79,14 @@ export class StatsService {
         return this.load;
     }
 
-    putLoad(value: number) {
-        // this.loadMetrics = this.getRandomValue();
-        const jsonValue = '{ "load": ' + value + ' }';
-        console.log(jsonValue);
-        this.httpClient.put(this.hostURL + this.loadPath, jsonValue , this.httpOptions).subscribe((res) => {
-            console.log(res);
-        });
-    }
-
-    putDelay(value: number) {
-        // this.loadMetrics = this.getRandomValue();
-        const jsonValue = '{ "delay": ' + value + ' }';
-        console.log(jsonValue);
-        this.httpClient.put(this.hostURL + this.delayPath, jsonValue , this.httpOptions).subscribe((res) => {
-            console.log(res);
-        });
-    }
-
-    getCpuMetrics() {
-        this.cpuMetrics = this.getRandomValue();
-        return this.cpuMetrics;
-    }
-
     getRandomValue() {
         return Math.round((Math.random() * (20 - 0)) + 0);
     }
 
-    // Gets xApp metrics kibana url for the named application
+    // Gets xApp metrics Kibana url for the named application
     getAppMetricsUrl(appName: string)  {
-        return this.httpClient.get(this.basePath + 'metrics', {
+        const path = this.dashboardSvc.buildPath(this.component, null, 'metrics');
+        return this.httpClient.get(path, {
             params: new HttpParams()
                 .set('app', appName)
         });
@@ -123,8 +102,6 @@ export class StatsService {
         this.httpClient.put(this.baseJSONServerUrl + '/config/' + key , jsonValue, this.httpOptions).subscribe((res) => {
             console.log(res);
         });
-
-
     }
 
     loadConfig() {

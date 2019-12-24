@@ -17,8 +17,8 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardSuccessTransport, EcompUser } from '../../interfaces/dashboard.types';
 
@@ -31,34 +31,58 @@ import { DashboardSuccessTransport, EcompUser } from '../../interfaces/dashboard
  */
 export class DashboardService {
 
-  private basePath = 'api/admin/';
+  private adminPath = 'admin';
 
   constructor(private httpClient: HttpClient) {
     // injects to variable httpClient
   }
 
- /**
-   * Checks app health
-   * @returns Observable that should yield a DashboardSuccessTransport
+  /**
+   * Builds the path for a controller method (including arguments) to use as the
+   * first argument to a HTTP client method.
+   * This function encapsulates the API prefix and RIC instance constants.
+   * @param component Controller method prefix; e.g., "admin"
+   * @param instanceKey RIC instance key; e.g., "i1" (optional).
+   * If null or empty, adds no RIC instance path components.
+   * @param args List of method path components, argument keys and values
+   * @returns Path string; e.g., "api/admin/method2/arg1/foo"
    */
+  buildPath(component: string, instanceKey: string, ...args: any[]) {
+    let result = 'api/' + component;
+    if (instanceKey) {
+      result = result + '/ric/' + instanceKey;
+    }
+    args.forEach(part => {
+      result = result + '/' + part;
+    });
+    return result;
+  }
+
+  /**
+    * Checks app health
+    * @returns Observable that yields a DashboardSuccessTransport
+    */
   getHealth(): Observable<DashboardSuccessTransport> {
-    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'health');
+    const path = this.buildPath(this.adminPath, null, 'health');
+    return this.httpClient.get<DashboardSuccessTransport>(path);
   }
 
   /**
    * Gets Dashboard version details
-   * @returns Observable that should yield a DashboardSuccessTransport object
+   * @returns Observable that yields a DashboardSuccessTransport object
    */
   getVersion(): Observable<DashboardSuccessTransport> {
-    return this.httpClient.get<DashboardSuccessTransport>(this.basePath + 'version');
+    const path = this.buildPath(this.adminPath, null, 'version');
+    return this.httpClient.get<DashboardSuccessTransport>(path);
   }
 
   /**
    * Gets Dashboard users
-   * @returns Observable that should yield a EcompUser array
+   * @returns Observable that yields an EcompUser array
    */
   getUsers(): Observable<EcompUser[]> {
-    return this.httpClient.get<EcompUser[]>(this.basePath + 'user');
+    const path = this.buildPath(this.adminPath, null, 'user');
+    return this.httpClient.get<EcompUser[]>(path);
   }
 
 }

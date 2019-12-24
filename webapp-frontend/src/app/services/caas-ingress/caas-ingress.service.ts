@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { V1PodList } from '@kubernetes/client-node';
 import { Observable } from 'rxjs';
-import { CommonService } from '../common/common.service';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 /**
 * Services for calling the Dashboard's caas-ingress endpoints to get Kubernetes details.
@@ -36,9 +36,8 @@ export class CaasIngressService {
   private podsPath = 'pods';
 
   constructor(
-    private httpClient: HttpClient,
-    private commonSvc: CommonService) {
-    // injects to variable httpClient
+    private dashboardSvc: DashboardService,
+    private httpClient: HttpClient) {
   }
 
   /**
@@ -46,8 +45,8 @@ export class CaasIngressService {
    * @returns Observable that should yield a V1PodList
    */
   getPodList(instanceKey: string, cluster: string, namespace: string): Observable<V1PodList> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, 'pods', 'cluster', cluster, 'namespace', namespace);
-    return this.httpClient.get<V1PodList>(url);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'pods', 'cluster', cluster, 'namespace', namespace);
+    return this.httpClient.get<V1PodList>(path);
   }
 
 }

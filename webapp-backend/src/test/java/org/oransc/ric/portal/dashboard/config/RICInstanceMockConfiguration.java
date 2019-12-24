@@ -20,11 +20,16 @@
 
 package org.oransc.ric.portal.dashboard.config;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.oransc.ric.portal.dashboard.model.RicInstance;
 import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -36,21 +41,36 @@ import org.springframework.stereotype.Component;
 @Profile("test")
 public class RICInstanceMockConfiguration {
 
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 	// Publish constants for use in tests
 	public static final String INSTANCE_KEY_1 = "i1";
 	public static final String INSTANCE_KEY_2 = "i2";
+	public static final String[] INSTANCE_KEYS = { INSTANCE_KEY_1, INSTANCE_KEY_2 };
+
+	// Simulate remote method delay for UI testing
+	private int delayMs;
+
+	@Autowired
+	public RICInstanceMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
+		logger.debug("ctor: configured with delay {}", delayMs);
+		this.delayMs = delayMs;
+	}
 
 	@Bean
-	public RicInstanceList ricInstanceList() {
+	public RicInstanceList ricInstanceList() throws InterruptedException {
+		if (delayMs > 0) {
+			logger.debug("ricInstanceList sleeping {}", delayMs);
+			Thread.sleep(delayMs);
+		}
 		List<RicInstance> instances = new ArrayList<>();
-		RicInstance i1 = new RicInstance().key(INSTANCE_KEY_1).name("Friendly Name One")
-				.appUrlPrefix("http://foo.bar/app").pltUrlPrefix("http://foo.bar/plt")
-				.caasUrlPrefix("http://foo.bar/caas");
-		instances.add(i1);
-		RicInstance i2 = new RicInstance().key(INSTANCE_KEY_2).name("Friendly Name Two")
-				.appUrlPrefix("http://foo.bar/2/app").pltUrlPrefix("http://foo.bar/2/plt")
-				.caasUrlPrefix("http://foo.bar/2/caas");
-		instances.add(i2);
+		for (String key : INSTANCE_KEYS) {
+			RicInstance i = new RicInstance().key(key).name("RIC Instance " + key)
+					.appUrlPrefix("http://" + key + ".domain.name/app")
+					.pltUrlPrefix("http://" + key + ".domain.name/plt")
+					.caasUrlPrefix("http://" + key + ".domain.name/caas");
+			instances.add(i);
+		}
 		return new RicInstanceList(instances);
 	}
 

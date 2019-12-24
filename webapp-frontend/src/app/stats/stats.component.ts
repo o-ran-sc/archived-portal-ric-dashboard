@@ -37,8 +37,11 @@ export class StatsComponent implements OnInit {
     metricsUrlAc : SafeResourceUrl;
     metricsUrlMc : SafeResourceUrl;
 
-    constructor(private service: StatsService, private httpClient: HttpClient, private sanitize: DomSanitizer) {
+    constructor(private service: StatsService,
+        private httpClient: HttpClient,
+        private sanitize: DomSanitizer) {
     }
+
     ngOnInit() {
         this.service.getAppMetricsUrl('AC').subscribe((res:DashboardSuccessTransport) => {
             this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);

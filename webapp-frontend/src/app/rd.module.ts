@@ -17,10 +17,15 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+
+ // Angular
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -44,46 +49,43 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
-import { ChartsModule } from 'ng2-charts';
+import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 
+// RD components
 import { AcXappComponent } from './ac-xapp/ac-xapp.component';
+import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
 import { CaasIngressComponent } from './caas-ingress/caas-ingress.component';
+import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
+import { ControlCardComponent } from './ui/control-card/control-card.component';
 import { ControlComponent } from './control/control.component';
-import { CommonService } from './services/common/common.service';
+import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
+import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { PlatformComponent } from './platform/platform.component';
 import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RdRoutingModule } from './rd-routing.module';
 import { RdComponent } from './rd.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StatCardComponent } from './ui/stat-card/stat-card.component';
+import { StatsComponent } from './stats/stats.component';
+import { UserComponent } from './user/user.component';
+
+// RD services
 import { AppMgrService } from './services/app-mgr/app-mgr.service';
 import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
-import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
+import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { UiService } from './services/ui/ui.service';
-import { StatsComponent } from './stats/stats.component';
-import { CatalogCardComponent } from './ui/catalog-card/catalog-card.component';
-import { ConfirmDialogComponent } from './ui/confirm-dialog/confirm-dialog.component';
-import { ControlCardComponent } from './ui/control-card/control-card.component';
-import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
-import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
-import { StatCardComponent } from './ui/stat-card/stat-card.component';
-import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
-import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
-import { UserComponent } from './user/user.component';
-
-
 
 @NgModule({
   declarations: [
@@ -177,7 +179,6 @@ import { UserComponent } from './user/user.component';
   ],
   providers: [
     AppMgrService,
-    CommonService,
     DashboardService,
     E2ManagerService,
     ErrorDialogService,
