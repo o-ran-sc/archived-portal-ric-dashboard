@@ -46,7 +46,7 @@ export class ACXappService {
 
   /**
    * Gets version details
-   * @returns Observable that should yield a String
+   * @returns Observable that yields a String
    */
   getVersion(): Observable<string> {
     const url = 'api/a1-p/version'
@@ -58,7 +58,7 @@ export class ACXappService {
 
   /**
    * Gets admission control policy.
-   * @returns Observable that should yield an ACAdmissionIntervalControl
+   * @returns Observable that yields an ACAdmissionIntervalControl
    */
   getPolicy(instanceKey: string): Observable<ACAdmissionIntervalControl> {
     const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);
@@ -68,7 +68,7 @@ export class ACXappService {
   /**
    * Puts admission control policy.
    * @param policy an instance of ACAdmissionIntervalControl
-   * @returns Observable that should yield a response code, no data
+   * @returns Observable that yields a response code, no data
    */
   putPolicy(instanceKey: string, policy: ACAdmissionIntervalControl): Observable<any> {
     const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);

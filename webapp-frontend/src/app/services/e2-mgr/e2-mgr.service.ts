@@ -53,7 +53,7 @@ export class E2ManagerService {
 
   /**
    * Gets RAN details
-   * @returns Observable that should yield an array of objects
+   * @returns Observable that yields an array of E2RanDetails objects
    */
   getRan(instanceKey: string): Observable<Array<E2RanDetails>> {
     const url = this.commonSvc.buildPath(instanceKey, this.component, 'nodeb', 'ran');
