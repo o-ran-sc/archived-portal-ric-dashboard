@@ -54,8 +54,8 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 	@Test
 	public void getTest() throws IOException {
 		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
-				A1MediatorMockConfiguration.AC_CONTROL_NAME);
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID, "1",
+				A1MediatorController.PP_INST_ID, A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				String.class);
@@ -66,8 +66,8 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 	@Test
 	public void putTest() throws IOException {
 		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
-				A1MediatorMockConfiguration.AC_CONTROL_NAME);
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID, "1",
+				A1MediatorController.PP_INST_ID, A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode body = mapper.readTree("{ \"policy\" : true }");
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);
