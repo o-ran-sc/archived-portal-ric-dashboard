@@ -38,20 +38,21 @@ public class A1MediatorClientTest {
 		apiClient.setBasePath("http://localhost:30099/");
 		A1MediatorApi a1Api = new A1MediatorApi(apiClient);
 		try {
-			Object o = a1Api.a1ControllerGetHandler("policy");
-			System.out.println(
-					"getPolicy answered code {} " + apiClient.getStatusCode().toString() + ", content " + o.toString());
+			Object o = a1Api.a1ControllerGetPolicyInstance(1, "policyInstanceId");
+			System.out.println("a1ControllerGetPolicyInstance answered code {} " + apiClient.getStatusCode().toString()
+					+ ", content " + o.toString());
 			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
-			System.err.println("getPolicy failed: " + e.toString());
+			System.err.println("a1ControllerGetPolicyInstance failed: " + e.toString());
 		}
 		try {
 			String policy = "{}";
-			a1Api.a1ControllerPutHandler("policy", policy);
-			System.out.println("putPolicy answered: " + apiClient.getStatusCode().toString());
+			a1Api.a1ControllerCreateOrReplacePolicyInstance(1, "policyInstanceId", policy);
+			System.out.println(
+					"a1ControllerCreateOrReplacePolicyInstance answered: " + apiClient.getStatusCode().toString());
 			Assertions.assertTrue(apiClient.getStatusCode().is2xxSuccessful());
 		} catch (RestClientException e) {
-			System.err.println("getPolicy failed: " + e.toString());
+			System.err.println("a1ControllerCreateOrReplacePolicyInstance failed: " + e.toString());
 		}
 	}
 }

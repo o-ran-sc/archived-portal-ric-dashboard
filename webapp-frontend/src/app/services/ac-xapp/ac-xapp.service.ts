@@ -35,8 +35,10 @@ import { CommonService } from '../common/common.service';
 export class ACXappService {
 
   private component = 'a1-p';
-  private policyPath = 'policies';
-  private acPolicyName = 'admission_control_policy';
+  private policyTypePath = 'poltype';
+  private policyInstPath = 'polinst';
+  private acPolicyType = '1';
+  private acPolicyInst = 'admission_control_policy';
 
   constructor(
     private httpClient: HttpClient,
@@ -61,7 +63,8 @@ export class ACXappService {
    * @returns Observable that should yield an ACAdmissionIntervalControl
    */
   getPolicy(instanceKey: string): Observable<ACAdmissionIntervalControl> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);
+    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyTypePath, this.acPolicyType,
+      this.policyInstPath, this.acPolicyInst);
     return this.httpClient.get<ACAdmissionIntervalControl>(url);
   }
 
@@ -71,7 +74,8 @@ export class ACXappService {
    * @returns Observable that should yield a response code, no data
    */
   putPolicy(instanceKey: string, policy: ACAdmissionIntervalControl): Observable<any> {
-    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyPath, this.acPolicyName);
+    const url = this.commonSvc.buildPath(instanceKey, this.component, this.policyTypePath, this.acPolicyType,
+      this.policyInstPath, this.acPolicyInst);
     return this.httpClient.put<ACAdmissionIntervalControlAck>(url, policy, { observe: 'response' });
   }
 
