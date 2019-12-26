@@ -35,8 +35,10 @@ import { DashboardService } from '../dashboard/dashboard.service';
 export class ACXappService {
 
   private component = 'a1-p';
-  private policyPath = 'policies';
-  private acPolicyName = 'admission_control_policy';
+  private policyTypePath = 'poltype';
+  private policyInstPath = 'polinst';
+  private acPolicyType = '1';
+  private acPolicyInst = 'admission_control_policy';
 
   constructor(
     private dashboardSvc: DashboardService,
@@ -60,7 +62,8 @@ export class ACXappService {
    * @returns Observable that yields an ACAdmissionIntervalControl
    */
   getPolicy(instanceKey: string): Observable<ACAdmissionIntervalControl> {
-    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyPath, this.acPolicyName);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyTypePath, this.acPolicyType,
+      this.policyInstPath, this.acPolicyInst);
     return this.httpClient.get<ACAdmissionIntervalControl>(path);
   }
 
@@ -70,7 +73,8 @@ export class ACXappService {
    * @returns Observable that yields a response code, no data
    */
   putPolicy(instanceKey: string, policy: ACAdmissionIntervalControl): Observable<any> {
-    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyPath, this.acPolicyName);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.policyTypePath, this.acPolicyType,
+      this.policyInstPath, this.acPolicyInst);
     return this.httpClient.put<ACAdmissionIntervalControlAck>(path, policy, { observe: 'response' });
   }
 
