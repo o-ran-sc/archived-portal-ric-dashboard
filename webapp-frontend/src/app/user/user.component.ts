@@ -38,7 +38,7 @@ import { UiService } from '../services/ui/ui.service';
 export class UserComponent implements OnInit {
 
   darkMode: boolean;
-  panelClass: string = "";
+  panelClass: string;
   displayedColumns: string[] = ['loginId', 'firstName', 'lastName', 'active', 'action'];
   dataSource: UserDataSource;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -60,9 +60,9 @@ export class UserComponent implements OnInit {
 
   editUser(user: EcompUser) {
     if (this.darkMode) {
-      this.panelClass = "dark-theme"
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     const dialogRef = this.dialog.open(EditDashboardUserDialogComponent, {
       panelClass: this.panelClass,
@@ -81,9 +81,9 @@ export class UserComponent implements OnInit {
 
   addUser() {
     if (this.darkMode) {
-      this.panelClass = "dark-theme"
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     const dialogRef = this.dialog.open(AddDashboardUserDialogComponent, {
       panelClass: this.panelClass,

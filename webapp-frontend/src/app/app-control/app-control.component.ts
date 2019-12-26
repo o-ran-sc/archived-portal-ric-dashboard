@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -39,7 +39,7 @@ import { AppControlDataSource } from './app-control.datasource';
   styleUrls: ['./app-control.component.scss'],
   animations: [AppControlAnimations.messageTrigger]
 })
-export class AppControlComponent implements OnInit {
+export class AppControlComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: AppControlDataSource;
@@ -64,7 +64,7 @@ export class AppControlComponent implements OnInit {
         this.instanceKey = instanceKey;
         this.dataSource.loadTable(instanceKey);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -86,7 +86,7 @@ export class AppControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to undeploy App ' + app.xapp + '?')
       .afterClosed().subscribe((res: boolean) => {
         if (res) {
-          this.loadingDialogService.startLoading("Undeploying " + app.xapp);
+          this.loadingDialogService.startLoading('Undeploying ' + app.xapp);
           this.appMgrSvc.undeployXapp(this.instanceKey, app.xapp)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())

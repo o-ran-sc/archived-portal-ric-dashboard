@@ -59,19 +59,19 @@ export class AppConfigurationComponent implements OnInit {
       )
       .subscribe(
         (allConfig: any) => {
-          this.loadConfigForm(this.data.xapp.name, allConfig)
+          this.loadConfigForm(this.data.xapp.name, allConfig);
         }
       );
   }
 
   updateconfig(event) {
-    var config = {
+    const config = {
       metadata: this.xappMetadata,
       descriptor: this.xappConfigSchema,
       config: event,
       layout: this.xappLayout
-    }
-    this.loadingDialogService.startLoading("Updating " + this.data.xapp.name + " configuration");
+    };
+    this.loadingDialogService.startLoading('Updating ' + this.data.xapp.name + ' configuration');
     this.appMgrService.putConfig(this.data.instanceKey, config)
       .pipe(
         finalize(() => {
@@ -94,14 +94,14 @@ export class AppConfigurationComponent implements OnInit {
   }
 
   loadConfigForm(name: string, allConfig: any) {
-    var xappConfig = allConfig.find(xapp => xapp.metadata.name == name)
+    const xappConfig = allConfig.find(xapp => xapp.metadata.name === name);
     if (xappConfig != null) {
-      this.xappMetadata = xappConfig.metadata
+      this.xappMetadata = xappConfig.metadata;
       this.xappConfigSchema = xappConfig.descriptor;
       this.xappConfigData = xappConfig.config;
       this.xappLayout = xappConfig.layout;
     } else {
-      this.errorDiaglogService.displayError("Cannot find configration data for " + name);
+      this.errorDiaglogService.displayError('Cannot find configration data for ' + name);
       this.dialogRef.close();
     }
   }

@@ -22,16 +22,19 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.oransc.ric.a1med.client.model.PolicyTypeSchema;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.A1MediatorMockConfiguration;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -52,10 +55,35 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void getTest() throws IOException {
+	public void getTypeIdsTest() throws IOException {
 		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
-				A1MediatorMockConfiguration.AC_CONTROL_NAME);
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<List<Integer>> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Integer>>() {
+				});
+		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
+		Assert.assertFalse(response.getBody().isEmpty());
+	}
+
+	@Test
+	public void getPolicyTypeTest() throws IOException {
+		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID,
+				Integer.toString(A1MediatorMockConfiguration.ADMISSION_CONTROL_POLICY_ID));
+		logger.info("Invoking {}", uri);
+		ResponseEntity<PolicyTypeSchema> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				PolicyTypeSchema.class);
+		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
+		Assert.assertFalse(response.getBody().getName().isEmpty());
+	}
+
+	@Test
+	public void getInstanceTest() throws IOException {
+		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID,
+				Integer.toString(A1MediatorMockConfiguration.ADMISSION_CONTROL_POLICY_ID),
+				A1MediatorController.PP_INST_ID, A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		logger.info("Invoking {}", uri);
 		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				String.class);
@@ -64,10 +92,11 @@ public class A1MediatorControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void putTest() throws IOException {
+	public void putInstanceTest() throws IOException {
 		URI uri = buildUri(null, A1MediatorController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_POLICIES,
-				A1MediatorMockConfiguration.AC_CONTROL_NAME);
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, A1MediatorController.PP_TYPE_ID,
+				Integer.toString(A1MediatorMockConfiguration.ADMISSION_CONTROL_POLICY_ID),
+				A1MediatorController.PP_INST_ID, A1MediatorMockConfiguration.AC_CONTROL_NAME);
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode body = mapper.readTree("{ \"policy\" : true }");
 		HttpEntity<JsonNode> entity = new HttpEntity<>(body);

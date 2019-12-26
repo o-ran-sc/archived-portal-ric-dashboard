@@ -27,8 +27,8 @@ import { UiService } from './ui.service';
 export class ErrorDialogService {
 
   darkMode: boolean;
-  panelClass: string = "";
-  public errorMessage: string = '';
+  panelClass: string;
+  public errorMessage: string;
 
   constructor(private dialog: MatDialog,
     public ui: UiService) { }
@@ -38,9 +38,9 @@ export class ErrorDialogService {
       this.darkMode = isDark;
     });
     if (this.darkMode) {
-      this.panelClass = "dark-theme";
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     return this.dialog.open(ErrorDialogComponent, {
       panelClass: this.panelClass,

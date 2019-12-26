@@ -34,8 +34,8 @@ export class StatsComponent implements OnInit {
 
     @ViewChildren(BaseChartDirective) charts: QueryList<BaseChartDirective>;
     checked = false;
-    metricsUrlAc : SafeResourceUrl;
-    metricsUrlMc : SafeResourceUrl;
+    metricsUrlAc: SafeResourceUrl;
+    metricsUrlMc: SafeResourceUrl;
 
     constructor(private service: StatsService,
         private httpClient: HttpClient,
@@ -43,10 +43,10 @@ export class StatsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getAppMetricsUrl('AC').subscribe((res:DashboardSuccessTransport) => {
+        this.service.getAppMetricsUrl('AC').subscribe((res: DashboardSuccessTransport) => {
             this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
         });
-        this.service.getAppMetricsUrl('MC').subscribe((res:DashboardSuccessTransport) => {
+        this.service.getAppMetricsUrl('MC').subscribe((res: DashboardSuccessTransport) => {
             this.metricsUrlMc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
         });
     }

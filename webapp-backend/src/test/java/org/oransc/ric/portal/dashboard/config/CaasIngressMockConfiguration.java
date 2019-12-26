@@ -25,8 +25,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.invoke.MethodHandles;
 
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
@@ -44,7 +42,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("test")
-public class CaasIngressMockConfiguration {
+public class CaasIngressMockConfiguration extends AbstractMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -55,24 +53,6 @@ public class CaasIngressMockConfiguration {
 	public CaasIngressMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
 		logger.debug("ctor: configured with delay {}", delayMs);
 		this.delayMs = delayMs;
-	}
-
-	private String readDataFromPath(String path) throws IOException {
-		InputStream is = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(path);
-		if (is == null) {
-			String msg = "Failed to find resource on classpath: " + path;
-			logger.error(msg);
-			throw new RuntimeException(msg);
-		}
-		InputStreamReader reader = new InputStreamReader(is, "UTF-8");
-		StringBuilder sb = new StringBuilder();
-		char[] buf = new char[8192];
-		int i;
-		while ((i = reader.read(buf)) > 0)
-			sb.append(buf, 0, i);
-		reader.close();
-		is.close();
-		return sb.toString();
 	}
 
 	private SimpleKubernetesClient simpleKubernetesClient(String instanceKey) throws IOException {

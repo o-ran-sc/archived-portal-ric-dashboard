@@ -29,7 +29,7 @@ import { UiService } from './ui.service';
 export class LoadingDialogService {
 
   darkMode: boolean;
-  panelClass: string = "";
+  panelClass: string;
 
   constructor(private dialog: MatDialog,
     public ui: UiService) { }
@@ -41,9 +41,9 @@ export class LoadingDialogService {
       this.darkMode = isDark;
     });
     if (this.darkMode) {
-      this.panelClass = "dark-theme";
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     this.loadingDialogRef = this.dialog.open(LoadingDialogComponent, {
       panelClass: this.panelClass,
@@ -57,7 +57,7 @@ export class LoadingDialogService {
   }
 
   stopLoading() {
-    this.loadingDialogRef.close()
+    this.loadingDialogRef.close();
   }
 
 }
