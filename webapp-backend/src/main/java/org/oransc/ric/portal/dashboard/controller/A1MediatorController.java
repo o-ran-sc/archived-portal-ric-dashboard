@@ -62,10 +62,12 @@ public class A1MediatorController {
 	/** This path lacks the RIC instance pattern */
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/a1-p";
 	// Path parameters
-	public static final String PP_POLICIES = "policies";
+	public static final String PP_TYPE_ID = "poltype";
+	public static final String PP_INST_ID = "polinst";
 	// The get and put methods use the same path
 	private static final String POLICY_METHOD_PATH = /* controller path + */ DashboardConstants.RIC_INSTANCE_KEY + "/{"
-			+ DashboardConstants.RIC_INSTANCE_KEY + "}/" + PP_POLICIES + "/{" + PP_POLICIES + "}";
+			+ DashboardConstants.RIC_INSTANCE_KEY + "}/" + PP_TYPE_ID + "/{" + PP_TYPE_ID + "}/" + PP_INST_ID + "/{"
+			+ PP_INST_ID + "}";
 
 	// Populated by the autowired constructor
 	private final A1MediatorApiBuilder a1MediatorClientBuilder;
@@ -85,24 +87,30 @@ public class A1MediatorController {
 		return new SuccessTransport(200, DashboardApplication.getImplementationVersion(A1MediatorApi.class));
 	}
 
-	@ApiOperation(value = "Gets the specified policy from the A1 Mediator")
+	@ApiOperation(value = "Gets the specified policy instance from the A1 Mediator")
 	@GetMapping(POLICY_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public Object getPolicy(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_POLICIES) String policyName) {
-		logger.debug("getPolicy instance {} policy {}", instanceKey, policyName);
-		return a1MediatorClientBuilder.getA1MediatorApi(instanceKey).a1ControllerGetHandler(policyName);
+	public Object getPolicyInstance(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_TYPE_ID) Integer policyTypeId, //
+			@PathVariable(PP_INST_ID) String policyInstanceId) {
+		logger.debug("getPolicyInstance: instance {} typeId {} instanceId {}", instanceKey, policyTypeId,
+				policyInstanceId);
+		return a1MediatorClientBuilder.getA1MediatorApi(instanceKey).a1ControllerGetPolicyInstance(policyTypeId,
+				policyInstanceId);
 	}
 
-	@ApiOperation(value = "Puts the specified policy to the A1 Mediator")
+	@ApiOperation(value = "Creates or replaces the specified policy instance at the A1 Mediator")
 	@PutMapping(POLICY_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void putPolicy(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_POLICIES) String policyName, @ApiParam(value = "Policy body") @RequestBody String policy, //
+	public void createPolicyInstance(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_TYPE_ID) Integer policyTypeId, //
+			@PathVariable(PP_INST_ID) String policyInstanceId,
+			@ApiParam(value = "Policy body") @RequestBody String policyBody, //
 			HttpServletResponse response) {
-		logger.debug("putPolicy instance {} name {} value {}", instanceKey, policyName, policy);
+		logger.debug("createPolicyInstance: instance {} typeId {} instanceId {}", instanceKey, policyTypeId,
+				policyInstanceId);
 		A1MediatorApi api = a1MediatorClientBuilder.getA1MediatorApi(instanceKey);
-		api.a1ControllerPutHandler(policyName, policy);
+		api.a1ControllerCreateOrReplacePolicyInstance(policyTypeId, policyInstanceId, policyBody);
 		response.setStatus(api.getApiClient().getStatusCode().value());
 	}
 
