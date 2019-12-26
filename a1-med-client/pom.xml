@@ -32,7 +32,7 @@ limitations under the License.
 	<artifactId>a1-med-client</artifactId>
 	<name>RIC A1 Mediator client</name>
 	<!-- Update to match submodule tag -->
-	<version>0.10.3-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
