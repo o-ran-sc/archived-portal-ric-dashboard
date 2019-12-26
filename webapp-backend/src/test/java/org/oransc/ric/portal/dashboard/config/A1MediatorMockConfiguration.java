@@ -87,22 +87,24 @@ public class A1MediatorMockConfiguration {
 		when(mockApi.getApiClient()).thenReturn(apiClient);
 		doAnswer(inv -> {
 			if (delayMs > 0) {
-				logger.debug("a1ControllerGetHandler sleeping {}", delayMs);
+				logger.debug("a1ControllerGetPolicyInstance sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			String appName = inv.<String>getArgument(0);
-			return appPolicyMap.get(appName);
-		}).when(mockApi).a1ControllerGetHandler(any(String.class));
+			// Integer policyTypeId = inv.<Integer>getArgument(0);
+			String policyInstId = inv.<String>getArgument(1);
+			return appPolicyMap.get(policyInstId);
+		}).when(mockApi).a1ControllerGetPolicyInstance(any(Integer.class), any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
-				logger.debug("a1ControllerPutHandler sleeping {}", delayMs);
+				logger.debug("a1ControllerCreateOrReplacePolicyInstance sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			String appName = inv.<String>getArgument(0);
-			String policy = inv.<String>getArgument(1);
-			appPolicyMap.put(appName, policy);
+			// Integer policyTypeId = inv.<Integer>getArgument(0);
+			String policyInstId = inv.<String>getArgument(1);
+			String policy = inv.<String>getArgument(2);
+			appPolicyMap.put(policyInstId, policy);
 			return null;
-		}).when(mockApi).a1ControllerPutHandler(any(String.class), any(Object.class));
+		}).when(mockApi).a1ControllerCreateOrReplacePolicyInstance(any(Integer.class), any(String.class), any(Object.class));
 		return mockApi;
 	}
 
