@@ -33,7 +33,7 @@ import { InstanceSelectorService } from '../services/instance-selector/instance-
   templateUrl: './ac-xapp.component.html',
   styleUrls: ['./ac-xapp.component.scss']
 })
-export class AcXappComponent implements OnInit {
+export class AcXappComponent implements OnInit, OnDestroy {
 
   private acForm: FormGroup;
   private instanceChange: Subscription;
@@ -46,16 +46,13 @@ export class AcXappComponent implements OnInit {
     public instanceSelectorService: InstanceSelectorService, ) { }
 
   ngOnInit() {
-    const windowLengthPattern = /^([0-9]{1}|[1-5][0-9]{1}|60)$/;
-    const blockingRatePattern = /^([0-9]{1,2}|100)$/;
-    const triggerPattern = /^([0-9]+)$/;
-
     this.acForm = new FormGroup({
       // Names must match the ACAdmissionIntervalControl interface
       enforce: new FormControl(true, [Validators.required]),
-      window_length: new FormControl('', [Validators.required, Validators.pattern(windowLengthPattern)]),
-      blocking_rate: new FormControl('', [Validators.required, Validators.pattern(blockingRatePattern)]),
-      trigger_threshold: new FormControl('', [Validators.required, Validators.pattern(triggerPattern)])
+      class: new FormControl('', [Validators.required, Validators.min(1), Validators.max(256)]),
+      window_length: new FormControl('', [Validators.required, Validators.min(15), Validators.max(300)]),
+      blocking_rate: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
+      trigger_threshold: new FormControl('', [Validators.required, Validators.min(1)])
     });
 
     this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
@@ -63,6 +60,7 @@ export class AcXappComponent implements OnInit {
         // TODO: show pending action indicator
         this.instanceKey = instanceKey;
         this.acXappService.getPolicy(instanceKey).subscribe((res: ACAdmissionIntervalControl) => {
+          this.acForm.controls['class'].setValue(res.class);
           this.acForm.controls['enforce'].setValue(res.enforce);
           this.acForm.controls['window_length'].setValue(res.window_length);
           this.acForm.controls['blocking_rate'].setValue(res.blocking_rate);
@@ -74,7 +72,7 @@ export class AcXappComponent implements OnInit {
             this.errorDialogService.displayError(error.message);
           });
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -85,6 +83,7 @@ export class AcXappComponent implements OnInit {
     if (this.acForm.valid) {
       // convert strings to numbers using the plus operator
       const acFormValueConverted = {
+        class: +acFormValue.class,
         enforce: acFormValue.enforce,
         window_length: +acFormValue.window_length,
         blocking_rate: +acFormValue.blocking_rate,

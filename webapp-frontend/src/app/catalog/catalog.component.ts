@@ -41,7 +41,7 @@ import { CatalogDataSource } from './catalog.datasource';
 export class CatalogComponent implements OnInit, OnDestroy {
 
   darkMode: boolean;
-  panelClass: string = "";
+  panelClass: string;
   displayedColumns: string[] = ['name', 'version', 'action'];
   dataSource: CatalogDataSource;
   private instanceChange: Subscription;
@@ -69,7 +69,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.instanceKey = instanceKey;
         this.dataSource.loadTable(instanceKey);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -78,9 +78,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   onConfigureApp(xapp: XMDeployableApp): void {
     if (this.darkMode) {
-      this.panelClass = "dark-theme";
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     const dialogRef = this.dialog.open(AppConfigurationComponent, {
       panelClass: this.panelClass,
@@ -94,7 +94,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         instanceKey: this.instanceKey
       }
 
-    })
+    });
   }
 
   onDeployApp(app: XMDeployableApp): void {

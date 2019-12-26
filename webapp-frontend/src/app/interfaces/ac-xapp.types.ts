@@ -21,6 +21,7 @@
 // Models of data used by the AC xApp
 
 export interface ACAdmissionIntervalControl {
+  class: number;
   enforce: boolean;
   window_length: number;
   blocking_rate: number;

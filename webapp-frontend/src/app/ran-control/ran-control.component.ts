@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -37,10 +37,10 @@ import { RANControlDataSource } from './ran-control.datasource';
   templateUrl: './ran-control.component.html',
   styleUrls: ['./ran-control.component.scss']
 })
-export class RanControlComponent implements OnInit {
+export class RanControlComponent implements OnInit, OnDestroy {
 
   darkMode: boolean;
-  panelClass: string = "";
+  panelClass: string;
   displayedColumns: string[] = ['nbId', 'nodeType', 'ranName', 'ranIp', 'ranPort', 'connectionStatus'];
   dataSource: RANControlDataSource;
   private instanceChange: Subscription;
@@ -67,7 +67,7 @@ export class RanControlComponent implements OnInit {
         this.instanceKey = instanceKey;
         this.dataSource.loadTable(instanceKey);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
@@ -76,9 +76,9 @@ export class RanControlComponent implements OnInit {
 
   setupRANConnection() {
     if (this.darkMode) {
-      this.panelClass = "dark-theme";
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     const dialogRef = this.dialog.open(RanControlConnectDialogComponent, {
       panelClass: this.panelClass,
@@ -100,7 +100,7 @@ export class RanControlComponent implements OnInit {
     this.confirmDialogService.openConfirmDialog('Are you sure you want to disconnect all RAN connections?')
       .afterClosed().subscribe((res: boolean) => {
         if (res) {
-          this.loadingDialogService.startLoading("Disconnecting");
+          this.loadingDialogService.startLoading('Disconnecting');
           this.e2MgrSvc.nodebPut(this.instanceKey)
             .pipe(
               finalize(() => this.loadingDialogService.stopLoading())

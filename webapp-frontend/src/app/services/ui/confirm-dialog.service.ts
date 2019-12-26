@@ -29,7 +29,7 @@ import { UiService } from './ui.service';
 export class ConfirmDialogService  {
 
   darkMode: boolean;
-  panelClass: string = "";
+  panelClass: string;
 
   constructor(private dialog: MatDialog,
     public ui: UiService) { }
@@ -39,9 +39,9 @@ export class ConfirmDialogService  {
       this.darkMode = isDark;
     });
     if (this.darkMode) {
-      this.panelClass = "dark-theme";
+      this.panelClass = 'dark-theme';
     } else {
-      this.panelClass = "";
+      this.panelClass = '';
     }
     return this.dialog.open(ConfirmDialogComponent, {
       panelClass: this.panelClass,

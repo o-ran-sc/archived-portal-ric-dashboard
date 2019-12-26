@@ -1,0 +1,7 @@
+{
+	"class": 12,
+	"enforce": true,
+	"window_length": 20,
+	"blocking_rate": 20,
+	"trigger_threshold": 10
+}

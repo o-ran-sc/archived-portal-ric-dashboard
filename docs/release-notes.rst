@@ -5,7 +5,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.0, 20 Dec 2019
+Version 2.0.0, 26 Dec 2019
 --------------------------
 * Change application properties file to YAML format
 * Add mock list of RIC instances to application properties
@@ -16,6 +16,9 @@ Version 2.0.0, 20 Dec 2019
 * Add instance-selector service
 * Revise ac-xapp, app-mgr, caas-ingress, e2-mgr service to support multiple ric instances
 * Revise ac-xapp, app-control, catalog, caas-ingress, ran-control components to listen to the instance change
+* Upgrade A1 Mediator API and submodule to tag 1.0.4
+* Upgrade App Manager API and submodule to tag 0.1.10
+* Upgrade E2 Manager API and submodule to tag 2.0.10
 
 Version 1.3.0, 26 Nov 2019
 --------------------------

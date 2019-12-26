@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
 import { CaasIngressService } from '../services/caas-ingress/caas-ingress.service';
@@ -34,7 +34,7 @@ import { CaasIngressDataSource } from './caas-ingress.datasource';
   templateUrl: './caas-ingress.component.html',
   styleUrls: ['./caas-ingress.component.scss']
 })
-export class CaasIngressComponent implements OnInit {
+export class CaasIngressComponent implements OnInit, OnDestroy {
 
   // Cluster name is displayed in page title
   @Input() cluster: string;
@@ -60,7 +60,7 @@ export class CaasIngressComponent implements OnInit {
       if (instanceKey) {
         this.dataSource.loadTable(instanceKey, this.cluster, this.namespace);
       }
-    })
+    });
   }
 
   ngOnDestroy() {
