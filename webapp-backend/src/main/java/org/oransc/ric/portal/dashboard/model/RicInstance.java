@@ -25,11 +25,11 @@ package org.oransc.ric.portal.dashboard.model;
  */
 public class RicInstance extends RicInstanceKeyName {
 
-	/* Application entry point */
+	/* Entry point for all applications */
 	private String appUrlPrefix;
-	/* Platform entry point */
+	/* Entry point for all platform components */
 	private String pltUrlPrefix;
-	/* CAAS-Ingress */
+	/* Entry point for CAAS-Ingress */
 	private String caasUrlPrefix;
 
 	/**

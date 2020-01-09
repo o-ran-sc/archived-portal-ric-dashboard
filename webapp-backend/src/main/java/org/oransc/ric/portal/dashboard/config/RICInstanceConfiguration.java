@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Profile;
  * in application properties like this:
  * 
  * <pre>
- * ric-instance-list:
+ * ricinstances:
     instances:
         -
           key: key1
@@ -48,7 +48,7 @@ import org.springframework.context.annotation.Profile;
  * </pre>
  */
 @Configuration
-@ConfigurationProperties(prefix = "ric-instance-list")
+@ConfigurationProperties(prefix = "ricinstances")
 @Profile("!test")
 public class RICInstanceConfiguration {
 

@@ -50,17 +50,20 @@ portalapi:
 # A1 Mediator
 a1med:
     url:
-        suffix:
+        # uses pltUrlPrefix
+        suffix: /a1mediator
 
 # App Manager
 appmgr:
     url:
-        suffix: /ric/v1
+        # uses pltUrlPrefix
+        suffix: /appmgr/ric/v1
 
 # E2 Manager
 e2mgr:
     url:
-        suffix: /v1
+        # uses pltUrlPrefix
+        suffix: /e2mgr/v1
 
 # Kubernetes API via https://github.com/nokia/caas-ingress
 caasingress:
@@ -68,6 +71,7 @@ caasingress:
     insecure: true
     plt:
         url:
+            # uses caasUrlPrefix
             suffix: /api
 
 # Mimic slow endpoints by defining sleep period, in milliseconds
@@ -82,7 +86,7 @@ metrics:
         mc: http://jar-app-props-kibana-url-mc
 
 # Instances
-ric-instance-list:
+ricinstances:
     instances:
         -
           key: i1
