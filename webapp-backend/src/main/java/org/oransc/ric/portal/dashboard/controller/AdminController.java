@@ -20,6 +20,7 @@
 package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,12 @@ import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
+import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
+import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
+import org.oransc.ric.portal.dashboard.model.StatsIdentity;
+import org.oransc.ric.portal.dashboard.model.StatsResponse;
+import org.oransc.ric.portal.dashboard.model.StatsSetupRequest;
 import org.oransc.ric.portal.dashboard.model.RicInstanceKeyName;
 import org.oransc.ric.portal.dashboard.model.RicInstanceList;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
@@ -40,9 +47,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -54,7 +66,6 @@ import io.swagger.annotations.ApiOperation;
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
 	// Publish paths in constants so tests are easy to write
 	public static final String CONTROLLER_PATH = DashboardConstants.ENDPOINT_PREFIX + "/admin";
 	public static final String HEALTH_METHOD = "health";
@@ -62,6 +73,7 @@ public class AdminController {
 	public static final String USER_METHOD = "user";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
+	public static final String STATAPPMETRIC_METHOD = "appmetric";
 
 	@Value("${metrics.url.ac}")
 	private String acAppMetricsUrl;
@@ -74,6 +86,10 @@ public class AdminController {
 
 	@Autowired
 	private RicInstanceList instanceConfig;
+	
+	private List<StatsDetailsTransport> details = new ArrayList<>();
+	
+	private int uniqAppMetricId = 0;
 
 	@ApiOperation(value = "Gets the Dashboard MANIFEST.MF property Implementation-Version.", response = SuccessTransport.class)
 	@GetMapping(VERSION_METHOD)
@@ -127,5 +143,51 @@ public class AdminController {
 			return new ErrorTransport(400, "Client provided app name is invalid as: " + app);
 		}
 	}
+	
+	@ApiOperation(value = "Gets all App identities and metrics statuses.", response = StatsDetailsTransport.class, responseContainer = "List")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + STATAPPMETRIC_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
+	public List<StatsDetailsTransport> getStatsDetails(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getStatsDetails instance {}", instanceKey);
+		/*details = new ArrayList<>();
+		StatsIdentity stiden = new StatsIdentity("1");
+		StatsResponse stresp = new StatsResponse("MC", "www.test.com");
+		details.add(new StatsDetailsTransport(stiden, stresp));*/
+		return details;
+	}
+	
+	@ApiOperation(value = "Sets up an app metrics status .")
+	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public void statsSetup(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody StatsSetupRequest statsSetupRequest, HttpServletResponse response) {
+		logger.debug("StatsSetup instance {} request {}", instanceKey, statsSetupRequest);
+		details.add(new StatsDetailsTransport(new StatsIdentity(++uniqAppMetricId),
+				new StatsResponse(statsSetupRequest.getAppName(), statsSetupRequest.getMetricUrl())));
+		//response.setStatus(api.getApiClient().getStatusCode().value());
+	}
+
+	@ApiOperation(value = "Edits an app metrics status .")
+	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public void editStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody StatsSetupRequest statsSetupRequest, HttpServletResponse response) {
+		logger.debug("editStats instance {} request {}", instanceKey, statsSetupRequest);
+		for (StatsDetailsTransport st: details) {
+			if (st.getStatsIdentity().getAppId()==statsSetupRequest.getAppId()) {
+				st.getStatsStatus().setAppName(statsSetupRequest.getAppName());
+				st.getStatsStatus().setMetricUrl(statsSetupRequest.getMetricUrl());
+				return;
+			}
+		}
+		details.add(new StatsDetailsTransport(new StatsIdentity(++uniqAppMetricId),
+				new StatsResponse(statsSetupRequest.getAppName(), statsSetupRequest.getMetricUrl())));
+		//response.setStatus(api.getApiClient().getStatusCode().value());
+	}
+
+
 
 }

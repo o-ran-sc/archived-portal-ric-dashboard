@@ -86,6 +86,7 @@ import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { UiService } from './services/ui/ui.service';
+import { StatsDialogComponent } from './stats/stats-dialog.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { UiService } from './services/ui/ui.service';
     PlatformComponent,
     RanControlComponent,
     RanControlConnectDialogComponent,
+    StatsDialogComponent,
     RdComponent,
     SidenavListComponent,
     StatCardComponent,
@@ -166,7 +168,8 @@ import { UiService } from './services/ui/ui.service';
     MatSliderModule,
     MatSlideToggleModule,
     MatTabsModule,
-    RanControlConnectDialogComponent
+    RanControlConnectDialogComponent,
+    StatsDialogComponent
   ],
   entryComponents: [
     AddDashboardUserDialogComponent,
@@ -175,7 +178,8 @@ import { UiService } from './services/ui/ui.service';
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     LoadingDialogComponent,
-    RanControlConnectDialogComponent
+    RanControlConnectDialogComponent,
+    StatsDialogComponent
   ],
   providers: [
     AppMgrService,
