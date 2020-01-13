@@ -90,11 +90,21 @@ public class AdminControllerTest extends AbstractControllerTest {
 	@Test
 	public void getxAppMetricsUrlTest() {
 		Map<String, String> metricsQueryParms = new HashMap<String, String>();
+		URI uri;
+
+		metricsQueryParms.clear();
 		metricsQueryParms.put("app", DashboardConstants.APP_NAME_AC);
-		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
+		uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
 		logger.debug("Invoking {}", uri);
 		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
 				null, SuccessTransport.class);
+		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
+		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
+
+		metricsQueryParms.clear();
+		metricsQueryParms.put("app", DashboardConstants.APP_NAME_MC);
+		logger.debug("Invoking {}", uri);
+		successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null, SuccessTransport.class);
 		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
 		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
 	}
@@ -111,6 +121,38 @@ public class AdminControllerTest extends AbstractControllerTest {
 				null, ErrorTransport.class);
 		logger.debug("{}", errorResponse.getBody().getError().toString());
 		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
+	}
+
+	@Test
+	public void throwHttpStatusCodeExceptionTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH,
+				AdminControllerExtension.HTTP_STATUS_CODE_EXCEPTION_METHOD);
+		logger.debug("Invoking {}", uri);
+		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
+				null, ErrorTransport.class);
+		logger.debug("{}", errorResponse.getBody().getError().toString());
+		Assertions.assertTrue(errorResponse.getStatusCode().is5xxServerError());
+	}
+
+	@Test
+	public void throwRestClientResponseExceptionTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH,
+				AdminControllerExtension.REST_CLIENT_RESPONSE_EXCEPTION_METHOD);
+		logger.debug("Invoking {}", uri);
+		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
+				null, ErrorTransport.class);
+		logger.debug("{}", errorResponse.getBody().getError().toString());
+		Assertions.assertTrue(errorResponse.getStatusCode().is5xxServerError());
+	}
+
+	@Test
+	public void throwRuntimeExceptionTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, AdminControllerExtension.RUNTIME_EXCEPTION_METHOD);
+		logger.debug("Invoking {}", uri);
+		ResponseEntity<String> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				String.class);
+		logger.debug("{}", errorResponse.getBody());
+		Assertions.assertTrue(errorResponse.getStatusCode().is5xxServerError());
 	}
 
 }
