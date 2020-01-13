@@ -107,6 +107,9 @@ public class ModelTest extends AbstractModelTest {
 		m = new RanDetailsTransport(nodebIdentity, nodebResponse);
 		Assert.assertEquals(m.getNodebIdentity(), nodebIdentity);
 		Assert.assertEquals(m.getNodebStatus(), nodebResponse);
+		m.nodebIdentity(nodebIdentity).nodebStatus(nodebResponse);
+		Assert.assertEquals(m.getNodebIdentity(), nodebIdentity);
+		Assert.assertEquals(m.getNodebStatus(), nodebResponse);
 	}
 
 	private void checkSuccessTransport(SuccessTransport m) {
@@ -121,6 +124,43 @@ public class ModelTest extends AbstractModelTest {
 		m.setData(s1);
 		m.setStatus(1);
 		checkSuccessTransport(m);
+		logger.info(m.toString());
+	}
+
+	private void checkRicInstanceKeyName(RicInstanceKeyName m) {
+		Assert.assertEquals(s1, m.getKey());
+		Assert.assertEquals(s2, m.getName());
+	}
+
+	@Test
+	public void testRicInstanceKeyName() {
+		RicInstanceKeyName m = new RicInstanceKeyName(s1, s1);
+		m = new RicInstanceKeyName();
+		m.setKey(s1);
+		m.setName(s2);
+		checkRicInstanceKeyName(m);
+		Assert.assertEquals(m, m);
+		Assert.assertNotEquals(1, m.hashCode());
+		logger.info(m.toString());
+	}
+
+	private void checkRicInstance(RicInstance m) {
+		Assert.assertEquals(s1, m.getAppUrlPrefix());
+		Assert.assertEquals(s2, m.getCaasUrlPrefix());
+		Assert.assertEquals(s3, m.getKey());
+		Assert.assertEquals(s4, m.getName());
+	}
+
+	@Test
+	public void testRicInstance() {
+		RicInstance m = new RicInstance();
+		m.setAppUrlPrefix(s1);
+		m.setCaasUrlPrefix(s2);
+		m.setKey(s3);
+		m.setName(s4);
+		checkRicInstance(m);
+		Assert.assertEquals(m, m);
+		Assert.assertNotEquals(1, m.hashCode());
 		logger.info(m.toString());
 	}
 
