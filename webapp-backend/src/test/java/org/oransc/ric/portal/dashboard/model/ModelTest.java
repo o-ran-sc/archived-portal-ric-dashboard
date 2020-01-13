@@ -20,6 +20,8 @@
 package org.oransc.ric.portal.dashboard.model;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -59,6 +61,9 @@ public class ModelTest extends AbstractModelTest {
 		Assert.assertNotNull(eud.getUsername());
 		Assert.assertTrue(eud.isAccountNonExpired());
 		Assert.assertTrue(eud.isAccountNonLocked());
+		Assert.assertTrue(eud.isCredentialsNonExpired());
+		Assert.assertTrue(eud.isEnabled());
+		logger.info(eud.toString());
 	}
 
 	private void checkErrorTransport(ErrorTransport m) {
@@ -110,6 +115,7 @@ public class ModelTest extends AbstractModelTest {
 		m.nodebIdentity(nodebIdentity).nodebStatus(nodebResponse);
 		Assert.assertEquals(m.getNodebIdentity(), nodebIdentity);
 		Assert.assertEquals(m.getNodebStatus(), nodebResponse);
+		logger.debug(m.toString());
 	}
 
 	private void checkSuccessTransport(SuccessTransport m) {
@@ -139,7 +145,9 @@ public class ModelTest extends AbstractModelTest {
 		m.setKey(s1);
 		m.setName(s2);
 		checkRicInstanceKeyName(m);
-		Assert.assertEquals(m, m);
+		Assert.assertTrue(m.equals(m));
+		Assert.assertFalse(m.equals(null));
+		Assert.assertFalse(m.equals(new RicInstanceKeyName()));
 		Assert.assertNotEquals(1, m.hashCode());
 		logger.info(m.toString());
 	}
@@ -159,8 +167,25 @@ public class ModelTest extends AbstractModelTest {
 		m.setKey(s3);
 		m.setName(s4);
 		checkRicInstance(m);
-		Assert.assertEquals(m, m);
+		Assert.assertTrue(m.equals(m));
+		Assert.assertFalse(m.equals(null));
+		Assert.assertFalse(m.equals(new RicInstance()));
 		Assert.assertNotEquals(1, m.hashCode());
+		logger.info(m.toString());
+	}
+
+	@Test
+	public void testRicInstanceList() {
+		RicInstanceList m = new RicInstanceList();
+		List<RicInstance> list = new ArrayList<>();
+		m = new RicInstanceList(list);
+		m.getInstances();
+		m.getKeyNameList();
+		try {
+			m.getInstance(s1);
+		} catch (Exception ex) {
+			logger.info("failed as expected", ex);
+		}
 		logger.info(m.toString());
 	}
 

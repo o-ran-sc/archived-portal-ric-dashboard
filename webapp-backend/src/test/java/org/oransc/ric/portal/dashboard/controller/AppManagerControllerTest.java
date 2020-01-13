@@ -149,4 +149,13 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
+	@Test
+	public void invalidInstanceTest() {
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, "bogus",
+				AppManagerController.CONFIG_METHOD);
+		logger.info("Invoking {}", uri);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null, Void.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is5xxServerError());
+	}
+
 }
