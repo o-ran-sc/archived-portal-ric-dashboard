@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.TestUtils;
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("test")
-public class CaasIngressMockConfiguration extends AbstractMockConfiguration {
+public class CaasIngressMockConfiguration extends TestUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

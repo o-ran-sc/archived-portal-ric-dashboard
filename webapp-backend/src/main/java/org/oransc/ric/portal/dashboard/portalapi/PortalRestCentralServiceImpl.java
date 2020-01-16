@@ -54,6 +54,9 @@ public class PortalRestCentralServiceImpl implements IPortalRestCentralService {
 		final ApplicationContext context = SpringContextCache.getApplicationContext();
 		authManager = context.getBean(PortalAuthManager.class);
 		userManager = context.getBean(DashboardUserManager.class);
+		logger.debug("ctor: authManager has credentials for app {}",
+				authManager.getAppCredentials().get(IPortalRestCentralService.CREDENTIALS_APP));
+		logger.debug("ctor: userManager has list size {}", userManager.getUsers().size());
 	}
 
 	/*
@@ -70,7 +73,7 @@ public class PortalRestCentralServiceImpl implements IPortalRestCentralService {
 	 */
 	@Override
 	public String getUserId(HttpServletRequest request) throws PortalAPIException {
-		logger.debug("getuserId");
+		logger.debug("getUserId");
 		return authManager.validateEcompSso(request);
 	}
 

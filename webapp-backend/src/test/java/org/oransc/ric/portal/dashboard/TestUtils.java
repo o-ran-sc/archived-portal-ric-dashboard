@@ -17,29 +17,22 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.invoke.MethodHandles;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+public class TestUtils {
 
-public class AbstractMockConfiguration {
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
-	protected static String readDataFromPath(String path) throws IOException {
+	public static String readDataFromPath(String path) throws IOException {
 		InputStream is = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(path);
-		if (is == null) {
-			String msg = "readDataFromPath: Failed to find resource on classpath: " + path;
-			logger.error(msg);
-			throw new RuntimeException(msg);
-		}
+		if (is == null)
+			throw new IOException("readDataFromPath: Failed to find resource on classpath: " + path);
 		InputStreamReader reader = new InputStreamReader(is, "UTF-8");
 		StringBuilder sb = new StringBuilder();
-		char[] buf = new char[8192];
+		char[] buf = new char[16384];
 		int i;
 		while ((i = reader.read(buf)) > 0)
 			sb.append(buf, 0, i);

@@ -41,7 +41,7 @@ portalapi:
     # name of request cookie with user ID
     usercookie: UserId
     # portal credentials must be supplied at deployment time
-    appname: RIC Dashboard
+    appname:
     username:
     password:
 

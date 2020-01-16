@@ -29,6 +29,7 @@ import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.portal.dashboard.DashboardUserManagerTest;
+import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -179,12 +180,12 @@ public class ModelTest extends AbstractModelTest {
 		RicInstanceList m = new RicInstanceList();
 		List<RicInstance> list = new ArrayList<>();
 		m = new RicInstanceList(list);
-		m.getInstances();
-		m.getKeyNameList();
+		Assert.assertEquals(list, m.getInstances());
+		Assert.assertNotNull(m.getKeyNameList());
 		try {
 			m.getInstance(s1);
-		} catch (Exception ex) {
-			logger.info("failed as expected", ex);
+		} catch (UnknownInstanceException ex) {
+			logger.info("failed as expected: {}", ex.toString());
 		}
 		logger.info(m.toString());
 	}

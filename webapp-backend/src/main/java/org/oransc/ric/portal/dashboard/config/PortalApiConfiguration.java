@@ -28,10 +28,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("!test")
+/**
+ * This is not restricted to test or !test profile, it's always active, the same
+ * servlet configuration is usable in production and test. This also means there
+ * is no PortalApiMockConfiguration class in the test area.
+ */
 public class PortalApiConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());

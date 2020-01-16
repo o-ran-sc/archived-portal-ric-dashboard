@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property
+ * Copyright (C) 2020 AT&T Intellectual Property
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,24 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
+import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ric.e2mgr.client.api.NodebApi;
+import org.oransc.ric.portal.dashboard.config.E2ManagerApiBuilder;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 
-public class A1MediatorConfigTest extends AbstractConfigTest {
+public class E2ManagerConfigTest extends AbstractConfigTest {
 
 	@Test
 	public void builderTest() {
-		A1MediatorApiBuilder builder = new A1MediatorApiBuilder(instanceConfig, "suffix");
-		A1MediatorApi a1Api = builder.getA1MediatorApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
-		Assertions.assertNotNull(a1Api);
+		E2ManagerApiBuilder builder = new E2ManagerApiBuilder(instanceConfig, "suffix");
+		HealthCheckApi healthApi = builder.getHealthCheckApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		Assertions.assertNotNull(healthApi);
+		NodebApi nodebApi = builder.getNodebApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		Assertions.assertNotNull(nodebApi);
 	}
 
 }

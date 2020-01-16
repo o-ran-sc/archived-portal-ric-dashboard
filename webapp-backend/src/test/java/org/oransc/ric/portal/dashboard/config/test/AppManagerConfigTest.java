@@ -17,22 +17,24 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.NodebApi;
+import org.oransc.ric.plt.appmgr.client.api.HealthApi;
+import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.portal.dashboard.config.AppManagerApiBuilder;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 
-public class E2ManagerConfigTest extends AbstractConfigTest {
+public class AppManagerConfigTest extends AbstractConfigTest {
 
 	@Test
 	public void builderTest() {
-		E2ManagerApiBuilder builder = new E2ManagerApiBuilder(instanceConfig, "suffix");
-		HealthCheckApi healthApi = builder.getHealthCheckApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		AppManagerApiBuilder builder = new AppManagerApiBuilder(instanceConfig, "suffix");
+		HealthApi healthApi = builder.getHealthApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
 		Assertions.assertNotNull(healthApi);
-		NodebApi nodebApi = builder.getNodebApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
-		Assertions.assertNotNull(nodebApi);
+		XappApi xappApi = builder.getXappApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		Assertions.assertNotNull(xappApi);
 	}
 
 }

@@ -17,22 +17,22 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.plt.appmgr.client.api.HealthApi;
-import org.oransc.ric.plt.appmgr.client.api.XappApi;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ric.portal.dashboard.config.SimpleKubernetesClientBuilder;
+import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 
-public class AppManagerConfigTest extends AbstractConfigTest {
+public class CaasIngressConfigTest extends AbstractConfigTest {
 
 	@Test
 	public void builderTest() {
-		AppManagerApiBuilder builder = new AppManagerApiBuilder(instanceConfig, "suffix");
-		HealthApi healthApi = builder.getHealthApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
-		Assertions.assertNotNull(healthApi);
-		XappApi xappApi = builder.getXappApi(RICInstanceMockConfiguration.INSTANCE_KEY_1);
-		Assertions.assertNotNull(xappApi);
+		SimpleKubernetesClientBuilder builder = new SimpleKubernetesClientBuilder(instanceConfig, "suffix");
+		SimpleKubernetesClient clientApi = builder
+				.getSimpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		Assertions.assertNotNull(clientApi);
 	}
 
 }

@@ -34,6 +34,7 @@ import java.util.Map;
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
 import org.oransc.ric.a1med.client.model.PolicyTypeSchema;
+import org.oransc.ric.portal.dashboard.TestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +53,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Configuration
 @Profile("test")
-public class A1MediatorMockConfiguration extends AbstractMockConfiguration {
+public class A1MediatorMockConfiguration extends TestUtils {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

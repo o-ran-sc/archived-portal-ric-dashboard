@@ -21,10 +21,13 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
+import org.onap.portalsdk.core.onboarding.crossapi.IPortalRestCentralService;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -47,12 +50,18 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	public WebSecurityMockConfiguration(@Value("${userfile}") final String userFilePath) {
-		logger.debug("ctor: user file path {}", userFilePath);
-	}
+	// Although constructor arguments are recommended over field injection,
+	// this results in fewer lines of code.
+	@Value("${portalapi.decryptor}")
+	private String decryptor;
+	@Value("${portalapi.usercookie}")
+	private String userCookie;
+	@Value("${userfile}")
+	private String userFilePath;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		logger.debug("configure");
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		auth.inMemoryAuthentication() //
 				.passwordEncoder(encoder) //
@@ -79,6 +88,14 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 		// This disables Spring security, but not the app's filter.
 		web.ignoring().antMatchers(WebSecurityConfiguration.OPEN_PATHS);
 		web.ignoring().antMatchers("/", "/csrf"); // allow swagger-ui to load
+	}
+
+	@Bean
+	public PortalAuthManager portalAuthManagerBean() throws Exception {
+		logger.debug("portalAuthManagerBean");
+		return new PortalAuthManager(IPortalRestCentralService.CREDENTIALS_APP,
+				IPortalRestCentralService.CREDENTIALS_USER, IPortalRestCentralService.CREDENTIALS_PASS, decryptor,
+				userCookie);
 	}
 
 }

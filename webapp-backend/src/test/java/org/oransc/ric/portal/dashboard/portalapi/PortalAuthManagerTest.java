@@ -54,6 +54,7 @@ public class PortalAuthManagerTest {
 	@Test
 	public void testPortalStuff() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
 			InvocationTargetException, NoSuchMethodException, IOException, ServletException {
+
 		PortalAuthManager m = new PortalAuthManager("app", "user", "secret", decryptor, "cookie");
 		Assert.assertNotNull(m.getAppCredentials());
 		String s = null;
