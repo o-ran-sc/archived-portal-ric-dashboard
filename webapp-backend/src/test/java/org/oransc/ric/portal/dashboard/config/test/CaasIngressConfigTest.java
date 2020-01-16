@@ -17,22 +17,22 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.config;
+package org.oransc.ric.portal.dashboard.config.test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ric.portal.dashboard.config.SimpleKubernetesClientBuilder;
+import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
-public class AbstractConfigTest {
+public class CaasIngressConfigTest extends AbstractConfigTest {
 
-	@Autowired
-	protected RicInstanceList instanceConfig;
+	@Test
+	public void builderTest() {
+		SimpleKubernetesClientBuilder builder = new SimpleKubernetesClientBuilder(instanceConfig, "suffix");
+		SimpleKubernetesClient clientApi = builder
+				.getSimpleKubernetesClient(RICInstanceMockConfiguration.INSTANCE_KEY_1);
+		Assertions.assertNotNull(clientApi);
+	}
 
 }

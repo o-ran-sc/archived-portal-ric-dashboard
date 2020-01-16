@@ -63,6 +63,7 @@ public class PortalAuthManager {
 	 *         password.
 	 */
 	public Map<String, String> getAppCredentials() {
+		logger.debug("getAppCredentials");
 		return credentialsMap;
 	}
 
@@ -94,6 +95,7 @@ public class PortalAuthManager {
 	 *         established a user ID; else null.
 	 */
 	public String validateEcompSso(HttpServletRequest request) {
+		logger.debug("validateEcompSso URI {}", request.getRequestURI());
 		// Check ECOMP Portal cookie
 		Cookie ep = getCookie(request, PortalApiConstants.EP_SERVICE);
 		if (ep == null) {

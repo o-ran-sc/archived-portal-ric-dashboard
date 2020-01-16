@@ -75,7 +75,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		logger.debug("configure: portalapi.username {}", userName);
+		logger.debug("configure: portalapi.appName {}", appName);
 		// A chain of ".and()" always baffles me
 		http.authorizeRequests().anyRequest().authenticated();
 		http.headers().frameOptions().disable();
@@ -115,6 +115,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PortalAuthManager portalAuthManagerBean() throws ClassNotFoundException, IllegalAccessException,
 			InstantiationException, InvocationTargetException, NoSuchMethodException {
+		logger.debug("portalAuthManagerBean");
 		return new PortalAuthManager(appName, userName, password, decryptor, userCookie);
 	}
 
@@ -129,6 +130,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	public PortalAuthenticationFilter portalAuthenticationFilterBean() throws ClassNotFoundException,
 			IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
+		logger.debug("portalAuthenticationFilterBean");
 		return new PortalAuthenticationFilter(portalapiSecurity, portalAuthManagerBean(), this.userManager);
 	}
 

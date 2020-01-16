@@ -61,11 +61,11 @@
 		<appender-ref ref="FILE" />
 	</root>
 
-	<!-- Code under test should be chatty --> >
-	<logger name="org.oransc.ric.portal.dashboard" level="DEBUG" />
+	<!-- Code not under test should not be chatty --> >
+	<logger name="org.oransc.ric.portal.dashboard" level="INFO" />
 
 	<!-- Watch authentication done by EPSDK-FW -->
-	<logger name="org.onap.portalsdk.core.onboarding.crossapi" level="DEBUG" />
+	<logger name="org.onap.portalsdk.core.onboarding" level="INFO" />
 
 	<!-- Report request URLs -->
 	<logger name="org.springframework.web.client.RestTemplate" level="DEBUG" />

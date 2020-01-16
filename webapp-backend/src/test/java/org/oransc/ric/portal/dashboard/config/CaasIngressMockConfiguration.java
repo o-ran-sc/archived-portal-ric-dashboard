@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.TestUtils;
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("test")
-public class CaasIngressMockConfiguration extends AbstractMockConfiguration {
+public class CaasIngressMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -57,11 +58,10 @@ public class CaasIngressMockConfiguration extends AbstractMockConfiguration {
 
 	private SimpleKubernetesClient simpleKubernetesClient(String instanceKey) throws IOException {
 		// File in src/test/resources
-		String pltPods;
-		if (RICInstanceMockConfiguration.INSTANCE_KEY_1.equals(instanceKey))
-			pltPods = readDataFromPath("caas-ingress-ricplt-pods-1.json");
-		else
-			pltPods = readDataFromPath("caas-ingress-ricplt-pods-2.json");
+		String podFile = RICInstanceMockConfiguration.INSTANCE_KEY_1.equals(instanceKey)
+				? "caas-ingress-ricplt-pods-1.json"
+				: "caas-ingress-ricplt-pods-2.json";
+		String pltPods = TestUtils.readDataFromPath(podFile);
 		SimpleKubernetesClient mockClient = mock(SimpleKubernetesClient.class);
 		doAnswer(inv -> {
 			String ns = inv.<String>getArgument(0);

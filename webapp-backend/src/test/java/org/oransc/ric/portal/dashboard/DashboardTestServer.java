@@ -53,8 +53,8 @@ public class DashboardTestServer {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/*
-	 * Keeps the test server alive forever. Use a guard so this test is never run by
-	 * Jenkins.
+	 * Keeps the test server alive forever. Use a guard so this test is not run by
+	 * maven automatically; for example not in Jenkins.
 	 */
 	@EnabledIfSystemProperty(named = "org.oransc.ric.portal.dashboard", matches = "mock")
 	@Test

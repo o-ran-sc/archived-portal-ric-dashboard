@@ -27,11 +27,11 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.onap.portalsdk.core.onboarding.crossapi.IPortalRestCentralService;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.config.PortalApiMockConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -63,12 +63,10 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		Assertions.assertTrue(response.getBody().contains("Static error page"));
 	}
 
-	private HttpEntity<Object> getEntityWithHeaders(Object body) {
+	private HttpEntity<Object> getEntityWithAuthHeaders(Object body) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(PortalApiMockConfiguration.PORTAL_USERNAME_HEADER_KEY,
-				PortalApiMockConfiguration.PORTAL_USERNAME_HEADER_KEY);
-		headers.set(PortalApiMockConfiguration.PORTAL_PASSWORD_HEADER_KEY,
-				PortalApiMockConfiguration.PORTAL_PASSWORD_HEADER_KEY);
+		headers.set(IPortalRestCentralService.CREDENTIALS_USER, IPortalRestCentralService.CREDENTIALS_USER);
+		headers.set(IPortalRestCentralService.CREDENTIALS_PASS, IPortalRestCentralService.CREDENTIALS_PASS);
 		HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 		return entity;
 	}
@@ -90,9 +88,10 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 	public void createUserTest() {
 		final String loginId = "login1";
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
-		logger.info("Invoking {}", create);
-		HttpEntity<Object> requestEntity = getEntityWithHeaders(createEcompUser(loginId));
+		logger.info("createUserTest invoking {}", create);
+		HttpEntity<Object> requestEntity = getEntityWithAuthHeaders(createEcompUser(loginId));
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
+		logger.info("createUserTest response {}", response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 
@@ -101,15 +100,17 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		final String loginId = "login2";
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
 		EcompUser user = createEcompUser(loginId);
-		logger.info("Invoking {}", create);
-		HttpEntity<Object> requestEntity = getEntityWithHeaders(user);
-		// Create
+		logger.info("updateUserTest invoking {}", create);
+		HttpEntity<Object> requestEntity = getEntityWithAuthHeaders(user);
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
+		logger.info("updateUserTest response {}", response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 		URI update = buildUri(null, PortalApiConstants.API_PREFIX, "user", loginId);
 		user.setEmail("user@company.org");
-		requestEntity = getEntityWithHeaders(user);
+		requestEntity = getEntityWithAuthHeaders(user);
+		logger.info("updateUserTest invoking {}", update);
 		response = restTemplate.exchange(update, HttpMethod.POST, requestEntity, String.class);
+		logger.info("updateUserTest response {}", response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 

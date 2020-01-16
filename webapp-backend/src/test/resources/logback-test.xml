@@ -66,4 +66,7 @@
 	<!-- Code under test should be chatty --> >
 	<logger name="org.oransc.ric.portal.dashboard" level="DEBUG" />
 
+	<!-- Watch authentication done by EPSDK-FW -->
+	<logger name="org.onap.portalsdk.core.onboarding" level="DEBUG" />
+
 </configuration>

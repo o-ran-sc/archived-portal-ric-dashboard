@@ -54,6 +54,14 @@ public class AbstractControllerTest {
 	@Autowired
 	protected TestRestTemplate restTemplate;
 
+	// Because I put the annotations on this parent class,
+	// must define at least one test here.
+	@Test
+	public void beQuietSonar() {
+		// Silence Sonar warning about missing assertion.
+		Assertions.assertTrue(logger.isWarnEnabled());
+	}
+
 	/**
 	 * Builds URI from path components and query parameters.
 	 * 
@@ -90,21 +98,12 @@ public class AbstractControllerTest {
 		return builder.build().encode().toUri();
 	}
 
-	// Because I put the annotations on this parent class,
-	// must define at least one test here.
-	@Test
-	public void contextLoads() {
-		// Silence Sonar warning about missing assertion.
-		Assertions.assertTrue(logger.isWarnEnabled());
-		logger.info("Context loads on mock profile");
-	}
-
-	public TestRestTemplate testRestTemplateAdminRole() {
+	protected TestRestTemplate testRestTemplateAdminRole() {
 		return restTemplate.withBasicAuth(WebSecurityMockConfiguration.TEST_CRED_ADMIN,
 				WebSecurityMockConfiguration.TEST_CRED_ADMIN);
 	}
 
-	public TestRestTemplate testRestTemplateStandardRole() {
+	protected TestRestTemplate testRestTemplateStandardRole() {
 		return restTemplate.withBasicAuth(WebSecurityMockConfiguration.TEST_CRED_STANDARD,
 				WebSecurityMockConfiguration.TEST_CRED_STANDARD);
 	}
