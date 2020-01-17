@@ -31,7 +31,7 @@ limitations under the License.
 	<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>
 	<artifactId>e2-mgr-client</artifactId>
 	<name>RIC E2 Manager client</name>
-	<version>2.0.10-SNAPSHOT</version>
+	<version>3.0.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

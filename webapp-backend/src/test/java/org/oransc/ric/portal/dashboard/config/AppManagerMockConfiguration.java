@@ -34,12 +34,15 @@ import org.oransc.ric.plt.appmgr.client.model.AllDeployableXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
 import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
+import org.oransc.ric.plt.appmgr.client.model.ConfigValidationError;
+import org.oransc.ric.plt.appmgr.client.model.ConfigValidationErrors;
+import org.oransc.ric.plt.appmgr.client.model.EventType;
 import org.oransc.ric.plt.appmgr.client.model.SubscriptionRequest;
 import org.oransc.ric.plt.appmgr.client.model.SubscriptionResponse;
 import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
-import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
 import org.oransc.ric.plt.appmgr.client.model.Xapp.StatusEnum;
+import org.oransc.ric.plt.appmgr.client.model.XappDescriptor;
 import org.oransc.ric.plt.appmgr.client.model.XappInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,6 +105,8 @@ public class AppManagerMockConfiguration {
 		}
 		final String configJson = " { \"config\" : \"example-" + instanceKey + "\"}";
 		final String descriptorJson = " { \"descriptor\" : \"example-" + instanceKey + "\"}";
+		final ConfigValidationErrors configValErrs = new ConfigValidationErrors();
+		configValErrs.add(new ConfigValidationError().field("mock error"));
 		final AllXappConfig allXappConfigs = new AllXappConfig();
 		final AllDeployableXapps deployableApps = new AllDeployableXapps();
 		final AllDeployedXapps deployedXapps = new AllDeployedXapps();
@@ -115,8 +120,7 @@ public class AppManagerMockConfiguration {
 					.status(XappInstance.StatusEnum.RUNNING));
 			deployedXapps.add(xapp);
 		}
-		final SubscriptionResponse subRes = new SubscriptionResponse().eventType(SubscriptionResponse.EventTypeEnum.ALL)
-				.id("subid").version(1);
+		final SubscriptionResponse subRes = new SubscriptionResponse().eventType(EventType.ALL).id("subid").version(1);
 		// Mock the methods to return the instance-specific objects
 		ApiClient mockClient = mock(ApiClient.class);
 		when(mockClient.getStatusCode()).thenReturn(HttpStatus.OK);
@@ -134,14 +138,14 @@ public class AppManagerMockConfiguration {
 				logger.debug("createXappConfig sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return allXappConfigs.get(0);
+			return configValErrs;
 		}).when(mockApi).createXappConfig(any(XAppConfig.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("modifyXappConfig sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
-			return allXappConfigs.get(0);
+			return configValErrs;
 		}).when(mockApi).modifyXappConfig(any(XAppConfig.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
@@ -156,14 +160,14 @@ public class AppManagerMockConfiguration {
 				Thread.sleep(delayMs);
 			}
 			return deployedXapps.get(0);
-		}).when(mockApi).deployXapp(any(XAppInfo.class));
+		}).when(mockApi).deployXapp(any(XappDescriptor.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("listAllDeployableXapps sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
 			return deployableApps;
-		}).when(mockApi).listAllDeployableXapps();
+		}).when(mockApi).listAllXapps();
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("getAllXapps sleeping {}", delayMs);

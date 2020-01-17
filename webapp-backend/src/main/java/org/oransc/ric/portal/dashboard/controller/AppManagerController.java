@@ -29,9 +29,10 @@ import org.oransc.ric.plt.appmgr.client.model.AllDeployableXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
 import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
+import org.oransc.ric.plt.appmgr.client.model.ConfigValidationErrors;
 import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
-import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
+import org.oransc.ric.plt.appmgr.client.model.XappDescriptor;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.AppManagerApiBuilder;
@@ -136,20 +137,20 @@ public class AppManagerController {
 		return appManagerApiBuilder.getXappApi(instanceKey).getAllXappConfig();
 	}
 
-	@ApiOperation(value = "Create XApp config.", response = XAppConfig.class)
+	@ApiOperation(value = "Create XApp config.", response = ConfigValidationErrors.class)
 	@PostMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public XAppConfig createXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody XAppConfig xAppConfig) {
+	public ConfigValidationErrors createXappConfig(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, @RequestBody XAppConfig xAppConfig) {
 		logger.debug("createXappConfig instance {} config {}", instanceKey, xAppConfig);
 		return appManagerApiBuilder.getXappApi(instanceKey).createXappConfig(xAppConfig);
 	}
 
-	@ApiOperation(value = "Modify XApp config.", response = XAppConfig.class)
+	@ApiOperation(value = "Modify XApp config.", response = ConfigValidationErrors.class)
 	@PutMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public XAppConfig modifyXappConfig(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody XAppConfig xAppConfig) {
+	public ConfigValidationErrors modifyXappConfig(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, @RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig instance {} config {}", instanceKey, xAppConfig);
 		return appManagerApiBuilder.getXappApi(instanceKey).modifyXappConfig(xAppConfig);
 	}
@@ -172,12 +173,12 @@ public class AppManagerController {
 	public DashboardDeployableXapps getAvailableXapps(
 			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
 		logger.debug("getAvailableXapps instance {}", instanceKey);
-		AllDeployableXapps appNames = appManagerApiBuilder.getXappApi(instanceKey).listAllDeployableXapps();
+		AllDeployableXapps deployableXapps = appManagerApiBuilder.getXappApi(instanceKey).listAllXapps();
 		// Answer a collection of structure instead of string
 		// because I expect the AppMgr to be extended with
 		// additional properties for each one.
 		DashboardDeployableXapps apps = new DashboardDeployableXapps();
-		for (String n : appNames)
+		for (String n : deployableXapps)
 			apps.add(new AppTransport(n));
 		return apps;
 	}
@@ -203,9 +204,9 @@ public class AppManagerController {
 	@PostMapping(XAPPS_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public Xapp deployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody XAppInfo appInfo) {
-		logger.debug("deployXapp instance {} info {}", instanceKey, appInfo);
-		return appManagerApiBuilder.getXappApi(instanceKey).deployXapp(appInfo);
+			@RequestBody XappDescriptor appDescriptor) {
+		logger.debug("deployXapp instance {} descriptor {}", instanceKey, appDescriptor);
+		return appManagerApiBuilder.getXappApi(instanceKey).deployXapp(appDescriptor);
 	}
 
 	@ApiOperation(value = "Undeploy an existing xapp.")
