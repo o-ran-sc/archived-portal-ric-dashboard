@@ -1,0 +1,8 @@
+Verified+1: ORAN Jobbuilder <releng+oran-jobbuilder@linuxfoundation.org>
+Code-Review+1: Jun (Nicolas) Hu <jh245g@att.com>
+Code-Review+2: Chris Lott <cl778h@att.com>
+Submitted-by: Chris Lott <cl778h@att.com>
+Submitted-at: Fri, 17 Jan 2020 19:27:07 +0000
+Reviewed-on: https://gerrit.o-ran-sc.org/r/c/portal/ric-dashboard/+/2258
+Project: portal/ric-dashboard
+Branch: refs/heads/master
