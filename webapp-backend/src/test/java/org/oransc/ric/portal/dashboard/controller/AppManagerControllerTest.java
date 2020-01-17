@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
 import org.oransc.ric.plt.appmgr.client.model.AllXappConfig;
 import org.oransc.ric.plt.appmgr.client.model.ConfigMetadata;
+import org.oransc.ric.plt.appmgr.client.model.ConfigValidationErrors;
 import org.oransc.ric.plt.appmgr.client.model.XAppConfig;
 import org.oransc.ric.plt.appmgr.client.model.XAppInfo;
 import org.oransc.ric.plt.appmgr.client.model.Xapp;
@@ -133,8 +134,21 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.CONFIG_METHOD);
 		logger.info("Invoking {}", uri);
 		XAppConfig newConfig = new XAppConfig();
-		XAppConfig response = testRestTemplateAdminRole().postForObject(uri, newConfig, XAppConfig.class);
-		Assertions.assertNotNull(response.getConfig());
+		ConfigValidationErrors response = testRestTemplateAdminRole().postForObject(uri, newConfig,
+				ConfigValidationErrors.class);
+		Assertions.assertNotNull(response);
+	}
+
+	@Test
+	public void modifyConfigTest() {
+		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.CONFIG_METHOD);
+		logger.info("Invoking {}", uri);
+		XAppConfig modConfig = new XAppConfig();
+		HttpEntity<XAppConfig> entity = new HttpEntity<>(modConfig);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
+				Void.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
 	@Test

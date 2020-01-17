@@ -32,7 +32,7 @@ limitations under the License.
 	<artifactId>app-mgr-client</artifactId>
 	<name>RIC App Manager client</name>
         <!-- Update to match submodule tag -->
-	<version>0.1.10-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
