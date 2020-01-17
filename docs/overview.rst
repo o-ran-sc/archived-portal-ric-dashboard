@@ -58,19 +58,6 @@ configuring applications in the RIC. The Dashboard UI provides screens
 for these functions.
 
 
-Automatic Neighbor Relation Application
----------------------------------------
-
-The Dashboard interfaces with the Automatic Neighbor Relation (ANR)
-application.  This RIC application is accessed via HTTP/REST requests
-using a client that is generated from an API specification published
-by the ANR team.
-
-This RIC application discovers and manages the Neighbor Cell Relation
-Table (NCRT). The Dashboard UI provides screens to view and modify
-NCRT data.
-
-
 E2 Manager
 ----------
 

@@ -46,15 +46,6 @@ like ``http://ricplt-entry/a1mediator``
 
 A1 Mediator URL suffix. Default is the empty string.
 
-``anrxapp.url.prefix``
-
-ANR Application URL prefix.  No useful default. Usually a service name
-like ``http://ricxapp-entry/anr``
-
-``anrxapp.url.suffix``
-
-ANR Application URL suffix. Default is the empty string.
-
 ``appmgr.url.prefix``
 
 Application Manager URL prefix. No useful default. Usually a service
