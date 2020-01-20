@@ -17,12 +17,13 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { RicInstance } from './interfaces/dashboard.types';
 import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
-import { LoadingDialogService } from './services/ui/loading-dialog.service';
+import { InstanceSelectorDialogService } from './services/ui/instance-selector-dialog.service';
 import { UiService } from './services/ui/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'rd-root',
@@ -32,40 +33,41 @@ import { UiService } from './services/ui/ui.service';
 export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
-  private instanceArray: RicInstance[];
-  private selectedInstanceKey: string;
+
+  private selectedInstanceName: string;
+  private instanceChange: Subscription;
+  private instanceKey: string;
 
   constructor(
     public ui: UiService,
-    private instanceSelectorService: InstanceSelectorService,
-    private loadingDialogService: LoadingDialogService) {
+    private istanceSelectorDialogService: InstanceSelectorDialogService,
+    private instanceSelectorService: InstanceSelectorService) {
   }
 
   ngOnInit() {
     this.ui.darkModeState.subscribe((value) => {
       this.darkModeActive = value;
     });
-    this.loadingDialogService.startLoading('Loading RIC instances');
-    this.instanceSelectorService.getInstanceArray()
-      .pipe(
-        finalize(() => this.loadingDialogService.stopLoading())
-      )
-      .subscribe((instanceArray: RicInstance[]) => {
-        this.instanceArray = instanceArray;
-        this.selectedInstanceKey = instanceArray[0].key;
-      })
+
+    this.instanceChange = this.instanceSelectorService.getSelectedInstanceName().subscribe((instanceName: string) => {
+      if (instanceName) {
+        this.selectedInstanceName = instanceName;
+      } else {
+        this.openInstanceSelectorDialog()
+      }
+    });
   }
 
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
+  ngOnDestroy() {
+    this.instanceChange.unsubscribe();
   }
 
   modeToggleSwitch() {
     this.ui.darkModeState.next(!this.darkModeActive);
   }
 
-  changeInstance(selectedInstancekey: string) {
-    this.instanceSelectorService.updateSelectedInstance(selectedInstancekey);
+  openInstanceSelectorDialog() {
+    this.istanceSelectorDialogService.openInstanceSelectorDialog();
   }
 
 }
