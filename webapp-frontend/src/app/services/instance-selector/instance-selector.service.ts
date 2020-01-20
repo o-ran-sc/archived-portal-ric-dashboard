@@ -29,8 +29,9 @@ import { DashboardService } from '../dashboard/dashboard.service';
   providedIn: 'root'
 })
 export class InstanceSelectorService {
-  private selectedInstanceKey: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   private instanceArray: Observable<RicInstance[]>;
+  private selectedInstance: BehaviorSubject<RicInstance> = new BehaviorSubject<RicInstance>({ key: '', name:''});
 
   constructor(
     private dashboardSvc: DashboardService,
@@ -44,28 +45,19 @@ export class InstanceSelectorService {
     const path = this.dashboardSvc.buildPath('admin', null, 'instance');
     return this.instanceArray = this.httpClient.get<RicInstance[]>(path)
       .pipe(
-        tap(ricInstanceArray => {
-          this.initselectedInstanceKey(ricInstanceArray[0].key);
-        }),
         shareReplay(1)
       );
   }
 
-  private initselectedInstanceKey(instanceKey: string) {
-    if (!this.selectedInstanceKey.value) {
-      this.selectedInstanceKey.next(instanceKey)
-    }
-  }
-
-  // This method may return the BehaviorSubject with empty string
+  // This method may return the BehaviorSubject with empty value
   // Afther subscribe that BehaviorSubject
   // Please make sure this BehaviorSubject has non empty value
-  getSelectedInstancekey(): BehaviorSubject<string> {
-    return this.selectedInstanceKey;
+  getSelectedInstance(): BehaviorSubject<RicInstance> {
+    return this.selectedInstance;
   }
 
-  updateSelectedInstance(instanceKey: string) {
-    this.selectedInstanceKey.next(instanceKey)
+  updateSelectedInstance(instance: RicInstance) {
+    this.selectedInstance.next(instance)
   }
 
 }
