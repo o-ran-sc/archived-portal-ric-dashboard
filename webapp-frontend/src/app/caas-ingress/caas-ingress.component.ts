@@ -21,6 +21,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
+import { RicInstance } from '../interfaces/dashboard.types';
 import { CaasIngressService } from '../services/caas-ingress/caas-ingress.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
@@ -56,9 +57,9 @@ export class CaasIngressComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource = new CaasIngressDataSource(this.caasIngressSvc, this.sort, this.notificationService);
-    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
-      if (instanceKey) {
-        this.dataSource.loadTable(instanceKey, this.cluster, this.namespace);
+    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+      if (instance.key) {
+        this.dataSource.loadTable(instance.key, this.cluster, this.namespace);
       }
     });
   }
