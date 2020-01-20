@@ -22,6 +22,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { RicInstance } from '../interfaces/dashboard.types';
 import { E2ManagerService } from '../services/e2-mgr/e2-mgr.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
@@ -62,10 +63,10 @@ export class RanControlComponent implements OnInit, OnDestroy {
       this.darkMode = isDark;
     });
 
-    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
-      if (instanceKey) {
-        this.instanceKey = instanceKey;
-        this.dataSource.loadTable(instanceKey);
+    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+      if (instance.key) {
+        this.instanceKey = instance.key;
+        this.dataSource.loadTable(instance.key);
       }
     });
   }
