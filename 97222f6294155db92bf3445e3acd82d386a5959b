@@ -131,6 +131,30 @@
       "revId": "97222f6294155db92bf3445e3acd82d386a5959b",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8fe13ab_652f6c6a",
+        "filename": "webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-01-20T19:05:40Z",
+      "side": 1,
+      "message": "It will get current selected instance. And set the default value for the selector.",
+      "parentUuid": "7dd6a4dc_43ba8efc",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 1
+      },
+      "revId": "97222f6294155db92bf3445e3acd82d386a5959b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
