@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { XappControlRow } from '../interfaces/app-mgr.types';
+import { RicInstance } from '../interfaces/dashboard.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
@@ -59,10 +60,10 @@ export class AppControlComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort, this.notificationService);
-    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
-      if (instanceKey) {
-        this.instanceKey = instanceKey;
-        this.dataSource.loadTable(instanceKey);
+    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+      if (instance.key) {
+        this.instanceKey = instance.key;
+        this.dataSource.loadTable(instance.key);
       }
     });
   }
