@@ -2,3 +2,4 @@
 host=gerrit.o-ran-sc.org
 port=29418
 project=portal/ric-dashboard.git
+defaultremote=origin
