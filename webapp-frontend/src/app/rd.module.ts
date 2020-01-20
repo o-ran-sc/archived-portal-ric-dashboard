@@ -67,6 +67,7 @@ import { ControlComponent } from './control/control.component';
 import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component';
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { FooterComponent } from './footer/footer.component';
+import { InstanceSelectorDialogComponent } from './ui/instance-selector-dialog/instance-selector-dialog.component';
 import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
 import { PlatformComponent } from './platform/platform.component';
@@ -85,7 +86,9 @@ import { DashboardService } from './services/dashboard/dashboard.service';
 import { E2ManagerService } from './services/e2-mgr/e2-mgr.service';
 import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
+import { InstanceSelectorDialogService } from './services/ui/instance-selector-dialog.service';
 import { UiService } from './services/ui/ui.service';
+
 
 @NgModule({
   declarations: [
@@ -111,7 +114,8 @@ import { UiService } from './services/ui/ui.service';
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
-    UserComponent
+    UserComponent,
+    InstanceSelectorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -174,6 +178,7 @@ import { UiService } from './services/ui/ui.service';
     ConfirmDialogComponent,
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
+    InstanceSelectorDialogComponent,
     LoadingDialogComponent,
     RanControlConnectDialogComponent
   ],
@@ -183,6 +188,7 @@ import { UiService } from './services/ui/ui.service';
     E2ManagerService,
     ErrorDialogService,
     InstanceSelectorService,
+    InstanceSelectorDialogService,
     UiService
   ],
   bootstrap: [RdComponent]

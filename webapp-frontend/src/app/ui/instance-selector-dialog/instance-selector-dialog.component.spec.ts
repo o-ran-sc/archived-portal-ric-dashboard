@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,28 +17,29 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UiService } from '../../services/ui/ui.service';
 
-@Component({
-  selector: 'rd-sidenav-list',
-  templateUrl: './sidenav-list.component.html',
-  styleUrls: ['./sidenav-list.component.scss']
-})
-export class SidenavListComponent implements OnInit {
-  darkMode: boolean;
-  @Output() sidenavClose: EventEmitter<any>  = new EventEmitter();
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-  constructor(public ui: UiService) { }
+import { InstanceSelectorDialogComponent } from './instance-selector-dialog.component';
 
-  ngOnInit() {
-    this.ui.darkModeState.subscribe((isDark) => {
-      this.darkMode = isDark;
-    });
-  }
+describe('InstanceSelectorDialogComponent', () => {
+  let component: InstanceSelectorDialogComponent;
+  let fixture: ComponentFixture<InstanceSelectorDialogComponent>;
 
-  public onSidenavClose = () => {
-    this.sidenavClose.emit();
-  }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ InstanceSelectorDialogComponent ]
+    })
+    .compileComponents();
+  }));
 
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(InstanceSelectorDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
