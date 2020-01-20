@@ -19,14 +19,15 @@
  */
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ACAdmissionIntervalControl } from '../interfaces/ac-xapp.types';
-import { ACXappService } from '../services/ac-xapp/ac-xapp.service';
-import { ErrorDialogService } from '../services/ui/error-dialog.service';
-import { NotificationService } from './../services/ui/notification.service';
 import { Subscription } from 'rxjs';
+import { ACAdmissionIntervalControl } from '../interfaces/ac-xapp.types';
+import { RicInstance } from '../interfaces/dashboard.types';
+import { ACXappService } from '../services/ac-xapp/ac-xapp.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { NotificationService } from '../services/ui/notification.service';
 
 @Component({
   selector: 'rd-ac-xapp',
@@ -55,11 +56,11 @@ export class AcXappComponent implements OnInit, OnDestroy {
       trigger_threshold: new FormControl('', [Validators.required, Validators.min(1)])
     });
 
-    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
-      if (instanceKey) {
+    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+      if (instance.key) {
         // TODO: show pending action indicator
-        this.instanceKey = instanceKey;
-        this.acXappService.getPolicy(instanceKey).subscribe((res: ACAdmissionIntervalControl) => {
+        this.instanceKey = instance.key;
+        this.acXappService.getPolicy(instance.key).subscribe((res: ACAdmissionIntervalControl) => {
           this.acForm.controls['class'].setValue(res.class);
           this.acForm.controls['enforce'].setValue(res.enforce);
           this.acForm.controls['window_length'].setValue(res.window_length);

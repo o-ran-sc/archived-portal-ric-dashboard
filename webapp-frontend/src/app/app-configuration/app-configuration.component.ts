@@ -26,7 +26,7 @@ import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { NotificationService } from './../services/ui/notification.service';
+import { NotificationService } from '../services/ui/notification.service';
 
 @Component({
   selector: 'rd-app-configuration',

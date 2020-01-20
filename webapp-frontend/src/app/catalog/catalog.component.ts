@@ -23,14 +23,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { RicInstance } from '../interfaces/dashboard.types';
 import { XMDeployableApp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
-import { ConfirmDialogService } from './../services/ui/confirm-dialog.service';
-import { NotificationService } from './../services/ui/notification.service';
+import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { NotificationService } from '../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
 
 @Component({
@@ -64,10 +65,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.darkMode = isDark;
     });
 
-    this.instanceChange = this.instanceSelectorService.getSelectedInstancekey().subscribe((instanceKey: string) => {
-      if (instanceKey) {
-        this.instanceKey = instanceKey;
-        this.dataSource.loadTable(instanceKey);
+    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+      if (instance.key) {
+        this.instanceKey = instance.key;
+        this.dataSource.loadTable(instance.key);
       }
     });
   }

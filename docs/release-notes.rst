@@ -19,6 +19,8 @@ Version 2.0.0, 20 Jan 2020
 * Upgrade A1 Mediator API and submodule to tag 2.1.0
 * Upgrade App Manager API and submodule to tag 0.3.3
 * Upgrade E2 Manager API and submodule to tag 3.0.3
+* Add instance selector dialog component and service
+* Repair onSidenavClose method
 
 Version 1.3.0, 26 Nov 2019
 --------------------------
