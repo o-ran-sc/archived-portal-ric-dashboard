@@ -30,7 +30,10 @@ import { DashboardService } from '../dashboard/dashboard.service';
 })
 export class InstanceSelectorService {
   private selectedInstanceKey: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private selectedInstanceName: BehaviorSubject<string> = new BehaviorSubject<string>('');
   private instanceArray: Observable<RicInstance[]>;
+
+  private selectedInstance: BehaviorSubject<RicInstance> = new BehaviorSubject<RicInstance>({ key: '', name:''});
 
   constructor(
     private dashboardSvc: DashboardService,
@@ -45,7 +48,7 @@ export class InstanceSelectorService {
     return this.instanceArray = this.httpClient.get<RicInstance[]>(path)
       .pipe(
         tap(ricInstanceArray => {
-          this.initselectedInstanceKey(ricInstanceArray[0].key);
+         // this.initselectedInstanceKey(ricInstanceArray[0].key);
         }),
         shareReplay(1)
       );
@@ -64,8 +67,18 @@ export class InstanceSelectorService {
     return this.selectedInstanceKey;
   }
 
-  updateSelectedInstance(instanceKey: string) {
-    this.selectedInstanceKey.next(instanceKey)
+  getSelectedInstanceName(): BehaviorSubject<string> {
+    return this.selectedInstanceName;
+  }
+
+  getSelectedInstance(): BehaviorSubject<RicInstance> {
+    return this.selectedInstance;
+  }
+
+  updateSelectedInstance(instance: RicInstance) {
+    this.selectedInstanceKey.next(instance.key)
+    this.selectedInstanceName.next(instance.name)
+    this.selectedInstance.next(instance)
   }
 
 }
