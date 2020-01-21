@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e67d56f_4aa5dcc6",
+        "filename": "webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-21T18:01:19Z",
+      "side": 1,
+      "message": "Pls drop \"Pleace \" here, and make S capital so it reads:\n\n    Select RIC instance",
+      "range": {
+        "startLine": 36,
+        "startChar": 42,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "5f59bb4ea36760d51fd074e935272c0f550ae102",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb5c430_c1c24409",
+        "filename": "webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.html",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-21T18:01:19Z",
+      "side": 1,
+      "message": "I think you can drop the \"Please\" here",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 8
+      },
+      "revId": "5f59bb4ea36760d51fd074e935272c0f550ae102",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
