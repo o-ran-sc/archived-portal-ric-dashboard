@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.util.DefaultUriBuilderFactory;
@@ -40,9 +40,9 @@ public class SimpleKubernetesClientBuilder {
 	private Map<String, SimpleKubernetesClient> cache = new ConcurrentHashMap<>();
 
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
-	public SimpleKubernetesClientBuilder(final RicInstanceList instanceConfig, final String urlSuffix) {
+	public SimpleKubernetesClientBuilder(final RicRegionList instanceConfig, final String urlSuffix) {
 		logger.debug("ctor: suffix {}", urlSuffix);
 		this.instanceConfig = instanceConfig;
 		this.urlSuffix = urlSuffix;

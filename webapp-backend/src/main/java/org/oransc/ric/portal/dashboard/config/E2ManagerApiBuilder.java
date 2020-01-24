@@ -25,7 +25,7 @@ import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.e2mgr.client.invoker.ApiClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -43,9 +43,9 @@ public class E2ManagerApiBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
-	public E2ManagerApiBuilder(final RicInstanceList instanceConfig, final String urlSuffix) {
+	public E2ManagerApiBuilder(final RicRegionList instanceConfig, final String urlSuffix) {
 		logger.debug("ctor: suffix {}", urlSuffix);
 		this.instanceConfig = instanceConfig;
 		this.urlSuffix = urlSuffix;

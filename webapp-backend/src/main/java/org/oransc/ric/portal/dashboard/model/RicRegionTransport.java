@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property
+ * Copyright (C) 2020 AT&T Intellectual Property
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,51 +20,38 @@
 
 package org.oransc.ric.portal.dashboard.model;
 
+import java.util.List;
+
 /**
- * Trivial model to transport available application details from the App
- * manager.
+ * Transport model for RIC region which has a list of instances with ONLY
+ * key-name pairs.
  */
-public class AppTransport implements IDashboardResponse {
+public class RicRegionTransport implements IDashboardResponse {
 
 	private String name;
-	private String version;
-
-	/**
-	 * Builds an empty object.
-	 */
-	public AppTransport() {
-		// no-arg constructor
-	}
-
-	/**
-	 * Builds an object with the specified value.
-	 * 
-	 * @param n
-	 *              Name to transport
-	 */
-	public AppTransport(String n) {
-		this.name = n;
-	}
+	private List<RicInstanceKeyName> instances;
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String s) {
-		this.name = s;
+	public RicRegionTransport name(String name) {
+		this.name = name;
+		return this;
 	}
 
-	public String getVersion() {
-		return version;
+	public List<RicInstanceKeyName> getInstances() {
+		return instances;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	public RicRegionTransport instances(List<RicInstanceKeyName> instances) {
+		this.instances = instances;
+		return this;
 	}
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "[name=" + getName() + ", version=" + getVersion() + "]";
+		return this.getClass().getSimpleName() + "[name=" + getName() + ", instances=" + instances + "]";
 	}
 
 }

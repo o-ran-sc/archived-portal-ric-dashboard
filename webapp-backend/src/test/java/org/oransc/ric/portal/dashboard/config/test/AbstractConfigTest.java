@@ -24,7 +24,7 @@ import java.lang.invoke.MethodHandles;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class AbstractConfigTest {
 
 	// Relies on Spring-Boot feature of populating instances data from configuration
 	@Autowired
-	protected RicInstanceList instanceConfig;
+	protected RicRegionList instanceConfig;
 
 	// Sonar finds the annotations on this class and insists on at least one test.
 	@Test

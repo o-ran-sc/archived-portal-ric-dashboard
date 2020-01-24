@@ -40,6 +40,11 @@ public class DefaultContextTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// If this test is annotated and run by maven, two cases in
+	// PortalRestCentralServiceTest fail. I traced it down to a second
+	// occurrence of the Dashboard user manager bean, which I can only speculate
+	// gets instantiated when the active profile is not "test". Because I cannot
+	// explain nor fix the behavior, this remains commented out.
 	// @Test
 	public void contextLoads() {
 		// Silence Sonar warning about missing assertion.

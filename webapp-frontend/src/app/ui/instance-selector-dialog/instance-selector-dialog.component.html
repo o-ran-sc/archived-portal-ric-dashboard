@@ -24,9 +24,19 @@
 <form [formGroup]="instanceForm" novalidate autocomplete="off" (ngSubmit)="changeInstance(instanceForm.value.instance)">
   <div mat-dialog-content>
     <mat-form-field>
+      <mat-label>Select a region</mat-label>
+      <mat-select (selectionChange)="changeRegion($event.value)">
+        <mat-option *ngFor="let region of allRegions" [value]="region">
+          {{region.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field>
       <mat-label>Select an instance</mat-label>
       <mat-select formControlName="instance">
-        <mat-option *ngFor="let instance of instanceArray" [value]="instance">
+        <mat-option *ngFor="let instance of regionInstances" [value]="instance">
           {{instance.name}}
         </mat-option>
       </mat-select>

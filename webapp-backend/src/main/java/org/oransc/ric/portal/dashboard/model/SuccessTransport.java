@@ -62,7 +62,7 @@ public class SuccessTransport implements IDashboardResponse {
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + "[status=" + getStatus() + ", data=" + getData() + "]";
+		return this.getClass().getSimpleName() + "[status=" + getStatus() + ", data=" + getData() + "]";
 	}
 
 }

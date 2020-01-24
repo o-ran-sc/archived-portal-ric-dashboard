@@ -21,7 +21,7 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +42,11 @@ public class A1MediatorConfiguration {
 
 	// Populated by the autowired constructor
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
 	@Autowired
 	public A1MediatorConfiguration(@Value("${a1med.url.suffix}") final String urlSuffix,
-			final RicInstanceList instanceConfig) {
+			final RicRegionList instanceConfig) {
 		logger.info("ctor: URL suffix {}", urlSuffix);
 		this.urlSuffix = urlSuffix;
 		this.instanceConfig = instanceConfig;

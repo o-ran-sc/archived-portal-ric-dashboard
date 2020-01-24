@@ -63,8 +63,8 @@ public class RanDetailsTransport implements IDashboardResponse {
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + "[nodebIdentity=" + getNodebIdentity() + ", nodebStatus=" + getNodebStatus()
-				+ "]";
+		return this.getClass().getSimpleName() + "[nodebIdentity=" + getNodebIdentity() + ", nodebStatus="
+				+ getNodebStatus() + "]";
 	}
 
 }

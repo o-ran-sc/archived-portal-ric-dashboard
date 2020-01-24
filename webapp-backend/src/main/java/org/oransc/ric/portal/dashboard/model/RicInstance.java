@@ -94,8 +94,8 @@ public class RicInstance extends RicInstanceKeyName {
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + "[key=" + getKey() + ", name=" + getName() + ", appUrlPrefix=" + appUrlPrefix
-				+ ", pltUrlPrefix=" + pltUrlPrefix + ", caasUrlPrefix=" + caasUrlPrefix + "]";
+		return this.getClass().getSimpleName() + "[key=" + getKey() + ", name=" + getName() + ", appUrlPrefix="
+				+ appUrlPrefix + ", pltUrlPrefix=" + pltUrlPrefix + ", caasUrlPrefix=" + caasUrlPrefix + "]";
 	}
 
 	@Override

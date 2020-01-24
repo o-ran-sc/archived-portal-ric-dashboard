@@ -24,7 +24,7 @@ import java.lang.invoke.MethodHandles;
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.invoker.ApiClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -42,9 +42,9 @@ public class A1MediatorApiBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
-	public A1MediatorApiBuilder(final RicInstanceList instanceConfig, final String urlSuffix) {
+	public A1MediatorApiBuilder(final RicRegionList instanceConfig, final String urlSuffix) {
 		logger.debug("ctor: suffix {}", urlSuffix);
 		this.instanceConfig = instanceConfig;
 		this.urlSuffix = urlSuffix;

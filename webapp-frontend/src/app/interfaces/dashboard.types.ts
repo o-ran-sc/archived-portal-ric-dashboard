@@ -60,3 +60,8 @@ export interface RicInstance {
   key: string;
   name: string;
 }
+
+export interface RicRegion {
+  name: string;
+  instances: Array<RicInstance>;
+}

@@ -20,11 +20,14 @@
 
 package org.oransc.ric.portal.dashboard.config;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegion;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,16 +38,26 @@ import org.springframework.context.annotation.Profile;
  * in application properties like this:
  * 
  * <pre>
- * ricinstances:
-    instances:
-        -
-          key: key1
-          name: Friendly Name One
-          urlPrefix: http://foo.bar.one/
-        -
-          key: key2
-          name: Friendly Name Two
-          urlPrefix: http://foo.bar.two/
+  ricinstances:
+    regions:
+      -
+        name: Region ABC
+        instances:
+            -
+              key: key1
+              name: Friendly Name One
+              appUrlPrefix: http://foo.bar.one/
+            -
+              key: key2
+              name: Friendly Name Two
+              appUrlPrefix: http://foo.bar.two/
+      -
+        name: Region DEF
+        instances:
+            -
+              key: key3
+              name: Friendly Name Three
+              appUrlPrefix: http://foo.bar.three/
  * </pre>
  */
 @Configuration
@@ -52,16 +65,19 @@ import org.springframework.context.annotation.Profile;
 @Profile("!test")
 public class RICInstanceConfiguration {
 
-	private List<RicInstance> instances = new ArrayList<>();
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	private List<RicRegion> regions = new ArrayList<>();
 
 	// Called by spring with config data
-	public void setInstances(List<RicInstance> instances) {
-		this.instances = instances;
+	public void setRegions(List<RicRegion> regions) {
+		this.regions = regions;
 	}
 
 	@Bean
-	public RicInstanceList ricInstanceList() {
-		return new RicInstanceList(instances);
+	public RicRegionList ricRegions() {
+		logger.debug("Creating bean ricRegions");
+		return new RicRegionList(regions);
 	}
 
 }
