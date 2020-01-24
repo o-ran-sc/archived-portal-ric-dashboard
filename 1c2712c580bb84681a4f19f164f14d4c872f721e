@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb3dd448_6c095252",
+        "filename": "webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.html",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-24T18:32:31Z",
+      "side": 1,
+      "message": "Select an instance.  Missing \u0027n\u0027",
+      "range": {
+        "startLine": 37,
+        "startChar": 24,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "1c2712c580bb84681a4f19f164f14d4c872f721e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36f6a852_20388021",
+        "filename": "webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.ts",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-24T18:32:31Z",
+      "side": 1,
+      "message": "this name is a little confusing - maybe you should call it regions ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 54,
+        "endChar": 30
+      },
+      "revId": "1c2712c580bb84681a4f19f164f14d4c872f721e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
