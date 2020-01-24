@@ -5,7 +5,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.0, 20 Jan 2020
+Version 2.0.0, 24 Jan 2020
 --------------------------
 * Change application properties file to YAML format
 * Add mock list of RIC instances to application properties
@@ -21,6 +21,7 @@ Version 2.0.0, 20 Jan 2020
 * Upgrade E2 Manager API and submodule to tag 3.0.3
 * Add instance selector dialog component and service
 * Repair onSidenavClose method
+* Extend to support selecting a RIC instance within a region
 
 Version 1.3.0, 26 Nov 2019
 --------------------------

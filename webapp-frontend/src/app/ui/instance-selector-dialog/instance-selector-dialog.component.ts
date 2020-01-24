@@ -18,12 +18,11 @@
  * ========================LICENSE_END===================================
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { RicInstance } from '../../interfaces/dashboard.types';
+import { RicInstance, RicRegion } from '../../interfaces/dashboard.types';
 import { InstanceSelectorService } from '../../services/instance-selector/instance-selector.service';
 import { LoadingDialogService } from '../../services/ui/loading-dialog.service';
 
@@ -31,11 +30,11 @@ import { LoadingDialogService } from '../../services/ui/loading-dialog.service';
   selector: 'rd-instance-selector-dialog',
   templateUrl: './instance-selector-dialog.component.html',
 })
-export class InstanceSelectorDialogComponent implements OnInit, OnDestroy  {
+export class InstanceSelectorDialogComponent implements OnInit  {
 
-  private instanceArray: RicInstance[];
+  private allRegions: RicRegion[];
+  private regionInstances: RicInstance[];
   private instanceForm: FormGroup;
-  private instanceChange: Subscription;
 
   constructor(
     private dialogRef: MatDialogRef<InstanceSelectorDialogComponent>,
@@ -44,32 +43,26 @@ export class InstanceSelectorDialogComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.instanceForm = new FormGroup({
-      instance: new FormControl('', [Validators.required]),
-    })
+      instance: new FormControl('', [Validators.required])
+    });
 
     this.loadingDialogService.startLoading('Loading RIC instances');
-    this.instanceSelectorService.getInstanceArray()
+    this.instanceSelectorService.getAllInstances()
       .pipe(
         finalize(() => this.loadingDialogService.stopLoading())
       )
-      .subscribe((instanceArray: RicInstance[]) => {
-        this.instanceArray = instanceArray;
-      })
-
-    this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((selectedInstance: RicInstance) => {
-      if (selectedInstance.key) {
-        this.instanceForm.setValue({ instance: selectedInstance })
-      }
-    });
+      .subscribe((regArray: RicRegion[]) => {
+        this.allRegions = regArray;
+      });
   }
 
-  ngOnDestroy() {
-    this.instanceChange.unsubscribe();
-  }
-
-  changeInstance(selectedInstance) {
+  changeInstance(selectedInstance: RicInstance) {
     this.instanceSelectorService.updateSelectedInstance(selectedInstance);
     this.dialogRef.close(true);
   }
 
+  changeRegion(selectedRegion: RicRegion) {
+    this.instanceForm.setValue({ instance: '' });
+    this.regionInstances = selectedRegion.instances;
+  }
 }

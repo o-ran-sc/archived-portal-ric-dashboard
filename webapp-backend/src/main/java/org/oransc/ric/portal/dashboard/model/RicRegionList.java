@@ -25,36 +25,39 @@ import java.util.List;
 
 import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
 
-public class RicInstanceList {
+/**
+ * Used as a bean to publish configuration data in a convenient way.
+ */
+public class RicRegionList {
 
-	private final List<RicInstance> instances;
+	private final List<RicRegion> regions;
 
-	public RicInstanceList() {
-		this.instances = new ArrayList<>();
+	public RicRegionList() {
+		this.regions = new ArrayList<>();
 	}
 
-	public RicInstanceList(List<RicInstance> list) {
-		this.instances = list;
+	public RicRegionList(List<RicRegion> list) {
+		this.regions = list;
 	}
 
-	public List<RicInstance> getInstances() {
-		return instances;
+	public List<RicRegion> getRegions() {
+		return regions;
 	}
 
 	/**
-	 * Gets a list of key-name pairs.
+	 * Builds a response that has only key-name pairs.
 	 * 
-	 * @return List of RicInstanceKeyName objects.
+	 * @return List of RicRegionTransport objects
 	 */
-	public List<RicInstanceKeyName> getKeyNameList() {
-		List<RicInstanceKeyName> list = new ArrayList<>();
-		for (RicInstance i : instances)
-			list.add(i.toKeyName());
-		return list;
+	public List<RicRegionTransport> getSimpleInstances() {
+		List<RicRegionTransport> response = new ArrayList<>();
+		for (RicRegion r : regions)
+			response.add(new RicRegionTransport().name(r.getName()).instances(r.getKeyNameList()));
+		return response;
 	}
 
 	/**
-	 * Gets the instance with the specified key
+	 * Gets the instance with the specified key in any region
 	 * 
 	 * @param instanceKey
 	 *                        Key to fetch
@@ -63,9 +66,16 @@ public class RicInstanceList {
 	 *                                      If the key is not known
 	 */
 	public RicInstance getInstance(String instanceKey) {
-		for (RicInstance i : instances)
-			if (i.getKey().equals(instanceKey))
-				return i;
+		for (RicRegion r : regions)
+			for (RicInstance i : r.getInstances())
+				if (i.getKey().equals(instanceKey))
+					return i;
 		throw new UnknownInstanceException(instanceKey);
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + "[regions=" + regions + "]";
+	}
+
 }

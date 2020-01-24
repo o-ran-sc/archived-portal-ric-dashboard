@@ -85,18 +85,32 @@ metrics:
         ac: http://jar-app-props-kibana-url-ac
         mc: http://jar-app-props-kibana-url-mc
 
-# Instances
+# Regions and instances
+# The regions are a just convenience for users,
+# the keys must be unique across all instances.
 ricinstances:
-    instances:
+    regions:
         -
-          key: i1
-          name: Primary RIC Instance
-          appUrlPrefix: App prefix 1
-          caasUrlPrefix: Caas prefix 1
-          pltUrlPrefix: Plt prefix 1
+          name: Region AAA
+          instances:
+              -
+                key: i1
+                name: Primary RIC Instance
+                appUrlPrefix: App prefix 1
+                caasUrlPrefix: Caas prefix 1
+                pltUrlPrefix: Plt prefix 1
+              -
+                key: i2
+                name: RIC Instance Nr Two
+                appUrlPrefix: App prefix 2
+                caasUrlPrefix: Caas prefix 2
+                pltUrlPrefix: Plt prefix 2
         -
-          key: i2
-          name: RIC Instance Nr Two
-          appUrlPrefix: App prefix 2
-          caasUrlPrefix: Caas prefix 2
-          pltUrlPrefix: Plt prefix 2
+          name: Region DDD
+          instances:
+              -
+                key: i3
+                name: RIC Instance in region D
+                appUrlPrefix: App prefix 3
+                caasUrlPrefix: Caas prefix 3
+                pltUrlPrefix: Plt prefix 3

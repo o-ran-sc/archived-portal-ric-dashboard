@@ -23,7 +23,7 @@ import java.lang.invoke.MethodHandles;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ric.portal.dashboard.util.HttpsURLConnectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,13 +44,13 @@ public class CaasIngressConfiguration {
 
 	// Populated by the autowired constructor
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
 	@Autowired
 	public CaasIngressConfiguration( //
 			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix, //
 			@Value("${caasingress.insecure}") final Boolean insecureFlag, //
-			final RicInstanceList instanceConfig) throws KeyManagementException, NoSuchAlgorithmException {
+			final RicRegionList instanceConfig) throws KeyManagementException, NoSuchAlgorithmException {
 		logger.debug("ctor: suffix {} insecure flag {}", pltUrlSuffix, insecureFlag);
 		this.urlSuffix = pltUrlSuffix;
 		this.instanceConfig = instanceConfig;

@@ -25,7 +25,7 @@ import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
 import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
@@ -43,9 +43,9 @@ public class AppManagerApiBuilder {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	private final String urlSuffix;
-	private final RicInstanceList instanceConfig;
+	private final RicRegionList instanceConfig;
 
-	public AppManagerApiBuilder(final RicInstanceList instanceConfig, final String urlSuffix) {
+	public AppManagerApiBuilder(final RicRegionList instanceConfig, final String urlSuffix) {
 		logger.debug("ctor: suffix {}", urlSuffix);
 		this.instanceConfig = instanceConfig;
 		this.urlSuffix = urlSuffix;

@@ -20,47 +20,33 @@
 
 package org.oransc.ric.portal.dashboard.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * Transport model for RIC instance key-name pairs.
+ * Transport model for RIC region which has a list of instances.
  */
-public class RicInstanceKeyName implements IDashboardResponse {
+public class RicRegion implements IDashboardResponse {
 
-	private String key;
 	private String name;
+	private List<RicInstance> instances;
 
 	/**
 	 * Builds an empty object.
 	 */
-	public RicInstanceKeyName() {
+	public RicRegion() {
 		// no-arg constructor
 	}
 
 	/**
 	 * Convenience constructor for minimal value set.
 	 * 
-	 * @param key
-	 *                 Key
 	 * @param name
 	 *                 Name
 	 */
-	public RicInstanceKeyName(String key, String name) {
-		this.key = key;
+	public RicRegion(String name) {
 		this.name = name;
-	}
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public RicInstanceKeyName key(String key) {
-		this.key = key;
-		return this;
 	}
 
 	public String getName() {
@@ -71,22 +57,42 @@ public class RicInstanceKeyName implements IDashboardResponse {
 		this.name = s;
 	}
 
-	public RicInstanceKeyName name(String name) {
+	public RicRegion name(String name) {
 		this.name = name;
 		return this;
 	}
 
+	public List<RicInstance> getInstances() {
+		return instances;
+	}
+
+	public void setInstances(List<RicInstance> instances) {
+		this.instances = instances;
+	}
+
+	/**
+	 * Gets a list of key-name pairs.
+	 * 
+	 * @return List of RicInstanceKeyName objects.
+	 */
+	public List<RicInstanceKeyName> getKeyNameList() {
+		List<RicInstanceKeyName> list = new ArrayList<>();
+		for (RicInstance i : instances)
+			list.add(i.toKeyName());
+		return list;
+	}
+
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "[key=" + getKey() + ", name=" + getName() + "]";
+		return this.getClass().getSimpleName() + "[name=" + getName() + ", instances=" + instances + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = result * result + ((instances == null) ? 0 : instances.hashCode());
 		return result;
 	}
 
@@ -98,8 +104,8 @@ public class RicInstanceKeyName implements IDashboardResponse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RicInstanceKeyName other = (RicInstanceKeyName) obj;
-		return Objects.equals(key, other.key);
+		RicRegion other = (RicRegion) obj;
+		return Objects.equals(name, other.name) && instances.size() == other.instances.size();
 	}
 
 }

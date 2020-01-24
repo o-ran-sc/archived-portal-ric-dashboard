@@ -17,52 +17,41 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
+
 package org.oransc.ric.portal.dashboard.model;
 
-public class SuccessTransport implements IDashboardResponse {
+import java.util.List;
 
-	private int status;
-	private Object data;
+/**
+ * Transport model for RIC region which has a list of instances with ONLY
+ * key-name pairs.
+ */
+public class RicRegionTransport implements IDashboardResponse {
 
-	/**
-	 * Builds an empty object
-	 */
-	public SuccessTransport() {
-		// no-arg constructor
+	private String name;
+	private List<RicInstanceKeyName> instances;
+
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * Builds an object with the specified values.
-	 * 
-	 * @param status
-	 *                   Status code
-	 * @param data
-	 *                   Data to transport
-	 */
-	public SuccessTransport(int status, Object data) {
-		this.status = status;
-		this.data = data;
+	public RicRegionTransport name(String name) {
+		this.name = name;
+		return this;
 	}
 
-	public int getStatus() {
-		return status;
+	public List<RicInstanceKeyName> getInstances() {
+		return instances;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
+	public RicRegionTransport instances(List<RicInstanceKeyName> instances) {
+		this.instances = instances;
+		return this;
 	}
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "[status=" + getStatus() + ", data=" + getData() + "]";
+		return this.getClass().getSimpleName() + "[name=" + getName() + ", instances=" + instances + "]";
 	}
 
 }

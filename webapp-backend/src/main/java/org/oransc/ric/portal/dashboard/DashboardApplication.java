@@ -24,7 +24,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegion;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class DashboardApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Autowired
-	private RicInstanceList instanceConfig;
+	private RicRegionList instanceConfig;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DashboardApplication.class, args);
@@ -53,15 +54,18 @@ public class DashboardApplication implements CommandLineRunner {
 		// Ensure output appears on the console by using level WARN
 		logger.warn("run: version '{}'", getImplementationVersion(MethodHandles.lookup().lookupClass()));
 		// Validate configuration
-		List<RicInstance> instances = instanceConfig.getInstances();
-		Assert.notEmpty(instances, "Instance list empty");
-		for (RicInstance it : instances) {
-			logger.warn("run: RIC instance {}", it);
-			Assert.hasText(it.getKey(), "Instance key missing");
-			Assert.hasText(it.getName(), "Name missing for instance " + it.getKey());
-			Assert.hasText(it.getAppUrlPrefix(), "App URL prefix missing for instance " + it.getKey());
-			Assert.hasText(it.getCaasUrlPrefix(), "Caas URL prefix missing for instance " + it.getKey());
-			Assert.hasText(it.getPltUrlPrefix(), "Plt URL prefix missing for instance " + it.getKey());
+		List<RicRegion> regions = instanceConfig.getRegions();
+		Assert.notEmpty(regions, "Region list empty");
+		for (RicRegion r : regions) {
+			Assert.notEmpty(r.getInstances(), "Instance list empty for region " + r.getName());
+			for (RicInstance it : r.getInstances()) {
+				logger.warn("run: RIC region {} instance {}", r, it);
+				Assert.hasText(it.getKey(), "Instance key missing");
+				Assert.hasText(it.getName(), "Name missing for instance " + it.getKey());
+				Assert.hasText(it.getAppUrlPrefix(), "App URL prefix missing for instance " + it.getKey());
+				Assert.hasText(it.getCaasUrlPrefix(), "Caas URL prefix missing for instance " + it.getKey());
+				Assert.hasText(it.getPltUrlPrefix(), "Plt URL prefix missing for instance " + it.getKey());
+			}
 		}
 	}
 

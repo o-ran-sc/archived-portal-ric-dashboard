@@ -64,7 +64,7 @@ public class AppTransport implements IDashboardResponse {
 
 	@Override
 	public String toString() {
-		return this.getClass().getName() + "[name=" + getName() + ", version=" + getVersion() + "]";
+		return this.getClass().getSimpleName() + "[name=" + getName() + ", version=" + getVersion() + "]";
 	}
 
 }

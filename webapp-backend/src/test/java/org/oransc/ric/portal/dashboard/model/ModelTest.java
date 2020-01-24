@@ -175,13 +175,29 @@ public class ModelTest extends AbstractModelTest {
 		logger.info(m.toString());
 	}
 
+	private void checkRicRegion(RicRegion m) {
+		Assert.assertEquals(s1, m.getName());
+	}
+
 	@Test
-	public void testRicInstanceList() {
-		RicInstanceList m = new RicInstanceList();
-		List<RicInstance> list = new ArrayList<>();
-		m = new RicInstanceList(list);
-		Assert.assertEquals(list, m.getInstances());
-		Assert.assertNotNull(m.getKeyNameList());
+	public void testRicRegion() {
+		RicRegion m = new RicRegion();
+		m.setName(s1);
+		checkRicRegion(m);
+		Assert.assertTrue(m.equals(m));
+		Assert.assertFalse(m.equals(null));
+		Assert.assertFalse(m.equals(new RicRegion()));
+		Assert.assertNotEquals(1, m.hashCode());
+		logger.info(m.toString());
+	}
+
+	@Test
+	public void testRicRegionList() {
+		RicRegionList m = new RicRegionList();
+		List<RicRegion> list = new ArrayList<>();
+		m = new RicRegionList(list);
+		Assert.assertEquals(list, m.getRegions());
+		Assert.assertNotNull(m.getSimpleInstances());
 		try {
 			m.getInstance(s1);
 		} catch (UnknownInstanceException ex) {

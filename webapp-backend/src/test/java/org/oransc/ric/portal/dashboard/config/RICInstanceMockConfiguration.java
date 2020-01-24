@@ -25,11 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.oransc.ric.portal.dashboard.model.RicInstance;
-import org.oransc.ric.portal.dashboard.model.RicInstanceList;
+import org.oransc.ric.portal.dashboard.model.RicRegion;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -44,34 +43,37 @@ public class RICInstanceMockConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	// Publish constants for use in tests
+	public static final String REGION_NAME_1 = "Region AAA";
+	public static final String REGION_NAME_2 = "Region DDD";
 	public static final String INSTANCE_KEY_1 = "i1";
 	public static final String INSTANCE_KEY_2 = "i2";
 	public static final String[] INSTANCE_KEYS = { INSTANCE_KEY_1, INSTANCE_KEY_2 };
 
-	// Simulate remote method delay for UI testing
-	private int delayMs;
-
-	@Autowired
-	public RICInstanceMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
-		logger.debug("ctor: configured with delay {}", delayMs);
-		this.delayMs = delayMs;
-	}
+	// No constructor needed, don't simulate delay from the Dashboard
 
 	@Bean
-	public RicInstanceList ricInstanceList() throws InterruptedException {
-		if (delayMs > 0) {
-			logger.debug("ricInstanceList sleeping {}", delayMs);
-			Thread.sleep(delayMs);
-		}
-		List<RicInstance> instances = new ArrayList<>();
-		for (String key : INSTANCE_KEYS) {
-			RicInstance i = new RicInstance().key(key).name("RIC Instance " + key)
-					.appUrlPrefix("http://" + key + ".domain.name/app")
-					.pltUrlPrefix("http://" + key + ".domain.name/plt")
-					.caasUrlPrefix("http://" + key + ".domain.name/caas");
-			instances.add(i);
-		}
-		return new RicInstanceList(instances);
+	public RicRegionList ricRegions() {
+		logger.debug("Creating mock bean ricRegions");
+		List<RicRegion> regions = new ArrayList<>();
+		RicRegion region1 = new RicRegion().name(REGION_NAME_1);
+		regions.add(region1);
+		List<RicInstance> instances1 = new ArrayList<>();
+		region1.setInstances(instances1);
+		String key1 = INSTANCE_KEY_1;
+		instances1.add(new RicInstance().key(key1).name("RIC Instance " + key1) //
+				.appUrlPrefix("http://" + key1 + ".domain.name/app") //
+				.pltUrlPrefix("http://" + key1 + ".domain.name/plt") //
+				.caasUrlPrefix("http://" + key1 + ".domain.name/caas"));
+		RicRegion region2 = new RicRegion().name(REGION_NAME_2);
+		regions.add(region2);
+		List<RicInstance> instances2 = new ArrayList<>();
+		region2.setInstances(instances2);
+		String key2 = INSTANCE_KEY_2;
+		instances2.add(new RicInstance().key(key2).name("RIC Instance " + key2) //
+				.appUrlPrefix("http://" + key2 + ".domain.name/app") //
+				.pltUrlPrefix("http://" + key2 + ".domain.name/plt") //
+				.caasUrlPrefix("http://" + key2 + ".domain.name/caas"));
+		return new RicRegionList(regions);
 	}
 
 }
