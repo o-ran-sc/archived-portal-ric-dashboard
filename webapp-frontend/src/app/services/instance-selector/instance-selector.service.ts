@@ -22,7 +22,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
-import { RicInstance } from '../../interfaces/dashboard.types';
+import { RicInstance, RicRegion } from '../../interfaces/dashboard.types';
 import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
@@ -30,20 +30,37 @@ import { DashboardService } from '../dashboard/dashboard.service';
 })
 export class InstanceSelectorService {
 
-  private instanceArray: Observable<RicInstance[]>;
+  private allInstances: Observable<RicRegion[]>;
   private selectedInstance: BehaviorSubject<RicInstance> = new BehaviorSubject<RicInstance>({ key: '', name:''});
+  //test only, remove before merge
+  private testAllinstance: RicRegion[] = [
+    {
+      name: 'Region1',
+      instances: [{ key: "i1", name: "RIC Instance i1" }]
+    },
+    {
+      name: 'Region2',
+      instances: [{ key: "i2", name: "RIC Instance i2" }]
+    }
+  ]
 
   constructor(
     private dashboardSvc: DashboardService,
     private httpClient: HttpClient) {
+    //test only, remove before merge
+    this.allInstances = new Observable<RicRegion[]>((observer) => {
+      observer.next(this.testAllinstance);
+      observer.complete()
+      }
+    )
   }
 
-  getInstanceArray(): Observable<RicInstance[]> {
-    if (this.instanceArray) {
-      return this.instanceArray;
+  getAllInstances(): Observable<RicRegion[]> {
+    if (this.allInstances) {
+      return this.allInstances;
     }
     const path = this.dashboardSvc.buildPath('admin', null, 'instance');
-    return this.instanceArray = this.httpClient.get<RicInstance[]>(path)
+    return this.allInstances = this.httpClient.get<RicRegion[]>(path)
       .pipe(
         shareReplay(1)
       );
