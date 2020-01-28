@@ -32,9 +32,9 @@ import { LoadingDialogService } from '../../services/ui/loading-dialog.service';
 })
 export class InstanceSelectorDialogComponent implements OnInit  {
 
-  private allRegions: RicRegion[];
-  private regionInstances: RicInstance[];
-  private instanceForm: FormGroup;
+  allRegions: RicRegion[];
+  regionInstances: RicInstance[];
+  instanceForm: FormGroup;
 
   constructor(
     private dialogRef: MatDialogRef<InstanceSelectorDialogComponent>,
