@@ -213,11 +213,9 @@ public class PortalAuthenticationFilter implements Filter {
 	 * triggering a new authentication attempt. The page has a link to the Portal
 	 * URL from configuration, with a return URL that is the original request.
 	 * 
-	 * @param appUrl
-	 *                   Original requested URL
+	 * @param appUrl Original requested URL
 	 * @return HTML
-	 * @throws UnsupportedEncodingException
-	 *                                          On error
+	 * @throws UnsupportedEncodingException On error
 	 */
 	private static String generateLoginRedirectPage(String appUrl) throws UnsupportedEncodingException {
 		String encodedAppUrl = URLEncoder.encode(appUrl, "UTF-8");
@@ -249,10 +247,8 @@ public class PortalAuthenticationFilter implements Filter {
 	/**
 	 * Searches the request for a cookie with the specified name.
 	 *
-	 * @param request
-	 *                       HttpServletRequest
-	 * @param cookieName
-	 *                       Cookie name
+	 * @param request    HttpServletRequest
+	 * @param cookieName Cookie name
 	 * @return Cookie, or null if not found.
 	 */
 	private Cookie getCookie(HttpServletRequest request, String cookieName) {

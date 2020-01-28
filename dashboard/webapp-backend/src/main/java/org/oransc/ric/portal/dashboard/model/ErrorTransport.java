@@ -44,10 +44,8 @@ public class ErrorTransport implements IDashboardResponse {
 	/**
 	 * Convenience constructor for minimal value set.
 	 * 
-	 * @param status
-	 *                   Integer value like 400
-	 * @param error
-	 *                   Error message
+	 * @param status Integer value like 400
+	 * @param error  Error message
 	 */
 	public ErrorTransport(int status, String error) {
 		this(status, error, null, null);
@@ -56,11 +54,9 @@ public class ErrorTransport implements IDashboardResponse {
 	/**
 	 * Convenience constructor for populating an error from an exception
 	 * 
-	 * @param status
-	 *                      Integer value like 400
-	 * @param throwable
-	 *                      The caught exception/throwable to convert to String with
-	 *                      an upper bound on characters
+	 * @param status    Integer value like 400
+	 * @param throwable The caught exception/throwable to convert to String with an
+	 *                  upper bound on characters
 	 */
 	public ErrorTransport(int status, Throwable throwable) {
 		this.timestamp = Instant.now();
@@ -73,14 +69,10 @@ public class ErrorTransport implements IDashboardResponse {
 	/**
 	 * Builds an object with all fields
 	 * 
-	 * @param status
-	 *                    Integer value like 500
-	 * @param error
-	 *                    Explanation
-	 * @param message
-	 *                    Additional explanation
-	 * @param path
-	 *                    Requested path
+	 * @param status  Integer value like 500
+	 * @param error   Explanation
+	 * @param message Additional explanation
+	 * @param path    Requested path
 	 */
 	public ErrorTransport(int status, String error, String message, String path) {
 		this.timestamp = Instant.now();

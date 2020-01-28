@@ -20,6 +20,13 @@
  .stats__section {
 }
 
+.stats-table {
+  width: 100%;
+  min-height: 100px;
+  margin-top: 10px;
+  background-color:transparent;
+}
+
 .bar-chart-card {
     height: 100%;
     width: 100%;
@@ -39,4 +46,8 @@ iframe {
   width: 500px;
   height: 420px;
   border: 1px solid black;
+}
+
+.display-none {
+  display: none;
 }

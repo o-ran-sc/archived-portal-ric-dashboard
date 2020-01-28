@@ -64,3 +64,20 @@ export interface RanDialogFormData {
   ranPort: string;
   ranType: string;
 }
+
+export interface StatsDialogFormData {
+  appName: string;
+  metricUrl: string;
+}
+
+export interface StatsDetails {
+  appId: number;
+  appName: string;
+  metricUrl: string;
+}
+
+export interface StatsResponse {
+  instanceKey: string
+  statsDetails: StatsDetails;
+}
+

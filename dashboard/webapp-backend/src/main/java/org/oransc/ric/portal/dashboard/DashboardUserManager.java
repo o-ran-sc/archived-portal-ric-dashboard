@@ -54,11 +54,9 @@ public class DashboardUserManager {
 	/**
 	 * Development/test-only constructor that uses default file path.
 	 * 
-	 * @param clear
-	 *                  If true, start empty and remove any existing file.
+	 * @param clear If true, start empty and remove any existing file.
 	 * 
-	 * @throws IOException
-	 *                         On file error
+	 * @throws IOException On file error
 	 */
 	public DashboardUserManager(boolean clear) throws IOException {
 		this(USER_FILE_PATH);
@@ -74,10 +72,8 @@ public class DashboardUserManager {
 	/**
 	 * Constructur that accepts a file path
 	 * 
-	 * @param userFilePath
-	 *                         File path
-	 * @throws IOException
-	 *                         If file cannot be read
+	 * @param userFilePath File path
+	 * @throws IOException If file cannot be read
 	 */
 	public DashboardUserManager(final String userFilePath) throws IOException {
 		logger.debug("ctor: userfile {}", userFilePath);
@@ -106,8 +102,7 @@ public class DashboardUserManager {
 	/**
 	 * Gets the user with the specified login Id
 	 * 
-	 * @param loginId
-	 *                    Desired login Id
+	 * @param loginId Desired login Id
 	 * @return User object; null if Id is not known
 	 */
 	public EcompUser getUser(String loginId) {

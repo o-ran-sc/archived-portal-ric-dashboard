@@ -39,8 +39,7 @@ public class AppTransport implements IDashboardResponse {
 	/**
 	 * Builds an object with the specified value.
 	 * 
-	 * @param n
-	 *              Name to transport
+	 * @param n Name to transport
 	 */
 	public AppTransport(String n) {
 		this.name = n;
