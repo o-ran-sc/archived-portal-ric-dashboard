@@ -88,42 +88,6 @@ public class AdminControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
-	public void getxAppMetricsUrlTest() {
-		Map<String, String> metricsQueryParms = new HashMap<String, String>();
-		URI uri;
-
-		metricsQueryParms.clear();
-		metricsQueryParms.put("app", DashboardConstants.APP_NAME_AC);
-		uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
-		logger.debug("Invoking {}", uri);
-		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, SuccessTransport.class);
-		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
-		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
-
-		metricsQueryParms.clear();
-		metricsQueryParms.put("app", DashboardConstants.APP_NAME_MC);
-		logger.debug("Invoking {}", uri);
-		successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null, SuccessTransport.class);
-		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
-		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
-	}
-
-	@Test
-	public void getxAppMetricsUrlTestFail() {
-		Map<String, String> metricsQueryParms = new HashMap<String, String>();
-		// Providing a bogus value for application name in query parameter to test
-		// failure
-		metricsQueryParms.put("app", "ABCD");
-		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
-		logger.debug("Invoking {}", uri);
-		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, ErrorTransport.class);
-		logger.debug("{}", errorResponse.getBody().getError().toString());
-		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
-	}
-
-	@Test
 	public void throwHttpStatusCodeExceptionTest() {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH,
 				AdminControllerExtension.HTTP_STATUS_CODE_EXCEPTION_METHOD);

@@ -40,10 +40,8 @@ public class RicInstanceKeyName implements IDashboardResponse {
 	/**
 	 * Convenience constructor for minimal value set.
 	 * 
-	 * @param key
-	 *                 Key
-	 * @param name
-	 *                 Name
+	 * @param key  Key
+	 * @param name Name
 	 */
 	public RicInstanceKeyName(String key, String name) {
 		this.key = key;

@@ -2,7 +2,7 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property
+ * Copyright (C) 2019 - 2020 AT&T Intellectual Property
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,48 +19,41 @@
  */
 package org.oransc.ric.portal.dashboard.model;
 
-public class SuccessTransport implements IDashboardResponse {
-
-	private int status;
-	private Object data;
-
-	/**
-	 * Builds an empty object
-	 */
-	public SuccessTransport() {
-		// no-arg constructor
+public class Stats implements IDashboardResponse {
+	private String instanceKey;
+	private StatsDetailsTransport statsDetails;
+	
+	
+	
+	public Stats() {
+		super();
 	}
 
-	/**
-	 * Builds an object with the specified values.
-	 * 
-	 * @param status Status code
-	 * @param data   Data to transport
-	 */
-	public SuccessTransport(int status, Object data) {
-		this.status = status;
-		this.data = data;
+	public Stats(String instanceKey, StatsDetailsTransport statsDetails) {
+		super();
+		this.instanceKey = instanceKey;
+		this.statsDetails = statsDetails;
+	}
+	
+	public StatsDetailsTransport getStatsDetails() {
+		return statsDetails;
+	}
+	public void setStatsDetails(StatsDetailsTransport statsDetails) {
+		this.statsDetails = statsDetails;
+	}
+	
+	
+	public String getInstanceKey() {
+		return instanceKey;
 	}
 
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public Object getData() {
-		return data;
-	}
-
-	public void setData(Object data) {
-		this.data = data;
+	public void setInstanceKey(String instanceKey) {
+		this.instanceKey = instanceKey;
 	}
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "[status=" + getStatus() + ", data=" + getData() + "]";
+		return "Stats [instance=" + instanceKey + ", statsDetails=" + statsDetails + "]";
 	}
 
 }

@@ -48,12 +48,9 @@ public class Html5PathsController {
 	 * 
 	 * https://stackoverflow.com/questions/44692781/configure-spring-boot-to-redirect-404-to-a-single-page-app
 	 * 
-	 * @param request
-	 *                     HttpServletRequest
-	 * @param response
-	 *                     HttpServletResponse
-	 * @throws IOException
-	 *                         On error
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws IOException On error
 	 */
 	@RequestMapping(method = { RequestMethod.OPTIONS, RequestMethod.GET }, //
 			path = { "/catalog", "/control", "/stats", "/user" })

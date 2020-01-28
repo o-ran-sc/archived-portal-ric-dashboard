@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.StatsManager;
 import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
@@ -72,6 +73,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DashboardUserManager userManager;
+	
+	@Autowired
+	StatsManager statsManager;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

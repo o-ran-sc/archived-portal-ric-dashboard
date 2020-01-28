@@ -70,10 +70,8 @@ public class PortalAuthManager {
 	/**
 	 * Searches the request for a cookie with the specified name.
 	 *
-	 * @param request
-	 *                       HttpServletRequest
-	 * @param cookieName
-	 *                       Cookie name
+	 * @param request    HttpServletRequest
+	 * @param cookieName Cookie name
 	 * @return Cookie, or null if not found.
 	 */
 	private Cookie getCookie(HttpServletRequest request, String cookieName) {
@@ -89,8 +87,7 @@ public class PortalAuthManager {
 	 * Validates whether the ECOMP Portal sign-on process has completed. Checks for
 	 * the ECOMP cookie first, then the user cookie.
 	 * 
-	 * @param request
-	 *                    HttpServletRequest
+	 * @param request HttpServletRequest
 	 * @return User ID if the ECOMP cookie is present and the sign-on process
 	 *         established a user ID; else null.
 	 */
