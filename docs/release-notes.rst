@@ -9,6 +9,7 @@ Version 2.0.1, 26 Feb 2020
 --------------------------
 * Revise controllers to use ResponseEntity
 * Upgrade to Spring-Boot 2.2.4.RELEASE
+* App metrics stats visualization management
 
 Version 2.0.0, 5 Feb 2020
 --------------------------
