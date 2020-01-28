@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06e18546_58f9463a",
+        "filename": "dashboard/webapp-frontend/src/app/ac-xapp/ac-xapp.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-28T22:06:49Z",
+      "side": 1,
+      "message": "why not private anymore?",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "48d65a2d702c230a3297d084c2b6deec8df3a47e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874ea6b6_07bc9d79",
+        "filename": "dashboard/webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-28T22:06:49Z",
+      "side": 1,
+      "message": "why not private anymore?",
+      "revId": "48d65a2d702c230a3297d084c2b6deec8df3a47e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0ee83e0_a996e377",
+        "filename": "dashboard/webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-28T22:06:49Z",
+      "side": 1,
+      "message": "why not private?",
+      "revId": "48d65a2d702c230a3297d084c2b6deec8df3a47e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d000627e_7a1d8f0f",
+        "filename": "dashboard/webapp-frontend/src/tsconfig.app.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-28T22:06:49Z",
+      "side": 1,
+      "message": "no more exclusions?",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "48d65a2d702c230a3297d084c2b6deec8df3a47e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
