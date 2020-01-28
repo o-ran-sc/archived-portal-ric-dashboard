@@ -28,6 +28,7 @@ Version 2.0.0, 5 Feb 2020
 * Repair onSidenavClose method
 * Extend to support selecting a RIC instance within a region
 * Update angular to latest version 8, prepare for upgrade to version 9.
+* App metrics stats visualization management
 
 Version 1.3.0, 26 Nov 2019
 --------------------------
