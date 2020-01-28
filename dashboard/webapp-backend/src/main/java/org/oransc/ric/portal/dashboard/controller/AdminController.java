@@ -19,16 +19,23 @@
  */
 package org.oransc.ric.portal.dashboard.controller;
 
+import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.AppStatsManager;
+import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
+import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.RicRegion;
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ric.portal.dashboard.model.RicRegionTransport;
+import org.oransc.ric.portal.dashboard.model.AppStats;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +45,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,15 +73,16 @@ public class AdminController {
 	public static final String USER_METHOD = "user";
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
-
-	@Value("${metrics.url.mc}")
-	private String mcAppMetricsUrl;
+	public static final String STATAPPMETRIC_METHOD = "appmetric";
 
 	@Value("${metrics.url.ml}")
 	private String mlAppMetricsUrl;
 
 	@Autowired
 	private DashboardUserManager dashboardUserManager;
+
+	@Autowired
+	private AppStatsManager appStatsManager;
 
 	@Autowired
 	private RicRegionList instanceConfig;
@@ -109,19 +122,54 @@ public class AdminController {
 		return instanceConfig.getSimpleInstances();
 	}
 
-	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
-	@GetMapping(XAPPMETRICS_METHOD)
+	@ApiOperation(value = "Gets all xApp statistics reporting details.", response = StatsDetailsTransport.class, responseContainer = "List")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public ResponseEntity<Object> getAppMetricsUrl(@RequestParam String app) {
-		String metricsUrl = null;
-		if (DashboardConstants.APP_NAME_MC.equals(app))
-			metricsUrl = mcAppMetricsUrl;
-		else if (DashboardConstants.APP_NAME_ML.equals(app))
-			metricsUrl = mlAppMetricsUrl;
-		logger.debug("getAppMetricsUrl: app {} metricsurl {}", app, metricsUrl);
-		if (metricsUrl != null)
-			return new ResponseEntity<>(new SuccessTransport(HttpStatus.OK.ordinal(), metricsUrl), HttpStatus.OK);
-		return ResponseEntity.badRequest().body("Client provided app name is invalid as: " + app);
+	public List<AppStats> getStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
+		logger.debug("getStats for instance {}", instanceKey);
+		return appStatsManager.getStatsByInstance(instanceKey);
 	}
 
+	@ApiOperation(value = "Gets a xApp's metrics status by Id.", response = StatsDetailsTransport.class, responseContainer = "List")
+	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD + "/" + DashboardConstants.APP_ID + "/{" + DashboardConstants.APP_ID + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
+	public AppStats getStatsById(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(DashboardConstants.APP_ID) int appId) {
+		logger.debug("getStatsById for instance {} by app id {}", instanceKey, appId);
+		return appStatsManager.getStatsById(instanceKey, appId);
+	}
+
+	@ApiOperation(value = "Creates xApp metrics status.")
+	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public IDashboardResponse createStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
+		logger.debug("createStats with instance {} request {}", instanceKey, statsSetupRequest);
+		return appStatsManager.createStats(instanceKey, statsSetupRequest);
+	}
+
+	@ApiOperation(value = "Updates xApp metrics status.")
+	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD)
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public ResponseEntity<String> updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
+		logger.debug("updateStats for instance {} request {}", instanceKey, statsSetupRequest);
+		appStatsManager.updateStats(instanceKey, statsSetupRequest);
+		return ResponseEntity.ok(null);
+	}
+
+	@ApiOperation(value = "Deletes xApp metric status.")
+	@DeleteMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
+			+ STATAPPMETRIC_METHOD + "/" + DashboardConstants.APP_ID + "/{" + DashboardConstants.APP_ID + "}")
+	@Secured({ DashboardConstants.ROLE_ADMIN })
+	public ResponseEntity<String> deleteStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(DashboardConstants.APP_ID) int appId) throws StatsManagerException, IOException {
+		logger.debug("deleteStats instance {} request {}", instanceKey, appId);
+		appStatsManager.deleteStats(instanceKey, appId);
+		return ResponseEntity.ok(null);
+	}
 }
