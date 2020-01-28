@@ -13,6 +13,7 @@ Version 2.0.1, 17 Mar 2020
 * Drop ENDC and X2 setup requests to E2 Manager
 * Upgrade to Spring-Boot 2.2.4.RELEASE
 * Set the first instance as the default one
+* Add methods to create, update and delete xApp stat metric URLs
 
 Version 2.0.0, 5 Feb 2020
 --------------------------
