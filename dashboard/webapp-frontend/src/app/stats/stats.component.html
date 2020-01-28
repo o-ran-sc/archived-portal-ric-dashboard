@@ -17,29 +17,80 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div class="stats__section">
-
+  <div class="stats__section">
 	<h3 class="rd-global-page-title">Platform stats</h3>
-
-	<mat-tab-group>
-		<mat-tab label="AC xApp">
-			<mat-grid-list cols="3" rowHeight="3:2">
-				<mat-grid-tile>
-					<mat-card>
-						<iframe [src]="metricsUrlAc"></iframe>
-					</mat-card>
-				</mat-grid-tile>
-			</mat-grid-list>
-		</mat-tab>
-		<mat-tab label="MC xApp">
-			<mat-grid-list cols="3" rowHeight="3:2">
-				<mat-grid-tile>
-					<mat-card>
-						<iframe [src]="metricsUrlMc"></iframe>
-					</mat-card>
-				</mat-grid-tile>
-			</mat-grid-list>
-		</mat-tab>
+  
+	<button mat-raised-button (click)="setupAppMetrics()">Setup App Metrics..</button>
+	
+	<table mat-table class="stats-table mat-elevation-z8" [dataSource]="dataSource">
+  
+	  <ng-template #noValue></ng-template>
+  
+	  <ng-container matColumnDef="appId">
+		<mat-header-cell *matHeaderCellDef>App ID</mat-header-cell>
+		<mat-cell *matCellDef="let stats">
+		  <div *ngIf="stats.statsIdentity.appId; else noValue">{{stats.statsIdentity.appId}}</div>
+		</mat-cell>
+	  </ng-container>
+  
+	  <ng-container matColumnDef="appName">
+		<mat-header-cell *matHeaderCellDef>App Name</mat-header-cell>
+		<mat-cell *matCellDef="let stats">
+		  <div *ngIf="stats.statsStatus; else noValue">{{stats.statsStatus.appName}}</div>
+		</mat-cell>
+	  </ng-container>
+  
+	  <ng-container matColumnDef="metricUrl">
+		<mat-header-cell *matHeaderCellDef>Metrics Url</mat-header-cell>
+		<mat-cell *matCellDef="let stats">
+		  <!--<div *ngIf="stats.statsStatus; else noValue"><a href="{{stats.statsStatus.metricUrl}}">{{stats.statsStatus.metricUrl}}</a></div>-->
+		  <div *ngIf="stats.statsStatus; else noValue">{{stats.statsStatus.metricUrl}}</div>
+		</mat-cell>
+	  </ng-container>
+  
+	  <ng-container matColumnDef="editmetricUrl">
+		<mat-header-cell *matHeaderCellDef>Edit Metrics Url</mat-header-cell>
+		<mat-cell *matCellDef="let stats">
+		  <!--<div *ngIf="stats.statsStatus; else noValue"><button class="btn btn-sm btn-default" (click)="editAppMetrics(stats.statsStatus)">Edit</button></div>-->
+		  <div *ngIf="stats; else noValue"><button class="btn btn-sm btn-default" (click)="editAppMetrics(stats)">Edit</button></div>
+		  <div *ngIf="stats; else noValue"><button class="btn btn-sm btn-default" (click)="viewAppMetrics(stats)">View</button></div>
+		</mat-cell>
+	  </ng-container>
+	  
+  
+	  <!--<ng-container matColumnDef="connectionStatus">
+		<mat-header-cell *matHeaderCellDef>Connection Status</mat-header-cell>
+		<mat-cell *matCellDef="let stats">
+		  <div *ngIf="stats.statsStatus; else noValue">{{stats.statsStatus.connectionStatus}}</div>
+		</mat-cell>
+	  </ng-container>-->
+  
+	  <ng-container matColumnDef="noRecordsFound">
+		<mat-footer-cell *matFooterCellDef>No records found.</mat-footer-cell>
+	  </ng-container>
+  
+	  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+	  <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}">
+	  </mat-footer-row>
+  
+	</table>
+	<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+	  <mat-spinner diameter=50></mat-spinner>
+	</div>
+	
+	<!--<span class="example-input-label"> Selected tab index: </span>-->
+	<mat-form-field [hidden]="true">
+	  <input matInput type="number" [formControl]="selected">
+	</mat-form-field>
+	
+	
+	<mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" (selectedTabChange)="onTabChanged($event)">
+	<!--<mat-tab-group  (selectedTabChange)="onTabChanged($event)">-->  
+	  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.statsStatus.appName">
+		<iframe [src]="metricsUrl"></iframe>  
+	  </mat-tab>
 	</mat-tab-group>
-
-</div>
+  
+  
+  </div>

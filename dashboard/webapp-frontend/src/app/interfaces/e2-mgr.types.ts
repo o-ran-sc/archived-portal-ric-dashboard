@@ -64,3 +64,33 @@ export interface RanDialogFormData {
   ranPort: string;
   ranType: string;
 }
+
+export interface StatsSetupRequest {
+  appId: number;
+  appName: string;
+  metricUrl: string;
+}
+
+export interface StatsDialogFormData {
+  appName: string;
+  metricUrl: string;
+}
+
+export interface StatsIdentity {
+  //appId: string;
+  appId: number;
+}
+
+export interface StatsResponse {
+  //connectionStatus: string; // actually one-of, but model as string
+  //failureType: string; // actually one-of, but model as string
+  appName: string;
+  metricUrl: string;
+  //setupFailure: object; // don't model this until needed
+}
+
+export interface StatsDetails {
+  statsIdentity: StatsIdentity;
+  statsStatus: StatsResponse;
+}
+

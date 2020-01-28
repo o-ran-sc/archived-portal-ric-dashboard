@@ -17,10 +17,11 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardService } from '../dashboard/dashboard.service';
+import { StatsDetails, StatsSetupRequest } from 'src/app/interfaces/e2-mgr.types';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,7 @@ import { DashboardService } from '../dashboard/dashboard.service';
 export class StatsService {
 
     private component = 'admin';
+    private appmetrciPath = 'appmetric';
 
     baseJSONServerUrl = 'http://localhost:3000';
     dataMetrics = [{}];
@@ -92,6 +94,26 @@ export class StatsService {
         });
     }
 
+    getAppMetrics(instanceKey: string): Observable<Array<StatsDetails>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.appmetrciPath);
+        return this.httpClient.get<Array<StatsDetails>>(path);
+      }
+
+    getAppMetricsById(instanceKey: string, appId: number): Observable<StatsDetails> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey, appId, this.appmetrciPath);
+        return this.httpClient.get<StatsDetails>(path);
+      }  
+
+    appMetricsSetup(instanceKey: string, req: StatsSetupRequest): Observable<HttpResponse<Object>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.appmetrciPath);
+        return this.httpClient.post(path, req, { observe: 'response' });
+      }
+    
+    editAppMetrics(instanceKey: string, req: StatsSetupRequest): Observable<HttpResponse<Object>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.appmetrciPath);
+        return this.httpClient.put(path, req, { observe: 'response' });
+    }
+    
     saveConfig(key: string, value: string) {
         if (key === 'jsonURL') {
             this.baseJSONServerUrl = value;

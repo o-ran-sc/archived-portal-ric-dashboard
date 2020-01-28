@@ -28,6 +28,7 @@ public abstract class DashboardConstants {
 	public static final String ENDPOINT_PREFIX = "/api";
 	// Spring path parameters
 	public static final String RIC_INSTANCE_KEY = "ric";
+	public static final String APP_ID = "appId";
 	// Factor out method names used in multiple controllers
 	public static final String VERSION_METHOD = "version";
 	// Apps with metric panels
