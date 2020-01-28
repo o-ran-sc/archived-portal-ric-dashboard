@@ -29,13 +29,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
+import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ric.portal.dashboard.model.AppStats;
 import org.oransc.ric.portal.dashboard.model.RicInstanceKeyName;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class AdminControllerTest extends AbstractControllerTest {
 
@@ -85,41 +89,26 @@ public class AdminControllerTest extends AbstractControllerTest {
 				String.class);
 		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
 	}
-
+	
 	@Test
-	public void getxAppMetricsUrlTest() {
-		Map<String, String> metricsQueryParms = new HashMap<String, String>();
-		URI uri;
-
-		metricsQueryParms.clear();
-		metricsQueryParms.put("app", DashboardConstants.APP_NAME_MC);
-		uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
-		logger.debug("Invoking {}", uri);
-		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, SuccessTransport.class);
-		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
-		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
-
-		metricsQueryParms.clear();
-		metricsQueryParms.put("app", DashboardConstants.APP_NAME_ML);
-		logger.debug("Invoking {}", uri);
-		successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null, SuccessTransport.class);
-		Assertions.assertFalse(successResponse.getBody().getData().toString().isEmpty());
-		Assertions.assertTrue(successResponse.getStatusCode().is2xxSuccessful());
+	public void getAppStatsTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, "i1", AdminController.STATAPPMETRIC_METHOD);
+		logger.info("Invoking uri {}", uri);
+		ResponseEntity<List<AppStats>> response = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<AppStats>>() {
+				});
+		Assertions.assertFalse(response.getBody().isEmpty());
 	}
-
+	
 	@Test
-	public void getxAppMetricsUrlTestFail() {
-		Map<String, String> metricsQueryParms = new HashMap<String, String>();
-		// Providing a bogus value for application name in query parameter to test
-		// failure
-		metricsQueryParms.put("app", "ABCD");
-		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
-		logger.debug("Invoking {}", uri);
-		ResponseEntity<String> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
-				String.class);
-		logger.debug("{}", errorResponse.getBody().toString());
-		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
+	public void createAppStatsTest() {
+		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, RICInstanceMockConfiguration.INSTANCE_KEY_1, AdminController.STATAPPMETRIC_METHOD);
+		logger.info("Invoking uri {}", uri);
+		StatsDetailsTransport statsDetails = new StatsDetailsTransport();
+		statsDetails.setAppName("MachLearn-2");
+		statsDetails.setMetricUrl("https://www.example2.com");
+		AppStats st =  testRestTemplateAdminRole().postForObject(uri, statsDetails, AppStats.class);
+		Assertions.assertFalse(st.getStatsDetails().getAppName().isEmpty());
 	}
 
 	@Test

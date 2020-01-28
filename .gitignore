@@ -51,3 +51,6 @@
 # documentation
 .tox
 docs/_build/*
+
+# JSON internal data
+dashboard/webapp-backend/app-stats.json

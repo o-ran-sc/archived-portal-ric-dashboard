@@ -21,6 +21,7 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
 import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,6 +104,22 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	@ExceptionHandler({ UnknownInstanceException.class })
 	public final ResponseEntity<String> handleUnknownInstanceException(Exception ex, WebRequest request) {
 		log.warn("handleUnknownInstanceException: request {}, exception {}", request.getDescription(false),
+				ex.toString());
+		return ResponseEntity.badRequest().body(getShortExceptionMessage(ex));
+	}
+	
+	/**
+	 * Logs a warning if an invalid StatsManagerException is used.
+	 * 
+	 * @param ex
+	 *                    The exception
+	 * @param request
+	 *                    The original request
+	 * @return A response entity with status code 400 and an unstructured message.
+	 */
+	@ExceptionHandler({ StatsManagerException.class })
+	public final ResponseEntity<String> handleStatsManagerException(Exception ex, WebRequest request) {
+		log.warn("handleStatsManagerException: request {}, exception {}", request.getDescription(false),
 				ex.toString());
 		return ResponseEntity.badRequest().body(getShortExceptionMessage(ex));
 	}
