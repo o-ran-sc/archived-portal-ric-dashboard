@@ -17,23 +17,10 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.portalapi;
 
-import org.onap.portalsdk.core.onboarding.exception.CipherUtilException;
-
-/**
- * Supports an upgrade path among methods in CipherUtil because the PortalSDK is
- * changing encryption methods.
- */
-public interface IPortalSdkDecryptor {
-
-	/**
-	 * Decrypts the specified value using a known key.
-	 * 
-	 * @param cipherText Encrypted value
-	 * @return Clear text on success, null otherwise.
-	 * @throws CipherUtilException if any decryption step fails
-	 */
-	String decrypt(String cipherText) throws CipherUtilException;
-
+ /* used to place form fields on separate lines/rows in dialog */
+.input-display-block {
+  display: block;
 }
+
+

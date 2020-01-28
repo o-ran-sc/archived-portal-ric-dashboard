@@ -59,11 +59,9 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	 * Why 502? I quote: <blockquote>HTTP server received an invalid response from a
 	 * server it consulted when acting as a proxy or gateway.</blockquote>
 	 * 
-	 * @param ex
-	 *                    The exception
+	 * @param ex      The exception
 	 * 
-	 * @param request
-	 *                    The original request
+	 * @param request The original request
 	 * 
 	 * @return A response entity with status code 502 plus some details in the body.
 	 */
@@ -83,10 +81,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	/**
 	 * Logs a warning if an invalid RIC instance key is used.
 	 * 
-	 * @param ex
-	 *                    The exception
-	 * @param request
-	 *                    The original request
+	 * @param ex      The exception
+	 * @param request The original request
 	 * @return A response entity with status code 400
 	 */
 	@ExceptionHandler({ UnknownInstanceException.class })

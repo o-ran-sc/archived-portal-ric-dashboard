@@ -42,8 +42,7 @@ public class RicRegion implements IDashboardResponse {
 	/**
 	 * Convenience constructor for minimal value set.
 	 * 
-	 * @param name
-	 *                 Name
+	 * @param name Name
 	 */
 	public RicRegion(String name) {
 		this.name = name;

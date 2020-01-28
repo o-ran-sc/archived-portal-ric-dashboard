@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.StatsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,17 +43,28 @@ public class AdminConfiguration {
 
 	// Populated by the autowired constructor
 	private final String userfile;
+	// Populated by the autowired constructor
+	private final String statsfile;
 
 	@Autowired
-	public AdminConfiguration(@Value("${userfile}") final String userfile) {
+	public AdminConfiguration(@Value("${userfile}") final String userfile, @Value("${statsfile}") final String statsfile) {
 		logger.debug("ctor userfile '{}'", userfile);
+		logger.debug("ctor statsfile '{}'", statsfile);
 		this.userfile = userfile;
+		this.statsfile = statsfile;
+		
 	}
 
 	@Bean
 	// The bean (method) name must be globally unique
 	public DashboardUserManager userManager() throws IOException {
 		return new DashboardUserManager(userfile);
+	}
+
+	@Bean
+	// The bean (method) name must be globally unique
+	public StatsManager statsManager() throws IOException {
+		return new StatsManager(statsfile);
 	}
 
 }

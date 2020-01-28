@@ -59,11 +59,9 @@ public class RicRegionList {
 	/**
 	 * Gets the instance with the specified key in any region
 	 * 
-	 * @param instanceKey
-	 *                        Key to fetch
+	 * @param instanceKey Key to fetch
 	 * @return Instance
-	 * @throws UnknownInstanceException
-	 *                                      If the key is not known
+	 * @throws UnknownInstanceException If the key is not known
 	 */
 	public RicInstance getInstance(String instanceKey) {
 		for (RicRegion r : regions)
