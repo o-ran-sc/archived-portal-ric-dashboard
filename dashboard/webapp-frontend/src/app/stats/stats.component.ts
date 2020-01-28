@@ -18,7 +18,7 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { BaseChartDirective } from 'ng2-charts/ng2-charts';
+import { BaseChartDirective } from 'ng2-charts';
 import { StatsService } from '../services/stats/stats.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
