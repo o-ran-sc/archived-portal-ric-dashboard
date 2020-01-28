@@ -17,10 +17,11 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DashboardService } from '../dashboard/dashboard.service';
+import { StatsDetails, AppStats } from '../../interfaces/e2-mgr.types';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,8 @@ import { DashboardService } from '../dashboard/dashboard.service';
 export class StatsService {
 
     private component = 'admin';
+    private appmetricPath = 'appmetric';
+    private appId = 'appid';
 
     baseJSONServerUrl = 'http://localhost:3000';
     dataMetrics = [{}];
@@ -90,6 +93,31 @@ export class StatsService {
             params: new HttpParams()
                 .set('app', appName)
         });
+    }
+
+    getAppMetrics(instanceKey: string): Observable<Array<StatsDetails>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.appmetricPath);
+        return this.httpClient.get<Array<StatsDetails>>(path);
+      }
+
+    getAppMetricsById(instanceKey: string, appId: number): Observable<AppStats> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.appmetricPath, this.appId, appId);
+        return this.httpClient.get<AppStats>(path);
+      }
+
+    setupAppMetrics(instanceKey: string, req: StatsDetails): Observable<HttpResponse<Object>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.appmetricPath);
+        return this.httpClient.post(path, req, { observe: 'response' });
+      }
+
+    editAppMetrics(instanceKey: string, req: StatsDetails): Observable<HttpResponse<Object>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.appmetricPath);
+        return this.httpClient.put(path, req, { observe: 'response' });
+    }
+
+    deleteAppMetrics(instanceKey: string, appId: number): Observable<HttpResponse<Object>> {
+        const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.appmetricPath, this.appId, appId);
+        return this.httpClient.delete(path, { observe: 'response' });
     }
 
     saveConfig(key: string, value: string) {
