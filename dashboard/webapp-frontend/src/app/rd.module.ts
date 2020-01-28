@@ -78,6 +78,7 @@ import { RdComponent } from './rd.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StatCardComponent } from './ui/stat-card/stat-card.component';
 import { StatsComponent } from './stats/stats.component';
+import { StatsDialogComponent } from './stats/stats-dialog.component';
 import { UserComponent } from './user/user.component';
 
 // RD services
@@ -114,6 +115,7 @@ import { UiService } from './services/ui/ui.service';
     SidenavListComponent,
     StatCardComponent,
     StatsComponent,
+    StatsDialogComponent,
     UserComponent,
     InstanceSelectorDialogComponent
   ],
@@ -180,7 +182,8 @@ import { UiService } from './services/ui/ui.service';
     ErrorDialogComponent,
     InstanceSelectorDialogComponent,
     LoadingDialogComponent,
-    RanControlConnectDialogComponent
+    RanControlConnectDialogComponent,
+    StatsDialogComponent
   ],
   providers: [
     AppMgrService,
