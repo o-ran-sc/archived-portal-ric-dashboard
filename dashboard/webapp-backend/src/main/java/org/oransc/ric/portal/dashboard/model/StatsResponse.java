@@ -2,14 +2,14 @@
  * ========================LICENSE_START=================================
  * O-RAN-SC
  * %%
- * Copyright (C) 2019 AT&T Intellectual Property
+ * Copyright (C) 2019 - 2020 AT&T Intellectual Property
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,37 +17,33 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
- .stats__section {
-}
+package org.oransc.ric.portal.dashboard.model;
 
-.stats-table {
-  width: 100%;
-  min-height: 100px;
-  margin-top: 10px;
-  background-color:transparent;
-}
+public class StatsResponse {
 
-.bar-chart-card {
-    height: 100%;
-    width: 100%;
-    max-width: 400px;
-    margin-left: 1%
-}
+	private String appName;
+	private String metricUrl;
 
-.mat-slider {
-  width: 300px;
-}
+	public StatsResponse(String appName, String metricUrl) {
+		super();
 
-.mat-grid-tile {
-  background: transparent;
-}
+		this.appName = appName;
+		this.metricUrl = metricUrl;
+	}
 
-iframe {
-  width: 500px;
-  height: 420px;
-  border: 1px solid black;
-}
+	public String getAppName() {
+		return appName;
+	}
 
-.display-none {
-  display: none;
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	public String getMetricUrl() {
+		return metricUrl;
+	}
+
+	public void setMetricUrl(String metricUrl) {
+		this.metricUrl = metricUrl;
+	}
 }

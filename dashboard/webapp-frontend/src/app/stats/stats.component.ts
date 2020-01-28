@@ -24,6 +24,21 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatDialog, MatTabChangeEvent } from '@angular/material';
+import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { ErrorDialogService } from '../services/ui/error-dialog.service';
+import { LoadingDialogService } from '../services/ui/loading-dialog.service';
+import { NotificationService } from '../services/ui/notification.service';
+import { UiService } from '../services/ui/ui.service';
+import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
+import { StatsDataSource } from './stats-datasource';
+import { Subscription, BehaviorSubject } from 'rxjs';
+import { RANControlDataSource } from '../ran-control/ran-control.datasource';
+import { RanControlConnectDialogComponent } from '../ran-control/ran-connection-dialog.component';
+import { StatsDialogComponent } from './stats-dialog.component';
+import { StatsDetails } from '../interfaces/e2-mgr.types';
+import {FormControl} from '@angular/forms';
+import { RicInstance} from '../interfaces/dashboard.types';
 
 @Component({
     selector: 'rd-stats',
@@ -34,21 +49,116 @@ export class StatsComponent implements OnInit {
 
     @ViewChildren(BaseChartDirective) charts: QueryList<BaseChartDirective>;
     checked = false;
-    metricsUrlAc: SafeResourceUrl;
-    metricsUrlMc: SafeResourceUrl;
+    darkMode: boolean;
+    panelClass: string;
+    displayedColumns: string[] = ['appId', 'appName', 'metricUrl', 'editmetricUrl'];
+    dataSource: StatsDataSource;
+    private instanceChange: Subscription;
+    private instanceKey: string;
+    metricsUrl: SafeResourceUrl;
+    tabs = [];
+    selected = new FormControl(0);
 
-    constructor(private service: StatsService,
+    constructor(private statsservice: StatsService,
         private httpClient: HttpClient,
-        private sanitize: DomSanitizer) {
+        private sanitize: DomSanitizer, 
+        private errorDialogService: ErrorDialogService,
+        private confirmDialogService: ConfirmDialogService,
+        private notificationService: NotificationService,
+        private loadingDialogService: LoadingDialogService,
+        public instanceSelectorService: InstanceSelectorService,
+        public dialog: MatDialog,
+        public ui: UiService) {
     }
 
     ngOnInit() {
-        this.service.getAppMetricsUrl('AC').subscribe((res: DashboardSuccessTransport) => {
-            this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
+        this.dataSource = new StatsDataSource(this.statsservice, this.notificationService);
+
+        this.ui.darkModeState.subscribe((isDark) => {
+            this.darkMode = isDark;
         });
-        this.service.getAppMetricsUrl('MC').subscribe((res: DashboardSuccessTransport) => {
-            this.metricsUrlMc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
+
+        this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
+            if (instance.key) {
+                this.instanceKey = instance.key;
+                this.dataSource.loadTable(instance.key);
+              }
         });
+    
     }
 
+    ngOnDestroy() {
+        this.instanceChange.unsubscribe();
+    }
+
+    setupAppMetrics() {
+        if (this.darkMode) {
+          this.panelClass = 'dark-theme';
+        } else {
+          this.panelClass = '';
+        }
+        const dialogRef = this.dialog.open(StatsDialogComponent, {
+          panelClass: this.panelClass,
+          width: '450px',
+          data: {
+            instanceKey: this.instanceKey
+          }
+        });
+        dialogRef.afterClosed()
+          .subscribe((result: boolean) => {
+            if (result) {
+              this.dataSource.loadTable(this.instanceKey);
+            }
+          });
+    }
+
+    editAppMetrics(stats?) {
+        const dialogRef = this.dialog.open(StatsDialogComponent, {
+          hasBackdrop: false,
+          data: {
+            instanceKey: this.instanceKey,
+            appName: stats ? stats.appName : '',
+            metricUrl: stats.metricUrl ? stats.metricUrl : '',
+            appId: stats.appId ? stats.appId : 0,
+            isEdit: 'true'
+          }
+        });
+        dialogRef.afterClosed()
+          .subscribe((result: boolean) => {
+            if (result) {
+              this.dataSource.loadTable(this.instanceKey);
+            }
+          });
+      }
+    
+      viewAppMetrics(stats?) {
+        this.statsservice.getAppMetricsById(this.instanceKey, stats.appId)  .subscribe((res: StatsDetails) => {
+          this.metricsUrl = this.sanitize.bypassSecurityTrustResourceUrl(res.metricUrl);
+          let tabNotThere:boolean = true;
+          if (this.tabs.length <= 0) {
+            this.tabs.push(res);
+            this.selected.setValue(this.tabs.length - 1);
+          }
+          else {
+            for(let i=0; i<this.tabs.length; i++){
+              if (this.tabs[i].appId == res.appId) {
+                this.tabs[i].appName = res.appName;
+                this.tabs[i].metricUrl = res.metricUrl;
+                this.selected.setValue(i);
+                tabNotThere  = false;
+                break;
+              }
+            }
+            if (tabNotThere) {
+              this.tabs.push(res);
+              this.selected.setValue(this.tabs.length - 1);
+            }
+          }
+        });  
+      }
+      
+      onTabChanged(event: MatTabChangeEvent) 
+      {
+        this.viewAppMetrics(this.tabs[event.index]);
+      }
 }
