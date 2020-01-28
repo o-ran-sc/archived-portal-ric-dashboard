@@ -20,14 +20,21 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.invoke.MethodHandles;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
+import org.oransc.ric.portal.dashboard.AppStatsManager;
+import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
+import org.oransc.ric.portal.dashboard.model.AppStats;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +42,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * Creates a user manager with mock data.
+ * Creates user manager and stats manager with mock data.
  */
 @Configuration
 @Profile("test")
@@ -70,6 +81,20 @@ public class AdminMockConfiguration {
 			eu.setRoles(roles);
 			mgr.createUser(eu);
 		}
+		return mgr;
+	}
+
+	@Bean
+	// The bean (method) name must be globally unique
+	public AppStatsManager statsManager() throws IOException, StatsManagerException {
+		logger.debug("statsManager: adding mock data");
+		AppStatsManager mgr = new AppStatsManager(true);
+		String instanceKey = RICInstanceMockConfiguration.INSTANCE_KEY_1;
+		StatsDetailsTransport statsDetails = new StatsDetailsTransport();
+		statsDetails.setAppId(0);
+		statsDetails.setAppName("MachLearn");
+		statsDetails.setMetricUrl("https://www.example.com");
+		mgr.createStats(instanceKey, statsDetails);
 		return mgr;
 	}
 
