@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "b56a1a6b_c8b6de6b",
+        "filename": "dashboard/webapp-frontend/src/app/rd.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-01-29T15:06:21Z",
+      "side": 1,
+      "message": "The private variables cannot be accessible in HTML template",
+      "parentUuid": "874ea6b6_07bc9d79",
+      "revId": "48d65a2d702c230a3297d084c2b6deec8df3a47e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d0ee83e0_a996e377",
         "filename": "dashboard/webapp-frontend/src/app/ui/instance-selector-dialog/instance-selector-dialog.component.ts",
         "patchSetId": 2
