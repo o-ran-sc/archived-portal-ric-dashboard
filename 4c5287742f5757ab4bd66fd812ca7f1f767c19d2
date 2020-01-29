@@ -1,0 +1,947 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "074a85b6_50a52cdb",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/DashboardConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "I think you should use all lower case",
+      "range": {
+        "startLine": 31,
+        "startChar": 38,
+        "endLine": 31,
+        "endChar": 43
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a478d460_7f7f059f",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "please don\u0027t add extra whitespace like this",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 1
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3aac6d4_8c9e1586",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "Is this a mock of a persistent data store?",
+      "range": {
+        "startLine": 86,
+        "startChar": 37,
+        "endLine": 86,
+        "endChar": 44
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c808d16a_ea585919",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "what is this?",
+      "range": {
+        "startLine": 88,
+        "startChar": 13,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d525adb1_60b6c86a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "details must be specific to an instance",
+      "range": {
+        "startLine": 156,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 16
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50c88e53_4ff2408b",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "missing a constant in this path to indicate the next path component is an application ID. please be consistent with current practice",
+      "range": {
+        "startLine": 160,
+        "startChar": 97,
+        "endLine": 160,
+        "endChar": 105
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db96527_3d6b0884",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "Mismatch in {} and argument counts",
+      "range": {
+        "startLine": 164,
+        "startChar": 51,
+        "endLine": 164,
+        "endChar": 75
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5632b567_66a40139",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "must be specific to an instance",
+      "range": {
+        "startLine": 165,
+        "startChar": 7,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18ae16b8_a1350ee3",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 170,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 59
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77e2cd1b_bd62ffbb",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "extra ws again",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 1
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c63f4ca1_3ff762f2",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "extra space",
+      "range": {
+        "startLine": 177,
+        "startChar": 53,
+        "endLine": 177,
+        "endChar": 54
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42d2c7a6_b8a8ab52",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "please use verb + object format as done elsewhere; here that might be \"setupAppMetrics\" or \"createAppMetrics\"",
+      "range": {
+        "startLine": 181,
+        "startChar": 13,
+        "endLine": 181,
+        "endChar": 23
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dde7fbf_27607b20",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "POST is allowed to return a status, please return one",
+      "range": {
+        "startLine": 186,
+        "startChar": 2,
+        "endLine": 186,
+        "endChar": 3
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3806b8c_4b097f3a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "PUT cannot return data but it should set a status code",
+      "range": {
+        "startLine": 205,
+        "startChar": 2,
+        "endLine": 205,
+        "endChar": 3
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "945f331d_c08cd4a8",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33cc8018_fbd3de58",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "why not just use type Integer here?  Why wrap int in a POJO class?",
+      "range": {
+        "startLine": 25,
+        "startChar": 9,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cb4619f_ae12121a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "what is this?",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36ed04aa_72d8b780",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "why nodebStatus here?",
+      "range": {
+        "startLine": 57,
+        "startChar": 30,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d0ca346_45860050",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsIdentity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "An entire class to wrap an integer?  This seems totally unnecessary.  Can this be removed please?",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "038ab16d_8cd193b9",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "extra ws",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1732fa71_d0eaa5b8",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 3
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a3384f9_37ef85c5",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "be consistent with indentation, either space or tab; just use Eclipse formatter",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 3
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96c82bf3_f250d0f1",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 3
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fe8a6e4_0fd58522",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ef4e7f5_259aaa19",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 4
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8634f179_37828c4f",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsSetupRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "this basically duplicates the StatsDetailsTransport class.  Find a way to use one class to capture appId, appName, metricsURL for get/post/put cases.",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b684a81b_4d8584f7",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsSetupRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "unnecessary, remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 4
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b5c9356_864b13c9",
+        "filename": "dashboard/webapp-frontend/src/app/interfaces/e2-mgr.types.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "Silly to wrap an integer in an interface",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 30
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cf5edad_cdec6c75",
+        "filename": "dashboard/webapp-frontend/src/app/interfaces/e2-mgr.types.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 2
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a355bcfd_c0235513",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "this looks wrong. no other interface import directive uses a path prefix of src/app.  Look for examples and use a relative path.",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 56
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc78d75d_05ff7883",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 33,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 25
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16be2a33_7809fd17",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove extraneous WS",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 9
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8476645a_48b01296",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "use name like setupAppMetrics",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2fc1d4f_0387cd80",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "is Object the only possible type here?",
+      "range": {
+        "startLine": 107,
+        "startChar": 90,
+        "endLine": 107,
+        "endChar": 96
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6634f462_da139fbf",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2c25307_6271f92d",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-datasource.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74b0a0e8_c2b13d0f",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "please remove extraneous ws",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df85c2c5_526b56be",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 54,
+        "startChar": 3,
+        "endLine": 54,
+        "endChar": 158
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3881e31b_3fec9dc8",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 61,
+        "startChar": 1,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4f9c9f_9436c485",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "please reformat with VisualStudio code or other automated support to remove all the extraneous whitespace",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 4
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1407a906_ed89c79a",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-01-29T15:08:40Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 45
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
