@@ -1,0 +1,10 @@
+---
+distribution_type: container
+container_release_tag: 2.0.0
+container_pull_registry: nexus3.o-ran-sc.org:10004
+container_push_registry: nexus3.o-ran-sc.org:10002
+project: portal/ric-dashboard
+ref: 9925e0433fb1e3a84340ebdb01be8b0d704dba38
+containers:
+    - name: ric-dashboard
+      version: 2.0.0
