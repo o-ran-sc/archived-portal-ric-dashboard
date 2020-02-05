@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "916fa620_9c5e4c2f",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-02-05T16:39:16Z",
+      "side": 1,
+      "message": "Yes it mocks the Stats Details like unique id, app name, metric url storage in the backend",
+      "parentUuid": "c3aac6d4_8c9e1586",
+      "range": {
+        "startLine": 86,
+        "startChar": 37,
+        "endLine": 86,
+        "endChar": 44
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c808d16a_ea585919",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 2
