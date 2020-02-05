@@ -5,7 +5,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.0, 24 Jan 2020
+Version 2.0.0, 5 Feb 2020
 --------------------------
 * Change application properties file to YAML format
 * Add mock list of RIC instances to application properties
@@ -22,6 +22,7 @@ Version 2.0.0, 24 Jan 2020
 * Add instance selector dialog component and service
 * Repair onSidenavClose method
 * Extend to support selecting a RIC instance within a region
+* Update angular to latest version 8, prepare for upgrade to version 9.
 
 Version 1.3.0, 26 Nov 2019
 --------------------------

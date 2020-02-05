@@ -32,9 +32,10 @@ import { LoadingDialogService } from '../../services/ui/loading-dialog.service';
 })
 export class InstanceSelectorDialogComponent implements OnInit  {
 
-  private allRegions: RicRegion[];
-  private regionInstances: RicInstance[];
-  private instanceForm: FormGroup;
+  //declare following variables as Public variable. Private variables should not be used in template HTML
+  allRegions: RicRegion[];
+  regionInstances: RicInstance[];
+  instanceForm: FormGroup;
 
   constructor(
     private dialogRef: MatDialogRef<InstanceSelectorDialogComponent>,
