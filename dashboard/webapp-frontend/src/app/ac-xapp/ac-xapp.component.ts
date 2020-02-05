@@ -36,7 +36,8 @@ import { NotificationService } from '../services/ui/notification.service';
 })
 export class AcXappComponent implements OnInit, OnDestroy {
 
-  private acForm: FormGroup;
+  //declare acForm as Public variable. Private variables should not be used in template HTML
+  acForm: FormGroup;
   private instanceChange: Subscription;
   private instanceKey: string;
 
