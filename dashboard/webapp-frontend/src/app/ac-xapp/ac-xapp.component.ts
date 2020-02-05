@@ -36,7 +36,7 @@ import { NotificationService } from '../services/ui/notification.service';
 })
 export class AcXappComponent implements OnInit, OnDestroy {
 
-  private acForm: FormGroup;
+  acForm: FormGroup;
   private instanceChange: Subscription;
   private instanceKey: string;
 

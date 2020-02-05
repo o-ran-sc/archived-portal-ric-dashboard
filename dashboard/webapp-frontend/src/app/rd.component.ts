@@ -32,8 +32,7 @@ import { UiService } from './services/ui/ui.service';
 export class RdComponent implements OnInit {
   showMenu = false;
   darkModeActive: boolean;
-
-  private selectedInstanceName: string = 'Select RIC instance';
+  selectedInstanceName: string = 'Select RIC instance';
   private instanceChange: Subscription;
 
   constructor(
