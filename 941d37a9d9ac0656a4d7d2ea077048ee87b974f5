@@ -1,0 +1,532 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b7aac61_b80e6859",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/DashboardConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "are these still required?",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8297b411_1340ecde",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "please don\u0027t add unnecessary whitespace",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 1
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2de43015_b01bc8cf",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "why is a new list added here?",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 77,
+        "endChar": 5
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72b336ef_c798a7c5",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "maybe xApp ?",
+      "range": {
+        "startLine": 118,
+        "startChar": 33,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f24b7db6_a61e70ab",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Need details specific to an instance.  Need to mock this.  Right now it\u0027s hardwired in the controller, that\u0027s not right.",
+      "range": {
+        "startLine": 124,
+        "startChar": 9,
+        "endLine": 124,
+        "endChar": 16
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af1c96f4_ac9a6a87",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Creates.  POST is a create action.",
+      "range": {
+        "startLine": 141,
+        "startChar": 24,
+        "endLine": 141,
+        "endChar": 28
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b29fae69_0874ad09",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Updates. PUT is an update.",
+      "range": {
+        "startLine": 167,
+        "startChar": 13,
+        "endLine": 167,
+        "endChar": 22
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55779971_ba0434ca",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 1
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b538e44d_f737eedc",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Why is an instance key here?",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fde50279_ef9d3358",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 1
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79ba15c4_34bc052a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "What returns a response without the ID?",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 26
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f0eeb9f_2df51850",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsResponse.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "implements IDashboardResponse ?",
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "986a15e9_42b0f731",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49c57432_28049e5a",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 4
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "029bf8ab_3ad4b997",
+        "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5639d767_cb4b218f",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-datasource.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "do you use this?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "577c77f0_e9aaf057",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f41866a_b733cf01",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3bc5738_7be8be6c",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Remove don\u0027t comment out",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 2
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bed569a_94201557",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Perhaps a log message is appropriate here?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 2
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8212d9b_65ee41bb",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87b95a82_df4f8297",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfc0c970_cc84f074",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 4
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f173b780_13583704",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-07T19:01:13Z",
+      "side": 1,
+      "message": "Please be consistent with brace style.  Either open on same line, or on next line.  I think the vast majority of the code uses same line.",
+      "range": {
+        "startLine": 160,
+        "startChar": 44,
+        "endLine": 160,
+        "endChar": 45
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
