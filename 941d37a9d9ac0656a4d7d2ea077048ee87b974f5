@@ -272,6 +272,29 @@
     },
     {
       "key": {
+        "uuid": "1a4eca8b_1ad21bcf",
+        "filename": "dashboard/webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "No need to export DialogComponent",
+      "range": {
+        "startLine": 175,
+        "startChar": 2,
+        "endLine": 176,
+        "endChar": 24
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "986a15e9_42b0f731",
         "filename": "dashboard/webapp-frontend/src/app/services/stats/stats.service.ts",
         "patchSetId": 3
@@ -381,6 +404,75 @@
     },
     {
       "key": {
+        "uuid": "5ea32db6_887b9a9e",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "not be used",
+      "range": {
+        "startLine": 22,
+        "startChar": 33,
+        "endLine": 22,
+        "endChar": 43
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d77785ab_bfb95947",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "not be used",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 42
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dead63d_10595eea",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "not be used, please clean it",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 69
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4f41866a_b733cf01",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
         "patchSetId": 3
@@ -444,6 +536,29 @@
     },
     {
       "key": {
+        "uuid": "076fedf8_15a5402c",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "To keep consistency, in html, please insert spaces to replace tabs.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b8212d9b_65ee41bb",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
         "patchSetId": 3
@@ -467,6 +582,29 @@
     },
     {
       "key": {
+        "uuid": "a77ae951_30351ce6",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "please clean unused imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 0
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87b95a82_df4f8297",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
         "patchSetId": 3
@@ -478,6 +616,29 @@
       "writtenOn": "2020-02-07T19:01:13Z",
       "side": 1,
       "message": "ws",
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c01dbf_6bbae8f6",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-07T19:47:23Z",
+      "side": 1,
+      "message": "httpClient, errorDialogService, confirmDialogService, loadingDialogService nenver used",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 28
+      },
       "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
