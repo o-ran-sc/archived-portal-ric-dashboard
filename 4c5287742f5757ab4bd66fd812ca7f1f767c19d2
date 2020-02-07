@@ -118,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "ae062611_098c75b0",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-02-07T18:53:39Z",
+      "side": 1,
+      "message": "It uniquely identifies app name, metric url pair to be displayed in the stats page",
+      "parentUuid": "c808d16a_ea585919",
+      "range": {
+        "startLine": 88,
+        "startChar": 13,
+        "endLine": 88,
+        "endChar": 28
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d525adb1_60b6c86a",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 2
@@ -382,6 +406,30 @@
       "writtenOn": "2020-01-29T15:08:40Z",
       "side": 1,
       "message": "why not just use type Integer here?  Why wrap int in a POJO class?",
+      "range": {
+        "startLine": 25,
+        "startChar": 9,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "4c5287742f5757ab4bd66fd812ca7f1f767c19d2",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d04c19ce_42a600c2",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/StatsDetailsTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-02-07T18:53:39Z",
+      "side": 1,
+      "message": "Wanted to be consistent with RanDetailsTransport class",
+      "parentUuid": "33cc8018_fbd3de58",
       "range": {
         "startLine": 25,
         "startChar": 9,
