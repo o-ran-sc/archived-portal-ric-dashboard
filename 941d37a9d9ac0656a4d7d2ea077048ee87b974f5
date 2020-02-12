@@ -381,6 +381,30 @@
     },
     {
       "key": {
+        "uuid": "477abbb9_334046da",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-datasource.ts",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-02-12T00:05:25Z",
+      "side": 1,
+      "message": "Yes it is used to display noRecordsFound when the table in stats page is empty.",
+      "parentUuid": "5639d767_cb4b218f",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 6
+      },
+      "revId": "941d37a9d9ac0656a4d7d2ea077048ee87b974f5",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "577c77f0_e9aaf057",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
         "patchSetId": 3
