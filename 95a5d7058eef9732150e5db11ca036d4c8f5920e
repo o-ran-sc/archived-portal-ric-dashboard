@@ -1,0 +1,481 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90eda28f_e0203ead",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/DashboardApplication.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "leave this formatting alone",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e0b6343_705ddef4",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "2020",
+      "range": {
+        "startLine": 5,
+        "startChar": 17,
+        "endLine": 5,
+        "endChar": 21
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83b4c3c5_5fc4fe15",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "What?",
+      "range": {
+        "startLine": 46,
+        "startChar": 19,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd5a5b59_a009ac6c",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "what?",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 44
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b65f51eb_d359159d",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 210,
+        "startChar": 1,
+        "endLine": 210,
+        "endChar": 2
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1080a5c2_33652dc8",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/AdminConfiguration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "please don\u0027t add unnecessary whitespace like this, just use the Eclipse code formatter on the whole src/main/java tree as I showed you several days ago, it only takes 1 second.",
+      "range": {
+        "startLine": 55,
+        "startChar": 1,
+        "endLine": 55,
+        "endChar": 2
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de511026_8c22e07c",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/WebSecurityConfiguration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 1
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce0fe75_2d18d1b2",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 1
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "597b7f3c_d5986b84",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "this does not pass the instance key to the stats manager, how can it know WHICH stats to return?",
+      "range": {
+        "startLine": 127,
+        "startChar": 22,
+        "endLine": 127,
+        "endChar": 30
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e0b2eb2_bd1c9019",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "Why is this commented out?  Remove?",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 131,
+        "endChar": 100
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebe55dc3_2fe95cf3",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "Why is this commented out?",
+      "range": {
+        "startLine": 158,
+        "startChar": 1,
+        "endLine": 164,
+        "endChar": 26
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f686adc0_0858ee31",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 1
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "059f409a_90d8e281",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/CustomResponseEntityExceptionHandler.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "Why make whitespace-only changes here?  I think you have removed the auto Eclipse formatting here.  Just leave it alone! I know it has lots of extra whitespace but it\u0027s easier to let the machine do what it wants.",
+      "range": {
+        "startLine": 84,
+        "startChar": 1,
+        "endLine": 85,
+        "endChar": 39
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "325f3676_eeee2748",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/Html5PathsController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "leave this alone!",
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e3d0ed0_ce3839a9",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/RicInstanceKeyName.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "what auto formatter have you used?  What version of Eclipse are you using??",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 19
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31f3e729_cbe419a4",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/Stats.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "ws",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7302c13d_62a72342",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/Stats.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "don\u0027t repeat the name here, instead use getSimpleClassName() as is done in all the other POJO classes",
+      "range": {
+        "startLine": 56,
+        "startChar": 10,
+        "endLine": 56,
+        "endChar": 15
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18ed5d75_06744a9b",
+        "filename": "dashboard/webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/AdminMockConfiguration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "what is this HttpServletResponse??",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 5
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e51639af_2ba87870",
+        "filename": "dashboard/webapp-frontend/src/app/interfaces/e2-mgr.types.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "why is instance key in the response?  Does any other response have an instance key?",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 2
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44da6606_f0730f38",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-datasource.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b845448d_16ed1a0e",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-02-12T20:27:36Z",
+      "side": 1,
+      "message": "I\u0027m not sure what to do here, but if you insist on logging to the console, give much more detail.",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 26
+      },
+      "revId": "95a5d7058eef9732150e5db11ca036d4c8f5920e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
