@@ -6,8 +6,9 @@ with a pinned version, and packages it in a jar.
 
 ## Eclipse and STS Users
 
-The Swagger Codegen maven plugin is not supported in Eclipse/STS. You can
-limp along by taking these steps:
+The source folder should be generated automatically by the Swagger Codegen maven
+plugin and should also appear on the build path in Eclipse/STS, but if not,
+follow these steps:
 
 1. Generate the code using maven:
     mvn install
@@ -16,7 +17,7 @@ limp along by taking these steps:
 
 ## License
 
-Copyright (C) 2019 AT&T Intellectual Property & Nokia. All rights reserved.
+Copyright (C) 2019-2020 AT&T Intellectual Property & Nokia. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

@@ -31,7 +31,7 @@ limitations under the License.
 	<groupId>org.o-ran-sc.ric.plt.appmgr.client</groupId>
 	<artifactId>app-mgr-client</artifactId>
 	<name>RIC App Manager client</name>
-        <!-- Update to match submodule tag -->
+	<!-- Update to match submodule tag -->
 	<version>0.3.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -139,6 +139,25 @@ limitations under the License.
 						</manifestEntries>
 					</archive>
 				</configuration>
+			</plugin>
+			<!-- Add generated source folder to Eclipse build path -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<!--  version>1.7</version> -->
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/swagger/src/main/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
