@@ -7,3 +7,6 @@
 [submodule "dashboard/e2-mgr-client/ric-plt-e2mgr"]
 	path = dashboard/e2-mgr-client/ric-plt-e2mgr
 	url = ../../ric-plt/e2mgr
+[submodule "dashboard/o1-netconf-client/ric-plt-o1"]
+	path = dashboard/o1-netconf-client/ric-plt-o1
+	url = ../../ric-plt/o1

@@ -5,8 +5,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.1, ? Feb 2020
+Version 2.0.1, 14 Feb 2020
 --------------------------
+* Add O1 Netconf client
 
 Version 2.0.0, 5 Feb 2020
 --------------------------
