@@ -67,29 +67,6 @@ public class ModelTest extends AbstractModelTest {
 		logger.info(eud.toString());
 	}
 
-	private void checkErrorTransport(ErrorTransport m) {
-		Assert.assertEquals(s1, m.getError());
-		Assert.assertEquals(s2, m.getMessage());
-		Assert.assertEquals(s3, m.getPath());
-		Assert.assertEquals(i1, m.getStatus());
-		Assert.assertEquals(t1, m.getTimestamp());
-	}
-
-	@Test
-	public void testErrorTransport() {
-		ErrorTransport m = new ErrorTransport(i1, s1);
-		m = new ErrorTransport(i1, new Exception());
-		m = new ErrorTransport(i1, s1, s2, s3);
-		m = new ErrorTransport();
-		m.setError(s1);
-		m.setMessage(s2);
-		m.setPath(s3);
-		m.setStatus(i1);
-		m.setTimestamp(t1);
-		checkErrorTransport(m);
-		logger.info(m.toString());
-	}
-
 	private void checkInstanceTransport(RicInstanceKeyName m) {
 		Assert.assertEquals(s1, m.getKey());
 		Assert.assertEquals(s2, m.getName());

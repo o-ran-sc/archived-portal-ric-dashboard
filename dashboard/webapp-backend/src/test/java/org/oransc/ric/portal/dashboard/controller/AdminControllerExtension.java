@@ -20,6 +20,7 @@
 package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
+import java.nio.charset.Charset;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,8 +50,10 @@ public class AdminControllerExtension {
 
 	@GetMapping(HTTP_STATUS_CODE_EXCEPTION_METHOD)
 	public void throwHttpStatusCodeException() {
-		logger.warn("throwing HttpStatusCodeException");
-		throw new HttpClientErrorException(HttpStatus.CHECKPOINT, "simulate http status code exception");
+		logger.warn("throwing HttpClientErrorException");
+		final String mockResponseBody = "mock http status code exception";
+		throw new HttpClientErrorException(HttpStatus.CHECKPOINT, "mock status", mockResponseBody.getBytes(),
+				Charset.defaultCharset());
 	}
 
 	@GetMapping(REST_CLIENT_RESPONSE_EXCEPTION_METHOD)

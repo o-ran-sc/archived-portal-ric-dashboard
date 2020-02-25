@@ -22,14 +22,10 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
-import org.oransc.ric.portal.dashboard.model.ErrorTransport;
-import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.RicRegion;
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ric.portal.dashboard.model.RicRegionTransport;
@@ -38,7 +34,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,7 +112,7 @@ public class AdminController {
 	@ApiOperation(value = "Gets the kibana metrics URL for the specified app.", response = SuccessTransport.class)
 	@GetMapping(XAPPMETRICS_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public IDashboardResponse getAppMetricsUrl(@RequestParam String app, HttpServletResponse response) {
+	public ResponseEntity<Object> getAppMetricsUrl(@RequestParam String app) {
 		String metricsUrl = null;
 		if (DashboardConstants.APP_NAME_AC.equals(app))
 			metricsUrl = acAppMetricsUrl;
@@ -122,11 +120,8 @@ public class AdminController {
 			metricsUrl = mcAppMetricsUrl;
 		logger.debug("getAppMetricsUrl: app {} metricsurl {}", app, metricsUrl);
 		if (metricsUrl != null)
-			return new SuccessTransport(200, metricsUrl);
-		else {
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return new ErrorTransport(400, "Client provided app name is invalid as: " + app);
-		}
+			return new ResponseEntity<>(new SuccessTransport(HttpStatus.OK.ordinal(), metricsUrl), HttpStatus.OK);
+		return ResponseEntity.badRequest().body("Client provided app name is invalid as: " + app);
 	}
 
 }

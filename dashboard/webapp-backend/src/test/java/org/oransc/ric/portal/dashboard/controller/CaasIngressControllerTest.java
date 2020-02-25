@@ -22,7 +22,6 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
@@ -55,7 +54,8 @@ public class CaasIngressControllerTest extends AbstractControllerTest {
 				CaasIngressController.PP_CLUSTER, "cluster", CaasIngressController.PP_NAMESPACE, nsPlt);
 		logger.info("Invoking {}", uri);
 		String s = testRestTemplateStandardRole().getForObject(uri, String.class);
-		Assert.assertNull(s);
+		Assertions.assertFalse(s.isEmpty());
+		Assertions.assertTrue(s.contains("unknown"));
 	}
 
 	// Unknown namespace triggers a controller exception
