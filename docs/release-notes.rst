@@ -5,8 +5,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.1, ? Feb 2020
+Version 2.0.1, 25 Feb 2020
 --------------------------
+* Revise controllers to use ResponseEntity
 
 Version 2.0.0, 5 Feb 2020
 --------------------------

@@ -22,8 +22,6 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.a1med.client.model.PolicyTypeSchema;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
@@ -34,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,16 +123,16 @@ public class A1MediatorController {
 	@ApiOperation(value = "Creates or replaces the specified policy instance at the A1 Mediator")
 	@PutMapping(POLICY_INSTANCE_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void createPolicyInstance(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+	public ResponseEntity<String> createPolicyInstance(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
 			@PathVariable(PP_TYPE_ID) Integer policyTypeId, //
 			@PathVariable(PP_INST_ID) String policyInstanceId,
-			@ApiParam(value = "Policy body") @RequestBody String policyBody, //
-			HttpServletResponse response) {
+			@ApiParam(value = "Policy body") @RequestBody String policyBody) {
 		logger.debug("createPolicyInstance: instance {} typeId {} instanceId {}", instanceKey, policyTypeId,
 				policyInstanceId);
 		A1MediatorApi api = a1MediatorClientBuilder.getA1MediatorApi(instanceKey);
 		api.a1ControllerCreateOrReplacePolicyInstance(policyTypeId, policyInstanceId, policyBody);
-		response.setStatus(api.getApiClient().getStatusCode().value());
+		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 
 }

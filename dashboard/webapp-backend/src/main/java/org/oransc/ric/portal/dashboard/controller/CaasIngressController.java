@@ -21,8 +21,6 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.SimpleKubernetesClientBuilder;
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
@@ -30,8 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,17 +84,17 @@ public class CaasIngressController {
 	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + PODS_METHOD
 			+ "/" + PP_CLUSTER + "/{" + PP_CLUSTER + "}" + "/" + PP_NAMESPACE + "/{" + PP_NAMESPACE + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
-	public String listPods(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, //
+	public ResponseEntity<String> listPods(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, //
 			@PathVariable(PP_CLUSTER) String cluster, //
-			@PathVariable(PP_NAMESPACE) String namespace, HttpServletResponse response) {
+			@PathVariable(PP_NAMESPACE) String namespace) {
 		logger.debug("listPods: instance {} cluster {} namespace {}", instanceKey, cluster, namespace);
 		SimpleKubernetesClient client = simpleKubernetesClientBuilder.getSimpleKubernetesClient(instanceKey);
 		if (CLUSTER_PLT.equalsIgnoreCase(cluster) || CLUSTER_RIC.equalsIgnoreCase(cluster)) {
-			return client.listPods(namespace);
+			return ResponseEntity.ok().body(client.listPods(namespace));
 		} else {
-			logger.warn("listPods: unknown cluster {}", cluster);
-			response.setStatus(HttpStatus.BAD_REQUEST.value());
-			return null;
+			final String msg = "listPods: unknown cluster " + cluster;
+			logger.warn(msg);
+			return ResponseEntity.badRequest().body(msg);
 		}
 	}
 
