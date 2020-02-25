@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
-import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.oransc.ric.portal.dashboard.model.RicInstanceKeyName;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
@@ -117,9 +116,9 @@ public class AdminControllerTest extends AbstractControllerTest {
 		metricsQueryParms.put("app", "ABCD");
 		URI uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
 		logger.debug("Invoking {}", uri);
-		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, ErrorTransport.class);
-		logger.debug("{}", errorResponse.getBody().getError().toString());
+		ResponseEntity<String> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				String.class);
+		logger.debug("{}", errorResponse.getBody().toString());
 		Assertions.assertTrue(errorResponse.getStatusCode().is4xxClientError());
 	}
 
@@ -128,10 +127,10 @@ public class AdminControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH,
 				AdminControllerExtension.HTTP_STATUS_CODE_EXCEPTION_METHOD);
 		logger.debug("Invoking {}", uri);
-		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, ErrorTransport.class);
-		logger.debug("{}", errorResponse.getBody().getError().toString());
-		Assertions.assertTrue(errorResponse.getStatusCode().is5xxServerError());
+		ResponseEntity<String> response = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				String.class);
+		logger.debug("{}", response.getBody().toString());
+		Assertions.assertTrue(response.getStatusCode().is5xxServerError());
 	}
 
 	@Test
@@ -139,9 +138,9 @@ public class AdminControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH,
 				AdminControllerExtension.REST_CLIENT_RESPONSE_EXCEPTION_METHOD);
 		logger.debug("Invoking {}", uri);
-		ResponseEntity<ErrorTransport> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,
-				null, ErrorTransport.class);
-		logger.debug("{}", errorResponse.getBody().getError().toString());
+		ResponseEntity<String> errorResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
+				String.class);
+		logger.debug("{}", errorResponse.getBody());
 		Assertions.assertTrue(errorResponse.getStatusCode().is5xxServerError());
 	}
 

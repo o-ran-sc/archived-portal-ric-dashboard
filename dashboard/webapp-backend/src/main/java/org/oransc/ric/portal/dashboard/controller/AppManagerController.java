@@ -21,8 +21,6 @@ package org.oransc.ric.portal.dashboard.controller;
 
 import java.lang.invoke.MethodHandles;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.oransc.ric.plt.appmgr.client.api.HealthApi;
 import org.oransc.ric.plt.appmgr.client.api.XappApi;
 import org.oransc.ric.plt.appmgr.client.model.AllDeployableXapps;
@@ -43,6 +41,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -108,24 +107,23 @@ public class AppManagerController {
 	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
 			+ HEALTH_ALIVE_METHOD)
 	// No role required
-	public void getHealth(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			HttpServletResponse response) {
+	public ResponseEntity<String> getHealth(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
 		logger.debug("getHealthAlive instance {}", instanceKey);
 		HealthApi api = appManagerApiBuilder.getHealthApi(instanceKey);
 		api.getHealthAlive();
-		response.setStatus(api.getApiClient().getStatusCode().value());
+		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 
 	@ApiOperation(value = "Readiness check of App Manager - Readiness probe.")
 	@GetMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
 			+ HEALTH_READY_METHOD)
 	// No role required
-	public void getHealthReady(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			HttpServletResponse response) {
+	public ResponseEntity<String> getHealthReady(
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey) {
 		logger.debug("getHealthReady instance {}", instanceKey);
 		HealthApi api = appManagerApiBuilder.getHealthApi(instanceKey);
 		api.getHealthReady();
-		response.setStatus(api.getApiClient().getStatusCode().value());
+		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 
 	@ApiOperation(value = "Returns the configuration of all Xapps.", response = AllXappConfig.class)
@@ -191,12 +189,12 @@ public class AppManagerController {
 	@ApiOperation(value = "Undeploy an existing xapp.")
 	@DeleteMapping(XAPPS_METHOD_PATH + "/{" + PP_XAPP_NAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public void undeployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_XAPP_NAME) String appName, HttpServletResponse response) {
+	public ResponseEntity<String> undeployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_XAPP_NAME) String appName) {
 		logger.debug("undeployXapp instance {} name {}", instanceKey, appName);
 		XappApi api = appManagerApiBuilder.getXappApi(instanceKey);
 		api.undeployXapp(appName);
-		response.setStatus(api.getApiClient().getStatusCode().value());
+		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 
 }

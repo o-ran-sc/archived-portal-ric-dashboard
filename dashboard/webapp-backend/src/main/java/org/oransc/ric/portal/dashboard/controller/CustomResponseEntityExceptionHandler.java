@@ -22,7 +22,6 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 
 import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
-import org.oransc.ric.portal.dashboard.model.ErrorTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -49,6 +48,19 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	/**
+	 * Generates a message with an upper limit on size.
+	 * 
+	 * @param t
+	 *              Throwable
+	 * @return Message
+	 */
+	private String getShortExceptionMessage(Throwable t) {
+		final int enough = 256;
+		String exString = t.toString();
+		return exString.length() > enough ? exString.substring(0, enough) : exString;
+	}
+
+	/**
 	 * Logs the error and generates a JSON response when a REST controller method
 	 * takes a RestClientResponseException. This is thrown by the Http client when a
 	 * remote method returns a non-2xx code. All the controller methods are proxies
@@ -65,18 +77,17 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	 * @param request
 	 *                    The original request
 	 * 
-	 * @return A response entity with status code 502 plus some details in the body.
+	 * @return A response entity with status code 502 and an unstructured message.
 	 */
 	@ExceptionHandler({ RestClientResponseException.class })
-	public final ResponseEntity<ErrorTransport> handleProxyMethodException(Exception ex, WebRequest request) {
+	public final ResponseEntity<String> handleProxyMethodException(Exception ex, WebRequest request) {
 		// Capture the full stack trace in the log.
 		log.error("handleProxyMethodException: request {}, exception {}", request.getDescription(false), ex);
 		if (ex instanceof HttpStatusCodeException) {
 			HttpStatusCodeException hsce = (HttpStatusCodeException) ex;
-			return new ResponseEntity<>(new ErrorTransport(hsce.getRawStatusCode(), hsce.getResponseBodyAsString(),
-					ex.toString(), request.getDescription(false)), HttpStatus.BAD_GATEWAY);
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(hsce.getResponseBodyAsString());
 		} else {
-			return new ResponseEntity<>(new ErrorTransport(500, ex), HttpStatus.BAD_GATEWAY);
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(getShortExceptionMessage(ex));
 		}
 	}
 
@@ -87,13 +98,13 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	 *                    The exception
 	 * @param request
 	 *                    The original request
-	 * @return A response entity with status code 400
+	 * @return A response entity with status code 400 and an unstructured message.
 	 */
 	@ExceptionHandler({ UnknownInstanceException.class })
-	public final ResponseEntity<ErrorTransport> handleUnknownInstanceException(Exception ex, WebRequest request) {
+	public final ResponseEntity<String> handleUnknownInstanceException(Exception ex, WebRequest request) {
 		log.warn("handleUnknownInstanceException: request {}, exception {}", request.getDescription(false),
 				ex.toString());
-		return new ResponseEntity<>(new ErrorTransport(400, ex), HttpStatus.BAD_REQUEST);
+		return ResponseEntity.badRequest().body(getShortExceptionMessage(ex));
 	}
 
 }

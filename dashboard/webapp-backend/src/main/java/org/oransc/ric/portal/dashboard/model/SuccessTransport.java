@@ -19,8 +19,13 @@
  */
 package org.oransc.ric.portal.dashboard.model;
 
+/**
+ * Trivial POJO used to transport scalar data like integer or string wrapped in
+ * a JSON structure.
+ */
 public class SuccessTransport implements IDashboardResponse {
 
+	// Status is redundant :/
 	private int status;
 	private Object data;
 
