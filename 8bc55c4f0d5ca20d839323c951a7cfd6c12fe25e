@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47d7db66_7066d034",
+        "filename": "dashboard/webapp-frontend/src/app/rd.module.ts",
+        "patchSetId": 8
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-02-27T16:41:11Z",
+      "side": 1,
+      "message": "Do you need export that?",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 36
+      },
+      "revId": "8bc55c4f0d5ca20d839323c951a7cfd6c12fe25e",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
