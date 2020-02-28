@@ -1,6 +1,3 @@
-[submodule "dashboard/a1-med-client/ric-plt-a1"]
-	path = dashboard/a1-med-client/ric-plt-a1
-	url = ../../ric-plt/a1
 [submodule "dashboard/app-mgr-client/ric-plt-appmgr"]
 	path = dashboard/app-mgr-client/ric-plt-appmgr
 	url = ../../ric-plt/appmgr

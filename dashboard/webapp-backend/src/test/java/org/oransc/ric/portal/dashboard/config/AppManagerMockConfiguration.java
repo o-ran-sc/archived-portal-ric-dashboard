@@ -97,7 +97,7 @@ public class AppManagerMockConfiguration {
 	private XappApi xappApi(String instanceKey) {
 		logger.debug("Creating XappApi for instance {}", instanceKey);
 		// Create instance-specific objects
-		String[] appNames = { "AdmissionControl " + instanceKey, "UE Event Collector " + instanceKey };
+		String[] appNames = { "DualControl " + instanceKey, "UE Event Collector " + instanceKey };
 		final String configJson = " { \"config\" : \"example-" + instanceKey + "\"}";
 		final ConfigValidationErrors configValErrs = new ConfigValidationErrors();
 		configValErrs.add(new ConfigValidationError().field("mock error"));

@@ -92,7 +92,7 @@ public class AdminControllerTest extends AbstractControllerTest {
 		URI uri;
 
 		metricsQueryParms.clear();
-		metricsQueryParms.put("app", DashboardConstants.APP_NAME_AC);
+		metricsQueryParms.put("app", DashboardConstants.APP_NAME_DC);
 		uri = buildUri(metricsQueryParms, AdminController.CONTROLLER_PATH, AdminController.XAPPMETRICS_METHOD);
 		logger.debug("Invoking {}", uri);
 		ResponseEntity<SuccessTransport> successResponse = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET,

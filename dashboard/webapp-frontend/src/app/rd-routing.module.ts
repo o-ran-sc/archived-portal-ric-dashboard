@@ -21,7 +21,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ControlComponent } from './control/control.component';
 import { MainComponent } from './main/main.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
     {path: '', component: MainComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
-    {path: 'ac', component: AcXappComponent},
     {path: 'stats', component: StatsComponent},
     {path: 'platform', component: PlatformComponent},
     {path: 'user', component: UserComponent},
