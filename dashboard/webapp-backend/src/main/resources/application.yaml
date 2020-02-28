@@ -82,8 +82,8 @@ mock:
 # Kibana report on metrics
 metrics:
     url:
-        ac: http://jar-app-props-kibana-url-ac
         mc: http://jar-app-props-kibana-url-mc
+        ml: http://jar-app-props-kibana-url-ml
 
 # Regions and instances
 # The regions are a just convenience for users,
