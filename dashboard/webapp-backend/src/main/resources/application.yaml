@@ -82,7 +82,7 @@ mock:
 # Kibana report on metrics
 metrics:
     url:
-        ac: http://jar-app-props-kibana-url-ac
+        dc: http://jar-app-props-kibana-url-dc
         mc: http://jar-app-props-kibana-url-mc
 
 # Regions and instances
