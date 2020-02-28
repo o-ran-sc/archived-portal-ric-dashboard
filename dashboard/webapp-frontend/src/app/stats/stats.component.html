@@ -22,20 +22,20 @@
 	<h3 class="rd-global-page-title">Platform stats</h3>
 
 	<mat-tab-group>
-		<mat-tab label="AC xApp">
-			<mat-grid-list cols="3" rowHeight="3:2">
-				<mat-grid-tile>
-					<mat-card>
-						<iframe [src]="metricsUrlAc"></iframe>
-					</mat-card>
-				</mat-grid-tile>
-			</mat-grid-list>
-		</mat-tab>
 		<mat-tab label="MC xApp">
 			<mat-grid-list cols="3" rowHeight="3:2">
 				<mat-grid-tile>
 					<mat-card>
 						<iframe [src]="metricsUrlMc"></iframe>
+					</mat-card>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-tab>
+		<mat-tab label="ML xApp">
+			<mat-grid-list cols="3" rowHeight="3:2">
+				<mat-grid-tile>
+					<mat-card>
+						<iframe [src]="metricsUrlMl"></iframe>
 					</mat-card>
 				</mat-grid-tile>
 			</mat-grid-list>

@@ -21,7 +21,6 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { StatsService } from '../services/stats/stats.service';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../interfaces/dashboard.types';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -34,8 +33,8 @@ export class StatsComponent implements OnInit {
 
     @ViewChildren(BaseChartDirective) charts: QueryList<BaseChartDirective>;
     checked = false;
-    metricsUrlAc: SafeResourceUrl;
     metricsUrlMc: SafeResourceUrl;
+    metricsUrlMl: SafeResourceUrl;
 
     constructor(private service: StatsService,
         private httpClient: HttpClient,
@@ -43,11 +42,11 @@ export class StatsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getAppMetricsUrl('AC').subscribe((res: DashboardSuccessTransport) => {
-            this.metricsUrlAc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
-        });
         this.service.getAppMetricsUrl('MC').subscribe((res: DashboardSuccessTransport) => {
             this.metricsUrlMc = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
+        });
+        this.service.getAppMetricsUrl('ML').subscribe((res: DashboardSuccessTransport) => {
+            this.metricsUrlMl = this.sanitize.bypassSecurityTrustResourceUrl(res.data);
         });
     }
 

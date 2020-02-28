@@ -62,11 +62,11 @@ public class AdminController {
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
 
-	@Value("${metrics.url.ac}")
-	private String acAppMetricsUrl;
-
 	@Value("${metrics.url.mc}")
 	private String mcAppMetricsUrl;
+
+	@Value("${metrics.url.ml}")
+	private String mlAppMetricsUrl;
 
 	@Autowired
 	private DashboardUserManager dashboardUserManager;
@@ -114,10 +114,10 @@ public class AdminController {
 	@Secured({ DashboardConstants.ROLE_ADMIN, DashboardConstants.ROLE_STANDARD })
 	public ResponseEntity<Object> getAppMetricsUrl(@RequestParam String app) {
 		String metricsUrl = null;
-		if (DashboardConstants.APP_NAME_AC.equals(app))
-			metricsUrl = acAppMetricsUrl;
-		else if (DashboardConstants.APP_NAME_MC.equals(app))
+		if (DashboardConstants.APP_NAME_MC.equals(app))
 			metricsUrl = mcAppMetricsUrl;
+		else if (DashboardConstants.APP_NAME_ML.equals(app))
+			metricsUrl = mlAppMetricsUrl;
 		logger.debug("getAppMetricsUrl: app {} metricsurl {}", app, metricsUrl);
 		if (metricsUrl != null)
 			return new ResponseEntity<>(new SuccessTransport(HttpStatus.OK.ordinal(), metricsUrl), HttpStatus.OK);
