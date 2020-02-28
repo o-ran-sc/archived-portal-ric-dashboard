@@ -54,7 +54,6 @@ import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 
 // RD components
-import { AcXappComponent } from './ac-xapp/ac-xapp.component';
 import { AddDashboardUserDialogComponent } from './user/add-dashboard-user-dialog/add-dashboard-user-dialog.component';
 import { AppConfigurationComponent } from './app-configuration/app-configuration.component';
 import { AppControlComponent } from './app-control/app-control.component';
@@ -92,7 +91,6 @@ import { UiService } from './services/ui/ui.service';
 
 @NgModule({
   declarations: [
-    AcXappComponent,
     AddDashboardUserDialogComponent,
     AppConfigurationComponent,
     AppControlComponent,

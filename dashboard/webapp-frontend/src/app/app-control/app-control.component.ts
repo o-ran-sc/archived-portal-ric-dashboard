@@ -74,13 +74,7 @@ export class AppControlComponent implements OnInit, OnDestroy {
 
   controlApp(app: XappControlRow): void {
     // TODO: identify apps without hardcoding to names
-    const acAppPattern0 = /[Aa][Dd][Mm][Ii][Nn]/;
-    const acAppPattern1 = /[Aa][Dd][Mm][Ii][Ss]{2}[Ii][Oo][Nn]/;
-    if (acAppPattern0.test(app.xapp) || acAppPattern1.test(app.xapp)) {
-      this.router.navigate(['/ac']);
-    } else {
-      this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
-    }
+    this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
   }
 
   onUndeployApp(app: XappControlRow): void {

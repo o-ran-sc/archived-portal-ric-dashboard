@@ -25,7 +25,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.DashboardUserManager;
-import org.oransc.ric.portal.dashboard.controller.A1MediatorController;
 import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
@@ -93,7 +92,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/swagger-ui.html", //
 			"/webjars/**", //
 			PortalApiConstants.API_PREFIX + "/**", //
-			A1MediatorController.CONTROLLER_PATH + "/" + DashboardConstants.VERSION_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.HEALTH_METHOD, //
 			AdminController.CONTROLLER_PATH + "/" + AdminController.VERSION_METHOD, //
 			AppManagerController.CONTROLLER_PATH + "/" + DashboardConstants.RIC_INSTANCE_KEY + "/*/"
