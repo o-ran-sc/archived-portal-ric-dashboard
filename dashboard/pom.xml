@@ -23,7 +23,6 @@ limitations under the License.
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<!-- this group Id must match LF gerrit repository -->
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.4.RELEASE</version>
@@ -31,7 +30,7 @@ limitations under the License.
 	</parent>
 	<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 	<artifactId>ric-dash-parent</artifactId>
-	<name>RIC Dashboard project</name>
+	<name>RIC Dashboard Project</name>
 	<packaging>pom</packaging>
 	<version>2.0.1-SNAPSHOT</version>
 	<properties>
