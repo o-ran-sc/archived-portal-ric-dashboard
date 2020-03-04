@@ -27,8 +27,9 @@ limitations under the License.
 		<artifactId>ric-dash-parent</artifactId>
 		<version>2.0.1-SNAPSHOT</version>
 	</parent>
+	<!-- reuse parent groupId -->
 	<artifactId>ric-dash-fe</artifactId>
-	<name>RIC Dashboard Webapp frontend</name>
+	<name>RIC Dashboard Webapp Frontend</name>
 	<build>
 		<plugins>
 			<plugin>

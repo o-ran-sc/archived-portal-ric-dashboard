@@ -28,9 +28,9 @@ limitations under the License.
 		<version>2.0.1-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.plt.e2mgr.client</groupId>
+	<groupId>org.o-ran-sc.ric-plt.e2mgr.client</groupId>
 	<artifactId>e2-mgr-client</artifactId>
-	<name>RIC E2 Manager client</name>
+	<name>RIC E2 Manager Client</name>
 	<version>3.0.3-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,7 +38,7 @@ limitations under the License.
 		<!-- Jenkins invokes maven with -Dbuild.number=.. -->
 		<build.number>0</build.number>
 		<!-- same as groupId BUT without hyphens -->
-		<client.base.package.name>org.oransc.ric.e2mgr.client</client.base.package.name>
+		<client.base.package.name>org.oransc.ricplt.e2mgr.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>

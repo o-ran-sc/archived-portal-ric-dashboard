@@ -21,8 +21,8 @@ package org.oransc.ric.portal.dashboard.a1med.client.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
-import org.oransc.ric.a1med.client.invoker.ApiClient;
+import org.oransc.ricplt.a1.client.api.A1MediatorApi;
+import org.oransc.ricplt.a1.client.invoker.ApiClient;
 import org.springframework.web.client.RestClientException;
 
 /**

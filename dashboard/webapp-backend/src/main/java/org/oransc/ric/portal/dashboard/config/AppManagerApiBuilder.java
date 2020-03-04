@@ -21,11 +21,11 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.plt.appmgr.client.api.HealthApi;
-import org.oransc.ric.plt.appmgr.client.api.XappApi;
-import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
+import org.oransc.ricplt.appmgr.client.api.HealthApi;
+import org.oransc.ricplt.appmgr.client.api.XappApi;
+import org.oransc.ricplt.appmgr.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;

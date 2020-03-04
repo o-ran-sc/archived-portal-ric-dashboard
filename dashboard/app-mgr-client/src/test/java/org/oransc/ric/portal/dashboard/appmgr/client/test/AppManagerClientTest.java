@@ -21,11 +21,11 @@ package org.oransc.ric.portal.dashboard.appmgr.client.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.plt.appmgr.client.api.HealthApi;
-import org.oransc.ric.plt.appmgr.client.api.XappApi;
-import org.oransc.ric.plt.appmgr.client.invoker.ApiClient;
-import org.oransc.ric.plt.appmgr.client.model.AllDeployedXapps;
-import org.oransc.ric.plt.appmgr.client.model.Xapp;
+import org.oransc.ricplt.appmgr.client.api.HealthApi;
+import org.oransc.ricplt.appmgr.client.api.XappApi;
+import org.oransc.ricplt.appmgr.client.invoker.ApiClient;
+import org.oransc.ricplt.appmgr.client.model.AllDeployedXapps;
+import org.oransc.ricplt.appmgr.client.model.Xapp;
 import org.springframework.web.client.RestClientException;
 
 /**

@@ -19,8 +19,8 @@
  */
 package org.oransc.ric.portal.dashboard.model;
 
-import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
-import org.oransc.ric.e2mgr.client.model.NodebIdentity;
+import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
+import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
 
 public class RanDetailsTransport implements IDashboardResponse {
 

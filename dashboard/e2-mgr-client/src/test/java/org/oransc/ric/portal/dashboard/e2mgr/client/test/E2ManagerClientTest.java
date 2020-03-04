@@ -21,8 +21,8 @@ package org.oransc.ric.portal.dashboard.e2mgr.client.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.invoker.ApiClient;
+import org.oransc.ricplt.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ricplt.e2mgr.client.invoker.ApiClient;
 import org.springframework.web.client.RestClientException;
 
 /**

@@ -22,12 +22,12 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
-import org.oransc.ric.a1med.client.model.PolicyTypeSchema;
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.A1MediatorApiBuilder;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
+import org.oransc.ricplt.a1.client.api.A1MediatorApi;
+import org.oransc.ricplt.a1.client.model.PolicyTypeSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

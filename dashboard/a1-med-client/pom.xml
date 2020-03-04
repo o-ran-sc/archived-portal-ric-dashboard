@@ -28,9 +28,9 @@ limitations under the License.
 		<version>2.0.1-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.plt.a1med.client</groupId>
+	<groupId>org.o-ran-sc.ric-plt.a1.client</groupId>
 	<artifactId>a1-med-client</artifactId>
-	<name>RIC A1 Mediator client</name>
+	<name>RIC A1 Mediator Client</name>
 	<!-- Update to match submodule tag -->
 	<version>2.1.0-SNAPSHOT</version>
 	<properties>
@@ -39,7 +39,7 @@ limitations under the License.
 		<!-- Jenkins invokes maven with -Dbuild.number=.. -->
 		<build.number>0</build.number>
 		<!-- same as groupId BUT without hyphens -->
-		<client.base.package.name>org.oransc.ric.a1med.client</client.base.package.name>
+		<client.base.package.name>org.oransc.ricplt.a1.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>

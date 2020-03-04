@@ -21,9 +21,9 @@ package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
 import org.oransc.ric.portal.dashboard.config.A1MediatorApiBuilder;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ricplt.a1.client.api.A1MediatorApi;
 
 public class A1MediatorConfigTest extends AbstractConfigTest {
 

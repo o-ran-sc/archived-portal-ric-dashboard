@@ -21,10 +21,10 @@ package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.e2mgr.client.api.HealthCheckApi;
-import org.oransc.ric.e2mgr.client.api.NodebApi;
 import org.oransc.ric.portal.dashboard.config.E2ManagerApiBuilder;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ricplt.e2mgr.client.api.HealthCheckApi;
+import org.oransc.ricplt.e2mgr.client.api.NodebApi;
 
 public class E2ManagerConfigTest extends AbstractConfigTest {
 

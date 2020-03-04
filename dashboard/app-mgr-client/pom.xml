@@ -28,9 +28,9 @@ limitations under the License.
 		<version>2.0.1-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric.plt.appmgr.client</groupId>
+	<groupId>org.o-ran-sc.ric-plt.appmgr.client</groupId>
 	<artifactId>app-mgr-client</artifactId>
-	<name>RIC App Manager client</name>
+	<name>RIC App Manager Client</name>
 	<!-- Update to match submodule tag -->
 	<version>0.3.3-SNAPSHOT</version>
 	<properties>
@@ -39,7 +39,7 @@ limitations under the License.
 		<!-- Jenkins invokes maven with -Dbuild.number=.. -->
 		<build.number>0</build.number>
 		<!-- same as groupId BUT without hyphens -->
-		<client.base.package.name>org.oransc.ric.plt.appmgr.client</client.base.package.name>
+		<client.base.package.name>org.oransc.ricplt.appmgr.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>

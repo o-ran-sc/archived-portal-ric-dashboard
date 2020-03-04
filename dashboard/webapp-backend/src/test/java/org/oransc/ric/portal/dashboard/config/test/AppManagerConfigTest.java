@@ -21,10 +21,10 @@ package org.oransc.ric.portal.dashboard.config.test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.oransc.ric.plt.appmgr.client.api.HealthApi;
-import org.oransc.ric.plt.appmgr.client.api.XappApi;
 import org.oransc.ric.portal.dashboard.config.AppManagerApiBuilder;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
+import org.oransc.ricplt.appmgr.client.api.HealthApi;
+import org.oransc.ricplt.appmgr.client.api.XappApi;
 
 public class AppManagerConfigTest extends AbstractConfigTest {
 

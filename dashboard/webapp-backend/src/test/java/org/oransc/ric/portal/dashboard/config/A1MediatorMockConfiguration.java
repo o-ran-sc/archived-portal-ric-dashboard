@@ -31,10 +31,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
-import org.oransc.ric.a1med.client.invoker.ApiClient;
-import org.oransc.ric.a1med.client.model.PolicyTypeSchema;
 import org.oransc.ric.portal.dashboard.TestUtils;
+import org.oransc.ricplt.a1.client.api.A1MediatorApi;
+import org.oransc.ricplt.a1.client.invoker.ApiClient;
+import org.oransc.ricplt.a1.client.model.PolicyTypeSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

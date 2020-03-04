@@ -26,10 +26,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.e2mgr.client.model.GetNodebResponse;
-import org.oransc.ric.e2mgr.client.model.NodebIdentity;
 import org.oransc.ric.portal.dashboard.DashboardUserManagerTest;
 import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
+import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
+import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

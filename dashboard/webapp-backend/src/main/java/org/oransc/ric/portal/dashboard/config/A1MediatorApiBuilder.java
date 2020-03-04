@@ -21,10 +21,10 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.oransc.ric.a1med.client.api.A1MediatorApi;
-import org.oransc.ric.a1med.client.invoker.ApiClient;
 import org.oransc.ric.portal.dashboard.model.RicInstance;
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
+import org.oransc.ricplt.a1.client.api.A1MediatorApi;
+import org.oransc.ricplt.a1.client.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
