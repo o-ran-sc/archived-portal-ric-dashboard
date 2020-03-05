@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "137dcca6_13436b39",
+        "filename": "dashboard/webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-05T01:08:51Z",
+      "side": 0,
+      "message": "Why are these tests removed? Where are tests for the controller methods?",
+      "revId": "e0adfb63c5c6eb10bcea3bdf0d080e48aea38a51",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
