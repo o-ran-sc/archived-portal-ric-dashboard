@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c879a483_671d78b0",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "e96c83f2_cb9fed3e",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 25
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c4594a28_2435b6f1",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "if you are going to use camel case, please be consistent and capitalize B in By",
+      "range": {
+        "startLine": 117,
+        "startChar": 28,
+        "endLine": 117,
+        "endChar": 29
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93bbfd3d_0f572309",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4594a28_2435b6f1",
       "range": {
         "startLine": 117,
         "startChar": 28,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "556074ab_0734b0f4",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "7376d0db_576aa554",
+      "range": {
+        "startLine": 121,
+        "startChar": 18,
+        "endLine": 121,
+        "endChar": 25
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8399470f_8a7894aa",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
         "patchSetId": 9
@@ -82,6 +154,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "log status does not match method name",
+      "range": {
+        "startLine": 139,
+        "startChar": 18,
+        "endLine": 139,
+        "endChar": 25
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee97cc24_4beaeec9",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8399470f_8a7894aa",
       "range": {
         "startLine": 139,
         "startChar": 18,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9341b282_012acc65",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a9401c1_8c0cc8a3",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 23
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d2db74d_8e46e9db",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
         "patchSetId": 9
@@ -128,6 +248,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "not debug, warn",
+      "range": {
+        "startLine": 164,
+        "startChar": 4,
+        "endLine": 164,
+        "endChar": 5
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d9b37bc_bd1a0cc4",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d2db74d_8e46e9db",
       "range": {
         "startLine": 164,
         "startChar": 4,
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "5b341317_4b72c15d",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/StatsManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "As you see in the comment above try catch is needed put back the object meant to be deleted, in stats, if saveStats() fails",
+      "parentUuid": "879dbb4e_e4aa7ca6",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 225,
+        "endChar": 9
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6297154_f475c307",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/AdminConfiguration.java",
         "patchSetId": 9
@@ -197,6 +365,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "please correct this comment no longer matches the code",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "212f7656_9e252c91",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/AdminConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "d6297154_f475c307",
       "range": {
         "startLine": 36,
         "startChar": 30,
@@ -232,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "2f949afc_90067ced",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/AdminConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "34b6af1f_3e11b64f",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 46,
+        "endChar": 2
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c48fc17_17e6739c",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/WebSecurityConfiguration.java",
         "patchSetId": 9
@@ -243,6 +459,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "why is this here? it does not seem to be used. please remove",
+      "range": {
+        "startLine": 77,
+        "startChar": 1,
+        "endLine": 78,
+        "endChar": 2
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbcb6a7e_7baaf943",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/config/WebSecurityConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "5c48fc17_17e6739c",
       "range": {
         "startLine": 77,
         "startChar": 1,
@@ -278,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "692ea170_63568d8c",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Message updated",
+      "parentUuid": "f64a77d6_f058430f",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 31
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c3000f0_cd30e94e",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -295,6 +559,24 @@
     },
     {
       "key": {
+        "uuid": "916603f7_e1ce625b",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "whatever default eclipse formatter applied is here, I did not apply anything separate",
+      "parentUuid": "5c3000f0_cd30e94e",
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c4d7a92_9f791901",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -306,6 +588,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "all? or one?",
+      "range": {
+        "startLine": 132,
+        "startChar": 29,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "540c0e62_7f014b96",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "6c4d7a92_9f791901",
       "range": {
         "startLine": 132,
         "startChar": 29,
@@ -341,6 +647,30 @@
     },
     {
       "key": {
+        "uuid": "947192d5_1073cbc6",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "e39f6cab_b984361e",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd5bfb2f_21ef221b",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -352,6 +682,24 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "please avoid extra whitespace like this",
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d73c6e4a_e03fef4a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "whatever default eclipse formatter applied is here, I did not apply anything separate",
+      "parentUuid": "dd5bfb2f_21ef221b",
       "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
@@ -404,6 +752,30 @@
     },
     {
       "key": {
+        "uuid": "dc1b30cb_8d4014be",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "038ac5a8_5d2b9c7a",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 29
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb92f9b5_139bd897",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -415,6 +787,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "why extra blank?",
+      "range": {
+        "startLine": 153,
+        "startChar": 51,
+        "endLine": 153,
+        "endChar": 52
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33dff970_687fe3d2",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "eb92f9b5_139bd897",
       "range": {
         "startLine": 153,
         "startChar": 51,
@@ -450,6 +846,30 @@
     },
     {
       "key": {
+        "uuid": "85943307_c100ea0a",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "16231ba1_0fed7c52",
+      "range": {
+        "startLine": 159,
+        "startChar": 16,
+        "endLine": 159,
+        "endChar": 30
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e12339cc_2710a324",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -461,6 +881,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "why extra blank?",
+      "range": {
+        "startLine": 163,
+        "startChar": 50,
+        "endLine": 163,
+        "endChar": 51
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4221c9b_676d1a53",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "e12339cc_2710a324",
       "range": {
         "startLine": 163,
         "startChar": 50,
@@ -496,6 +940,30 @@
     },
     {
       "key": {
+        "uuid": "4202b498_0174ca57",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Correceted",
+      "parentUuid": "008e5956_adb22731",
+      "range": {
+        "startLine": 169,
+        "startChar": 16,
+        "endLine": 169,
+        "endChar": 30
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fff4d1b3_56af2ce9",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
         "patchSetId": 9
@@ -507,6 +975,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "the delete message returns an object marked by interface IDashboardResponse? That looks odd",
+      "range": {
+        "startLine": 170,
+        "startChar": 9,
+        "endLine": 170,
+        "endChar": 33
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31d9cd93_ae9c7091",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/AdminController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "The deleted object is expected as a response from BE by FE to check which metrics visualization tab and table entry need to be deleted on UI. Hence can\u0027t use ResponseEntity as return type here",
+      "parentUuid": "fff4d1b3_56af2ce9",
       "range": {
         "startLine": 170,
         "startChar": 9,
@@ -542,6 +1034,30 @@
     },
     {
       "key": {
+        "uuid": "2e37265a_a63db675",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/CustomResponseEntityExceptionHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "b37e9def_f1d360df",
+      "range": {
+        "startLine": 112,
+        "startChar": 25,
+        "endLine": 112,
+        "endChar": 70
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "943e1abb_d696649a",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/CustomResponseEntityExceptionHandler.java",
         "patchSetId": 9
@@ -553,6 +1069,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "please use getShortExceptionMessage() method as done in other methods here",
+      "range": {
+        "startLine": 124,
+        "startChar": 42,
+        "endLine": 124,
+        "endChar": 55
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466e5d06_f204a29b",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/controller/CustomResponseEntityExceptionHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "943e1abb_d696649a",
       "range": {
         "startLine": 124,
         "startChar": 42,
@@ -588,6 +1128,30 @@
     },
     {
       "key": {
+        "uuid": "35a2264a_9834729d",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/exception/StatsManagerException.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Formatted",
+      "parentUuid": "88311133_5fd7df13",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af4d7091_577761c8",
         "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/Stats.java",
         "patchSetId": 9
@@ -599,6 +1163,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "please choose a better name.  AppStats maybe?  just plain \"Stats\" is not very helpful or descriptive",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 18
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102ceac7_b092576c",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/model/Stats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "af4d7091_577761c8",
       "range": {
         "startLine": 22,
         "startChar": 13,
@@ -657,6 +1245,54 @@
     },
     {
       "key": {
+        "uuid": "514e295e_87dc096d",
+        "filename": "dashboard/webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/AdminMockConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "7db495ab_8965804d",
+      "range": {
+        "startLine": 93,
+        "startChar": 37,
+        "endLine": 93,
+        "endChar": 56
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "069a3b1f_d0325729",
+        "filename": "dashboard/webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/config/AdminMockConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "15cfc843_93a4cd8b",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 30
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a81df882_02b4678c",
         "filename": "dashboard/webapp-frontend/src/app/interfaces/e2-mgr.types.ts",
         "patchSetId": 9
@@ -680,6 +1316,30 @@
     },
     {
       "key": {
+        "uuid": "af9ec6d8_110af4a9",
+        "filename": "dashboard/webapp-frontend/src/app/interfaces/e2-mgr.types.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a81df882_02b4678c",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 30
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78021537_6a81c3b7",
         "filename": "docs/release-notes.rst",
         "patchSetId": 9
@@ -691,6 +1351,30 @@
       "writtenOn": "2020-03-05T01:08:51Z",
       "side": 1,
       "message": "why add this to 2.0.0 which is gone?  Add your note to version 2.0.1 which is current",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "f3a57cdee8c58252ebeca784e5a3d7e638b7e79a",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b10fedc_45d05c72",
+        "filename": "docs/release-notes.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-05T20:07:01Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "78021537_6a81c3b7",
       "range": {
         "startLine": 31,
         "startChar": 0,
