@@ -3,7 +3,7 @@
 The O-RAN SC RIC Dashboard provides administrative and operator
 functions for a radio access network (RAN) controller.
 This web app consists of an Angular (version 8) front end
-and a Java (version 11) Spring-Boot (version 2.1) back end.
+and a Java (version 11) Spring-Boot (version 2.2) back end.
 
 Please see the documentation in the docs/ folder.
 
@@ -12,7 +12,7 @@ URL `http://your-host-name-here:8080/swagger-ui.html`
 
 ## License
 
-Copyright (C) 2019 AT&T Intellectual Property. All rights reserved.
+Copyright (C) 2019-2020 AT&T Intellectual Property. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
