@@ -19,7 +19,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RicInstance } from './interfaces/dashboard.types';
+import { RicInstance, RicRegion } from './interfaces/dashboard.types';
 import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { InstanceSelectorDialogService } from './services/ui/instance-selector-dialog.service';
 import { UiService } from './services/ui/ui.service';
@@ -50,7 +50,9 @@ export class RdComponent implements OnInit {
       if (instance.name) {
         this.selectedInstanceName = instance.name;
       } else {
-        this.openInstanceSelectorDialog()
+        this.instanceSelectorService.getAllInstances().subscribe((regArray: RicRegion[]) => {
+          this.instanceSelectorService.updateSelectedInstance(regArray[0].instances[0]);
+        });
       }
     });
   }
