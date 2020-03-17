@@ -33,7 +33,6 @@ import org.oransc.ricplt.e2mgr.client.api.NodebApi;
 import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
 import org.oransc.ricplt.e2mgr.client.model.ResetRequest;
-import org.oransc.ricplt.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,8 +75,6 @@ public class E2ManagerController {
 	public static final String RAN_METHOD = NODEB_PREFIX + "/ran";
 	public static final String NODEB_SHUTDOWN_METHOD = NODEB_PREFIX + "/shutdown";
 	public static final String NODEB_LIST_METHOD = NODEB_PREFIX + "/ids";
-	public static final String ENDC_SETUP_METHOD = NODEB_PREFIX + "/endc-setup";
-	public static final String X2_SETUP_METHOD = NODEB_PREFIX + "/x2-setup";
 	// Reset uses prefix, adds a path parameter below
 	public static final String RESET_METHOD = "reset";
 	// Path parameters
@@ -157,30 +153,6 @@ public class E2ManagerController {
 		return e2ManagerApiBuilder.getNodebApi(instanceKey).getNb(ranName);
 	}
 
-	@ApiOperation(value = "Sets up an EN-DC RAN connection via the E2 manager.")
-	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
-			+ ENDC_SETUP_METHOD)
-	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public ResponseEntity<String> endcSetup(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody SetupRequest setupRequest) {
-		logger.debug("endcSetup instance {} request {}", instanceKey, setupRequest);
-		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
-		api.endcSetup(setupRequest);
-		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
-	}
-
-	@ApiOperation(value = "Sets up an X2 RAN connection via the E2 manager.")
-	@PostMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
-			+ X2_SETUP_METHOD)
-	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public ResponseEntity<String> x2Setup(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody SetupRequest setupRequest) {
-		logger.debug("x2Setup instance {} request {}", instanceKey, setupRequest);
-		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
-		api.x2Setup(setupRequest);
-		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
-	}
-
 	@ApiOperation(value = "Close all connections to the RANs and delete the data from the nodeb-rnib DB.")
 	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
 			+ NODEB_SHUTDOWN_METHOD)
@@ -191,7 +163,6 @@ public class E2ManagerController {
 		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
 		api.nodebShutdownPut();
 		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
-
 	}
 
 	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")

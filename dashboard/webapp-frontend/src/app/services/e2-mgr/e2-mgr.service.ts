@@ -22,7 +22,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DashboardSuccessTransport } from '../../interfaces/dashboard.types';
-import { E2RanDetails, E2SetupRequest } from '../../interfaces/e2-mgr.types';
+import { E2RanDetails } from '../../interfaces/e2-mgr.types';
 import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable({
@@ -58,24 +58,6 @@ export class E2ManagerService {
   getRan(instanceKey: string): Observable<Array<E2RanDetails>> {
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.nodebPath, 'ran');
     return this.httpClient.get<Array<E2RanDetails>>(path);
-  }
-
-  /**
-   * Sends a request to setup an ENDC/gNodeB connection
-   * @returns Observable. On success there is no data, only a code.
-   */
-  endcSetup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.nodebPath, 'endc-setup');
-    return this.httpClient.post(path, req, { observe: 'response' });
-  }
-
-  /**
-   * Sends a request to setup an X2/eNodeB connection
-   * @returns Observable. On success there is no data, only a code.
-   */
-  x2Setup(instanceKey: string, req: E2SetupRequest): Observable<HttpResponse<Object>> {
-    const path = this.dashboardSvc.buildPath(this.component, instanceKey,  this.nodebPath, 'x2-setup');
-    return this.httpClient.post(path, req, { observe: 'response' });
   }
 
   /**

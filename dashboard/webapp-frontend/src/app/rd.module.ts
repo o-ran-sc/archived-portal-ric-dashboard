@@ -70,7 +70,6 @@ import { InstanceSelectorDialogComponent } from './ui/instance-selector-dialog/i
 import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
 import { PlatformComponent } from './platform/platform.component';
-import { RanControlConnectDialogComponent } from './ran-control/ran-connection-dialog.component';
 import { RanControlComponent } from './ran-control/ran-control.component';
 import { RdRoutingModule } from './rd-routing.module';
 import { RdComponent } from './rd.component';
@@ -107,7 +106,6 @@ import { UiService } from './services/ui/ui.service';
     MainComponent,
     PlatformComponent,
     RanControlComponent,
-    RanControlConnectDialogComponent,
     RdComponent,
     SidenavListComponent,
     StatCardComponent,
@@ -167,8 +165,7 @@ import { UiService } from './services/ui/ui.service';
     MatSidenavModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatTabsModule,
-    RanControlConnectDialogComponent
+    MatTabsModule
   ],
   entryComponents: [
     AddDashboardUserDialogComponent,
@@ -177,8 +174,7 @@ import { UiService } from './services/ui/ui.service';
     EditDashboardUserDialogComponent,
     ErrorDialogComponent,
     InstanceSelectorDialogComponent,
-    LoadingDialogComponent,
-    RanControlConnectDialogComponent
+    LoadingDialogComponent
   ],
   providers: [
     AppMgrService,

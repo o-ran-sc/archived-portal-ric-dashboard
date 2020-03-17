@@ -37,7 +37,6 @@ import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentityGlobalNbId;
 import org.oransc.ricplt.e2mgr.client.model.ResetRequest;
-import org.oransc.ricplt.e2mgr.client.model.SetupRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,9 +103,12 @@ public class E2ManagerMockConfiguration {
 		// "nodebStatus":{"connectionStatus":"CONNECTING","enb":null,"failureType":null,
 		// "globalNbId":null,"gnb":null,"ip":"10.2.0.6","nodeType":null,"port":36444,
 		// "ranName":"AAAA123456","setupFailure":null}}]
-		nodebIdList.add(new NodebIdentity().inventoryName(RAN_NAME_2));
+		nodebIdList.add(new NodebIdentity().inventoryName(RAN_NAME_1).globalNbId(globalNbId));
+		nodebResponseMap.put(RAN_NAME_1,
+				new GetNodebResponse().connectionStatus("CONNECTING").ip("127.0.0.1").port(456).ranName(RAN_NAME_2).nodeType("ENDC").port(100));
+		nodebIdList.add(new NodebIdentity().inventoryName(RAN_NAME_2).globalNbId(globalNbId));
 		nodebResponseMap.put(RAN_NAME_2,
-				new GetNodebResponse().connectionStatus("CONNECTING").ip("127.0.0.2").port(456).ranName(RAN_NAME_2));
+				new GetNodebResponse().connectionStatus("CONNECTED").ip("127.0.0.2").port(456).ranName(RAN_NAME_2).nodeType("X2").port(200));
 
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);
@@ -141,30 +143,6 @@ public class E2ManagerMockConfiguration {
 			}
 			return nodebIdList;
 		}).when(mockApi).getNodebIdList();
-		doAnswer(inv -> {
-			if (delayMs > 0) {
-				logger.debug("endcSetup sleeping {}", delayMs);
-				Thread.sleep(delayMs);
-			}
-			SetupRequest sr = inv.<SetupRequest>getArgument(0);
-			nodebIdList.add(new NodebIdentity().inventoryName(sr.getRanName()).globalNbId(globalNbId));
-			nodebResponseMap.put(sr.getRanName(),
-					new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
-							.ip(sr.getRanIp()).nodeType("ENDC").port(sr.getRanPort()).ranName(sr.getRanName()));
-			return null;
-		}).when(mockApi).endcSetup(any(SetupRequest.class));
-		doAnswer(inv -> {
-			if (delayMs > 0) {
-				logger.debug("x2Setup sleeping {}", delayMs);
-				Thread.sleep(delayMs);
-			}
-			SetupRequest sr = inv.<SetupRequest>getArgument(0);
-			nodebIdList.add(new NodebIdentity().inventoryName(sr.getRanName()).globalNbId(globalNbId));
-			nodebResponseMap.put(sr.getRanName(),
-					new GetNodebResponse().connectionStatus("mockConnectionStatus").failureType("mockFailureType")
-							.ip(sr.getRanIp()).nodeType("X2").port(sr.getRanPort()).ranName(sr.getRanName()));
-			return null;
-		}).when(mockApi).x2Setup(any(SetupRequest.class));
 		return mockApi;
 	}
 

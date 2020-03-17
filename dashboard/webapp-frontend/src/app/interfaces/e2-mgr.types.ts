@@ -20,12 +20,6 @@
 
 // Models of data used by the E2 Manager
 
-export interface E2SetupRequest {
-  ranName: string;
-  ranIp: string;
-  ranPort: string;
-}
-
 export interface E2ErrorResponse {
   errorCode: string;
   errorMessage: string;

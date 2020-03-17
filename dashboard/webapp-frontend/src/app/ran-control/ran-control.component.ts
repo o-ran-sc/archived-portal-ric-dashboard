@@ -30,7 +30,6 @@ import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { UiService } from '../services/ui/ui.service';
-import { RanControlConnectDialogComponent } from './ran-connection-dialog.component';
 import { RANControlDataSource } from './ran-control.datasource';
 
 @Component({
@@ -73,27 +72,6 @@ export class RanControlComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.instanceChange.unsubscribe();
-  }
-
-  setupRANConnection() {
-    if (this.darkMode) {
-      this.panelClass = 'dark-theme';
-    } else {
-      this.panelClass = '';
-    }
-    const dialogRef = this.dialog.open(RanControlConnectDialogComponent, {
-      panelClass: this.panelClass,
-      width: '450px',
-      data: {
-        instanceKey: this.instanceKey
-      }
-    });
-    dialogRef.afterClosed()
-      .subscribe((result: boolean) => {
-        if (result) {
-          this.dataSource.loadTable(this.instanceKey);
-        }
-      });
   }
 
   disconnectAllRANConnections() {
