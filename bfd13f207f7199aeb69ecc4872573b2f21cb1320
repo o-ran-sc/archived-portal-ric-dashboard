@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7668ed2_48d47cff",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-18T22:56:51Z",
+      "side": 1,
+      "message": "Anand. Think along with me for a sec. Imagine the file on disk has 3 entries with ids 1, 2, and 99.  Now this code runs and reads that file.  At the end of the method, appMaxId has value 0. Next the create method is invoked to add a new item.  What ID does your code return?  I think it returns 1, which duplicates the existing ID 1.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 5
+      },
+      "revId": "bfd13f207f7199aeb69ecc4872573b2f21cb1320",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
