@@ -46,6 +46,30 @@
       "revId": "bfd13f207f7199aeb69ecc4872573b2f21cb1320",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d8e0d97_92873828",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-19T15:17:39Z",
+      "side": 1,
+      "message": "This is still not clear? I will try to be more clear:\n\nThis constructor loads the file. After load of the list from the file, initialize variable appMaxId to -1.  Loop over the objects in the list.  Compare each object\u0027s ID field against appMaxId.  If the object Id is larger, assign it to appMaxId.\n\nThe create method must increment and give out the new ID, which is very much like a database.  I think it does this already.\n\nDo you have further questions?",
+      "parentUuid": "9e303888_3257f4b7",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 5
+      },
+      "revId": "bfd13f207f7199aeb69ecc4872573b2f21cb1320",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
