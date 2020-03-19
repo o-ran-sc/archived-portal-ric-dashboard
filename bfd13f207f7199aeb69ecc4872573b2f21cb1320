@@ -22,6 +22,30 @@
       "revId": "bfd13f207f7199aeb69ecc4872573b2f21cb1320",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e303888_3257f4b7",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-03-19T00:20:00Z",
+      "side": 1,
+      "message": "Should I then read the highest appId value from the file and assign it to appMaxId?",
+      "parentUuid": "f7668ed2_48d47cff",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 5
+      },
+      "revId": "bfd13f207f7199aeb69ecc4872573b2f21cb1320",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
