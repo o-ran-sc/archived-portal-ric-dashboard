@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db41d3dc_852dd817",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "I know, Java initializes integer-type variables to zero by default.  Just to be clean, to remove all doubt, please initialize it to zero explicitly here.",
+      "range": {
+        "startLine": 63,
+        "startChar": 13,
+        "endLine": 63,
+        "endChar": 21
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da84679a_936692c4",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "If you add the initializer at the top, you can drop this one.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 6
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ea8e537_553703e8",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "no need for braces on a one-line block",
+      "range": {
+        "startLine": 101,
+        "startChar": 49,
+        "endLine": 101,
+        "endChar": 51
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9690a7e_64af7730",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "why do you assign true this way?  I think the object is guaranteed to be found because you found the object already by iteration.  If there is no compelling reason for this, perhaps use the much simpler \"deleteStatsObjectFound \u003d true;\" to be parallel with the updateStats method",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 5
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d62a74c_ae3da8d2",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "pls fix method name: deleteStats",
+      "range": {
+        "startLine": 234,
+        "startChar": 17,
+        "endLine": 234,
+        "endChar": 27
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f928b630_f8142883",
+        "filename": "dashboard/webapp-backend/src/main/java/org/oransc/ric/portal/dashboard/AppStatsManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "logger.warn please",
+      "range": {
+        "startLine": 235,
+        "startChar": 10,
+        "endLine": 235,
+        "endChar": 15
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b79fb06_f71b94d7",
+        "filename": "dashboard/webapp-backend/src/test/java/org/oransc/ric/portal/dashboard/controller/AdminControllerTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-03-30T18:59:00Z",
+      "side": 1,
+      "message": "please use the Eclipse formatter to avoid dangling whitespace like this",
+      "range": {
+        "startLine": 155,
+        "startChar": 137,
+        "endLine": 155,
+        "endChar": 138
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
