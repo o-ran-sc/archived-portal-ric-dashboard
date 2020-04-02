@@ -186,6 +186,29 @@
     },
     {
       "key": {
+        "uuid": "7aaea0db_e0ac2c67",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:40:46Z",
+      "side": 1,
+      "message": "Don\u0027t show the AppID.  This is irrelevant information to users.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da0b3e72_934ed2f9",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
         "patchSetId": 15
@@ -272,6 +295,23 @@
         "endLine": 52,
         "endChar": 122
       },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958ca0da_f5b6280e",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.scss",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:40:46Z",
+      "side": 1,
+      "message": "Add styles to limit the max width of the name column.",
       "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
