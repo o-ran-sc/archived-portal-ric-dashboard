@@ -160,6 +160,98 @@
       "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da0b3e72_934ed2f9",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:37:25Z",
+      "side": 1,
+      "message": "Action \n\nbe consistent with other tables.  The column with buttons is headed \"Action\"",
+      "range": {
+        "startLine": 48,
+        "startChar": 43,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13973114_18671ddc",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:37:25Z",
+      "side": 1,
+      "message": "Use an icon, not text.  Look at other screens.",
+      "range": {
+        "startLine": 50,
+        "startChar": 114,
+        "endLine": 50,
+        "endChar": 118
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec8b3a71_5a2b7934",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:37:25Z",
+      "side": 1,
+      "message": "Use an icon, not text.",
+      "range": {
+        "startLine": 51,
+        "startChar": 114,
+        "endLine": 51,
+        "endChar": 118
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57c8ca8e_25f46a97",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-02T13:37:25Z",
+      "side": 1,
+      "message": "Use an icon, not text.",
+      "range": {
+        "startLine": 52,
+        "startChar": 116,
+        "endLine": 52,
+        "endChar": 122
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
