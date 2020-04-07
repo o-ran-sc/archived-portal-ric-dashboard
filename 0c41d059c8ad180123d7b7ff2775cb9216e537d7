@@ -354,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "046e470e_ad5e7811",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24d7b95c_476b2ec0",
+      "range": {
+        "startLine": 22,
+        "startChar": 58,
+        "endLine": 22,
+        "endChar": 63
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7aaea0db_e0ac2c67",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
         "patchSetId": 15
@@ -365,6 +389,30 @@
       "writtenOn": "2020-04-02T13:40:46Z",
       "side": 1,
       "message": "Don\u0027t show the AppID.  This is irrelevant information to users.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d63826_e7681c53",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aaea0db_e0ac2c67",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -400,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "e942965f_1828e176",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da0b3e72_934ed2f9",
+      "range": {
+        "startLine": 48,
+        "startChar": 43,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "13973114_18671ddc",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
         "patchSetId": 15
@@ -411,6 +483,30 @@
       "writtenOn": "2020-04-02T13:37:25Z",
       "side": 1,
       "message": "Use an icon, not text.  Look at other screens.",
+      "range": {
+        "startLine": 50,
+        "startChar": 114,
+        "endLine": 50,
+        "endChar": 118
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae89f040_2bc9d02e",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13973114_18671ddc",
       "range": {
         "startLine": 50,
         "startChar": 114,
@@ -446,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "30094ac3_787ff1cc",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8b3a71_5a2b7934",
+      "range": {
+        "startLine": 51,
+        "startChar": 114,
+        "endLine": 51,
+        "endChar": 118
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "57c8ca8e_25f46a97",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
         "patchSetId": 15
@@ -469,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "5d24a20d_35cd9907",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.html",
+        "patchSetId": 15
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57c8ca8e_25f46a97",
+      "range": {
+        "startLine": 52,
+        "startChar": 116,
+        "endLine": 52,
+        "endChar": 122
+      },
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "958ca0da_f5b6280e",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.scss",
         "patchSetId": 15
@@ -480,6 +624,24 @@
       "writtenOn": "2020-04-02T13:40:46Z",
       "side": 1,
       "message": "Add styles to limit the max width of the name column.",
+      "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3eb3397_3e49242a",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.scss",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-07T17:17:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "958ca0da_f5b6280e",
       "revId": "0c41d059c8ad180123d7b7ff2775cb9216e537d7",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
