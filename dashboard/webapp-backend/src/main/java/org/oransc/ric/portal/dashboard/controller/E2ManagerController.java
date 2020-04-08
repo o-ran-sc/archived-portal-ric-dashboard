@@ -32,7 +32,7 @@ import org.oransc.ricplt.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ricplt.e2mgr.client.api.NodebApi;
 import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
-import org.oransc.ricplt.e2mgr.client.model.ResetRequest;
+import org.oransc.ricplt.e2mgr.client.model.UpdateGnbRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +75,6 @@ public class E2ManagerController {
 	public static final String RAN_METHOD = NODEB_PREFIX + "/ran";
 	public static final String NODEB_SHUTDOWN_METHOD = NODEB_PREFIX + "/shutdown";
 	public static final String NODEB_LIST_METHOD = NODEB_PREFIX + "/ids";
-	// Reset uses prefix, adds a path parameter below
-	public static final String RESET_METHOD = "reset";
 	// Path parameters
 	private static final String PP_RANNAME = "ranName";
 
@@ -165,15 +163,15 @@ public class E2ManagerController {
 		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 
-	@ApiOperation(value = "Abort any other ongoing procedures over X2 between the RIC and the RAN.")
+	@ApiOperation(value = "Update GNB.")
 	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/" + NODEB_PREFIX
-			+ "/{" + PP_RANNAME + "}/" + RESET_METHOD)
+			+ "/{" + PP_RANNAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public ResponseEntity<String> reset(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_RANNAME) String ranName, @RequestBody ResetRequest resetRequest) {
-		logger.debug("reset instance {} name {}", instanceKey, ranName);
+	public ResponseEntity<String> updateGnb(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+			@PathVariable(PP_RANNAME) String ranName, @RequestBody UpdateGnbRequest updateGnbRequest) {
+		logger.debug("updateGnb instance {} ran {}", instanceKey, ranName);
 		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
-		api.reset(ranName, resetRequest);
+		api.updateGnb(updateGnbRequest, ranName);
 		return ResponseEntity.status(api.getApiClient().getStatusCode().value()).body(null);
 	}
 

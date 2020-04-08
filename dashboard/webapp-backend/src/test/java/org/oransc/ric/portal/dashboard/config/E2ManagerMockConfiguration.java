@@ -36,8 +36,8 @@ import org.oransc.ricplt.e2mgr.client.api.NodebApi;
 import org.oransc.ricplt.e2mgr.client.invoker.ApiClient;
 import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
-import org.oransc.ricplt.e2mgr.client.model.NodebIdentityGlobalNbId;
-import org.oransc.ricplt.e2mgr.client.model.ResetRequest;
+import org.oransc.ricplt.e2mgr.client.model.UpdateGnbRequest;
+import org.oransc.ricplt.e2mgr.client.model.UpdateGnbResponseGlobalNbId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +95,7 @@ public class E2ManagerMockConfiguration {
 	 */
 	private NodebApi nodebApi(String instanceKey) {
 
-		final NodebIdentityGlobalNbId globalNbId = new NodebIdentityGlobalNbId().nbId("mockNbId-" + instanceKey)
+		final UpdateGnbResponseGlobalNbId globalNbId = new UpdateGnbResponseGlobalNbId().nbId("mockNbId-" + instanceKey)
 				.plmnId("mockPlmId");
 		final List<NodebIdentity> nodebIdList = new ArrayList<>();
 		final Map<String, GetNodebResponse> nodebResponseMap = new HashMap<>();
@@ -128,11 +128,11 @@ public class E2ManagerMockConfiguration {
 		}).when(mockApi).nodebShutdownPut();
 		doAnswer(inv -> {
 			if (delayMs > 0) {
-				logger.debug("reset sleeping {}", delayMs);
+				logger.debug("updateGnb sleeping {}", delayMs);
 				Thread.sleep(delayMs);
 			}
 			return null;
-		}).when(mockApi).reset(any(String.class), any(ResetRequest.class));
+		}).when(mockApi).updateGnb(any(UpdateGnbRequest.class), any(String.class));
 		doAnswer(inv -> {
 			if (delayMs > 0) {
 				logger.debug("getNb sleeping {}", delayMs);

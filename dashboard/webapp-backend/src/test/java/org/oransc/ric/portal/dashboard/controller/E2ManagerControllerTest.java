@@ -35,7 +35,7 @@ import org.oransc.ric.portal.dashboard.model.RanDetailsTransport;
 import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
-import org.oransc.ricplt.e2mgr.client.model.ResetRequest;
+import org.oransc.ricplt.e2mgr.client.model.UpdateGnbRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
@@ -47,6 +47,17 @@ import org.springframework.http.ResponseEntity;
 public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	@Test
+	public void updateGnb() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_PREFIX, "nobeb");
+		logger.info("Invoking {}", uri);
+		UpdateGnbRequest update = new UpdateGnbRequest();
+		HttpEntity<UpdateGnbRequest> entity = new HttpEntity<>(update);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	}
 
 	@Test
 	@Order(1)
@@ -102,25 +113,9 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		Assertions.assertNotNull(response.getRanName());
 	}
 
-	// This empties the list of RAN elements
-	@Test
-	@Order(6)
-	public void resetTest() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_PREFIX, "ignored",
-				E2ManagerController.RESET_METHOD);
-		logger.info("Invoking {}", uri);
-		ResetRequest reset = new ResetRequest();
-		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
-				Void.class);
-		logger.debug("resetTest: response {}", voidResponse);
-		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
-	}
-
 	// Aka big--button test, run this last
 	@Test
-	@Order(7)
+	@Order(6)
 	public void nodebShutdownPutTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_SHUTDOWN_METHOD);
