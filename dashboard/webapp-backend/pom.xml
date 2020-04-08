@@ -52,7 +52,7 @@ limitations under the License.
 		<dependency>
 			<groupId>org.o-ran-sc.ric-plt.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
-			<version>3.0.3-SNAPSHOT</version>
+			<version>4.4.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.onap.portal.sdk</groupId>

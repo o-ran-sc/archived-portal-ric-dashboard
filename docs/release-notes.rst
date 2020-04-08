@@ -5,7 +5,7 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.1, 15 Apr 2020
+Version 2.0.1, 23 Apr 2020
 --------------------------
 * update and relocate the theme selector button
 * Revise controllers to use ResponseEntity
@@ -16,6 +16,7 @@ Version 2.0.1, 15 Apr 2020
 * Set the first instance as the default one
 * Add methods to create, update and delete xApp stat metric URLs
 * Rearrange property files to support testing default context
+* Update E2Manager API to version 4.4.4 with updateGnb method
 
 Version 2.0.0, 5 Feb 2020
 --------------------------
