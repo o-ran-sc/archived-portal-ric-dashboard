@@ -5,8 +5,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.1, 17 Mar 2020
+Version 2.0.1, 8 Apr 2020
 --------------------------
+* update and relocate the theme selector button
 * Revise controllers to use ResponseEntity
 * Drop AC xApp control/config screen from front-end
 * Drop A1 Mediator controller and tests from back-end

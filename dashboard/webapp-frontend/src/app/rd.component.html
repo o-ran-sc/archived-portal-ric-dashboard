@@ -62,15 +62,22 @@
         <a mat-list-item (click)="openInstanceSelectorDialog(); drawer.toggle()">
           <mat-icon>link</mat-icon> <span class="nav-caption">{{selectedInstanceName}}</span>
         </a>
+        <a mat-list-item>
+          <mat-icon>palette</mat-icon>
+          <div class="nav-caption">
+            <span class="mode-toggle__text">Light</span>
+            <mat-slide-toggle (click)="modeToggleSwitch()">
+              Dark
+            </mat-slide-toggle>
+          </div>
+        </a>
       </mat-nav-list>
     </section>
   </mat-drawer>
 
   <mat-drawer-content>
     <div class="root__container">
-
       <header [ngClass]="{'main__header-dark': darkModeActive}" class="main__header">
-
         <div class="left__section3Col" *ngIf="!drawer.opened">
           <svg (click)="drawer.toggle()" class="hamburger__icon" id="Menu_Burger_Icon" data-name="Menu Burger Icon"
                viewBox="31.5 30 49.9 32">
@@ -92,21 +99,7 @@
               <tspan x="0" y="0">RIC Dashboard</tspan>
             </text>
           </svg>
-
         </div>
-
-        <div>    </div>
-
-        <div class="mode-toggle__container">
-          <span class="mode-toggle__text">Light</span>
-          <label class="toggle-button__container">
-            <input (click)="modeToggleSwitch()" type="checkbox" class="mode-toggle__input" />
-            <span [ngClass]="{'mode-toggle__bg-checked': darkModeActive}" class="mode-toggle__bg"></span>
-            <span [ngClass]="{'mode-toggle__circle-checked': darkModeActive}" class="mode-toggle__circle"></span>
-          </label>
-          <span class="mode-toggle__text">Dark</span>
-        </div>
-
       </header>
 
       <!-- Main Content -->
