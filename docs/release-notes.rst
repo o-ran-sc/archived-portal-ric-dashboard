@@ -5,14 +5,15 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.1, 17 Mar 2020
---------------------------
+Version 2.0.1, 8 Apr 2020
+-------------------------
 * Revise controllers to use ResponseEntity
 * Drop AC xApp control/config screen from front-end
 * Drop A1 Mediator controller and tests from back-end
 * Drop ENDC and X2 setup requests to E2 Manager
 * Upgrade to Spring-Boot 2.2.4.RELEASE
 * Set the first instance as the default one
+* Update E2Manager API to version 4.0.0 with updateGnb method
 
 Version 2.0.0, 5 Feb 2020
 --------------------------
