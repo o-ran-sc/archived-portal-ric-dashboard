@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a384f672_a6b0371f",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-09T14:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91279868_7b743ce4",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "cab6f82d3f2da223b0b54269d58f94bdf2b9436b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c84632f_1af0412f",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.html",
         "patchSetId": 17
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-07T17:40:53Z",
       "side": 1,
       "message": "Just use \"OK\" or whatever it is that other dialogs use, not \"Setup Metrics\" again, you already have that in the title of the dialog.  Department of redundancy department.",
+      "range": {
+        "startLine": 38,
+        "startChar": 100,
+        "endLine": 38,
+        "endChar": 113
+      },
+      "revId": "cab6f82d3f2da223b0b54269d58f94bdf2b9436b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "436e2b92_0c530486",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.html",
+        "patchSetId": 17
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-09T14:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c84632f_1af0412f",
       "range": {
         "startLine": 38,
         "startChar": 100,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6e0bb987_3ad4fd91",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.ts",
+        "patchSetId": 17
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-09T14:29:36Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "e1dbe27a_ebc72103",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 5
+      },
+      "revId": "cab6f82d3f2da223b0b54269d58f94bdf2b9436b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ae9b2fbc_0c1eb104",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.scss",
         "patchSetId": 17
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b78e2460_743500f2",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.scss",
+        "patchSetId": 17
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-09T14:29:36Z",
+      "side": 1,
+      "message": "Directive removed. I tried following other dashboard pages examples like using .mat-column-action and several other ways, but they also mess up the column widths a lot, so needed to use this.",
+      "parentUuid": "ae9b2fbc_0c1eb104",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "cab6f82d3f2da223b0b54269d58f94bdf2b9436b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28060d31_d3870150",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
         "patchSetId": 17
@@ -105,6 +201,30 @@
       "writtenOn": "2020-04-07T17:40:53Z",
       "side": 1,
       "message": "This must confirm the delete action with the user, not just perform it instantly on first click. Check the other screens that support delete and use their approach.",
+      "range": {
+        "startLine": 152,
+        "startChar": 6,
+        "endLine": 152,
+        "endChar": 22
+      },
+      "revId": "cab6f82d3f2da223b0b54269d58f94bdf2b9436b",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cad29e3d_06fc0979",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 17
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-09T14:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28060d31_d3870150",
       "range": {
         "startLine": 152,
         "startChar": 6,
