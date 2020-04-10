@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cc04b46_de6e8d70",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.html",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-10T19:20:25Z",
+      "side": 1,
+      "message": "please remove type\u003d\"button\" this is not used on any other cancel buttons in the frontend that I can find:\n\n./ui/instance-selector-dialog/instance-selector-dialog.component.html:    \u003cbutton mat-button class\u003d\"mat-raised-button\" [mat-dialog-close]\u003d\"false\"\u003eCancel\u003c/button\u003e\n./ui/confirm-dialog/confirm-dialog.component.html:    \u003cbutton mat-button class\u003d\"mat-raised-button\" [mat-dialog-close]\u003d\"false\"\u003eCancel\u003c/button\u003e\n./user/edit-dashboard-user-dialog/edit-dashboard-user-dialog.component.html:    \u003cbutton class\u003d\"mat-raised-button\" (click)\u003d\"onCancel()\"\u003eCancel\u003c/button\u003e\n./user/add-dashboard-user-dialog/add-dashboard-user-dialog.component.html:    \u003cbutton class\u003d\"mat-raised-button\" (click)\u003d\"onCancel()\"\u003eCancel\u003c/button\u003e",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "14d7b6285484bf6b295878e2868c07e065366e91",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
