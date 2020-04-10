@@ -93,6 +93,30 @@
       "revId": "14d7b6285484bf6b295878e2868c07e065366e91",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b38a74b_ef8d0a75",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-10T20:15:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e50b752b_1b93ec8c",
+      "range": {
+        "startLine": 155,
+        "startChar": 90,
+        "endLine": 155,
+        "endChar": 96
+      },
+      "revId": "14d7b6285484bf6b295878e2868c07e065366e91",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
