@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79febb59_4427a4d6",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
+        "patchSetId": 20
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1000014
+      },
+      "writtenOn": "2020-04-10T20:12:14Z",
+      "side": 1,
+      "message": "\"entry\"\n\nplease change the word to \"entry\" instead of metric.",
+      "range": {
+        "startLine": 155,
+        "startChar": 90,
+        "endLine": 155,
+        "endChar": 96
+      },
+      "revId": "4e76d327d6ddfeda6964a117b85df638ae12be89",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    }
+  ]
+}
