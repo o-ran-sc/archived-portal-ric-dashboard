@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c19d0b32_5cb6c6b0",
+        "filename": "dashboard/webapp-frontend/src/app/stats/stats-dialog.component.html",
+        "patchSetId": 19
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2020-04-10T20:10:53Z",
+      "side": 1,
+      "message": "Fixed, followed the example of confirm dialog.",
+      "parentUuid": "2cc04b46_de6e8d70",
+      "range": {
+        "startLine": 37,
+        "startChar": 38,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "14d7b6285484bf6b295878e2868c07e065366e91",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e50b752b_1b93ec8c",
         "filename": "dashboard/webapp-frontend/src/app/stats/stats.component.ts",
         "patchSetId": 19
