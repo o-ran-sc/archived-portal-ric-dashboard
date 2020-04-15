@@ -47,7 +47,7 @@ public class E2ManagerConfiguration {
 	@Autowired
 	public E2ManagerConfiguration(@Value("${e2mgr.url.suffix}") final String urlSuffix,
 			final RicRegionList instanceConfig) {
-		logger.info("ctor: URL suffix {}", urlSuffix);
+		logger.debug("ctor: URL suffix {}", urlSuffix);
 		this.urlSuffix = urlSuffix;
 		this.instanceConfig = instanceConfig;
 	}

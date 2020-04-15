@@ -25,20 +25,12 @@ import java.lang.invoke.MethodHandles;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
-import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
-import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.AppStats;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

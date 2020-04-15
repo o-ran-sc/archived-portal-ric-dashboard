@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ricplt.e2mgr.client.api.HealthCheckApi;
 import org.oransc.ricplt.e2mgr.client.api.NodebApi;
 import org.oransc.ricplt.e2mgr.client.invoker.ApiClient;
@@ -61,9 +62,13 @@ public class E2ManagerMockConfiguration {
 	// Simulate remote method delay for UI testing
 	private int delayMs;
 
+	// Autowire all the properties required by the real class
+	// (even tho not used here) as a test of the properties.
 	@Autowired
-	public E2ManagerMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
-		logger.debug("ctor: configured with delay {}", delayMs);
+	public E2ManagerMockConfiguration(@Value("${e2mgr.url.suffix}") final String urlSuffix, //
+			final RicRegionList instanceConfig, //
+			@Value("${mock.config.delay:0}") int delayMs) {
+		logger.info("ctor: configured with suffix {}, instances {}, delay {}", urlSuffix, instanceConfig, delayMs);
 		this.delayMs = delayMs;
 	}
 
@@ -104,11 +109,11 @@ public class E2ManagerMockConfiguration {
 		// "globalNbId":null,"gnb":null,"ip":"10.2.0.6","nodeType":null,"port":36444,
 		// "ranName":"AAAA123456","setupFailure":null}}]
 		nodebIdList.add(new NodebIdentity().inventoryName(RAN_NAME_1).globalNbId(globalNbId));
-		nodebResponseMap.put(RAN_NAME_1,
-				new GetNodebResponse().connectionStatus("CONNECTING").ip("127.0.0.1").port(456).ranName(RAN_NAME_2).nodeType("ENDC").port(100));
+		nodebResponseMap.put(RAN_NAME_1, new GetNodebResponse().connectionStatus("CONNECTING").ip("127.0.0.1").port(456)
+				.ranName(RAN_NAME_2).nodeType("ENDC").port(100));
 		nodebIdList.add(new NodebIdentity().inventoryName(RAN_NAME_2).globalNbId(globalNbId));
-		nodebResponseMap.put(RAN_NAME_2,
-				new GetNodebResponse().connectionStatus("CONNECTED").ip("127.0.0.2").port(456).ranName(RAN_NAME_2).nodeType("X2").port(200));
+		nodebResponseMap.put(RAN_NAME_2, new GetNodebResponse().connectionStatus("CONNECTED").ip("127.0.0.2").port(456)
+				.ranName(RAN_NAME_2).nodeType("X2").port(200));
 
 		ApiClient apiClient = apiClient();
 		NodebApi mockApi = mock(NodebApi.class);

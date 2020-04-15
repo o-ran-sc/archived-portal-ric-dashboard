@@ -47,8 +47,7 @@ public class CaasIngressConfiguration {
 	private final RicRegionList instanceConfig;
 
 	@Autowired
-	public CaasIngressConfiguration( //
-			@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix, //
+	public CaasIngressConfiguration(@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix, //
 			@Value("${caasingress.insecure}") final Boolean insecureFlag, //
 			final RicRegionList instanceConfig) throws KeyManagementException, NoSuchAlgorithmException {
 		logger.debug("ctor: suffix {} insecure flag {}", pltUrlSuffix, insecureFlag);

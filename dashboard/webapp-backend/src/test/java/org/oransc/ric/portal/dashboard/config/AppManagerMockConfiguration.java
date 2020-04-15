@@ -26,6 +26,7 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ricplt.appmgr.client.api.HealthApi;
 import org.oransc.ricplt.appmgr.client.api.XappApi;
 import org.oransc.ricplt.appmgr.client.invoker.ApiClient;
@@ -65,9 +66,13 @@ public class AppManagerMockConfiguration {
 	// Simulate remote method delay for UI testing
 	private int delayMs;
 
+	// Autowire all the properties required by the real class
+	// (even tho not used here) as a test of the properties.
 	@Autowired
-	public AppManagerMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
-		logger.debug("ctor: configured with delay {}", delayMs);
+	public AppManagerMockConfiguration(@Value("${appmgr.url.suffix}") final String urlSuffix, //
+			final RicRegionList instanceConfig, //
+			@Value("${mock.config.delay:0}") int delayMs) {
+		logger.info("ctor: configured with suffix {}, instances {}, delay {}", urlSuffix, instanceConfig, delayMs);
 		this.delayMs = delayMs;
 	}
 
