@@ -25,20 +25,12 @@ import java.lang.invoke.MethodHandles;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
-import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
-import org.oransc.ric.portal.dashboard.model.IDashboardResponse;
 import org.oransc.ric.portal.dashboard.model.AppStats;
+import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -65,9 +57,11 @@ public class AppStatsManager {
 	/**
 	 * Development/test-only constructor that uses default file path.
 	 * 
-	 * @param clear If true, start empty and remove any existing file.
+	 * @param clear
+	 *                  If true, start empty and remove any existing file.
 	 * 
-	 * @throws IOException On file error
+	 * @throws IOException
+	 *                         On file error
 	 */
 	public AppStatsManager(boolean clear) throws IOException {
 		this(STATS_FILE_PATH);
@@ -83,8 +77,10 @@ public class AppStatsManager {
 	/**
 	 * Constructor that accepts a file path
 	 * 
-	 * @param statsFilePath File path
-	 * @throws IOException If file cannot be read
+	 * @param statsFilePath
+	 *                          File path
+	 * @throws IOException
+	 *                         If file cannot be read
 	 */
 	public AppStatsManager(final String statsFilePath) throws IOException {
 		logger.debug("ctor: statsfile {}", statsFilePath);
@@ -96,8 +92,8 @@ public class AppStatsManager {
 			final ObjectMapper mapper = new ObjectMapper();
 			stats = mapper.readValue(statsFile, new TypeReference<List<AppStats>>() {
 			});
-			for (AppStats st: stats) {
-				if (st.getStatsDetails().getAppId()>appMaxId) 
+			for (AppStats st : stats) {
+				if (st.getStatsDetails().getAppId() > appMaxId)
 					appMaxId = st.getStatsDetails().getAppId();
 			}
 		} else {
@@ -117,7 +113,8 @@ public class AppStatsManager {
 	/**
 	 * Gets the current app metric stats by instance key.
 	 * 
-	 * @param instanceKey Desired instance key
+	 * @param instanceKey
+	 *                        Desired instance key
 	 * @return List of App stat objects by instance key, possibly empty
 	 */
 	public List<AppStats> getStatsByInstance(String instanceKey) {
@@ -134,8 +131,10 @@ public class AppStatsManager {
 	/**
 	 * Gets the stats with the specified app Id and instance key
 	 * 
-	 * @param appId       Desired app Id
-	 * @param instanceKey Desired instance key
+	 * @param appId
+	 *                        Desired app Id
+	 * @param instanceKey
+	 *                        Desired instance key
 	 * @return Stats object; null if Id is not known
 	 */
 	public AppStats getStatsById(String instanceKey, int appId) {
@@ -157,8 +156,8 @@ public class AppStatsManager {
 	}
 
 	/*
-	 * Allow at most one thread to create a stats at one time.
-	 * Before creating new stat, checks for composite key (appname,url) uniqueness for an instance key
+	 * Allow at most one thread to create a stats at one time. Before creating new
+	 * stat, checks for composite key (appname,url) uniqueness for an instance key
 	 */
 	public synchronized AppStats createStats(String instanceKey, StatsDetailsTransport statsSetupRequest)
 			throws StatsManagerException, IOException {
@@ -168,15 +167,16 @@ public class AppStatsManager {
 			if (st.getInstanceKey().equals(instanceKey)
 					&& st.getStatsDetails().getAppName().equals(statsSetupRequest.getAppName())
 					&& st.getStatsDetails().getMetricUrl().equals(statsSetupRequest.getMetricUrl())) {
-				String msg = "App exists with name " + statsSetupRequest.getAppName() + " and url "+statsSetupRequest.getMetricUrl()+ " on instance key " + instanceKey;
+				String msg = "App exists with name " + statsSetupRequest.getAppName() + " and url "
+						+ statsSetupRequest.getMetricUrl() + " on instance key " + instanceKey;
 				logger.warn(msg);
 				throw new StatsManagerException(msg);
 			}
 		}
 
 		AppStats newAppStat = null;
-		//Assigns appId to be 1 more than the largest value stored in memory
-		appMaxId = appMaxId+1;
+		// Assigns appId to be 1 more than the largest value stored in memory
+		appMaxId = appMaxId + 1;
 		newAppStat = new AppStats(instanceKey,
 				new StatsDetailsTransport(appMaxId, statsSetupRequest.getAppName(), statsSetupRequest.getMetricUrl()));
 		stats.add(newAppStat);

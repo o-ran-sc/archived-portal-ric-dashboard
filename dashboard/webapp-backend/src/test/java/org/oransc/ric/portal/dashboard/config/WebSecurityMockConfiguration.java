@@ -52,12 +52,18 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 
 	// Although constructor arguments are recommended over field injection,
 	// this results in fewer lines of code.
+	@Value("${portalapi.security}")
+	private Boolean portalapiSecurity;
+	@Value("${portalapi.appname}")
+	private String appName;
+	@Value("${portalapi.username}")
+	private String userName;
+	@Value("${portalapi.password}")
+	private String password;
 	@Value("${portalapi.decryptor}")
 	private String decryptor;
 	@Value("${portalapi.usercookie}")
 	private String userCookie;
-	@Value("${userfile}")
-	private String userFilePath;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

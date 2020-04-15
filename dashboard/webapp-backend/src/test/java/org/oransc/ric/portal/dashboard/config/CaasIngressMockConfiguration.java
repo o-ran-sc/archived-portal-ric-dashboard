@@ -29,6 +29,7 @@ import java.lang.invoke.MethodHandles;
 
 import org.oransc.ric.portal.dashboard.TestUtils;
 import org.oransc.ric.portal.dashboard.k8sapi.SimpleKubernetesClient;
+import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,15 @@ public class CaasIngressMockConfiguration {
 	// Simulate remote method delay for UI testing
 	private int delayMs;
 
+	// Autowire all the properties required by the real class
+	// (even tho not used here) as a test of the properties.
 	@Autowired
-	public CaasIngressMockConfiguration(@Value("${mock.config.delay:0}") int delayMs) {
-		logger.debug("ctor: configured with delay {}", delayMs);
+	public CaasIngressMockConfiguration(@Value("${caasingress.plt.url.suffix}") final String pltUrlSuffix, //
+			@Value("${caasingress.insecure}") final Boolean insecureFlag, //
+			final RicRegionList instanceConfig, //
+			@Value("${mock.config.delay:0}") int delayMs) {
+		logger.info("ctor: configured with suffix {}, insecure {}, instance {}, delay {}", pltUrlSuffix, insecureFlag,
+				instanceConfig, delayMs);
 		this.delayMs = delayMs;
 	}
 

@@ -52,7 +52,6 @@ public class AdminConfiguration {
 		logger.debug("ctor statsfile '{}'", statsfile);
 		this.userfile = userfile;
 		this.statsfile = statsfile;
-
 	}
 
 	@Bean

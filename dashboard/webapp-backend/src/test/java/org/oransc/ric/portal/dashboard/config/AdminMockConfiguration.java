@@ -20,31 +20,24 @@
 package org.oransc.ric.portal.dashboard.config;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.invoke.MethodHandles;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 import org.onap.portalsdk.core.onboarding.exception.PortalAPIException;
 import org.onap.portalsdk.core.restful.domain.EcompRole;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
-import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.AppStatsManager;
+import org.oransc.ric.portal.dashboard.DashboardUserManager;
 import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
-import org.oransc.ric.portal.dashboard.model.AppStats;
 import org.oransc.ric.portal.dashboard.model.StatsDetailsTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Creates user manager and stats manager with mock data.
@@ -55,8 +48,12 @@ public class AdminMockConfiguration {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	// Autowire all the properties required by the real class
+	// (even tho not used here) as a test of the properties.
 	@Autowired
-	public AdminMockConfiguration() {
+	public AdminMockConfiguration(@Value("${userfile}") final String userfile,
+			@Value("${statsfile}") final String statsfile) {
+		logger.info("ctor userfile {} statsfile {}", userfile, statsfile);
 	}
 
 	@Bean

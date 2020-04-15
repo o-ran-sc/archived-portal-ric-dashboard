@@ -107,7 +107,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 				ex.toString());
 		return ResponseEntity.badRequest().body(getShortExceptionMessage(ex));
 	}
-	
+
 	/**
 	 * Logs a warning if a StatsManagerException is thrown.
 	 * 
@@ -119,8 +119,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	 */
 	@ExceptionHandler({ StatsManagerException.class })
 	public final ResponseEntity<String> handleStatsManagerException(Exception ex, WebRequest request) {
-		log.warn("handleStatsManagerException: request {}, exception {}", request.getDescription(false),
-				ex.toString());
+		log.warn("handleStatsManagerException: request {}, exception {}", request.getDescription(false), ex.toString());
 		return ResponseEntity.badRequest().body(getShortExceptionMessage(ex));
 	}
 
