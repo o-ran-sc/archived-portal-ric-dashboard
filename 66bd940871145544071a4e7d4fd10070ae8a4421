@@ -22,6 +22,30 @@
       "revId": "66bd940871145544071a4e7d4fd10070ae8a4421",
       "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1ac6736_a153b7b1",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000055
+      },
+      "writtenOn": "2020-04-17T13:35:45Z",
+      "side": 1,
+      "message": "That\u0027s correct.",
+      "parentUuid": "39f04f81_96f583fe",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "66bd940871145544071a4e7d4fd10070ae8a4421",
+      "serverId": "84e4e190-e623-4c37-9eda-58b1937c1b53",
+      "unresolved": true
     }
   ]
 }
