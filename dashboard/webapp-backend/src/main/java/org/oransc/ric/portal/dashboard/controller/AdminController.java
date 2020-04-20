@@ -39,7 +39,6 @@ import org.oransc.ric.portal.dashboard.model.SuccessTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -71,9 +70,6 @@ public class AdminController {
 	public static final String VERSION_METHOD = DashboardConstants.VERSION_METHOD;
 	public static final String XAPPMETRICS_METHOD = "metrics";
 	public static final String STATAPPMETRIC_METHOD = "appmetric";
-
-	@Value("${metrics.url.ml}")
-	private String mlAppMetricsUrl;
 
 	@Autowired
 	private DashboardUserManager dashboardUserManager;
@@ -152,11 +148,10 @@ public class AdminController {
 	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
 			+ STATAPPMETRIC_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public ResponseEntity<String> updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+	public void updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
 			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
 		logger.debug("updateStats for instance {} request {}", instanceKey, statsSetupRequest);
 		appStatsManager.updateStats(instanceKey, statsSetupRequest);
-		return ResponseEntity.ok(null);
 	}
 
 	@ApiOperation(value = "Deletes xApp metric status.")

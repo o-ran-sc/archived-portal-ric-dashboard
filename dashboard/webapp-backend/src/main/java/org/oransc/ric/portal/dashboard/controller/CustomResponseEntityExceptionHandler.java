@@ -93,7 +93,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	}
 
 	/**
-	 * Logs a warning if an invalid RIC instance key is used.
+	 * Logs the error and generates a response when a REST controller method takes
+	 * an UnknownInstanceException, an invalid RIC instance key was used.
 	 * 
 	 * @param ex
 	 *                    The exception
@@ -109,7 +110,8 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	}
 
 	/**
-	 * Logs a warning if a StatsManagerException is thrown.
+	 * Logs the error and generates a response when a REST controller method takes
+	 * an StatsManagerException.
 	 * 
 	 * @param ex
 	 *                    The exception

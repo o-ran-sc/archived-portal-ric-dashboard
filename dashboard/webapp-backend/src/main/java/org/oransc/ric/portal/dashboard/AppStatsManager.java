@@ -118,7 +118,7 @@ public class AppStatsManager {
 	 * @return List of App stat objects by instance key, possibly empty
 	 */
 	public List<AppStats> getStatsByInstance(String instanceKey) {
-		List<AppStats> statsByInstance = new ArrayList<AppStats>();
+		List<AppStats> statsByInstance = new ArrayList<>();
 		for (AppStats st : this.stats) {
 			if (st.getInstanceKey().equals(instanceKey)) {
 				logger.debug("getStatsByInstance: match on instance key {}", instanceKey);
@@ -167,8 +167,9 @@ public class AppStatsManager {
 			if (st.getInstanceKey().equals(instanceKey)
 					&& st.getStatsDetails().getAppName().equals(statsSetupRequest.getAppName())
 					&& st.getStatsDetails().getMetricUrl().equals(statsSetupRequest.getMetricUrl())) {
-				String msg = "App exists with name " + statsSetupRequest.getAppName() + " and url "
-						+ statsSetupRequest.getMetricUrl() + " on instance key " + instanceKey;
+				// Log the existing object to avoid using tainted (user-supplied) data
+				String msg = "App exists with name " + st.getStatsDetails().getAppName() + " and url "
+						+ st.getStatsDetails().getMetricUrl() + " on instance key " + st.getInstanceKey();
 				logger.warn(msg);
 				throw new StatsManagerException(msg);
 			}
@@ -191,7 +192,7 @@ public class AppStatsManager {
 	public synchronized void updateStats(String instanceKey, StatsDetailsTransport statsSetupRequest)
 			throws StatsManagerException, IOException {
 		logger.debug("updateStats: appId {}, instanceKey {}", statsSetupRequest.getAppId(), instanceKey);
-		boolean editStatsObjectFound = false;
+		boolean statsObjectFound = false;
 
 		for (AppStats st : stats) {
 			if (st.getInstanceKey().equals(instanceKey)
@@ -199,12 +200,12 @@ public class AppStatsManager {
 				AppStats newAppStat = new AppStats(instanceKey, statsSetupRequest);
 				stats.remove(st);
 				stats.add(newAppStat);
-				editStatsObjectFound = true;
+				statsObjectFound = true;
 				saveStats();
 				break;
 			}
 		}
-		if (!editStatsObjectFound) {
+		if (!statsObjectFound) {
 			String msg = "Stats to be updated does not exist ";
 			logger.warn(msg);
 			throw new StatsManagerException(msg);
@@ -213,13 +214,13 @@ public class AppStatsManager {
 
 	public synchronized AppStats deleteStats(String instanceKey, int appId) throws StatsManagerException, IOException {
 		logger.debug("deleteStats: appId {}, instanceKey {}", appId, instanceKey);
-		boolean deleteStatsObjectFound = false;
+		boolean statsObjectFound = false;
 		AppStats stat = null;
 		for (AppStats st : stats) {
 			if (st.getInstanceKey().equals(instanceKey) && st.getStatsDetails().getAppId() == appId) {
 				stat = st;
 				stats.remove(stat);
-				deleteStatsObjectFound = true;
+				statsObjectFound = true;
 				try {
 					saveStats();
 					break;
@@ -229,8 +230,10 @@ public class AppStatsManager {
 
 			}
 		}
-		if (!deleteStatsObjectFound) {
+		if (!statsObjectFound) {
 			String msg = "deleteStats: no match on app id {} of instance key {}";
+			// Replace log pattern-breaking characters
+			instanceKey = instanceKey.replaceAll("[\n|\r|\t]", "_");
 			logger.warn(msg, appId, instanceKey);
 			throw new StatsManagerException(msg);
 		}

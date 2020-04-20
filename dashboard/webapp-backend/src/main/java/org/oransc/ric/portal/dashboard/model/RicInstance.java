@@ -20,6 +20,8 @@
 
 package org.oransc.ric.portal.dashboard.model;
 
+import java.util.Objects;
+
 /**
  * POJO for RIC instance details.
  */
@@ -39,11 +41,13 @@ public class RicInstance extends RicInstanceKeyName {
 		super();
 	}
 
+	@Override
 	public RicInstance key(String key) {
 		super.key(key);
 		return this;
 	}
 
+	@Override
 	public RicInstance name(String name) {
 		super.name(name);
 		return this;
@@ -106,6 +110,18 @@ public class RicInstance extends RicInstanceKeyName {
 		result = prime * result + ((caasUrlPrefix == null) ? 0 : caasUrlPrefix.hashCode());
 		result = prime * result + ((pltUrlPrefix == null) ? 0 : pltUrlPrefix.hashCode());
 		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RicInstance other = (RicInstance) obj;
+		return Objects.equals(appUrlPrefix, other.appUrlPrefix) && Objects.equals(pltUrlPrefix, other.pltUrlPrefix);
 	}
 
 }
