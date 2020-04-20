@@ -30,8 +30,8 @@ server:
 
 # paths to files that store details;
 # use a persistent volume in a K8S deployment
-userfile: users.json
-statsfile: stats.json
+userfile: dashboard-users.json
+statsfile: dashboard-stats.json
 
 # Dashboard properties related to Portal
 portalapi:

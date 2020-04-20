@@ -37,6 +37,27 @@ public class ModelTest extends AbstractModelTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+	private void checkAppStats(AppStats m) {
+		Assert.assertEquals(s1, m.getInstanceKey());
+		Assert.assertTrue(i1 == m.getStatsDetails().getAppId());
+		Assert.assertEquals(s2, m.getStatsDetails().getAppName());
+		Assert.assertEquals(s3, m.getStatsDetails().getMetricUrl());
+	}
+
+	@Test
+	public void testAppStats() {
+		StatsDetailsTransport n = new StatsDetailsTransport();
+		n.setAppId(i1);
+		n.setAppName(s2);
+		n.setMetricUrl(s3);
+		AppStats m = new AppStats();
+		m = new AppStats(s1, n);
+		m.setInstanceKey(s1);
+		m.setStatsDetails(n);
+		checkAppStats(m);
+		logger.info(m.toString());
+	}
+
 	private void checkAppTransport(AppTransport m) {
 		Assert.assertEquals(s1, m.getName());
 		Assert.assertEquals(s2, m.getVersion());
@@ -180,6 +201,44 @@ public class ModelTest extends AbstractModelTest {
 		} catch (UnknownInstanceException ex) {
 			logger.info("failed as expected: {}", ex.toString());
 		}
+		logger.info(m.toString());
+	}
+
+	private void checkRicRegionTransport(RicRegionTransport m) {
+		Assert.assertEquals(s1, m.getName());
+		Assert.assertFalse(m.getInstances().isEmpty());
+	}
+
+	@Test
+	public void testRicRegionTransport() {
+		RicRegionTransport m = new RicRegionTransport().name(s1);
+		m.instances(new ArrayList<RicInstanceKeyName>());
+		m.getInstances().add(new RicInstanceKeyName(s1, s2));
+		checkRicRegionTransport(m);
+		Assert.assertTrue(m.equals(m));
+		Assert.assertFalse(m.equals(null));
+		Assert.assertFalse(m.equals(new RicRegionTransport()));
+		Assert.assertNotEquals(1, m.hashCode());
+		logger.info(m.toString());
+	}
+
+	private void checkStatsDetailsTransport(StatsDetailsTransport m) {
+		Assert.assertTrue(i1 == m.getAppId());
+		Assert.assertEquals(s1, m.getAppName());
+		Assert.assertEquals(s2, m.getMetricUrl());
+	}
+
+	@Test
+	public void testStatDetailsTransport() {
+		StatsDetailsTransport m = new StatsDetailsTransport();
+		m.setAppId(i1);
+		m.setAppName(s1);
+		m.setMetricUrl(s2);
+		checkStatsDetailsTransport(m);
+		Assert.assertTrue(m.equals(m));
+		Assert.assertFalse(m.equals(null));
+		Assert.assertFalse(m.equals(new StatsDetailsTransport()));
+		Assert.assertNotEquals(1, m.hashCode());
 		logger.info(m.toString());
 	}
 

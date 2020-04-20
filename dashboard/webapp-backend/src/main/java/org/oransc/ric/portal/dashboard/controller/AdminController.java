@@ -152,11 +152,10 @@ public class AdminController {
 	@PutMapping(DashboardConstants.RIC_INSTANCE_KEY + "/{" + DashboardConstants.RIC_INSTANCE_KEY + "}/"
 			+ STATAPPMETRIC_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public ResponseEntity<String> updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
+	public void updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
 			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
 		logger.debug("updateStats for instance {} request {}", instanceKey, statsSetupRequest);
 		appStatsManager.updateStats(instanceKey, statsSetupRequest);
-		return ResponseEntity.ok(null);
 	}
 
 	@ApiOperation(value = "Deletes xApp metric status.")

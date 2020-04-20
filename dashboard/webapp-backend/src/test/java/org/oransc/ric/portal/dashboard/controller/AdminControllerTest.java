@@ -22,11 +22,13 @@ package org.oransc.ric.portal.dashboard.controller;
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
+
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
@@ -40,6 +42,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AdminControllerTest extends AbstractControllerTest {
@@ -119,6 +122,12 @@ public class AdminControllerTest extends AbstractControllerTest {
 		statsDetails.setMetricUrl("https://www.example2-next.com");
 		AppStats stNext = testRestTemplateAdminRole().postForObject(uri, statsDetails, AppStats.class);
 		Assertions.assertTrue(st.getStatsDetails().getAppId() < stNext.getStatsDetails().getAppId());
+		try {
+			testRestTemplateAdminRole().postForObject(uri, statsDetails, AppStats.class);
+			Assert.assertTrue(false);
+		} catch (RestClientException ex) {
+			logger.info("Caught exception on create as expected: {}", ex.toString());
+		}
 	}
 
 	@Order(3)
@@ -142,6 +151,14 @@ public class AdminControllerTest extends AbstractControllerTest {
 		ResponseEntity<String> stringResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
 				String.class);
 		Assertions.assertTrue(stringResponse.getStatusCode().is2xxSuccessful());
+
+		StatsDetailsTransport bogusDetails = new StatsDetailsTransport();
+		bogusDetails.setAppId(-1);
+		bogusDetails.setAppName("bogus");
+		HttpEntity<StatsDetailsTransport> bogusEntity = new HttpEntity<>(bogusDetails);
+		ResponseEntity<String> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, bogusEntity,
+				String.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is4xxClientError());
 	}
 
 	@Order(4)
@@ -163,6 +180,13 @@ public class AdminControllerTest extends AbstractControllerTest {
 		ResponseEntity<String> stringResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.DELETE, null,
 				String.class);
 		Assertions.assertTrue(stringResponse.getStatusCode().is2xxSuccessful());
+
+		URI uri99 = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, AdminController.STATAPPMETRIC_METHOD,
+				DashboardConstants.APP_ID, "999999");
+		ResponseEntity<String> voidResponse = testRestTemplateAdminRole().exchange(uri99, HttpMethod.DELETE, null,
+				String.class);
+		Assertions.assertTrue(voidResponse.getStatusCode().is4xxClientError());
 	}
 
 	@Test

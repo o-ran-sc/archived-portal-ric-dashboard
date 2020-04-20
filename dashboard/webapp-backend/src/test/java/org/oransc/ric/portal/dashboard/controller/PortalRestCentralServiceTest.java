@@ -34,6 +34,7 @@ import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -42,6 +43,12 @@ import org.springframework.http.ResponseEntity;
 public class PortalRestCentralServiceTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
+	// Get values from configuration, probably blank
+	@Value("${portalapi.username}")
+	private String portalApiUsername;
+	@Value("${portalapi.password}")
+	private String portalApiPassword;
 
 	@Test
 	public void getAnalyticsTest() {
@@ -65,8 +72,8 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 
 	private HttpEntity<Object> getEntityWithAuthHeaders(Object body) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(IPortalRestCentralService.CREDENTIALS_USER, IPortalRestCentralService.CREDENTIALS_USER);
-		headers.set(IPortalRestCentralService.CREDENTIALS_PASS, IPortalRestCentralService.CREDENTIALS_PASS);
+		headers.set(IPortalRestCentralService.CREDENTIALS_USER, portalApiUsername);
+		headers.set(IPortalRestCentralService.CREDENTIALS_PASS, portalApiPassword);
 		HttpEntity<Object> entity = new HttpEntity<>(body, headers);
 		return entity;
 	}
@@ -84,9 +91,10 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		return user;
 	}
 
+	/** See comments in {@link DefaultContextTest} */
 	@Test
 	public void createUserTest() {
-		final String loginId = "login1";
+		final String loginId = "login-" + Long.toString(System.currentTimeMillis());
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
 		logger.info("createUserTest invoking {}", create);
 		HttpEntity<Object> requestEntity = getEntityWithAuthHeaders(createEcompUser(loginId));
@@ -95,15 +103,16 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 
+	/** See comments in {@link DefaultContextTest} */
 	@Test
 	public void updateUserTest() {
-		final String loginId = "login2";
+		final String loginId = "login-" + Long.toString(System.currentTimeMillis());
 		URI create = buildUri(null, PortalApiConstants.API_PREFIX, "user");
 		EcompUser user = createEcompUser(loginId);
 		logger.info("updateUserTest invoking {}", create);
 		HttpEntity<Object> requestEntity = getEntityWithAuthHeaders(user);
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
-		logger.info("updateUserTest response {}", response);
+		logger.info("updateUserTest create response {}", response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 		URI update = buildUri(null, PortalApiConstants.API_PREFIX, "user", loginId);
 		user.setEmail("user@company.org");
