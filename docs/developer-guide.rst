@@ -5,8 +5,8 @@
 RIC Dashboard Developer Guide
 =============================
 
-This document provides a quickstart for developers of the O-RAN SC RIC Dashboard web
-application.
+This document provides a quickstart for developers of the O-RAN SC RIC
+Dashboard web application.
 
 Prerequisites
 -------------
@@ -14,12 +14,14 @@ Prerequisites
 1. Java development kit (JDK), version 11 or later
 2. Maven dependency-management tool, version 3.4 or later
 
-Other required tools including the Node Package Manager (npm) are fetched dynamically.
+Other required tools including the Node Package Manager (npm) are
+fetched dynamically.
 
 Clone and Update Submodules
 ---------------------------
 
-After cloning the repository, initialize and update all git submodules like this::
+After cloning the repository, initialize and update all git submodules
+like this::
 
     git submodule init
     git submodule update
@@ -32,14 +34,15 @@ Check the submodule status at any time like this::
 Angular Front-End Application
 -----------------------------
 
-The Angular 8 application files are in subdirectory ``webapp-frontend``.
-Build the front-end application via ``mvn package``.  For development and debugging,
-build the application, then launch an ng development server using this command::
+The Angular 8 application files are in subdirectory
+``webapp-frontend``.  Build the front-end application via ``mvn
+package``.  For development and debugging, build the application, then
+launch an ng development server using this command::
 
     ./ng serve --proxy-config proxy.conf.json
 
-The app will automatically reload in the browser if you change any of the source files.
-The ng server listens for requests at this URL:
+The app will automatically reload in the browser if you change any of
+the source files.  The ng server listens for requests at this URL:
 
     http://localhost:4200
 
@@ -47,14 +50,14 @@ The ng server listens for requests at this URL:
 Spring-Boot Back-End Application
 --------------------------------
 
-A development (not production) server uses local configuration and serves mock data
-that simulates the behavior of remote endpoints.  The back-end server listens for
-requests at this URL:
+A development (not production) server uses local configuration and
+serves mock data that simulates the behavior of remote endpoints.  The
+back-end server listens for requests at this URL:
 
     http://localhost:8080
 
-The directory ``src/test/resources`` contains usable versions of the required property
-files.  These steps are required to launch:
+The directory ``src/test/resources`` contains usable versions of the
+required property files.  These steps are required to launch:
 
 1. Install all project jar files locally
 2. Set an environment variable via JVM argument: ``-Dorg.oransc.ric.portal.dashboard=mock``
@@ -68,23 +71,24 @@ These steps can be done with these commands::
 Development user authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The development server requires basic HTTP user authentication for all requests. Like
-the production server, it requires HTTP headers with authentication for Portal API
-requests.  The username and password are stored in constants in this Java class in
-the ``src/test/java`` folder::
+The development server requires basic HTTP user authentication for all
+requests. Like the production server, it requires HTTP headers with
+authentication for Portal API requests.  The username and password are
+stored in constants in this Java class in the ``src/test/java``
+folder::
 
     org.oransc.ric.portal.dashboard.config.WebSecurityMockConfiguration
 
-Like the production server, the development server also performs role-based
-authentication on requests. The user name-role name associations are also defined
-in the class shown above.
+Like the production server, the development server also performs
+role-based authentication on requests. The user name-role name
+associations are also defined in the class shown above.
 
 Production user authentication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The server uses the ONAP Portal's "EPSDK-FW" library to support a
-single-sign-on (SSO) feature, which requires users to authenticate
-at the ONAP Portal UI. The RIC Dashboard can be on-boarded as an
+single-sign-on (SSO) feature, which requires users to authenticate at
+the ONAP Portal UI. The RIC Dashboard can be on-boarded as an
 application on the ONAP Portal using its application on-boarding UI.
 
 The server authenticates requests using cookies that are set
@@ -98,10 +102,10 @@ using a secret key shared with the ONAP Portal to yield a user ID.
 That ID must match a user's loginId defined in the user manager.
 
 The regular server checks requests for the following granted
-authorities (role names), as defined in the java class ``DashboardConstants``.
-A standard user can invoke all "GET" methods but not make changes.
-A system administrator can invoke all methods ("GET", "POST", "PUT",
-"DELETE") to make arbitrary changes::
+authorities (role names), as defined in the java class
+``DashboardConstants``.  A standard user can invoke all "GET" methods
+but not make changes.  A system administrator can invoke all methods
+("GET", "POST", "PUT", "DELETE") to make arbitrary changes::
 
     Standard_User
     System_Administrator
