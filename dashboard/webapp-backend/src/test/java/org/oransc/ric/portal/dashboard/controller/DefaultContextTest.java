@@ -34,7 +34,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * Tests whether the default (not mock) configuration classes run to completion.
  */
 @ExtendWith(SpringExtension.class)
-// This way of setting the active profile should not be necessary.  See:
+// This way of setting the active profile should not be necessary. See:
 // https://github.com/spring-projects/spring-boot/issues/19788
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, properties = "spring.profiles.active:default")
 public class DefaultContextTest {
@@ -53,11 +53,11 @@ public class DefaultContextTest {
 	 * <LI>{@link PortalRestCentralServiceTest#createUserTest()}
 	 * <LI>{@link PortalRestCentralServiceTest#updateUserTest()}
 	 * </UL>
-	 * Maybe: 
+	 * Maybe:
 	 *
-	 * I worked around the problem by using the application.yaml credentials.
-	 * I also annotated this class above trying to limit the active profile,
-	 * but I'm not confident it is working nor that it's needed.
+	 * I worked around the problem by using the application.yaml credentials. I also
+	 * annotated this class above trying to limit the active profile, but I'm not
+	 * confident it is working nor that it's needed.
 	 */
 	@Test
 	public void contextLoads() {
