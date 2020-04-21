@@ -13,40 +13,26 @@ a Java (version 11) Spring-Boot (version 2.1) back end.
 Project Resources
 -----------------
 
-The source code is available from the Linux Foundation Gerrit server:
+The project uses the following Linux Foundation resources.
 
-    `<https://gerrit.o-ran-sc.org/r/portal/ric-dashboard;a=summary>`_
-
-The build (CI) jobs are in the Linux Foundation Jenkins server:
-
+* The source code is maintained in this Gerrit:
+    `<https://gerrit.o-ran-sc.org/r/admin/repos/portal/ric-dashboard>`_
+* The build (CI) jobs are in this Jenkins:
     `<https://jenkins.o-ran-sc.org/view/portal-ric-dashboard>`_
-
-Issues are tracked in the Linux Foundation Jira server:
-
-    `<https://jira.o-ran-sc.org/secure/Dashboard.jspa>`_
-
-Project information is available in the Linux Foundation Wiki:
-
-    `<https://wiki.o-ran-sc.org>`_
+* Issues are tracked in this Jira:
+    `<https://jira.o-ran-sc.org/issues/?jql=project%3DOAM%20AND%20component%3D%22portal%2Fric-dashboard%22>`_
+* Project information is available in this Wiki:
+    `<https://wiki.o-ran-sc.org/display/OAM/RIC+Dashboard+Application>`_
 
 
-A1 Mediator
------------
+Managed Resources
+-----------------
 
-The Dashboard interfaces with the A1 Mediator.  This platform
-component is accessed via HTTP/REST requests using a client that is
-generated from an API specification published by the A1 Mediator team.
-
-The A1 Mediator supports fetching and storing configuration of
-applications, which is referred to as getting or setting a policy.
-The Dashboard UI provides screens to view and modify configuration
-data for such applications.  As of this writing, the only application
-that is managed via the A1 Mediator interface is the Admission Control
-("AC") application.
-
+The RIC Dashboard is used to manage the following RIC Platform and RIC
+xApplication components.
 
 Application Manager
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 The Dashboard interfaces with the Application Manager.  This platform
 component is accessed via HTTP/REST requests using a client that is
@@ -59,7 +45,7 @@ for these functions.
 
 
 E2 Manager
-----------
+~~~~~~~~~~
 
 The Dashboard interfaces with the E2 Manager.  This platform
 component is accessed via HTTP/REST requests using a client that is
