@@ -19,6 +19,8 @@
  */
 package org.oransc.ric.portal.dashboard.model;
 
+import java.util.Objects;
+
 public class AppStats implements IDashboardResponse {
 	private String instanceKey;
 	private StatsDetailsTransport statsDetails;
@@ -52,6 +54,18 @@ public class AppStats implements IDashboardResponse {
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "[instance=" + instanceKey + ", statsDetails=" + statsDetails + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AppStats other = (AppStats) obj;
+		return Objects.equals(instanceKey, other.instanceKey) && Objects.equals(statsDetails, other.statsDetails);
 	}
 
 }
