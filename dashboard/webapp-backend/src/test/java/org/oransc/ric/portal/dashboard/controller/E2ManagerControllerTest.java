@@ -23,9 +23,11 @@ import java.lang.invoke.MethodHandles;
 import java.net.URI;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.E2ManagerMockConfiguration;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
@@ -41,28 +43,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class E2ManagerControllerTest extends AbstractControllerTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-	private ResponseEntity<Void> reset() {
-		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
-				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_PREFIX, "ignored",
-				E2ManagerController.RESET_METHOD);
-		logger.info("Invoking {}", uri);
-		ResetRequest reset = new ResetRequest();
-		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
-		return testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
-	}
-
 	@Test
-	public void resetTest() {
-		ResponseEntity<Void> voidResponse = reset();
-		logger.debug("resetTest: response {}", voidResponse);
-		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
-	}
-
-	@Test
+	@Order(1)
 	public void versionTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.VERSION_METHOD);
 		logger.info("Invoking {}", uri);
@@ -71,6 +58,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
+	@Order(2)
 	public void healthTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.HEALTH_METHOD);
@@ -80,6 +68,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
+	@Order(3)
 	public void ranDetailsTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.RAN_METHOD);
@@ -91,6 +80,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
+	@Order(4)
 	public void nodebListTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_LIST_METHOD);
@@ -102,6 +92,7 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 	}
 
 	@Test
+	@Order(5)
 	public void nodebStatusTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_PREFIX,
@@ -111,8 +102,24 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		Assertions.assertNotNull(response.getRanName());
 	}
 
+	// This empties the list of RAN elements
+	@Test
+	@Order(6)
+	public void resetTest() {
+		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
+				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_PREFIX, "ignored",
+				E2ManagerController.RESET_METHOD);
+		logger.info("Invoking {}", uri);
+		ResetRequest reset = new ResetRequest();
+		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
+		logger.debug("resetTest: response {}", voidResponse);
+		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
+	}
+
 	// Aka big--button test, run this last
-	@After
+	@Test
+	@Order(7)
 	public void nodebShutdownPutTest() {
 		URI uri = buildUri(null, E2ManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, E2ManagerController.NODEB_SHUTDOWN_METHOD);

@@ -57,9 +57,9 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${portalapi.appname}")
 	private String appName;
 	@Value("${portalapi.username}")
-	private String userName;
+	private String portalApiUsername;
 	@Value("${portalapi.password}")
-	private String password;
+	private String portalApiPassword;
 	@Value("${portalapi.decryptor}")
 	private String decryptor;
 	@Value("${portalapi.usercookie}")
@@ -99,9 +99,8 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PortalAuthManager portalAuthManagerBean() throws Exception {
 		logger.debug("portalAuthManagerBean");
-		return new PortalAuthManager(IPortalRestCentralService.CREDENTIALS_APP,
-				IPortalRestCentralService.CREDENTIALS_USER, IPortalRestCentralService.CREDENTIALS_PASS, decryptor,
-				userCookie);
+		return new PortalAuthManager(IPortalRestCentralService.CREDENTIALS_APP, portalApiUsername, portalApiPassword,
+				decryptor, userCookie);
 	}
 
 }

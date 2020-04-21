@@ -61,9 +61,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${portalapi.appname}")
 	private String appName;
 	@Value("${portalapi.username}")
-	private String userName;
+	private String portalApiUsername;
 	@Value("${portalapi.password}")
-	private String password;
+	private String portalApiPassword;
 	@Value("${portalapi.decryptor}")
 	private String decryptor;
 	@Value("${portalapi.usercookie}")
@@ -114,7 +114,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PortalAuthManager portalAuthManagerBean() throws ClassNotFoundException, IllegalAccessException,
 			InstantiationException, InvocationTargetException, NoSuchMethodException {
 		logger.debug("portalAuthManagerBean");
-		return new PortalAuthManager(appName, userName, password, decryptor, userCookie);
+		return new PortalAuthManager(appName, portalApiUsername, portalApiPassword, decryptor, userCookie);
 	}
 
 	/*
