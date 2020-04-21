@@ -112,7 +112,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		ResetRequest reset = new ResetRequest();
 		HttpEntity<ResetRequest> entity = new HttpEntity<>(reset);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
+				Void.class);
 		logger.debug("resetTest: response {}", voidResponse);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
