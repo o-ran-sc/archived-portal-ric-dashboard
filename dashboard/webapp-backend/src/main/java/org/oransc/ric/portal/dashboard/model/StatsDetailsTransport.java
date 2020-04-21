@@ -42,12 +42,6 @@ public class StatsDetailsTransport implements IDashboardResponse {
 	public StatsDetailsTransport() {
 	}
 
-	@Override
-	public String toString() {
-		return this.getClass().getName() + "[appId=" + getAppId() + ", appName=" + getAppName() + ", metricUrl="
-				+ getMetricUrl() + "]";
-	}
-
 	public String getAppName() {
 		return appName;
 	}
@@ -62,5 +56,23 @@ public class StatsDetailsTransport implements IDashboardResponse {
 
 	public void setMetricUrl(String metricUrl) {
 		this.metricUrl = metricUrl;
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getName() + "[appId=" + getAppId() + ", appName=" + getAppName() + ", metricUrl="
+				+ getMetricUrl() + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StatsDetailsTransport other = (StatsDetailsTransport) obj;
+		return appId == other.appId;
 	}
 }

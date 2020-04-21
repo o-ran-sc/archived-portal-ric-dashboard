@@ -97,14 +97,30 @@ public class AdminControllerTest extends AbstractControllerTest {
 	@Order(1)
 	@Test
 	public void getAppStatsTest() {
+		// Get all
 		URI uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, "i1",
 				AdminController.STATAPPMETRIC_METHOD);
-		logger.info("Invoking uri {}", uri);
-		ResponseEntity<List<AppStats>> response = testRestTemplateAdminRole().exchange(uri, HttpMethod.GET, null,
+		logger.info("getAppStatsTest: uri {}", uri);
+		ResponseEntity<List<AppStats>> list = testRestTemplateStandardRole().exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<AppStats>>() {
 				});
-		Assertions.assertFalse(response.getBody().isEmpty());
-		Assertions.assertNotEquals(-1, response.getBody().get(0).getStatsDetails().getAppId());
+		Assertions.assertFalse(list.getBody().isEmpty());
+		Assertions.assertNotEquals(-1, list.getBody().get(0).getStatsDetails().getAppId());
+
+		// Get one by ID
+		int appId = list.getBody().get(0).getStatsDetails().getAppId();
+		uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, "i1",
+				AdminController.STATAPPMETRIC_METHOD, DashboardConstants.APP_ID, Integer.toString(appId));
+		logger.info("getAppStatsTest: uri {}", uri);
+		AppStats stats = testRestTemplateStandardRole().getForObject(uri, AppStats.class);
+		Assertions.assertEquals(appId, stats.getStatsDetails().getAppId());
+
+		// Fail to get one by ID
+		uri = buildUri(null, AdminController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY, "i1",
+				AdminController.STATAPPMETRIC_METHOD, DashboardConstants.APP_ID, "987654321");
+		logger.info("getAppStatsTest: uri {}", uri);
+		stats = testRestTemplateStandardRole().getForObject(uri, AppStats.class);
+		Assert.assertNull(stats);
 	}
 
 	@Order(2)
