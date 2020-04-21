@@ -37,15 +37,6 @@ deployment-specific configuration.
 
 The properties are listed below in alphabetical order.
 
-``a1med.url.prefix``
-
-A1 Mediator URL prefix.  No useful default. Usually a service name
-like ``http://ricplt-entry/a1mediator``
-
-``a1med.url.suffix``
-
-A1 Mediator URL suffix. Default is the empty string.
-
 ``appmgr.url.prefix``
 
 Application Manager URL prefix. No useful default. Usually a service
@@ -119,17 +110,22 @@ Name of request cookie with user ID. Default is ``UserId``.
 
 REST user name expected at ONAP portal. No default value.
 
+``ricinstances.regions``
+
+List of RIC region entries.  Each region has a name and a list of RIC
+instances.  See the application.yaml file for an example.
+
 ``server.port``
 
 Port where the Tomcat server listens for requests. Default is ``8080``.
 
-``metrics.url.ac``
+``statsfile``
 
-Url to the kibana source which visualizes AC App metrics. No default value and needs to be replaced with actual value during deployment time.
+Path of file that stores application statistic details. Default is ``dashboard-stats.json``.
 
 ``userfile``
 
-Path of file that stores user details. Default is ``users.json``.
+Path of file that stores user details. Default is ``dashboard-users.json``.
 
 
 Key Properties
@@ -231,6 +227,6 @@ After creating, populating and mounting Kubernetes config maps
 appropriately, launch the server with this command-line invocation to
 include the ``config`` directory on the Java classpath::
 
-    java -cp config:target/ric-dash-be-1.2.0-SNAPSHOT.jar \
+    java -cp config:target/ric-dash-be-2.0.1-SNAPSHOT.jar \
         -Dloader.main=org.oransc.ric.portal.dashboard.DashboardApplication \
         org.springframework.boot.loader.PropertiesLauncher
