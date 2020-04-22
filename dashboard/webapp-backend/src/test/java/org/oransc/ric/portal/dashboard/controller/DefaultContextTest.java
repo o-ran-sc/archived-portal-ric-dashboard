@@ -61,7 +61,7 @@ public class DefaultContextTest {
 	public void contextLoads() {
 		// Silence Sonar warning about missing assertion.
 		Assertions.assertTrue(logger.isWarnEnabled());
-		logger.info("DefaultContextTest#contextLoads on default profile");
+		logger.info("contextLoads on default profile");
 	}
 
 }

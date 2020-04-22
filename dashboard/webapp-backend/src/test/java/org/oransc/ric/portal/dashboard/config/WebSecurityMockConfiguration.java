@@ -21,7 +21,6 @@ package org.oransc.ric.portal.dashboard.config;
 
 import java.lang.invoke.MethodHandles;
 
-import org.onap.portalsdk.core.onboarding.crossapi.IPortalRestCentralService;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.slf4j.Logger;
@@ -98,8 +97,8 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PortalAuthManager portalAuthManagerBean() throws Exception {
-		logger.debug("portalAuthManagerBean");
-		return new PortalAuthManager(IPortalRestCentralService.CREDENTIALS_APP, portalApiUsername, portalApiPassword,
+		logger.debug("portalAuthManagerBean: app {}", appName);
+		return new PortalAuthManager(appName, portalApiUsername, portalApiPassword,
 				decryptor, userCookie);
 	}
 

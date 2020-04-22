@@ -113,7 +113,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PortalAuthManager portalAuthManagerBean() throws ClassNotFoundException, IllegalAccessException,
 			InstantiationException, InvocationTargetException, NoSuchMethodException {
-		logger.debug("portalAuthManagerBean");
+		logger.debug("portalAuthManagerBean: appName {}", appName);
 		return new PortalAuthManager(appName, portalApiUsername, portalApiPassword, decryptor, userCookie);
 	}
 
@@ -128,7 +128,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	public PortalAuthenticationFilter portalAuthenticationFilterBean() throws ClassNotFoundException,
 			IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
-		logger.debug("portalAuthenticationFilterBean");
+		logger.debug("portalAuthenticationFilterBean: portalapiSecurity {}", portalapiSecurity);
 		return new PortalAuthenticationFilter(portalapiSecurity, portalAuthManagerBean(), this.userManager);
 	}
 

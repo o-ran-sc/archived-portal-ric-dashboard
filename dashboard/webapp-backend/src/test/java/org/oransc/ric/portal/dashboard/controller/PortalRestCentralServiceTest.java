@@ -54,7 +54,7 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 	public void getAnalyticsTest() {
 		// paths are hardcoded here exactly like the EPSDK-FW library :(
 		URI uri = buildUri(null, PortalApiConstants.API_PREFIX, "/analytics");
-		logger.info("Invoking {}", uri);
+		logger.info("getAnalyticsTest invoking {}", uri);
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 		// No Portal is available so this always fails
 		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
@@ -64,7 +64,7 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 	public void getErrorPageTest() {
 		// Send unauthorized request
 		URI uri = buildUri(null, "/favicon.ico");
-		logger.info("Invoking {}", uri);
+		logger.info("getErrorPageTest invoking {}", uri);
 		ResponseEntity<String> response = restTemplate.exchange(uri, HttpMethod.GET, null, String.class);
 		Assertions.assertTrue(response.getStatusCode().is4xxClientError());
 		Assertions.assertTrue(response.getBody().contains("Static error page"));
@@ -100,6 +100,7 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		HttpEntity<Object> requestEntity = getEntityWithAuthHeaders(createEcompUser(loginId));
 		ResponseEntity<String> response = restTemplate.exchange(create, HttpMethod.POST, requestEntity, String.class);
 		logger.info("createUserTest response {}", response);
+		Assertions.assertNotNull(response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 
@@ -120,6 +121,7 @@ public class PortalRestCentralServiceTest extends AbstractControllerTest {
 		logger.info("updateUserTest invoking {}", update);
 		response = restTemplate.exchange(update, HttpMethod.POST, requestEntity, String.class);
 		logger.info("updateUserTest response {}", response);
+		Assertions.assertNotNull(response);
 		Assertions.assertTrue(response.getStatusCode().is2xxSuccessful());
 	}
 
