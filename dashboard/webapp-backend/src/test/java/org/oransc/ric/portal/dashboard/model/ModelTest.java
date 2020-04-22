@@ -55,6 +55,7 @@ public class ModelTest extends AbstractModelTest {
 		m.setInstanceKey(s1);
 		m.setStatsDetails(n);
 		checkAppStats(m);
+		Assert.assertNotEquals(1, m.hashCode());
 		logger.info(m.toString());
 	}
 

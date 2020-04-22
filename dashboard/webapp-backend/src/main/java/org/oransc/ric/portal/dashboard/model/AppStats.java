@@ -68,4 +68,13 @@ public class AppStats implements IDashboardResponse {
 		return Objects.equals(instanceKey, other.instanceKey) && Objects.equals(statsDetails, other.statsDetails);
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((instanceKey == null) ? 0 : instanceKey.hashCode());
+		result = prime * result + ((statsDetails == null) ? 0 : statsDetails.hashCode());
+		return result;
+	}
+
 }

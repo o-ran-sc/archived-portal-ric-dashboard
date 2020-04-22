@@ -75,4 +75,15 @@ public class StatsDetailsTransport implements IDashboardResponse {
 		StatsDetailsTransport other = (StatsDetailsTransport) obj;
 		return appId == other.appId;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + appId;
+		result = prime * result + ((appName == null) ? 0 : appName.hashCode());
+		result = prime * result + ((metricUrl == null) ? 0 : metricUrl.hashCode());
+		return result;
+	}
+
 }
