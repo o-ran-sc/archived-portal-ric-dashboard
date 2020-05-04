@@ -18,16 +18,17 @@ The application requires the following configuration files::
     key.properties
     portal.properties
 
-In the usual Kubernetes deployment, all file contents are provided by
-a configuration map.
+In Kubernetes deployment, all file contents are provided by a
+configuration map. Construction of Helm charts, config maps and other
+Kubernetes deployment resources is beyond the scope of this document.
 
 Application Properties
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The file ``application.yaml`` must be provided when the application
-is launched, either in the current working directory or in a ``config``
-subdirectory (latter is preferred). The Helm chart that deploys the
-application should mount this file appropriately.
+The file ``application.yaml`` must be provided when the application is
+launched, either in the current working directory or in a ``config``
+subdirectory (latter is preferred). For example, a Helm chart that
+deploys the application should mount this file appropriately.
 
 Many properties have default values cached within the application, in
 file ``src/main/resources/application.yaml``.  Properties with default
@@ -35,20 +36,19 @@ values do NOT need to be repeated in a deployment-specific configuration.
 Properties without default values MUST be specified in a
 deployment-specific configuration.
 
-The properties are listed below in alphabetical order.
+The properties are listed below in alphabetical order with their fully
+qualified dot-separated names, for example "server.port".  Please note
+that in the YAML file, every component of the name is on a separate
+line, for example::
 
-``appmgr.url.prefix``
-
-Application Manager URL prefix. No useful default. Usually a service
-name like ``http://ricplt-entry/appmgr``
+    server:
+        port: 8080
+	
+The application uses the following properties.
 
 ``appmgr.url.suffix``
 
 Application Manager URL suffix. Default is ``/ric/v1``.
-
-``caasingress.aux.url.prefix``
-
-CAAS-Ingress application URL prefix for the RIC Auxiliary cluster.  No useful default.
 
 ``caasingress.aux.url.suffix``
 
@@ -60,27 +60,13 @@ Flag whether to disable SSL/TLS certificate and hostname verification.
 If true, the dashboard can communicate with a CAAS-Ingress endpoint that
 uses self-signed certificates.
 
-``caasingress.plt.url.prefix``
-
-CAAS-Ingress application URL prefix for the RIC Platform cluster.  No useful default.
-
 ``caasingress.plt.url.suffix``
 
 CAAS-Ingress application URL suffix for the RIC-PLT cluster. Default is ``api``.
 
-``e2mgr.url.prefix``
-
-E2 Manager URL prefix. No useful default. Usually a service name like
-``http://ricplt-entry/e2mgr``
-
 ``e2mgr.url.suffix``
 
-E2 Manager URL prefix. Default is ``/v1``.
-
-``mock.config.delay``
-
-Sleep period for mock methods in milliseconds.  This mimics slow
-endpoints. Default is ``0``.
+E2 Manager URL suffix. Default is ``/v1``.
 
 ``portalapi.appname``
 
@@ -113,19 +99,65 @@ REST user name expected at ONAP portal. No default value.
 ``ricinstances.regions``
 
 List of RIC region entries.  Each region has a name and a list of RIC
-instances.  See the application.yaml file for an example.
+instances.  A region has entries as shown below, where the "[0]"
+notation refers to the first instance in a list.  A partial example
+appears next::
+
+  ricinstances:
+    regions:
+        -
+          name: Region AAA
+          instances:
+              -
+                key: i1
+                name: Primary RIC Instance
+                appUrlPrefix: App prefix 1
+                caasUrlPrefix: Caas prefix 1
+                pltUrlPrefix: Plt prefix 1
+
+
+``ricinstances.regions[0].name``
+
+User-friendly name of the region.
+
+``ricinstances.regions[0].instances[0].key``
+
+Unique key for the instance, across all instances.
+
+``ricinstances.regions[0].instances[0].name``
+
+User-friendly name for the instance.
+
+``ricinstances.regions[0].instances[0].appUrlPrefix``
+
+xApplication URL prefix. In a Kubernetes deployment, this should be
+the URL where an ingress service listens.  Usually a service
+name like ``http://ricplt-entry/xapp``
+
+``ricinstances.regions[0].instances[0].caasUrlPrefix``
+
+CAAS-Ingress application URL prefix for the RIC Auxiliary cluster. 
+
+``ricinstances.regions[0].instances[0].pltUrlPrefix``
+
+RIC Platform URL prefix. In a Kubernetes deployment, this should be
+the URL where an ingress service listens.  Usually a service name like
+``http://ricplt-entry/xapp``
 
 ``server.port``
 
-Port where the Tomcat server listens for requests. Default is ``8080``.
+Port where the Tomcat server listens for requests. Default is
+``8080``.
 
 ``statsfile``
 
-Path of file that stores application statistic details. Default is ``dashboard-stats.json``.
+Path of file that stores application statistic details. Default is
+``dashboard-stats.json``.
 
 ``userfile``
 
-Path of file that stores user details. Default is ``dashboard-users.json``.
+Path of file that stores user details. Default is
+``dashboard-users.json``.
 
 
 Key Properties

@@ -74,12 +74,6 @@ mock:
     config:
         delay: 0
 
-# Kibana report on metrics
-metrics:
-    url:
-        mc: http://jar-app-props-kibana-url-mc
-        ml: http://jar-app-props-kibana-url-ml
-
 # Regions and instances
 # The regions are a just convenience for users,
 # the keys must be unique across all instances.
