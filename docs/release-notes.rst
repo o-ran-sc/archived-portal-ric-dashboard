@@ -5,9 +5,10 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.0.3, 19 May 2020
+Version 2.0.3, 3 Jun 2020
 --------------------------
 * Validate request bodies in backend REST controller methods
+* Upgrade Angular to version 9
 
 Version 2.0.2, 18 May 2020
 --------------------------
