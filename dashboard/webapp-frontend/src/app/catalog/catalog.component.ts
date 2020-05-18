@@ -24,7 +24,7 @@ import { MatSort } from '@angular/material/sort';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { RicInstance } from '../interfaces/dashboard.types';
-import { XMDeployableApp } from '../interfaces/app-mgr.types';
+import { XMXapp } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { InstanceSelectorService } from '../services/instance-selector/instance-selector.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
@@ -77,7 +77,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.instanceChange.unsubscribe();
   }
 
-  onConfigureApp(xapp: XMDeployableApp): void {
+  onConfigureApp(xapp: XMXapp): void {
     if (this.darkMode) {
       this.panelClass = 'dark-theme';
     } else {
@@ -98,7 +98,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     });
   }
 
-  onDeployApp(app: XMDeployableApp): void {
+  onDeployApp(app: XMXapp): void {
     this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
       .afterClosed().subscribe((res: boolean) => {
         if (res) {

@@ -5,6 +5,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 2.0.2, 18 May 2020
+--------------------------
+* Repair App Manager data models in webapp frontend
+
 Version 2.0.1, 30 Apr 2020
 --------------------------
 * Update and relocate the theme selector button

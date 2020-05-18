@@ -18,26 +18,39 @@
  * ========================LICENSE_END===================================
  */
 
-// Models of data used by the App Manager
+// Models of data used by the App Manager.
+// TS interface names are Java class names plus XM prefix.
 
-export interface XMSubscription {
-  eventType: string;
-  id: string;
-  maxRetries: number;
-  retryTimer: number;
-  targetUrl: string;
+export interface XMConfigMetadata {
+  xappName: string;
+  namespace: string;
 }
 
-/**
- * Name is the only required field
- */
-export interface XMXappInfo {
+export interface XMXappConfig {
+  metadata: XMConfigMetadata;
+  config: Object;
+}
+
+export interface XMAllXappConfig {
+  [position: number]: XMXappConfig;
+}
+
+export interface XMConfigValidationError {
+  field: string;
+  error: string;
+}
+
+export interface XMConfigValidationErrors {
+  [position: number]: XMConfigValidationError;
+}
+
+export interface XMAppTransport {
   name: string;
-  configName?: string;
-  namespace?: string;
-  serviceName?: string;
-  imageRepo?: string;
-  hostname?: string;
+  version: string;
+}
+
+export interface XMDashboardDeployableXapps {
+  [position: number]: XMAppTransport;
 }
 
 export interface XMXappInstance {
@@ -47,18 +60,29 @@ export interface XMXappInstance {
   status: string;
   rxMessages: Array<string>;
   txMessages: Array<string>;
+  policies: Array<number>;
 }
 
-export interface XMDeployableApp {
+export interface XMXapp {
   name: string;
-  version: string;
-}
-
-export interface XMDeployedApp {
-  name: string;
-  status: string;
+  status: string; // actually an enum
   version: string;
   instances: Array<XMXappInstance>;
+}
+
+export interface XMAllDeployedXapps {
+  [postion: number]: XMXapp;
+}
+
+/**
+ * xappName is the only required field
+ */
+export interface XMXappDescriptor {
+  xappName: string;
+  helmVersion?: string;
+  releaseName?: string;
+  namespace?: string;
+  overrideFile?: object;
 }
 
 export interface XappControlRow {

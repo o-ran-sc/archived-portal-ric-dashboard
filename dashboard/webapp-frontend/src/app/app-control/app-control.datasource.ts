@@ -26,7 +26,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { merge } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
-import { XappControlRow, XMDeployedApp, XMXappInstance } from '../interfaces/app-mgr.types';
+import { XappControlRow, XMXapp, XMXappInstance } from '../interfaces/app-mgr.types';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
 import { NotificationService } from '../services/ui/notification.service';
 
@@ -48,6 +48,7 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
       status: null,
       rxMessages: [],
       txMessages: [],
+      policies: [],
     };
 
   constructor(private appMgrSvc: AppMgrService,
@@ -67,7 +68,7 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
         }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((xApps: XMDeployedApp[]) => {
+      .subscribe((xApps: XMXapp[]) => {
         this.rowCount = xApps.length;
         const flattenedApps = this.flatten(xApps);
         this.appControlSubject.next(flattenedApps);
@@ -89,7 +90,7 @@ export class AppControlDataSource extends DataSource<XappControlRow> {
     this.loadingSubject.complete();
   }
 
-  private flatten(allxappdata: XMDeployedApp[]): XappControlRow[] {
+  private flatten(allxappdata: XMXapp[]): XappControlRow[] {
     const xAppInstances: XappControlRow[] = [];
     for (const xapp of allxappdata) {
       if (!xapp.instances) {
