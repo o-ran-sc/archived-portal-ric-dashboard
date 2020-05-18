@@ -71,7 +71,7 @@ export interface StatsDetails {
 }
 
 export interface AppStats {
-  instanceKey: string
+  instanceKey: string;
   statsDetails: StatsDetails;
 }
 

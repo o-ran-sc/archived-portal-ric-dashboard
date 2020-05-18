@@ -20,7 +20,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { XMDeployableApp, XMDeployedApp, XMXappInfo } from '../../interfaces/app-mgr.types';
+import { XMAllDeployedXapps, XMAllXappConfig, XMDashboardDeployableXapps,
+          XMXappConfig, XMXappDescriptor } from '../../interfaces/app-mgr.types';
 import { DashboardService } from '../dashboard/dashboard.service';
 
 @Injectable()
@@ -34,20 +35,20 @@ export class AppMgrService {
     private httpClient: HttpClient) {
   }
 
-  getDeployable(instanceKey: string): Observable<XMDeployableApp[]> {
+  getDeployable(instanceKey: string): Observable<XMDashboardDeployableXapps> {
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath, 'list');
-    return this.httpClient.get<XMDeployableApp[]>(path);
+    return this.httpClient.get<XMDashboardDeployableXapps>(path);
   }
 
-  getDeployed(instanceKey: string): Observable<XMDeployedApp[]> {
+  getDeployed(instanceKey: string): Observable<XMAllDeployedXapps> {
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath);
-    return this.httpClient.get<XMDeployedApp[]>(path);
+    return this.httpClient.get<XMAllDeployedXapps>(path);
   }
 
-  deployXapp(instanceKey: string, name: string): Observable<HttpResponse<Object>> {
-    const xappInfo: XMXappInfo = { name: name };
+  deployXapp(instanceKey: string, xappName: string): Observable<HttpResponse<Object>> {
+    const xappDescriptor: XMXappDescriptor = { xappName: xappName };
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath);
-    return this.httpClient.post(path, xappInfo, { observe: 'response' });
+    return this.httpClient.post(path, xappDescriptor, { observe: 'response' });
   }
 
   undeployXapp(instanceKey: string, name: string): Observable<HttpResponse<Object>> {
@@ -55,15 +56,15 @@ export class AppMgrService {
     return this.httpClient.delete(path, { observe: 'response' });
   }
 
-  getConfig(instanceKey: string): Observable<any[]> {
+  getConfig(instanceKey: string): Observable<XMAllXappConfig> {
     // For demo purpose, pull example config from local
-    return this.httpClient.get<any[]>('/assets/mockdata/config.json');
+    return this.httpClient.get<XMAllXappConfig>('/assets/mockdata/config.json');
     // Once Xapp manager contains layout, should call backend to get xapp config
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'config');
     // return this.httpClient.get<any[]>(path);
   }
 
-  putConfig(instanceKey: string, config: any): Observable<HttpResponse<Object>> {
+  putConfig(instanceKey: string, config: XMXappConfig): Observable<HttpResponse<Object>> {
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'config');
     return this.httpClient.put(path, config, { observe: 'response' });
   }

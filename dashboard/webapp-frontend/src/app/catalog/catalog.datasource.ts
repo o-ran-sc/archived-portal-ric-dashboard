@@ -27,12 +27,12 @@ import { merge } from 'rxjs';
 import { of } from 'rxjs/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { AppMgrService } from '../services/app-mgr/app-mgr.service';
-import { XMDeployableApp } from '../interfaces/app-mgr.types';
+import { XMXapp } from '../interfaces/app-mgr.types';
 import { NotificationService } from '../services/ui/notification.service';
 
-export class CatalogDataSource extends DataSource<XMDeployableApp> {
+export class CatalogDataSource extends DataSource<XMXapp> {
 
-  private catalogSubject = new BehaviorSubject<XMDeployableApp[]>([]);
+  private catalogSubject = new BehaviorSubject<XMXapp[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
   public rowCount = 1; // hide footer during intial load
@@ -55,13 +55,13 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
         }),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((xApps: XMDeployableApp[]) => {
+      .subscribe((xApps: XMXapp[]) => {
         this.rowCount = xApps.length;
         this.catalogSubject.next(xApps);
       });
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<XMDeployableApp[]> {
+  connect(collectionViewer: CollectionViewer): Observable<XMXapp[]> {
     const dataMutations = [
       this.catalogSubject.asObservable(),
       this.sort.sortChange
@@ -76,11 +76,11 @@ export class CatalogDataSource extends DataSource<XMDeployableApp> {
     this.loadingSubject.complete();
   }
 
-  private getSortedData(data: XMDeployableApp[]) {
+  private getSortedData(data: XMXapp[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
-    return data.sort((a: XMDeployableApp, b: XMDeployableApp) => {
+    return data.sort((a: XMXapp, b: XMXapp) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return this.compare(a.name, b.name, isAsc);
