@@ -42,6 +42,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -139,7 +140,7 @@ public class AdminController {
 			+ STATAPPMETRIC_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public IDashboardResponse createStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
+			@Validated @RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
 		logger.debug("createStats with instance {} request {}", instanceKey, statsSetupRequest);
 		return appStatsManager.createStats(instanceKey, statsSetupRequest);
 	}
@@ -149,7 +150,7 @@ public class AdminController {
 			+ STATAPPMETRIC_METHOD)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public void updateStats(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
+			@Validated @RequestBody StatsDetailsTransport statsSetupRequest) throws StatsManagerException, IOException {
 		logger.debug("updateStats for instance {} request {}", instanceKey, statsSetupRequest);
 		appStatsManager.updateStats(instanceKey, statsSetupRequest);
 	}

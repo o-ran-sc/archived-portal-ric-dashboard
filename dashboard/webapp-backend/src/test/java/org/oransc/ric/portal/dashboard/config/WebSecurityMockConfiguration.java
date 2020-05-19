@@ -98,8 +98,7 @@ public class WebSecurityMockConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PortalAuthManager portalAuthManagerBean() throws Exception {
 		logger.debug("portalAuthManagerBean: app {}", appName);
-		return new PortalAuthManager(appName, portalApiUsername, portalApiPassword,
-				decryptor, userCookie);
+		return new PortalAuthManager(appName, portalApiUsername, portalApiPassword, decryptor, userCookie);
 	}
 
 }

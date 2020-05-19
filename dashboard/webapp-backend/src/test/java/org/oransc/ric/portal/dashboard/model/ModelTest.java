@@ -24,14 +24,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.onap.portalsdk.core.restful.domain.EcompUser;
 import org.oransc.ric.portal.dashboard.DashboardUserManagerTest;
 import org.oransc.ric.portal.dashboard.exception.UnknownInstanceException;
+import org.oransc.ricplt.appmgr.client.model.Xapp;
+import org.oransc.ricplt.appmgr.client.model.XappDescriptor;
 import org.oransc.ricplt.e2mgr.client.model.GetNodebResponse;
 import org.oransc.ricplt.e2mgr.client.model.NodebIdentity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.client.RestClientException;
 
 public class ModelTest extends AbstractModelTest {
 
@@ -192,16 +196,14 @@ public class ModelTest extends AbstractModelTest {
 
 	@Test
 	public void testRicRegionList() {
-		RicRegionList m = new RicRegionList();
+		new RicRegionList();
 		List<RicRegion> list = new ArrayList<>();
-		m = new RicRegionList(list);
+		final RicRegionList m = new RicRegionList(list);
 		Assert.assertEquals(list, m.getRegions());
 		Assert.assertNotNull(m.getSimpleInstances());
-		try {
+		Assertions.assertThrows(UnknownInstanceException.class, () -> {
 			m.getInstance(s1);
-		} catch (UnknownInstanceException ex) {
-			logger.info("failed as expected: {}", ex.toString());
-		}
+		});
 		logger.info(m.toString());
 	}
 

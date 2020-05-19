@@ -17,19 +17,17 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-package org.oransc.ric.portal.dashboard.k8sapi;
+package org.oransc.ric.portal.dashboard.exception;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+public class InvalidArgumentException extends IllegalArgumentException {
 
-public class SimpleKubernetesClientTest {
+	private static final long serialVersionUID = 6897065423512216018L;
 
-	@Test
-	public void simpleK8sClientTest() {
-		SimpleKubernetesClient client = new SimpleKubernetesClient("http://foo.bar");
-		Assertions.assertThrows(RuntimeException.class, () -> {
-			client.listPods("namespace");
-		});
+	public InvalidArgumentException() {
+		super();
 	}
 
+	public InvalidArgumentException(String s) {
+		super(s);
+	}
 }
