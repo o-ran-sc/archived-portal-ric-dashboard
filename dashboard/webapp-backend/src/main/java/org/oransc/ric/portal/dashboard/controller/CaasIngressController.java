@@ -40,13 +40,12 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Proxies calls from the front end to a CAAS-Ingress API, which is a proxy for
- * a Kubernetes API.
+ * Proxies calls from the front end to a CAAS-Ingress API, which in turn is a
+ * proxy for a Kubernetes API.
  * 
- * If a method throws RestClientResponseException, it is handled by
- * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
- * which returns status 502. All other exceptions are handled by Spring which
- * returns status 500.
+ * If a method throws RestClientResponseException, it is handled by a method in
+ * {@link CustomResponseEntityExceptionHandler} which returns status 502. All
+ * other exceptions are handled by Spring which returns status 500.
  */
 @Configuration
 @RestController

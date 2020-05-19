@@ -26,6 +26,7 @@ import static org.mockito.Mockito.when;
 
 import java.lang.invoke.MethodHandles;
 
+import org.oransc.ric.portal.dashboard.exception.InvalidArgumentException;
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
 import org.oransc.ricplt.appmgr.client.api.HealthApi;
 import org.oransc.ricplt.appmgr.client.api.XappApi;
@@ -144,6 +145,9 @@ public class AppManagerMockConfiguration {
 				logger.debug("deployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
 				Thread.sleep(delayMs);
 			}
+			XappDescriptor descr = inv.<XappDescriptor>getArgument(0);
+			if (descr == null || descr.getXappName() == null)
+				throw new InvalidArgumentException("Name is required");
 			return deployedXapps.get(0);
 		}).when(mockApi).deployXapp(any(XappDescriptor.class));
 		doAnswer(inv -> {

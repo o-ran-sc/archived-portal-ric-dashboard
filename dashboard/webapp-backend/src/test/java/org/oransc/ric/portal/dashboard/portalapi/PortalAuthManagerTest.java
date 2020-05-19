@@ -27,6 +27,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.onap.portalsdk.core.onboarding.util.PortalApiConstants;
@@ -71,22 +72,16 @@ public class PortalAuthManagerTest {
 		Assert.assertNull(s);
 
 		DashboardUserManager dum = new DashboardUserManager(true);
-		PortalAuthenticationFilter filter = new PortalAuthenticationFilter(false, m, dum);
+		final PortalAuthenticationFilter filter = new PortalAuthenticationFilter(false, m, dum);
 		filter.init(null);
 		filter.destroy();
 		MockHttpServletResponse response = new MockHttpServletResponse();
-		try {
+		Assertions.assertThrows(NullPointerException.class, () -> {
 			filter.doFilter(request, response, null);
-		} catch (NullPointerException ex) {
-			logger.debug("chain is null");
-		}
+		});
 
-		filter = new PortalAuthenticationFilter(true, m, dum);
-		try {
-			filter.doFilter(request, response, null);
-		} catch (NullPointerException ex) {
-			logger.debug("chain is null");
-		}
+		PortalAuthenticationFilter filter2 = new PortalAuthenticationFilter(true, m, dum);
+		filter2.doFilter(request, response, null);
 	}
 
 }

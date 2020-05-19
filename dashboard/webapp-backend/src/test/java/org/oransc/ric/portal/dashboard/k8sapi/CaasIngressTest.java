@@ -19,18 +19,12 @@
  */
 package org.oransc.ric.portal.dashboard.k8sapi;
 
-import java.lang.invoke.MethodHandles;
-
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.util.HttpsURLConnectionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
 public class CaasIngressTest {
-
-	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Test
 	public void coverHttpsUtils() throws Exception {
@@ -38,13 +32,9 @@ public class CaasIngressTest {
 		// Get IP address from REC deployment team for testing
 		final String podsUrl = "https://localhost:16443/api/v1/namespaces/ricaux/pods";
 		RestTemplate rt = new RestTemplate();
-		try {
+		Assertions.assertThrows(Exception.class, () -> {
 			rt.getForEntity(podsUrl, String.class);
-			Assert.assertTrue(false);
-		} catch (Exception ex) {
-			Assert.assertNotNull(ex);
-			logger.warn("Failed as expected");
-		}
+		});
 		HttpsURLConnectionUtils.turnOnSslChecking();
 	}
 

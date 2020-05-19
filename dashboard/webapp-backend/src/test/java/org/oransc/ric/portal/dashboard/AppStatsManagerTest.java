@@ -23,6 +23,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.oransc.ric.portal.dashboard.config.RICInstanceMockConfiguration;
 import org.oransc.ric.portal.dashboard.exception.StatsManagerException;
@@ -40,12 +41,9 @@ public class AppStatsManagerTest {
 	@Test
 	public void testStatsMgr() throws Exception {
 		new AppStatsManager("file.json");
-		try {
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
 			new AppStatsManager(null);
-			throw new Exception("Unexpected success");
-		} catch (IllegalArgumentException ex) {
-			logger.info("caught expected exception: {}", ex.toString());
-		}
+		});
 		AppStatsManager mgr = new AppStatsManager(true);
 		AppStats as1 = mgr.createStats(RICInstanceMockConfiguration.INSTANCE_KEY_1,
 				new StatsDetailsTransport(-1, "app1 name", "http://app1"));
@@ -57,16 +55,13 @@ public class AppStatsManagerTest {
 		Assert.assertFalse(all.isEmpty());
 		List<AppStats> byInstance = mgr.getStatsByInstance(RICInstanceMockConfiguration.INSTANCE_KEY_1);
 		Assert.assertFalse(byInstance.isEmpty());
-		mgr = new AppStatsManager(false);
-		AppStats as3 = mgr.createStats(RICInstanceMockConfiguration.INSTANCE_KEY_1,
+		final AppStatsManager mgr2 = new AppStatsManager(false);
+		AppStats as3 = mgr2.createStats(RICInstanceMockConfiguration.INSTANCE_KEY_1,
 				new StatsDetailsTransport(-1, "app3 name", "http://app3"));
 		Assert.assertNotEquals(as2.getStatsDetails().getAppId(), as3.getStatsDetails().getAppId());
-		try {
-			mgr.createStats(as3.getInstanceKey(), as3.getStatsDetails());
-			throw new Exception("Unexpected success");
-		} catch (StatsManagerException ex) {
-			logger.info("caught expected exception: {}", ex.toString());
-		}
+		Assertions.assertThrows(StatsManagerException.class, () -> {
+			mgr2.createStats(as3.getInstanceKey(), as3.getStatsDetails());
+		});
 		AppStats as = mgr.getStatsById(as1.getInstanceKey(), as1.getStatsDetails().getAppId());
 		Assert.assertEquals(as1, as);
 		AppStats notFound = mgr.getStatsById("bogus", 12345);
@@ -74,18 +69,12 @@ public class AppStatsManagerTest {
 		as1.getStatsDetails().setMetricUrl("http://other");
 		mgr.updateStats(as1.getInstanceKey(), as1.getStatsDetails());
 		mgr.deleteStats(as1.getInstanceKey(), as1.getStatsDetails().getAppId());
-		try {
-			mgr.updateStats("bogus", as1.getStatsDetails());
-			throw new Exception("Unexpected success");
-		} catch (StatsManagerException ex) {
-			logger.info("caught expected exception: {}", ex.toString());
-		}
-		try {
-			mgr.deleteStats("bogus", 999);
-			throw new Exception("Unexpected success");
-		} catch (StatsManagerException ex) {
-			logger.info("caught expected exception: {}", ex.toString());
-		}
+		Assertions.assertThrows(StatsManagerException.class, () -> {
+			mgr2.updateStats("bogus", as1.getStatsDetails());
+		});
+		Assertions.assertThrows(StatsManagerException.class, () -> {
+			mgr2.deleteStats("bogus", 999);
+		});
 	}
 
 }
