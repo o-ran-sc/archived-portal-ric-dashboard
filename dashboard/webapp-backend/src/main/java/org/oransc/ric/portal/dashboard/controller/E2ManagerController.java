@@ -41,6 +41,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -168,7 +169,8 @@ public class E2ManagerController {
 			+ "/{" + PP_RANNAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public ResponseEntity<String> updateGnb(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_RANNAME) String ranName, @RequestBody UpdateGnbRequest updateGnbRequest) {
+			@PathVariable(PP_RANNAME) String ranName, //
+			@Validated @RequestBody UpdateGnbRequest updateGnbRequest) {
 		logger.debug("updateGnb instance {} ran {}", instanceKey, ranName);
 		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
 		api.updateGnb(updateGnbRequest, ranName);

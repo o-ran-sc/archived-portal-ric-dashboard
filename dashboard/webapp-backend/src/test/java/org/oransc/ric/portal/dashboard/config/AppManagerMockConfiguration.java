@@ -144,6 +144,9 @@ public class AppManagerMockConfiguration {
 				logger.debug("deployXapp of {} sleeping {}", inv.getArgument(0), delayMs);
 				Thread.sleep(delayMs);
 			}
+			XappDescriptor descr = inv.<XappDescriptor>getArgument(0);
+			if (descr == null || descr.getXappName() == null)
+				throw new IllegalArgumentException("Name is required");
 			return deployedXapps.get(0);
 		}).when(mockApi).deployXapp(any(XappDescriptor.class));
 		doAnswer(inv -> {

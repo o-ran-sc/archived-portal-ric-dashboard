@@ -102,8 +102,9 @@ public class AppManagerControllerTest extends AbstractControllerTest {
 		URI uri = buildUri(null, AppManagerController.CONTROLLER_PATH, DashboardConstants.RIC_INSTANCE_KEY,
 				RICInstanceMockConfiguration.INSTANCE_KEY_1, AppManagerController.XAPPS_METHOD);
 		logger.info("Invoking {}", uri);
-		XappDescriptor descr = new XappDescriptor();
+		XappDescriptor descr = new XappDescriptor().xappName("app");
 		Xapp app = testRestTemplateAdminRole().postForObject(uri, descr, Xapp.class);
+		Assertions.assertNotNull(app);
 		Assertions.assertFalse(app.getName().isEmpty());
 	}
 

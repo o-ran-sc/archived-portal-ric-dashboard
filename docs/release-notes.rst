@@ -5,9 +5,13 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 2.0.3, 19 May 2020
+--------------------------
+* Validate request bodies in backend REST controller methods
+
 Version 2.0.2, 18 May 2020
 --------------------------
-* Repair App Manager data models in webapp frontend
+* Repair App Manager data models in webapp frontend (`OAM-103 <https://jira.o-ran-sc.org/browse/OAM-103>`_)
 
 Version 2.0.1, 30 Apr 2020
 --------------------------
