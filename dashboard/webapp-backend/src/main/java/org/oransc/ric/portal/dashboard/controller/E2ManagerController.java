@@ -23,6 +23,8 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.oransc.ric.portal.dashboard.DashboardApplication;
 import org.oransc.ric.portal.dashboard.DashboardConstants;
 import org.oransc.ric.portal.dashboard.config.E2ManagerApiBuilder;
@@ -41,6 +43,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,10 +57,9 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Proxies calls from the front end to the E2 Manager API.
  * 
- * If a method throws RestClientResponseException, it is handled by
- * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
- * which returns status 502. All other exceptions are handled by Spring which
- * returns status 500.
+ * If a method throws RestClientResponseException, it is handled by a method in
+ * {@link CustomResponseEntityExceptionHandler} which returns status 502. All
+ * other exceptions are handled by Spring which returns status 500.
  */
 @Configuration
 @RestController
@@ -168,7 +170,8 @@ public class E2ManagerController {
 			+ "/{" + PP_RANNAME + "}")
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public ResponseEntity<String> updateGnb(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@PathVariable(PP_RANNAME) String ranName, @RequestBody UpdateGnbRequest updateGnbRequest) {
+			@PathVariable(PP_RANNAME) String ranName, //
+			@Valid @Validated @RequestBody UpdateGnbRequest updateGnbRequest) {
 		logger.debug("updateGnb instance {} ran {}", instanceKey, ranName);
 		NodebApi api = e2ManagerApiBuilder.getNodebApi(instanceKey);
 		api.updateGnb(updateGnbRequest, ranName);

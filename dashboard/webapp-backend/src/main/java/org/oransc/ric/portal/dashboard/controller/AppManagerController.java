@@ -44,6 +44,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,10 +59,9 @@ import io.swagger.annotations.ApiOperation;
 /**
  * Proxies calls from the front end to the App Manager API.
  * 
- * If a method throws RestClientResponseException, it is handled by
- * {@link CustomResponseEntityExceptionHandler#handleProxyMethodException(Exception, org.springframework.web.context.request.WebRequest)}
- * which returns status 502. All other exceptions are handled by Spring which
- * returns status 500.
+ * If a method throws RestClientResponseException, it is handled by a method in
+ * {@link CustomResponseEntityExceptionHandler} which returns status 502. All
+ * other exceptions are handled by Spring which returns status 500.
  */
 @Configuration
 @RestController
@@ -138,7 +138,8 @@ public class AppManagerController {
 	@PutMapping(CONFIG_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
 	public ConfigValidationErrors modifyXappConfig(
-			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, @RequestBody XAppConfig xAppConfig) {
+			@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, //
+			@Validated @RequestBody XAppConfig xAppConfig) {
 		logger.debug("modifyXappConfig instance {} config {}", instanceKey, xAppConfig);
 		return appManagerApiBuilder.getXappApi(instanceKey).modifyXappConfig(xAppConfig);
 	}
@@ -180,8 +181,8 @@ public class AppManagerController {
 	@ApiOperation(value = "Deploy a xapp.", response = Xapp.class)
 	@PostMapping(XAPPS_METHOD_PATH)
 	@Secured({ DashboardConstants.ROLE_ADMIN })
-	public Xapp deployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey,
-			@RequestBody XappDescriptor appDescriptor) {
+	public Xapp deployXapp(@PathVariable(DashboardConstants.RIC_INSTANCE_KEY) String instanceKey, //
+			@Validated @RequestBody XappDescriptor appDescriptor) {
 		logger.debug("deployXapp instance {} descriptor {}", instanceKey, appDescriptor);
 		return appManagerApiBuilder.getXappApi(instanceKey).deployXapp(appDescriptor);
 	}

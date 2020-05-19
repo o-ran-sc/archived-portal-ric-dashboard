@@ -138,12 +138,9 @@ public class AdminControllerTest extends AbstractControllerTest {
 		statsDetails.setMetricUrl("https://www.example2-next.com");
 		AppStats stNext = testRestTemplateAdminRole().postForObject(uri, statsDetails, AppStats.class);
 		Assertions.assertTrue(st.getStatsDetails().getAppId() < stNext.getStatsDetails().getAppId());
-		try {
+		Assertions.assertThrows(RestClientException.class, () -> {
 			testRestTemplateAdminRole().postForObject(uri, statsDetails, AppStats.class);
-			Assert.assertTrue(false);
-		} catch (RestClientException ex) {
-			logger.info("Caught exception on create as expected: {}", ex.toString());
-		}
+		});
 	}
 
 	@Order(3)

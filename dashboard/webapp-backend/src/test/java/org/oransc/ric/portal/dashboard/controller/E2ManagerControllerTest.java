@@ -55,7 +55,8 @@ public class E2ManagerControllerTest extends AbstractControllerTest {
 		logger.info("Invoking {}", uri);
 		UpdateGnbRequest update = new UpdateGnbRequest();
 		HttpEntity<UpdateGnbRequest> entity = new HttpEntity<>(update);
-		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity, Void.class);
+		ResponseEntity<Void> voidResponse = testRestTemplateAdminRole().exchange(uri, HttpMethod.PUT, entity,
+				Void.class);
 		Assertions.assertTrue(voidResponse.getStatusCode().is2xxSuccessful());
 	}
 
