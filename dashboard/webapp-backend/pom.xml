@@ -25,7 +25,7 @@ limitations under the License.
 	<parent>
 		<groupId>org.o-ran-sc.portal.ric-dashboard</groupId>
 		<artifactId>ric-dash-parent</artifactId>
-		<version>2.0.3-SNAPSHOT</version>
+		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<!-- reuse parent groupId -->
 	<artifactId>ric-dash-be</artifactId>
@@ -53,6 +53,11 @@ limitations under the License.
 			<groupId>org.o-ran-sc.ric-plt.e2mgr.client</groupId>
 			<artifactId>e2-mgr-client</artifactId>
 			<version>4.4.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.o-ran-sc.it-dev.xapp-onboarder.client</groupId>
+			<artifactId>xapp-obrd-client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.onap.portal.sdk</groupId>

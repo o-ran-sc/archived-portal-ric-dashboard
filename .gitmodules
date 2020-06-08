@@ -4,3 +4,6 @@
 [submodule "dashboard/e2-mgr-client/ric-plt-e2mgr"]
 	path = dashboard/e2-mgr-client/ric-plt-e2mgr
 	url = ../../ric-plt/e2mgr
+[submodule "dashboard/xapp-obrd-client/it-dev"]
+	path = dashboard/xapp-obrd-client/it-dev
+	url = ../../it/dev

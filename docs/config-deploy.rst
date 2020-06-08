@@ -48,7 +48,7 @@ The application uses the following properties.
 
 ``appmgr.url.suffix``
 
-Application Manager URL suffix. Default is ``/ric/v1``.
+Application Manager URL suffix. Default is ``/appmgr/ric/v1``.
 
 ``caasingress.aux.url.suffix``
 
@@ -66,7 +66,7 @@ CAAS-Ingress application URL suffix for the RIC-PLT cluster. Default is ``api``.
 
 ``e2mgr.url.suffix``
 
-E2 Manager URL suffix. Default is ``/v1``.
+E2 Manager URL suffix. Default is ``/e2mgr/v1``.
 
 ``portalapi.appname``
 
@@ -159,6 +159,9 @@ Path of file that stores application statistic details. Default is
 Path of file that stores user details. Default is
 ``dashboard-users.json``.
 
+``xappobrd.url.suffix``
+
+Xapp Onboarder URL suffix. Default is ``/xapporbd/api/v1``.
 
 Key Properties
 ^^^^^^^^^^^^^^
