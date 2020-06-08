@@ -5,6 +5,10 @@
 RIC Dashboard Release Notes
 ===========================
 
+Version 2.1.0, 8 Jun 2020
+--------------------------
+* Add Xapp Onboarder client to backend (`OAM-108 <https://jira.o-ran-sc.org/browse/OAM-108>`_)
+
 Version 2.0.3, 3 Jun 2020
 --------------------------
 * Validate request bodies in backend REST controller methods
