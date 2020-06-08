@@ -29,6 +29,7 @@ import org.oransc.ric.portal.dashboard.controller.AdminController;
 import org.oransc.ric.portal.dashboard.controller.AppManagerController;
 import org.oransc.ric.portal.dashboard.controller.E2ManagerController;
 import org.oransc.ric.portal.dashboard.controller.SimpleErrorController;
+import org.oransc.ric.portal.dashboard.controller.XappOnboarderController;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthManager;
 import org.oransc.ric.portal.dashboard.portalapi.PortalAuthenticationFilter;
 import org.slf4j.Logger;
@@ -102,6 +103,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			E2ManagerController.CONTROLLER_PATH + "/" + DashboardConstants.RIC_INSTANCE_KEY + "/*/"
 					+ E2ManagerController.HEALTH_METHOD, //
 			E2ManagerController.CONTROLLER_PATH + "/" + DashboardConstants.VERSION_METHOD, //
+			XappOnboarderController.CONTROLLER_PATH + "/" + DashboardConstants.VERSION_METHOD, //
+			XappOnboarderController.CONTROLLER_PATH + "/" + DashboardConstants.RIC_INSTANCE_KEY + "/*/"
+					+ XappOnboarderController.HEALTH_METHOD, //
 			SimpleErrorController.ERROR_PATH };
 
 	@Override
