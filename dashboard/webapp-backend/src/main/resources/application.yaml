@@ -60,6 +60,12 @@ e2mgr:
         # uses pltUrlPrefix
         suffix: /e2mgr/v1
 
+# Xapp Onboarder
+xappobrd:
+    url:
+        # uses pltUrlPrefix
+        suffix: /xappobrd/api/v1
+
 # Kubernetes API via https://github.com/nokia/caas-ingress
 caasingress:
     # Set insecure=true to disable SSL certificate and hostname checking

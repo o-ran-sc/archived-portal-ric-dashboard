@@ -1,0 +1,30 @@
+{
+  "anr": [
+    {
+      "name": "anr",
+      "version": "1.0.0",
+      "description": "Standard xApp Helm Chart",
+      "apiVersion": "v1",
+      "appVersion": "1.0",
+      "urls": [
+        "charts/anr-1.0.0.tgz"
+      ],
+      "created": "2020-06-15T14:57:25.238326423Z",
+      "digest": "d83cf464479e59999917b67305db04480c6c573b1812b8095547705d9e2ce2a1"
+    }
+  ],
+  "mcxapp": [
+    {
+      "name": "mcxapp",
+      "version": "1.0.7",
+      "description": "Standard xApp Helm Chart",
+      "apiVersion": "v1",
+      "appVersion": "1.0",
+      "urls": [
+        "charts/mcxapp-1.0.7.tgz"
+      ],
+      "created": "2020-06-15T14:59:25.734253163Z",
+      "digest": "06a0a194238b505b83e95b2d2637b26335a799f60fe3d04fde0450f98d67a782"
+    }
+  ]
+}

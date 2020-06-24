@@ -3,7 +3,7 @@
 ========================LICENSE_START=================================
 O-RAN-SC
 %%
-Copyright (C) 2019 AT&T Intellectual Property
+Copyright (C) 2020 AT&T Intellectual Property
 %%
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,17 +28,18 @@ limitations under the License.
 		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<!-- This groupId will NOT allow deployment in LF -->
-	<groupId>org.o-ran-sc.ric-plt.e2mgr.client</groupId>
-	<artifactId>e2-mgr-client</artifactId>
-	<name>RIC E2 Manager Client</name>
-	<version>4.4.4-SNAPSHOT</version>
+	<groupId>org.o-ran-sc.it-dev.xapp-onboarder.client</groupId>
+	<artifactId>xapp-obrd-client</artifactId>
+	<name>RIC Xapp Onboarder Client</name>
+	<!-- Update to match submodule tag -->
+	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Jenkins invokes maven with -Dbuild.number=.. -->
 		<build.number>0</build.number>
 		<!-- same as groupId BUT without hyphens -->
-		<client.base.package.name>org.oransc.ricplt.e2mgr.client</client.base.package.name>
+		<client.base.package.name>org.oransc.itdev.xapponboarder.client</client.base.package.name>
 	</properties>
 	<!-- Successful compilation requires generated code dependencies -->
 	<dependencies>
@@ -102,12 +103,8 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/ric-plt-e2mgr/Swagger/E2M_API_2020-04-23.yaml</inputSpec>
+							<inputSpec>${project.basedir}/it-dev/xapp_onboarder/xapp_onboarder/xapp-onboarder-api.yaml</inputSpec>
 							<language>java</language>
-							<packageName>${client.base.package.name}</packageName>
-							<modelPackage>${client.base.package.name}.model</modelPackage>
-							<apiPackage>${client.base.package.name}.api</apiPackage>
-							<invokerPackage>${client.base.package.name}.invoker</invokerPackage>
 							<configOptions>
 								<groupId>${project.groupId}</groupId>
 								<artifactId>${project.artifactId}</artifactId>
@@ -118,6 +115,10 @@ limitations under the License.
 								<licenseName>Apache 2.0</licenseName>
 								<licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 							</configOptions>
+							<packageName>${client.base.package.name}</packageName>
+							<modelPackage>${client.base.package.name}.model</modelPackage>
+							<apiPackage>${client.base.package.name}.api</apiPackage>
+							<invokerPackage>${client.base.package.name}.invoker</invokerPackage>
 						</configuration>
 					</execution>
 				</executions>
@@ -143,7 +144,7 @@ limitations under the License.
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<!--  version>1.7</version> -->
+				<!-- version>1.7</version> -->
 				<executions>
 					<execution>
 						<phase>generate-sources</phase>
@@ -172,7 +173,7 @@ limitations under the License.
 							<pluginExecutions>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>io.swagger.codegen.v3</groupId>
+										<groupId>io.swagger</groupId>
 										<artifactId>swagger-codegen-maven-plugin</artifactId>
 										<versionRange>[1.0,)</versionRange>
 										<goals>
