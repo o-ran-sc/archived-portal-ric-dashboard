@@ -31,6 +31,7 @@ import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { OnboardComponent } from './../onboard/onboard.component';
 import { NotificationService } from '../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
 
@@ -123,6 +124,26 @@ export class CatalogComponent implements OnInit, OnDestroy {
         }
       }
       );
+  }
+
+  onboard(): void {
+    if (this.darkMode) {
+      this.panelClass = 'dark-theme';
+    } else {
+      this.panelClass = '';
+    }
+    const dialogRef = this.dialog.open(OnboardComponent, {
+      panelClass: this.panelClass,
+      width: '400px',
+      maxHeight: '1000px',
+      position: {
+        top: '10%'
+      },
+      data: {
+        instanceKey: this.instanceKey
+      }
+
+    });
   }
 
 }

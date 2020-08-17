@@ -17,47 +17,49 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div class="catalog__section">
-  <h3 class="rd-global-page-title">xApp Catalog</h3>
+  <div class="catalog__section">
+    <h3 class="rd-global-page-title">xApp Catalog</h3>
 
-  <table mat-table [dataSource]="dataSource" matSort class="catalog-table mat-elevation-z8">
+    <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Onboard Xapp</button>
 
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> App Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" matSort class="catalog-table mat-elevation-z8">
 
-    <ng-container matColumnDef="version">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Version </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.version}} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> App Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="action">
-      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        <div class="catalog-button-row">
-          <button mat-icon-button (click)="onConfigureApp(element)">
-            <mat-icon matTooltip="Adjust settings">settings</mat-icon>
-          </button>
-          <button mat-icon-button (click)="onDeployApp(element)">
-            <mat-icon matTooltip="Deploy app">cloud_upload</mat-icon>
-          </button>
-        </div>
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Version </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.version}} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="noRecordsFound">
-      <mat-footer-cell *matFooterCellDef>No records found.</mat-footer-cell>
-    </ng-container>
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div class="catalog-button-row">
+            <button mat-icon-button (click)="onConfigureApp(element)">
+              <mat-icon matTooltip="Adjust settings">settings</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDeployApp(element)">
+              <mat-icon matTooltip="Deploy app">cloud_upload</mat-icon>
+            </button>
+          </div>
+        </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}"></mat-footer-row>
+      <ng-container matColumnDef="noRecordsFound">
+        <mat-footer-cell *matFooterCellDef>No records found.</mat-footer-cell>
+      </ng-container>
 
-  </table>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-footer-row *matFooterRowDef="['noRecordsFound']" [ngClass]="{'display-none': dataSource.rowCount > 0}"></mat-footer-row>
 
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner diameter=50></mat-spinner>
+    </table>
+
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+      <mat-spinner diameter=50></mat-spinner>
+    </div>
+
   </div>
-
-</div>

@@ -67,6 +67,7 @@ import { EditDashboardUserDialogComponent } from './user/edit-dashboard-user-dia
 import { ErrorDialogComponent } from './ui/error-dialog/error-dialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { InstanceSelectorDialogComponent } from './ui/instance-selector-dialog/instance-selector-dialog.component';
+import { OnboardComponent } from './onboard/onboard.component';
 import { LoadingDialogComponent } from './ui/loading-dialog/loading-dialog.component';
 import { MainComponent } from './main/main.component';
 import { PlatformComponent } from './platform/platform.component';
@@ -87,6 +88,7 @@ import { ErrorDialogService } from './services/ui/error-dialog.service';
 import { InstanceSelectorService } from './services/instance-selector/instance-selector.service';
 import { InstanceSelectorDialogService } from './services/ui/instance-selector-dialog.service';
 import { UiService } from './services/ui/ui.service';
+import { XappOnboarderService } from './services/xapp-onboarder/xapp-onboarder.service';
 
 
 @NgModule({
@@ -113,7 +115,8 @@ import { UiService } from './services/ui/ui.service';
     StatsComponent,
     StatsDialogComponent,
     UserComponent,
-    InstanceSelectorDialogComponent
+    InstanceSelectorDialogComponent,
+    OnboardComponent
   ],
   imports: [
     BrowserModule,
@@ -186,7 +189,8 @@ import { UiService } from './services/ui/ui.service';
     ErrorDialogService,
     InstanceSelectorService,
     InstanceSelectorDialogService,
-    UiService
+    UiService,
+    XappOnboarderService
   ],
   bootstrap: [RdComponent]
 })
