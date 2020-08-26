@@ -5,8 +5,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.1.0, 17 Aug 2020
+Version 2.1.0, 26 Aug 2020
 --------------------------
+* Extend the Dashboard Xapp deploy workflow to accept configuration (`OAM-109 <https://jira.o-ran-sc.org/browse/OAM-109>`_)
 * Add Xapp Onboarder client to backend (`OAM-108 <https://jira.o-ran-sc.org/browse/OAM-108>`_)
 * Add Xapp Onboarder frontend UI (`OAM-108 <https://jira.o-ran-sc.org/browse/OAM-108>`_)
 

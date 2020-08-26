@@ -117,21 +117,24 @@ export class OnboardComponent implements OnInit {
 
 
   selectConfigFile(event) {
-    this.configFile = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      this.descriptor["config-file.json"] = JSON.parse(fileReader.result as string);
+    if (event.target.files.length) {
+      this.configFile = event.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        this.descriptor["config-file.json"] = JSON.parse(fileReader.result as string);
+      }
+      fileReader.readAsText(this.configFile);
     }
-    fileReader.readAsText(this.configFile);
   }
 
   selectControlsSchema(event) {
-    this.controlsSchema = event.target.files[0];
-    let fileReader = new FileReader();
-    fileReader.onload = (e) => {
-      this.descriptor["controls-schema.json"] = JSON.parse(fileReader.result as string);
+    if (event.target.files.length) {
+      this.controlsSchema = event.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        this.descriptor["controls-schema.json"] = JSON.parse(fileReader.result as string);
+      }
+      fileReader.readAsText(this.controlsSchema);
     }
-    fileReader.readAsText(this.controlsSchema);
-
   }
 }
