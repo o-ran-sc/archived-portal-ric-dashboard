@@ -89,6 +89,7 @@ import { InstanceSelectorService } from './services/instance-selector/instance-s
 import { InstanceSelectorDialogService } from './services/ui/instance-selector-dialog.service';
 import { UiService } from './services/ui/ui.service';
 import { XappOnboarderService } from './services/xapp-onboarder/xapp-onboarder.service';
+import { DeployDialogComponent } from './ui/deploy-dialog/deploy-dialog.component';
 
 
 @NgModule({
@@ -116,7 +117,8 @@ import { XappOnboarderService } from './services/xapp-onboarder/xapp-onboarder.s
     StatsDialogComponent,
     UserComponent,
     InstanceSelectorDialogComponent,
-    OnboardComponent
+    OnboardComponent,
+    DeployDialogComponent
   ],
   imports: [
     BrowserModule,

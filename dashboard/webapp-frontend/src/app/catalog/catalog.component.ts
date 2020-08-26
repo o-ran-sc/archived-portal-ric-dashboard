@@ -31,6 +31,7 @@ import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { UiService } from '../services/ui/ui.service';
 import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
+import { DeployDialogComponent } from '../ui/deploy-dialog/deploy-dialog.component';
 import { OnboardComponent } from './../onboard/onboard.component';
 import { NotificationService } from '../services/ui/notification.service';
 import { CatalogDataSource } from './catalog.datasource';
@@ -100,7 +101,26 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   onDeployApp(app: XMXapp): void {
-    this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
+    if (this.darkMode) {
+      this.panelClass = 'dark-theme';
+    } else {
+      this.panelClass = '';
+    }
+    const dialogRef = this.dialog.open(DeployDialogComponent, {
+      panelClass: this.panelClass,
+      width: '400px',
+      maxHeight: '1000px',
+      position: {
+        top: '10%'
+      },
+      data: {
+        xappName: app.name,
+        instanceKey: this.instanceKey
+      }
+
+    });
+  }
+/*    this.confirmDialogService.openConfirmDialog('Deploy application ' + app.name + '?')
       .afterClosed().subscribe((res: boolean) => {
         if (res) {
           this.loadingDialogService.startLoading('Deploying ' + app.name);
@@ -124,7 +144,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
         }
       }
       );
-  }
+  }*/
 
   onboard(): void {
     if (this.darkMode) {

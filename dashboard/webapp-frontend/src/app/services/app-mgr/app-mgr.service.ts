@@ -45,8 +45,7 @@ export class AppMgrService {
     return this.httpClient.get<XMAllDeployedXapps>(path);
   }
 
-  deployXapp(instanceKey: string, xappName: string): Observable<HttpResponse<Object>> {
-    const xappDescriptor: XMXappDescriptor = { xappName: xappName };
+  deployXapp(instanceKey: string, xappDescriptor: XMXappDescriptor): Observable<HttpResponse<Object>> {
     const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath);
     return this.httpClient.post(path, xappDescriptor, { observe: 'response' });
   }
