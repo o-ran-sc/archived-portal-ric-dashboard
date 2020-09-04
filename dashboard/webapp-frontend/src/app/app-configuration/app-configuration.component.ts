@@ -27,6 +27,7 @@ import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { NotificationService } from '../services/ui/notification.service';
+import { XMXappConfig } from "../interfaces/app-mgr.types"
 
 @Component({
   selector: 'rd-app-configuration',
@@ -47,10 +48,8 @@ export class AppConfigurationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data
   ) { }
 
-  xappMetadata: any;
-  xappConfigSchema: any;
-  xappConfigData: any;
-  xappLayout: any;
+  xappConfig: XMXappConfig
+
   ngOnInit() {
     this.loadingSubject.next(true);
     this.appMgrService.getConfig(this.data.instanceKey)
@@ -59,20 +58,14 @@ export class AppConfigurationComponent implements OnInit {
       )
       .subscribe(
         (allConfig: any) => {
-          this.loadConfigForm(this.data.xapp.name, allConfig);
+          this.loadConfigForm(this.data.xapp, allConfig);
         }
       );
   }
 
-  updateconfig(event) {
-    const config = {
-      metadata: this.xappMetadata,
-      descriptor: this.xappConfigSchema,
-      config: event,
-      layout: this.xappLayout
-    };
-    this.loadingDialogService.startLoading('Updating ' + this.data.xapp.name + ' configuration');
-    this.appMgrService.putConfig(this.data.instanceKey, config)
+  updateconfig(config: any) {
+    this.loadingDialogService.startLoading('Updating ' + this.data.xapp + ' configuration');
+    this.appMgrService.putConfig(this.data.instanceKey, JSON.parse(config))
       .pipe(
         finalize(() => {
           this.loadingDialogService.stopLoading();
@@ -96,10 +89,7 @@ export class AppConfigurationComponent implements OnInit {
   loadConfigForm(name: string, allConfig: any) {
     const xappConfig = allConfig.find(xapp => xapp.metadata.name === name);
     if (xappConfig != null) {
-      this.xappMetadata = xappConfig.metadata;
-      this.xappConfigSchema = xappConfig.descriptor;
-      this.xappConfigData = xappConfig.config;
-      this.xappLayout = xappConfig.layout;
+      this.xappConfig = xappConfig
     } else {
       this.errorDiaglogService.displayError('Cannot find configration data for ' + name);
       this.dialogRef.close();

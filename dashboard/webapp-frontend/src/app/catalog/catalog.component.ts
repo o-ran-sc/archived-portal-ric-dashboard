@@ -30,7 +30,6 @@ import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
 import { UiService } from '../services/ui/ui.service';
 import { DeployDialogComponent } from '../ui/deploy-dialog/deploy-dialog.component';
-import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { OnboardComponent } from './../onboard/onboard.component';
 import { CatalogDataSource } from './catalog.datasource';
 
@@ -52,9 +51,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(
     private appMgrService: AppMgrService,
-    private confirmDialogService: ConfirmDialogService,
     private dialog: MatDialog,
-    private loadingDialogService: LoadingDialogService,
     private notificationService: NotificationService,
     public instanceSelectorService: InstanceSelectorService,
     public ui: UiService) { }
@@ -75,27 +72,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.instanceChange.unsubscribe();
-  }
-
-  onConfigureApp(xapp: XMXapp): void {
-    if (this.darkMode) {
-      this.panelClass = 'dark-theme';
-    } else {
-      this.panelClass = '';
-    }
-    const dialogRef = this.dialog.open(AppConfigurationComponent, {
-      panelClass: this.panelClass,
-      width: '40%',
-      maxHeight: '500px',
-      position: {
-        top: '10%'
-      },
-      data: {
-        xapp: xapp,
-        instanceKey: this.instanceKey
-      }
-
-    });
   }
 
   onDeployApp(app: XMXapp): void {

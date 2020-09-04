@@ -19,6 +19,7 @@
  */
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -31,6 +32,8 @@ import { ConfirmDialogService } from '../services/ui/confirm-dialog.service';
 import { ErrorDialogService } from '../services/ui/error-dialog.service';
 import { LoadingDialogService } from '../services/ui/loading-dialog.service';
 import { NotificationService } from '../services/ui/notification.service';
+import { UiService } from '../services/ui/ui.service';
+import { AppConfigurationComponent } from './../app-configuration/app-configuration.component';
 import { AppControlAnimations } from './app-control.animations';
 import { AppControlDataSource } from './app-control.datasource';
 
@@ -42,6 +45,8 @@ import { AppControlDataSource } from './app-control.datasource';
 })
 export class AppControlComponent implements OnInit, OnDestroy {
 
+  darkMode: boolean;
+  panelClass: string;
   displayedColumns: string[] = ['xapp', 'name', 'status', 'ip', 'port', 'action'];
   dataSource: AppControlDataSource;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -51,15 +56,21 @@ export class AppControlComponent implements OnInit, OnDestroy {
   constructor(
     private appMgrSvc: AppMgrService,
     private router: Router,
+    private dialog: MatDialog,
     private confirmDialogService: ConfirmDialogService,
     private errorDialogService: ErrorDialogService,
     private loadingDialogService: LoadingDialogService,
     public instanceSelectorService: InstanceSelectorService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    public ui: UiService
+    ) { }
 
 
   ngOnInit() {
     this.dataSource = new AppControlDataSource(this.appMgrSvc, this.sort, this.notificationService);
+    this.ui.darkModeState.subscribe((isDark) => {
+      this.darkMode = isDark;
+    });
     this.instanceChange = this.instanceSelectorService.getSelectedInstance().subscribe((instance: RicInstance) => {
       if (instance.key) {
         this.instanceKey = instance.key;
@@ -75,6 +86,27 @@ export class AppControlComponent implements OnInit, OnDestroy {
   controlApp(app: XappControlRow): void {
     // TODO: identify apps without hardcoding to names
     this.errorDialogService.displayError('No control available for ' + app.xapp + ' (yet)');
+  }
+
+  onConfigureApp(xappRow: XappControlRow): void {
+    if (this.darkMode) {
+      this.panelClass = 'dark-theme';
+    } else {
+      this.panelClass = '';
+    }
+    const dialogRef = this.dialog.open(AppConfigurationComponent, {
+      panelClass: this.panelClass,
+      width: '80%',
+      maxHeight: '70%',
+      position: {
+        top: '10%'
+      },
+      data: {
+        xapp: xappRow.xapp,
+        instanceKey: this.instanceKey
+      }
+
+    });
   }
 
   onUndeployApp(app: XappControlRow): void {

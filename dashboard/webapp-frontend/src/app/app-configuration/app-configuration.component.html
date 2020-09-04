@@ -19,23 +19,21 @@
   -->
 
 <div mat-dialog-title *ngIf="loading$ | async">
-  Loading {{data.xapp.name}} Configuration
+  Loading {{data.xapp}} Configuration
   <mat-spinner diameter=70></mat-spinner>
 </div>
 
 <div *ngIf="((loading$ | async)==false) " class="config-div">
 
   <div mat-dialog-title class="config-title">
-    {{data.xapp.name}} Configuration
+    {{data.xapp}} Configuration
   </div>
 
-  <div  class="config-form">
-    <json-schema-form loadExternalAssets="true"
-                      framework="material-design"
-                      [data]="xappConfigData"
-                      [schema]="xappConfigSchema"
-                      [layout]="xappLayout"
-                      (onSubmit)="updateconfig($event)">
-    </json-schema-form>
+  <mat-form-field>
+    <textarea #configTextarea matInput class="config-textarea">{{xappConfig | json}}</textarea>
+  </mat-form-field>
+  <div class="modal-footer justify-content-center">
+    <button mat-button class="mat-raised-button  mat-primary" (click)="updateconfig(configTextarea.value)" >upload</button>
+    <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
   </div>
 </div>

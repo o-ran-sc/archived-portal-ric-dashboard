@@ -34,15 +34,23 @@ mat-spinner {
   margin-bottom:0px
 }
 
-.config-form {
-  max-height: 400px;
-  overflow-y:scroll;
+.config-textarea {
+  height: 300px;
+  overflow-y: scroll;
 }
 
-.config-form::-webkit-scrollbar {
+.config-textarea::-webkit-scrollbar {
   display: none;
 }
 
 .mat-form-field-wrapper{
   margin-right:10px
+}
+
+.mat-raised-button {
+  margin-right: 5px;
+}
+
+mat-form-field {
+  width: 90%
 }

@@ -57,10 +57,10 @@ export class AppMgrService {
 
   getConfig(instanceKey: string): Observable<XMAllXappConfig> {
     // For demo purpose, pull example config from local
-    return this.httpClient.get<XMAllXappConfig>('/assets/mockdata/config.json');
+    //return this.httpClient.get<XMAllXappConfig>('/assets/mockdata/config.json');
     // Once Xapp manager contains layout, should call backend to get xapp config
-    // const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'config');
-    // return this.httpClient.get<any[]>(path);
+    const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'config');
+    return this.httpClient.get<any[]>(path);
   }
 
   putConfig(instanceKey: string, config: XMXappConfig): Observable<HttpResponse<Object>> {
