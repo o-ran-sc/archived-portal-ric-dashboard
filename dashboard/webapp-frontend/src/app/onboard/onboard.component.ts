@@ -52,7 +52,7 @@ export class OnboardComponent implements OnInit {
   ngOnInit(): void {
     this.urlOnboardForm = new FormGroup({
       configURL: new FormControl('', [Validators.required]),
-      schemaURL: new FormControl('', [Validators.required])
+      schemaURL: new FormControl('')
     })
   }
   ;
@@ -60,11 +60,9 @@ export class OnboardComponent implements OnInit {
   controlsSchema: File;
   descriptor = {
     "config-file.json": {},
-    "controls-schema.json": {}
   }
   descriptor_url = {
     "config-file.json_url": "",
-    "controls-schema.json_url": ""
   }
 
   uploadFromLocal() {
@@ -92,7 +90,9 @@ export class OnboardComponent implements OnInit {
 
   uploadFromURL(data) {
     this.descriptor_url["config-file.json_url"] = data.configURL;
-    this.descriptor_url["controls-schema.json_url"] = data.schemaURL;
+    if (data.schemaURL) {
+      this.descriptor_url["controls-schema.json_url"] = data.schemaURL;
+    }
     this.loadingDialogService.startLoading('Onboarding xApp');
     this.xappOnboarderService.onboardXappURL(this.descriptor_url, this.data.instanceKey)
       .pipe(
