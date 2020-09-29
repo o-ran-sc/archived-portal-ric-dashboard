@@ -102,7 +102,7 @@ limitations under the License.
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/ric-plt-e2mgr/Swagger/E2M_API_2020-04-23.yaml</inputSpec>
+							<inputSpec>${project.basedir}/ric-plt-e2mgr/Swagger/E2Manager_API.yaml</inputSpec>
 							<language>java</language>
 							<packageName>${client.base.package.name}</packageName>
 							<modelPackage>${client.base.package.name}.model</modelPackage>
