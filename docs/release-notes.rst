@@ -5,8 +5,9 @@
 RIC Dashboard Release Notes
 ===========================
 
-Version 2.1.0, 18 Sep 2020
+Version 2.1.0, 29 Sep 2020
 --------------------------
+* Update submodules
 * Update the onboard workflow, set controlsSchema as optional 
 * Update the workflow of configure running Xapp in Dashboard (`OAM-110 <https://jira.o-ran-sc.org/browse/OAM-110>`_)
 * Extend the Dashboard Xapp deploy workflow to accept configuration (`OAM-109 <https://jira.o-ran-sc.org/browse/OAM-109>`_)
