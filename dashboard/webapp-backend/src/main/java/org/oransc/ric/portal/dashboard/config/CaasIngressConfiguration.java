@@ -24,7 +24,6 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
 import org.oransc.ric.portal.dashboard.model.RicRegionList;
-import org.oransc.ric.portal.dashboard.util.HttpsURLConnectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +52,6 @@ public class CaasIngressConfiguration {
 		logger.debug("ctor: suffix {} insecure flag {}", pltUrlSuffix, insecureFlag);
 		this.urlSuffix = pltUrlSuffix;
 		this.instanceConfig = instanceConfig;
-		// This is a brutal hack:
-		if (insecureFlag != null && insecureFlag) {
-			logger.warn("ctor: insecure flag set, disabling SSL checks");
-			HttpsURLConnectionUtils.turnOffSslChecking();
-		}
 	}
 
 	@Bean
