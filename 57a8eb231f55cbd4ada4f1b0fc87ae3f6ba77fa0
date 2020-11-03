@@ -1,0 +1,9 @@
+Code-Review+1: Lorraine Welch <lb2391@att.com>
+Code-Review+1: Zhe Huang <zhehuang@research.att.com>
+Code-Review+2: Manoop Talasila <talasila@research.att.com>
+Verified+1: ORAN Jobbuilder <releng+oran-jobbuilder@linuxfoundation.org>
+Submitted-by: Manoop Talasila <talasila@research.att.com>
+Submitted-at: Tue, 03 Nov 2020 16:31:36 +0000
+Reviewed-on: https://gerrit.o-ran-sc.org/r/c/portal/ric-dashboard/+/4968
+Project: portal/ric-dashboard
+Branch: refs/heads/master
